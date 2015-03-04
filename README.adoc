@@ -1,0 +1,17 @@
+SUSE XSL Stylesheets
+====================
+Thomas Schraitle <toms@opensuse.org>
+
+:numbered:
+:website: https://github.com/openSUSE/suse-xsl
+
+This project contains customization layers for the DocBook XSL stylesheets.
+
+
+Requirements
+------------
+
+* DAPS from xxx
+* DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
+* XSLT processor like xsltproc, Saxon6
+
