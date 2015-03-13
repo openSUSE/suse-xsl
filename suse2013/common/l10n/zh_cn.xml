@@ -6,7 +6,7 @@
    <l:gentext key="LocalisedLanguageName" text="&#20013;&#25991;(&#31616;&#20307;)"/>
    <l:gentext key="admonseparator"  text="&#65306;"/>
    <l:gentext key="ListofAuthors" text="&#20316;&#32773;&#21015;&#34920;"/>
-   <l:gentext key="Authors" text="&#20316;&#32773;&#21015;&#34920;"/>
+   <l:gentext key="Authors" text="&#20316;&#32773;"/>
    <l:gentext key="Contributor"     text="贡献者"/>
    <l:gentext key="Contributors"    text="贡献者"/>
 
@@ -42,6 +42,12 @@
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>   
+
+   <l:context name="authorgroup">
+       <l:template name="sep" text=", "/>
+       <l:template name="sep2" text=", "/>
+       <l:template name="seplast" text=", "/>
+   </l:context>
 
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
