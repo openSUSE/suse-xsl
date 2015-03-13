@@ -37,8 +37,8 @@ switch ( XmlProduct ) {
   case 'SUSE Linux Enterprise Desktop 12':
     bugzillaProduct = 'SUSE Linux Enterprise Desktop 12';
     break;
-  case 'SUSE Linux Enterprise Desktop 11 SP3':
-    bugzillaProduct = 'SUSE Linux Enterprise Desktop 11 SP3';
+  case 'SUSE Linux Enterprise Desktop 11 SP4':
+    bugzillaProduct = 'SUSE Linux Enterprise Desktop 11 SP4 (SLED 11 SP4)';
     break;
   case 'SUSE Linux Enterprise Point of Service 11 SP2':
     bugzillaProduct = 'SUSE Linux Enterprise Point of Service 11 SP2 (SLEPOS 11 SP2)';
@@ -46,8 +46,8 @@ switch ( XmlProduct ) {
   case 'SUSE Linux Enterprise Server 12':
     bugzillaProduct = 'SUSE Linux Enterprise Server 12 (SLES 12)';
     break;
-  case 'SUSE Linux Enterprise Server 11 SP3':
-    bugzillaProduct = 'SUSE Linux Enterprise Server 11 SP3 (SLES 11 SP3)';
+  case 'SUSE Linux Enterprise Server 11 SP4':
+    bugzillaProduct = 'SUSE Linux Enterprise Server 11 SP4 (SLES 11 SP4)';
     break;
   case 'SUSE Linux Enterprise Server for SAP Applications 11 SP3':
     bugzillaProduct = 'SUSE Linux Enterprise for SAP Applications 11 SP3';
@@ -55,11 +55,15 @@ switch ( XmlProduct ) {
     break;
 //for NFS Quick Start, productnumber is 11 instead on 11 SP3 (PM's wish)
   case 'SUSE Linux Enterprise High Availability Extension 11':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP3';
+    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
     break;
-  case 'SUSE Linux Enterprise High Availability Extension 11 SP3':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP3';
+  case 'SUSE Linux Enterprise High Availability Extension 11 SP4':
+    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
     break;
+  case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 11 SP4':
+    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
+    break;
+
   case 'SUSE Linux Enterprise High Availability Extension 12':
     bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12';
     break;
