@@ -1,8 +1,11 @@
 aspell
 aspell/*
+fonts/*.sfd
 packaging
 packaging/*
-.svn
-.svn/*
+.git
+.git/*
+.gitignore
+.travis.yml
 *.~
 *~

@@ -58,6 +58,7 @@ BuildRequires:  make
 BuildRequires:  xerces-j2
 %endif
 BuildRequires:  trang
+BuildRequires:  fontpackages-devel
 
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook_4
@@ -182,6 +183,7 @@ edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
 edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
   --add /etc/xml/%{susexsl_catalog}
 
+%reconfigure_fonts_post
 exit 0
 
 #----------------------
@@ -205,9 +207,14 @@ if [ "0" = "$1" ]; then
     edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
         --del %{name}
   fi
+  %reconfigure_fonts_post
 fi
 
 exit 0
+
+#----------------------
+%posttrans
+%reconfigure_fonts_posttrans
 
 
 #----------------------
@@ -225,6 +232,8 @@ exit 0
 %dir %{_datadir}/xml/%{dtdname}/schema/*
 %dir %{_datadir}/xml/%{dtdname}/schema/*/%{dtdversion}
 
+%dir %{_ttfontsdir}
+
 %dir %{_defaultdocdir}/%{name}
 
 # stylesheets
@@ -241,6 +250,9 @@ exit 0
 %config /var/lib/sgml/CATALOG.*
 %{_datadir}/sgml/CATALOG.*
 %config %{_sysconfdir}/xml/*.xml
+
+# Fonts
+%{_ttfontsdir}/*
 
 # Documentation
 %doc %{_defaultdocdir}/%{name}/*
