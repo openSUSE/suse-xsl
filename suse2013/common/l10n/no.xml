@@ -29,6 +29,9 @@
    <l:gentext key="contentsoverview" text="Innhold"/>
    <l:gentext key="showcontentsoverview" text="Vis innhold"/>
    <l:gentext key="find" text="Søk"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Navigasjon"/>
    <l:gentext key="sharethispage" text="Del denne siden: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

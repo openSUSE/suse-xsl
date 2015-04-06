@@ -30,6 +30,9 @@
    <l:gentext key="contentsoverview" text="Sisältö"/>
    <l:gentext key="showcontentsoverview" text="Näytä sisältö"/>
    <l:gentext key="find" text="Etsi"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Siirtyminen"/>
    <l:gentext key="sharethispage" text="Jaa tämä sivu: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

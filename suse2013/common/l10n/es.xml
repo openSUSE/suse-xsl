@@ -33,6 +33,9 @@
    <l:gentext key="contentsoverview" text="Contenido"/>
    <l:gentext key="showcontentsoverview" text="Mostrar contenido"/>
    <l:gentext key="find" text="Buscar"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Navegación"/>
    <l:gentext key="sharethispage" text="Compartir esta página: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

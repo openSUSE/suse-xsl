@@ -33,6 +33,9 @@
    <l:gentext key="contentsoverview" text="Turinys"/>
    <l:gentext key="showcontentsoverview" text="Rodyti turinį"/>
    <l:gentext key="find" text="Rasti"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Naršymas"/>
    <l:gentext key="sharethispage" text="Bendrinti šį puslapį: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

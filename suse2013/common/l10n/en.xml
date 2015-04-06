@@ -26,6 +26,9 @@
    <l:gentext key="contentsoverview" text="Contents"/>
    <l:gentext key="showcontentsoverview" text="Show Contents"/>
    <l:gentext key="find" text="Find"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Navigation"/>
    <l:gentext key="sharethispage" text="Share this page: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
@@ -42,7 +45,6 @@
 
    <l:gentext key="version" text="Version"/>
    <l:gentext key="Version" text="Version"/>
-
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
