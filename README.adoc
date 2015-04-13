@@ -11,7 +11,7 @@ This project contains customization layers for the DocBook XSL stylesheets.
 Requirements
 ------------
 
-* DAPS from xxx
+* DAPS from https://github.com/openSUSE/daps
 * DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
-* XSLT processor like xsltproc, Saxon6
+* XSLT processor like `xsltproc`, Saxon6
 
