@@ -293,8 +293,14 @@ sub nsfilter {
     s|(<xsl:stylesheet)|$1 exclude-result-prefixes="d"\n                |s;
   }
 
-  # Change /xsl/ to /xsl-ns/ in import statements
-  s|(xsl:import\s+href="http://docbook.sourceforge.net/release/xsl)/|$1-ns/|sg;
+#  # Change /xsl/ to /xsl-ns/ in import and include statements
+#  s:(xsl\:(import|include)\s+href="http\://docbook.sourceforge.net/release/xsl)/:$1-ns/:sg;
+
+  # Change 
+  # http://docbook.sourceforge.net/release/xsl
+  # to
+  # http://docbook.sourceforge.net/release/xsl-ns
+  s|(http://docbook.sourceforge.net/release/xsl)/|$1-ns/|sg;
 
   # Convert stripNS to addNS
   s|stripns\.xsl|addns.xsl|sg;
