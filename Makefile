@@ -21,14 +21,34 @@ XHTML2HTML    := xslt2005/common/xhtml2html.xsl
 HTMLSTYLESHEETS := $(subst /xhtml/,/html/,$(wildcard xslt2005/xhtml/*.xsl))
 
 #-------
+# Local Stylsheets Directories
+
+DIR2005            := xslt2005
+DIR2005-5          := xslt2005-5
+DIR2013_SUSE       := suse2013
+DIR2013_SUSE-5     := suse2013-5
+DIR2013_OPENSUSE   := opensuse2013
+DIR2013_OPENSUSE-5 := opensuse2013-5
+DIR2013_DAPS       := daps2013
+DIR2013_DAPS-5     := daps2013-5
+
+LOCAL_STYLEDIRS := $(DIR2005) $(DIR2005-5) $(DIR2013_SUSE) $(DIR2013_SUSE-5) \
+	$(DIR2013_DAPS) $(DIR2013_DAPS-5) $(DIR2013_OPENSUSE) \
+	$(DIR2013_OPENSUSE-5)
+
+#-------
 # Directories for installation
 ifndef PREFIX
   PREFIX := /usr/share
 endif
 STYLEDIR2005     := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/suse
-SUSESTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/suse2013
-DAPSSTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/daps2013
-OPENSUSESTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/opensuse2013
+STYLEDIR2005-5  := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/suse-5
+SUSESTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_SUSE)
+SUSESTYLEDIR2013-5 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_SUSE-5)
+DAPSSTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_DAPS)
+DAPSSTYLEDIR2013-5 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_DAPS-5)
+OPENSUSESTYLEDIR2013 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_OPENSUSE)
+OPENSUSESTYLEDIR2013-5 := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/$(DIR2013_OPENSUSE-5)
 DOCDIR           := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 DTDDIR           := $(DESTDIR)$(PREFIX)/xml/$(DTDNAME)/schema/dtd/$(DTDVERSION)
 RNGDIR           := $(DESTDIR)$(PREFIX)/xml/$(DTDNAME)/schema/rng/$(DTDVERSION)
@@ -37,13 +57,16 @@ CATALOG_DIR      := $(DESTDIR)/etc/xml
 SGML_DIR         := $(DESTDIR)$(PREFIX)/sgml
 VAR_SGML_DIR     := $(DESTDIR)/var/lib/sgml
 
+INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-5) $(SUSESTYLEDIR2013) \
+	$(SUSESTYLEDIR2013-5) $(DAPSSTYLEDIR2013) $(DAPSSTYLEDIR2013-5) \
+	$(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-5)
+
 #-------
 # Directories for file creation
 DEV_CATALOG_DIR := catalogs
 DEV_XHTML_DIR   := xslt2005/xhtml
 
-INST_DIRECTORIES := $(STYLEDIR2005) $(SUSESTYLEDIR2013) \
-     $(DAPSSTYLEDIR2013) $(OPENSUSESTYLEDIR2013) $(DOCDIR) $(DTDDIR) \
+INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR) \
      $(RNGDIR) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) $(VAR_SGML_DIR)
 
 DEV_DIRECTORIES := $(DEV_CATALOG_DIR) $(DEV_XHTML_DIR)
@@ -52,7 +75,7 @@ all: schema/novdocx-core.rnc schema/novdocx-core.rng schema/novdocx.rng
 all: schema/novdocxi.rng
 all: catalogs/$(NOVDOC_FOR-CATALOG) catalogs/$(SUSEXSL_FOR-CATALOG)
 all: catalogs/CATALOG.$(DTDNAME)-$(DTDVERSION)
-all: xhtml2html
+all: xhtml2html generate_xslns
 	@echo "Ready to install..."
 
 install: | $(INST_DIRECTORIES)
@@ -63,22 +86,38 @@ install: | $(INST_DIRECTORIES)
 	install -m644 catalogs/*.xml $(CATALOG_DIR)
 	install -m644 COPYING* $(DOCDIR)
 	install -m644 fonts/*.ttf $(TTF_FONT_DIR)
-	tar c --mode=u+w,go+r-w,a-s -C xslt2005 . | (cd  $(STYLEDIR2005); tar xpv)
-	tar c --mode=u+w,go+r-w,a-s -C suse2013 . | (cd  $(SUSESTYLEDIR2013); tar xpv)
-	tar c --mode=u+w,go+r-w,a-s -C daps2013 . | (cd  $(DAPSSTYLEDIR2013); tar xpv)
-	tar c --mode=u+w,go+r-w,a-s -C opensuse2013 . | (cd  $(OPENSUSESTYLEDIR2013); tar xpv)
-
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2005) . | (cd  $(STYLEDIR2005); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2005-5) . | (cd  $(STYLEDIR2005-5); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE-5) . | (cd  $(SUSESTYLEDIR2013-5); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_DAPS) . | (cd  $(DAPSSTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_DAPS-5) . | (cd  $(DAPSSTYLEDIR2013-5); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_OPENSUSE) . | (cd  $(OPENSUSESTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_OPENSUSE-5) . | (cd  $(OPENSUSESTYLEDIR2013-5); tar xp)
 
 .PHONY: clean
 clean:
 	rm -rf catalogs/ schema/novdocx-core.rnc schema/novdocx-core.rng \
-		schema/novdocx.rng schema/novdocxi.rng xslt2005/html/
+		schema/novdocx.rng schema/novdocxi.rng xslt2005/html/ \
+		$(DIR2005-5) $(DIR2013_SUSE-5) $(DIR2013_DAPS-5) \
+		$(DIR2013_OPENSUSE-5)
 
 # auto-generate the html stylesheets for STYLEDIR2005
-#
+# Let's be lazy and generate them every time make is called by
+# making this target PHONY
 .PHONY: xhtml2html
 xhtml2html: $(HTMLSTYLESHEETS)
 
+# auto-generate the DocBook5 (xsl-ns) stylesheets
+# Let's be super lazy and generate them every time make is called by
+# making this target PHONY
+#
+.PHONY: generate_xslns
+generate_xslns: $(LOCAL_STYLEDIRS)
+	bin/xslns-build $(DIR2005) $(DIR2005-5)
+	bin/xslns-build $(DIR2013_SUSE) $(DIR2013_SUSE-5)
+	bin/xslns-build $(DIR2013_DAPS) $(DIR2013_DAPS-5)
+	bin/xslns-build $(DIR2013_OPENSUSE) $(DIR2013_OPENSUSE-5)
 
 #-----------------------------
 # Auto-generate HTML stylesheets from XHTML:
@@ -164,5 +203,5 @@ catalogs/$(SUSEXSL_FOR-CATALOG):
 
 # create needed directories
 #
-$(INST_DIRECTORIES) $(DEV_DIRECTORIES):
+$(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(DIR2005-5) $(DIR2013_SUSE-5) $(DIR2013_DAPS-5) $(DIR2013_OPENSUSE-5):
 	mkdir -p $@
