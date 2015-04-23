@@ -223,9 +223,13 @@ exit 0
 
 # Directories
 %dir %{_datadir}/xml/docbook/stylesheet/suse
+%dir %{_datadir}/xml/docbook/stylesheet/suse-5
 %dir %{_datadir}/xml/docbook/stylesheet/suse2013
+%dir %{_datadir}/xml/docbook/stylesheet/suse2013-5
 %dir %{_datadir}/xml/docbook/stylesheet/daps2013
+%dir %{_datadir}/xml/docbook/stylesheet/daps2013-5
 %dir %{_datadir}/xml/docbook/stylesheet/opensuse2013
+%dir %{_datadir}/xml/docbook/stylesheet/opensuse2013-5
 
 %dir %{_datadir}/xml/%{dtdname}
 %dir %{_datadir}/xml/%{dtdname}/schema
@@ -238,9 +242,13 @@ exit 0
 
 # stylesheets
 %{_datadir}/xml/docbook/stylesheet/suse/*
+%{_datadir}/xml/docbook/stylesheet/suse-5/*
 %{_datadir}/xml/docbook/stylesheet/suse2013/*
+%{_datadir}/xml/docbook/stylesheet/suse2013-5/*
 %{_datadir}/xml/docbook/stylesheet/daps2013/*
+%{_datadir}/xml/docbook/stylesheet/daps2013-5/*
 %{_datadir}/xml/docbook/stylesheet/opensuse2013/*
+%{_datadir}/xml/docbook/stylesheet/opensuse2013-5/*
 
 # NovDoc Schemas
 %{_datadir}/xml/%{dtdname}/schema/dtd/%{dtdversion}/*
