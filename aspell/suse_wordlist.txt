@@ -1,6 +1,3 @@
-1.x
-4.x
-5.x
 AAC
 ABAP
 ABI
@@ -15,8 +12,6 @@ ACPI
 Acronis
 Adaptec
 AdBlock
-add-in
-add-on
 ADSL
 AES
 Agfa
@@ -30,10 +25,6 @@ amaroK's
 AMaViS
 AMD
 Anjuta
-anti-alias
-anti-aliased
-anti-aliases
-anti-aliasing
 antivirus
 anycast
 Apache
@@ -294,7 +285,6 @@ coldplug
 collocational
 Collocational
 COMBOOT
-COMMENT1
 CompactFlash
 compat
 compiz
@@ -419,7 +409,6 @@ diskful
 diskless
 disknetboot
 DiskNetboot
-dist-html
 distro
 DIT
 DJs
@@ -438,7 +427,6 @@ DNS
 DNSSEC
 doBasicAuth
 DocBook
-DOCBOOK5
 DOCCONF
 Dockable
 DoCookBook
@@ -503,7 +491,6 @@ enablement
 encryptions
 endian
 Engenio
-entity-decl
 enum
 EnumerateClasses
 env
@@ -802,7 +789,6 @@ HTCP
 htdocs
 html
 HTML
-HTML5
 HTMLROOT
 http
 httpd
@@ -822,7 +808,6 @@ HWTYPE
 hyperthreaded
 hyperthreading
 hypervisor
-i386
 ia
 iasl
 iBFT
@@ -1008,7 +993,6 @@ KBytes
 KDar
 KDC
 KDE
-KDE3
 KDEDIR
 KDEDIRS
 kdepim
@@ -1146,7 +1130,6 @@ Linphone
 linux
 linuxrc
 LinuxSCSI
-LITERAL1
 LiveCD
 LiveCDs
 liveDVD
@@ -1444,7 +1427,6 @@ NotePad
 Novdoc
 novell
 Novell
-novell.com
 NovellVPN
 npiv
 NPIV
@@ -1679,7 +1661,6 @@ postinstall
 postprocess
 POSTROUTING
 PostScript
-PostScript-based
 poststart
 poststop
 POV
@@ -1730,7 +1711,6 @@ preload
 preloading
 prepend
 preprogrammed
-pre-release
 PREROUTING
 preselection
 preshared
@@ -1940,9 +1920,6 @@ SASL
 SATA
 SaX
 saxon
-saxon6
-saxon9
-Sayamindu
 sbin
 sblim
 SBLIM
@@ -1987,7 +1964,6 @@ searchable
 searchd
 searchlist
 SEARCHTERM
-sect1
 securityfs
 sed
 Sel
@@ -2222,12 +2198,10 @@ susedoc
 SuSEfirewall
 SUSEgreeter
 SUSE's
-suse-xsl-stylesheets
 sv
 svcgssd
 svg
 SVG
-SVG-based
 SVN
 sw
 sxp
@@ -2441,11 +2415,6 @@ UUID
 UUIDs
 ux
 Ux
-v0
-v1
-V1.0
-v2
-v3
 Valgrind
 validator
 variable's
@@ -2506,8 +2475,6 @@ VV
 VYM
 vzctl
 vzlist
-W3C
-w3m
 Wacom
 Wagle
 WAIS
@@ -2586,10 +2553,8 @@ wwpn
 WWPN
 WWPNs
 www
-www.gnu.org
 wwwrun
 Wyman
-x86_64
 xauth
 xawtv
 Xbase
@@ -2617,8 +2582,6 @@ Xgl
 xhost
 xhtml
 XHTML
-XHTML1
-XHTML5
 XInclude
 XIncludes
 xine
@@ -2653,7 +2616,6 @@ XSane
 xsession
 xset
 XSL
-XSL-FO
 XSLT
 XSLTPARAM
 xsltproc
