@@ -12,8 +12,6 @@ ACPI
 Acronis
 Adaptec
 AdBlock
-add-in
-add-on
 ADSL
 AES
 Agfa
@@ -27,10 +25,6 @@ amaroK's
 AMaViS
 AMD
 Anjuta
-anti-alias
-anti-aliased
-anti-aliases
-anti-aliasing
 antivirus
 anycast
 Apache
@@ -59,13 +53,14 @@ ARPs
 aRts
 Ascii
 asound
+aspell
 assistive
 Assistive
 ASUS
 ATA
 ATAPI
-aTFTP
 atftp
+aTFTP
 Atheros
 Athlon
 ATI
@@ -144,8 +139,8 @@ biarch
 Biarch
 Bindmount
 binutils
-BIOSes
 BIOS
+BIOSes
 bitmask
 bitrate
 BJC
@@ -165,6 +160,7 @@ BMP
 BogoMips
 bolded
 Bonjour
+BOOKNAME
 bool
 boolean
 boostrap
@@ -188,6 +184,7 @@ bzip
 CA
 cachemgr
 Calc
+Calibre
 callout
 Calton
 cancelled
@@ -349,6 +346,9 @@ CX
 cyrus
 DAIG
 DAO
+daps
+DAPS
+DAPSROOT
 DARPA
 DASD
 DASDs
@@ -364,6 +364,7 @@ datetime
 DBI
 dbname
 dbs
+DBSTYLES
 dbus
 DCC
 DCHP
@@ -397,6 +398,7 @@ DHCP
 dhcpc
 dhcpcd
 dhcpd
+dia
 Dia
 Dialpad
 Diffie
@@ -425,7 +427,10 @@ DNS
 DNSSEC
 doBasicAuth
 DocBook
+DOCCONF
 Dockable
+DoCookBook
+DOCTYPE
 DocumentRoot
 dom
 domainComponent
@@ -489,12 +494,17 @@ Engenio
 enum
 EnumerateClasses
 env
+envar
 envvars
 EOF
 eog
 EPS
 Epson
+epub
 ePub
+ePUB
+epubcheck
+EpubCheck
 eq
 Ericsson
 ERRORs
@@ -569,13 +579,16 @@ Firewire
 FireWire
 firstboot
 Firstboot
+firstname
 FLAC
 Flickr
+flyer
 fm
 Fn
 FO
 fontconfig
 Foomatic
+formatter
 Formatter
 formatters
 Fortran
@@ -635,6 +648,7 @@ genisoimage
 genprof
 getfacl
 gethostname
+getimages
 Getopts
 GFDL
 gftp
@@ -660,6 +674,7 @@ GmbH
 gnokii
 Gnokii
 GNOMEMeeting
+Gnomovision
 GnuCash
 Gnumeric
 GnuPG
@@ -673,6 +688,7 @@ gpg
 GPG
 gphoto
 gPhoto
+gpicview
 gpilotd
 GPL
 GPRS
@@ -710,6 +726,7 @@ Gwenview
 gz
 gzip
 gzipped
+Habanero
 HAE
 handhelds
 handheld's
@@ -772,6 +789,7 @@ HTCP
 htdocs
 html
 HTML
+HTMLROOT
 http
 httpd
 httpPort
@@ -835,6 +853,7 @@ IMAGETYPE
 iManager
 IMAP
 IMDB
+IMG
 inarchive
 inattachment
 Inbox
@@ -842,14 +861,15 @@ indices
 inet
 inetd
 inetOrgPerson
-infrared
 Informix
 INFORMIXDIR
 INFORMIXSERVER
+infrared
 init
 initramfs
 initrd
 inittab
+inkscape
 Inkscape
 inline
 inode
@@ -946,6 +966,8 @@ jdbc
 JDBC
 JetDirect
 JFS
+jing
+JING
 JOBSPEC
 Joliet
 journaled
@@ -953,6 +975,9 @@ journaling
 Journaling
 jpeg
 JPG
+JPGs
+JS
+JSP
 JSxx
 JuK
 KAddressBook
@@ -1070,6 +1095,7 @@ KWin
 KWord
 LabPlot
 landline
+lang
 LANs
 LaTeX
 LCDs
@@ -1109,6 +1135,7 @@ LiveCDs
 liveDVD
 LiveDVD
 LiveDVDs
+LLC
 LMB
 ln
 LOADDEV
@@ -1133,6 +1160,7 @@ Lookup
 lookups
 loopback
 lossless
+lossy
 lp
 LPAR
 LPARs
@@ -1239,6 +1267,8 @@ mkswap
 mmap
 MMC
 mnt
+mobi
+Mobipocket
 MochaSoft
 MODALIAS
 modeline
@@ -1477,6 +1507,7 @@ OpenZaurus
 operability
 opie
 Opie
+optipng
 OPTNAME
 OQO
 ora
@@ -1535,8 +1566,10 @@ PCMCIA
 PDA
 PDAs
 PDC
+pdf
 PDF
 pdflush
+PDFNAME
 PDFs
 PDU
 PEAP
@@ -1576,6 +1609,7 @@ pim
 PIM
 pingd
 PINs
+PIs
 PivotTables
 pixmaps
 PKCS
@@ -1590,6 +1624,7 @@ pluggable
 Pluggable
 png
 PNG
+PNGs
 PnP
 PocketPC
 podcast
@@ -1687,8 +1722,12 @@ prio
 prioritizer
 proc
 productversion
+PROFARCH
+PROFCONDITION
 ProFibre
+PROFOS
 proftpd
+PROFVENDOR
 proven
 providerAutoGroup
 providerDirs
@@ -1790,6 +1829,7 @@ REDP
 Redpapers
 reenable
 Reenabling
+refentry
 regcert
 registrationDir
 regurl
@@ -1834,6 +1874,9 @@ ro
 RockRidge
 rollout
 ROMs
+ROOTELEMENTS
+rootid
+ROOTID
 Rosegarden
 Roxio
 rpasswd
@@ -1876,7 +1919,7 @@ sasl
 SASL
 SATA
 SaX
-Sayamindu
+saxon
 sbin
 sblim
 SBLIM
@@ -1900,6 +1943,8 @@ SCPM
 scPosImage
 scPosImageDn
 scRamDisk
+screenshot
+screenshots
 scRefObjectContainer
 Scribus
 scriptable
@@ -1940,6 +1985,7 @@ servlet
 sesman
 setfacl
 setgid
+setindex
 setuid
 Setuid
 setuser
@@ -2050,6 +2096,7 @@ sslClientTrustStore
 sslKeyFilePath
 SSL/TLS
 SSO
+STACKSIZE
 StarOffice
 startdelay
 StartTLS
@@ -2068,9 +2115,13 @@ stonith
 STONITH
 stonithd
 StorEdge
+STR
 strace
 Strg
 stunnel
+STYLEDEVEL
+STYLEROOT
+stylesheet
 stylesheets
 Stylesheets
 su
@@ -2143,6 +2194,7 @@ supporturl
 SUSE
 suseconfig
 SuSEconfig
+susedoc
 SuSEfirewall
 SUSEgreeter
 SUSE's
@@ -2329,6 +2381,7 @@ unmounting
 Unmounting
 unmounts
 unmuted
+Unprofiled
 unsets
 untar
 untarred
@@ -2363,6 +2416,7 @@ UUIDs
 ux
 Ux
 Valgrind
+validator
 variable's
 VBA
 VBscript
@@ -2443,6 +2497,7 @@ webcams
 Webcams
 WebDAV
 WebDraw
+webhelp
 websafe
 Websafe
 Websphere
@@ -2514,8 +2569,10 @@ Xend
 Xenix
 Xensource
 xenstore
+xep
 XEP
 XFCE
+Xfig
 XFree
 XFS
 XFS's
@@ -2523,7 +2580,10 @@ xft
 Xft
 Xgl
 xhost
+xhtml
 XHTML
+XInclude
+XIncludes
 xine
 Xinerama
 xinetd
@@ -2536,15 +2596,19 @@ xm
 xmfile
 Xmgr
 xml
+xmlcatalog
+xmllint
 XMMS
 XMPP
 Xnest
+XOP
 xorg
 Xournal
 XP
 XPath
 Xpdf
 xpp
+XPS
 XRC
 xrdp
 xsane
@@ -2552,6 +2616,10 @@ XSane
 xsession
 xset
 XSL
+XSLT
+XSLTPARAM
+xsltproc
+XSLTPROCESSOR
 XSTORE
 xstroke
 Xstroke
@@ -2567,6 +2635,7 @@ yaboot
 yast
 YaST
 YaST's
+Yoyodyne
 YP
 ypbind
 ypserv

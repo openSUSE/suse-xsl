@@ -17,7 +17,8 @@
  
    <l:gentext key="Question" text="السؤال:"/>
    <l:gentext key="question" text="السؤال:"/>
- 
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>

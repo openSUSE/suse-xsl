@@ -28,6 +28,9 @@
    <l:gentext key="contentsoverview" text="Obsah"/>
    <l:gentext key="showcontentsoverview" text="Zobrazit obsah"/>
    <l:gentext key="find" text="Najít"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="Navigace"/>
    <l:gentext key="sharethispage" text="Sdílet tuto stránku: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

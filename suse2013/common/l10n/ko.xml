@@ -30,6 +30,9 @@
    <l:gentext key="contentsoverview" text="목차"/>
    <l:gentext key="showcontentsoverview" text="목차 표시"/>
    <l:gentext key="find" text="찾기"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
    <l:gentext key="navigation" text="탐색"/>
    <l:gentext key="sharethispage" text="이 페이지 공유: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>

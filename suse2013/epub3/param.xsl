@@ -71,7 +71,13 @@ article  toc,title,figure,table,example,equation
 
 <!-- 8. EPUB ========================================= -->
 
-  <xsl:param name="base.dir" select="'OEBPS/'"/>
+<!-- fs 2015-04-16: would be better to use the default values from upstream
+                    just commenting here does not work -->
+  <xsl:param name="base.dir" select="$epub.oebps.dir"/>
+  <xsl:param name="epub.oebps.dir" select="'OEBPS'"/>
+  <xsl:param name="epub.metainf.dir" select="'META-INF/'"/>
+
+
   <xsl:param name="index.links.to.section" select="0"/>
 
   <!-- Epub does not yet support external links -->
@@ -104,8 +110,6 @@ article  toc,title,figure,table,example,equation
   <xsl:param
     name="epub.vocabulary.profile.package">http://www.idpf.org/epub/30/profile/package/</xsl:param>
   <xsl:param name="epub.output.epub.types" select="1"/>
-  <xsl:param name="epub.oebps.dir" select="'OEBPS'"/>
-  <xsl:param name="epub.metainf.dir" select="'META-INF/'"/>
   <xsl:param name="epub.ncx.filename" select="'toc.ncx'"/>
   <xsl:param name="epub.mimetype.filename" select="'mimetype'"/>
   <xsl:param name="epub.mimetype.value" select="'application/epub+zip'"/>

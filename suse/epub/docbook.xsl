@@ -7,9 +7,13 @@
   
 <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/epub/docbook.xsl"/>
 
+<!-- fs 2015-04-16: better use the default values from upstream
+ 
 <xsl:param name="base.dir">epub/OEBPS/</xsl:param>
 <xsl:param name="epub.oebps.dir">epub/OEBPS/</xsl:param>
 <xsl:param name="epub.metainf.dir">epub/META-INF/</xsl:param>
+
+-->
 
 <xsl:param name="use.id.as.filename" select="1"/>
 

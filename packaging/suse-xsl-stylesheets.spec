@@ -16,7 +16,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0~rc4
+Version:        2.0~rc5
 Release:        1
 
 ###############################################################
@@ -49,6 +49,7 @@ Source2:        %{name}.rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
+BuildRequires:  aspell aspell-en
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes
 BuildRequires:  libxslt
@@ -58,6 +59,7 @@ BuildRequires:  make
 BuildRequires:  xerces-j2
 %endif
 BuildRequires:  trang
+BuildRequires:  fontpackages-devel
 
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook_4
@@ -83,6 +85,7 @@ Recommends:     un-fonts
 Requires:       dejavu
 Requires:       freefont
 Requires:       liberation-fonts
+Recommends:     aspell aspell-en
 Recommends:     agfa-fonts
 # Japanese:
 Recommends:     sazanami-fonts
@@ -133,16 +136,6 @@ the DocBook 4 DTD.
 #--------------------------------------------------------------------------
 %prep
 %setup -q -n %{name}
-#
-# Patch the VERSION.xsl file to hold the current version
-# FIXME: this is not the right place for these sed lines -- if anyone ever
-#        creates e.g. a Debian package, these would lines would have to be
-#        duplicated in the DEB equivalent of a spec file. This should be in
-#        ../Makefile instead.
-sed -i "s/@@#version@@/%{version}/" xslt2005/version.xsl
-sed -i "s/@@#version@@/%{version}/" suse2013/version.xsl
-sed -i "s/@@#version@@/%{version}/" daps2013/version.xsl
-sed -i "s/@@#version@@/%{version}/" opensuse2013/version.xsl
 
 #--------------------------------------------------------------------------
 %build
@@ -150,7 +143,7 @@ sed -i "s/@@#version@@/%{version}/" opensuse2013/version.xsl
 
 #--------------------------------------------------------------------------
 %install
-make install DESTDIR=$RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT  LIBDIR=%_libdir
 
 # create symlinks:
 %fdupes -s $RPM_BUILD_ROOT/%{_datadir}
@@ -182,6 +175,7 @@ edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
 edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
   --add /etc/xml/%{susexsl_catalog}
 
+%reconfigure_fonts_post
 exit 0
 
 #----------------------
@@ -205,9 +199,14 @@ if [ "0" = "$1" ]; then
     edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
         --del %{name}
   fi
+  %reconfigure_fonts_post
 fi
 
 exit 0
+
+#----------------------
+%posttrans
+%reconfigure_fonts_posttrans
 
 
 #----------------------
@@ -215,23 +214,35 @@ exit 0
 %defattr(-,root,root)
 
 # Directories
+%dir %{_datadir}/suse-xsl-stylesheets
+%dir %{_datadir}/suse-xsl-stylesheets/aspell
 %dir %{_datadir}/xml/docbook/stylesheet/suse
+%dir %{_datadir}/xml/docbook/stylesheet/suse-ns
 %dir %{_datadir}/xml/docbook/stylesheet/suse2013
+%dir %{_datadir}/xml/docbook/stylesheet/suse2013-ns
 %dir %{_datadir}/xml/docbook/stylesheet/daps2013
+%dir %{_datadir}/xml/docbook/stylesheet/daps2013-ns
 %dir %{_datadir}/xml/docbook/stylesheet/opensuse2013
+%dir %{_datadir}/xml/docbook/stylesheet/opensuse2013-ns
 
 %dir %{_datadir}/xml/%{dtdname}
 %dir %{_datadir}/xml/%{dtdname}/schema
 %dir %{_datadir}/xml/%{dtdname}/schema/*
 %dir %{_datadir}/xml/%{dtdname}/schema/*/%{dtdversion}
 
+%dir %{_ttfontsdir}
+
 %dir %{_defaultdocdir}/%{name}
 
 # stylesheets
 %{_datadir}/xml/docbook/stylesheet/suse/*
+%{_datadir}/xml/docbook/stylesheet/suse-ns/*
 %{_datadir}/xml/docbook/stylesheet/suse2013/*
+%{_datadir}/xml/docbook/stylesheet/suse2013-ns/*
 %{_datadir}/xml/docbook/stylesheet/daps2013/*
+%{_datadir}/xml/docbook/stylesheet/daps2013-ns/*
 %{_datadir}/xml/docbook/stylesheet/opensuse2013/*
+%{_datadir}/xml/docbook/stylesheet/opensuse2013-ns/*
 
 # NovDoc Schemas
 %{_datadir}/xml/%{dtdname}/schema/dtd/%{dtdversion}/*
@@ -242,8 +253,14 @@ exit 0
 %{_datadir}/sgml/CATALOG.*
 %config %{_sysconfdir}/xml/*.xml
 
+# Fonts
+%{_ttfontsdir}/*
+
 # Documentation
 %doc %{_defaultdocdir}/%{name}/*
+
+# SUSE aspell dictionary
+%{_datadir}/suse-xsl-stylesheets/aspell/en_US-suse-addendum.rws
 
 #----------------------
 %changelog

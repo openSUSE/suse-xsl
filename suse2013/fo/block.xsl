@@ -95,7 +95,9 @@
     <xsl:copy-of select="$titleStr"/>
     <xsl:if test="$lastChar != ''
                   and not(contains($runinhead.title.end.punct, $lastChar))">
-      <xsl:value-of select="$runinhead.default.title.end.punct"/>
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
+      </xsl:call-template>
     </xsl:if>
     <xsl:text>&#160;</xsl:text>
   </fo:inline>
