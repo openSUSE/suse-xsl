@@ -1,5 +1,7 @@
-aspell
-aspell/*
+aspell/[aft]*.txt
+aspell/add_context
+aspell/*.sh
+aspell/oxygen
 fonts/*.sfd
 packaging
 packaging/*

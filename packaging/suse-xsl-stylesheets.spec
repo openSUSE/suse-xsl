@@ -1,7 +1,7 @@
 #
 # spec file for package suse-xsl-stylesheets
 #
-# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2015 SUSE LINUX GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -9,15 +9,16 @@
 # file, is the same license as for the pristine package itself (unless the
 # license for the pristine package is not an Open Source License, in which
 # case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (version 1.9)
+# license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
-#
+
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
+#
 
 
 Name:           suse-xsl-stylesheets
 Version:        2.0~rc5
-Release:        1
+Release:        0
 
 ###############################################################
 #
@@ -44,12 +45,14 @@ License:        GPL-2.0 or GPL-3.0
 Group:          Productivity/Publishing/XML
 Url:            http://sourceforge.net/p/daps/suse-xslt
 Source0:        %{name}-%{version}.tar.bz2
-Source1:        susexsl-fetch-source
-Source2:        %{name}.rpmlintrc
+Source1:        susexsl-fetch-source-svn
+Source2:        susexsl-fetch-source-git
+Source3:        %{name}.rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
-BuildRequires:  aspell aspell-en
+BuildRequires:  aspell
+BuildRequires:  aspell-en
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes
 BuildRequires:  libxslt
@@ -58,8 +61,8 @@ BuildRequires:  make
 %if 0%{?suse_version} == 1210
 BuildRequires:  xerces-j2
 %endif
-BuildRequires:  trang
 BuildRequires:  fontpackages-devel
+BuildRequires:  trang
 
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook_4
@@ -208,7 +211,6 @@ exit 0
 %posttrans
 %reconfigure_fonts_posttrans
 
-
 #----------------------
 %files
 %defattr(-,root,root)
@@ -263,4 +265,5 @@ exit 0
 %{_datadir}/suse-xsl-stylesheets/aspell/en_US-suse-addendum.rws
 
 #----------------------
+
 %changelog
