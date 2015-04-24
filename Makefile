@@ -7,7 +7,7 @@
 #
 SHELL      := /bin/bash -x
 PACKAGE    := suse-xsl-stylesheets
-VERSION    := 2.0~rc4
+VERSION    := 2.0~rc5
 DTDNAME    := novdoc
 DTDVERSION := 1.0
 
