@@ -1,4 +1,34 @@
 -------------------------------------------------------------------
+Mon Apr 27 13:52:45 UTC 2015 - fsundermeyer@opensuse.org
+
+New release 2.0~rc5
+
+New Features:
+ * support for DocBook5 - the xsl-ns variants are located in the following
+   directories:
+   -  /usr/share/xml/docbook/stylesheet/daps2013-ns
+   -  /usr/share/xml/docbook/stylesheet/opensuse2013-ns
+   -  /usr/share/xml/docbook/stylesheet/suse-ns
+   -  /usr/share/xml/docbook/stylesheet/suse2013-ns
+ * the DocBook5 variants are automatically generated with a slghtly adopted
+   version of xslns-build from upstream
+ * SUSE aspell dictionary was moved from DAPS to this package; wordlist
+   was updated
+ * started a NovDoc version for DocBook 5: susedoc5
+
+Bugfixes:
+ * language fixes for Chinese, Korean, and Japanese
+ * Fixed issue #29: Make Parameter runinhead.default.title.end.punct
+   L10N Compatible
+ * Fixed sf-issue #246 Allow More Information in Side Regions When in Draft Mode
+ * Fixed sf-issue #243 Support Sorting of Acronym in Glossaries in HTML
+ * Fixed sf-issue #241:  Allow dir attribute in Novdoc DTD
+ * Fixed bold.replacement.color and italic.replacement.color parameter for XEP
+ * Fix for guimenus: Use 'inherit' instead of 'transparent' as this value
+   seems not supported by XEP.
+ * Novdoc: Missing remap for ulink added
+
+-------------------------------------------------------------------
   15 Mon Apr 15 13:36:00 UTC 2015 - toms@opensuse.org
 
   Release 2.0.0-rc4
