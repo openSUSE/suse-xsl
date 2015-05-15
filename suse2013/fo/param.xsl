@@ -326,7 +326,7 @@ task before
 <xsl:param name="url-w" select="concat($protocol-prefix, 'en.wikipedia.org/wiki/')"/>
 
 <!-- SUSE  -->
-<xsl:param name="company.address">SUSE Linux Products GmbH
+<xsl:param name="company.address">SUSE Linux GmbH
 Maxfeldstr. 5
 90409 Nürnberg
 GERMANY</xsl:param>
