@@ -7,22 +7,22 @@
 #
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
-VERSION       := 2.0~rc6
-SUSE_XML_PATH := /usr/share/xml/suse
+VERSION       := 2.0~rc5
+SUSE_XML_PATH := /usr/share/xml/suse/schema
 
 #--------------------------------------------------------------
 # NOVDOC
 
 NOVDOC_NAME     := novdoc
 NOVDOC_VERSION  := 1.0
-NOVDOC_DTD_PATH := $(SUSE_XML_PATH)/schema/dtd/$(NOVDOC_VERSION)
+NOVDOC_DTD_PATH := $(SUSE_XML_PATH)/dtd/$(NOVDOC_VERSION)
 
 #--------------------------------------------------------------
 # SUSEDOC
 
 #SUSEDOC_NAME     := susedoc
 #SUSEDOC_VERSION  := 0.9
-#SUSEDOC_RNG_PATH := $(SUSE_XML_PATH)/schema/rng/$(SUSEDOC_VERSION)
+#SUSEDOC_RNG_PATH := $(SUSE_XML_PATH)/rng/$(SUSEDOC_VERSION)
 
 #--------------------------------------------------------------
 # stylsheet directory names
@@ -229,12 +229,11 @@ $(SUSESCHEMA_CATALOG): | $(DEV_CATALOG_DIR)
 	  "file://$(NOVDOC_DTD_PATH)/catalog.xml" $@
 	xmlcatalog --noout --add "delegateSystem" "novdocx.dtd" \
 	  "file://$(NOVDOC_DTD_PATH)/catalog.xml" $@
-	xmlcatalog --noout --add "rewriteSystem" "http://raw.githubusercontent.com/openSUSE/suse-xsl/susedoc/" "file://$(SUSE_XML_PATH)/" $@
-	xmlcatalog --noout --add "rewriteURI" "http://raw.githubusercontent.com/openSUSE/suse-xsl/susedoc/" "file://$(SUSE_XML_PATH)/" $@
+	xmlcatalog --noout --add "rewriteSystem" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_XML_PATH)/" $@
+	xmlcatalog --noout --add "rewriteURI" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_XML_PATH)/" $@
 	sed -i '/^<!DOCTYPE .*>$$/d' $@
 	sed -i '/<catalog/a\ <group id="suse_schemas">' $@
 	sed -i '/<\/catalog/i\ </group>' $@
-
 
 # FIXME: None of the below URLs exist. Would be good if they would at least
 #        redirect into the SVN instead of 404ing.

@@ -33,12 +33,14 @@ Release:        0
 #
 ################################################################
 
-%define dtdversion      1.0
-%define dtdname         novdoc
+%define novdocversion   1.0
+%define novdocname      novdoc
 %define regcat          %{_bindir}/sgml-register-catalog
 %define dbstyles        %{_datadir}/xml/docbook/stylesheet/nwalsh/current
-%define novdoc_catalog  for-catalog-%{dtdname}-%{dtdversion}.xml
-%define susexsl_catalog for-catalog-%{name}.xml
+%define suse_schemas_catalog catalog-for-suse_schemas.xml
+%define susexsl_catalog      catalog-for-%{name}.xml
+%define suse_schemas_groupname suse_schemas
+
 
 Summary:        SUSE-branded Docbook stylesheets for XSLT 1.0
 License:        GPL-2.0 or GPL-3.0
@@ -158,7 +160,7 @@ make install DESTDIR=$RPM_BUILD_ROOT  LIBDIR=%_libdir
 # SGML CATALOG
 #
 if [ -x %{regcat} ]; then
-  %{regcat} -a %{_datadir}/sgml/CATALOG.%{dtdname}-%{dtdversion} >/dev/null 2>&1 || true
+  %{regcat} -a %{_datadir}/sgml/CATALOG.%{novdocname}-%{novdocversion} >/dev/null 2>&1 || true
 fi
 # XML Catalogs
 #
@@ -166,17 +168,17 @@ fi
 # zypper in, since it does not call postun
 # delete ...
 if [ "2" = "$1" ]; then
- edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
-  --del %{dtdname}-%{dtdversion} || true
- edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
+ edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+  --del %{suse_schemas_groupname} || true
+ edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
   --del %{name} || true
 fi
 
 # ... and (re)add it again
-edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
-  --add /etc/xml/%{novdoc_catalog}
-edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
-  --add /etc/xml/%{susexsl_catalog}
+edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+  --add %{_sysconfdir}/xml/%{suse_schemas_catalog}
+edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+  --add %{_sysconfdir}/xml/%{susexsl_catalog}
 
 %reconfigure_fonts_post
 exit 0
@@ -191,15 +193,15 @@ exit 0
 # in case of an update
 #
 if [ "0" = "$1" ]; then
-  if [ ! -f %{_sysconfdir}/xml/%{novdoc_catalog} -a -x /usr/bin/edit-xml-catalog ] ; then
+  if [ ! -f %{_sysconfdir}/xml/%{suse_schemas_catalog} -a -x /usr/bin/edit-xml-catalog ] ; then
     # SGML: novdoc dtd entry
-    %{regcat} -r %{_datadir}/sgml/CATALOG.%{dtdname}-%{dtdversion} >/dev/null 2>&1 || true
+    %{regcat} -r %{_datadir}/sgml/CATALOG.%{novdocname}-%{novdocversion} >/dev/null 2>&1 || true
     # XML
-    # novdoc dtd entry
-    edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
-        --del %{dtdname}-%{dtdversion}
+    # schemas entry
+    edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+        --del %{suse_schemas_groupname}
     # susexsl entry
-    edit-xml-catalog --group --catalog /etc/xml/suse-catalog.xml \
+    edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
         --del %{name}
   fi
   %reconfigure_fonts_post
@@ -227,10 +229,13 @@ exit 0
 %dir %{_datadir}/xml/docbook/stylesheet/opensuse2013
 %dir %{_datadir}/xml/docbook/stylesheet/opensuse2013-ns
 
-%dir %{_datadir}/xml/%{dtdname}
-%dir %{_datadir}/xml/%{dtdname}/schema
-%dir %{_datadir}/xml/%{dtdname}/schema/*
-%dir %{_datadir}/xml/%{dtdname}/schema/*/%{dtdversion}
+%dir %{_datadir}/xml/suse
+%dir %{_datadir}/xml/suse/schema
+%dir %{_datadir}/xml/suse/schema/dtd
+%dir %{_datadir}/xml/suse/schema/rng
+%dir %{_datadir}/xml/suse/schema/dtd/1.0
+%dir %{_datadir}/xml/suse/schema/rng/0.9
+%dir %{_datadir}/xml/suse/schema/rng/1.0
 
 %dir %{_ttfontsdir}
 
@@ -246,9 +251,9 @@ exit 0
 %{_datadir}/xml/docbook/stylesheet/opensuse2013/*
 %{_datadir}/xml/docbook/stylesheet/opensuse2013-ns/*
 
-# NovDoc Schemas
-%{_datadir}/xml/%{dtdname}/schema/dtd/%{dtdversion}/*
-%{_datadir}/xml/%{dtdname}/schema/rng/%{dtdversion}/*
+# SUSE Schemas
+%{_datadir}/xml/suse/schema/dtd/*
+%{_datadir}/xml/suse/schema/rng/*
 
 # Catalogs
 %config /var/lib/sgml/CATALOG.*
