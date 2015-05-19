@@ -11,7 +11,7 @@ endif
 
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
-VERSION       := 2.0~rc5
+VERSION       := 2.0~rc6
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 SUSE_SCHEMA_PATH := $(SUSE_XML_PATH)/schema
 SUSE_STYLES_PATH := $(SUSE_XML_PATH)/stylesheet
