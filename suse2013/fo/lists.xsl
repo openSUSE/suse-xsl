@@ -207,8 +207,18 @@
 
     <fo:block>
       <xsl:if test="not(ancestor::procedure)">
-        <xsl:attribute name="border-{$start-border}"
-          ><xsl:value-of select="concat(&mediumline;,'mm solid &dark-green;')"/></xsl:attribute>
+        <xsl:attribute name="border-{$start-border}">
+          <xsl:text>&mediumline;mm solid </xsl:text>
+          <xsl:choose>
+            <xsl:when test="$format.print != 0">
+              <xsl:text>&dark-gray;</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>&dark-green;</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+
         <xsl:attribute name="margin-{$start-border}"><xsl:value-of select="&mediumline; div 2"/>mm</xsl:attribute>
           <!-- This is seemingly illogical... but looks better with both FOP and
                XEP. -->

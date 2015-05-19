@@ -123,9 +123,18 @@
       <xsl:call-template name="date.and.revision"/>
     </fo:block>
 
+    <fo:block>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/mediaobject"/>
+    </fo:block>
     </fo:block>
   </xsl:template>
 
+
+  <xsl:template match="articleinfo/mediaobject" mode="article.titlepage.recto.auto.mode">
+    <fo:block break-after="page">
+      <xsl:call-template name="select.mediaobject"/>
+    </fo:block>
+  </xsl:template>
 
   <xsl:template match="title" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="&super-large;pt" line-height="{$base-lineheight * 0.85}em"
