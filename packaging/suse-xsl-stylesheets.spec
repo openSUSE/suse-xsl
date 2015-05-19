@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0~rc5
+Version:        2.0~rc6
 Release:        0
 
 ###############################################################
@@ -40,6 +40,10 @@ Release:        0
 %define suse_schemas_catalog catalog-for-suse_schemas.xml
 %define susexsl_catalog      catalog-for-%{name}.xml
 %define suse_schemas_groupname suse_schemas
+
+%define suse_xml_dir    %{_datadir}/xml/suse
+%define suse_schema_dir %{suse_xml_dir}/schema
+%define suse_styles_dir %{suse_xml_dir}/stylesheet
 
 
 Summary:        SUSE-branded Docbook stylesheets for XSLT 1.0
@@ -136,7 +140,7 @@ SUSE-branded DocBook stylesheets for XSLT 1.0
 
 Extensions for the DocBook XSLT 1.0 stylesheets that provide SUSE branding
 for PDF, HTML, and ePUB. This package also provides the NovDoc DTD, a subset of
-the DocBook 4 DTD.
+the DocBook 4 DTD and SUSEdoc, a subset of the DocBook 5 schema.
 
 #--------------------------------------------------------------------------
 %prep
@@ -220,40 +224,43 @@ exit 0
 # Directories
 %dir %{_datadir}/suse-xsl-stylesheets
 %dir %{_datadir}/suse-xsl-stylesheets/aspell
-%dir %{_datadir}/xml/docbook/stylesheet/suse
-%dir %{_datadir}/xml/docbook/stylesheet/suse-ns
-%dir %{_datadir}/xml/docbook/stylesheet/suse2013
-%dir %{_datadir}/xml/docbook/stylesheet/suse2013-ns
-%dir %{_datadir}/xml/docbook/stylesheet/daps2013
-%dir %{_datadir}/xml/docbook/stylesheet/daps2013-ns
-%dir %{_datadir}/xml/docbook/stylesheet/opensuse2013
-%dir %{_datadir}/xml/docbook/stylesheet/opensuse2013-ns
 
-%dir %{_datadir}/xml/suse
-%dir %{_datadir}/xml/suse/schema
-%dir %{_datadir}/xml/suse/schema/dtd
-%dir %{_datadir}/xml/suse/schema/rng
-%dir %{_datadir}/xml/suse/schema/dtd/1.0
-%dir %{_datadir}/xml/suse/schema/rng/0.9
-%dir %{_datadir}/xml/suse/schema/rng/1.0
+%dir %{suse_xml_dir}
+
+%dir %{suse_styles_dir}
+%dir %{suse_styles_dir}/suse
+%dir %{suse_styles_dir}/suse-ns
+%dir %{suse_styles_dir}/suse2013
+%dir %{suse_styles_dir}/suse2013-ns
+%dir %{suse_styles_dir}/daps2013
+%dir %{suse_styles_dir}/daps2013-ns
+%dir %{suse_styles_dir}/opensuse2013
+%dir %{suse_styles_dir}/opensuse2013-ns
+
+%dir %{suse_schema_dir}
+%dir %{suse_schema_dir}/dtd
+%dir %{suse_schema_dir}/rng
+%dir %{suse_schema_dir}/dtd/1.0
+%dir %{suse_schema_dir}/rng/0.9
+%dir %{suse_schema_dir}/rng/1.0
 
 %dir %{_ttfontsdir}
 
 %dir %{_defaultdocdir}/%{name}
 
 # stylesheets
-%{_datadir}/xml/docbook/stylesheet/suse/*
-%{_datadir}/xml/docbook/stylesheet/suse-ns/*
-%{_datadir}/xml/docbook/stylesheet/suse2013/*
-%{_datadir}/xml/docbook/stylesheet/suse2013-ns/*
-%{_datadir}/xml/docbook/stylesheet/daps2013/*
-%{_datadir}/xml/docbook/stylesheet/daps2013-ns/*
-%{_datadir}/xml/docbook/stylesheet/opensuse2013/*
-%{_datadir}/xml/docbook/stylesheet/opensuse2013-ns/*
+%{suse_styles_dir}/suse/*
+%{suse_styles_dir}/suse-ns/*
+%{suse_styles_dir}/suse2013/*
+%{suse_styles_dir}/suse2013-ns/*
+%{suse_styles_dir}/daps2013/*
+%{suse_styles_dir}/daps2013-ns/*
+%{suse_styles_dir}/opensuse2013/*
+%{suse_styles_dir}/opensuse2013-ns/*
 
 # SUSE Schemas
-%{_datadir}/xml/suse/schema/dtd/*
-%{_datadir}/xml/suse/schema/rng/*
+%{suse_schema_dir}/dtd/*
+%{suse_schema_dir}/rng/*
 
 # Catalogs
 %config /var/lib/sgml/CATALOG.*

@@ -5,24 +5,30 @@
 # Author:
 # Frank Sundermeyer <fsundermeyer at opensuse dot org>
 #
+ifndef PREFIX
+  PREFIX := /usr/share
+endif
+
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
 VERSION       := 2.0~rc5
-SUSE_XML_PATH := /usr/share/xml/suse/schema
+SUSE_XML_PATH := $(PREFIX)/xml/suse
+SUSE_SCHEMA_PATH := $(SUSE_XML_PATH)/schema
+SUSE_STYLES_PATH := $(SUSE_XML_PATH)/stylesheet
 
 #--------------------------------------------------------------
 # NOVDOC
 
 NOVDOC_NAME     := novdoc
 NOVDOC_VERSION  := 1.0
-NOVDOC_DTD_PATH := $(SUSE_XML_PATH)/dtd/$(NOVDOC_VERSION)
+NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/dtd/$(NOVDOC_VERSION)
 
 #--------------------------------------------------------------
 # SUSEDOC
 
 #SUSEDOC_NAME     := susedoc
 #SUSEDOC_VERSION  := 0.9
-#SUSEDOC_RNG_PATH := $(SUSE_XML_PATH)/rng/$(SUSEDOC_VERSION)
+#SUSEDOC_RNG_PATH := $(SUSE_SCHEMA_PATH)/rng/$(SUSEDOC_VERSION)
 
 #--------------------------------------------------------------
 # stylsheet directory names
@@ -31,6 +37,8 @@ DIR2005          := suse
 DIR2013_SUSE     := suse2013
 DIR2013_OPENSUSE := opensuse2013
 DIR2013_DAPS     := daps2013
+
+ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 
 #--------------------------------------------------------------
 # Directories and files that will be created
@@ -75,20 +83,17 @@ LOCAL_STYLEDIRS := $(DIR2005) $(DEV_DIR2005) \
 
 #-------------------------------------------------------
 # Directories for installation
-ifndef PREFIX
-  PREFIX := /usr/share
-endif
 
-INST_STYLE_DIR          := $(DESTDIR)$(PREFIX)/xml/docbook/stylesheet/
+INST_STYLE_ROOT          := $(DESTDIR)$(SUSE_STYLES_PATH)
 
-STYLEDIR2005            := $(INST_STYLE_DIR)/$(DIR2005)
-STYLEDIR2005-NS         := $(INST_STYLE_DIR)/$(DIR2005)-ns
-SUSESTYLEDIR2013        := $(INST_STYLE_DIR)/$(DIR2013_SUSE)
-SUSESTYLEDIR2013-NS     := $(INST_STYLE_DIR)/$(DIR2013_SUSE)-ns
-DAPSSTYLEDIR2013        := $(INST_STYLE_DIR)/$(DIR2013_DAPS)
-DAPSSTYLEDIR2013-NS     := $(INST_STYLE_DIR)/$(DIR2013_DAPS)-ns
-OPENSUSESTYLEDIR2013    := $(INST_STYLE_DIR)/$(DIR2013_OPENSUSE)
-OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
+STYLEDIR2005            := $(INST_STYLE_ROOT)/$(DIR2005)
+STYLEDIR2005-NS         := $(INST_STYLE_ROOT)/$(DIR2005)-ns
+SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
+SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
+DAPSSTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)
+DAPSSTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)-ns
+OPENSUSESTYLEDIR2013    := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)
+OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
 
 ASPELLDIR     := $(DESTDIR)$(PREFIX)/suse-xsl-stylesheets/aspell
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
@@ -107,7 +112,6 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
 INST_DIRECTORIES := $(ASPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
    $(RNGDIR_09) $(RNGDIR_10) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) \
    $(VAR_SGML_DIR)
-
 
 #############################################################
 
@@ -229,8 +233,8 @@ $(SUSESCHEMA_CATALOG): | $(DEV_CATALOG_DIR)
 	  "file://$(NOVDOC_DTD_PATH)/catalog.xml" $@
 	xmlcatalog --noout --add "delegateSystem" "novdocx.dtd" \
 	  "file://$(NOVDOC_DTD_PATH)/catalog.xml" $@
-	xmlcatalog --noout --add "rewriteSystem" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_XML_PATH)/" $@
-	xmlcatalog --noout --add "rewriteURI" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_XML_PATH)/" $@
+	xmlcatalog --noout --add "rewriteSystem" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_SCHEMA_PATH)/" $@
+	xmlcatalog --noout --add "rewriteURI" "http://raw.githubusercontent.com/openSUSE/suse-xsl/master/schema/" "file://$(SUSE_SCHEMA_PATH)/" $@
 	sed -i '/^<!DOCTYPE .*>$$/d' $@
 	sed -i '/<catalog/a\ <group id="suse_schemas">' $@
 	sed -i '/<\/catalog/i\ </group>' $@
@@ -239,30 +243,20 @@ $(SUSESCHEMA_CATALOG): | $(DEV_CATALOG_DIR)
 #        redirect into the SVN instead of 404ing.
 $(SUSEXSL_CATALOG): | $(DEV_CATALOG_DIR)
 	xmlcatalog --noout --create $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013" \
-      "file://$(subst $(DESTDIR),,$(DAPSSTYLEDIR2013))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns" \
-      "file://$(subst $(DESTDIR),,$(DAPSSTYLEDIR2013-NS))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013" \
-      "file://$(subst $(DESTDIR),,$(OPENSUSESTYLEDIR2013))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013-ns" \
-      "file://$(subst $(DESTDIR),,$(OPENSUSESTYLEDIR2013-NS))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse" \
-      "file://$(subst $(DESTDIR),,$(SUSESTYLEDIR2013))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns" \
-      "file://$(subst $(DESTDIR),,$(SUSESTYLEDIR2013-NS))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013" \
-      "file://$(subst $(DESTDIR),,$(SUSESTYLEDIR2013))" $@
-	xmlcatalog --noout --add "rewriteSystem" \
-	  "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns" \
-      "file://$(subst $(DESTDIR),,$(SUSESTYLEDIR2013-NS))" $@
+	for catalog in $(ALL_STYLEDIRS); do \
+	  xmlcatalog --noout --add "rewriteSystem" \
+	    "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/$$catalog" \
+	    "file://$(subst $(DESTDIR),,$(INST_STYLE_ROOT)/$$catalog)" $@; \
+	  xmlcatalog --noout --add "rewriteURI" \
+	    "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/$$catalog" \
+	    "file://$(subst $(DESTDIR),,$(INST_STYLE_ROOT)/$$catalog)" $@; \
+	  xmlcatalog --noout --add "rewriteSystem" \
+	    "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/$${catalog}-ns" \
+	    "file://$(subst $(DESTDIR),,$(INST_STYLE_ROOT)/$${catalog}-ns)" $@; \
+	  xmlcatalog --noout --add "rewriteURI" \
+	    "https://raw.githubusercontent.com/openSUSE/suse-xsl/master/$${catalog}-ns" \
+	    "file://$(subst $(DESTDIR),,$(INST_STYLE_ROOT)/$${catalog}-ns)" $@; \
+	done
 	sed -i '/^<!DOCTYPE .*>$$/d' $@
 	sed -i '/<catalog/a\ <group id="$(PACKAGE)">' $@
 	sed -i '/<\/catalog/i\ </group>' $@
