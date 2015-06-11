@@ -1,4 +1,26 @@
 -------------------------------------------------------------------
+Thu Jun 11 12:50:28 UTC 2015 - fsundermeyer@opensuse.org
+
+Hotfix for version 2.0-rc6:
+  * Reverted the move of the stylesheets to
+    /usr/share/xml/suse/stylesheet
+    because of serious compatibilioty issues.
+    The stylesheets remain in
+    /usr/share/xml/suse/docbook.
+
+-------------------------------------------------------------------
+Tue May 19 11:09:13 UTC 2015 - fsundermeyer@opensuse.org
+
+New version 2.0-rc6:
+ * added SUSEdoc, a fully DocBook 5 compatible schema with a subset of
+   DocBook commands (like NovDoc for DocBook 4)
+ * package now supports installation of different schema/DTD versions
+   in parallel
+ * stylesheets and schemas have moved to
+   /usr/share/xml/suse/{schema,stylesheet}
+   NOTE: This requires to change STYLEROOT in the DC-files of existing
+   manuals!
+-------------------------------------------------------------------
 Mon Apr 27 13:52:45 UTC 2015 - fsundermeyer@opensuse.org
 
 New release 2.0~rc5

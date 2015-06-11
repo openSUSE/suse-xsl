@@ -42,8 +42,9 @@ Release:        0
 %define suse_schemas_groupname suse_schemas
 
 %define suse_xml_dir    %{_datadir}/xml/suse
+%define db_xml_dir      %{_datadir}/xml/docbook
 %define suse_schema_dir %{suse_xml_dir}/schema
-%define suse_styles_dir %{suse_xml_dir}/stylesheet
+%define suse_styles_dir %{db_xml_dir}/stylesheet
 
 
 Summary:        SUSE-branded Docbook stylesheets for XSLT 1.0
@@ -226,6 +227,7 @@ exit 0
 %dir %{_datadir}/suse-xsl-stylesheets/aspell
 
 %dir %{suse_xml_dir}
+%dir %{db_xml_dir}
 
 %dir %{suse_styles_dir}
 %dir %{suse_styles_dir}/suse
