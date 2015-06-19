@@ -27,6 +27,9 @@ switch ( XmlProduct ) {
   case 'SUSE Cloud 5':
     bugzillaProduct = 'SUSE Cloud 5';
     break;
+  case 'SUSE OpenStack Cloud 6':
+    bugzillaProduct = 'SUSE OpenStack Cloud 6';
+    break;
   case 'Subscription Management Tool 11.3':
     bugzillaProduct = 'Subscription Management Tool 11 SP3 (SMT 11 SP3)';
     bugzillaComponent = 'SMT';
@@ -37,6 +40,9 @@ switch ( XmlProduct ) {
   case 'SUSE Linux Enterprise Desktop 12':
     bugzillaProduct = 'SUSE Linux Enterprise Desktop 12';
     break;
+  case 'SUSE Linux Enterprise Desktop 12 SP1':
+    bugzillaProduct = 'SUSE Linux Enterprise Desktop 12 SP1 (SLED 12 SP1)';
+    break;
   case 'SUSE Linux Enterprise Desktop 11 SP4':
     bugzillaProduct = 'SUSE Linux Enterprise Desktop 11 SP4 (SLED 11 SP4)';
     break;
@@ -45,6 +51,9 @@ switch ( XmlProduct ) {
     break;
   case 'SUSE Linux Enterprise Server 12':
     bugzillaProduct = 'SUSE Linux Enterprise Server 12 (SLES 12)';
+    break;
+  case 'SUSE Linux Enterprise Server 12 SP1':
+    bugzillaProduct = 'SUSE Linux Enterprise Server 12 SP1';
     break;
   case 'SUSE Linux Enterprise Server 11 SP4':
     bugzillaProduct = 'SUSE Linux Enterprise Server 11 SP4 (SLES 11 SP4)';
@@ -63,18 +72,26 @@ switch ( XmlProduct ) {
   case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 11 SP4':
     bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
     break;
-
   case 'SUSE Linux Enterprise High Availability Extension 12':
     bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12';
     break;
   case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 12':
     bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12';
     break;
+  case 'SUSE Linux Enterprise High Availability Extension 12 SP1':
+    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12 SP1';
+    break;
+  case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 12 SP1':
+    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12 SP1';
+    break;
   case 'SUSE Manager 1.7':
     bugzillaProduct = 'SUSE Manager 1.7 Server';
     break;
   case 'SUSE Manager 2.1':
     bugzillaProduct = 'SUSE Manager 2.1 Server';
+    break;
+  case 'SUSE Manager 2.1 Proxy':
+    bugzillaProduct = 'SUSE Manager 2.1 Server Proxy';
     break;
   case 'SUSE Studio Onsite 1.3':
     bugzillaProduct = 'SUSE Studio Onsite';
@@ -83,6 +100,11 @@ switch ( XmlProduct ) {
     bugzillaProduct = 'WebYaST';
     bugzillaComponent = 'Documenation'; // sic!
     break;
+  case 'SUSE Linux Enterprise Real Time Extension 11 SP4':
+    bugzillaProduct = 'SUSE Linux Enterprise Real Time Extension 11 SP4 (SLERTE 11 SP4)';
+    bugzillaComponent = 'Other';
+    break;
+
 }
 
 var bugzillaURLprefix = 'https://bugzilla.suse.com/enter_bug.cgi?&product=' + encodeURIComponent(bugzillaProduct) + '&component=' + encodeURIComponent(bugzillaComponent);

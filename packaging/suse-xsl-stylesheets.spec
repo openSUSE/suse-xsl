@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0~rc6
+Version:        2.0
 Release:        0
 
 ###############################################################
@@ -45,7 +45,6 @@ Release:        0
 %define db_xml_dir      %{_datadir}/xml/docbook
 %define suse_schema_dir %{suse_xml_dir}/schema
 %define suse_styles_dir %{db_xml_dir}/stylesheet
-
 
 Summary:        SUSE-branded Docbook stylesheets for XSLT 1.0
 License:        GPL-2.0 or GPL-3.0
@@ -227,7 +226,6 @@ exit 0
 %dir %{_datadir}/suse-xsl-stylesheets/aspell
 
 %dir %{suse_xml_dir}
-%dir %{db_xml_dir}
 
 %dir %{suse_styles_dir}
 %dir %{suse_styles_dir}/suse

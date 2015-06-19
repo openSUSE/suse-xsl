@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri Jun 19 12:47:56 UTC 2015 - fsundermeyer@opensuse.org
+
+Stable release 2.0
+
+- added latest products to .js file to create correct Bugzilla
+  links in Draft mode
+
+-------------------------------------------------------------------
 Thu Jun 11 12:50:28 UTC 2015 - fsundermeyer@opensuse.org
 
 Hotfix for version 2.0-rc6:
