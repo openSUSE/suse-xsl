@@ -217,26 +217,28 @@ sub copyXsl {
   print STDOUT "Copying xsl files\n--------------------------------------------------\n";
 
   foreach my $f (@xslfiles) {
-    my $file ="";
-    my $dir = "";  
     my $dest = $f;
+
+    print STDOUT "===> dest_p: $dest\n";
+    
     $dest =~ s/$srcdir/$destdir/;
 
+    print  STDOUT "===> dest_a: $dest\n";
+    
     my $basename = basename $f;
     my $dirname = dirname $f;
 
 #    $dest =~ m|^$destdir/(.*?)$|;
 #    my $file = $1;
 
-#    my $dir = dirname($file);
-#    $dir = "" if $dir eq ".";
+    my $file = $dest;
+    $file =~ s/$destdir//;
     
-    if( $dest =~ m|^$destdir/(.*?)$| ) {
-	$file = $1;
-	$dir = dirname($file);
-	$dir = "" if $dir eq ".";
-    }
-
+    print  STDOUT "...> file: $file\n";
+    
+    my $dir = dirname($file);
+    $dir = "" if $dir eq ".";
+    
     if ( grep /^$basename$/,@PassthruFiles ) {
 	print STDOUT "unmodified $f\n";
       copy($f, $dest);
@@ -250,7 +252,7 @@ sub copyXsl {
       copy($f, $dest);
     }
     else {
-      print STDOUT "  modified $f\n";
+#      print STDOUT "  modified $f\n";
       nsfilter($f, $dest);
     }
   }
