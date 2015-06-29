@@ -350,7 +350,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   # db.tertiary = notAllowed
   db.tertiaryie = notAllowed
   db.textdata = notAllowed
-  db.textobject = notAllowed
+  # db.textobject = notAllowed
   # db.tbody = notAllowed
   # db.tfoot = notAllowed
   # db.tgroup = notAllowed
