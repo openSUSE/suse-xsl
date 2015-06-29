@@ -332,7 +332,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   db.subjectterm = notAllowed
   # db.subscript = notAllowed
   # db.substeps = notAllowed
-  db.subtitle = notAllowed
+  # db.subtitle = notAllowed
   # db.superscript = notAllowed
   # db.surname = notAllowed
   db.symbol = notAllowed
