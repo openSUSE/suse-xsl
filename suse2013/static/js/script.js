@@ -101,7 +101,7 @@ switch ( XmlProduct ) {
     bugzillaComponent = 'Documenation'; // sic!
     break;
   case 'SUSE Linux Enterprise Real Time Extension 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise Real Time Extension 11 SP4 (SLERTE 11 SP4)';
+    bugzillaProduct = 'SUSE Linux Enterprise Real Time Extension 11 SP4 (SLERTE 11 SP4)';
     bugzillaComponent = 'Other';
     break;
 
