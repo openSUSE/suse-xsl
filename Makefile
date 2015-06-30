@@ -12,6 +12,8 @@ endif
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
 VERSION       := 2.0
+DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
+
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
 SUSE_SCHEMA_PATH := $(SUSE_XML_PATH)/schema
@@ -264,5 +266,21 @@ $(SUSEXSL_CATALOG): | $(DEV_CATALOG_DIR)
 
 # create needed directories
 #
-$(INST_DIRECTORIES) $(DEV_DIRECTORIES):
-	mkdir -p $@
+$(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(BUILD_DIR):
+	@mkdir -p $@
+
+#-----------------------------
+# create tarball
+#
+
+.PHONY: dist
+dist: | $(BUILD_DIR)
+	@tar cfj $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2 \
+	  --exclude-from=$(DIST_EXCLUDES) \
+	  --transform 's:./:suse-xsl-stylesheets/:' .
+	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2"
+
+PHONY: dist-clean
+dist-clean:
+	rm -f $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2	
+	rmdir $(BUILD_DIR) || true
