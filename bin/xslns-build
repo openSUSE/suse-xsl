@@ -57,6 +57,7 @@ my @PassthruDirs = (
 'tools',
 'build',
 'slides',
+'static',
 'website',
 'wordml',
 );
@@ -96,6 +97,10 @@ umask 002;
 
 $srcdir = $ARGV[0];
 $destdir = $ARGV[1];
+
+# remove trailing slashes from srcdir and destdir
+$srcdir =~ s:/$::;
+$destdir =~ s:/$::;
 
 unless ( $srcdir ) {
   print "ERROR: must specify input directory of non-namespaced "
@@ -218,41 +223,27 @@ sub copyXsl {
 
   foreach my $f (@xslfiles) {
     my $dest = $f;
-
-    print STDOUT "===> dest_p: $dest\n";
-    
     $dest =~ s/$srcdir/$destdir/;
-
-    print  STDOUT "===> dest_a: $dest\n";
     
-    my $basename = basename $f;
-    my $dirname = dirname $f;
-
-#    $dest =~ m|^$destdir/(.*?)$|;
-#    my $file = $1;
-
-    my $file = $dest;
-    $file =~ s/$destdir//;
+    my ($checkfile, $checkdir) = fileparse($dest);
+    $checkdir =~ s:$destdir/::;
+    $checkdir =~ s:/$::;
+    my $checkpath = "$checkdir/".$checkfile;
     
-    print  STDOUT "...> file: $file\n";
-    
-    my $dir = dirname($file);
-    $dir = "" if $dir eq ".";
-    
-    if ( grep /^$basename$/,@PassthruFiles ) {
+    if ( grep /^$checkfile$/,@PassthruFiles ) {
 	print STDOUT "unmodified $f\n";
       copy($f, $dest);
     }
-    elsif ( $file && grep /^$file$/,@PassthruPath ) {
+    elsif ( $checkpath && grep /^$checkpath$/,@PassthruPath ) {
 	print STDOUT "unmodified $f\n";
       copy($f, $dest);
     }
-    elsif ( $dir && grep /^$dir$/, @PassthruDirs ) {
+    elsif ( $checkdir && grep /^$checkdir$/, @PassthruDirs ) {
 	print STDOUT "unmodified $f\n";
       copy($f, $dest);
     }
     else {
-#      print STDOUT "  modified $f\n";
+      print STDOUT "  modified $f\n";
       nsfilter($f, $dest);
     }
   }
