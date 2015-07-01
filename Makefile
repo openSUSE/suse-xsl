@@ -276,7 +276,7 @@ $(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(BUILD_DIR):
 dist: | $(BUILD_DIR)
 	@tar cfjh $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2 \
 	  --exclude-from=$(DIST_EXCLUDES) \
-	  --transform 's:./:suse-xsl-stylesheets/:' .
+	  --transform 's:./:suse-xsl-stylesheets-$(VERSION)/:' .
 	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2"
 
 PHONY: dist-clean

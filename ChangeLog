@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
-Tue Jun 30 08:12:00 UTC 2015 - fsundermeyer@opensuse.org
+Tue Jul 01 16:40:00 UTC 2015 - toms@opensuse.org
 
 Stable release 2.0.1
 
@@ -14,6 +14,7 @@ Stable release 2.0.1
 
 - Infrastructure
   . Trying to fix an undef value error (bin/xslns-build)
+  . Fixed bin/xslns-build for building ns variant
 
 -------------------------------------------------------------------
 Fri Jun 19 12:47:56 UTC 2015 - fsundermeyer@opensuse.org
