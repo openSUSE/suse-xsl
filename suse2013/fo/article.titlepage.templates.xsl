@@ -88,6 +88,29 @@
     <fo:block padding-before="{2 * &gutterfragment;}mm"
       padding-start="{&column; + &columnfragment; + &gutter;}mm">
       <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$dark-green)"/></xsl:attribute>
+      
+      <xsl:choose>
+        <xsl:when test="articleinfo/subtitle">
+          <xsl:apply-templates
+            mode="article.titlepage.recto.auto.mode"
+            select="articleinfo/subtitle"/>
+        </xsl:when>
+        <xsl:when test="artheader/subtitle">
+          <xsl:apply-templates
+            mode="article.titlepage.recto.auto.mode"
+            select="artheader/subtitle"/>
+        </xsl:when>
+        <xsl:when test="info/subtitle">
+          <xsl:apply-templates
+            mode="article.titlepage.recto.auto.mode"
+            select="info/subtitle"/>
+        </xsl:when>
+        <xsl:when test="subtitle">
+          <xsl:apply-templates 
+            mode="article.titlepage.recto.auto.mode" 
+            select="subtitle"/>
+        </xsl:when>
+      </xsl:choose>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
             select="articleinfo/productname[not(@role)]"/>
     </fo:block>
@@ -139,6 +162,14 @@
   <xsl:template match="title" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="&super-large;pt" line-height="{$base-lineheight * 0.85}em"
       xsl:use-attribute-sets="article.titlepage.recto.style dark-green"
+      keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
+      <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+    </fo:block>
+  </xsl:template>
+  
+  <xsl:template match="subtitle" mode="article.titlepage.recto.auto.mode">
+    <fo:block font-size="&xx-large;pt" line-height="{$base-lineheight * 0.75}em"
+      xsl:use-attribute-sets="article.titlepage.recto.style mid-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>

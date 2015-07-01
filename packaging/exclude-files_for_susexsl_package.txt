@@ -2,6 +2,8 @@ aspell/[aft]*.txt
 aspell/add_context
 aspell/*.sh
 aspell/oxygen
+build
+build/*
 fonts/*.sfd
 packaging
 packaging/*
