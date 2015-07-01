@@ -283,4 +283,4 @@ dist: | $(BUILD_DIR)
 PHONY: dist-clean
 dist-clean:
 	rm -f $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2	
-	rmdir $(BUILD_DIR) || true
+	rmdir $(BUILD_DIR) 2>/dev/null || true
