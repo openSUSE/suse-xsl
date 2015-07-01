@@ -1,4 +1,21 @@
 -------------------------------------------------------------------
+Tue Jun 30 08:12:00 UTC 2015 - fsundermeyer@opensuse.org
+
+Stable release 2.0.1
+
+- Schema
+  . Enabled subtitle and textobject (susedoc5.rnc)
+
+- Stylesheets
+  . Changed bugzilla component to 'Documentation' for SLERT
+    (suse2013/static/js/script.js)
+  . Added missing subtitle for articles
+    suse2013/fo/article.titlepage.templates.xsl
+
+- Infrastructure
+  . Trying to fix an undef value error (bin/xslns-build)
+
+-------------------------------------------------------------------
 Fri Jun 19 12:47:56 UTC 2015 - fsundermeyer@opensuse.org
 
 Stable release 2.0
