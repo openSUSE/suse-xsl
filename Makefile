@@ -12,6 +12,7 @@ endif
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
 VERSION       := 2.0.1
+CDIR          := $(shell pwd)
 DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
@@ -274,9 +275,9 @@ $(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(BUILD_DIR):
 
 .PHONY: dist
 dist: | $(BUILD_DIR)
-	@tar cfjh $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2 \
-	  --exclude-from=$(DIST_EXCLUDES) \
-	  --transform 's:./:suse-xsl-stylesheets-$(VERSION)/:' .
+	@tar cfjhP $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2 \
+	  -C $(CDIR) --exclude-from=$(DIST_EXCLUDES) \
+	  --transform 's:^$(CDIR):suse-xsl-stylesheets-$(VERSION):' $(CDIR)
 	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2"
 
 PHONY: dist-clean
