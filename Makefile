@@ -49,6 +49,9 @@ ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 BUILD_DIR       := build
 DEV_ASPELL_DIR  := $(BUILD_DIR)/aspell
 DEV_CATALOG_DIR := $(BUILD_DIR)/catalogs
+DEV_SCHEMA_DIR  := $(BUILD_DIR)/schema
+DEV_NOVDOC_DIR  := $(DEV_SCHEMA_DIR)/novdoc
+DEV_SUSEDOC_DIR := $(DEV_SCHEMA_DIR)/susedoc
 DEV_STYLE_DIR   := $(BUILD_DIR)/stylesheet
 DEV_HTML_DIR    := $(BUILD_DIR)/$(DIR2005)/html
 
@@ -76,8 +79,8 @@ DEV_DIR2013_OPENSUSE := $(DEV_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
 DEV_DIR2013_SUSE     := $(DEV_STYLE_DIR)/$(DIR2013_SUSE)-ns
 
 DEV_DIRECTORIES := $(DEV_ASPELL_DIR) $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
-   $(DEV_DIR2005) $(DEV_DIR2013_DAPS) $(DEV_DIR2013_OPENSUSE) \
-   $(DEV_DIR2013_SUSE)
+   $(DEV_NOVDOC_DIR) $(DEV_SUSEDOC_DIR) $(DEV_DIR2005) $(DEV_DIR2013_DAPS) \
+   $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
 
 LOCAL_STYLEDIRS := $(DIR2005) $(DEV_DIR2005) \
    $(DIR2013_SUSE) $(DEV_DIR2013_SUSE) $(DIR2013_DAPS) $(DEV_DIR2013_DAPS) \
@@ -118,7 +121,8 @@ INST_DIRECTORIES := $(ASPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
 
 #############################################################
 
-all: schema/rng/1.0/novdocx.rng schema/rng/1.0/novdocxi.rng
+all: $(DEV_NOVDOC_DIR)/novdocx.rng $(DEV_NOVDOC_DIR)/novdocxi.rng
+all: $(DEV_NOVDOC_DIR)/novdocx-core.rng
 all: $(SUSESCHEMA_CATALOG) $(SUSEXSL_CATALOG)
 all: $(DEV_CATALOG_DIR)/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION)
 all: $(HTMLSTYLESHEETS) $(SUSE_DICT) generate_xslns
@@ -128,7 +132,8 @@ all: $(HTMLSTYLESHEETS) $(SUSE_DICT) generate_xslns
 install: | $(INST_DIRECTORIES)
 	install -m644 $(SUSE_DICT) $(ASPELLDIR)
 	install -m644 schema/rng/0.9/*.rnc $(RNGDIR_09)
-	install -m644 schema/rng/1.0/*.{rnc,rng,ent} $(RNGDIR_10)
+	install -m644 schema/rng/1.0/*.{rnc,ent} $(RNGDIR_10)
+	install -m644 $(DEV_NOVDOC_DIR)/*.{rnc,rng} $(RNGDIR_10)
 	install -m644 schema/dtd/1.0/{*.dtd,*.ent,catalog.xml,CATALOG} $(DTDDIR_10)
 	install -m644 $(DEV_CATALOG_DIR)/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION) $(VAR_SGML_DIR)
 	ln -s /var/lib/sgml/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION) $(SGML_DIR)
@@ -150,9 +155,7 @@ install: | $(INST_DIRECTORIES)
 #-----------------------------
 .PHONY: clean
 clean:
-	rm -rf $(BUILD_DIR) schema/rng/1.0/novdocx-core.rnc \
-	  schema/rng/1.0/novdocx-core.rng schema/rng/1.0//novdocx.rng \
-	  schema/rng/1.0//novdocxi.rng
+	rm -rf $(BUILD_DIR)
 
 #-----------------------------
 # Generate SUSE aspell dictionary
@@ -197,16 +200,20 @@ $(DEV_CATALOG_DIR)/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION):
 # schemas cannot be build under build/schema, because the *-core files
 # are included
 
-schema/rng/1.0/novdocx-core.rnc: schema/dtd/1.0/novdocx.dtd.tmp
+#schema/rng/1.0/novdocx-core.rnc: schema/dtd/1.0/novdocx.dtd.tmp
+$(DEV_NOVDOC_DIR)/novdocx-core.rnc: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
 	trang -I dtd -i no-generate-start $< $@
 
-schema/rng/1.0/novdocx-core.rng: schema/dtd/1.0/novdocx.dtd.tmp
+#schema/rng/1.0/novdocx-core.rng: schema/dtd/1.0/novdocx.dtd.tmp
+$(DEV_NOVDOC_DIR)/novdocx-core.rng: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
 	trang -I dtd -i no-generate-start $< $@
 
-schema/rng/1.0/novdocx.rng: schema/rng/1.0/novdocx.rnc schema/rng/1.0/novdocx-core.rnc
+#schema/rng/1.0/novdocx.rng: schema/rng/1.0/novdocx.rnc schema/rng/1.0/novdocx-core.rnc
+$(DEV_NOVDOC_DIR)/novdocx.rng: schema/rng/1.0/novdocx.rnc $(DEV_NOVDOC_DIR)/novdocx-core.rnc
 	trang -I rnc $< $@
 
-schema/rng/1.0/novdocxi.rng: schema/rng/1.0/novdocxi.rnc schema/rng/1.0/novdocx-core.rnc
+#schema/rng/1.0/novdocxi.rng: schema/rng/1.0/novdocxi.rnc schema/rng/1.0/novdocx-core.rnc
+$(DEV_NOVDOC_DIR)/novdocxi.rng: $(DEV_NOVDOC_DIR)/novdocxi.rnc $(DEV_NOVDOC_DIR)/novdocx-core.rnc
 	trang -I rnc $< $@
 
 #schema/rng/0.9/susedoc5.rng: schema/rng/0.9/susedoc5.rnc
@@ -217,10 +224,14 @@ schema/rng/1.0/novdocxi.rng: schema/rng/1.0/novdocxi.rnc schema/rng/1.0/novdocx-
 # entities from DocBook by creating a temporary file novdocx.dtd.tmp.
 # As the entities are not used in RELAX NG anyway, this is uncritical.
 #
-.INTERMEDIATE: schema/dtd/1.0/novdocx.dtd.tmp
-schema/dtd/1.0/novdocx.dtd.tmp:
+.INTERMEDIATE: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
+$(DEV_NOVDOC_DIR)/novdocx.dtd.tmp: schema/dtd/1.0/novdocx.dtd | $(DEV_NOVDOC_DIR)
 	sed 's:\(%[ \t]*ISO[^\.]*\.module[ \t]*\)"INCLUDE":\1"IGNORE":g' \
-	  < schema/dtd/1.0/novdocx.dtd > $@
+	 < $< > $@
+
+.INTERMEDIATE: $(DEV_NOVDOC_DIR)/novdocxi.rnc
+$(DEV_NOVDOC_DIR)/novdocxi.rnc: schema/rng/1.0/novdocxi.rnc | $(DEV_NOVDOC_DIR)
+	(cd $(DEV_NOVDOC_DIR) && ln -s $(CDIR)/$<)
 
 #-----------------------------
 # Generate SUSE schema catalog
