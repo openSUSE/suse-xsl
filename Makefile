@@ -11,7 +11,7 @@ endif
 
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
-VERSION       := 2.0.1
+VERSION       := 2.0.2
 CDIR          := $(shell pwd)
 DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
