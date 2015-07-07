@@ -240,7 +240,7 @@
          "ugly" and "originating from a person of low integrity",
          apparently -->
     <prop name="enable-italic">false</prop>
-    <prop name="fontsize-adjust">.5</prop>
+    <prop name="fontsize-adjust">1</prop>
     <prop name="sans-xheight-adjust">.75</prop>
     <prop name="mono-xheight-adjust">1</prop>
     <prop name="base-lineheight">1.75</prop>
