@@ -83,7 +83,8 @@ switch ( XmlProduct ) {
     break;
   case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 12 SP1':
     bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12 SP1';
-    break;
+    bugzillaComponent = 'GEO Clustering';  
+  break;
   case 'SUSE Manager 1.7':
     bugzillaProduct = 'SUSE Manager 1.7 Server';
     break;
