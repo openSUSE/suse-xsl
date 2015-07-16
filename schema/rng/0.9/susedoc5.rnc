@@ -264,7 +264,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   # db.productnumber = notAllowed
   # db.programlisting = notAllowed
   db.programlistingco = notAllowed
-  db.prompt = notAllowed
+  # db.prompt = notAllowed
   # db.property = notAllowed
   # db.pubdate = notAllowed
   db.publisher = notAllowed
