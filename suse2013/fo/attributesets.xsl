@@ -233,6 +233,20 @@
 
 
 <!-- 14. QAndASet =============================================== -->
+<xsl:attribute-set name="qanda.title.level1.properties"
+  use-attribute-sets="section.title.properties section.title.level1.properties"/>
+
+<xsl:attribute-set name="qanda.title.level2.properties"
+  use-attribute-sets="section.title.properties section.title.level2.properties"/>
+
+<xsl:attribute-set name="qanda.title.level3.properties"
+  use-attribute-sets="section.title.properties section.title.level3.properties"/>
+
+<xsl:attribute-set name="qanda.title.level4.properties"
+    use-attribute-sets="section.title.properties section.title.level4.properties"/>
+
+<xsl:attribute-set name="qanda.title.level5.properties"
+    use-attribute-sets="section.title.properties section.title.level5.properties"/>
 
 
 <!-- 15. Bibliography =========================================== -->
