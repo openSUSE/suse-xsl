@@ -156,6 +156,18 @@
 </xsl:template>
 
 
+  <xsl:template name="tracker.url">
+    <xsl:choose>
+      <xsl:when test="*/bibliosource[@role='tracker']">
+        <xsl:value-of select="*/bibliosource[@role='tracker'][1]"/>
+      </xsl:when>
+      <xsl:when test="*/bibliosource[@class='uri']">
+        <xsl:value-of select="*/bibliosource[@class='uri'][1]"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+
   <!-- ===================================================== -->
   <xsl:template name="part.titlepage.before.recto">
     <xsl:call-template name="version.info.page-top"/>
