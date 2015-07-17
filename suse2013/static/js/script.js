@@ -3,6 +3,7 @@ var deactivatePosition = -1;
 
 // Parts of the bug reporter, (c) Adam Spiers
 var XmlProduct = $( 'meta[name="product-name"]' ).attr( 'content' ) + ' ' + $( 'meta[name="product-number"]' ).attr( 'content' )
+var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
 var bugzillaProduct = 0;
 var bugzillaComponent = 'Documentation';
 
@@ -108,7 +109,14 @@ switch ( XmlProduct ) {
 
 }
 
-var bugzillaURLprefix = 'https://bugzilla.suse.com/enter_bug.cgi?&product=' + encodeURIComponent(bugzillaProduct) + '&component=' + encodeURIComponent(bugzillaComponent);
+if (TrackerURL) {
+  var bugzillaURLprefix = TrackerURL;
+}
+else {
+  var bugzillaURLprefix = 'https://bugzilla.suse.com/enter_bug.cgi?&product=' + encodeURIComponent(bugzillaProduct) + '&component=' + encodeURIComponent(bugzillaComponent);
+  bugzillaProduct = 1;
+}
+
 
 
 $(function() {
