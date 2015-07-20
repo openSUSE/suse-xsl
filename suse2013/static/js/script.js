@@ -1,126 +1,39 @@
+/*
+ * JavaScript for SUSE documentation
+ *
+ * Author:
+ *   Adam Spiers
+ *
+ * Contributors:
+ *   Thomas Schraitle
+ *
+*/
+
 var active = false;
 var deactivatePosition = -1;
 
 // Parts of the bug reporter, (c) Adam Spiers
 var XmlProduct = $( 'meta[name="product-name"]' ).attr( 'content' ) + ' ' + $( 'meta[name="product-number"]' ).attr( 'content' )
 var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
-var bugzillaProduct = 0;
-var bugzillaComponent = 'Documentation';
+var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content') // should be gh or bsc, defaults to
 
-// XmlProduct comes from DocBook: <productname/> [space] <productnumber/>
-// BugzillaProduct comes from Bugzilla, go to
-// https://bugzilla.suse.com/enter_bug.cgi , search for the product,
-// and write down the exact product name as given there. Click on the
-// product name in Bugzilla, and find out what the component for documentation
-// is called, that is your bugzillaComponent (default is "Documentation")
+if (!TrackerType)
+    TrackerType = 'bsc'; // default tracker Bugzilla
 
-
-switch ( XmlProduct ) {
-  case 'SUSE Cloud 2.0':
-    bugzillaProduct = 'SUSE Cloud 2.0';
-    break;
-  case 'SUSE Cloud 3':
-    bugzillaProduct = 'SUSE Cloud 3';
-    break;
-  case 'SUSE Cloud 4':
-    bugzillaProduct = 'SUSE Cloud 4';
-    break;;
-  case 'SUSE Cloud 5':
-    bugzillaProduct = 'SUSE Cloud 5';
-    break;
-  case 'SUSE OpenStack Cloud 6':
-    bugzillaProduct = 'SUSE OpenStack Cloud 6';
-    break;
-  case 'Subscription Management Tool 11.3':
-    bugzillaProduct = 'Subscription Management Tool 11 SP3 (SMT 11 SP3)';
-    bugzillaComponent = 'SMT';
-    break;
-  case 'SUSE Lifecycle Management Server 1.3':
-    bugzillaProduct = 'SUSE Lifecycle Management Server';
-    break;
-  case 'SUSE Linux Enterprise Desktop 12':
-    bugzillaProduct = 'SUSE Linux Enterprise Desktop 12';
-    break;
-  case 'SUSE Linux Enterprise Desktop 12 SP1':
-    bugzillaProduct = 'SUSE Linux Enterprise Desktop 12 SP1 (SLED 12 SP1)';
-    break;
-  case 'SUSE Linux Enterprise Desktop 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise Desktop 11 SP4 (SLED 11 SP4)';
-    break;
-  case 'SUSE Linux Enterprise Point of Service 11 SP2':
-    bugzillaProduct = 'SUSE Linux Enterprise Point of Service 11 SP2 (SLEPOS 11 SP2)';
-    break;
-  case 'SUSE Linux Enterprise Server 12':
-    bugzillaProduct = 'SUSE Linux Enterprise Server 12 (SLES 12)';
-    break;
-  case 'SUSE Linux Enterprise Server 12 SP1':
-    bugzillaProduct = 'SUSE Linux Enterprise Server 12 SP1';
-    break;
-  case 'SUSE Linux Enterprise Server 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise Server 11 SP4 (SLES 11 SP4)';
-    break;
-  case 'SUSE Linux Enterprise Server for SAP Applications 11 SP3':
-    bugzillaProduct = 'SUSE Linux Enterprise for SAP Applications 11 SP3';
-    bugzillaComponent = 'General';
-    break;
-//for NFS Quick Start, productnumber is 11 instead on 11 SP3 (PM's wish)
-  case 'SUSE Linux Enterprise High Availability Extension 11':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
-    break;
-  case 'SUSE Linux Enterprise High Availability Extension 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
-    break;
-  case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 11 SP4';
-    break;
-  case 'SUSE Linux Enterprise High Availability Extension 12':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12';
-    break;
-  case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 12':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12';
-    break;
-  case 'SUSE Linux Enterprise High Availability Extension 12 SP1':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12 SP1';
-    break;
-  case 'Geo Clustering for SUSE Linux Enterprise High Availability Extension 12 SP1':
-    bugzillaProduct = 'SUSE Linux Enterprise High Availability Extension 12 SP1';
-    bugzillaComponent = 'GEO Clustering';  
-  break;
-  case 'SUSE Manager 1.7':
-    bugzillaProduct = 'SUSE Manager 1.7 Server';
-    break;
-  case 'SUSE Manager 2.1':
-    bugzillaProduct = 'SUSE Manager 2.1 Server';
-    break;
-  case 'SUSE Manager 2.1 Proxy':
-    bugzillaProduct = 'SUSE Manager 2.1 Server Proxy';
-    break;
-  case 'SUSE Studio Onsite 1.3':
-    bugzillaProduct = 'SUSE Studio Onsite';
-    break;
-  case 'WebYaST 11':
-    bugzillaProduct = 'WebYaST';
-    bugzillaComponent = 'Documenation'; // sic!
-    break;
-  case 'SUSE Linux Enterprise Real Time Extension 11 SP4':
-    bugzillaProduct = 'SUSE Linux Enterprise Real Time Extension 11 SP4 (SLERTE 11 SP4)';
-    bugzillaComponent = 'Documentation';
-    break;
-
+// For Bugzilla
+var bsc_component = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
+if (!bsc_component) {
+    bsc_component = 'Documentation'; // default component
 }
-
-if (TrackerURL) {
-  var bugzillaURLprefix = TrackerURL;
-}
-else {
-  var bugzillaURLprefix = 'https://bugzilla.suse.com/enter_bug.cgi?&product=' + encodeURIComponent(bugzillaProduct) + '&component=' + encodeURIComponent(bugzillaComponent);
-  bugzillaProduct = 1;
-}
-
+var bsc_product = $( 'meta[name="tracker-bsc-product"]' ).attr('content')
+var bsc_assignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
+// For GitHub
+var gh_assignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content')
+var gh_labels = $( 'meta[name="tracker-gh-labels"]' ).attr('content')
+var gh_milestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content')
 
 
 $(function() {
-
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
 
@@ -221,25 +134,66 @@ $(function() {
     $('#_toolbar').addClass('only-nav');
   }
 
-  if ( bugzillaProduct != 0 ) {
+  tracker()
+});
+
+
+function tracker() {
     $('.permalink:not([href^=#idm])').each(function () {
         var permalink = this.href;
         var sectionNumber = "";
         var sectionName = "";
+        var URL = "";
         if ( $(this).prevAll('span.number')[0] ) {
           sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
         }
         if ( $(this).prevAll('span.number')[0] ) {
-          var sectionName = $(this).prevAll('span.name')[0].innerHTML;
+          sectionName = $(this).prevAll('span.name')[0].innerHTML;
         }
-        var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-        var URL = bugzillaURLprefix + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
-        $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\"" + URL + "\" title=\"Report a bug against this section\">Report Bug</a> ");
+
+        if (TrackerType == 'bsc') {
+            URL = bugzilla(sectionNumber, sectionName, permalink);
+        }
+        else {
+            URL = github(sectionNumber, sectionName, permalink);
+        }
+
+        $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
+             + URL
+             + "\" title=\"Report a bug against this section\">Report Bug</a> ");
     });
-  }
+}
 
-});
+function github(sectionNumber, sectionName, permalink) {
+    var labels = gh_labels.split(",")
+    var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+    var URL = TrackerURL + "?title=" + encodeURIComponent(sectionName)
+       + "&body=" + encodeURIComponent(body);
+    if (gh_assignee) {
+        URL += "&assignee=" + encodeURIComponent(gh_assignee);
+    }
+    if (gh_milestone) {
+        URL += "&milestone=" + gh_milestone;
+    }
+    for(var i=0; i< labels.length; i++) {
+        URL += "&labels[]=" + labels[i];
+    }
+    console.log("GitHub-URL: " + URL);
+    return URL;
+}
 
+function bugzilla(sectionNumber, sectionName, permalink) {
+    console.log("Created Bugzilla link")
+    var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+    var URL = TrackerURL + "?&product=" + encodeURIComponent(bsc_product)
+        + '&component=' + encodeURIComponent(bsc_component)
+        + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
+    if (bsc_assignee) {
+        URL += "&assigned_to=" + encodeURIComponent(bsc_assignee);
+    }
+    console.log("Bugzilla-URL: " + URL);
+    return URL;
+}
 
 function activate( elm ) {
   var element = elm;
