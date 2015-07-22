@@ -259,6 +259,9 @@ task before
   <!-- Should information from SVN properties be used? yes=1|no=0 -->
   <xsl:param name="use.meta" select="0"/>
 
+  <!-- Should the tracker meta information be processed? yes=1|no=0 -->
+  <xsl:param name="use.tracker.meta" select="1"/>
+
   <!-- Show arrows before and after a paragraph that applies only to a certain
        architecture? -->
   <xsl:param name="para.use.arch" select="1"/>

@@ -65,6 +65,7 @@
   <xsl:include href="titlepage.templates.xsl"/>
 
   <xsl:include href="metadata.xsl"/>
+  <xsl:include href="tracker.meta.xsl"/>
 
 
 <!-- Actual templates start here -->
@@ -224,6 +225,10 @@
         </xsl:attribute>
       </meta>
     </xsl:if>
+  </xsl:if>
+
+  <xsl:if test="$use.tracker.meta != 0">
+    <xsl:call-template name="create.tracker.meta"/>
   </xsl:if>
 
     <xsl:apply-templates select="." mode="head.keywords.content"/>

@@ -155,7 +155,6 @@
   </div>
 </xsl:template>
 
-
   <!-- ===================================================== -->
   <xsl:template name="part.titlepage.before.recto">
     <xsl:call-template name="version.info.page-top"/>
