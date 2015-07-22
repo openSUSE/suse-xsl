@@ -63,28 +63,41 @@
     
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> Tracker </xsl:comment>
-    
-    <xsl:if test="$tracker.url">
-      <meta name="tracker-url" content="{$tracker.url}"/>
-      <meta name="tracker-type" content="{$tracker.type}"/>
-    </xsl:if>
-    
-    <xsl:if test="$tracker.assignee">
-      <meta name="tracker-{$tracker.type}-assignee" content="{$tracker.assignee}"/>
-    </xsl:if>
-    
-    <xsl:if test="$tracker.type = 'bsc'">
-      <xsl:if test="$tracker.component">
-        <meta name="tracker-bsc-component" content="{$tracker.component}"/>
-      </xsl:if>
-      <xsl:if test="$tracker.product">
-        <meta name="tracker-bsc-product" content="{$tracker.product}"/>
-      </xsl:if>
-    </xsl:if>
-    
-    <xsl:if test="$tracker.version">
-      <meta name="tracker-{$tracker.type}-version" content="{$tracker.version}"/>
-    </xsl:if>
+
+    <xsl:choose>
+      <xsl:when test="$tracker.url">
+        <meta name="tracker-url" content="{$tracker.url}"/>
+        <meta name="tracker-type" content="{$tracker.type}"/>
+
+        <xsl:if test="$tracker.assignee">
+          <meta name="tracker-{$tracker.type}-assignee" content="{$tracker.assignee}"/>
+        </xsl:if>
+
+        <xsl:if test="$tracker.type = 'bsc'">
+          <xsl:if test="$tracker.component">
+            <meta name="tracker-bsc-component" content="{$tracker.component}"/>
+          </xsl:if>
+          <xsl:if test="$tracker.product">
+            <meta name="tracker-bsc-product" content="{$tracker.product}"/>
+          </xsl:if>
+        </xsl:if>
+
+        <xsl:if test="$tracker.version">
+          <meta name="tracker-{$tracker.type}-version" content="{$tracker.version}"/>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">WARNING</xsl:with-param>
+          <xsl:with-param name="context-desc">tracker</xsl:with-param>
+          <xsl:with-param name="context-desc-field-length" select="8"/>
+          <xsl:with-param name="message">
+            <xsl:text>Tracker URL in dm:docmanager/dm:bugtracker/dm:url not found. </xsl:text>
+            <xsl:text>Check if there is an dm:url available inside set?</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
     <xsl:comment> /Tracker </xsl:comment>
   </xsl:template>
   
