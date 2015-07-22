@@ -65,6 +65,7 @@
   <xsl:include href="titlepage.templates.xsl"/>
 
   <xsl:include href="metadata.xsl"/>
+  <xsl:include href="tracker.meta.xsl"/>
 
 
 <!-- Actual templates start here -->
@@ -149,9 +150,7 @@
        <xsl:apply-templates select="." mode="object.title.markup"/>
     </xsl:if>
   </xsl:param>
-  <xsl:param name="tracker.url">
-    <xsl:call-template name="tracker.url"/>
-  </xsl:param>
+
   <xsl:param name="title">
     <xsl:if test="$substructure.title.short != ''">
       <xsl:value-of select="concat($substructure.title.short, $head.content.title.separator)"/>
@@ -228,8 +227,8 @@
     </xsl:if>
   </xsl:if>
 
-  <xsl:if test="$tracker.url != ''">
-    <meta name="tracker-url" content="{$tracker.url}"/>
+  <xsl:if test="$use.tracker.meta != 0">
+    <xsl:call-template name="create.tracker.meta"/>
   </xsl:if>
 
     <xsl:apply-templates select="." mode="head.keywords.content"/>
