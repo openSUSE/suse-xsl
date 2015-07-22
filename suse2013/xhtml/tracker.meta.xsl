@@ -36,7 +36,7 @@
     <xsl:variable name="all.dm.nodes" select="ancestor-or-self::*/info/dm:docmanager"/>
     <xsl:variable name="bugtracker" select="$all.dm.nodes/dm:bugtracker"/>
     
-    <xsl:variable name="tracker.url" select="($bugtracker/dm:url)[last()]"/>
+    <xsl:variable name="tracker.url" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
     <xsl:variable name="tracker.type">
       <xsl:choose>
         <xsl:when test="contains($tracker.url, 'bugzilla.suse')">bsc</xsl:when>
@@ -44,12 +44,12 @@
         <xsl:otherwise>unknown</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="tracker.assignee" select="($bugtracker/dm:assignee)[last()]"/>
-    <xsl:variable name="tracker.component" select="($bugtracker/dm:component)[last()]"/>
-    <xsl:variable name="tracker.product" select="($bugtracker/dm:product)[last()]"/>
-    <xsl:variable name="tracker.version" select="($bugtracker/dm:version)[last()]"/>
+    <xsl:variable name="tracker.assignee" select="($bugtracker/dm:assignee[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="tracker.component" select="($bugtracker/dm:component[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="tracker.product" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="tracker.version" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
     
-    <!--
+<!--
     <xsl:message>Tracker: node=<xsl:value-of select="local-name($node)"/>
       len(all.dm.nodes) = <xsl:value-of select="count($all.dm.nodes)"/>
       tracker.url = <xsl:value-of select="$tracker.url"/>
@@ -59,7 +59,7 @@
       tracker.product = <xsl:value-of select="$tracker.product"/>
       tracker.version = <xsl:value-of select="$tracker.version"/>
     </xsl:message>
-    -->
+-->
     
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> Tracker </xsl:comment>
