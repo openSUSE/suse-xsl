@@ -115,8 +115,8 @@
 
 
 <xsl:template name="book.titlepage.recto">
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/productname"/>
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/productname"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/productname[not(@role='abbrev')]"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/productname[not(@role='abbrev')]"/>
   <xsl:choose>
     <xsl:when test="bookinfo/titleabbrev">
       <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/titleabbrev"/>
@@ -174,7 +174,7 @@
 <xsl:template name="book.titlepage">
   <!--<xsl:message>**** book.titlepage: <xsl:value-of select="name(.)"/>
   title:         <xsl:value-of select="bookinfo/title"/>
-  productname:   <xsl:value-of select="bookinfo/productname"/>
+  productname:   <xsl:value-of select="bookinfo/productname[not(@role='abbrev')]"/>
   productnumber: <xsl:value-of select="bookinfo/productnumber"/>
   </xsl:message>-->
   <div class="titlepage">

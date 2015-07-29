@@ -16,7 +16,7 @@
       <fo:block role="productname">
         <xsl:apply-templates
            mode="book.titlepage.recto"
-        select="self::book/bookinfo/productname"/>
+        select="self::book/bookinfo/productname[not(@role='abbrev')]"/>
       </fo:block>
       <!--<fo:block><xsl:value-of
         select="self::book/bookinfo/titleabbrev"/></fo:block>-->
