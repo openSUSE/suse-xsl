@@ -33,7 +33,7 @@
   
   <xsl:template name="create.tracker.meta">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="all.dm.nodes" select="ancestor-or-self::*/info/dm:docmanager"/>
+    <xsl:variable name="all.dm.nodes" select="ancestor-or-self::*/*/dm:docmanager"/>
     <xsl:variable name="bugtracker" select="$all.dm.nodes/dm:bugtracker"/>
     
     <xsl:variable name="tracker.url" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
@@ -49,7 +49,7 @@
     <xsl:variable name="tracker.product" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
     <xsl:variable name="tracker.version" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
     
-<!--
+
     <xsl:message>Tracker: node=<xsl:value-of select="local-name($node)"/>
       len(all.dm.nodes) = <xsl:value-of select="count($all.dm.nodes)"/>
       tracker.url = <xsl:value-of select="$tracker.url"/>
@@ -59,7 +59,7 @@
       tracker.product = <xsl:value-of select="$tracker.product"/>
       tracker.version = <xsl:value-of select="$tracker.version"/>
     </xsl:message>
--->
+
     
     <xsl:text>&#10;</xsl:text>
     <xsl:comment> Tracker </xsl:comment>
@@ -90,7 +90,7 @@
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">WARNING</xsl:with-param>
           <xsl:with-param name="context-desc">tracker</xsl:with-param>
-          <xsl:with-param name="context-desc-field-length" select="8"/>
+          <!--<xsl:with-param name="context-desc-field-length" select="8"/>-->
           <xsl:with-param name="message">
             <xsl:text>Tracker URL in dm:docmanager/dm:bugtracker/dm:url not found. </xsl:text>
             <xsl:text>Check if there is an dm:url available inside set?</xsl:text>
