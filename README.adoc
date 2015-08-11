@@ -14,4 +14,4 @@ Requirements
 * DAPS from https://github.com/openSUSE/daps
 * DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
 * XSLT processor like `xsltproc`, Saxon6
-
+* Python3
