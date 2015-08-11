@@ -1,3 +1,18 @@
+Tue Aug 11 15:11:52 UTC 2015 - toms@opensuse.org
+
+Stable release 2.0.3 (only for OBS):
+
+- Schema:
+  . Fixed #41: Missing prompt element
+
+- Stylesheets:
+  . Fixed #18: Variablelist (with ID and Title) Lacks Permalink
+  . Fixed #31: not declared namespace prefix d
+  . Fixed #36: Fix Hard-Coded Bugzilla Link ("Report Bug")
+
+- Infrastructure:
+  . no changes
+
 -------------------------------------------------------------------
 Tue Jul 02 09:11:00 UTC 2015 - toms@opensuse.org
 
