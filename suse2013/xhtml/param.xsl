@@ -120,6 +120,8 @@ static/css/style.css
   <xsl:param name="make.clean.html" select="1"/>
   <xsl:param name="make.valid.html" select="1"/>
 
+  <xsl:param name="generate.id.attributes" select="1"/>
+
 <!-- 8. XSLT Processing ========================================= -->
   <!-- Rule over footers? -->
   <xsl:param name="footer.rule" select="0"/>
