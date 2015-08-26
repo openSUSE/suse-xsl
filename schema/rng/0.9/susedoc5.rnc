@@ -99,7 +99,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   db.confnum = notAllowed
   db.confsponsor = notAllowed
   db.conftitle = notAllowed
-  db.constant = notAllowed
+  # db.constant = notAllowed
   db.constraint = notAllowed
   db.constraintdef = notAllowed
   db.constructorsynopsis = notAllowed
@@ -304,7 +304,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   # db.secondary = notAllowed
   db.secondaryie = notAllowed
   db.section = notAllowed
-  db.see = notAllowed
+  # db.see = notAllowed
   db.seealso = notAllowed
   db.seealsoie = notAllowed
   db.seeie = notAllowed
@@ -925,8 +925,11 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
     db.qandaentry =
       ## A question/answer set within a QandASet
       element qandaentry {
-        db.qandaentry.attlist, db.qandaentry.info,
-        db.question, db.answer }
+        db.qandaentry.attlist,
+        db.qandaentry.info,
+        db.question,
+        db.answer
+      }
   }
 
   # question
@@ -934,7 +937,11 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
     # Removed label and question has to start with a para
     db.question =
       ## A question in a QandASet
-      element question { db.question.attlist, db.para, db.all.blocks+ }
+      element question {
+        db.question.attlist,
+        db.para,
+        db.all.blocks*
+      }
   }
 
 } # end of include
