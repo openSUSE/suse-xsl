@@ -612,7 +612,7 @@
   -->
   <xsl:template match="remark[&comment.block.parents;]">
     <xsl:if test="$show.comments != 0">
-      <fo:block font-style="italic">
+      <fo:block font-style="italic" color="blue">
         <xsl:call-template name="inline.charseq"/>
       </fo:block>
     </xsl:if>
