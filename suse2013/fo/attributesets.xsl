@@ -32,6 +32,7 @@
 <xsl:attribute-set name="admonition.title.properties"
   use-attribute-sets="sans.bold.noreplacement">
   <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
+  <xsl:attribute name="font-weight">normal</xsl:attribute>
   <xsl:attribute name="font-size">&x-large;pt</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
