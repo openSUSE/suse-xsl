@@ -17,12 +17,12 @@ var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
 var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content') // should be gh or bsc, defaults to
 
 if (!TrackerType)
-    TrackerType = 'bsc'; // default tracker Bugzilla
+  TrackerType = 'bsc'; // default tracker Bugzilla
 
 // For Bugzilla
 var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
 if (!bscComponent) {
-    bscComponent = 'Documentation'; // default component
+  bscComponent = 'Documentation'; // default component
 }
 var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content')
 var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
@@ -138,60 +138,60 @@ $(function() {
 
 
 function tracker() {
-    $('.permalink:not([href^=#idm])').each(function () {
-        var permalink = this.href;
-        var sectionNumber = "";
-        var sectionName = "";
-        var URL = "";
-        if ( $(this).prevAll('span.number')[0] ) {
-          sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
-        }
-        if ( $(this).prevAll('span.number')[0] ) {
-          sectionName = $(this).prevAll('span.name')[0].innerHTML;
-        }
+  $('.permalink:not([href^=#idm])').each(function () {
+    var permalink = this.href;
+    var sectionNumber = "";
+    var sectionName = "";
+    var URL = "";
+    if ( $(this).prevAll('span.number')[0] ) {
+      sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
+    }
+    if ( $(this).prevAll('span.number')[0] ) {
+      sectionName = $(this).prevAll('span.name')[0].innerHTML;
+    }
 
-        if (TrackerType == 'bsc') {
-            URL = bugzilla(sectionNumber, sectionName, permalink);
-        }
-        else {
-            URL = github(sectionNumber, sectionName, permalink);
-        }
+    if (TrackerType == 'bsc') {
+      URL = bugzilla(sectionNumber, sectionName, permalink);
+    }
+    else {
+      URL = github(sectionNumber, sectionName, permalink);
+    }
 
-        $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
-             + URL
-             + "\" title=\"Report a bug against this section\">Report Bug</a> ");
-    });
+    $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
+      + URL
+      + "\" title=\"Report a bug against this section\">Report Bug</a> ");
+  });
 }
 
 function github(sectionNumber, sectionName, permalink) {
-    var labels = ghLabels.split(",")
-    var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-    var URL = TrackerURL + "?title=" + encodeURIComponent(sectionName)
-       + "&body=" + encodeURIComponent(body);
-    if (ghAssignee) {
-        URL += "&assignee=" + encodeURIComponent(ghAssignee);
-    }
-    if (ghMilestone) {
-        URL += "&milestone=" + ghMilestone;
-    }
-    for(var i=0; i< labels.length; i++) {
-        URL += "&labels[]=" + labels[i];
-    }
-    console.log("GitHub-URL: " + URL);
-    return URL;
+  var labels = ghLabels.split(",")
+  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var URL = TrackerURL + "?title=" + encodeURIComponent(sectionName)
+     + "&body=" + encodeURIComponent(body);
+  if (ghAssignee) {
+    URL += "&assignee=" + encodeURIComponent(ghAssignee);
+  }
+  if (ghMilestone) {
+    URL += "&milestone=" + ghMilestone;
+  }
+  for(var i=0; i< labels.length; i++) {
+    URL += "&labels[]=" + labels[i];
+  }
+  console.log("GitHub-URL: " + URL);
+  return URL;
 }
 
 function bugzilla(sectionNumber, sectionName, permalink) {
-    console.log("Created Bugzilla link")
-    var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-    var URL = TrackerURL + "?&product=" + encodeURIComponent(bscProduct)
-        + '&component=' + encodeURIComponent(bscComponent)
-        + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
-    if (bscAssignee) {
-        URL += "&assigned_to=" + encodeURIComponent(bscAssignee);
-    }
-    console.log("Bugzilla-URL: " + URL);
-    return URL;
+  console.log("Created Bugzilla link")
+  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var URL = TrackerURL + "?&product=" + encodeURIComponent(bscProduct)
+    + '&component=' + encodeURIComponent(bscComponent)
+    + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
+  if (bscAssignee) {
+    URL += "&assigned_to=" + encodeURIComponent(bscAssignee);
+  }
+  console.log("Bugzilla-URL: " + URL);
+  return URL;
 }
 
 function activate( elm ) {
