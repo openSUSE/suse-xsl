@@ -13,7 +13,6 @@ var active = false;
 var deactivatePosition = -1;
 
 // Parts of the bug reporter, (c) Adam Spiers
-var XmlProduct = $( 'meta[name="product-name"]' ).attr( 'content' ) + ' ' + $( 'meta[name="product-number"]' ).attr( 'content' )
 var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
 var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content') // should be gh or bsc, defaults to
 
@@ -21,16 +20,16 @@ if (!TrackerType)
     TrackerType = 'bsc'; // default tracker Bugzilla
 
 // For Bugzilla
-var bsc_component = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
-if (!bsc_component) {
-    bsc_component = 'Documentation'; // default component
+var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
+if (!bscComponent) {
+    bscComponent = 'Documentation'; // default component
 }
-var bsc_product = $( 'meta[name="tracker-bsc-product"]' ).attr('content')
-var bsc_assignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
+var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content')
+var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
 // For GitHub
-var gh_assignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content')
-var gh_labels = $( 'meta[name="tracker-gh-labels"]' ).attr('content')
-var gh_milestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content')
+var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content')
+var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content')
+var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content')
 
 
 $(function() {
@@ -165,15 +164,15 @@ function tracker() {
 }
 
 function github(sectionNumber, sectionName, permalink) {
-    var labels = gh_labels.split(",")
+    var labels = ghLabels.split(",")
     var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
     var URL = TrackerURL + "?title=" + encodeURIComponent(sectionName)
        + "&body=" + encodeURIComponent(body);
-    if (gh_assignee) {
-        URL += "&assignee=" + encodeURIComponent(gh_assignee);
+    if (ghAssignee) {
+        URL += "&assignee=" + encodeURIComponent(ghAssignee);
     }
-    if (gh_milestone) {
-        URL += "&milestone=" + gh_milestone;
+    if (ghMilestone) {
+        URL += "&milestone=" + ghMilestone;
     }
     for(var i=0; i< labels.length; i++) {
         URL += "&labels[]=" + labels[i];
@@ -185,11 +184,11 @@ function github(sectionNumber, sectionName, permalink) {
 function bugzilla(sectionNumber, sectionName, permalink) {
     console.log("Created Bugzilla link")
     var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-    var URL = TrackerURL + "?&product=" + encodeURIComponent(bsc_product)
-        + '&component=' + encodeURIComponent(bsc_component)
+    var URL = TrackerURL + "?&product=" + encodeURIComponent(bscProduct)
+        + '&component=' + encodeURIComponent(bscComponent)
         + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
-    if (bsc_assignee) {
-        URL += "&assigned_to=" + encodeURIComponent(bsc_assignee);
+    if (bscAssignee) {
+        URL += "&assigned_to=" + encodeURIComponent(bscAssignee);
     }
     console.log("Bugzilla-URL: " + URL);
     return URL;
