@@ -184,12 +184,10 @@ function github(sectionNumber, sectionName, permalink) {
   for(var i=0; i< labels.length; i++) {
     URL += "&labels[]=" + labels[i];
   }
-  console.log("GitHub-URL: " + URL);
   return URL;
 }
 
 function bugzilla(sectionNumber, sectionName, permalink) {
-  console.log("Created Bugzilla link")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
   var URL = trackerURL + "?&product=" + encodeURIComponent(bscProduct)
     + '&component=' + encodeURIComponent(bscComponent)
@@ -197,7 +195,6 @@ function bugzilla(sectionNumber, sectionName, permalink) {
   if (bscAssignee) {
     URL += "&assigned_to=" + encodeURIComponent(bscAssignee);
   }
-  console.log("Bugzilla-URL: " + URL);
   return URL;
 }
 
