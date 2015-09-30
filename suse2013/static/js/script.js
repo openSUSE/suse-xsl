@@ -13,13 +13,13 @@ var active = false;
 var deactivatePosition = -1;
 
 // Parts of the bug reporter, (c) Adam Spiers
-var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
-var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content')
+var trackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
+var trackerType = $( 'meta[name="tracker-type"]' ).attr('content')
 
 // we handle Github (= gh) and bugzilla.suse.com (= bsc), defaults to bsc
-if (!TrackerType) {
-  if ((TrackerType != 'gh') && (TrackerType != 'bsc')) {
-    TrackerType = 'bsc';
+if (!trackerType) {
+  if ((trackerType != 'gh') && (trackerType != 'bsc')) {
+    trackerType = 'bsc';
   }
 }
 
@@ -142,35 +142,38 @@ $(function() {
 
 
 function tracker() {
-  $('.permalink:not([href^=#idm])').each(function () {
-    var permalink = this.href;
-    var sectionNumber = "";
-    var sectionName = "";
-    var URL = "";
-    if ( $(this).prevAll('span.number')[0] ) {
-      sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
-    }
-    if ( $(this).prevAll('span.number')[0] ) {
-      sectionName = $(this).prevAll('span.name')[0].innerHTML;
-    }
+  // do not create links if there is no URL
+  if ( typeof(trackerURL) == 'string') {
+    $('.permalink:not([href^=#idm])').each(function () {
+      var permalink = this.href;
+      var sectionNumber = "";
+      var sectionName = "";
+      var URL = "";
+      if ( $(this).prevAll('span.number')[0] ) {
+        sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
+      }
+      if ( $(this).prevAll('span.number')[0] ) {
+        sectionName = $(this).prevAll('span.name')[0].innerHTML;
+      }
 
-    if (TrackerType == 'bsc') {
-      URL = bugzilla(sectionNumber, sectionName, permalink);
-    }
-    else {
-      URL = github(sectionNumber, sectionName, permalink);
-    }
+      if (trackerType == 'bsc') {
+        URL = bugzilla(sectionNumber, sectionName, permalink);
+      }
+      else {
+        URL = github(sectionNumber, sectionName, permalink);
+      }
 
-    $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
-      + URL
-      + "\" title=\"Report a bug against this section\">Report Bug</a> ");
-  });
+      $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
+        + URL
+        + "\" title=\"Report a bug against this section\">Report Bug</a> ");
+    });
+  }
 }
 
 function github(sectionNumber, sectionName, permalink) {
   var labels = ghLabels.split(",")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var URL = TrackerURL + "?title=" + encodeURIComponent(sectionName)
+  var URL = trackerURL + "?title=" + encodeURIComponent(sectionName)
      + "&body=" + encodeURIComponent(body);
   if (ghAssignee) {
     URL += "&assignee=" + encodeURIComponent(ghAssignee);
@@ -188,7 +191,7 @@ function github(sectionNumber, sectionName, permalink) {
 function bugzilla(sectionNumber, sectionName, permalink) {
   console.log("Created Bugzilla link")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var URL = TrackerURL + "?&product=" + encodeURIComponent(bscProduct)
+  var URL = trackerURL + "?&product=" + encodeURIComponent(bscProduct)
     + '&component=' + encodeURIComponent(bscComponent)
     + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
   if (bscAssignee) {
