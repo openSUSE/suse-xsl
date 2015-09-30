@@ -14,10 +14,14 @@ var deactivatePosition = -1;
 
 // Parts of the bug reporter, (c) Adam Spiers
 var TrackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
-var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content') // should be gh or bsc, defaults to
+var TrackerType = $( 'meta[name="tracker-type"]' ).attr('content')
 
-if (!TrackerType)
-  TrackerType = 'bsc'; // default tracker Bugzilla
+// we handle Github (= gh) and bugzilla.suse.com (= bsc), defaults to bsc
+if (!TrackerType) {
+  if ((TrackerType != 'gh') && (TrackerType != 'bsc')) {
+    TrackerType = 'bsc';
+  }
+}
 
 // For Bugzilla
 var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
