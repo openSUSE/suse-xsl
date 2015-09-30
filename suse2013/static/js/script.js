@@ -16,11 +16,9 @@ var deactivatePosition = -1;
 var trackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
 var trackerType = $( 'meta[name="tracker-type"]' ).attr('content')
 
-// we handle Github (= gh) and bugzilla.suse.com (= bsc), defaults to bsc
-if (!trackerType) {
-  if ((trackerType != 'gh') && (trackerType != 'bsc')) {
-    trackerType = 'bsc';
-  }
+// we handle Github (= gh) and bugzilla.suse.com (= bsc), default to bsc
+if ((trackerType != 'gh') && (trackerType != 'bsc')) {
+  trackerType = 'bsc';
 }
 
 // For Bugzilla
