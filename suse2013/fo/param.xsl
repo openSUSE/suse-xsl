@@ -323,8 +323,6 @@ task before
 <xsl:param name="protocol-prefix">https://</xsl:param>
 <xsl:param name="suse.doc.url" select="concat($protocol-prefix, 'www.suse.com/documentation')"/>
 
-<xsl:param name="url-w" select="concat($protocol-prefix, 'en.wikipedia.org/wiki/')"/>
-
 <!-- SUSE  -->
 <xsl:param name="company.address">SUSE Linux GmbH
 Maxfeldstr. 5
@@ -377,7 +375,6 @@ GERMANY</xsl:param>
 <xsl:param name="ulink.hyphenate.after.chars"
    >/:@=};</xsl:param>
 
-<xsl:param name="page-w">&#72;&#111;&#111;&#108;&#105;</xsl:param>
 
 <!-- Show arrows before and after a paragraph that applies only to a certain
      architecture? -->
@@ -395,7 +392,5 @@ GERMANY</xsl:param>
   <xsl:value-of select="$VERSION"/>
   <xsl:text>)</xsl:text>
 </xsl:param>
-
-<xsl:param name="this" select="concat($url-w, $page-w)"/>
 
 </xsl:stylesheet>

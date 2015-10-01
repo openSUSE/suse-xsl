@@ -361,7 +361,6 @@
         <xsl:value-of select="$suse.doc.url"/>
         <xsl:call-template name="image-after-link"/>
       </fo:basic-link>
-      <xsl:call-template name="name"/>
     </fo:block>
   </fo:block>
 </xsl:template>
