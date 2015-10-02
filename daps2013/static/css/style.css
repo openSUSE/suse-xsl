@@ -1754,6 +1754,24 @@ code, .command, .keycap, .replaceable {
     line-height: 120%;
 }
 
+.verbatim-wrap code, .verbatim-wrap .command, .verbatim-wrap .replaceable {
+    /*
+    Avoid transforming this:
+      <screen><prompt>prompt $ </prompt><command>very-long-\
+      command</command></screen>
+
+    to output looking like this (bad!):
+               very-long-\
+      prompt $ command
+
+    instead of this (goood!):
+      prompt $ very-long-\
+      command
+
+    */
+    display: inline;
+}
+
 code, .command, .keycap {
     font-style: normal;
 }
