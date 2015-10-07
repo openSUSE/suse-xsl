@@ -265,7 +265,7 @@
         <li>
           <span class="ds-label">ID: </span>
           <xsl:choose>
-            <xsl:when test="$node/parent::*[@id] != ''">
+            <xsl:when test="$node/parent::*[(@id|@xml:id)[1]] != ''">
               <xsl:call-template name="object.id">
                 <xsl:with-param name="object" select="$node/parent::*"/>
               </xsl:call-template>
