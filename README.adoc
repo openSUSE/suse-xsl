@@ -7,9 +7,21 @@ Thomas Schraitle <toms@opensuse.org>
 
 This project contains customization layers for the DocBook XSL stylesheets.
 
+Requirements for Building the Stylesheets
+-----------------------------------------
 
-Requirements
-------------
+These stylesheets can be used as-is for DocBook 4 content.
+To use them with DocBook 5 content, build them with `make`.
+For a successful build, you will need:
+
+* standard GNU utilities (`cat`, `sed`, `tar`, ...)
+* `trang`
+* `xsltproc`
+* `xmlcatalog`
+* `aspell`
+
+Requirements for Using the Stylesheets
+--------------------------------------
 
 * DAPS from https://github.com/openSUSE/daps
 * DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
