@@ -610,12 +610,29 @@
      DocBook stylesheets. 
      Missing parent::variablelist in comment.block.parents
   -->
+  <!-- Also needed for colorful remarks now... -->
   <xsl:template match="remark[&comment.block.parents;]">
     <xsl:if test="$show.comments != 0">
-      <fo:block font-style="italic" color="blue">
-        <xsl:call-template name="inline.charseq"/>
-      </fo:block>
-    </xsl:if>
+    <fo:block xsl:use-attribute-sets="italicized.noreplacement">
+      <xsl:if test="$format.print != 1">
+        <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
+        <xsl:attribute name="color">&white;</xsl:attribute>
+      </xsl:if>
+      <xsl:call-template name="inline.charseq"/>
+    </fo:block>
+  </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="remark">
+    <xsl:if test="$show.comments != 0">
+    <fo:inline xsl:use-attribute-sets="italicized.noreplacement">
+      <xsl:if test="$format.print != 1">
+        <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
+        <xsl:attribute name="color">&white;</xsl:attribute>
+      </xsl:if>
+      <xsl:call-template name="inline.charseq"/>
+    </fo:inline>
+  </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
