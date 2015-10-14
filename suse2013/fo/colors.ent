@@ -57,6 +57,8 @@
 <!ENTITY dark-blood           "rgb(140,0,0)">
 <!ENTITY suse-os              "rgb(115,186,37)">
 
+<!-- Special gray to replace italics -->
+<!ENTITY special-gray         "rgb(80,80,80)">
 
 <!-- High visibility testing colors -->
 <!ENTITY test1                "#F0F">
