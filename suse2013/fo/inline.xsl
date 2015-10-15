@@ -611,27 +611,26 @@
      Missing parent::variablelist in comment.block.parents
   -->
   <!-- Also needed for colorful remarks now... -->
-  <xsl:template match="remark[&comment.block.parents;]">
-    <xsl:if test="$show.comments != 0">
-    <fo:block xsl:use-attribute-sets="italicized.noreplacement">
-      <xsl:if test="$format.print != 1">
-        <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
-        <xsl:attribute name="color">&white;</xsl:attribute>
-      </xsl:if>
-      <xsl:call-template name="inline.charseq"/>
-    </fo:block>
-  </xsl:if>
-  </xsl:template>
-
   <xsl:template match="remark">
+    <xsl:param name="wrapper">
+      <xsl:choose>
+        <xsl:when test="&comment.block.parents;">block</xsl:when>
+        <xsl:otherwise>inline</xsl:otherwise>
+      </xsl:choose>
+    </xsl:param>
     <xsl:if test="$show.comments != 0">
-    <fo:inline xsl:use-attribute-sets="italicized.noreplacement">
-      <xsl:if test="$format.print != 1">
-        <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
-        <xsl:attribute name="color">&white;</xsl:attribute>
-      </xsl:if>
+    <xsl:element name="fo:{$wrapper}" use-attribute-sets="italicized.noreplacement">
+      <xsl:choose>
+        <xsl:when test="$format.print != 1">
+          <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
+          <xsl:attribute name="color">&white;</xsl:attribute>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:attribute name="color">&mid-gray;</xsl:attribute>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:call-template name="inline.charseq"/>
-    </fo:inline>
+    </xsl:element>
   </xsl:if>
   </xsl:template>
 
