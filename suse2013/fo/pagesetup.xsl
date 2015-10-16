@@ -197,14 +197,21 @@
               retrieve-class-name="section.head.marker.short"
               retrieve-position="first-including-carryover"
               retrieve-boundary="page-sequence"/>
-            <!-- FIXME/UNHACKME: This causes some line break problems in
-                 Arabic, so xsl:if this out for the moment. -->
-            <xsl:if test="$writing.mode = 'lr'">
-              <fo:inline>
-                <fo:leader leader-length="&columnfragment;mm"
-                  leader-pattern="space"/>
-                <xsl:call-template name="product"/>
-              </fo:inline>
+            <xsl:if test="(ancestor-or-self::set/setinfo/productname|
+              ancestor-or-self::book/bookinfo/productname|
+              ancestor-or-self::article/articleinfo/productname|
+              ancestor-or-self::set/info/productname|
+              ancestor-or-self::book/info/productname|
+              ancestor-or-self::article/info/productname)">
+              <!-- FIXME/UNHACKME: This causes some line break problems in
+                   Arabic, so xsl:if this out for the moment. -->
+              <xsl:if test="$writing.mode = 'lr'">
+                <fo:inline>
+                  <fo:leader leader-length="&columnfragment;mm"
+                    leader-pattern="space"/>
+                  <xsl:call-template name="product"/>
+                </fo:inline>
+              </xsl:if>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
