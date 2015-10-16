@@ -40,17 +40,26 @@
   <xsl:variable name="productnumber"
     select="(ancestor-or-self::set/setinfo/productnumber|
              ancestor-or-self::book/bookinfo/productnumber|
-             ancestor-or-self::article/articleinfo/productnumber)[last()]"/>
+             ancestor-or-self::article/articleinfo/productnumber|
+             ancestor-or-self::set/info/productnumber|
+             ancestor-or-self::book/info/productnumber|
+             ancestor-or-self::article/info/productnumber)[last()]"/>
 
   <xsl:variable name="productname-long"
     select="(ancestor-or-self::set/setinfo/productname[not(@role='abbrev')]|
              ancestor-or-self::book/bookinfo/productname[not(@role='abbrev')]|
-             ancestor-or-self::article/articleinfo/productname[not(@role='abbrev')])[last()]"/>
+             ancestor-or-self::article/articleinfo/productname[not(@role='abbrev')]|
+             ancestor-or-self::set/info/productname[not(@role='abbrev')]|
+             ancestor-or-self::book/info/productname[not(@role='abbrev')]|
+             ancestor-or-self::article/info/productname[not(@role='abbrev')])[last()]"/>
 
   <xsl:variable name="productname-abbreviation"
     select="(ancestor-or-self::set/setinfo/productname[@role='abbrev']|
              ancestor-or-self::book/bookinfo/productname[@role='abbrev']|
-             ancestor-or-self::article/articleinfo/productname[@role='abbrev'])[last()]"/>
+             ancestor-or-self::article/articleinfo/productname[@role='abbrev']|
+             ancestor-or-self::set/info/productname[@role='abbrev']|
+             ancestor-or-self::book/info/productname[@role='abbrev']|
+             ancestor-or-self::article/info/productname[@role='abbrev'])[last()]"/>
 
   <xsl:choose>
     <xsl:when test="$productname-abbreviation">
