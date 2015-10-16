@@ -1896,6 +1896,13 @@ code {
     font-weight: 600;
 }
 
+.verbatim-wrap .callout {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .calloutlist .callout {
     position: relative;
     top: 2px;
