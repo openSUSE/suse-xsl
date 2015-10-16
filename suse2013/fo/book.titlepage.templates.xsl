@@ -123,7 +123,7 @@
                     <fo:block padding-before="&columnfragment;mm">
                       <!-- We use the full productname here: -->
                       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                        select="bookinfo/productname[not(@role)]"/>
+                        select="bookinfo/productname[not(@role)]|info/productname[not(@role)]"/>
                       </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
