@@ -438,6 +438,9 @@ sub indexentitydecl {
     $newstring .= $before;
     $newstring .= $entitystart;
 
+    # skip URls
+    next if $value =~ /^(http:|https:|ftp:)/;
+    
     while ( $value =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
 
       # process the leading content which is not pass through
@@ -509,6 +512,14 @@ sub namespacefilter {
 
     # Pass through if preceded or followed by uppercase letters
     elsif ($pre =~ /[-._A-Z]$/ || $rest =~ /^[-._A-Z]/) {
+      $newstring .= $name;
+    }
+    # Pass through if character reference
+    elsif ($pre =~ /^\&#$/) {
+      $newstring .= $name;
+    }
+    # Pass through if font size declaration
+    elsif ($name =~ /^pt$/) {
       $newstring .= $name;
     }
     else {
