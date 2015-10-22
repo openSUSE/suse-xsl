@@ -1,3 +1,21 @@
+Thu Oct 22 15:48:52 UTC 2015 - sknorr@suse.de
+
+Stable release 2.0.3.1 (only for OBS):
+
+- Stylesheets:
+  . Fixed #46: (PDF) Admonition titles with normal font weight
+  . Fixed #50: (PDF) Product name/version displayed on cover and in footer of
+    DocBook-5-generated books
+  . (PDF) Do not generate transparent text in CJK books
+  . Improved Fix for #36: (XHTML) Bugzilla links are only generated where
+    necessary
+  . Fixed #55: (XHTML) Make callouts uncopyable
+  . (XHTML) Fix display of screens and long commands in screen
+
+- Infrastructure:
+  . no changes
+
+-------------------------------------------------------------------
 Tue Aug 11 15:11:52 UTC 2015 - toms@opensuse.org
 
 Stable release 2.0.3 (only for OBS):
