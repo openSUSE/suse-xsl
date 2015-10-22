@@ -288,7 +288,7 @@ sub nsfilter {
   # FIXME: The following line (and others in this script) assume that the
   # namespace "xsl" is the namespace used for XSLT.
 
-  s|([ \t]+)(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform")|$1$2\n$1xmlns:d="http://docbook.org/ns/docbook"|s;
+  s|([ \t]*)(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform")|$1$2\n$1xmlns:d="http://docbook.org/ns/docbook"|s;
   
   # Add namespace d to exclude-result-prefixes
   
