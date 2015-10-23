@@ -1834,7 +1834,7 @@ code {
     line-height: 125%;
 }
 
-.verbatim-wrap > div .verbatim-wrap pre {
+.verbatim-wrap > div, .verbatim-wrap pre {
     display: block;
     width: 100%;
     overflow: auto;
