@@ -9,15 +9,22 @@
 
 -->
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
 
 <xsl:template match="programlisting/text()|screen/text()|synopsis/text()">
   <xsl:choose>
-    <xsl:when test="not(preceding-sibling::node()) or preceding-sibling::processing-instruction()[not(preceding-sibling::node())]">
-      <xsl:call-template name="trim-verbatim-whitespace-start"/>
-    </xsl:when>
-    <xsl:when test="not(following-sibling::node()) or following-sibling::processing-instruction()[not(following-sibling::node())]">
-      <xsl:call-template name="trim-verbatim-whitespace-end"/>
+    <xsl:when test="$trim.verbatim = 1">
+      <xsl:choose>
+        <xsl:when test="not(preceding-sibling::node()) or preceding-sibling::processing-instruction()[not(preceding-sibling::node())]">
+          <xsl:call-template name="trim-verbatim-whitespace-start"/>
+        </xsl:when>
+        <xsl:when test="not(following-sibling::node()) or following-sibling::processing-instruction()[not(following-sibling::node())]">
+          <xsl:call-template name="trim-verbatim-whitespace-end"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="self::text()"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:value-of select="self::text()"/>
@@ -40,11 +47,20 @@
   <xsl:variable name="first-character" select="substring($input, 1, 1)"/>
   <xsl:variable name="trimmed">
     <xsl:choose>
-      <xsl:when test="$first-character = '&#10;'">
-        <xsl:value-of select="substring($input, 2)"/>
-      </xsl:when>
-      <xsl:when test="(string-length($first-line &gt; 0)) and ($line-length-no-space = 0)">
-        <xsl:value-of select="substring-after($input, '&#10;')"/>
+      <!-- Check if the line contains a break, otherwise we may end up
+           removing spaces from before a <tag> which I am less sure is safe. -->
+      <xsl:when test="contains($input, '&#10;')">
+        <xsl:choose>
+          <xsl:when test="$first-character = '&#10;'">
+            <xsl:value-of select="substring($input, 2)"/>
+          </xsl:when>
+          <xsl:when test="(string-length($first-line &gt; 0)) and ($line-length-no-space = 0)">
+            <xsl:value-of select="substring-after($input, '&#10;')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$input"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="$input"/>
