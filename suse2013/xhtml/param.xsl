@@ -280,4 +280,7 @@ task before
   -->
   <xsl:param name="wrap.img.with.a" select="1"/>
 
+  <!-- Trim away empty lines from the beginning and end of screens -->
+  <xsl:param name="trim.verbatim" select="1"/>
+
 </xsl:stylesheet>
