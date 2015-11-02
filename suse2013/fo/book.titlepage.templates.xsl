@@ -373,7 +373,7 @@
 </xsl:template>
 
 <xsl:template name="imprint.label">
-  <xsl:param name="label" select="'pubdate'"/>
+  <xsl:param name="label" select="'PubDate'"/>
 
   <fo:inline>
     <xsl:call-template name="gentext">
