@@ -46,7 +46,9 @@
   <xsl:attribute name="space-after.optimum">1.5em</xsl:attribute>
   <xsl:attribute name="space-after.minimum">1.2em</xsl:attribute>
   <xsl:attribute name="space-after.maximum">1.7em</xsl:attribute>
-  <xsl:attribute name="keep-together.within-page">always</xsl:attribute>
+  <!-- Do not use keep-together=auto here. FOP 1.1 has a bug where, if you have
+       a note that is longer than a page, it will eat parts of that note. -->
+  <xsl:attribute name="keep-together.within-page">10</xsl:attribute>
 </xsl:attribute-set>
 
 <!-- 2. Callouts ================================================ -->
