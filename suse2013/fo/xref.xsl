@@ -149,9 +149,9 @@
 <xsl:template match="*" mode="intra.title.markup">
   <xsl:param name="linkend"/>
   <xsl:param name="first" select="0"/>
-  <xsl:message>Unknown element <xsl:value-of 
-    select="local-name(.)"/> for intra xref linking</xsl:message>
-</xsl:template>  
+  <xsl:message>Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.</xsl:message>
+  <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
+</xsl:template>
 
 
 <xsl:template match="sect1" mode="intra.title.markup">
