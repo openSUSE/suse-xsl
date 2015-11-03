@@ -93,7 +93,7 @@
           <!--<xsl:with-param name="context-desc-field-length" select="8"/>-->
           <xsl:with-param name="message">
             <xsl:text>Tracker URL in dm:docmanager/dm:bugtracker/dm:url not found. </xsl:text>
-            <xsl:text>Check if there is an dm:url available inside set?</xsl:text>
+            <xsl:text>Check if there is a dm:url available inside set.</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
       </xsl:otherwise>
