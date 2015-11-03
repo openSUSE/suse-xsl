@@ -50,7 +50,7 @@
     <xsl:variable name="tracker.version" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
     
 
-    <xsl:message>Tracker: node=<xsl:value-of select="local-name($node)"/>
+    <!--<xsl:message>Tracker: node=<xsl:value-of select="local-name($node)"/>
       len(all.dm.nodes) = <xsl:value-of select="count($all.dm.nodes)"/>
       tracker.url = <xsl:value-of select="$tracker.url"/>
       tracker.type = <xsl:value-of select="$tracker.type"/>
@@ -58,7 +58,7 @@
       tracker.component = <xsl:value-of select="$tracker.component"/>
       tracker.product = <xsl:value-of select="$tracker.product"/>
       tracker.version = <xsl:value-of select="$tracker.version"/>
-    </xsl:message>
+    </xsl:message>-->
 
     
     <xsl:text>&#10;</xsl:text>
