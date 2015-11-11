@@ -68,7 +68,8 @@
 
 <!ENTITY % coreinlines   "command | envar | email | literal | emphasis | varname |
     option | replaceable | remark | filename | citetitle | quote |
-    phrase | entity | systemitem | guimenu | subscript | superscript | trademark">
+    phrase | entity | systemitem | guimenu | menuchoice |
+    subscript | superscript | trademark">
 
 <!ENTITY % basicinlines "%coreinlines; | indexterm | inlinemediaobject">
 <!ENTITY % guiinlines	"keycombo | keycap | menuchoice">
