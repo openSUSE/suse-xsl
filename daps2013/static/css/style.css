@@ -2135,7 +2135,7 @@ a:hover .package, a:focus .package, a:active .package {
     border-left: 3px solid #8CA4C0;
     font-weight: normal;
     margin: 17px 0 17px;
-    /* Up top, 3px pf padding look better than 5 would (with line-height interfering etc.).
+    /* Up top, 3px of padding look better than 5 would (with line-height interfering etc.).
     On the left, we use 5px-3px of border, so it sits right there with any other lists etc. */
     padding: 3px 5px 6px 2px;
     background-color: #F6F8FA;
@@ -2962,7 +2962,7 @@ p.ds-message {
         padding-right: 0;
     }
 
-    /* The page probably is not wide anymore for inline-blocks to help
+    /* The page probably is not wide enough anymore for inline-blocks to help
        avoid wrapping. */
     code, .replaceable, .literal, .package {
         display: inline;
