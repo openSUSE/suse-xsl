@@ -9,7 +9,8 @@
    <l:gentext key="ListofAuthors"   text="Lijst met auteurs"/>
    <l:gentext key="Contributor"     text="Medewerker"/>
    <l:gentext key="Contributors"    text="Medewerkers"/>
-  
+
+   <!-- Workaround for a bug in the original stylesheets -->
    <l:gentext key="PubDate" text="Publicatiedatum"/>
    <l:gentext key="pubdate" text="publicatiedatum"/>
 
