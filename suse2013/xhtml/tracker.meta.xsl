@@ -61,11 +61,9 @@
     </xsl:message>-->
 
 
-    <xsl:text>&#10;</xsl:text>
-    <xsl:comment> Tracker </xsl:comment>
-
     <xsl:choose>
       <xsl:when test="$tracker.url">
+        <xsl:text>&#10;</xsl:text>
         <meta name="tracker-url" content="{$tracker.url}"/>
         <meta name="tracker-type" content="{$tracker.type}"/>
 
@@ -98,7 +96,6 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:comment> /Tracker </xsl:comment>
   </xsl:template>
 
 </xsl:stylesheet>
