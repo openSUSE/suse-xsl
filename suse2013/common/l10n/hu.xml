@@ -12,6 +12,10 @@
    <l:gentext key="Contributor"     text="Szerző"/>
    <l:gentext key="Contributors"    text="Szerzők"/>
 
+   <!-- Workaround for a bug in the original stylesheets -->
+   <l:gentext key="PubDate" text="Kiadás dátuma"/>
+   <l:gentext key="pubdate" text="kiadás dátuma"/>
+
    <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; GYORSKALAUZ K&#xc1;RTYA"/>
    <!-- FlyerCopyright: Moved to copyright_quick.xml -->
    <l:gentext key="FlyerMadeby"  text="K&#233;sz&#237;tette: SUSE&#x00AE; XSL-FO-val"/>
