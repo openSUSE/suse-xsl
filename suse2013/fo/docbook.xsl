@@ -42,6 +42,7 @@
   <xsl:include href="../common/string-replace.xsl"/>
   <xsl:include href="../common/arch-string.xsl"/>
   <xsl:include href="../common/l10n.xsl"/>
+  <xsl:include href="../common/xref.xsl"/>
   
   <xsl:include href="autotoc.xsl"/>
   <xsl:include href="callout.xsl"/>

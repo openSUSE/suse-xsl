@@ -124,7 +124,7 @@
 
 <!-- FIXME: We have (almost) the same template in fo/xref.xsl. This is
      (almost) needless duplication. -->
-  <xsl:template name="create.linkto.other.book">
+  <!--<xsl:template name="create.linkto.other.book">
     <xsl:param name="target"/>
     <xsl:variable name="refelem" select="local-name($target)"/>
     <xsl:variable name="target.article"
@@ -134,7 +134,7 @@
 
     <xsl:variable name="lang" select="ancestor-or-self::*/@lang"/>
 
-    <!--<xsl:message>create.linkto.other.book:
+    <xsl:message>create.linkto.other.book:
     linkend: <xsl:value-of select="@linkend"/>
     refelem: <xsl:value-of select="$refelem"/>
     target:  <xsl:value-of select="concat(count($target), ':',
@@ -142,7 +142,7 @@
     target/@id:  <xsl:value-of select="$target/@id"/>
     target.article: <xsl:value-of select="count($target.article)"/>
     target.book: <xsl:value-of select="count($target.book)"/>
-  </xsl:message>-->
+  </xsl:message>
     <span>
       <xsl:if test="not($target/self::book or $target/self::article)">
         <xsl:apply-templates select="$target" mode="xref-to">
@@ -172,7 +172,7 @@
         <xsl:if test="$hierarchy.node">
           <xsl:apply-templates select="$hierarchy.node" mode="xref-to">
             <xsl:with-param name="referrer" select="."/>
-            <!--<xsl:with-param name="xrefstyle">select: labelnumber title</xsl:with-param>-->
+            <!-\-<xsl:with-param name="xrefstyle">select: labelnumber title</xsl:with-param>-\->
           </xsl:apply-templates>
           <xsl:text>, </xsl:text>
         </xsl:if>
@@ -191,7 +191,9 @@
         </xsl:choose>
       </em>
     </span>
-  </xsl:template>
+  </xsl:template>-->
+
+
 
 <xsl:template match="xref" name="xref">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
@@ -249,9 +251,11 @@
               select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
           </xsl:if>
 
+        <span class="intraxref">
           <xsl:call-template name="create.linkto.other.book">
             <xsl:with-param name="target" select="$target"/>
           </xsl:call-template>
+        </span>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
