@@ -1,3 +1,20 @@
+Thu Nov 13 15:01:53 UTC 2015 - sknorr@suse.de
+
+Stable release 2.0.3.2 (only for OBS):
+
+- Stylesheets:
+  . Fixed bsc#929630: (PDF) Wrong company name displayed in PDF builds
+  . Fixed suse-xsl#49: (PDF) Make sure that FOP does not cut off long admonitions
+  . Fixed suse-xsl#70: (all) Make sure that the string "Publication Date" is always
+    capitalized
+  . Fixed suse-xsl#71: (all) Add Hungarian translation for "Publication Date"
+    string
+
+- Infrastructure:
+  . (NovDoc DTD) Allow menuchoice within titles
+
+-------------------------------------------------------------------
+
 Thu Oct 22 15:48:52 UTC 2015 - sknorr@suse.de
 
 Stable release 2.0.3.1 (only for OBS):
