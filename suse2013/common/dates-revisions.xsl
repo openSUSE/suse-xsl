@@ -56,7 +56,7 @@
     </xsl:variable>
 
     <xsl:call-template name="imprint.label">
-      <xsl:with-param name="label" select="'pubdate'"/>
+      <xsl:with-param name="label" select="'PubDate'"/>
     </xsl:call-template>
     <xsl:choose>
       <xsl:when test="$date != ''">
@@ -102,7 +102,7 @@
       <xsl:choose>
         <xsl:when test="$revision != ''">
           <xsl:call-template name="imprint.label">
-            <xsl:with-param name="label" select="'revision'"/>
+            <xsl:with-param name="label" select="'Revision'"/>
           </xsl:call-template>
           <xsl:value-of select="$revision"/>
         </xsl:when>
