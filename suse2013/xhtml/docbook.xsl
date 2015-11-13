@@ -228,7 +228,7 @@
   </xsl:if>
 
   <xsl:if test="$use.tracker.meta != 0">
-    <xsl:call-template name="create.tracker.meta"/>
+    <xsl:call-template name="create.bugtracker.information"/>
   </xsl:if>
 
     <xsl:apply-templates select="." mode="head.keywords.content"/>
