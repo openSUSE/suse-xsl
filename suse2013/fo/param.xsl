@@ -326,10 +326,11 @@ task before
 <xsl:param name="url-w" select="concat($protocol-prefix, 'en.wikipedia.org/wiki/')"/>
 
 <!-- SUSE  -->
-<xsl:param name="company.address">SUSE Linux GmbH
-Maxfeldstr. 5
-90409 Nürnberg
-GERMANY</xsl:param>
+<xsl:param name="company.address">SUSE LLC
+10 Canal Park Drive
+Suite 200
+Cambridge MA 02141
+USA</xsl:param>
 
 <xsl:param name="styleroot" select="'WARNING: styleroot unset!'"/>
 
