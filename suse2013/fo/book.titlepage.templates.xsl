@@ -263,6 +263,8 @@
           <xsl:apply-templates
             select="(bookinfo/abstract | info/abstract)[1]"
             mode="book.titlepage.verso.auto.mode"/>
+          <!-- Empty fo:block to fix openSUSE/suse-xsl#97 -->
+          <fo:block/>
         </fo:table-cell>
       </fo:table-row>
 
