@@ -947,11 +947,52 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
       }
   }
 
+  # lists: itemizedlist, orderedlist, variablelist
+  div {
+    # Removed several block elements as child of list elements
+    # db.all.blocks -> db.para.blocks
+
+    db.calloutlist =
+      ## A list of callout
+      element calloutlist {
+        db.calloutlist.attlist,
+        db.calloutlist.info,
+        # db.para.blocks*,
+        db.callout+
+      }
+
+    db.itemizedlist =
+      ## A list in which each entry is marked with a bullet or other dingbat
+      element itemizedlist {
+        db.itemizedlist.attlist,
+        db.itemizedlist.info,
+        # db.para.blocks*,
+        db.listitem+
+      }
+
+    db.orderedlist =
+      ## A list in which each entry is marked with a sequentially incremented label
+      element orderedlist {
+        db.orderedlist.attlist,
+        db.orderedlist.info,
+        # db.para.blocks*,
+        db.listitem+
+      }
+
+    db.variablelist =
+      ## A list in which each entry is composed of a set of one or more terms and an associated description
+      element variablelist {
+        db.variablelist.attlist,
+        db.variablelist.info,
+        # db.para.blocks*,
+        db.varlistentry+
+      }
+  }
+
 } # end of include
 
 
 # Redefine content modell here:
-
 
 
 # --- EOF ---
