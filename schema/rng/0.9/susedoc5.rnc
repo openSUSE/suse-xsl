@@ -26,7 +26,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   # Redefine element pattern as notAllowed here as they are not needed:
   #
   # List created with:
-  # egrep "\s+db\.[a-z]+\s*=\s*" /usr/share/xml/docbook/schema/rng/5.0/docbook.rnc  | sort > db5-elements.txt
+  # egrep "\s+db\.[a-z]+\s*=\s*" /usr/share/xml/docbook/schema/rng/5.1/docbook.rnc  | sort > db5-elements.txt
   # cat db5-elements.txt | sed 's,=,= notAllowed,g' > db5-elements-notallowed.txt
   #
   div
@@ -382,7 +382,7 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   #======== Removed Attribute
 
   db.rdfalite.attributes = empty
-  # db.xlink.attributes = empty
+  db.xlink.attributes = empty
 
   # Removed all db.common.linking.attributes from division elements
   db.acknowledgements.attlist =
@@ -839,6 +839,9 @@ include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
   db.warning.attlist =
     db.warning.role.attribute?
     & db.common.attributes
+
+  #========= Changed attributes
+  db.link.attlist &= db.xlink.simple.link.attributes
 
   #======== Changed content model
 
