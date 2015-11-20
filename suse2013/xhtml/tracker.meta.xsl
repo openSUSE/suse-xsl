@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
    Purpose:
-     Transform DocManager elements into (X)HTML <meta/> tags to pass 
-     information to create a "Report Bug" link
+      Transforms DocManager elements (DocBook 5) or dbsuse-bugtracker processing
+      instructions into (X)HTML <meta/> tags with information where
+      documentation bugs are collected.
+      This information can then be used by JavaScript on the page to create
+      "Report a Bug" buttons.
 
    Parameters:
-     None
+      None
 
    Input:
-     DocBook 5
+      DocBook 4/5
 
    Output:
-     HTML <meta/> tags
+      HTML <meta/> tags
 
    See Also:
       * https://github.com/openSUSE/suse-xsl/issues/36
+      * https://github.com/openSUSE/suse-xsl/issues/43
       * https://github.com/openSUSE/docmanager/issues/56
 
    Authors:    Thomas Schraitle
@@ -35,32 +39,25 @@
     <xsl:param name="node" select="."/>
 
     <!-- Check for the proper DocBook 5/DocManager elements. -->
-    <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/*/dm:docmanager/dm:bugtracker"/>
-    <xsl:variable name="bugtracker-docmanager-value"><xsl:value-of select="ancestor-or-self::*/*/dm:docmanager/dm:bugtracker"/></xsl:variable>
+    <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/*[contains(local-name(.), 'info')]/dm:docmanager/dm:bugtracker"/>
     <!-- Check for fallback version via processing instruction. -->
-    <xsl:variable name="bugtracker-pi" select="ancestor-or-self::*/*/processing-instruction('suse-bugtracker')"/>
-    <xsl:variable name="bugtracker-pi-value"><xsl:value-of select="ancestor-or-self::*/*/processing-instruction('suse-bugtracker')"/></xsl:variable>
+    <xsl:variable name="bugtracker-pi" select="ancestor-or-self::*/*[contains(local-name(.), 'info')]/processing-instruction('dbsuse-bugtracker')"/>
 
-    <xsl:message>DocMan |<xsl:value-of select="$bugtracker-docmanager"/>|</xsl:message>
-    <xsl:message>PI     |<xsl:value-of select="$bugtracker-pi"/>|</xsl:message>
     <xsl:choose>
-      <xsl:when test="$bugtracker-docmanager-value != ''">
-        <xsl:message>+docm |<xsl:value-of select="$bugtracker-pi"/>|</xsl:message>
+      <xsl:when test="$bugtracker-docmanager != ''">
         <xsl:call-template name="create.docmanager.bugtracker">
           <xsl:with-param name="bugtracker" select="$bugtracker-docmanager"/>
-          <xsl:with-param name="bugtracker-value" select="$bugtracker-docmanager-value"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:when test="$bugtracker-pi-value != ''">
-        <xsl:message>+pi   |<xsl:value-of select="$bugtracker-pi"/>|</xsl:message>
+      <xsl:when test="$bugtracker-pi != ''">
         <xsl:call-template name="create.pi.bugtracker">
           <!-- Unfortunately, this behaviour is inconsistent with the DocManager
                version: Whereas the DocManager version always searches through
-               all the relevant dm:bugtracker/dm:xy elements to find one that
+               all relevant dm:bugtracker/dm:xy elements to find one that
                has content, with the PI version, you always need to have all
-               necessary attributes in the same PI, because traversing the tree
+               necessary attributes within a PI, because traversing the tree
                for PIs is less simple. -->
-          <xsl:with-param name="bugtracker-pi" select="$bugtracker-pi[last()]"/>
+          <xsl:with-param name="bugtracker" select="$bugtracker-pi[last()]"/>
         </xsl:call-template>
       </xsl:when>
     </xsl:choose>
@@ -69,12 +66,6 @@
 
   <xsl:template name="create.docmanager.bugtracker">
     <xsl:param name="bugtracker" select="''"/>
-    <xsl:param name="bugtracker-value" select="''"/>
-
-    <xsl:if test="$bugtracker = ''">
-      <xsl:message>Bug Tracker integration (DocManager): Got an empty bugtracker variable.</xsl:message>
-    </xsl:if>
-    <xsl:message>+ |<xsl:value-of select="$bugtracker-value"/>|</xsl:message>
 
     <xsl:call-template name="create.bugtracker.meta">
       <xsl:with-param name="url-candidate" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
@@ -127,10 +118,6 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="$bugtracker = ''">
-      <xsl:message>Bug Tracker integration (PI): Got an empty bugtracker variable.</xsl:message>
-    </xsl:if>
-
     <xsl:call-template name="create.bugtracker.meta">
       <xsl:with-param name="url-candidate" select="$url"/>
       <xsl:with-param name="assignee-candidate" select="$assignee"/>
@@ -160,26 +147,27 @@
     <xsl:variable name="type">
       <xsl:choose>
         <xsl:when test="contains($url, 'bugzilla.suse.com') or
-                        contains($url, 'bugzilla.novell.com')">bsc</xsl:when>
+                        contains($url, 'bugzilla.novell.com') or
+                        contains($url, 'bugzilla.opensuse.org')">bsc</xsl:when>
         <xsl:when test="contains($url, 'github.com')">gh</xsl:when>
         <xsl:otherwise>unknown</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:message>Bug Tracker integration:
+    <!-- Left in here for debugging... -->
+    <!--<xsl:message>Bug Tracker integration:
       node      <xsl:value-of select="local-name(.)"/>
-      url       |<xsl:value-of select="$url"/>|
-      type      |<xsl:value-of select="$type"/>|
-      assignee  |<xsl:value-of select="$assignee"/>|
-      component |<xsl:value-of select="$component"/>|
-      product   |<xsl:value-of select="$product"/>|
-      version   |<xsl:value-of select="$version"/>|
-      labels    |<xsl:value-of select="$labels"/>|
-    </xsl:message>
+      url       <xsl:value-of select="$url"/>
+      type      <xsl:value-of select="$type"/>
+      assignee  <xsl:value-of select="$assignee"/>
+      component <xsl:value-of select="$component"/>
+      product   <xsl:value-of select="$product"/>
+      version   <xsl:value-of select="$version"/>
+      labels    <xsl:value-of select="$labels"/>
+    </xsl:message>-->
 
     <xsl:choose>
       <xsl:when test="$url">
-        <xsl:text>&#10;</xsl:text>
         <meta name="tracker-url" content="{$url}"/>
         <meta name="tracker-type" content="{$type}"/>
 
