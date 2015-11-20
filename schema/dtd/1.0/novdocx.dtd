@@ -72,7 +72,7 @@
     subscript | superscript | trademark">
 
 <!ENTITY % basicinlines "%coreinlines; | indexterm | inlinemediaobject">
-<!ENTITY % guiinlines	"keycombo | keycap | menuchoice">
+<!ENTITY % guiinlines	"keycombo | keycap ">
 <!ENTITY % allinlines	"%xrefinlines; | %basicinlines; | %guiinlines;">
 
 
