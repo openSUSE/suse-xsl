@@ -40,7 +40,7 @@
   <!-- Toggle the SUSE footer and SUSE e-mail button. Set to 0 if the
        documentation won't be available at a suse.com address.-->
   <xsl:param name="suse.content" select="1"/>
-    <!-- Ovverride with:
+    <!-- Override with:
             ––xsltparam="'––param suse.content=0'"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
