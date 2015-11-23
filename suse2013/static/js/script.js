@@ -31,7 +31,6 @@ var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
 // For GitHub
 var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content')
 var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content')
-var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content')
 
 
 $(function() {
@@ -175,9 +174,6 @@ function github(sectionNumber, sectionName, permalink) {
      + "&body=" + encodeURIComponent(body);
   if (ghAssignee) {
     URL += "&assignee=" + encodeURIComponent(ghAssignee);
-  }
-  if (ghMilestone) {
-    URL += "&milestone=" + ghMilestone;
   }
   for(var i=0; i< labels.length; i++) {
     URL += "&labels[]=" + labels[i];
