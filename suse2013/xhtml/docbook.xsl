@@ -410,7 +410,7 @@
     </div>
   </xsl:template>
 
-    <xsl:template name="create.header.buttons">
+  <xsl:template name="create.header.buttons">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
 
