@@ -72,7 +72,7 @@ XHTML2HTML      := $(DIR2005)/common/xhtml2html.xsl
 HTMLSTYLESHEETS := $(subst $(DIR2005)/xhtml,$(DEV_HTML_DIR),$(wildcard $(DIR2005)/xhtml/*.xsl))
 
 #-------
-# Local Stylsheets Directories
+# Local Stylesheets Directories
 
 DEV_DIR2005          := $(DEV_STYLE_DIR)/$(DIR2005)-ns
 DEV_DIR2013_DAPS     := $(DEV_STYLE_DIR)/$(DIR2013_DAPS)-ns
