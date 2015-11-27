@@ -30,11 +30,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     exclude-result-prefixes="exsl date">
 
-  <!-- FIXME: Better use a full URL for catalog-based resolution here? The
-       caveat of doing that would of course be possible dependency issues,
-       since we generally want matching stylesheets not any and all that are
-       installed on the system. -->
-  <xsl:import href="../../suse2013/xhtml/docbook.xsl"/>
+  <xsl:import href="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013/xhtml/docbook.xsl"/>
 
   <xsl:include href="../version.xsl"/>
 

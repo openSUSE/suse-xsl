@@ -308,6 +308,11 @@ sub nsfilter {
   # http://docbook.sourceforge.net/release/xsl-ns
   s|(http://docbook.sourceforge.net/release/xsl)/|$1-ns/|sg;
 
+  # Change https://raw.githubusercontent.com/openSUSE/suse-xsl/master/*/
+  # to
+  # https://raw.githubusercontent.com/openSUSE/suse-xsl/master/*-ns/
+  s|(https?://raw.githubusercontent.com/openSUSE/suse-xsl/master/[^/]*)/|$1-ns/|sg;
+  
   # Convert stripNS to addNS
   s|stripns\.xsl|addns.xsl|sg;
   s|no\.namespace|with.namespace|sg;
@@ -442,7 +447,7 @@ sub indexentitydecl {
     $newstring .= $entitystart;
 
     # skip URls
-    next if $value =~ /^(http:|https:|ftp:)/;
+    return $string if $value =~ /^(http:|https:|ftp:)/;
     
     while ( $value =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
 

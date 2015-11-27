@@ -37,11 +37,7 @@
     exclude-result-prefixes="exsl l t date">
 
   <xsl:import href="docbook.xsl"/>
-  <!-- FIXME: Better use a full URL for catalog-based resolution here? The
-       caveat of doing that would of course be possible dependency issues,
-       since we generally want matching stylesheets not any and all that are
-       installed on the system. -->
-  <xsl:import href="../../suse2013/xhtml/chunk-common.xsl"/>
+  <xsl:import href="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013/xhtml/chunk-common.xsl"/>
   <xsl:include href="&www;/manifest.xsl"/>
   <xsl:include href="&www;/chunk-code.xsl"/>
 
