@@ -15,10 +15,10 @@
   <xsl:choose>
     <xsl:when test="$trim.verbatim = 1">
       <xsl:choose>
-        <xsl:when test="not(preceding-sibling::node()) or preceding-sibling::processing-instruction()[not(preceding-sibling::node())]">
+        <xsl:when test="not(preceding-sibling::node()) or preceding-sibling::node()[1][self::processing-instruction()][not(preceding-sibling::* or normalize-space(preceding-sibling/text()))]">
           <xsl:call-template name="trim-verbatim-whitespace-start"/>
         </xsl:when>
-        <xsl:when test="not(following-sibling::node()) or following-sibling::processing-instruction()[not(following-sibling::node())]">
+        <xsl:when test="not(following-sibling::node()) or following-sibling::node()[1][self::processing-instruction()][not(following-sibling::* or normalize-space(preceding-sibling/text()))]">
           <xsl:call-template name="trim-verbatim-whitespace-end"/>
         </xsl:when>
         <xsl:otherwise>
