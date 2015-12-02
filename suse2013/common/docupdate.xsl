@@ -8,14 +8,14 @@
 
    Input:
      DocBook 5 document
-   
+
    Dependencies:
      - none ATM
 
    Prerequisites:
      Whenever you want a docupdate, do the following:
-     
-     1. Add role="docupdate" in your appendix
+
+     1. Add role="docupdate" in your appendix element
      2. Create one or more sect1's with a revision attribute. The revision
         attribute needs to be a unique value, typically something which
         describes your release like "12GA", "12SP1", "12SP2", etc.
@@ -33,11 +33,11 @@
            xinclude them.
 
    Implementation Details:
-   
+
 
    Output:
      DocBook5
-   
+
    Author:    Thomas Schraitle <toms@opensuse.org>
    Copyright (C) 2012-2015 SUSE Linux GmbH
 
@@ -54,17 +54,11 @@
   xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="exsl d">
 
-  <xsl:output indent="yes"/>
 
-  <xsl:template match="node() | @*" name="copy">
+  <xsl:template match="appendix[@role='docupdate']" mode="docupdate">
     <xsl:copy>
-      <xsl:apply-templates select="@* | node()"/>
-    </xsl:copy>
-  </xsl:template>
-
-  <xsl:template match="d:appendix[@role='docupdate']">   
-    <xsl:copy>
-      <xsl:copy-of select="@*"/>
+      <!-- Remove the role attribute to avoid recursion -->
+      <xsl:copy-of select="@*[not(local-name() = 'role')]"/>
       <xsl:apply-templates select="node()" mode="docupdate"/>
     </xsl:copy>
   </xsl:template>
@@ -73,13 +67,13 @@
     <xsl:message>Ignoring <xsl:value-of select="local-name(.)"/></xsl:message>
   </xsl:template>
 
-  <xsl:template match="d:title|d:info|d:para[. != '']" mode="docupdate">
+  <xsl:template match="title|info|para[. != '']" mode="docupdate">
     <xsl:apply-templates select="."/>
   </xsl:template>
 
   <!-- Only investigate sections with an revision attribute -->
-  <xsl:template match="d:sect1[@revision]" mode="docupdate">
-    <xsl:param name="allrevisions" select="//d:info/d:revhistory/d:revision"/>
+  <xsl:template match="sect1[@revision]" mode="docupdate">
+    <xsl:param name="allrevisions" select="//info/revhistory/revision"/>
     <xsl:variable name="rev" select="@revision"/>
     <xsl:variable name="revgroup" select="$allrevisions[@revision=$rev]"/>
 
@@ -87,8 +81,7 @@
       <xsl:when test="count($revgroup) > 0">
         <xsl:copy>
           <xsl:copy-of select="@*"/>
-          <xsl:apply-templates
-            select="node()[not(self::d:para[. = ''])]"/>
+          <xsl:apply-templates select="node()[not(self::para[. = ''])]"/>
           <xsl:message>Grouping with =><xsl:value-of
               select="concat($rev, ':', count($revgroup))"
             /></xsl:message>
@@ -106,46 +99,27 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="d:revhistory" mode="docupdate">
-    <xsl:variable name="division" select="ancestor::d:info/parent::*"/>
-    <xsl:message>
-   revhistory
-     <xsl:value-of select="concat(local-name($division), ' id=', $division/@xml:id)"/>
-    </xsl:message>
-    <xsl:comment>
-      # <xsl:value-of select="d:revision/@revision"/>
-      # parent=<xsl:value-of select="concat(local-name($division), ' id=', $division/@xml:id, '&#10;')"/>
-    </xsl:comment>
-    <xsl:text>&#10;</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="d:revision/d:date" mode="docupdate">
-    <xsl:text>(Released </xsl:text>
-    <xsl:value-of select="."/>
-    <xsl:text>)</xsl:text>
-  </xsl:template>
-
-  <xsl:template match="d:revhistory/d:revision[not(@revision)]" mode="docupdate">
-    <xsl:variable name="division" select="ancestor::d:info/parent::*"/>
+  <xsl:template match="revhistory/revision[not(@revision)]" mode="docupdate">
+    <xsl:variable name="division" select="ancestor::info/parent::*"/>
     <xsl:message>Warning: No @revision in <xsl:value-of select="concat(local-name($division), ' id=', $division/@xml:id, '&#10;')"/></xsl:message>
   </xsl:template>
-  
-  <xsl:template match="d:revhistory/d:revision[@revision]" mode="docupdate">
-    <xsl:variable name="division" select="ancestor::d:info/parent::*"/>
-    <xsl:message>  revision = <xsl:value-of select="@revision"/> in <xsl:value-of 
+
+  <xsl:template match="revhistory/revision[@revision]" mode="docupdate">
+    <xsl:variable name="division" select="ancestor::info/parent::*"/>
+    <xsl:message>  revision = <xsl:value-of select="@revision"/> in <xsl:value-of
       select="concat(local-name($division), ' id=', $division/@xml:id, '&#10;')"/></xsl:message>
-    
+
       <varlistentry>
         <term>
           <xsl:choose>
-            <xsl:when test="$division/self::d:book">General</xsl:when>
+            <xsl:when test="$division/self::book">General</xsl:when>
             <xsl:otherwise>
               <xref linkend="{$division/@xml:id}"/>
             </xsl:otherwise>
           </xsl:choose>
         </term>
         <listitem>
-          <xsl:copy-of select="d:revdescription/node()"/>
+          <xsl:copy-of select="revdescription/node()"/>
         </listitem>
       </varlistentry>
   </xsl:template>

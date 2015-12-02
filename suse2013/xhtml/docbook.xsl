@@ -42,6 +42,7 @@
   <xsl:include href="../common/arch-string.xsl"/>
   <xsl:include href="../common/xref.xsl"/>
   <xsl:include href="../common/trim-verbatim.xsl"/>
+  <xsl:include href="../common/docupdate.xsl"/>
 
   <xsl:include href="param.xsl"/>
   <xsl:include href="create-permalink.xsl"/>

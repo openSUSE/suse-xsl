@@ -283,4 +283,7 @@ task before
   <!-- Trim away empty lines from the beginning and end of screens -->
   <xsl:param name="trim.verbatim" select="1"/>
 
+  <!-- Output docupdate section automatically? 0=no, 1=yes -->
+  <xsl:param name="use.docupdate" select="1"/>
+
 </xsl:stylesheet>

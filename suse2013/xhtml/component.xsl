@@ -169,4 +169,19 @@
     </xsl:call-template>
   </xsl:template>
 
+  <xsl:template match="appendix[@role='docupdate']">
+    <xsl:choose>
+      <xsl:when test="$use.docupdate != 0">
+        <xsl:variable name="rtf">
+          <xsl:apply-templates select="." mode="docupdate"/>
+        </xsl:variable>
+        <xsl:message>Generating docupdate</xsl:message>
+        <xsl:apply-templates select="exsl:node-set($rtf)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-imports/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
