@@ -25,7 +25,7 @@
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>
     <!-- Override this parameter from the command line by adding
-             ––xsltparam="'––stringparam homepage=http://www.example.com'"
+             ––stringparam="homepage=http://www.example.com"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
@@ -33,7 +33,7 @@
   <xsl:param name="overview-page" select="''"/>
   <xsl:param name="overview-page-title" select="''"/>
     <!-- Override with
-             ––xsltparam="'––stringparam homepage=http://www.example.com'"
+             ––stringparam="homepage=http://www.example.com"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
@@ -41,7 +41,7 @@
        documentation won't be available at a suse.com address.-->
   <xsl:param name="suse.content" select="1"/>
     <!-- Override with:
-            ––xsltparam="'––param suse.content=0'"
+            ––param="suse.content=0"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
@@ -50,9 +50,17 @@
        installed package. -->
   <xsl:param name="build.for.web" select="1"/>
     <!-- Override with:
-            ––xsltparam="'––param build.for.web=0'"
+            ––param="build.for.web=0"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
+
+  <!-- Whether to optimize for plain text output -->
+  <xsl:param name="optimize.plain.text" select="0"/>
+    <!-- Override with:
+            ––param="optimize.plain.text=1"
+         (don't copy from here, for technical reasons I can't use hyphens and
+         must use dashes). -->
+
 
 <!-- 1. Admonitions  ============================================ -->
   <!-- Use graphics in admonitions?  0=no, 1=yes -->
@@ -199,19 +207,69 @@ task before
 
   <xsl:param name="admon.graphics.prefix">icon-</xsl:param>
 
+  <!-- Create an image tag for the logo? -->
+  <xsl:param name="generate.logo">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
   <xsl:param name="daps.header.logo">static/images/logo.png</xsl:param>
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
   <xsl:param name="daps.header.js.library">static/js/jquery-1.10.2.min.js</xsl:param>
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
 
-  <xsl:param name="add.suse.footer" select="$suse.content"/>
+  <xsl:param name="generate.header">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
+  <!-- Create fixed header bar at the top?  -->
+  <xsl:param name="generate.fixed.header">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
+  <xsl:param name="generate.toolbar">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
+  <xsl:param name="generate.bottom.navigation">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
 
   <!-- Create breadcrumbs navigation?  -->
-  <xsl:param name="generate.breadcrumbs" select="1"/>
+  <xsl:param name="generate.breadcrumbs">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
   <xsl:param name="breadcrumbs.prev">&#9664;<!--&#9668;--></xsl:param>
   <xsl:param name="breadcrumbs.next">&#9654;<!--&#9658;--></xsl:param>
 
   <!--  Bubble TOC options -->
+
+  <!-- Create bubbletoc?  -->
+  <xsl:param name="generate.bubbletoc">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
   <xsl:param name="rootelementname">
     <xsl:choose>
       <xsl:when test="local-name(key('id', $rootid)) != ''">
@@ -237,6 +295,17 @@ task before
     </xsl:choose>
   </xsl:param>
 
+  <!-- Generate a footer with SUSE-specific content? -->
+  <xsl:param name="add.suse.footer" select="$suse.content"/>
+
+  <!-- Generate links in said footer? -->
+  <xsl:param name="generate.footer.links">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
   <!-- Separator for chapter and book name in the XHTML output -->
   <xsl:param name="head.content.title.separator"> | </xsl:param>
 
@@ -244,7 +313,21 @@ task before
   <xsl:param name="generate.version.info" select="1"/>
 
   <!-- Create the language and format areas in the header? -->
-  <xsl:param name="generate.pickers" select="0"/>
+  <xsl:param name="generate.pickers">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <!-- These are only dummies currently, so we never want to gnerate them. -->
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+
+  <!-- Link at the bottom of the page as a shortcut for printing. -->
+  <xsl:param name="generate.share.and.print">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
 
   <!-- Create sharing links for Facebook, Google+, Twitter? -->
   <xsl:param name="generate.sharelinks" select="1"/>
@@ -256,14 +339,23 @@ task before
   <xsl:param name="daps.breadcrumbs.sep">&#xa0;›&#xa0;</xsl:param>
 
   <!--  Create permalinks?-->
-  <xsl:param name="generate.permalinks" select="1"/>
+  <xsl:param name="generate.permalinks">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
 
   <!-- Should information from SVN properties be used? yes=1|no=0 -->
   <xsl:param name="use.meta" select="0"/>
 
   <!-- Should the tracker meta information be processed? yes=1|no=0 -->
-  <xsl:param name="use.tracker.meta" select="1"/>
-
+  <xsl:param name="use.tracker.meta">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
   <!-- Show arrows before and after a paragraph that applies only to a certain
        architecture? -->
   <xsl:param name="para.use.arch" select="1"/>
@@ -273,7 +365,7 @@ task before
   -->
 <xsl:param name="warn.xrefs.into.diff.lang" select="1"/>
 
-<xsl:param name="glossentry.show.acronym">yes</xsl:param> 
+<xsl:param name="glossentry.show.acronym">yes</xsl:param>
 
   <!-- Wrap an <img/> tag <a>
        0=no, 1=yes
