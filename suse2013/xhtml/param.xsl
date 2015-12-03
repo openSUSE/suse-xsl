@@ -33,7 +33,8 @@
   <xsl:param name="overview-page" select="''"/>
   <xsl:param name="overview-page-title" select="''"/>
     <!-- Override with
-             ––stringparam="homepage=http://www.example.com"
+             ––stringparam="overview-page=http://www.example.com"
+             ––stringparam="overview-page-title='Back to Overview'"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
