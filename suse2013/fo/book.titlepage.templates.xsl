@@ -123,7 +123,7 @@
                     <fo:block padding-before="&columnfragment;mm">
                       <!-- We use the full productname here: -->
                       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                        select="bookinfo/productname[not(@role)]"/>
+                        select="bookinfo/productname[not(@role)]|info/productname[not(@role)]"/>
                       </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
@@ -263,6 +263,8 @@
           <xsl:apply-templates
             select="(bookinfo/abstract | info/abstract)[1]"
             mode="book.titlepage.verso.auto.mode"/>
+          <!-- Empty fo:block to fix openSUSE/suse-xsl#97 -->
+          <fo:block/>
         </fo:table-cell>
       </fo:table-row>
 
@@ -361,7 +363,6 @@
         <xsl:value-of select="$suse.doc.url"/>
         <xsl:call-template name="image-after-link"/>
       </fo:basic-link>
-      <xsl:call-template name="name"/>
     </fo:block>
   </fo:block>
 </xsl:template>
@@ -373,7 +374,7 @@
 </xsl:template>
 
 <xsl:template name="imprint.label">
-  <xsl:param name="label" select="'pubdate'"/>
+  <xsl:param name="label" select="'PubDate'"/>
 
   <fo:inline>
     <xsl:call-template name="gentext">

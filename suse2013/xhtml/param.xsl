@@ -40,7 +40,7 @@
   <!-- Toggle the SUSE footer and SUSE e-mail button. Set to 0 if the
        documentation won't be available at a suse.com address.-->
   <xsl:param name="suse.content" select="1"/>
-    <!-- Ovverride with:
+    <!-- Override with:
             ––xsltparam="'––param suse.content=0'"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
@@ -119,6 +119,8 @@ static/css/style.css
 </xsl:param>
   <xsl:param name="make.clean.html" select="1"/>
   <xsl:param name="make.valid.html" select="1"/>
+
+  <xsl:param name="generate.id.attributes" select="1"/>
 
 <!-- 8. XSLT Processing ========================================= -->
   <!-- Rule over footers? -->
@@ -259,6 +261,9 @@ task before
   <!-- Should information from SVN properties be used? yes=1|no=0 -->
   <xsl:param name="use.meta" select="0"/>
 
+  <!-- Should the tracker meta information be processed? yes=1|no=0 -->
+  <xsl:param name="use.tracker.meta" select="1"/>
+
   <!-- Show arrows before and after a paragraph that applies only to a certain
        architecture? -->
   <xsl:param name="para.use.arch" select="1"/>
@@ -274,5 +279,8 @@ task before
        0=no, 1=yes
   -->
   <xsl:param name="wrap.img.with.a" select="1"/>
+
+  <!-- Trim away empty lines from the beginning and end of screens -->
+  <xsl:param name="trim.verbatim" select="1"/>
 
 </xsl:stylesheet>

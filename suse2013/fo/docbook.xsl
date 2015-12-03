@@ -41,7 +41,9 @@
   <xsl:include href="../common/navigation.xsl"/>
   <xsl:include href="../common/string-replace.xsl"/>
   <xsl:include href="../common/arch-string.xsl"/>
+  <xsl:include href="../common/trim-verbatim.xsl"/>
   <xsl:include href="../common/l10n.xsl"/>
+  <xsl:include href="../common/xref.xsl"/>
   
   <xsl:include href="autotoc.xsl"/>
   <xsl:include href="callout.xsl"/>
@@ -58,6 +60,7 @@
   <xsl:include href="admon.xsl"/>
   <xsl:include href="component.xsl"/>
   <xsl:include href="block.xsl"/>
+  <xsl:include href="qandaset.xsl"/>
   <xsl:include href="hyphenate-url.xsl"/>
   <xsl:include href="titlepage.xsl"/>
   <xsl:include href="titlepage.templates.xsl"/>

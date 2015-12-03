@@ -40,6 +40,8 @@
   <xsl:include href="../common/navigation.xsl"/>
   <xsl:include href="../common/string-replace.xsl"/>
   <xsl:include href="../common/arch-string.xsl"/>
+  <xsl:include href="../common/xref.xsl"/>
+  <xsl:include href="../common/trim-verbatim.xsl"/>
 
   <xsl:include href="param.xsl"/>
   <xsl:include href="create-permalink.xsl"/>
@@ -65,6 +67,7 @@
   <xsl:include href="titlepage.templates.xsl"/>
 
   <xsl:include href="metadata.xsl"/>
+  <xsl:include href="tracker.meta.xsl"/>
 
 
 <!-- Actual templates start here -->
@@ -224,6 +227,10 @@
         </xsl:attribute>
       </meta>
     </xsl:if>
+  </xsl:if>
+
+  <xsl:if test="$use.tracker.meta != 0">
+    <xsl:call-template name="create.bugtracker.information"/>
   </xsl:if>
 
     <xsl:apply-templates select="." mode="head.keywords.content"/>
@@ -404,7 +411,7 @@
     </div>
   </xsl:template>
 
-    <xsl:template name="create.header.buttons">
+  <xsl:template name="create.header.buttons">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
 

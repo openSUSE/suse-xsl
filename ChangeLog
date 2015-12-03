@@ -1,4 +1,63 @@
 -------------------------------------------------------------------
+Tue Dec 02 13:41:00 UTC 2015 - toms@opensuse.org
+
+Stable release DAPS 2.0.4:
+
+Find issues in our GitHub tracker at https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Schema:
+  - Allow constant and see (inside indexterm); make db.all.blocks zero
+    or more (*) for question (fbebfb6)
+  - Remove XLinks from DB5 elements (issue #99)
+  - Disallow db.all.blocks in lists (issue #100)
+  - Remove menuchoice from guiinlines (Novdoc) (a049b85)
+  - Allow menuchoice in titles (Novdoc) (975b8d6)
+
+* Stylesheets (PDF):
+  - "unbolded" admonition titles (issue #46)
+  - Odd space in footer where productname used to beproductname not displayed
+    on book title page (issue #50)
+  - Style sect5 Titles (issue #52)
+  - FOP don't like empty <fo:table-cell>s (issue #97)
+  - Make remark handling a little more elegant
+  - Attribute sets: fix logic for replacing bold/italic in CJK languages
+
+* Stylesheets (XHTML):
+  - Make Callouts "uncopyable" (issue #55)
+  - Don't link inline images (issue #65)
+  - Publication date is incorrectly capitalized (issue #70)
+  - debug.filename-id: Use xml:id for metadata
+  - Various fixes for JS code for tracker
+
+* Common Stylesheet Changes:
+  - Style for <package/> (issue #49)
+  - xrefs to variablelists in another book is broken (issue #73)
+  - Trim spaces/newlines at beginning/end of verbatim elements (eba1e8b)
+  -  Feature/fix bugtracker for db4 (issue #102)
+
+* Infrastructure:
+  - Fixed xslns-build script (issue #57)
+  - Wrong includes in daps2013-ns, opensuse2013-ns (issue #107)
+  - Defect URLs in Entities of the *-ns Stylesheets (issue #108)
+  - Consistent variable names and indendation
+
+-------------------------------------------------------------------
+Tue Aug 11 15:11:52 UTC 2015 - toms@opensuse.org
+
+Stable release 2.0.3 (only for OBS):
+
+- Schema:
+  . Fixed #41: Missing prompt element
+
+- Stylesheets:
+  . Fixed #18: Variablelist (with ID and Title) Lacks Permalink
+  . Fixed #31: not declared namespace prefix d
+  . Fixed #36: Fix Hard-Coded Bugzilla Link ("Report Bug")
+
+- Infrastructure:
+  . no changes
+
+-------------------------------------------------------------------
 Tue Jul 02 09:11:00 UTC 2015 - toms@opensuse.org
 
 Stable release 2.0.1

@@ -284,8 +284,11 @@ sub nsfilter {
   select($Output); $| = 1;
   
   # Add the docbook5 namespace declaration to root element
-  
-  s|(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform"(?!>))(\s*\n?)(\s*)|$1$2$3xmlns:d="http://docbook.org/ns/docbook"\n$3|s;
+
+  # FIXME: The following line (and others in this script) assume that the
+  # namespace "xsl" is the namespace used for XSLT.
+
+  s|([ \t]*)(xmlns:xsl\s*=\s*"http://www.w3.org/1999/XSL/Transform")|$1$2\n$1xmlns:d="http://docbook.org/ns/docbook"|s;
   
   # Add namespace d to exclude-result-prefixes
   
@@ -305,6 +308,11 @@ sub nsfilter {
   # http://docbook.sourceforge.net/release/xsl-ns
   s|(http://docbook.sourceforge.net/release/xsl)/|$1-ns/|sg;
 
+  # Change https://raw.githubusercontent.com/openSUSE/suse-xsl/master/*/
+  # to
+  # https://raw.githubusercontent.com/openSUSE/suse-xsl/master/*-ns/
+  s|(https?://raw.githubusercontent.com/openSUSE/suse-xsl/master/[^/]*)/|$1-ns/|sg;
+  
   # Convert stripNS to addNS
   s|stripns\.xsl|addns.xsl|sg;
   s|no\.namespace|with.namespace|sg;
@@ -438,6 +446,9 @@ sub indexentitydecl {
     $newstring .= $before;
     $newstring .= $entitystart;
 
+    # skip URls
+    return $string if $value =~ /^(http:|https:|ftp:)/;
+    
     while ( $value =~ /^(.*?)(\$$w|$w\(|$ns:$n|$w:|db:$n|\@$n:$n|'.*?'|&$w;|\@$w|not \(|stringlength \(|normalize-space \()(.*$)/sg ) {
 
       # process the leading content which is not pass through
@@ -509,6 +520,14 @@ sub namespacefilter {
 
     # Pass through if preceded or followed by uppercase letters
     elsif ($pre =~ /[-._A-Z]$/ || $rest =~ /^[-._A-Z]/) {
+      $newstring .= $name;
+    }
+    # Pass through if character reference
+    elsif ($pre =~ /^\&#$/) {
+      $newstring .= $name;
+    }
+    # Pass through if font size declaration
+    elsif ($name =~ /^pt$/) {
       $newstring .= $name;
     }
     else {

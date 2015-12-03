@@ -89,9 +89,11 @@
         </xsl:element>
       </xsl:variable>
 
-
       <xsl:choose>
-        <xsl:when test="$wrap.img.with.a != 0">
+        <!-- <inlinemediaobject/>s generally do not profit from being wrapped in
+              a link, because usually they are icons. -->
+        <xsl:when test="$wrap.img.with.a != 0 and
+                        (ancestor::figure or ancestor::informalfigure)">
           <a href="{$src}">
             <xsl:copy-of select="$imgcontents"/>
           </a>

@@ -29,11 +29,7 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   exclude-result-prefixes="exsl">
 
-  <!-- FIXME: Better use a full URL for catalog-based resolution here? The
-       caveat of doing that would of course be possible dependency issues,
-       since we generally want matching stylesheets not any and all that are
-       installed on the system. -->
-  <xsl:import href="../../suse2013/fo/docbook.xsl"/>
+  <xsl:import href="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013/fo/docbook.xsl"/>
 
   <xsl:include href="../version.xsl"/>
 

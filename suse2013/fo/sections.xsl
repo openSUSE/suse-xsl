@@ -169,7 +169,7 @@
         <fo:block xsl:use-attribute-sets="section.title.level5.properties">
           <xsl:call-template name="title.split">
             <xsl:with-param name="node" select="$section"/>
-          </xsl:call-template>>
+          </xsl:call-template>
         </fo:block>
       </xsl:when>
       <xsl:otherwise>

@@ -179,10 +179,9 @@
   <xsl:variable name="keep.together">
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
-  <xsl:variable name="content-candidate">
-    <xsl:value-of select="."/>
+  <xsl:variable name="content">
+    <xsl:value-of select="normalize-space(.)"/>
   </xsl:variable>
-  <xsl:variable name="content" select="normalize-space($content-candidate)"/>
   <!-- We need only one final character, but there may be
        something in the way, like a space that wasn't removed or so. -->
   <xsl:variable name="final-characters"
@@ -193,14 +192,7 @@
       <xsl:attribute name="keep-together.within-column"><xsl:value-of
                       select="$keep.together"/></xsl:attribute>
     </xsl:if>
-
-    <!-- If the last sentence ends in : or …, there is probably a list or
-         an example that needs to be kept close to the paragraph. What if
-         there is no final punctuation? Not handling that case now. -->
-    <xsl:if test="contains($final-characters, ':') and
-                  following-sibling::*">
-      <xsl:attribute name="keep-with-next.within-page">always</xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="no-break-after-colon"/>
 
     <xsl:call-template name="anchor"/>
 
@@ -236,6 +228,25 @@
       <xsl:call-template name="arch-arrows"/>
     </xsl:if>
   </fo:inline>
+</xsl:template>
+
+  <!-- If the last sentence ends of a para ends in :, there is probably a list
+       or an example that needs to be kept close to the paragraph.
+       What if there is no final punctuation? Not handling that case now. -->
+<xsl:template name="no-break-after-colon">
+  <xsl:param name="content">
+    <xsl:value-of select="normalize-space(.)"/>
+  </xsl:param>
+  <!-- We need only one final character, but there may be
+       something in the way, like a space that wasn't removed or so. -->
+  <xsl:variable name="final-characters"
+    select="substring($content, string-length($content) - 2, string-length($content))"/>
+
+
+  <xsl:if test="contains($final-characters, ':') and
+                following-sibling::*">
+    <xsl:attribute name="keep-with-next.within-page">always</xsl:attribute>
+  </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>

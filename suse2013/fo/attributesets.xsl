@@ -29,9 +29,9 @@
 
 <!-- 1. Admonitions  ============================================ -->
 
-<xsl:attribute-set name="admonition.title.properties"
-  use-attribute-sets="sans.bold.noreplacement">
+<xsl:attribute-set name="admonition.title.properties">
   <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
+  <xsl:attribute name="font-weight">normal</xsl:attribute>
   <xsl:attribute name="font-size">&x-large;pt</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
@@ -45,7 +45,9 @@
   <xsl:attribute name="space-after.optimum">1.5em</xsl:attribute>
   <xsl:attribute name="space-after.minimum">1.2em</xsl:attribute>
   <xsl:attribute name="space-after.maximum">1.7em</xsl:attribute>
-  <xsl:attribute name="keep-together.within-page">always</xsl:attribute>
+  <!-- Do not use keep-together=auto here. FOP 1.1 has a bug where, if you have
+       a note that is longer than a page, it will eat parts of that note. -->
+  <xsl:attribute name="keep-together.within-page">10</xsl:attribute>
 </xsl:attribute-set>
 
 <!-- 2. Callouts ================================================ -->
@@ -233,6 +235,20 @@
 
 
 <!-- 14. QAndASet =============================================== -->
+<xsl:attribute-set name="qanda.title.level1.properties"
+  use-attribute-sets="section.title.properties section.title.level1.properties"/>
+
+<xsl:attribute-set name="qanda.title.level2.properties"
+  use-attribute-sets="section.title.properties section.title.level2.properties"/>
+
+<xsl:attribute-set name="qanda.title.level3.properties"
+  use-attribute-sets="section.title.properties section.title.level3.properties"/>
+
+<xsl:attribute-set name="qanda.title.level4.properties"
+    use-attribute-sets="section.title.properties section.title.level4.properties"/>
+
+<xsl:attribute-set name="qanda.title.level5.properties"
+    use-attribute-sets="section.title.properties section.title.level5.properties"/>
 
 
 <!-- 15. Bibliography =========================================== -->
@@ -431,8 +447,8 @@
  <xsl:attribute name="background-color">
     <xsl:choose>
       <xsl:when test="$enable-bold != 'true'">&light-gray-old;</xsl:when>
-      <!-- XEP does not understand transparent yet -->
-      <xsl:when test="$xep.extensions != 0">&light-gray-old;</xsl:when>
+      <!-- We would use transparent, but XEP does not support it. Inherit seems
+           good enough. -->
       <xsl:otherwise>inherit</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -441,9 +457,7 @@
 <xsl:attribute-set name="italic.replacement.color">
   <xsl:attribute name="color">
     <xsl:choose>
-      <xsl:when test="$enable-italic != 'true'">rgb(80,80,80)</xsl:when>
-      <!-- XEP does not understand transparent yet -->
-      <xsl:when test="$xep.extensions != 0">rgb(80,80,80)</xsl:when>
+      <xsl:when test="$enable-italic != 'true'">&special-gray;</xsl:when>
       <xsl:otherwise>inherit</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>

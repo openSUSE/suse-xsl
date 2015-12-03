@@ -323,13 +323,12 @@ task before
 <xsl:param name="protocol-prefix">https://</xsl:param>
 <xsl:param name="suse.doc.url" select="concat($protocol-prefix, 'www.suse.com/documentation')"/>
 
-<xsl:param name="url-w" select="concat($protocol-prefix, 'en.wikipedia.org/wiki/')"/>
-
 <!-- SUSE  -->
-<xsl:param name="company.address">SUSE Linux GmbH
-Maxfeldstr. 5
-90409 Nürnberg
-GERMANY</xsl:param>
+<xsl:param name="company.address">SUSE LLC
+10 Canal Park Drive
+Suite 200
+Cambridge MA 02141
+USA</xsl:param>
 
 <xsl:param name="styleroot" select="'WARNING: styleroot unset!'"/>
 
@@ -377,7 +376,6 @@ GERMANY</xsl:param>
 <xsl:param name="ulink.hyphenate.after.chars"
    >/:@=};</xsl:param>
 
-<xsl:param name="page-w">&#72;&#111;&#111;&#108;&#105;</xsl:param>
 
 <!-- Show arrows before and after a paragraph that applies only to a certain
      architecture? -->
@@ -396,6 +394,7 @@ GERMANY</xsl:param>
   <xsl:text>)</xsl:text>
 </xsl:param>
 
-<xsl:param name="this" select="concat($url-w, $page-w)"/>
+<!-- Trim away empty lines from the beginning and end of screens -->
+<xsl:param name="trim.verbatim" select="1"/>
 
 </xsl:stylesheet>

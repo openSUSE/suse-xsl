@@ -155,7 +155,6 @@
   </div>
 </xsl:template>
 
-
   <!-- ===================================================== -->
   <xsl:template name="part.titlepage.before.recto">
     <xsl:call-template name="version.info.page-top"/>
@@ -428,7 +427,7 @@
 </xsl:template>
 
 <xsl:template name="imprint.label">
-  <xsl:param name="label" select="'pubdate'"/>
+  <xsl:param name="label" select="'PubDate'"/>
 
   <span class="imprint-label">
     <xsl:call-template name="gentext">

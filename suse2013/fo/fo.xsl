@@ -16,7 +16,11 @@
 
 -->
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exsl="http://exslt.org/common"
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  exclude-result-prefixes="exsl"
+  >
 
 <xsl:template name="dingbat">
   <xsl:param name="dingbat">bullet</xsl:param>

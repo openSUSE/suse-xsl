@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.2
+Version:        2.0.4
 Release:        0
 
 ###############################################################
@@ -51,9 +51,8 @@ License:        GPL-2.0 or GPL-3.0
 Group:          Productivity/Publishing/XML
 Url:            http://sourceforge.net/p/daps/suse-xslt
 Source0:        %{name}-%{version}.tar.bz2
-Source1:        susexsl-fetch-source-svn
-Source2:        susexsl-fetch-source-git
-Source3:        %{name}.rpmlintrc
+Source1:        susexsl-fetch-source-git
+Source2:        %{name}.rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 

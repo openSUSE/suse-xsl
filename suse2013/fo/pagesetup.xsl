@@ -40,17 +40,26 @@
   <xsl:variable name="productnumber"
     select="(ancestor-or-self::set/setinfo/productnumber|
              ancestor-or-self::book/bookinfo/productnumber|
-             ancestor-or-self::article/articleinfo/productnumber)[last()]"/>
+             ancestor-or-self::article/articleinfo/productnumber|
+             ancestor-or-self::set/info/productnumber|
+             ancestor-or-self::book/info/productnumber|
+             ancestor-or-self::article/info/productnumber)[last()]"/>
 
   <xsl:variable name="productname-long"
     select="(ancestor-or-self::set/setinfo/productname[not(@role='abbrev')]|
              ancestor-or-self::book/bookinfo/productname[not(@role='abbrev')]|
-             ancestor-or-self::article/articleinfo/productname[not(@role='abbrev')])[last()]"/>
+             ancestor-or-self::article/articleinfo/productname[not(@role='abbrev')]|
+             ancestor-or-self::set/info/productname[not(@role='abbrev')]|
+             ancestor-or-self::book/info/productname[not(@role='abbrev')]|
+             ancestor-or-self::article/info/productname[not(@role='abbrev')])[last()]"/>
 
   <xsl:variable name="productname-abbreviation"
     select="(ancestor-or-self::set/setinfo/productname[@role='abbrev']|
              ancestor-or-self::book/bookinfo/productname[@role='abbrev']|
-             ancestor-or-self::article/articleinfo/productname[@role='abbrev'])[last()]"/>
+             ancestor-or-self::article/articleinfo/productname[@role='abbrev']|
+             ancestor-or-self::set/info/productname[@role='abbrev']|
+             ancestor-or-self::book/info/productname[@role='abbrev']|
+             ancestor-or-self::article/info/productname[@role='abbrev'])[last()]"/>
 
   <xsl:choose>
     <xsl:when test="$productname-abbreviation">
@@ -188,14 +197,21 @@
               retrieve-class-name="section.head.marker.short"
               retrieve-position="first-including-carryover"
               retrieve-boundary="page-sequence"/>
-            <!-- FIXME/UNHACKME: This causes some line break problems in
-                 Arabic, so xsl:if this out for the moment. -->
-            <xsl:if test="$writing.mode = 'lr'">
-              <fo:inline>
-                <fo:leader leader-length="&columnfragment;mm"
-                  leader-pattern="space"/>
-                <xsl:call-template name="product"/>
-              </fo:inline>
+            <xsl:if test="(ancestor-or-self::set/setinfo/productname|
+              ancestor-or-self::book/bookinfo/productname|
+              ancestor-or-self::article/articleinfo/productname|
+              ancestor-or-self::set/info/productname|
+              ancestor-or-self::book/info/productname|
+              ancestor-or-self::article/info/productname)">
+              <!-- FIXME/UNHACKME: This causes some line break problems in
+                   Arabic, so xsl:if this out for the moment. -->
+              <xsl:if test="$writing.mode = 'lr'">
+                <fo:inline>
+                  <fo:leader leader-length="&columnfragment;mm"
+                    leader-pattern="space"/>
+                  <xsl:call-template name="product"/>
+                </fo:inline>
+              </xsl:if>
             </xsl:if>
           </xsl:when>
           <xsl:otherwise>
