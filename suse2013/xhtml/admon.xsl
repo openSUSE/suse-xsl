@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
   Purpose:
      Changing structure of graphical admonitions
 
    Author(s):    Thomas Schraitle <toms@opensuse.org>
-   Copyright: 2012, Thomas Schraitle
+                 Stefan Knorr <sknorr@suse.de>
+   Copyright:    2012, 2015, Thomas Schraitle, Stefan Knorr
 
 -->
 <xsl:stylesheet version="1.0"
@@ -12,7 +13,7 @@
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
   exclude-result-prefixes="exsl">
-  
+
   <xsl:template name="graphical.admonition">
     <xsl:param name="admonition" select="."/>
     <xsl:variable name="admon.type">
@@ -30,7 +31,7 @@
         <xsl:with-param name="key" select="$admon.type"/>
       </xsl:call-template>
     </xsl:variable>
-    
+
     <div>
       <xsl:call-template name="id.attribute">
         <xsl:with-param name="node" select="$admonition"/>
@@ -50,19 +51,10 @@
       <xsl:apply-templates/>
     </div>
   </xsl:template>
-  
+
   <xsl:template name="admon.graphic">
-  <xsl:param name="node" select="."/>
-  <xsl:value-of select="concat($admon.graphics.path, $admon.graphics.prefix)"/>
-  <xsl:choose>
-    <xsl:when test="local-name($node)='note'">note</xsl:when>
-    <xsl:when test="local-name($node)='warning'">warning</xsl:when>
-    <xsl:when test="local-name($node)='caution'">caution</xsl:when>
-    <xsl:when test="local-name($node)='tip'">tip</xsl:when>
-    <xsl:when test="local-name($node)='important'">important</xsl:when>
-    <xsl:otherwise>note</xsl:otherwise>
-  </xsl:choose>
-  <xsl:value-of select="$admon.graphics.extension"/>
-</xsl:template>
+    <xsl:param name="node" select="."/>
+    <xsl:value-of select="concat($admon.graphics.path, local-name($node), $admon.graphics.extension)"/>
+  </xsl:template>
 
 </xsl:stylesheet>
