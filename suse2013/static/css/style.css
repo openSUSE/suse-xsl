@@ -106,7 +106,7 @@ html, body {
 }
 
 #_content {
-    background: url(../images/dots-gray.png) repeat-x scroll 0px 0px;
+    background: url(../images/background/dots-gray.png) repeat-x scroll 0px 0px;
     min-height: 139px;
     clear: both;
     min-width: 150px;
@@ -230,7 +230,7 @@ html, body {
 .single-contents-icon, #_print-button:before, #_share-fb:before,
 #_share-gp:before, #_share-tw:before, #_share-mail:before,
 .arch-arrow-start:after, .arch-arrow-end, .ulink:after {
-    background-image: url(../images/icons.png);
+    background-image: url(../images/navigation/icons.png);
     background-repeat: no-repeat;
 }
 
@@ -415,7 +415,7 @@ html, body {
 
 #_pickers .bubble .selected {
     background-color: #5E9632;
-    background-image: url(../images/tick.png);
+    background-image: url(../images/navigation/tick.png);
     background-repeat: no-repeat;
     background-position: right top;
 }
@@ -437,7 +437,7 @@ html, body {
     margin: 0 0 15px;
     width: 100%;
     min-width: 150px;
-    background-image: url(../images/dots-grayongreen.png);
+    background-image: url(../images/background/dots-grayongreen.png);
     background-color: #76AD2D;
     position: relative;
     z-index: 4;
@@ -769,7 +769,7 @@ a:active > .find-icon {
     width: 30px;
     height: 100%;
     margin: 0;
-    background-image: url(../images/arrow.png);
+    background-image: url(../images/navigation/arrow.png);
     background-position: -30px 8.5px;
     background-repeat: no-repeat;
 }
@@ -1506,12 +1506,12 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .tip {
     border-color: #439239;
-    background: #FFF url(../images/dots-green.png) repeat-x scroll top;
+    background: #FFF url(../images/background/dots-green.png) repeat-x scroll top;
 }
 
 .note {
     border-color: #666;
-    background: #FFF url(../images/dots-darkgray.png) repeat-x scroll top;
+    background: #FFF url(../images/background/dots-darkgray.png) repeat-x scroll top;
 }
 
 .note ul, .note .orderedlist, .warning ul, .warning .orderedlist {
@@ -1520,7 +1520,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .important {
     border-color: #BB7B03;
-    background: #FFF url(../images/dots-orange.png) repeat-x scroll top;
+    background: #FFF url(../images/background/dots-orange.png) repeat-x scroll top;
 }
 
 .important ul, .important .orderedlist {
@@ -1529,7 +1529,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .warning, .caution {
     border-color: #8C0000;
-    background: #FFF url(../images/dots-red.png) repeat-x scroll top;
+    background: #FFF url(../images/background/dots-red.png) repeat-x scroll top;
 }
 
 .admonition > h6 {
@@ -2301,7 +2301,7 @@ ul {
 }
 
 .qandadiv {
-    margin: 0 0 40px 0;#
+    margin: 0 0 40px 0;
 }
 
 .answer .table-title, .answer .verbatim-wrap, .answer .variablelist {
@@ -2367,7 +2367,7 @@ div.itemizedlist {
     margin: 4px 0 0;
     width: 17px;
     height: 15px;
-    background-image: url(../images/arrow.png);
+    background-image: url(../images/navigation/arrow.png);
     background-position: -98px 0;
     background-repeat: no-repeat;
 }
@@ -2479,7 +2479,7 @@ p.ds-message {
 }
 
 .draft {
-    background: url(../images/draft.png) no-repeat fixed left 50%;
+    background: url(../images/draft/draft.png) no-repeat fixed left 50%;
 }
 
 @page {

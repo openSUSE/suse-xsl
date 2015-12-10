@@ -67,7 +67,11 @@
   <!-- Use graphics in admonitions?  0=no, 1=yes -->
   <xsl:param name="admon.graphics" select="1"/>
   <!-- Path to admonition graphics -->
-  <xsl:param name="admon.graphics.path">static/images/</xsl:param>
+  <xsl:param name="admon.graphics.path">static/images/admonition/</xsl:param>
+  <!--  File name ending for admonition graphics. This is defined the same way
+        in the original stylesheets. But maybe we want to switch to SVGs sooner
+        or later. -->
+  <xsl:param name="admon.graphics.extension">.png</xsl:param>
   <!-- Specifies the CSS style attribute that should be added to admonitions -->
   <xsl:param name="admon.style" select="''"/>
 
@@ -213,8 +217,6 @@ task before
 <!-- 28. SUSE specific parameters =============================== -->
   <xsl:param name="is.chunk" select="0"/>
 
-  <xsl:param name="admon.graphics.prefix">icon-</xsl:param>
-
   <!-- Create an image tag for the logo? -->
   <xsl:param name="generate.logo">
     <xsl:choose>
@@ -223,7 +225,7 @@ task before
     </xsl:choose>
   </xsl:param>
 
-  <xsl:param name="daps.header.logo">static/images/logo.png</xsl:param>
+  <xsl:param name="daps.header.logo">static/images/logo/logo.png</xsl:param>
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
   <xsl:param name="daps.header.js.library">static/js/jquery-1.10.2.min.js</xsl:param>
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
