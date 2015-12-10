@@ -152,7 +152,8 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="variablelist" mode="intra.title.markup">
+
+  <xsl:template match="variablelist|orderedlist|itemizedlist|procedure" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
 
@@ -163,6 +164,7 @@
       <xsl:apply-templates select="." mode="title.markup"/>
     </xsl:if>
   </xsl:template>
+
 
   <xsl:template match="varlistentry" mode="intra.title.markup">
     <xsl:param name="linkend"/>
