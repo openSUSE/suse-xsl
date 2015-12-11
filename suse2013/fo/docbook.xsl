@@ -44,7 +44,8 @@
   <xsl:include href="../common/trim-verbatim.xsl"/>
   <xsl:include href="../common/l10n.xsl"/>
   <xsl:include href="../common/xref.xsl"/>
-  
+  <xsl:include href="../common/branding-param.xsl"/>
+
   <xsl:include href="autotoc.xsl"/>
   <xsl:include href="callout.xsl"/>
   <xsl:include href="xref.xsl"/>
