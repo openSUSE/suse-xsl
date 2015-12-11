@@ -27,6 +27,8 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
+<xsl:param name="stylesheet.type">XSL-FO</xsl:param>
+
 <!-- 1. Admonitions  ============================================ -->
 
 

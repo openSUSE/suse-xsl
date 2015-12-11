@@ -67,10 +67,8 @@
       </xsl:otherwise>
     </xsl:choose>
     <fo:block>
-      <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
-        width="{$titlepage.logo.width}">
-        <xsl:call-template name="logo-image"/>
-      </fo:instream-foreign-object>
+        <!-- FIXME: We need to provision for PNG logos too. -->
+      <fo:external-graphic src="url({concat($path.images.logo, 'logo.svg')})"/>
     </fo:block>
   </fo:block-container>
 

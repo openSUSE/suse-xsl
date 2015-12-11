@@ -21,6 +21,8 @@
   exclude-result-prefixes="saxon"
   xmlns="http://www.w3.org/1999/xhtml">
 
+<xsl:param name="stylesheet.type">XHTML 1</xsl:param>
+
 <!-- 0. Parameters for External Manipulation =================== -->
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>

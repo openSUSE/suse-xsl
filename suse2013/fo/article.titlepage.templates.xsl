@@ -53,10 +53,10 @@
           </xsl:attribute>
         </xsl:otherwise>
       </xsl:choose>
-      <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
-        width="{$titlepage.logo.width}">
-        <xsl:call-template name="logo-image"/>
-      </fo:instream-foreign-object>
+        <!-- FIXME: We need to provision for PNG logos too. -->
+        <xsl:call-template name="fo-external-image">
+          <xsl:with-param name="filename" select="concat($path.images.logo, 'logo.svg')"/>
+        </xsl:call-template>
     </fo:block>
 
     <fo:block start-indent="{&columnfragment; + &gutter;}mm" text-align="start"
