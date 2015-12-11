@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="36"
+   height="36"
+   id="svg3136">
+  <title
+     id="title3177">Icon &quot;Important&quot;</title>
+  <defs
+     id="defs3138" />
+  <metadata
+     id="metadata3141">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Icon &quot;Important&quot;</dc:title>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>&quot;!&quot; symbol from Open Sans: (c) Google (under Apache License v2) </dc:title>
+          </cc:Agent>
+        </dc:contributor>
+        <cc:license
+           rdf:resource="" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(0,-1016.3622)"
+     id="layer1">
+    <path
+       d="m 36.000001,1034.361 c 0,9.9397 -8.058494,18.0012 -18,18.0012 -9.9390174,0 -18.0000008226,-8.0615 -18.0000008226,-18.0012 0,-9.9422 8.0609834226,-17.9988 18.0000008226,-17.9988 9.941506,0 18,8.0566 18,17.9988"
+       id="path28344-6-4"
+       style="fill:#c4a000;fill-opacity:1;fill-rule:nonzero;stroke:none" />
+    <path
+       d="m 16.22699,1037.7974 -0.75352,-14.4352 5.11216,0 -0.75353,14.4352 z m -0.14775,3.1766 c 0.44326,-0.4235 1.08843,-0.6353 1.93553,-0.6353 0.81756,0 1.44795,0.2167 1.89121,0.6501 0.45309,0.4334 0.67964,1.0539 0.67965,1.8616 -10e-6,0.7782 -0.22656,1.3938 -0.67965,1.8469 -0.45311,0.4433 -1.08351,0.6649 -1.89121,0.6649 -0.8274,0 -1.46765,-0.2167 -1.92074,-0.6501 -0.45311,-0.4433 -0.67966,-1.0638 -0.67966,-1.8617 0,-0.8274 0.22163,-1.4528 0.66487,-1.8764 z"
+       id="path3358"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Open Sans;-inkscape-font-specification:Open Sans Bold" />
+  </g>
+</svg>

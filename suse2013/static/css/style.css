@@ -39,12 +39,12 @@ a {
  /* Selection colour, the unprefixed Webkit version & the -moz-prefixed
     version must be on separate lines for it to work. */
 ::selection {
-    background-color: #439239;
+    background-color: #999;
     color: #FFF;
 }
 
 ::-moz-selection {
-    background-color: #439239;
+    background-color: #999;
     color: #FFF;
 }
 
@@ -106,7 +106,6 @@ html, body {
 }
 
 #_content {
-    background: url(../images/background/dots-gray.png) repeat-x scroll 0px 0px;
     min-height: 139px;
     clear: both;
     min-width: 150px;
@@ -123,15 +122,15 @@ html, body {
 
 #_logo {
     float: left;
-    margin: 22px 22px 27px 0;
-    width: 81px;
-    height: 38px;
+    margin: 34px 22px 27px 0;
+    width: 140px;
+    height: 35px;
 }
 
 #_logo img {
-    width: 81px;
-    height: 38px;
-    color: #439239;
+    width: 140px;
+    height: 35px;
+    color: #999;
     line-height: 55px;
     font-weight: 600;
     display: block;
@@ -146,7 +145,7 @@ html, body {
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
-    margin: 0 0 0 110px;
+    margin: 0 0 0 160px;
     height: 36px;
     max-width: 70%;
     max-width: calc(100% - 120px);
@@ -185,7 +184,7 @@ html, body {
 }
 
 .crumbs > a:hover, .crumbs > a:focus, .crumbs > a:active {
-    color: #439239;
+    color: #999;
     text-decoration: none;
 }
 
@@ -230,7 +229,7 @@ html, body {
 .single-contents-icon, #_print-button:before, #_share-fb:before,
 #_share-gp:before, #_share-tw:before, #_share-mail:before,
 .arch-arrow-start:after, .arch-arrow-end, .ulink:after {
-    background-image: url(../images/navigation/icons.png);
+    background-image: url(../images/navigation/sprite.png);
     background-repeat: no-repeat;
 }
 
@@ -414,7 +413,7 @@ html, body {
 }
 
 #_pickers .bubble .selected {
-    background-color: #5E9632;
+    background-color: #BBB;
     background-image: url(../images/navigation/tick.png);
     background-repeat: no-repeat;
     background-position: right top;
@@ -423,7 +422,7 @@ html, body {
 #_pickers .bubble .selected:hover, #_pickers .bubble .selected:focus,
 #_pickers .bubble .selected:active {
     text-decoration: underline;
-    background-color: #76AD2D;
+    background-color: #CCC;
 }
 
 .bubble-closer, .back-button {
@@ -437,8 +436,7 @@ html, body {
     margin: 0 0 15px;
     width: 100%;
     min-width: 150px;
-    background-image: url(../images/background/dots-grayongreen.png);
-    background-color: #76AD2D;
+    background-color: #888a85;
     position: relative;
     z-index: 4;
 }
@@ -779,7 +777,7 @@ a:active > .find-icon {
 }
 
 #_bubble-toc .active > a {
-    background-color: #5E9632;
+    background-color: #999;
     color: #FFF;
 }
 #_bubble-toc .active {
@@ -827,7 +825,7 @@ a:active > .find-icon {
     font: 16px 'Open Sans', Helvetica, FreeSans, sans-serif;
     display: block;
     background-color: #FFF;
-    border: 1px solid #CCE9A7;
+    border: 1px solid #EEE;
     float: left;
     z-index: 0;
 }
@@ -932,7 +930,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 
 .top-button:hover, .top-button:focus, .top-button:active {
     text-decoration: none;
-    color: #439239;
+    color: #999;
 }
 
 .button > a > .prev-icon {
@@ -1019,7 +1017,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 .nav-link:hover > .nav-label,
 .nav-link:focus > .nav-label,
 .nav-link:active > .nav-label {
-    color: #439239;
+    color: #666;
 }
 
 .bottom-button {
@@ -1175,7 +1173,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 
 #_footer a:hover, #_footer a:focus, #_footer a:active {
     text-decoration: underline;
-    color: #76AD2D;
+    color: #999;
 }
 
 #_footer > p {
@@ -1236,7 +1234,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 }
 
 div.version-info {
-    color: #439239;
+    color: #999;
     font-weight: normal;
     background-color: rgba(255,255,255,0.7);
     padding: 3px 5px;
@@ -1257,7 +1255,7 @@ h6.version-info {
     padding: 5px 7px;
     font-size: 24px;
     color: #FFF;
-    background-color: #76AD2D;
+    background-color: #CCC;
     float: left;
     line-height: 100%;
 }
@@ -1273,7 +1271,7 @@ h6.version-info {
     line-height: 120%;
     width: auto;
     clear: both;
-    color: #439239;
+    color: #999;
     padding: 70px 0 50px;
 }
 
@@ -1386,7 +1384,7 @@ h6.version-info {
 
 .name, .refentry h2, .refentrytitle a, h2, .indexdiv h3, .qandadiv-title,
 .qandaset .title {
-    color: #439239;
+    color: #888a85;
 }
 
 a:hover .name, a:focus .name, a:active .name,
@@ -1410,7 +1408,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .nav-link:hover .number, .nav-link:focus .number,
 .nav-link:active .number {
-    color: #68C05E;
+    color: #999;
 }
 
 #_bubble-toc .number {
@@ -1453,7 +1451,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .permalink:hover, .permalink:focus, .permalink:active,
 .report-bug:hover, .report-bug:focus, .report-bug:active {
-    color: #439239;
+    color: #999;
     text-decoration: none !important;
 }
 
@@ -1473,7 +1471,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 
 .line {
     margin: 17px 0 36px 0;
-    border-bottom: 1px solid #439239;
+    border-bottom: 1px solid #999;
     width: 100%;
 }
 
@@ -1505,31 +1503,19 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 }
 
 .tip {
-    border-color: #439239;
-    background: #FFF url(../images/background/dots-green.png) repeat-x scroll top;
+    border-color: #204A87;
 }
 
 .note {
-    border-color: #666;
-    background: #FFF url(../images/background/dots-darkgray.png) repeat-x scroll top;
-}
-
-.note ul, .note .orderedlist, .warning ul, .warning .orderedlist {
-    color: #666;
+    border-color: #2E3436;
 }
 
 .important {
-    border-color: #BB7B03;
-    background: #FFF url(../images/background/dots-orange.png) repeat-x scroll top;
-}
-
-.important ul, .important .orderedlist {
-    color: #BB7B03;
+    border-color: #C4A000;
 }
 
 .warning, .caution {
-    border-color: #8C0000;
-    background: #FFF url(../images/background/dots-red.png) repeat-x scroll top;
+    border-color: #A40000;
 }
 
 .admonition > h6 {
@@ -1540,19 +1526,26 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 }
 
 .tip > h6 {
-    color: #439239;
+    color: #204A87;
 }
 
 .note > h6 {
-    color: #333;
+    color: #2E3436;
 }
 
 .important > h6 {
-    color: #BB7B03;
+    color: #C4A000;
 }
 
 .warning > h6, .caution > h6 {
-    color: #8C0000;
+    color: ##A40000;
+}
+
+
+.note ul, .note ol, .warning ul, .warning ol,
+.tip ul, .tip ol, .important ul, .important ol,
+.caution ul, .caution ol {
+    color: #666;
 }
 
 .symbol {
@@ -1590,8 +1583,8 @@ strong, b, .imprint-label, .version-info .productname,
 }
 
 .arch-arrow-start {
-    background-color: #7DC24D;
-    border: 1px solid #439239;
+    background-color: #CCC;
+    border: 1px solid #999;
     border-radius: 3px;
     padding: 0 2px 0 4px;
     display: inline-block;
@@ -1686,7 +1679,7 @@ p, .simplelist td {
 
 .ulink, .link, .xref, .email, .glosssee,
 .glossseealso, .indexterm {
-    color: #439239;
+    color: #777;
     text-decoration: none;
 }
 
@@ -1716,7 +1709,7 @@ p, .simplelist td {
 .glossseealso:visited:hover, .glossseealso:visited:focus, .glossseealso:visited:active,
 .indexterm:hover, .indexterm:focus, .indexterm:active,
 .indexterm:visited:hover, .indexterm:visited:focus, .indexterm:visited:active {
-    color: #439239;
+    color: #777;
     text-decoration: underline;
 }
 
@@ -1736,7 +1729,7 @@ p, .simplelist td {
 .itemizedlist-title .xref:hover, .itemizedlist-title .xref:focus, .itemizedlist-title .xref:active,
 .variablelist-title .xref:hover, .variablelist-title .xref:focus, .variablelist-title .xref:active,
 .qandadiv-title .xref:hover, .qandadiv-title .xref:focus, .qandadiv-title .xref:active {
-    color: #439239;
+    color: #777;
     text-decoration: none;
 }
 
@@ -1863,7 +1856,7 @@ code, .literal, .replaceable, .package {
 
 
 .verbatim-wrap .command {
-    color: #306928;
+    color: #999;
 }
 
 .complex-example .example-contents {
@@ -1894,7 +1887,7 @@ code, .literal, .replaceable, .package {
     padding: 1px 6px 1.5px 5px;
     margin: 0 5px;
     border-radius: 10px;
-    background-color: #439239;
+    background-color: #999;
     color: #FFF;
     font-family: 'Open Sans', Helvetica, FreeSans, sans-serif;
     font-size: 13px;
@@ -2054,7 +2047,7 @@ a:hover code, a:focus code, a:active code,
 a:hover .replaceable, a:focus .replaceable, a:active .replaceable,
 a:hover .literal, a:focus .literal, a:active .literal,
 a:hover .package, a:focus .package, a:active .package {
-    border-color: #439239;
+    border-color: #999;
 }
 
 
@@ -2134,7 +2127,7 @@ a:hover .package, a:focus .package, a:active .package {
 }
 
 .procedure-contents {
-    border-left: 3px solid #9CC897;
+    border-left: 3px solid #EEE;
     font-weight: normal;
     margin: 17px 0 17px;
     /* Up top, 3px of padding look better than 5 would (with line-height interfering etc.).
@@ -2165,7 +2158,7 @@ a:hover .package, a:focus .package, a:active .package {
 
 ol.procedure, ol.substeps, ol.orderedlist {
     display: block;
-    color: #439239;
+    color: #999;
     font-weight: 600;
 }
 
@@ -2296,7 +2289,7 @@ ul {
     padding: 5px 0 0 35px;
     margin: 0 10px;
     display: block;
-    color: #439239;
+    color: #999;
     list-style-type: disc;
 }
 
@@ -2479,7 +2472,7 @@ p.ds-message {
 }
 
 .draft {
-    background: url(../images/draft/draft.png) no-repeat fixed left 50%;
+    background: url(../images/draft/draft-html.png) no-repeat fixed left 50%;
 }
 
 @page {
@@ -2504,8 +2497,8 @@ p.ds-message {
     }
 
     .callout {
-        border: 1px solid #439239;
-        color: #439239;
+        border: 1px solid #999;
+        color: #999;
     }
 
     #_fixed-header-wrap, #_toolbar-wrap, #_pickers, #_inward, #_footer-wrap,
@@ -2596,7 +2589,7 @@ p.ds-message {
 
     #_find-area {
         height: 42px;
-        background-color: #439239;
+        background-color: #999;
         width: 100%;
         padding: 0 !important;
         overflow: hidden;
@@ -2623,7 +2616,7 @@ p.ds-message {
         margin: 0 auto;
         padding: 0 20px 0 1px;
         font-size: 13px;
-        border: 1px solid #CDE8A8;
+        border: 1px solid #EEE;
         border-radius: 3px;
     }
 
@@ -2696,7 +2689,7 @@ p.ds-message {
     }
 
     #_nav-area {
-        border-top: 1px solid #7DC24D;
+        border-top: 1px solid #CCC;
     }
 
     .nav-inner > .tool-spacer {
