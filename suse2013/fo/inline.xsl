@@ -27,7 +27,7 @@
   <!--<!ENTITY % common.entities SYSTEM "http://docbook.sourceforge.net/release/xsl/current/common/entities.ent">-->
   <!--%common.entities;-->
   <!-- Needed to define it here as the parent::variablelist is missing :-( -->
-  
+
   <!ENTITY comment.block.parents "parent::answer|parent::appendix|parent::article|parent::bibliodiv|
                                 parent::bibliography|parent::blockquote|parent::caution|parent::chapter|
                                 parent::glossary|parent::glossdiv|parent::important|parent::index|
@@ -542,7 +542,7 @@
          structname|symbol|token|type">
   <xsl:call-template name="inline.italicseq"/>
 </xsl:template>
-  
+
 <xsl:template match="guimenu|guisubmenu">
   <xsl:call-template name="gentext.guimenu.startquote"/>
   <xsl:call-template name="inline.italicseq"/>
@@ -623,10 +623,10 @@
   </xsl:choose>
 </xsl:template>
 
-  
-  <!-- 
-     Needed to fix a bug in the common/entities.ent for the 
-     DocBook stylesheets. 
+
+  <!--
+     Needed to fix a bug in the common/entities.ent for the
+     DocBook stylesheets.
      Missing parent::variablelist in comment.block.parents
   -->
   <!-- Also needed for colorful remarks now... -->

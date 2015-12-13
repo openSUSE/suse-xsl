@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
+<!--
   Purpose:
     Replace a string with another. As seen in Sal Mangano's XSLT Cookbook
     (O'Reilly): <http://examples.oreilly.com/9780596003722/>.
@@ -23,9 +23,9 @@
       <xsl:call-template name="string-replace">
         <xsl:with-param name="input"
         select="substring-after($input,$search-string)"/>
-        <xsl:with-param name="search-string" 
+        <xsl:with-param name="search-string"
         select="$search-string"/>
-        <xsl:with-param name="replace-string" 
+        <xsl:with-param name="replace-string"
           select="$replace-string"/>
       </xsl:call-template>
     </xsl:when>
