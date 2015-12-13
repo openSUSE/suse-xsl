@@ -2,13 +2,15 @@
 <!--
   Purpose:
     Adapt inline monospaced font, so its x-height is about as tall as that of
-    the serif font (Charis SIL), we use for the body text.
+    the font (for Latin/Greek/Cyrillic: Charis SIL) that we use for
+    body text.
 
-    You might notice the pattern of using fo:leaders for distancing inline
-    elements from each other instead of simply using paddings/margins: that is
-    because FOP (at least v1.1) seems to apply margins and paddings only after
-    laying out the text. Therefore, any element that a margin is applied to may
-    be pushed behind the text. We do not approve.
+    Why do we use fo:leaders for distancing inline elements from each other
+    instead of simply using paddings/margins?
+      This is because FOP 1.1 seems to apply margins and paddings of inline
+      elements only after laying out the entire text of the encloseing block
+      element. Therefore, any element that a margin is applied to may be pushed
+      behind other text. We do not approve.
 
   Author(s):  Stefan Knorr <sknorr@suse.de>,
               Thomas Schraitle <toms@opensuse.org>
