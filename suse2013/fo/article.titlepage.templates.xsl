@@ -88,7 +88,7 @@
     <fo:block padding-before="{2 * &gutterfragment;}mm"
       padding-start="{&column; + &columnfragment; + &gutter;}mm">
       <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$dark-green)"/></xsl:attribute>
-      
+
       <xsl:choose>
         <xsl:when test="articleinfo/subtitle">
           <xsl:apply-templates
@@ -106,13 +106,13 @@
             select="info/subtitle"/>
         </xsl:when>
         <xsl:when test="subtitle">
-          <xsl:apply-templates 
-            mode="article.titlepage.recto.auto.mode" 
+          <xsl:apply-templates
+            mode="article.titlepage.recto.auto.mode"
             select="subtitle"/>
         </xsl:when>
       </xsl:choose>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="articleinfo/productname[not(@role)]"/>
+            select="articleinfo/productname[not(@role='abbrev')]"/>
     </fo:block>
 
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/corpauthor"/>
@@ -166,7 +166,7 @@
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
-  
+
   <xsl:template match="subtitle" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="&xx-large;pt" line-height="{$base-lineheight * 0.75}em"
       xsl:use-attribute-sets="article.titlepage.recto.style mid-green"

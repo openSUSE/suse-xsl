@@ -123,7 +123,7 @@
                     <fo:block padding-before="&columnfragment;mm">
                       <!-- We use the full productname here: -->
                       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                        select="bookinfo/productname[not(@role)]|info/productname[not(@role)]"/>
+                        select="bookinfo/productname[not(@role='abbrev')]|info/productname[not(@role='abbrev')]"/>
                       </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
@@ -158,7 +158,8 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="productname[not(@role)]" mode="book.titlepage.recto.auto.mode">
+<xsl:template match="productname[not(@role='abbrev')]"
+  mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" hyphenate="false"
     line-height="{$base-lineheight * 0.85}em"
     font-weight="normal" font-size="&super-large;pt"
@@ -166,7 +167,8 @@
     xsl:use-attribute-sets="title.font sans.bold.noreplacement mid-green">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
     <xsl:text> </xsl:text>
-    <xsl:apply-templates select="../productnumber[not(@role)]" mode="book.titlepage.recto.mode"/>
+    <xsl:apply-templates select="../productnumber[not(@role='abbrev')]"
+      mode="book.titlepage.recto.mode"/>
   </fo:block>
 </xsl:template>
 
@@ -250,7 +252,7 @@
             select="(bookinfo/title | info/title | title)[1]"
             mode="book.titlepage.verso.auto.mode"/>
           <xsl:apply-templates
-            select="(bookinfo/productname | info/productname)[not(@role)]"
+            select="(bookinfo/productname | info/productname)[not(@role='abbrev')]"
             mode="book.titlepage.verso.auto.mode"/>
 
           <xsl:apply-templates
@@ -306,7 +308,7 @@
     </fo:block>
 </xsl:template>
 
-<xsl:template match="productname[not(@role)]" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="productname[not(@role='abbrev')]" mode="book.titlepage.verso.auto.mode">
   <fo:block xsl:use-attribute-sets="book.titlepage.verso.style"
     font-size="&large;pt" font-family="{$title.fontset}">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
@@ -316,8 +318,8 @@
         productnumber with role
       -->
       <xsl:apply-templates mode="book.titlepage.verso.mode"
-        select="(../productnumber[@role] |
-                 ../productnumber[not(@role)])[last()]" />
+        select="(../productnumber[@role='abbrev'] |
+                 ../productnumber[not(@role='abbrev')])[last()]" />
     </xsl:if>
   </fo:block>
 </xsl:template>
