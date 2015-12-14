@@ -25,8 +25,8 @@
   exclude-result-prefixes="xlink">
 
 
-<xsl:template match="ulink" name="ulink">
-  <xsl:param name="url" select="@url"/>
+<xsl:template match="ulink|link" name="ulink">
+  <xsl:param name="url" select="(@url|@xlink:href)[last()]"/>
 
   <xsl:variable name ="ulink.url">
     <xsl:call-template name="fo-external-image">
