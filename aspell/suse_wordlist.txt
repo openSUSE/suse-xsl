@@ -175,6 +175,7 @@ Brasero
 Broadcom
 bsize
 BSSID
+Btrfs
 Bugzilla
 BuildRoot
 BuildService
@@ -219,6 +220,7 @@ CDs
 Celeron
 CellWriter
 CentricStor
+Ceph
 CERN
 certificateAuthLib
 cervisia
@@ -338,6 +340,7 @@ CTCP
 Ctrl
 cucme
 cupsd
+CVE
 CVS
 cvt
 cx
@@ -366,6 +369,7 @@ dbname
 dbs
 DBSTYLES
 dbus
+DBus
 DCC
 DCHP
 dcObject
@@ -808,6 +812,7 @@ HWTYPE
 hyperthreaded
 hyperthreading
 hypervisor
+hypervisors
 ia
 iasl
 iBFT
@@ -872,6 +877,7 @@ inittab
 inkscape
 Inkscape
 inline
+InnoDB
 inode
 inodes
 Inpainting
@@ -886,6 +892,8 @@ Intellisense
 interdomain
 Internet
 interop
+interoperable
+interoperability
 interoperate
 interprocess
 Interprocess
@@ -1188,6 +1196,7 @@ LUNs
 LV
 LVM
 LVs
+LXC
 Lycos
 MacOS
 maddress
@@ -1448,6 +1457,7 @@ ntpdate
 NTSC
 Num
 NUM
+NUMA
 Nvidia
 NVidia
 NVIDIA
@@ -1481,8 +1491,8 @@ Online
 OpenCT
 OpenDocument
 OpenGL
+OpenJDK
 openldap
-openLDAP
 OpenLDAP
 OpenLook
 OpenOffice
@@ -1543,7 +1553,10 @@ PARAM
 params
 paravirtual
 paravirtualization
+paravirtualize
 paravirtualized
+paravirtualizes
+paravirtualizing
 parmfile
 parserFunction
 partitioner
@@ -1923,8 +1936,10 @@ saxon
 sbin
 sblim
 SBLIM
+scalable
 scandisk
 scBranchServer
+SCC
 scCashRegister
 scCashRegisterName
 scConfigFileSyncTemplate
@@ -1967,7 +1982,7 @@ SEARCHTERM
 securityfs
 sed
 Sel
-Semantik
+SELinux
 semctl
 semget
 semiautomated
@@ -2104,8 +2119,10 @@ startx
 stateful
 statusurl
 stayalive
+stderr
 STDERR
 stdin
+STDIN
 stdout
 STDOUT
 StickyNotes
@@ -2177,6 +2194,8 @@ subtask
 subtests
 subtree
 subtrees
+subvolume
+subvolumes
 sudo
 suEXEC
 suid
@@ -2194,6 +2213,7 @@ supporturl
 SUSE
 suseconfig
 SuSEconfig
+SUSEConnect
 susedoc
 SuSEfirewall
 SUSEgreeter
@@ -2231,6 +2251,7 @@ sysmaster
 SysRq
 sysstat
 systables
+systemd
 systemwide
 Systemwide
 SYSV
@@ -2258,7 +2279,8 @@ TGT
 Thawte
 Theming
 Thinclient
-Thinkpads
+ThinkPad
+ThinkPads
 thumbnailer
 Thunderbird
 tid
@@ -2276,16 +2298,20 @@ tlb
 TLD
 TLDP
 TLDs
+TLS
 TLS/SSL
 tmp
 TMPDIR
 TNS
 tnsping
-Todo
+todo
 ToDo
 todos
 ToDos
 toolbar
+toolbars
+toolchain
+toolchains
 toolkits
 Toolkits
 TotalStorage
@@ -2299,6 +2325,7 @@ traceFile
 traceLevel
 traceMask
 traceroute
+transactional
 transcoded
 transcoding
 trojan
@@ -2429,8 +2456,8 @@ Verdana
 Verisign
 Veritas
 versa
+versioned
 versioning
-Versioning
 VEs
 VESA
 vfat
@@ -2444,9 +2471,10 @@ VirtualBox
 VirtualDomain
 VirtualHost
 virtualization
-Virtualization
+virtualize
 virtualized
-Virtualized
+virtualizes
+virtualizing
 Visio
 VisualStudio
 VLAN
@@ -2569,6 +2597,7 @@ Xend
 Xenix
 Xensource
 xenstore
+Xeon
 xep
 XEP
 XFCE
@@ -2643,6 +2672,7 @@ yyyy
 YYYY
 YYYYMMDDNN
 Zaurus
+zEnterprise
 ZENworks
 Zeroconf
 zFCP
