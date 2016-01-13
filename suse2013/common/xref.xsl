@@ -20,7 +20,7 @@
 <xsl:template match="*" mode="intra.title.markup">
   <xsl:param name="linkend"/>
   <xsl:param name="first" select="0"/>
-  <xsl:message>Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.</xsl:message>
+  <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.</xsl:message>
   <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
 </xsl:template>
 
@@ -153,16 +153,25 @@
   </xsl:template>
 
 
-  <xsl:template match="variablelist|orderedlist|itemizedlist|procedure" mode="intra.title.markup">
+  <xsl:template
+   match="variablelist|orderedlist|itemizedlist|procedure|table|figure|equation|
+          caution|warning|important|note|tip"
+   mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
 
     <xsl:apply-templates select="parent::*"
       mode="intra.title.markup"/>
-    <xsl:if test="title">
-      <xsl:text>, </xsl:text>
-      <xsl:apply-templates select="." mode="title.markup"/>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="title">
+        <xsl:text>, </xsl:text>
+        <xsl:apply-templates select="." mode="title.markup"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> without title used for intra xref linking.</xsl:message>
+        <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 
