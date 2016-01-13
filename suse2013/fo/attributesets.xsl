@@ -375,7 +375,7 @@
   <xsl:attribute name="font-family">
     <xsl:value-of select="$title.fontset"></xsl:value-of>
   </xsl:attribute>
-  <xsl:attribute name="line-height">0.9 * <xsl:value-of select="$base-lineheight"/></xsl:attribute>
+  <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight * 0.9"/>em</xsl:attribute>
   <xsl:attribute name="font-weight">normal</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
   <xsl:attribute name="space-before.minimum">2.8em</xsl:attribute>
