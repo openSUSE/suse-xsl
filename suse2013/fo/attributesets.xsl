@@ -368,6 +368,7 @@
   <xsl:attribute name="wrap-option">wrap</xsl:attribute>
   <xsl:attribute name="hyphenation-character"><xsl:value-of select="$hook"/></xsl:attribute>
   <xsl:attribute name="font-size">&small;pt</xsl:attribute>
+  <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.title.properties">
