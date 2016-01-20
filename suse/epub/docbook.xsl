@@ -27,7 +27,9 @@
 <xsl:param name="callout.graphics.number.limit" select="30"/>
 <xsl:param name="callout.graphics.extension">.png</xsl:param>
 
-  
+<!-- The original stylesheets set this to 1 by default.-->
+<xsl:param name="show.comments" select="0"/>
+
 <xsl:template match="keycap">
    <!-- See also Ticket#84 -->
    <xsl:param name="key.contents"  select="."/>
@@ -49,5 +51,5 @@
        </xsl:otherwise>
    </xsl:choose>
 </xsl:template>
-  
+
 </xsl:stylesheet>
