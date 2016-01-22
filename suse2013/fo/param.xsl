@@ -320,8 +320,7 @@ task before
 <xsl:param name="print.product" select="1"/>
 
 <!-- Where to link for SUSE documentation -->
-<xsl:param name="protocol-prefix">https://</xsl:param>
-<xsl:param name="suse.doc.url" select="concat($protocol-prefix, 'www.suse.com/documentation')"/>
+<xsl:param name="suse.doc.url">https://www.suse.com/documentation</xsl:param>
 
 <!-- SUSE  -->
 <xsl:param name="company.address">SUSE LLC
@@ -383,8 +382,8 @@ USA</xsl:param>
 
 <!-- Creator string for PDF -->
 <xsl:param name="pdf-creator">
-  <!-- FIXME: add DAPS version -->
-  <xsl:text>DAPS (http://daps.sf.net) using the </xsl:text>
+  <!-- FIXME: add DAPS version, see: daps#226 -->
+  <xsl:text>DAPS (https://opensuse.github.io/daps) using the </xsl:text>
   <xsl:value-of select="$STYLE.NAME"/>
   <xsl:text> </xsl:text>
   <xsl:value-of select="$STYLE.VERSION"/>
