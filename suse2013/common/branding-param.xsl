@@ -39,6 +39,13 @@
     </xsl:if>
   </xsl:param>
 
+  <!-- Postal address on the second page (can be left empty) -->
+  <!-- Use \n for line breaks -->
+  <xsl:param name="imprint.address.postal">Example Holdings Inc.\n1 Example Blvd\nExampletown, XSLT\nThe World</xsl:param>
+
+  <!-- Web link on the title page (can be left empty) -->
+  <xsl:param name="imprint.address.url">https://www.example.com/</xsl:param>
+
 
   <!-- Paths (generated) -->
 

@@ -286,7 +286,7 @@
             select="(bookinfo/editor | info/editor)[1]"
             mode="book.titlepage.verso.auto.mode"/>
 
-          <xsl:call-template name="suse.imprint"/>
+          <xsl:call-template name="titlepage.imprint"/>
 
           <xsl:apply-templates
             select="(bookinfo/copyright | info/copyright)[1]"
@@ -344,29 +344,38 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template name="suse.imprint">
-  <xsl:variable name="ulink.url">
-    <xsl:call-template name="fo-external-image">
-      <xsl:with-param name="filename" select="$suse.doc.url"/>
+<xsl:template name="titlepage.imprint">
+  <!-- FIXME: In the future, we should allow users to override this address by
+       adding a book/info/address -->
+  <xsl:variable name="address">
+    <xsl:call-template name="string-replace">
+      <xsl:with-param name="input" select="$imprint.address.postal"/>
+      <xsl:with-param name="search-string" select="'\n'"/>
+      <xsl:with-param name="replace-string" select="'&#10;'"/>
     </xsl:call-template>
   </xsl:variable>
-  <fo:block xsl:use-attribute-sets="book.titlepage.verso.style"
-    space-after="1.2em" space-before="1.2em">
-    <fo:block line-height="{$line-height}"
-      white-space-treatment="preserve"
-      wrap-option="no-wrap"
-      linefeed-treatment="preserve"
-      white-space-collapse="false">
-      <xsl:copy-of select="$company.address"/>
+  <xsl:if test="normalize-space($imprint.address.postal) != '' and
+                normalize-space($address) != ''">
+    <fo:block xsl:use-attribute-sets="book.titlepage.verso.style"
+      space-after="1.2em" space-before="1.2em">
+      <xsl:if test="normalize-space($address) != ''">
+        <fo:block line-height="{$line-height}"
+          linefeed-treatment="preserve">
+          <xsl:value-of select="$address"/>
+        </fo:block>
+      </xsl:if>
+      <xsl:if test="normalize-space($imprint.address.url) != ''">
+        <fo:block>
+          <!-- FIXME: In the future, we should allow users to override this URL
+               by adding a book/info/link -->
+          <xsl:call-template name="ulink">
+            <xsl:with-param name="url" select="$imprint.address.url"/>
+            <xsl:with-param name="access" select="'xsl'"/>
+          </xsl:call-template>
+        </fo:block>
+      </xsl:if>
     </fo:block>
-    <fo:block>
-      <fo:basic-link external-destination="{$ulink.url}"
-        xsl:use-attribute-sets="dark-green title.font">
-        <xsl:value-of select="$suse.doc.url"/>
-        <xsl:call-template name="image-after-link"/>
-      </fo:basic-link>
-    </fo:block>
-  </fo:block>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="date.and.revision">
