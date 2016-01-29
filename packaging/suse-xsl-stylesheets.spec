@@ -107,7 +107,7 @@ Recommends:     wqy-microhei-fonts
 Recommends:     ttf-founder-simplified
 %endif
 
-# FONTS USED IN suse_beta STYLESHEETS
+# FONTS USED IN suse2013 STYLESHEETS
 # A rather simplistic solution which roughly means that you need M17N:fonts to
 # build the new stylesheets on older OS's.
 %if 0%{?suse_version} >= 1220
