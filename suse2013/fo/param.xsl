@@ -322,15 +322,7 @@ task before
 <!-- Include product information in footer -->
 <xsl:param name="print.product" select="1"/>
 
-<!-- Where to link for SUSE documentation -->
-<xsl:param name="suse.doc.url">https://www.suse.com/documentation</xsl:param>
-
 <!-- SUSE  -->
-<xsl:param name="company.address">SUSE LLC
-10 Canal Park Drive
-Suite 200
-Cambridge MA 02141
-USA</xsl:param>
 
 <xsl:param name="enable.secondary.branding" select="1"/>
 

@@ -27,6 +27,9 @@
 
 <xsl:template match="ulink|link" name="ulink">
   <xsl:param name="url" select="(@url|@xlink:href)[last()]"/>
+  <!-- Use the access parameter when calling this function from XSLT. And set it
+       to something else than db.-->
+  <xsl:param name="access" select="'db'"/>
 
   <xsl:variable name="ulink.url">
     <xsl:call-template name="fo-external-image">
@@ -43,7 +46,8 @@
   <fo:basic-link xsl:use-attribute-sets="xref.properties"
                  external-destination="{$ulink.url}">
     <xsl:choose>
-      <xsl:when test="count(child::node()) = 0 or
+      <xsl:when test="$access != 'db' or
+                      count(child::node()) = 0 or
                       normalize-space(.) = $url or
                       (count(child::*) = 0 and
                        normalize-space(string(.)) = '')">

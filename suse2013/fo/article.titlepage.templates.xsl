@@ -54,9 +54,7 @@
         </xsl:otherwise>
       </xsl:choose>
         <!-- FIXME: We need to provision for PNG logos too. -->
-        <xsl:call-template name="fo-external-image">
-          <xsl:with-param name="filename" select="concat($path.images.logo, 'logo.svg')"/>
-        </xsl:call-template>
+        <fo:external-graphic src="url({concat($path.images.logo, 'logo.svg')})"/>
     </fo:block>
 
     <fo:block start-indent="{&columnfragment; + &gutter;}mm" text-align="start"
