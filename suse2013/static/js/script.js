@@ -12,9 +12,8 @@
 var active = false;
 var deactivatePosition = -1;
 
-// Parts of the bug reporter, (c) Adam Spiers
-var trackerURL = $( 'meta[name="tracker-url"]' ).attr('content')
-var trackerType = $( 'meta[name="tracker-type"]' ).attr('content')
+var trackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
+var trackerType = $( 'meta[name="tracker-type"]' ).attr('content');
 
 // we handle Github (= gh) and bugzilla.suse.com (= bsc), default to bsc
 if ((trackerType != 'gh') && (trackerType != 'bsc')) {
@@ -22,15 +21,17 @@ if ((trackerType != 'gh') && (trackerType != 'bsc')) {
 }
 
 // For Bugzilla
-var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content')
+var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content');
 if (!bscComponent) {
   bscComponent = 'Documentation'; // default component
 }
-var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content')
-var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content')
+var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content');
+var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content');
+var bscVersion = $( 'meta[name="tracker-bsc-version"]' ).attr('content');
 // For GitHub
-var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content')
-var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content')
+var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content');
+var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content');
+var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
 
 
 $(function() {
@@ -134,18 +135,18 @@ $(function() {
     $('#_toolbar').addClass('only-nav');
   }
 
-  tracker()
+  tracker();
 });
 
 
 function tracker() {
   // do not create links if there is no URL
-  if ( typeof(trackerURL) == 'string') {
+  if ( typeof(trackerUrl) == 'string') {
     $('.permalink:not([href^=#idm])').each(function () {
       var permalink = this.href;
       var sectionNumber = "";
       var sectionName = "";
-      var URL = "";
+      var url = "";
       if ( $(this).prevAll('span.number')[0] ) {
         sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
       }
@@ -154,42 +155,52 @@ function tracker() {
       }
 
       if (trackerType == 'bsc') {
-        URL = bugzilla(sectionNumber, sectionName, permalink);
+        url = bugzillaUrl(sectionNumber, sectionName, permalink);
       }
       else {
-        URL = github(sectionNumber, sectionName, permalink);
+        url = githubUrl(sectionNumber, sectionName, permalink);
       }
 
       $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
-        + URL
+        + url
         + "\" title=\"Report a bug against this section\">Report Bug</a> ");
+      return true;
     });
   }
+  else {
+    return false;
+  }
 }
 
-function github(sectionNumber, sectionName, permalink) {
+function githubUrl(sectionNumber, sectionName, permalink) {
   var labels = ghLabels.split(",")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var URL = trackerURL + "?title=" + encodeURIComponent(sectionName)
+  var url = trackerUrl + "?title=" + encodeURIComponent(sectionName)
      + "&body=" + encodeURIComponent(body);
   if (ghAssignee) {
-    URL += "&assignee=" + encodeURIComponent(ghAssignee);
+    url += "&assignee=" + encodeURIComponent(ghAssignee);
   }
-  for(var i=0; i< labels.length; i++) {
-    URL += "&labels[]=" + labels[i];
+  if (ghMilestone) {
+    url += "&milestone=" + encodeURIComponent(ghMilestone);
   }
-  return URL;
+  for(var i = 0; i < labels.length; i++) {
+    url += "&labels[]=" + labels[i];
+  }
+  return url;
 }
 
-function bugzilla(sectionNumber, sectionName, permalink) {
+function bugzillaUrl(sectionNumber, sectionName, permalink) {
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var URL = trackerURL + "?&product=" + encodeURIComponent(bscProduct)
+  var url = trackerUrl + "?&product=" + encodeURIComponent(bscProduct)
     + '&component=' + encodeURIComponent(bscComponent)
     + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
   if (bscAssignee) {
-    URL += "&assigned_to=" + encodeURIComponent(bscAssignee);
+    url += "&assigned_to=" + encodeURIComponent(bscAssignee);
   }
-  return URL;
+  if (bscVersion) {
+    url += "&version=" + encodeURIComponent(bscVersion);
+  }
+  return url;
 }
 
 function activate( elm ) {
