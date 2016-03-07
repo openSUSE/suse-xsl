@@ -1,12 +1,12 @@
 /*
- * JavaScript for SUSE documentation
- *
- * Author:
- *   Adam Spiers
- *
- * Contributors:
- *   Thomas Schraitle
- *
+JavaScript for SUSE documentation
+
+Authors:
+   Stefan Knorr, Thomas Schraitle, Adam Spiers
+
+License: GPL 2+
+
+(c) 2012-2016 SUSE LLC
 */
 
 var active = false;
