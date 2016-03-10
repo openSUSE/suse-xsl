@@ -14,7 +14,9 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns:dm="urn:x-suse:ns:docmanager"
+  xmlns="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="dm">
 
   <xsl:template name="product.name">
     <xsl:choose>
@@ -78,6 +80,15 @@
     <xsl:copy-of select="$product-number"/>
   </xsl:template>
 
+  <xsl:template name="vcs.url">
+   <xsl:variable name="dm" select="*/dm:docmanager"/>
+   <xsl:variable name="url" select="$dm/dm:vcs/dm:url"/>
+   <xsl:if test="$dm and $url">
+    <div class="vcsurl">
+     <p><a href="{$url}">GitHub Source XML</a></p>
+    </div>
+   </xsl:if>
+  </xsl:template>
 
   <xsl:template name="version.info.page-top">
     <xsl:variable name="info-text">
@@ -267,6 +278,7 @@
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/editor"/>
 
         <xsl:call-template name="date.and.revision"/>
+        <xsl:call-template name="vcs.url"/>
 
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/copyright"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/copyright"/>
@@ -389,6 +401,7 @@
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/editor"/>
 
         <xsl:call-template name="date.and.revision"/>
+        <xsl:call-template name="vcs.url"/>
 
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/copyright"/>
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/copyright"/>
