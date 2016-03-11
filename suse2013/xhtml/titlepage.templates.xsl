@@ -78,6 +78,24 @@
     <xsl:copy-of select="$product-number"/>
   </xsl:template>
 
+  <xsl:template name="vcs.url">
+   <xsl:variable name="dm" select="*/dm:docmanager"/>
+   <xsl:variable name="url" select="$dm/dm:vcs/dm:url"/>
+   <xsl:if test="$dm and $url">
+    <xsl:variable name="vcs.text">
+     <xsl:choose>
+      <xsl:when test="contains($url, 'github.com')">GitHub</xsl:when>
+      <xsl:when test="contains($url, 'gitlab')">GitLab</xsl:when>
+      <xsl:when test="contains($url, 'svn')">SVN</xsl:when>
+      <xsl:otherwise>VCS URL</xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
+    <div class="vcsurl">
+     <p><span class="vcshead">Source XML:</span>&#xa0;<a href="{$url}"><xsl:value-of select="$vcs.text"/></a></p>
+    </div>
+   </xsl:if>
+  </xsl:template>
+
   <xsl:template name="version.info.page-top">
     <xsl:variable name="info-text">
       <xsl:call-template name="version.info">
