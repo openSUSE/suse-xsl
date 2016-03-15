@@ -172,14 +172,6 @@
   </div>
 </xsl:template>
 
-  <xsl:template name="add.github.url">
-    <xsl:param name="biblio" select="."/>
-    <div>
-       <xsl:call-template name="generate.class.attribute"/>
-       <span class="imprint-label">GitHub: </span>
-       <a href="{string($biblio)}" target="_blank"><xsl:value-of select="$biblio"/></a>
-    </div>
-  </xsl:template>
 
   <!-- ===================================================== -->
   <xsl:template name="part.titlepage.before.recto">
@@ -428,9 +420,6 @@
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>
 
-  <xsl:template match="bibliosource" mode="book.titlepage.recto.auto.mode">
-    <xsl:call-template name="add.github.url"/>
-  </xsl:template>
 
   <xsl:template match="othercredit|editor" mode="book.titlepage.recto.auto.mode">
     <xsl:if test=". = ((../othercredit)|(../editor))[1]">
