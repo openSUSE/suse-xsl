@@ -59,7 +59,9 @@ BuildArch:      noarch
 BuildRequires:  aspell
 BuildRequires:  aspell-en
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
+BuildRequires:  docbook5-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes
+BuildRequires:  libxml2-tools
 BuildRequires:  libxslt
 BuildRequires:  make
 # Only needed to fix the "have choice" error between xerces-j2 and crimson
@@ -69,13 +71,14 @@ BuildRequires:  xerces-j2
 BuildRequires:  fontpackages-devel
 BuildRequires:  trang
 
-Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook_4
+Requires:       docbook_5
+Requires:       docbook-xsl-stylesheets >= 1.77
+Requires:       docbook5-xsl-stylesheets >= 1.77
+
 Requires:       libxslt
 
 Recommends:     daps
-Recommends:     docbook_5
-Recommends:     docbook5-xsl-stylesheets
 
 #------
 # Fonts
@@ -131,8 +134,6 @@ Recommends:     nanum-fonts
 # Arabic:
 Recommends:     arabic-amiri-fonts
 
-Obsoletes:      susedoc <= 4.3.33
-Provides:       susedoc = 4.3.34
 
 %description
 These are SUSE-branded XSLT 1.0 stylesheets for DocBook 4 and 5 that are be used
