@@ -150,7 +150,7 @@ task before
 
 <xsl:param name="body.start.indent" select="'0'"/>
 
-<xsl:param name="draft.watermark.image"><xsl:value-of select="$styleroot"/>images/draft.svg</xsl:param>
+<xsl:param name="draft.watermark.image"><xsl:value-of select="$path.images.draft"/>draft.svg</xsl:param>
 <xsl:param name="line-height" select="concat($base-lineheight, 'em')"/>
 
 
