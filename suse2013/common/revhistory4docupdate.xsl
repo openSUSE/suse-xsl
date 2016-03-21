@@ -48,8 +48,8 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:d="http://docbook.org/ns/docbook"
+  xmlns="&db5ns;"
+  xmlns:d="&db5ns;"
   xmlns:exsl="http://exslt.org/common"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="exsl d">

@@ -19,7 +19,7 @@
      2. Create one or more sect1's with a revision attribute. The revision
         attribute needs to be a unique value, typically something which
         describes your release like "12GA", "12SP1", "12SP2", etc.
-     3. Add your <revhistory> inside <info> in your chapter.
+     3. Add your <revhistory> inside <info> into your chapters.
         Each <revision> must contain a revision attribute which the unique
         value from step 2.
      4. Add as many <revision>s as you like. However, keep in mind these
@@ -33,13 +33,13 @@
            xinclude them.
 
    Implementation Details:
-
+     TBD
 
    Output:
      DocBook5
 
    Author:    Thomas Schraitle <toms@opensuse.org>
-   Copyright (C) 2012-2015 SUSE Linux GmbH
+   Copyright (C) 2015-2016 SUSE Linux GmbH
 
 -->
 <!DOCTYPE xsl:stylesheet
@@ -48,8 +48,8 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://docbook.org/ns/docbook"
-  xmlns:d="http://docbook.org/ns/docbook"
+  xmlns="&db5ns;"
+  xmlns:d="&db5ns;"
   xmlns:exsl="http://exslt.org/common"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   exclude-result-prefixes="exsl d">
