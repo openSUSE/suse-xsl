@@ -230,13 +230,21 @@
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
+ <!--
+    The xref resolution is a bit tricky. We need to distinguish 3 cases:
+
+    1. if $rootid = '' -> use original code
+    2. if $rootid != '' and rootid points to the root node -> use original code
+    3. if (1) or (2) does not apply -> reference into another book
+ -->
  <xsl:choose>
   <xsl:when test="$rootid = ''">
    <xsl:apply-imports/>
   </xsl:when>
-  <xsl:when test="$xref.in.samebook != 0 or
-   /set/@id=$rootid or
-   /article/@id=$rootid">
+  <xsl:when test="$rootid != '' and $xref.in.samebook != 0">
+   <xsl:apply-imports/>
+  </xsl:when>
+  <xsl:when test="$xref.in.samebook != 0 or /set/@id=$rootid or /article/@id=$rootid">
    <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
    <xsl:apply-imports/>
