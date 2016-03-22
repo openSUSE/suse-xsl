@@ -210,7 +210,7 @@
 
   <!--<xsl:if test="$this.book/@id != $target.book/@id">-->
   <!--<xsl:message>-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- xref.in.samebook: <xsl:value-of select="$xref.in.samebook"/>
+ xref.in.samebook: <xsl:value-of select="boolean($xref.in.samebook)"/>
  linkend:        <xsl:value-of select="@linkend"/>
  count(targets): <xsl:value-of select="count($targets)"/>
  target:         <xsl:value-of select="name($target)"/>
@@ -230,35 +230,37 @@
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
-  <xsl:choose>
-    <xsl:when test="$xref.in.samebook != 0 or
-                    /set/@id=$rootid or
-                    /article/@id=$rootid">
-       <!-- An xref that stays inside the current book or when $rootid
+ <xsl:choose>
+  <xsl:when test="$rootid = ''">
+   <xsl:apply-imports/>
+  </xsl:when>
+  <xsl:when test="$xref.in.samebook != 0 or
+   /set/@id=$rootid or
+   /article/@id=$rootid">
+   <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
-       <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:otherwise>
-          <!-- A reference into another book -->
-          <xsl:variable name="target.chapandapp"
-                        select="$target/ancestor-or-self::chapter[@lang!='']
-                                | $target/ancestor-or-self::appendix[@lang!='']"/>
+   <xsl:apply-imports/>
+  </xsl:when>
+  <xsl:otherwise>
+   <!-- A reference into another book -->
+   <xsl:variable name="target.chapandapp"
+    select="$target/ancestor-or-self::chapter[@lang!='']
+    | $target/ancestor-or-self::appendix[@lang!='']"/>
 
-          <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
-                        $target.chapandapp/@lang != $this.book/@lang">
-            <xsl:message>WARNING: The xref '<xsl:value-of
-            select="@linkend"/>' points to a chapter (id='<xsl:value-of
-              select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
-          </xsl:if>
+   <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
+    $target.chapandapp/@lang != $this.book/@lang">
+    <xsl:message>WARNING: The xref '<xsl:value-of
+     select="@linkend"/>' points to a chapter (id='<xsl:value-of
+      select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
+   </xsl:if>
 
-        <span class="intraxref">
-          <xsl:call-template name="create.linkto.other.book">
-            <xsl:with-param name="target" select="$target"/>
-          </xsl:call-template>
-        </span>
-    </xsl:otherwise>
-  </xsl:choose>
+   <span class="intraxref">
+    <xsl:call-template name="create.linkto.other.book">
+     <xsl:with-param name="target" select="$target"/>
+    </xsl:call-template>
+   </span>
+  </xsl:otherwise>
+ </xsl:choose>
 </xsl:template>
-
 
 </xsl:stylesheet>
