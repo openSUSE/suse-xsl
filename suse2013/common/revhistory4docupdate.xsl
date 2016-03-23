@@ -34,6 +34,11 @@
         c. When the <revhistory> grows, try to keep readability high. Maybe
            it's a good idea to move (very?) old entries into a separate file
            and xinclude them.
+     5. Use @resource in <para> to mark up a tracker issue which is referenced
+        automatically. Use the following abbreviations (case doesn't matter):
+        * bsc = SUSE's Bugzilla
+        * fate = SUSE's FATE
+        * dc = DocComment system
 
    Implementation Details:
      The xsl:key 'revs' selects all revision elements inside a chapter info
@@ -88,6 +93,8 @@
 <!DOCTYPE xsl:stylesheet
 [
   <!ENTITY db5ns "http://docbook.org/ns/docbook">
+  <!ENTITY lowercase "'abcdefghijklmnopqrstuvwxyz'">
+  <!ENTITY uppercase "'ABCDEFGHIJKLMNOPQRSTUVWXYZ'">
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -175,9 +182,51 @@
   </xsl:template>
 
 
+ <xsl:template match="d:para[@resource]">
+  <xsl:variable name="res" select="@resource"/>
+  <xsl:variable name="type"  select="translate(substring-before($res, '#'),
+                                               &uppercase;, &lowercase;)"/>
+  <xsl:variable name="value" select="substring-after($res, '#')"/>
+  <xsl:variable name="url">
+   <xsl:choose>
+    <xsl:when test="$type = ''">
+     <xsl:message>
+      <xsl:text>docupdates: WARNING. Missing # separator between </xsl:text>
+      <xsl:text>type and value </xsl:text>
+      <xsl:value-of select="concat('&quot;', $res, '&quot;')"/>
+     </xsl:message>
+    </xsl:when>
+    <xsl:when test="$type = 'bsc'">
+     <link xlink:href="https://bugzilla.suse.com/show_bug.cgi?id={$value}"/>
+    </xsl:when>
+    <xsl:when test="$type = 'fate'">Fate#<xsl:value-of select="$value"/></xsl:when>
+    <xsl:when test="$type = 'dc'">Doc Comment&#xa0;#<xsl:value-of select="$value"/></xsl:when>
+    <xsl:otherwise>
+     <xsl:message>docupdates: WARNING. Type "<xsl:value-of select="$type"
+     />" in "<xsl:value-of select="$res"/>" not supported!</xsl:message>
+     <xsl:text/>
+    </xsl:otherwise>
+   </xsl:choose>
+  </xsl:variable>
+
+  <para>
+   <xsl:copy-of select="@*[local-name() != 'resource']"/>
+   <xsl:apply-templates/>
+   <xsl:if test="$url">
+    <xsl:text> (</xsl:text>
+    <xsl:copy-of select="$url"/>
+    <xsl:text>).</xsl:text>
+   </xsl:if>
+  </para>
+ </xsl:template>
+
  <xsl:template match="d:revhistory/d:revision" mode="docupdate">
   <xsl:param name="origin" select="."/>
   <xsl:variable name="division" select="ancestor::d:info/parent::*"/>
+
+  <xsl:message> revision:
+   division=<xsl:value-of select="local-name($division)"/>
+  </xsl:message>
 
   <varlistentry>
    <term>
