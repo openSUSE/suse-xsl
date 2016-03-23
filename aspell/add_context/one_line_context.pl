@@ -4,13 +4,13 @@
 #
 # 2009-08-12, jw, v0.3  - protected xml markup in html output better
 #
-# Usage: 
-#  
+# Usage:
+#
 # ./one_line_context.pl Jakub ../../../books/en/xml
 # ./one_line_context.pl wordlist.txt ../../../books/en/xml
 # call it either with a wordlist or with a word.
 #
-# TODO: 
+# TODO:
 #  - run grep in --color=always mode, parse the wdiff colors
 #  - add -a option to print all matches,  not just the first one.
 
@@ -25,7 +25,7 @@ while (defined(my $word = <LI>))
   {
     chomp $word;
     find_context($word, $where, {as_html => 1, highlight => 1});
-    printf STDERR " %s %d\r", $word, $n++ unless -t STDOUT; 
+    printf STDERR " %s %d\r", $word, $n++ unless -t STDOUT;
 #    last if $word eq 'adminc';
   }
 print "</table>\n";
@@ -64,7 +64,7 @@ sub find_context
   while (defined(my $line = <IN>))
     {
       chomp $line;
-      # remove all clear EOL escapes 
+      # remove all clear EOL escapes
       $line =~ s{\033\[K}{}g;
       die "\Q$line\E\n";
       if ($line =~m{^(\S+\.xml)[-:]\s*(.*)$})
