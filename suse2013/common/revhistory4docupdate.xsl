@@ -108,7 +108,7 @@
 
 
   <!-- =================================================================== -->
- <xsl:key name="revs" match="//d:chapter/d:info/d:revhistory/d:revision"
+ <xsl:key name="revs" match="d:info/d:revhistory/d:revision"
           use="@revision"/>
 
   <!-- =================================================================== -->
@@ -148,15 +148,19 @@
      histories
   -->
   <xsl:template match="d:sect1[@revision]" mode="docupdate">
-   <xsl:variable name="rev" select="key('revs', @revision)"/>
    <xsl:variable name="targets" select="key('revs', @revision)"/>
    <xsl:variable name="origin" select="."/>
    <xsl:variable name="revisions" select="$targets[ancestor-or-self::d:book/@xml:id = $origin/ancestor-or-self::d:book/@xml:id]"/>
 
-   <!--<xsl:message>
+   <xsl:message>
     targets = <xsl:value-of select="count($targets)"/>
     d:sect1[@revision] = <xsl:value-of select="count($revisions)"/>
-   </xsl:message>-->
+    <xsl:text>&#10;</xsl:text>
+    <xsl:for-each select="$targets">
+     <xsl:value-of select="ancestor-or-self::d:book/@xml:id"/>
+     <xsl:text>, </xsl:text>
+    </xsl:for-each>
+   </xsl:message>
 
    <xsl:choose>
     <xsl:when test="count($revisions) > 0">
@@ -223,6 +227,7 @@
  <xsl:template match="d:revhistory/d:revision" mode="docupdate">
   <xsl:param name="origin" select="."/>
   <xsl:variable name="division" select="ancestor::d:info/parent::*"/>
+  <xsl:variable name="rev" select="@revision"/>
 
   <xsl:message> revision:
    division=<xsl:value-of select="local-name($division)"/>
@@ -236,6 +241,9 @@
     </xsl:choose>
    </term>
    <listitem>
+    <xsl:if test="$division/self::d:book">
+     <xsl:apply-templates select="/d:set/d:info/d:revhistory/d:revision[@revision=$rev]/d:revdescription/node()"/>
+    </xsl:if>
     <xsl:apply-templates select="d:revdescription/node()"/>
    </listitem>
   </varlistentry>
