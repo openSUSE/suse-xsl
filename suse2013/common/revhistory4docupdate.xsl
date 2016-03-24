@@ -113,6 +113,7 @@
 
   <!-- =================================================================== -->
   <xsl:param name="rootid"/>
+  <xsl:param name="issue.tracker.start">bsc#</xsl:param>
 
   <!-- =================================================================== -->
   <xsl:template match="node() | @*" name="copy">
@@ -151,6 +152,7 @@
    <xsl:variable name="targets" select="key('revs', @revision)"/>
    <xsl:variable name="origin" select="."/>
    <xsl:variable name="revisions" select="$targets[ancestor-or-self::d:book/@xml:id = $origin/ancestor-or-self::d:book/@xml:id]"/>
+   <xsl:variable name="bugfixes" select="$revisions//d:para[starts-with(@resource, $issue.tracker.start)]"/>
 
    <xsl:message>
     targets = <xsl:value-of select="count($targets)"/>
@@ -176,6 +178,16 @@
          <xsl:sort select="@revision" order="descending"/>
         </xsl:apply-templates>
        </xsl:for-each>
+       <xsl:if test="count($bugfixes) > 0">
+        <varlistentry>
+         <term>Bugfixes</term>
+         <listitem>
+          <xsl:for-each select="$bugfixes">
+           <xsl:apply-templates select="."/>
+          </xsl:for-each>
+         </listitem>
+        </varlistentry>
+       </xsl:if>
       </variablelist>
      </xsl:copy>
     </xsl:when>
