@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
    Purpose:
-     Prepare docupdates appendix automatically
+     Create docupdates appendix automatically
 
    Parameters:
      - rootid
@@ -22,7 +22,7 @@
         attribute needs to be a unique value. Typically something which
         describes your release like "1.0", "1.1", "12GA", "12SP1", "12SP2"
         etc.
-     3. Add your <revhistory> inside <info> in your *chapter*.
+     3. Add your <revhistory> inside <info> in your sets, books, and chapters.
         Each <revision> must contain a revision attribute which one of
         the unique values from step 2.
      4. Add as many <revision>s as you like. However, keep in mind these
@@ -30,14 +30,15 @@
         a. Add the latest entry as first child.
         b. Insert whatever you like inside <revision>. Usually an
            <itemizedlist> works quite well to list all your changes for this
-           release to this specific chapter
+           release
         c. When the <revhistory> grows, try to keep readability high. Maybe
            it's a good idea to move (very?) old entries into a separate file
-           and xinclude them.
-     5. Use @resource in <para> to mark up a tracker issue which is referenced
-        automatically. Use the following abbreviations (case doesn't matter):
+           and xinclude them. Or remove them alltogether.
+     5. Use @resource in <para> to mark up a tracker issue which will be
+        referenced automatically. Use the following abbreviations
+        (case doesn't matter):
         * bsc = SUSE's Bugzilla
-        * fate = SUSE's FATE
+        * fate = SUSE's FATE tracker system
         * dc = DocComment system
 
    Implementation Details:
@@ -87,7 +88,7 @@
      DocBook5
    
    Author:    Thomas Schraitle <toms@opensuse.org>
-   Copyright (C) 2012-2015 SUSE Linux GmbH
+   Copyright (C) 2015-2016 SUSE Linux GmbH
 
 -->
 <!DOCTYPE xsl:stylesheet
