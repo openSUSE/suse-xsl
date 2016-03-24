@@ -183,9 +183,13 @@
         <varlistentry>
          <term>Bugfixes</term>
          <listitem>
+          <itemizedlist>
           <xsl:for-each select="$bugfixes">
-           <xsl:apply-templates select="."/>
+           <listitem>
+            <xsl:apply-templates select="."/>
+           </listitem>
           </xsl:for-each>
+          </itemizedlist>
          </listitem>
         </varlistentry>
        </xsl:if>
