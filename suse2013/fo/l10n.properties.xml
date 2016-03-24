@@ -196,25 +196,16 @@
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
   <lang code="ko">
-    <prop name="serif">KoreanSans, UnBatang, 'Un Batang', NanumMyeongjo, serif</prop>
-    <!-- Despite the similar name, NanumGothic doesn't really match
-         Myeongjo in many ways (x-height, perceived weight, ...) and was
-         designed by a different contractor for the same client. Thus,
-         we only use one of the fonts.
-         Not quite sure why we do not always use the NanumGothic
-         instead, but I think the font had an unsteady baseline or
-         didn't work together with DejaVu Sans Mono or something
-         similarly dumb. (Otherwise, we might prefer the sans variant
-         over the serif variant, given its more modern look.) -->
-    <prop name="sans" ref-name="serif"/>
-    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, KoreanSans, UnBatang, 'Un Batang', 'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
+    <prop name="serif">UnBatang, serif</prop>
+    <prop name="sans">UnDotum, sans-serif</prop>
+    <prop name="mono">'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
     <prop name="enable-mono-semibold">false</prop>
     <prop name="enable-italic">false</prop>
     <prop name="fontsize-adjust">1</prop>
-    <prop name="sans-xheight-adjust">1</prop>
+    <prop name="sans-xheight-adjust">0.965</prop>
     <prop name="mono-xheight-adjust">0.83</prop>
     <prop name="base-lineheight">1.5</prop>
     <!-- dummy values... -->
