@@ -17,6 +17,7 @@
   %fonts;
   %colors;
   %metrics;
+  <!ENTITY punctuation "!,,.::;?;־׀׃׆׳״؞؟‒–—―․‥…‼‽⁇⁈⁉⁏⁓⁕⁖⁘⁙⁚❓❔❕❗❢❣⸪⸫⸬⸺⸻。〜〰꓾꓿︐︑︒︓︔︕︖︙︱︲﹐﹑﹒﹔﹕﹖﹗﹘！，－．：；？｡､">
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -80,27 +81,37 @@
 </xsl:template>
 
 <xsl:template match="formalpara/title|formalpara/info/title">
-  <xsl:variable name="titleStr">
-      <xsl:apply-templates/>
+  <xsl:variable name="title-str">
+    <xsl:apply-templates/>
   </xsl:variable>
-  <xsl:variable name="lastChar">
-    <xsl:if test="$titleStr != ''">
-      <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
-    </xsl:if>
+  <!-- Logic: If there is already a &punctuation; character at the end, we don't
+       need to add another one, $last-char allows us to check. -->
+  <xsl:variable name="last-char-candidate">
+    <xsl:choose>
+      <xsl:when test="$title-str != ''">
+        <xsl:value-of select="substring($title-str,string-length($title-str),1)"/>
+      </xsl:when>
+      <xsl:otherwise>FAIL</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="last-char">
+    <xsl:value-of select="translate($last-char-candidate, '&punctuation;', '')"/>
   </xsl:variable>
 
-  <fo:inline keep-with-next.within-line="always"
-    font-size="{$sans-xheight-adjust}em" padding-end="0.2em"
-    xsl:use-attribute-sets="variablelist.term.properties">
-    <xsl:copy-of select="$titleStr"/>
-    <xsl:if test="$lastChar != ''
-                  and not(contains($runinhead.title.end.punct, $lastChar))">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
-      </xsl:call-template>
-    </xsl:if>
-    <xsl:text>&#160;</xsl:text>
-  </fo:inline>
+  <xsl:if test="$title-str != ''">
+    <fo:inline keep-with-next.within-line="always"
+      font-size="{$sans-xheight-adjust}em" padding-end="0.2em"
+      xsl:use-attribute-sets="variablelist.term.properties">
+      <xsl:copy-of select="$title-str"/>
+      <xsl:if test="$last-char != ''
+                    and not(contains($runinhead.title.end.punct, $last-char))">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:text>&#160;</xsl:text>
+    </fo:inline>
+  </xsl:if>
 </xsl:template>
 
 
