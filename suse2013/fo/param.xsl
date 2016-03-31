@@ -153,7 +153,7 @@ task before
 
 <xsl:param name="alignment">
   <xsl:choose>
-    <xsl:when test="enable-text-justification = 'false'">start</xsl:when>
+    <xsl:when test="$enable-text-justification = 'false'">start</xsl:when>
     <xsl:otherwise>justify</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
