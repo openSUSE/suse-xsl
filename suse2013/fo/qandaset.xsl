@@ -49,7 +49,7 @@
       <xsl:choose>
         <xsl:when test="string-length($label.content) &gt; 0">
          <fo:block xsl:use-attribute-sets="sans.bold.noreplacement dark-green"
-                   font-family="{$sans.font.family}"
+                   font-family="{$sans.font.family}" font-style="italic"
                    font-size="{concat($sans-xheight-adjust, 'em')}">
             <xsl:copy-of select="$label.content"/>
           </fo:block>
@@ -80,6 +80,7 @@
 <xsl:template match="question/para[1]">
  <fo:block xsl:use-attribute-sets="sans.bold.noreplacement dark-green"
            font-family="{$sans.font.family}"
+           font-style="italic"
            font-size="{concat($sans-xheight-adjust, 'em')}">
   <xsl:apply-templates/>
  </fo:block>
