@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" 
-   language="da" 
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+   language="da"
    english-language-name="Danish">
 
 
@@ -78,15 +78,25 @@
       <l:template name="sect4" text="Afsnit &#34;%t&#34;"/>
       <l:template name="sect5" text="Afsnit &#34;%t&#34;"/>
       <l:template name="page.citation" text=" (side&#160;%p)"/>
-     
+
       <l:template name="intra-article" text="Artikel “%t” "/>
       <l:template name="intra-book" text="Bog “%t” "/>
-      <l:template name="intra-chapter" text="%n “%t”"/>
+      <l:template name="intra-chapter" text="Kapitel&#160;%n “%t”"/>
       <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="%n “%t”"/>
-      <l:template name="intra-sect2" text="%n “%t”"/>
-      <l:template name="intra-sect3" text="%n “%t”"/>
-      <l:template name="intra-sect4" text="%n “%t”"/>
+      <l:template name="intra-sect1" text="Afsnit&#160;%n “%t”"/>
+      <l:template name="intra-sect2" text="Afsnit&#160;%n “%t”"/>
+      <l:template name="intra-sect3" text="Afsnit&#160;%n “%t”"/>
+      <l:template name="intra-sect4" text="Afsnit&#160;%n “%t”"/>
+
+      <l:template name="intra-example" text="Eksempel&#160;%n “%t”"/>
+      <l:template name="intra-figure" text="Figur&#160;%n “%t”"/>
+      <l:template name="intra-preface" text="Forord “%t”"/>
+      <l:template name="intra-procedure" text="Procedure&#160;%n “%t”"/>
+      <l:template name="intra-table" text="Tabel&#160;%n “%t”"/>
+
+      <l:template name="intra-variablelist" text="“%t”"/>
+      <l:template name="intra-orderedlist" text="“%t”"/>
+      <l:template name="intra-itemizedlist" text="“%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
@@ -179,7 +189,7 @@
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
-   
+
    <l:context name="datetime-full">
       <l:template name="January" text="januar" lang="da" />
       <l:template name="February" text="februar" lang="da" />
@@ -194,12 +204,12 @@
       <l:template name="November" text="november" lang="da" />
       <l:template name="December" text="december" lang="da" />
    </l:context>
- 
+
    <l:context name="parameters">
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>
-   </l:context> 
-  
+   </l:context>
+
   <l:context name="datetime">
      <l:template name="titlepage.format" text="d/m/Y"/>
    </l:context>

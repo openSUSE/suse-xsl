@@ -70,40 +70,50 @@
 
    <l:context name="xref">
       <l:template name="page.citation" text=" (стр.&#160;%p)"/>
-     
+
       <l:template name="intra-article" text="Статья «%t»"/>
       <l:template name="intra-book" text="Книга «%t»"/>
       <l:template name="intra-chapter" text="Глава %n «%t»"/>
       <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Раздел %n «%t»"/>
-      <l:template name="intra-sect2" text="Раздел %n «%t»"/>
-      <l:template name="intra-sect3" text="Раздел %n «%t»"/>
-      <l:template name="intra-sect4" text="Раздел %n «%t»"/>
+      <l:template name="intra-sect1" text="Раздел&#160;%n «%t»"/>
+      <l:template name="intra-sect2" text="Раздел&#160;%n «%t»"/>
+      <l:template name="intra-sect3" text="Раздел&#160;%n «%t»"/>
+      <l:template name="intra-sect4" text="Раздел&#160;%n «%t»"/>
+
+      <l:template name="intra-example" text="Пример&#160;%n «%t»"/>
+      <l:template name="intra-figure" text="Рисунок&#160;%n «%t»"/>
+      <l:template name="intra-preface" text="Предисловие «%t»"/>
+      <l:template name="intra-procedure" text="Процедура&#160;%n «%t»"/>
+      <l:template name="intra-table" text="Таблица&#160;%n «%t»"/>
+
+      <l:template name="intra-variablelist" text="«%t»"/>
+      <l:template name="intra-orderedlist" text="«%t»"/>
+      <l:template name="intra-itemizedlist" text="«%t»"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="Приложение&#160;%t"/>
-      <l:template name="bridgehead" text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="chapter" style="nonumber"  text="Глава&#160;%t"/>
-      <l:template name="equation" style="nonumber"  text="Уравнение&#160;&#8220;%t&#8221;"/>
-      <l:template name="example" style="nonumber"  text="Пример&#160;&#8220;%t&#8221;"/>
-      <l:template name="figure" style="nonumber"  text="Рисунок&#160;&#8220;%t&#8221;"/>
-      <l:template name="part" style="nonumber"  text="Часть&#160;&#8220;%t&#8221;"/>
-      <l:template name="procedure" style="nonumber"  text="Процедура&#160;&#8220;%t&#8221;"/>
-      <l:template name="productionset" style="nonumber"  text="Продукция&#160;&#8220;%t&#8221;"/>
-      <l:template name="qandadiv" style="nonumber"  text="В &amp; A&#160;&#8220;%t&#8221;"/>
-      <l:template name="refsect1" style="nonumber"  text="раздел под названием &#8220;%t&#8221;"/>
-      <l:template name="refsect2" style="nonumber"  text="раздел под названием &#8220;%t&#8221;"/>
-      <l:template name="refsect3" style="nonumber"  text="раздел под названием &#8220;%t&#8221;"/>
-      <l:template name="refsection" style="nonumber"  text="раздел под названием &#8220;%t&#8221;"/>
-      <l:template name="sect1" style="nonumber" text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect2" style="nonumber"  text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect3" style="nonumber"  text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect4" style="nonumber"  text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect5" style="nonumber"  text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="section" style="nonumber"  text="Раздел&#160;&#8220;%t&#8221;"/>
-      <l:template name="simplesect" style="nonumber"  text="раздел под названием &#8220;%t&#8221;"/>
-      <l:template name="table" style="nonumber"  text="Таблица&#160;&#8220;%t&#8221;"/>
+      <l:template name="appendix" style="nonumber"  text="Приложение «%t»"/>
+      <l:template name="bridgehead" text="Раздел «%t»"/>
+      <l:template name="chapter" style="nonumber"  text="Глава «%t»"/>
+      <l:template name="equation" style="nonumber"  text="Уравнение «%t»"/>
+      <l:template name="example" style="nonumber"  text="Пример «%t»"/>
+      <l:template name="figure" style="nonumber"  text="Рисунок «%t»"/>
+      <l:template name="part" style="nonumber"  text="Часть «%t»"/>
+      <l:template name="procedure" style="nonumber"  text="Процедура «%t»"/>
+      <l:template name="productionset" style="nonumber"  text="Продукция «%t»"/>
+      <l:template name="qandadiv" style="nonumber"  text="В &amp; A «%t»"/>
+      <l:template name="refsect1" style="nonumber"  text="раздел под названием «%t»"/>
+      <l:template name="refsect2" style="nonumber"  text="раздел под названием «%t»"/>
+      <l:template name="refsect3" style="nonumber"  text="раздел под названием «%t»"/>
+      <l:template name="refsection" style="nonumber"  text="раздел под названием «%t»"/>
+      <l:template name="sect1" style="nonumber" text="Раздел «%t»"/>
+      <l:template name="sect2" style="nonumber"  text="Раздел «%t»"/>
+      <l:template name="sect3" style="nonumber"  text="Раздел «%t»"/>
+      <l:template name="sect4" style="nonumber"  text="Раздел «%t»"/>
+      <l:template name="sect5" style="nonumber"  text="Раздел «%t»"/>
+      <l:template name="section" style="nonumber"  text="Раздел «%t»"/>
+      <l:template name="simplesect" style="nonumber"  text="раздел под названием «%t»"/>
+      <l:template name="table" style="nonumber"  text="Таблица «%t»"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">

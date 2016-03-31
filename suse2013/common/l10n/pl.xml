@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" 
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
    language="pl" english-language-name="Polish">
 
    <l:gentext key="LocalisedLanguageName" text="Polski"/>
@@ -68,46 +68,56 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="sect1" text="Sekcja &#8220;%t&#8221;"/>
-      <l:template name="sect2" text="Sekcja &#8220;%t&#8221;"/>
-      <l:template name="sect3" text="Sekcja &#8220;%t&#8221;"/>
-      <l:template name="sect4" text="Sekcja &#8220;%t&#8221;"/>
-      <l:template name="sect5" text="Sekcja &#8220;%t&#8221;"/>
+      <l:template name="sect1" text="Sekcja „%t”"/>
+      <l:template name="sect2" text="Sekcja „%t”"/>
+      <l:template name="sect3" text="Sekcja „%t”"/>
+      <l:template name="sect4" text="Sekcja „%t”"/>
+      <l:template name="sect5" text="Sekcja „%t”"/>
       <l:template name="page.citation" text=" (page&#160;%p)"/>
-     
+
       <l:template name="intra-article" text="Artykuł „%t”"/>
       <l:template name="intra-book" text="Książka „%t”"/>
       <l:template name="intra-chapter" text="Rozdział %n „%t”"/>
       <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Sekcja %n „%t”"/>
-      <l:template name="intra-sect2" text="Sekcja %n „%t”"/>
-      <l:template name="intra-sect3" text="Sekcja %n „%t”"/>
-      <l:template name="intra-sect4" text="Sekcja %n „%t”"/>
+      <l:template name="intra-sect1" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect2" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect3" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect4" text="Sekcja&#160;%n „%t”"/>
+
+      <l:template name="intra-example" text="Przykład&#160;%n „%t”"/>
+      <l:template name="intra-figure" text="Rysunek&#160;%n „%t”"/>
+      <l:template name="intra-preface" text="Przedmowa „%t”"/>
+      <l:template name="intra-procedure" text="Procedura&#160;%n „%t”"/>
+      <l:template name="intra-table" text="Tabela&#160;%n „%t”"/>
+
+      <l:template name="intra-variablelist" text="„%t”"/>
+      <l:template name="intra-orderedlist" text="„%t”"/>
+      <l:template name="intra-itemizedlist" text="„%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="Dodatek&#160;%t"/>
-      <l:template name="bridgehead" text="sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="chapter" style="nonumber"  text="Rozdzia&#x142;&#160;%t"/>
-      <l:template name="equation" style="nonumber"  text="R&#xf3;wnanie&#160;&#8220;%t&#8221;"/>
-      <l:template name="example" style="nonumber"  text="Przyk&#x142;ad&#160;&#8220;%t&#8221;"/>
-      <l:template name="figure" style="nonumber"  text="Rysunek&#160;&#8220;%t&#8221;"/>
-      <l:template name="part" style="nonumber"  text="Cz&#x119;&#x15b;&#x107;&#160;&#8220;%t&#8221;"/>
-      <l:template name="procedure" style="nonumber"  text="Procedura&#160;&#8220;%t&#8221;"/>
-      <l:template name="productionset" style="nonumber"  text="Produkcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="qandadiv" style="nonumber"  text="Pyt i Odp&#160;&#8220;%t&#8221;"/>
-      <l:template name="refsect1" style="nonumber" text="sekcji &#8220;%t&#8221;"/>
-      <l:template name="refsect2" style="nonumber" text="sekcji &#8220;%t&#8221;"/>
-      <l:template name="refsect3" style="nonumber" text="sekcji &#8220;%t&#8221;"/>
-      <l:template name="refsection" style="nonumber" text="sekcji &#8220;%t&#8221;"/>
-      <l:template name="sect1" style="nonumber" text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect2" style="nonumber"  text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect3" style="nonumber"  text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect4" style="nonumber"  text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect5" style="nonumber"  text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="section" style="nonumber"  text="Sekcja&#160;&#8220;%t&#8221;"/>
-      <l:template name="simplesect" style="nonumber" text="sekcji &#8220;%t&#8221;"/>
-      <l:template name="table" style="nonumber"  text="Tabela&#160;&#8220;%t&#8221;"/>
+      <l:template name="appendix" style="nonumber"  text="Dodatek „%t”"/>
+      <l:template name="bridgehead" text="Sekcja „%t”"/>
+      <l:template name="chapter" style="nonumber"  text="Rozdzia&#x142; %t"/>
+      <l:template name="equation" style="nonumber"  text="R&#xf3;wnanie „%t”"/>
+      <l:template name="example" style="nonumber"  text="Przyk&#x142;ad „%t”"/>
+      <l:template name="figure" style="nonumber"  text="Rysunek „%t”"/>
+      <l:template name="part" style="nonumber"  text="Cz&#x119;&#x15b;&#x107; „%t”"/>
+      <l:template name="procedure" style="nonumber"  text="Procedura „%t”"/>
+      <l:template name="productionset" style="nonumber"  text="Produkcja „%t”"/>
+      <l:template name="qandadiv" style="nonumber"  text="Pyt i Odp „%t”"/>
+      <l:template name="refsect1" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsect2" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsect3" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsection" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="sect1" style="nonumber" text="Sekcja „%t”"/>
+      <l:template name="sect2" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect3" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect4" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect5" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="section" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="simplesect" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="table" style="nonumber"  text="Tabela „%t”"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
@@ -171,7 +181,7 @@
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>
    </l:context>
-  
+
    <l:context name="datetime">
      <l:template name="titlepage.format" text="m/d/Y"/>
    </l:context>

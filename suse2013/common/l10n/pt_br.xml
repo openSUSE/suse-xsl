@@ -70,7 +70,7 @@
 
    <l:context name="xref">
       <l:template name="page.citation" text=" (p&#160;%p)"/>
-     
+
       <l:template name="intra-article" text="Artigo “%t”"/>
       <l:template name="intra-book" text="Livro “%t”"/>
       <l:template name="intra-chapter" text="Capítulo %n “%t”"/>
@@ -79,28 +79,38 @@
       <l:template name="intra-sect2" text="Seção %n “%t”"/>
       <l:template name="intra-sect3" text="Seção %n “%t”"/>
       <l:template name="intra-sect4" text="Seção %n “%t”"/>
+
+      <l:template name="intra-example" text="Exemplo&#160;%n “%t”"/>
+      <l:template name="intra-figure" text="Figura&#160;%n “%t”"/>
+      <l:template name="intra-preface" text="Prefácio “%t”"/>
+      <l:template name="intra-procedure" text="Procedimento&#160;%n “%t”"/>
+      <l:template name="intra-table" text="Tabela&#160;%n “%t”"/>
+
+      <l:template name="intra-variablelist" text="“%t”"/>
+      <l:template name="intra-orderedlist" text="“%t”"/>
+      <l:template name="intra-itemizedlist" text="“%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="Ap&#234;ndice&#160;%t"/>
-      <l:template name="bridgehead" text="Section&#160;&#8220;%t&#8221;"/>
-      <l:template name="chapter" style="nonumber"  text="Cap&#237;tulo&#160;%t"/>
-      <l:template name="equation" style="nonumber"  text="Equa&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="example" style="nonumber"  text="Exemplo&#160;&#8220;%t&#8221;"/>
-      <l:template name="figure" style="nonumber"  text="Figura&#160;&#8220;%t&#8221;"/>
-      <l:template name="part" style="nonumber"  text="Parte&#160;&#8220;%t&#8221;"/>
-      <l:template name="procedure" style="nonumber"  text="Procedimento&#160;&#8220;%t&#8221;"/>
-      <l:template name="productionset" style="nonumber"  text="Production&#160;&#8220;%t&#8221;"/>
-      <l:template name="qandadiv" style="nonumber"  text="P &amp; R&#160;&#8220;%t&#8221;"/>
-      <l:template name="refsection" style="nonumber"  text="&#8220;%t&#8221;"/>
-      <l:template name="sect1" style="nonumber" text="Se&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect2" style="nonumber"  text="Se&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect3" style="nonumber"  text="Se&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect4" style="nonumber"  text="Se&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="sect5" style="nonumber"  text="Se&#231;&#227;o&#160;&#8220;%t&#8221;"/>
-      <l:template name="section" style="nonumber"  text="&#160;&#8220;%t&#8221;"/>
-      <l:template name="simplesect" style="nonumber"  text="&#8220;%t&#8221;"/>
-      <l:template name="table" style="nonumber"  text="Tabela&#160;&#8220;%t&#8221;"/>
+      <l:template name="appendix" style="nonumber"  text="Ap&#234;ndice “%t”"/>
+      <l:template name="bridgehead" text="Section “%t”"/>
+      <l:template name="chapter" style="nonumber"  text="Cap&#237;tulo “%t”"/>
+      <l:template name="equation" style="nonumber"  text="Equa&#231;&#227;o “%t”"/>
+      <l:template name="example" style="nonumber"  text="Exemplo “%t”"/>
+      <l:template name="figure" style="nonumber"  text="Figura “%t”"/>
+      <l:template name="part" style="nonumber"  text="Parte “%t”"/>
+      <l:template name="procedure" style="nonumber"  text="Procedimento “%t”"/>
+      <l:template name="productionset" style="nonumber"  text="Production “%t”"/>
+      <l:template name="qandadiv" style="nonumber"  text="P &amp; R “%t”"/>
+      <l:template name="refsection" style="nonumber"  text="“%t”"/>
+      <l:template name="sect1" style="nonumber" text="Se&#231;&#227;o “%t”"/>
+      <l:template name="sect2" style="nonumber"  text="Se&#231;&#227;o “%t”"/>
+      <l:template name="sect3" style="nonumber"  text="Se&#231;&#227;o “%t”"/>
+      <l:template name="sect4" style="nonumber"  text="Se&#231;&#227;o “%t”"/>
+      <l:template name="sect5" style="nonumber"  text="Se&#231;&#227;o “%t”"/>
+      <l:template name="section" style="nonumber"  text=" “%t”"/>
+      <l:template name="simplesect" style="nonumber"  text="“%t”"/>
+      <l:template name="table" style="nonumber"  text="Tabela “%t”"/>
     </l:context>
 
    <l:context name="xep-bookmark-title">
