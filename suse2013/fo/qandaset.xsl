@@ -77,7 +77,7 @@
 </xsl:template>
 
 
-<xsl:template match="question/para[1]">
+<xsl:template match="question/para">
  <fo:block xsl:use-attribute-sets="sans.bold.noreplacement dark-green"
            font-family="{$sans.font.family}"
            font-style="italic"
