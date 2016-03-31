@@ -44,7 +44,7 @@
                  external-destination="{$ulink.url}">
     <xsl:choose>
       <xsl:when test="count(child::node()) = 0 or
-                      (string(.) = $url) or
+                      normalize-space(.) = $url or
                       (count(child::*) = 0 and
                        normalize-space(string(.)) = '')">
         <fo:inline hyphenate="false">
