@@ -313,12 +313,15 @@
         <xsl:otherwise>inherit</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
+    <xsl:attribute name="line-height">
+       <xsl:value-of select="concat($base-lineheight, 'em')"/>
+    </xsl:attribute>
     <xsl:attribute name="widows">3</xsl:attribute>
     <xsl:attribute name="orphans">3</xsl:attribute>
     <xsl:attribute name="margin-top">
       <xsl:choose>
-        <xsl:when test="parent::callout|parent::listitem|
+       <!-- (parent::question/para[2] or parent::question )  -->
+        <xsl:when test="parent::callout|parent::listitem| parent::question|
                         parent::step|parent::substep">0</xsl:when>
         <xsl:otherwise>0.3em</xsl:otherwise>
       </xsl:choose>
