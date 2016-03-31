@@ -28,7 +28,7 @@
 <xsl:template match="ulink|link" name="ulink">
   <xsl:param name="url" select="(@url|@xlink:href)[last()]"/>
 
-  <xsl:variable name ="ulink.url">
+  <xsl:variable name="ulink.url">
     <xsl:call-template name="fo-external-image">
       <xsl:with-param name="filename" select="$url"/>
     </xsl:call-template>
