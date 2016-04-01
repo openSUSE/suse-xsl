@@ -14,10 +14,6 @@
    <l:gentext key="PubDate" text="Publicatiedatum"/>
    <l:gentext key="pubdate" text="publicatiedatum"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; BEKNOPTE HANDLEIDING"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Gemaakt door SUSE&#x00AE; met XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <!-- In most cases, this has to be empty -->

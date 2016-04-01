@@ -9,13 +9,7 @@
    <l:gentext key="Contributor"     text="コントリビュータ"/>
    <l:gentext key="Contributors"    text="コントリビュータ"/>
 
-   <l:gentext key="FlyerQuickstart"
-     text="NOVELL&#x00AE; &#x30af;&#x30a4;&#x30c3;&#x30af;&#x30b9;&#x30bf;&#x30fc;&#x30c8;&#x30ab;&#x30fc;&#x30c9;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Created by SUSE&#x00AE; with XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
-
 
    <l:dingbat key="guimenustartquote" text="&#65339;"/>
    <l:dingbat key="guimenuendquote" text="&#65341;"/>

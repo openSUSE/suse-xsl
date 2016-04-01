@@ -11,10 +11,6 @@
    <l:gentext key="Contributor"     text="기여자"/>
    <l:gentext key="Contributors"    text="기여자"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; &#48736;&#47480;&#32;&#49884;&#51089;&#32;&#52852;&#46300;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="SUSE&#x00AE; with XSL-FO&#50640;&#32;&#51032;&#54644;&#32;&#49373;&#49457;&#46120;"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <!-- In most cases, this has to be empty -->

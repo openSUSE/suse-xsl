@@ -9,11 +9,6 @@
    <l:gentext key="Contributor"     text="Přispěvatel"/>
    <l:gentext key="Contributors"    text="Přispěvatelé"/>
 
-   <l:gentext key="FlyerQuickstart" text="RYCHL&#221; &#218;VODN&#205; LIST NOVELL&#x00AE;"/>
-
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Vytvo&#345;eno spole&#269;nost&#237; SUSE&#x00AE; s XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>

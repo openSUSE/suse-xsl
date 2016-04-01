@@ -12,10 +12,6 @@
    <l:gentext key="Contributor"     text="Bidragyder"/>
    <l:gentext key="Contributors"    text="Bidragydere"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; HURTIGVEJLEDNING"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Oprettet i SUSE&#x00AE; med XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <l:dingbat key="startquote" text="&#34;"/>

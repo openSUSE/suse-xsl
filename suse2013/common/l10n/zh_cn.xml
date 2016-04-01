@@ -10,10 +10,6 @@
    <l:gentext key="Contributor"     text="贡献者"/>
    <l:gentext key="Contributors"    text="贡献者"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; &#x5feb;&#x901f;&#x5165;&#x95e8;&#x5361;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="&#x7531; SUSE&#x00AE; &#x4f7f;&#x7528; XSL-FO &#x521b;&#x5efa;"/>
-
    <l:gentext key="admonseparator"  text=": "/>
    <l:gentext key="selectlanguage" text="选择语言"/>
    <l:gentext key="selectformat" text="选择格式"/>

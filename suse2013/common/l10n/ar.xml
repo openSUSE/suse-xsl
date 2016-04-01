@@ -9,10 +9,6 @@
    <l:gentext key="ListofAuthors"   text="قائمة المؤلفين"/>
    <l:gentext key="Contributors"    text="المساهمون"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; بطاقة التشغيل السريع"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="تم الإنشاء بواسطة  SUSE&#x00AE; باستخدام لغة XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <l:gentext key="Question" text="السؤال:"/>

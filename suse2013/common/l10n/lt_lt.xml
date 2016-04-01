@@ -11,12 +11,7 @@
    <l:gentext key="Contributor"     text="Bendradarbis"/>
    <l:gentext key="Contributors"    text="Bendradarbiai"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; ATMINTINĖ"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Sukūrė SUSE&#x00AE; su XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
-
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>

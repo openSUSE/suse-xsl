@@ -10,10 +10,6 @@
    <l:gentext key="Contributor"     text="Colaborador"/>
    <l:gentext key="Contributors"    text="Colaboradores"/>
 
-   <l:gentext key="FlyerQuickstart" text="GUIA R&#193;PIDO NOVELL&#x00AE;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Criado por SUSE&#x00AE; com XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <!-- In most cases, this has to be empty -->

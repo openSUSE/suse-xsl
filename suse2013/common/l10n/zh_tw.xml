@@ -14,10 +14,6 @@
    <l:gentext key="tableofcontents" text="&#30446;&#37636;"/>
    <l:gentext key="index symbols" text="&#31526;&#34399;"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; &#x5feb;&#x901f;&#x5165;&#x9580;&#x5361;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="&#x7531; SUSE® &#x5229;&#x7528; XSL-FO &#x88fd;&#x4f5c;"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <l:dingbat key="guimenustartquote" text=""/>

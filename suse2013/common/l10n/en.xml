@@ -11,10 +11,6 @@
    <l:gentext key="Contributor"     text="Contributor"/>
    <l:gentext key="Contributors"    text="Contributors"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; QUICK START CARD"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Created by SUSE&#x00AE; with XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <l:gentext key="selectlanguage" text="Select Language"/>
