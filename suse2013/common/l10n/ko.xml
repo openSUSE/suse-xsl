@@ -55,7 +55,7 @@
 
       <l:template name="example-label" text="&#50696;&#51228; %n"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text=" &#44536;&#47548; %n"/><!--edited 20100517-->
+      <l:template name="figure-label" text=" &#44536;&#47548; %n"/>
       <l:template name="figure-title" text="%t"/>
       <l:template name="procedure-label" text="&#51208;&#52264; %n"/>
       <l:template name="procedure-title" text="%t"/>
@@ -70,7 +70,7 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="page.citation" text="%p&#54168;&#51060;&#51648; "/><!--edited 20100528-->
+      <l:template name="page.citation" text="%p&#54168;&#51060;&#51648; "/>
 
       <l:template name="intra-article" text="문서 “%t”"/>
       <l:template name="intra-book" text="책 “%t”"/>
@@ -107,7 +107,7 @@
       <l:template name="appendix" style="nonumber" text="&#20184;&#37682; “%t”"/>
       <l:template name="bridgehead" style="nonumber" text="&#38917; “%t”"/>
       <l:template name="chapter" style="nonumber" text="&#51208;&#50640;&#49436; “%t” &#51109;"/>
-      <l:template name="chapter" text="%n&#51109; %t"/><!--edited 20100517-->
+      <l:template name="chapter" text="%n&#51109; %t"/>
       <l:template name="equation" style="nonumber" text="&#24335; “%t”"/>
       <l:template name="example" style="nonumber" text="&#20363; “%t”"/>
       <l:template name="figure" style="nonumber" text="&#22259; “%t”"/>
@@ -125,15 +125,15 @@
       <l:template name="sect4" style="nonumber" text="“%t”"/>
       <l:template name="sect5" style="nonumber" text="“%t”"/>
       <l:template name="section" style="nonumber" text="“%t”"/>
-      <l:template name="sect1" text="%n&#51208; “%t”"/><!--edited 20100527-->
-      <l:template name="sect2" text="%n&#51208; “%t”"/><!--edited 20100527-->
-      <l:template name="sect3" text="%n&#51208; “%t”"/><!--edited 20100527-->
-      <l:template name="sect4" text="%n&#51208; “%t”"/><!--edited 20100527-->
-      <l:template name="sect5" text="%n&#51208; “%t”"/><!--edited 20100527-->
-      <l:template name="section" text="%n&#51208; “%t”"/><!--edited 20100527-->
+      <l:template name="sect1" text="%n&#51208; “%t”"/>
+      <l:template name="sect2" text="%n&#51208; “%t”"/>
+      <l:template name="sect3" text="%n&#51208; “%t”"/>
+      <l:template name="sect4" text="%n&#51208; “%t”"/>
+      <l:template name="sect5" text="%n&#51208; “%t”"/>
+      <l:template name="section" text="%n&#51208; “%t”"/>
       <l:template name="simplesect" style="nonumber" text="“%t”"/>
       <l:template name="table" style="nonumber" text="&#34920; “%t”"/>
-      <l:template name="part" text="%n부. %t"/><!--edited 20100528-->
+      <l:template name="part" text="%n부. %t"/>
 
    </l:context>
 
