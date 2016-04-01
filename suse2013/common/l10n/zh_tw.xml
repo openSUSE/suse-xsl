@@ -20,8 +20,8 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <l:dingbat key="guimenustartquote" text="&#x300c;"/><!-- ã -->
-   <l:dingbat key="guimenuendquote" text="&#x300d;"/><!-- ã -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
    <l:dingbat key="startquote" text="&#x300c;"/>
    <l:dingbat key="endquote" text="&#x300d;"/>
 
