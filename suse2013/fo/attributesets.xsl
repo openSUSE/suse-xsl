@@ -225,9 +225,24 @@
 
 <xsl:attribute-set name="list.item.spacing"
   use-attribute-sets="list-orphans-widows">
-  <xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
-  <xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
-  <xsl:attribute name="space-before.maximum">1.0em</xsl:attribute>
+  <xsl:attribute name="space-before.optimum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>0.8em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
+  <xsl:attribute name="space-before.minimum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>0.6em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
+  <xsl:attribute name="space-before.maximum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>1em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="compact.list.item.spacing"

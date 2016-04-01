@@ -43,8 +43,11 @@
     </xsl:if>
   </xsl:variable>
 
-  <!-- toms: added only font-family and font-size -->
-  <fo:list-item role="{local-name()}" id="{$entry.id}" xsl:use-attribute-sets="list.item.spacing">
+  <!-- toms: added only font-family, font-size and keep-with-next.within-column
+  -->
+  <fo:list-item role="{local-name()}" id="{$entry.id}"
+   xsl:use-attribute-sets="list.item.spacing"
+   keep-with-next.within-column="always">
     <fo:list-item-label id="{$id}" end-indent="label-end()">
       <xsl:choose>
         <xsl:when test="string-length($label.content) &gt; 0">
