@@ -95,7 +95,6 @@
       <l:template name="intra-article" text="Artículo “%t”"/>
       <l:template name="intra-book" text="Libro “%t”"/>
       <l:template name="intra-chapter" text="Capítulo&#160;%n “%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="Sección&#160;%n “%t”"/>
       <l:template name="intra-sect2" text="Sección&#160;%n “%t”"/>
       <l:template name="intra-sect3" text="Sección&#160;%n “%t”"/>

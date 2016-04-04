@@ -65,7 +65,6 @@
     <l:template name="intra-article" text="項目 「%t」"/>
     <l:template name="intra-book" text="ブック 「%t」"/>
     <l:template name="intra-chapter" text="章 %n 「%t」"/>
-    <!--<l:template name="intra-part" text="%B %t"/>-->
     <l:template name="intra-sect1" text="項&#160;%n 「%t」"/>
     <l:template name="intra-sect2" text="項&#160;%n 「%t」"/>
     <l:template name="intra-sect3" text="項&#160;%n 「%t」"/>

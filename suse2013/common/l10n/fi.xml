@@ -72,7 +72,6 @@
       <l:template name="intra-article" text="Artikkeli ”%t”"/>
       <l:template name="intra-book" text="Kirja ”%t”"/>
       <l:template name="intra-chapter" text="Luku&#160;%n ”%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="Osa&#160;%n ”%t”"/>
       <l:template name="intra-sect2" text="Osa&#160;%n ”%t”"/>
       <l:template name="intra-sect3" text="Osa&#160;%n ”%t”"/>

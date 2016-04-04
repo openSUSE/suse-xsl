@@ -75,7 +75,6 @@
       <l:template name="intra-article" text="Straipsnis „%t“"/>
       <l:template name="intra-book" text="Knyga „%t“"/>
       <l:template name="intra-chapter" text="Skyrius&#160;%n „%t“"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="Skyrius&#160;%n „%t“"/>
       <l:template name="intra-sect2" text="Skyrius&#160;%n „%t“"/>
       <l:template name="intra-sect3" text="Skyrius&#160;%n „%t“"/>

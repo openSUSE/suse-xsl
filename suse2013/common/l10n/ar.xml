@@ -55,7 +55,6 @@
       <l:template name="intra-article" text="مقال “%t”"/>
       <l:template name="intra-book" text="كتاب “%t”"/>
       <l:template name="intra-chapter" text="فصل&#160;%n “%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="القسم&#160;%n “%t”"/>
       <l:template name="intra-sect2" text="القسم&#160;%n “%t”"/>
       <l:template name="intra-sect3" text="القسم&#160;%n “%t”"/>

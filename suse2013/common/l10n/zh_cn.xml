@@ -163,7 +163,6 @@
      <l:template name="intra-article" text="《%t》文章"/>
      <l:template name="intra-book" text="《%t》"/>
      <l:template name="intra-chapter" text="第&#160;%n 章 “%t”"/>
-     <!--<l:template name="intra-part" text="%B %t"/>-->
      <l:template name="intra-sect1" text="第&#160;%n 节 “%t”"/>
      <l:template name="intra-sect2" text="第&#160;%n 节 “%t”"/>
      <l:template name="intra-sect3" text="第&#160;%n 节 “%t”"/>

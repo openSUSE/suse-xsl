@@ -78,7 +78,6 @@
       <l:template name="intra-article" text="Cikk „%t”"/>
       <l:template name="intra-book" text="Könyv „%t” "/>
       <l:template name="intra-chapter" text="Fejezet „%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="%n.&#160;Szakasz („%t”)"/>
       <l:template name="intra-sect2" text="%n.&#160;Szakasz („%t”)"/>
       <l:template name="intra-sect3" text="%n.&#160;Szakasz („%t”)"/>

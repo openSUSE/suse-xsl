@@ -70,7 +70,6 @@
       <l:template name="intra-article" text="Статья «%t»"/>
       <l:template name="intra-book" text="Книга «%t»"/>
       <l:template name="intra-chapter" text="Глава %n «%t»"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
       <l:template name="intra-sect1" text="Раздел&#160;%n «%t»"/>
       <l:template name="intra-sect2" text="Раздел&#160;%n «%t»"/>
       <l:template name="intra-sect3" text="Раздел&#160;%n «%t»"/>
