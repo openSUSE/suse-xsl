@@ -151,7 +151,7 @@
   <xsl:variable name="refelem" select="local-name($target)"/>
   <xsl:variable name="target.book" select="($target/ancestor-or-self::article|$target/ancestor-or-self::book)[1]"/>
   <xsl:variable name="this.book" select="(ancestor-or-self::article|ancestor-or-self::book)[1]"/>
-  <xsl:variable name="lang" select="ancestor-or-self::*/@lang"/>
+  <xsl:variable name="lang" select="(ancestor-or-self::*/@lang|ancestor-or-self::*/@xml:lang)[1]"/>
   <xsl:variable name="xref.in.samebook">
     <xsl:call-template name="is.xref.in.samebook">
       <xsl:with-param name="target" select="$target"/>
@@ -173,8 +173,10 @@
     <xsl:otherwise>
       <!-- A reference into another book -->
       <xsl:variable name="target.chapandapp"
-                    select="$target/ancestor-or-self::chapter[@lang!='']
-                            | $target/ancestor-or-self::appendix[@lang!='']"/>
+                    select="($target/ancestor-or-self::chapter[@lang!='']
+                            | $target/ancestor-or-self::appendix[@lang!='']
+                            | $target/ancestor-or-self::chapter[@xml:lang!='']
+                            | $target/ancestor-or-self::appendix[@xml:lang!=''])[1]"/>
 
       <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
                     $target.chapandapp/@lang != $this.book/@lang">
@@ -186,6 +188,7 @@
       <fo:inline xsl:use-attribute-sets="italicized">
         <xsl:call-template name="create.linkto.other.book">
           <xsl:with-param name="target" select="$target"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </fo:inline>
     </xsl:otherwise>
