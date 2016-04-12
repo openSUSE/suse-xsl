@@ -39,7 +39,7 @@
 <xsl:attribute-set name="chap.title.properties">
   <xsl:attribute name="font-weight">normal</xsl:attribute>
   <xsl:attribute name="text-align">left</xsl:attribute>
-  <xsl:attribute name="font-size">&large;</xsl:attribute>
+  <xsl:attribute name="font-size">&huge;</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.title.properties">
