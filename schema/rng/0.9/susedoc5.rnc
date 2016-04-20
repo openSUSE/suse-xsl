@@ -21,7 +21,7 @@ datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
-include "http://www.docbook.org/xml/5.1/rng/docbookxi.rnc"
+include "docbookxi.rnc"
 {
   # Redefine element pattern as notAllowed here as they are not needed:
   #
