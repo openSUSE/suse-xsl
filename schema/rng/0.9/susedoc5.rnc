@@ -14,7 +14,7 @@ namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 namespace html = "http://www.w3.org/1999/xhtml"
 namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace svg = "http://www.w3.org/2000/svg"
-namespace s = "http://www.ascc.net/xml/schematron"
+namespace s = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
 datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
