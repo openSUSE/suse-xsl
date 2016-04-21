@@ -1,6 +1,100 @@
 NovDoc
+======
 
-This is the NovDoc DTD. Although it is technically not based on DocBook
-the tags and structure are.
+This is the Novdoc and SUSEDoc schemas. Although Novdoc is technically not
+based on DocBook the tags and structure are.
 
-In general, XML instances of NovDoc should be compatible to DocBook
+In general, XML instances of Novdoc should be compatible to DocBook.
+
+
+SUSEDoc
+=======
+
+SUSEDoc is a RELAX NG schema and a subset of DocBook 5. Currently, it can be
+used in two variants:
+
+1. As the file `susedoc5.rn{c,g}` which is based on `docbookxi.rn{c,g}`. In
+   other words, the SUSEDoc schema cannot life without the DocBook schema.
+2. As a single`susedoc5-flat.rn{c,g}`. This file is totally independant of
+   any DocBook schema and can be used without having DocBook 5 installed on
+   your system.
+
+Both variants contain the same structure, elements, and attributes. They
+serve different purposes.
+
+
+Creating Flat SUSEDoc
+---------------------
+
+Creating the flat SUSEDoc schema requires the `rnginline` tool at
+https://github.com/h4l/rnginline/
+
+Use one of the following methods to install `rnginline`:
+
+* Install over an RPM package
+* Install it over a Python virtual environment
+
+
+Installing rnginline from RPM Package
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following procedure can be used for openSUSE Leap 42.1:
+
+1. Add the repository:
+
+   $ sudo zypper ar http://download.opensuse.org/repositories/home:/thomas-schraitle/openSUSE_Leap_42.1/home:thomas-schraitle.repo
+
+2. Install it:
+
+   $ sudo zypper in python3-rnginline
+
+
+The executable can be found in `/usr/bin/rnginline`.
+
+
+Installing rnginline using a Python Virtual Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Install the RPM packages `python3-devel`, `libxml2-devel`, and `libxslt-devel`.
+
+2. Create a Python3 virtual environment:
+
+   $ python3 -m venv .env3
+
+3. Activate the virtual environment:
+
+   $ source .env3/bin/activate
+
+   => You should see a changed prompt (look for the "(.env3)" part).
+
+3. Install the `rnginline` library from PyPi:
+
+   $ pip install rnginline
+
+
+The executable can be found in `.env3/bin/rnginline`.
+
+
+Creating a Flat SUSEDoc Schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Update your `suse-xsl` GitHub repository.
+
+2. Convert the official compact version into the XML version with trang:
+
+   $ trang susedoc5.rnc susedoc5.rng
+
+3. Create the flat RNG version:
+
+   $ rnginline susedoc5.rng susedoc-flat.rng
+
+4. Optional: Cleanup and remove unnecessary namespaces:
+
+   $ mv susedoc-flat.rng _flat.rng
+   $ xmllint -o susedoc5-flat.rng --nsclean --format flat.rng
+   $ rm _flat.rng
+
+5. Optional: Create the compact version:
+
+   $ trang susedoc5-flat.rng susedoc5-flat.rnc
+
