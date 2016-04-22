@@ -121,10 +121,13 @@ set       toc,title
   <xsl:param name="docbook.css.source"/>
     <!-- Intentionally left empty – we already have a stylesheet, with this, we
          only override DocBook's default. -->
+
+    <!-- The &#10;s introduce the necessary linebreak into this variable made up
+         of variables... ugh. -->
   <xsl:param name="html.stylesheet">
-<xsl:if test="$build.for.web != 1">static/css/fonts-onlylocal.css</xsl:if>
-static/css/style.css
-<xsl:if test="$enable.source.highlighting = 1">static/css/highlight.css</xsl:if>
+<xsl:if test="$build.for.web != 1">static/css/fonts-onlylocal.css</xsl:if><xsl:text>&#10;</xsl:text>
+<xsl:value-of select="$daps.header.css.standard"/><xsl:text>&#10;</xsl:text>
+<xsl:if test="$enable.source.highlighting = 1"><xsl:value-of select="$daps.header.css.highlight"/></xsl:if>
 <xsl:value-of select="$extra.css"/>
 </xsl:param>
   <xsl:param name="make.clean.html" select="1"/>
@@ -222,6 +225,9 @@ task before
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
   <xsl:param name="daps.header.js.library">static/js/jquery-1.10.2.min.js</xsl:param>
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
+  <xsl:param name="daps.header.js.highlight">static/js/highlight.min.js</xsl:param>
+  <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
+  <xsl:param name="daps.header.css.highlight">static/css/highlight.css</xsl:param>
 
   <xsl:param name="generate.header">
     <xsl:choose>

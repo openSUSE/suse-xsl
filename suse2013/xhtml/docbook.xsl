@@ -670,7 +670,7 @@ else {
     </xsl:if>
     <xsl:if test="$enable.source.highlighting = 1">
       <xsl:call-template name="make.script.link">
-        <xsl:with-param name="script.filename" select="'static/js/highlight.min.js'"/>
+        <xsl:with-param name="script.filename" select="$daps.header.js.highlight"/>
       </xsl:call-template>
       <script>
 <xsl:text disable-output-escaping="yes">
