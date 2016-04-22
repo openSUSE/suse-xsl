@@ -124,10 +124,12 @@ set       toc,title
   <xsl:param name="html.stylesheet">
 <xsl:if test="$build.for.web != 1">static/css/fonts-onlylocal.css</xsl:if>
 static/css/style.css
+<xsl:if test="$enable.source.highlighting = 1">static/css/highlight.css</xsl:if>
 <xsl:value-of select="$extra.css"/>
 </xsl:param>
   <xsl:param name="make.clean.html" select="1"/>
   <xsl:param name="make.valid.html" select="1"/>
+  <xsl:param name="enable.source.highlighting" select="1"/>
 
   <xsl:param name="generate.id.attributes" select="1"/>
 
