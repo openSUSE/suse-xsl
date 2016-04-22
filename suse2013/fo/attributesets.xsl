@@ -225,9 +225,24 @@
 
 <xsl:attribute-set name="list.item.spacing"
   use-attribute-sets="list-orphans-widows">
-  <xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
-  <xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
-  <xsl:attribute name="space-before.maximum">1.0em</xsl:attribute>
+  <xsl:attribute name="space-before.optimum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>0.8em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
+  <xsl:attribute name="space-before.minimum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>0.6em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
+  <xsl:attribute name="space-before.maximum">
+   <xsl:choose>
+    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:otherwise>1em</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="compact.list.item.spacing"
@@ -313,12 +328,15 @@
         <xsl:otherwise>inherit</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
-    <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
+    <xsl:attribute name="line-height">
+       <xsl:value-of select="concat($base-lineheight, 'em')"/>
+    </xsl:attribute>
     <xsl:attribute name="widows">3</xsl:attribute>
     <xsl:attribute name="orphans">3</xsl:attribute>
     <xsl:attribute name="margin-top">
       <xsl:choose>
-        <xsl:when test="parent::callout|parent::listitem|
+       <!-- (parent::question/para[2] or parent::question )  -->
+        <xsl:when test="parent::callout|parent::listitem| parent::question|
                         parent::step|parent::substep">0</xsl:when>
         <xsl:otherwise>0.3em</xsl:otherwise>
       </xsl:choose>
@@ -368,6 +386,7 @@
   <xsl:attribute name="wrap-option">wrap</xsl:attribute>
   <xsl:attribute name="hyphenation-character"><xsl:value-of select="$hook"/></xsl:attribute>
   <xsl:attribute name="font-size">&small;pt</xsl:attribute>
+  <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.title.properties">

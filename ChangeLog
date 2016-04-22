@@ -1,45 +1,99 @@
 -------------------------------------------------------------------
+Fr Apr 22 09:00:00 UTC 2015 - toms@opensuse.org
+
+Stable release DAPS 2.0.5:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Schema
+  - Add flat SUSEDoc schema for RNC and RNG
+  - Fix NovDoc/DB4 incompatibility: Phrase is only allowed in
+    productname, but not in productnumber
+
+* Spelling
+  - Fix trailing whitespace
+
+* Stylesheets (PDF)
+  - Added missing procedure, itemizedlist, and orderedlist for
+    intra.title.markup mode (suse-xsl #162, ec0cb3d6)
+  - Fix Ulink/Link template for DB 5
+  - Specifically check for @role='abbrev'
+  - Fix for vertical spaces on nested lists (#221)
+  - Question and answers
+    - Make an answer closer to a question
+	- Make consistent use of sans-stack for questions
+	- Use all paras in question consistently
+    - Italic for question label and first para (#200)
+  - Clean up web links
+  - Specifically check for @role='abbrev'
+  - Fix Ulink/Link template for DB 5
+
+* Stylesheets (XHTML)
+  - Add GitHub URL in titlepage of book and article (suse-xsl #35)
+  - Fix functionality of "dm:version"
+  - xref handling
+    - Improve xref and is.xref.in.samebook template
+    - Fix xref resolution when $rootid is empty
+  - Implement vcs.url to fix, remove add.github.url and
+    bibliosource (suse-xsl #35)
+  - add actual book title to HTML pages again (suse-xsl #208)
+  - Fix formatting for intraxref (provides final fix suse-xsl #162)
+
+* Stylesheets (EPUB)
+  - Build EPUBs by default without comments
+
+* Common Stylesheet Changes
+  - allow intra xref linking for tables, figures, admons (suse-xsl #155)
+  - Added missing procedure, itemizedlist, and orderedlist for
+    intra.title.markup mode (suse-xsl #162)
+
+* Packaging
+  - Update Requires/Recommends (also fixes suse-xsl #220)
+  - suse_beta => suse2013
+  - Improve package description in Spec file
+
+
+-------------------------------------------------------------------
 Tue Dec 02 13:41:00 UTC 2015 - toms@opensuse.org
 
 Stable release DAPS 2.0.4:
 
-Find issues in our GitHub tracker at https://github.com/openSUSE/suse-xsl/issues/NUMBER
+Find issues in our GitHub tracker at 
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
 
-* Schema:
-  - Allow constant and see (inside indexterm); make db.all.blocks zero
-    or more (*) for question (fbebfb6)
-  - Remove XLinks from DB5 elements (issue #99)
-  - Disallow db.all.blocks in lists (issue #100)
-  - Remove menuchoice from guiinlines (Novdoc) (a049b85)
-  - Allow menuchoice in titles (Novdoc) (975b8d6)
+* Schema
+  - Allow constant and see (inside `<indexterm>`); make db.all.blocks
+    zero or more (*) for question (fbebfb6)
+  - Remove XLinks from DB5 elements (suse-xsl #99)
+  - Disallow db.all.blocks in lists (suse-xsl #100)
+  - Remove `<menuchoice>` from guiinlines (Novdoc) (a049b85)
+  - Allow `<menuchoice>` in titles (Novdoc) (975b8d6)
 
-* Stylesheets (PDF):
-  - "unbolded" admonition titles (issue #46)
-  - Odd space in footer where productname used to beproductname not displayed
-    on book title page (issue #50)
-  - Style sect5 Titles (issue #52)
-  - FOP don't like empty <fo:table-cell>s (issue #97)
-  - Make remark handling a little more elegant
-  - Attribute sets: fix logic for replacing bold/italic in CJK languages
+* Stylesheets (PDF)
+  - "unbolded" admonition titles (suse-xsl #46)
+  - Odd space in footer where `<productname>` used to be,
+    `<productname>` not displayed on book title page (suse-xsl #50)
+  - Fix style of `<sect5>` titles (suse-xsl #52, bsc#955663)
+  - FOP don't like empty `<fo:table-cell>`s (suse-xsl #97)
+  - Make `<remark>` handling a little more elegant
+  - Attribute sets: fix logic for replacing bold/italic in CJK
+    languages
 
-* Stylesheets (XHTML):
-  - Make Callouts "uncopyable" (issue #55)
-  - Don't link inline images (issue #65)
-  - Publication date is incorrectly capitalized (issue #70)
-  - debug.filename-id: Use xml:id for metadata
+* Stylesheets (XHTML)
+  - Make Callouts "uncopyable" (suse-xsl #55)
+  - Don't link inline images (suse-xsl #65)
+  - Publication date is incorrectly capitalized (suse-xsl #70)
+  - Create better plain-text output via DAPS (suse-xsl #101)
+  - debug.filename-id: Use `xml:id` for metadata
   - Various fixes for JS code for tracker
 
-* Common Stylesheet Changes:
-  - Style for <package/> (issue #49)
-  - xrefs to variablelists in another book is broken (issue #73)
-  - Trim spaces/newlines at beginning/end of verbatim elements (eba1e8b)
-  -  Feature/fix bugtracker for db4 (issue #102)
-
-* Infrastructure:
-  - Fixed xslns-build script (issue #57)
-  - Wrong includes in daps2013-ns, opensuse2013-ns (issue #107)
-  - Defect URLs in Entities of the *-ns Stylesheets (issue #108)
-  - Consistent variable names and indendation
+* Common Stylesheet Changes
+  - Style for `<package>` (issue #49)
+  - xrefs to variablelists in another book is broken (suse-xsl #73)
+  - Trim spaces/newlines at beginning/end of verbatim elements
+    (suse-xsl #53)
+  - Fix bugtracker for db4 (suse-xsl #102)
 
 -------------------------------------------------------------------
 Tue Aug 11 15:11:52 UTC 2015 - toms@opensuse.org

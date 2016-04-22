@@ -84,29 +84,14 @@
   </xsl:variable>
 
   <!-- nested lists don't add extra list-block spacing -->
-  <xsl:choose>
-    <xsl:when test="ancestor::listitem">
-      <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.properties">
-        <xsl:if test="$keep.together != ''">
-          <xsl:attribute name="keep-together.within-column">
-            <xsl:value-of select="$keep.together"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:copy-of select="$content"/>
-      </fo:list-block>
-    </xsl:when>
-    <xsl:otherwise>
-      <fo:list-block id="{$id}"
-        xsl:use-attribute-sets="list.block.spacing list.block.properties">
-        <xsl:if test="$keep.together != ''">
-          <xsl:attribute name="keep-together.within-column">
-            <xsl:value-of select="$keep.together"/>
-          </xsl:attribute>
-        </xsl:if>
-        <xsl:copy-of select="$content"/>
-      </fo:list-block>
-    </xsl:otherwise>
-  </xsl:choose>
+  <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.spacing list.block.properties">
+   <xsl:if test="$keep.together != ''">
+    <xsl:attribute name="keep-together.within-column">
+     <xsl:value-of select="$keep.together"/>
+    </xsl:attribute>
+   </xsl:if>
+   <xsl:copy-of select="$content"/>
+  </fo:list-block>
 </xsl:template>
 
 

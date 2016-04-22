@@ -1575,7 +1575,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
     z-index: 2;
 }
 
-em, i, .guimenu {
+em, i, .guimenu, .intraxref {
     font-style: italic;
 }
 

@@ -182,17 +182,20 @@
           <xsl:if test="$product">
             <meta name="tracker-{$type}-product" content="{$product}"/>
           </xsl:if>
+          <xsl:if test="$version">
+            <meta name="tracker-{$type}-version" content="{$version}"/>
+          </xsl:if>
         </xsl:if>
 
         <xsl:if test="$type = 'gh'">
           <xsl:if test="$labels">
             <meta name="tracker-{$type}-labels" content="{$labels}"/>
           </xsl:if>
+          <xsl:if test="$version">
+            <meta name="tracker-{$type}-milestone" content="{$version}"/>
+          </xsl:if>
         </xsl:if>
 
-        <xsl:if test="$version">
-          <meta name="tracker-{$type}-version" content="{$version}"/>
-        </xsl:if>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">

@@ -98,7 +98,7 @@
   <xsl:param name="structure.title.candidate">
     <xsl:choose>
       <xsl:when test="self::book or self::article or self::set">
-        <xsl:apply-templates select="title|(bookinfo | articleinfo | setinfo)/title[last()]" mode="title.markup.textonly"/>
+        <xsl:apply-templates select="title | *[contains(local-name(), 'info')]/title[last()]" mode="title.markup.textonly"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="((ancestor::book | ancestor::article)[last()]/title |
@@ -136,8 +136,8 @@
   <xsl:param name="substructure.title.short">
     <xsl:if test="not(self::book or self::article or self::set)">
       <xsl:choose>
-        <xsl:when test="title | refmeta/refentrytitle">
-          <xsl:apply-templates select="(title | refmeta/refentrytitle)[last()]" mode="title.markup.textonly"/>
+        <xsl:when test="*[contains(local-name(), 'info')]/title | title | refmeta/refentrytitle">
+          <xsl:apply-templates select="(*[contains(local-name(), 'info')]/title | title | refmeta/refentrytitle)[last()]" mode="title.markup.textonly"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="gentext">
@@ -332,54 +332,54 @@
   <!-- ===================================================== -->
   <xsl:template name="pickers">
     <xsl:if test="$generate.pickers != 0">
-    <div id="_pickers">
-      <div id="_language-picker" class="inactive">
-        <a id="_language-picker-button" href="#">
-          <span class="picker">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
-            </xsl:call-template>
-          </span>
-        </a>
-        <div class="bubble-corner active-contents"> </div>
-        <div class="bubble active-contents">
-          <h6>
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">selectlanguage</xsl:with-param>
-            </xsl:call-template>
-          </h6>
-          <a class="selected" href="#">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
-            </xsl:call-template>
+      <div id="_pickers">
+        <div id="_language-picker" class="inactive">
+          <a id="_language-picker-button" href="#">
+            <span class="picker">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
+              </xsl:call-template>
+            </span>
           </a>
+          <div class="bubble-corner active-contents"> </div>
+          <div class="bubble active-contents">
+            <h6>
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">selectlanguage</xsl:with-param>
+              </xsl:call-template>
+            </h6>
+            <a class="selected" href="#">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </div>
+        </div>
+        <div id="_format-picker" class="inactive">
+          <a id="_format-picker-button" href="#">
+            <span class="picker">Web Page</span>
+          </a>
+          <div class="bubble-corner active-contents"> </div>
+          <div class="bubble active-contents">
+            <h6>
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">selectformat</xsl:with-param>
+              </xsl:call-template>
+            </h6>
+            <xsl:call-template name="picker.selection"/>
+            <a href="#">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">formatpdf</xsl:with-param>
+              </xsl:call-template>
+            </a>
+            <a href="#">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">formatepub</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </div>
         </div>
       </div>
-      <div id="_format-picker" class="inactive">
-        <a id="_format-picker-button" href="#">
-          <span class="picker">Web Page</span>
-        </a>
-        <div class="bubble-corner active-contents"> </div>
-        <div class="bubble active-contents">
-          <h6>
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">selectformat</xsl:with-param>
-            </xsl:call-template>
-          </h6>
-          <xsl:call-template name="picker.selection"/>
-          <a href="#">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">formatpdf</xsl:with-param>
-            </xsl:call-template>
-          </a>
-          <a href="#">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">formatepub</xsl:with-param>
-            </xsl:call-template>
-          </a>
-        </div>
-      </div>
-    </div>
     </xsl:if>
   </xsl:template>
 
@@ -397,18 +397,20 @@
   </xsl:template>
 
   <xsl:template name="create.header.logo">
-    <div id="_logo">
-      <xsl:choose>
-        <xsl:when test="$homepage != ''">
-          <a href="{$homepage}">
+    <xsl:if test="$generate.logo != 0">
+      <div id="_logo">
+        <xsl:choose>
+          <xsl:when test="$homepage != ''">
+            <a href="{$homepage}">
+              <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
+            </a>
+          </xsl:when>
+          <xsl:otherwise>
             <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
-          </a>
-        </xsl:when>
-        <xsl:otherwise>
-          <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </div>
+          </xsl:otherwise>
+        </xsl:choose>
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="create.header.buttons">
@@ -454,14 +456,16 @@
         </xsl:call-template>
         <xsl:call-template name="clearme"/>
       </div>
-      <div class="active-contents bubble">
-        <div class="bubble-container">
-          <div id="_bubble-toc">
-            <xsl:call-template name="bubble-toc"/>
+      <xsl:if test="$generate.bubbletoc != 0">
+        <div class="active-contents bubble">
+          <div class="bubble-container">
+            <div id="_bubble-toc">
+              <xsl:call-template name="bubble-toc"/>
+            </div>
+            <xsl:call-template name="clearme"/>
           </div>
-          <xsl:call-template name="clearme"/>
         </div>
-      </div>
+      </xsl:if>
     </div>
   </xsl:template>
 
@@ -470,51 +474,53 @@
     <xsl:param name="next" select="/foo"/>
     <xsl:param name="nav.context"/>
 
-    <div id="_share-print">
-      <xsl:if test="$generate.sharelinks != 0">
-        <div class="online-contents share">
-          <strong><xsl:call-template name="gentext">
-              <xsl:with-param name="key">sharethispage</xsl:with-param>
-            </xsl:call-template>
-          </strong>
-          <!-- &#x2022; = &bull; -->
-          <span class="share-buttons">
-            <span id="_share-fb" class="bottom-button">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">shareviafacebook</xsl:with-param>
+    <xsl:if test="$generate.share.and.print != 0">
+      <div id="_share-print">
+        <xsl:if test="$generate.sharelinks != 0">
+          <div class="online-contents share">
+            <strong><xsl:call-template name="gentext">
+                <xsl:with-param name="key">sharethispage</xsl:with-param>
               </xsl:call-template>
-            </span>
-            <span class="spacer"> &#x2022; </span>
-            <span id="_share-gp" class="bottom-button">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">shareviagoogleplus</xsl:with-param>
-              </xsl:call-template>
-            </span>
-            <span class="spacer"> &#x2022; </span>
-            <span id="_share-tw" class="bottom-button">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">shareviatwitter</xsl:with-param>
-              </xsl:call-template>
-            </span>
-            <xsl:if test="$allow.email.sharelink = 1">
-              <!-- Our email form only works on suse.com pages, thus it is helpful
-                   to be able to disable it separately. -->
-              <span class="spacer"> &#x2022; </span>
-              <span id="_share-mail" class="bottom-button">
+            </strong>
+            <!-- &#x2022; = &bull; -->
+            <span class="share-buttons">
+              <span id="_share-fb" class="bottom-button">
                 <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">shareviaemail</xsl:with-param>
+                  <xsl:with-param name="key">shareviafacebook</xsl:with-param>
                 </xsl:call-template>
               </span>
-            </xsl:if>
-          </span>
-        </div>
-      </xsl:if>
-      <div class="print"><span id="_print-button" class="bottom-button">
-        <xsl:call-template name="gentext">
-          <xsl:with-param name="key">printthispage</xsl:with-param>
-        </xsl:call-template></span></div>
-      <xsl:call-template name="clearme"/>
-    </div>
+              <span class="spacer"> &#x2022; </span>
+              <span id="_share-gp" class="bottom-button">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key">shareviagoogleplus</xsl:with-param>
+                </xsl:call-template>
+              </span>
+              <span class="spacer"> &#x2022; </span>
+              <span id="_share-tw" class="bottom-button">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key">shareviatwitter</xsl:with-param>
+                </xsl:call-template>
+              </span>
+              <xsl:if test="$allow.email.sharelink = 1">
+              <!-- Our email form only works on suse.com pages, thus it is helpful
+                   to be able to disable it separately. -->
+                <span class="spacer"> &#x2022; </span>
+                <span id="_share-mail" class="bottom-button">
+                  <xsl:call-template name="gentext">
+                    <xsl:with-param name="key">shareviaemail</xsl:with-param>
+                  </xsl:call-template>
+                </span>
+              </xsl:if>
+            </span>
+          </div>
+        </xsl:if>
+        <div class="print"><span id="_print-button" class="bottom-button">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">printthispage</xsl:with-param>
+          </xsl:call-template></span></div>
+        <xsl:call-template name="clearme"/>
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="outerelement.class.attribute">
@@ -575,10 +581,12 @@
           </div>
         </div>
 
-        <xsl:call-template name="fixed-header-wrap">
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-        </xsl:call-template>
+        <xsl:if test="$generate.fixed.header != 0">
+          <xsl:call-template name="fixed-header-wrap">
+            <xsl:with-param name="next" select="$next"/>
+            <xsl:with-param name="prev" select="$prev"/>
+          </xsl:call-template>
+        </xsl:if>
 
         <xsl:call-template name="user.header.content"/>
         <div id="_toc-bubble-wrap"></div>
@@ -670,39 +678,40 @@ else {
           <xsl:text> </xsl:text>
         </xsl:if>
         SUSE</p>
-      <ul>
-        <li>
-          <a href="http://www.suse.com/company/careers/" target="_top">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">susecareers</xsl:with-param>
-            </xsl:call-template>
-          </a>
-        </li>
-        <li>
-          <a href="http://www.suse.com/company/legal/" target="_top">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">suselegal</xsl:with-param>
-            </xsl:call-template>
-          </a>
-        </li>
-        <li>
-          <a href="http://www.suse.com/company/" target="_top">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">suseabout</xsl:with-param>
-            </xsl:call-template>
-          </a>
-        </li>
-        <li>
-          <a href="http://www.suse.com/ContactsOffices/contacts_offices.jsp"
-            target="_top">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">susecontact</xsl:with-param>
-            </xsl:call-template>
-          </a>
-        </li>
-      </ul>
+      <xsl:if test="$generate.footer.links != 0">
+        <ul>
+          <li>
+            <a href="http://www.suse.com/company/careers/" target="_top">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">susecareers</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </li>
+          <li>
+            <a href="http://www.suse.com/company/legal/" target="_top">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">suselegal</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </li>
+          <li>
+            <a href="http://www.suse.com/company/" target="_top">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">suseabout</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </li>
+          <li>
+            <a href="http://www.suse.com/ContactsOffices/contacts_offices.jsp"
+              target="_top">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key">susecontact</xsl:with-param>
+              </xsl:call-template>
+            </a>
+          </li>
+        </ul>
+      </xsl:if>
     </div>
-
   </xsl:template>
 
 </xsl:stylesheet>

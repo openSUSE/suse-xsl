@@ -23,6 +23,72 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   exclude-result-prefixes="exsl">
 
+<xsl:template match="question">
+  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
+
+  <xsl:variable name="entry.id">
+    <xsl:call-template name="object.id">
+      <xsl:with-param name="object" select="parent::*"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="deflabel">
+    <xsl:apply-templates select="." mode="qanda.defaultlabel"/>
+  </xsl:variable>
+
+  <xsl:variable name="label.content">
+    <xsl:apply-templates select="." mode="label.markup"/>
+    <xsl:if test="contains($deflabel, 'number') and not(label)">
+      <xsl:apply-templates select="." mode="intralabel.punctuation"/>
+    </xsl:if>
+  </xsl:variable>
+
+  <!-- toms: added only font-family, font-size and keep-with-next.within-column
+  -->
+  <fo:list-item role="{local-name()}" id="{$entry.id}"
+   xsl:use-attribute-sets="list.item.spacing"
+   keep-with-next.within-column="always">
+    <fo:list-item-label id="{$id}" end-indent="label-end()">
+      <xsl:choose>
+        <xsl:when test="string-length($label.content) &gt; 0">
+         <fo:block xsl:use-attribute-sets="sans.bold.noreplacement dark-green"
+                   font-family="{$sans-stack}"
+                   font-size="{concat($sans-xheight-adjust, 'em')}">
+            <xsl:copy-of select="$label.content"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <fo:block/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </fo:list-item-label>
+    <fo:list-item-body start-indent="body-start()">
+      <xsl:choose>
+        <xsl:when test="$deflabel = 'none' and not(label)">
+          <fo:block>
+            <xsl:apply-templates select="*[local-name(.)!='label']"/>
+          </fo:block>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:apply-templates select="*[local-name(.)!='label']"/>
+        </xsl:otherwise>
+      </xsl:choose>
+      <!-- Uncomment this line to get revhistory output in the question -->
+      <!-- <xsl:apply-templates select="preceding-sibling::revhistory"/> -->
+    </fo:list-item-body>
+  </fo:list-item>
+</xsl:template>
+
+
+<xsl:template match="question/para">
+ <fo:block xsl:use-attribute-sets="italicized"
+           font-family="{$sans-stack}"
+           font-size="{concat($sans-xheight-adjust, 'em')}">
+  <xsl:apply-templates/>
+ </fo:block>
+</xsl:template>
+
+
 <xsl:template name="qanda.heading">
   <xsl:param name="level" select="1"/>
   <xsl:param name="marker" select="0"/>

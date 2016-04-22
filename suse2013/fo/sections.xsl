@@ -271,13 +271,13 @@
 
 <xsl:template match="screen[ancestor::sect1[@role='legal']]">
   <fo:block xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style"
-            font-size="{&xxx-small; - 1}pt"
+            font-size="{&xxx-small; - 1.1}pt"
             white-space-collapse='false'
             white-space-treatment='preserve'
             linefeed-treatment='preserve'>
             <!-- I hope no one is going to beat me up over this font size – but
                  the screens in the GPL really do look better this way, as we
-                 can now fit 80 characters on a line even on two-column pages.
+                 can now fit 75 characters on a line even on two-column pages.
                  -->
     <xsl:apply-templates/>
   </fo:block>

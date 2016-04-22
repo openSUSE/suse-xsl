@@ -115,8 +115,7 @@
     <xsl:variable name="this.book" select="(ancestor-or-self::article|ancestor-or-self::book)[1]"/>
     
     <xsl:choose>
-      <xsl:when test="(generate-id($target.book) = generate-id($this.book)) or
-                     not(/set) or /article">1</xsl:when>
+      <xsl:when test="(generate-id($target.book) = generate-id($this.book))">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:template>

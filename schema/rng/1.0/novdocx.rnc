@@ -261,7 +261,7 @@ productname =
   }
 productnumber =
   element productnumber {
-    attlist_productnumber, (text | phrase | remark | superscript)*
+    attlist_productnumber, ( text | remark | superscript)*
   }
 systemitem = element systemitem { attlist_systemitem, (text | remark)* }
 varname = element varname { attlist_varname, text }

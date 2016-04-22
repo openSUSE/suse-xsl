@@ -115,15 +115,13 @@ the file. If you do so, please note the following:
   apaches
   apache's
 
-* Send a note to Rebecca - she has to proofread the new file before 
+* Ask your co-workers to proofread the new file before 
   building a new directory.
 
 How can I generate a new dictionary?
 -------------------------------------
 
-Simply _don't do it_ if you are not Rebecca ;-).
-
-Rebecca, once you have proofed a new wordlist you can generate a new 
+Once you have proofed a new wordlist, you can generate a new 
 directory with the following commands:
 
 cd <PATH TO NOVDOC DIRECTORY>/aspell/

@@ -170,30 +170,32 @@
     <xsl:param name="next"/>
     <xsl:param name="nav.context"/>
 
-    <div id="_fixed-header-wrap" class="inactive">
-      <div id="_fixed-header">
-        <xsl:call-template name="breadcrumbs.navigation">
-          <xsl:with-param name="prev" select="$prev"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="context">fixed-header</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="create.header.buttons">
-          <xsl:with-param name="prev" select="$prev"/>
-          <xsl:with-param name="next" select="$next"/>
-        </xsl:call-template>
-        <xsl:call-template name="clearme"/>
-      </div>
-      <xsl:if test="$rootelementname = 'article'">
-      <div class="active-contents bubble">
-        <div class="bubble-container">
-          <div id="_bubble-toc">
-            <xsl:call-template name="bubble-toc"/>
-          </div>
+    <xsl:if test="$generate.fixed.header != 0">
+      <div id="_fixed-header-wrap" class="inactive">
+        <div id="_fixed-header">
+          <xsl:call-template name="breadcrumbs.navigation">
+            <xsl:with-param name="prev" select="$prev"/>
+            <xsl:with-param name="next" select="$next"/>
+            <xsl:with-param name="context">fixed-header</xsl:with-param>
+          </xsl:call-template>
+          <xsl:call-template name="create.header.buttons">
+            <xsl:with-param name="prev" select="$prev"/>
+            <xsl:with-param name="next" select="$next"/>
+          </xsl:call-template>
           <xsl:call-template name="clearme"/>
         </div>
+        <xsl:if test="$generate.bubbletoc != 0 and $rootelementname = 'article'">
+          <div class="active-contents bubble">
+            <div class="bubble-container">
+              <div id="_bubble-toc">
+                <xsl:call-template name="bubble-toc"/>
+              </div>
+              <xsl:call-template name="clearme"/>
+            </div>
+          </div>
+        </xsl:if>
       </div>
-      </xsl:if>
-    </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="create-find-area">
@@ -264,12 +266,15 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:if test="$rootelementname != 'article'">
+    <xsl:if test="$generate.toolbar != 0 and $rootelementname != 'article'">
       <div id="_toolbar-wrap">
         <div id="_toolbar">
           <xsl:choose>
-            <xsl:when test="$rootnode">
-              <!-- We don't need it for a set -->
+            <!-- We don't need a bubble-toc in the page for set. -->
+            <!-- FIXME: Haven't looked any further, but just testing for
+                 rootnode seems wrong. One might go so far as to say that
+                 $rootnode does not have to be a set. -->
+            <xsl:when test="$generate.bubbletoc = 0 or $rootnode">
               <div id="_toc-area" class="inactive"> </div>
             </xsl:when>
             <xsl:otherwise>
@@ -481,7 +486,7 @@
     <xsl:variable name="setdiff"
       select="ancestor::*[count(. | $ancestorrootnode)
                                 != count($ancestorrootnode)]"/>
-    <xsl:if test="$needs.navig = 'true' and not(self::set)">
+    <xsl:if test="$generate.bottom.navigation != 0 and $needs.navig = 'true' and not(self::set)">
       <div id="_bottom-navigation">
         <xsl:if test="count($next) > 0 and $isnext = 'true'">
           <a class="nav-link">
@@ -577,18 +582,20 @@
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
         <div id="_outer-wrap">
-          <div id="_white-bg">
-            <div id="_header">
-              <xsl:call-template name="create.header.logo"/>
-              <xsl:call-template name="pickers"/>
-              <xsl:call-template name="breadcrumbs.navigation">
-                <xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-              </xsl:call-template>
+          <xsl:if test="$generate.header != 0">
+            <div id="_white-bg">
+              <div id="_header">
+                <xsl:call-template name="create.header.logo"/>
+                <xsl:call-template name="pickers"/>
+                <xsl:call-template name="breadcrumbs.navigation">
+                  <xsl:with-param name="prev" select="$prev"/>
+                  <xsl:with-param name="next" select="$next"/>
+                </xsl:call-template>
 
-              <xsl:call-template name="clearme"/>
+                <xsl:call-template name="clearme"/>
+              </div>
             </div>
-          </div>
+          </xsl:if>
 
           <xsl:call-template name="toolbar-wrap">
             <xsl:with-param name="next" select="$next"/>
@@ -656,9 +663,11 @@
 <!-- ======================================================================= -->
 
   <xsl:template name="bubble-toc">
-    <xsl:call-template name="bubble-toc.inner">
-      <xsl:with-param name="node" select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
-    </xsl:call-template>
+    <xsl:if test="$generate.bubbletoc != 0">
+      <xsl:call-template name="bubble-toc.inner">
+        <xsl:with-param name="node" select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
 <!-- ======================================================================= -->

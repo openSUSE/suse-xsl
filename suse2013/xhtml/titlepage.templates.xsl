@@ -14,7 +14,9 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns:dm="urn:x-suse:ns:docmanager"
+  xmlns="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="dm">
 
   <xsl:template name="product.name">
     <xsl:choose>
@@ -78,6 +80,23 @@
     <xsl:copy-of select="$product-number"/>
   </xsl:template>
 
+  <xsl:template name="vcs.url">
+   <xsl:variable name="dm" select="*/dm:docmanager"/>
+   <xsl:variable name="url" select="$dm/dm:vcs/dm:url"/>
+   <xsl:if test="$dm and $url">
+    <xsl:variable name="vcs.text">
+     <xsl:choose>
+      <xsl:when test="contains($url, 'github.com')">GitHub</xsl:when>
+      <xsl:when test="contains($url, 'gitlab')">GitLab</xsl:when>
+      <xsl:when test="contains($url, 'svn')">SVN</xsl:when>
+      <xsl:otherwise>VCS URL</xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
+    <div class="vcsurl">
+     <p><span class="vcshead">Source XML:</span>&#xa0;<a target="_blank" href="{$url}"><xsl:value-of select="$vcs.text"/></a></p>
+    </div>
+   </xsl:if>
+  </xsl:template>
 
   <xsl:template name="version.info.page-top">
     <xsl:variable name="info-text">
@@ -93,7 +112,6 @@
     </xsl:if>
   </xsl:template>
 
-
   <xsl:template name="version.info.headline">
     <xsl:variable name="info-text">
       <xsl:call-template name="version.info">
@@ -105,7 +123,6 @@
       <h6 class="version-info"><xsl:copy-of select="$info-text"/></h6>
     </xsl:if>
   </xsl:template>
-
 
   <xsl:template name="add.authorgroup">
     <div>
@@ -154,6 +171,7 @@
     </xsl:call-template>
   </div>
 </xsl:template>
+
 
   <!-- ===================================================== -->
   <xsl:template name="part.titlepage.before.recto">
@@ -267,6 +285,7 @@
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/editor"/>
 
         <xsl:call-template name="date.and.revision"/>
+        <xsl:call-template name="vcs.url"/>
 
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/copyright"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/copyright"/>
@@ -389,6 +408,9 @@
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/editor"/>
 
         <xsl:call-template name="date.and.revision"/>
+        <xsl:call-template name="vcs.url"/>
+
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/bibliosource"/>
 
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/copyright"/>
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/copyright"/>
@@ -397,6 +419,7 @@
   <xsl:template match="authorgroup" mode="book.titlepage.recto.auto.mode">
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>
+
 
   <xsl:template match="othercredit|editor" mode="book.titlepage.recto.auto.mode">
     <xsl:if test=". = ((../othercredit)|(../editor))[1]">

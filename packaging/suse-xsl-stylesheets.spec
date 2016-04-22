@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.4
+Version:        2.0.5
 Release:        0
 
 ###############################################################
@@ -46,7 +46,7 @@ Release:        0
 %define suse_schema_dir %{suse_xml_dir}/schema
 %define suse_styles_dir %{db_xml_dir}/stylesheet
 
-Summary:        SUSE-branded Docbook stylesheets for XSLT 1.0
+Summary:        SUSE-Branded Stylesheets for DocBook
 License:        GPL-2.0 or GPL-3.0
 Group:          Productivity/Publishing/XML
 Url:            http://sourceforge.net/p/daps/suse-xslt
@@ -59,7 +59,9 @@ BuildArch:      noarch
 BuildRequires:  aspell
 BuildRequires:  aspell-en
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
+BuildRequires:  docbook5-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes
+BuildRequires:  libxml2-tools
 BuildRequires:  libxslt
 BuildRequires:  make
 # Only needed to fix the "have choice" error between xerces-j2 and crimson
@@ -69,13 +71,14 @@ BuildRequires:  xerces-j2
 BuildRequires:  fontpackages-devel
 BuildRequires:  trang
 
-Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook_4
+Requires:       docbook_5
+Requires:       docbook-xsl-stylesheets >= 1.77
+Requires:       docbook5-xsl-stylesheets >= 1.77
+
 Requires:       libxslt
 
 Recommends:     daps
-Recommends:     docbook_5
-Recommends:     docbook5-xsl-stylesheets
 
 #------
 # Fonts
@@ -107,7 +110,7 @@ Recommends:     wqy-microhei-fonts
 Recommends:     ttf-founder-simplified
 %endif
 
-# FONTS USED IN suse_beta STYLESHEETS
+# FONTS USED IN suse2013 STYLESHEETS
 # A rather simplistic solution which roughly means that you need M17N:fonts to
 # build the new stylesheets on older OS's.
 %if 0%{?suse_version} >= 1220
@@ -131,15 +134,15 @@ Recommends:     nanum-fonts
 # Arabic:
 Recommends:     arabic-amiri-fonts
 
-Obsoletes:      susedoc <= 4.3.33
-Provides:       susedoc = 4.3.34
 
 %description
-SUSE-branded DocBook stylesheets for XSLT 1.0
+These are SUSE-branded XSLT 1.0 stylesheets for DocBook 4 and 5 that are be used
+to create the HTML, PDF, and EPUB versions of SUSE documentation. These
+stylesheets are based on the original DocBook XSLT 1.0 stylesheets.
 
-Extensions for the DocBook XSLT 1.0 stylesheets that provide SUSE branding
-for PDF, HTML, and ePUB. This package also provides the NovDoc DTD, a subset of
-the DocBook 4 DTD and SUSEdoc, a subset of the DocBook 5 schema.
+This package also provides descriptions of two XML formats which authors can
+use: The NovDoc DTD, a subset of the DocBook 4 DTD and the SUSEdoc schema, a
+subset of the DocBook 5 schema.
 
 #--------------------------------------------------------------------------
 %prep
