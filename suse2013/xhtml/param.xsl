@@ -158,6 +158,8 @@ table before
 procedure before
 task before
   </xsl:param>
+ 
+  <xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
   <!-- From the DocBook XHMTL stylesheet's "formal.xsl" -->
   <xsl:param name="formal.object.break.after">0</xsl:param>

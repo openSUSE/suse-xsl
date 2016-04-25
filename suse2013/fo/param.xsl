@@ -119,6 +119,7 @@ task before
      "<screen>ls -l</screen>" "ls - -l"? -->
 <!-- <xsl:param name="hyphenate.verbatim" select="'1'"/> -->
 
+<xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
 <!-- 18. Graphics =============================================== -->
 
