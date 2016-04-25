@@ -229,6 +229,10 @@ task before
   <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
   <xsl:param name="daps.header.css.highlight">static/css/highlight.css</xsl:param>
 
+  <!-- This list is intentionally quite strict (no aliases) to keep our documents
+  consistent. -->
+  <xsl:param name="highlight.supported.languages" select="'apache|bash|c++|css|diff|html|xml|http|ini|json|java|javascript|makefile|nginx|php|perl|python|ruby|sql|crmsh|dockerfile|lisp|yaml'"/>
+
   <xsl:param name="generate.header">
     <xsl:choose>
       <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
