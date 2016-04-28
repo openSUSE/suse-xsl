@@ -75,19 +75,19 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="intra-article" text="Cikk „%t”"/>
-      <l:template name="intra-book" text="Könyv „%t” "/>
-      <l:template name="intra-chapter" text="Fejezet „%t”"/>
-      <l:template name="intra-sect1" text="%n.&#160;Szakasz („%t”)"/>
-      <l:template name="intra-sect2" text="%n.&#160;Szakasz („%t”)"/>
-      <l:template name="intra-sect3" text="%n.&#160;Szakasz („%t”)"/>
-      <l:template name="intra-sect4" text="%n.&#160;Szakasz („%t”)"/>
+      <l:template name="intra-article" text="cikk „%t”"/>
+      <l:template name="intra-book" text="könyv „%t” "/>
+      <l:template name="intra-chapter" text="fejezet „%t”"/>
+      <l:template name="intra-sect1" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect2" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect3" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect4" text="%n.&#160;szakasz („%t”)"/>
 
-      <l:template name="intra-example" text="%n.&#160;Példa („%t”)"/>
-      <l:template name="intra-figure" text="%n.&#160;Ábra („%t”)"/>
-      <l:template name="intra-preface" text="Előszó („%t”)"/>
-      <l:template name="intra-procedure" text="%n.&#160;Eljárás („%t”)"/>
-      <l:template name="intra-table" text="%n.&#160;Táblázat („%t”)"/>
+      <l:template name="intra-example" text="%n.&#160;példa („%t”)"/>
+      <l:template name="intra-figure" text="%n.&#160;ábra („%t”)"/>
+      <l:template name="intra-preface" text="előszó („%t”)"/>
+      <l:template name="intra-procedure" text="%n.&#160;eljárás („%t”)"/>
+      <l:template name="intra-table" text="%n.&#160;táblázat („%t”)"/>
 
       <l:template name="intra-variablelist" text="„%t”"/>
       <l:template name="intra-orderedlist" text="„%t”"/>
