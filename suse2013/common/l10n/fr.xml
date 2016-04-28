@@ -13,10 +13,6 @@
    <l:gentext key="Contributor"     text="Contributeur"/>
    <l:gentext key="Contributors"    text="Contributeurs"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; FICHE D&#xc9;MARRAGE RAPIDE"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Cr&#xe9;&#xe9; par SUSE&#x00AE; avec XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=" : "/>
 
    <l:gentext key="hyphenation-push-character-count" text="4"/>
@@ -76,15 +72,24 @@
 
    <l:context name="xref">
       <l:template name="page.citation" text=" (p.&#160;%p)"/>
-     
-      <l:template name="intra-article" text="Article « %t »"/>
-      <l:template name="intra-book" text="Livre « %t »"/>
-      <l:template name="intra-chapter" text="Chapitre %n “%t »"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Section %n « %t »"/>
-      <l:template name="intra-sect2" text="Section %n « %t »"/>
-      <l:template name="intra-sect3" text="Section %n « %t »"/>
-      <l:template name="intra-sect4" text="Section %n « %t »"/>
+
+      <l:template name="intra-article" text="Article «&#160;%t&#160;»"/>
+      <l:template name="intra-book" text="Livre «&#160;%t&#160;»"/>
+      <l:template name="intra-chapter" text="Chapitre %n «&#160;%t&#160;»"/>
+      <l:template name="intra-sect1" text="Section&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-sect2" text="Section&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-sect3" text="Section&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-sect4" text="Section&#160;%n «&#160;%t&#160;»"/>
+
+      <l:template name="intra-example" text="Exemple&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-figure" text="Figure&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-preface" text="Préface «&#160;%t&#160;»"/>
+      <l:template name="intra-procedure" text="Procédure&#160;%n «&#160;%t&#160;»"/>
+      <l:template name="intra-table" text="Tableau&#160;%n «&#160;%t&#160;»"/>
+
+      <l:template name="intra-variablelist" text="«&#160;%t&#160;»"/>
+      <l:template name="intra-orderedlist" text="«&#160;%t&#160;»"/>
+      <l:template name="intra-itemizedlist" text="«&#160;%t&#160;»"/>
    </l:context>
 
    <l:context name="xref-number-and-title">

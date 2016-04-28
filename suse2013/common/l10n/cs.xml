@@ -8,11 +8,6 @@
    <l:gentext key="ListofAuthors"   text="Seznam autor&#367;"/>
    <l:gentext key="Contributor"     text="Přispěvatel"/>
    <l:gentext key="Contributors"    text="Přispěvatelé"/>
-   
-   <l:gentext key="FlyerQuickstart" text="RYCHL&#221; &#218;VODN&#205; LIST NOVELL&#x00AE;"/>
-   
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Vytvo&#345;eno spole&#269;nost&#237; SUSE&#x00AE; s XSL-FO"/>
 
    <l:gentext key="admonseparator"  text=": "/>
    <!-- In most cases, this has to be empty -->
@@ -71,15 +66,24 @@
       <l:template name="sect4" text="&#268;&#225;st &#8222;%t&#8220;"/>
       <l:template name="sect5" text="&#268;&#225;st &#8222;%t&#8220;"/>
       <l:template name="page.citation" text=" (strana&#160;%p)"/>
-      
+
       <l:template name="intra-article" text="Článek „%t”"/>
       <l:template name="intra-book" text="Kniha „%t”"/>
-      <l:template name="intra-chapter" text="Kapitola %n „%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Oddíl %n „%t”"/>
-      <l:template name="intra-sect2" text="Oddíl %n „%t”"/>
-      <l:template name="intra-sect3" text="Oddíl %n „%t”"/>
-      <l:template name="intra-sect4" text="Oddíl %n „%t”"/>
+      <l:template name="intra-chapter" text="Kapitola&#160;%n „%t”"/>
+      <l:template name="intra-sect1" text="Oddíl&#160;%n „%t”"/>
+      <l:template name="intra-sect2" text="Oddíl&#160;%n „%t”"/>
+      <l:template name="intra-sect3" text="Oddíl&#160;%n „%t”"/>
+      <l:template name="intra-sect4" text="Oddíl&#160;%n „%t”"/>
+
+      <l:template name="intra-example" text="Příklad&#160;%n „%t”"/>
+      <l:template name="intra-figure" text="Obrázek&#160;%n „%t”"/>
+      <l:template name="intra-preface" text="Předmluva „%t”"/>
+      <l:template name="intra-procedure" text="Postup&#160;%n „%t”"/>
+      <l:template name="intra-table" text="Tabulka&#160;%n „%t”"/>
+
+      <l:template name="intra-variablelist" text="„%t”"/>
+      <l:template name="intra-orderedlist" text="„%t”"/>
+      <l:template name="intra-itemizedlist" text="„%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
@@ -164,12 +168,12 @@
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
- 
+
    <l:context name="parameters">
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>
    </l:context>
- 
+
    <l:context name="datetime">
      <l:template name="titlepage.format" text="d. B Y"/>
    </l:context>

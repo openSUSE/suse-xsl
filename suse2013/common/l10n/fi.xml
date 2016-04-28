@@ -10,16 +10,11 @@
    <l:gentext key="Contributor"     text="Kirjoittaja"/>
    <l:gentext key="Contributors"    text="Kirjoittajat"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE;&#45;PIKAOPASKORTTI"/>
-
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Tekij&#228;: SUSE&#x00AE; (XSL&#45;FO&#45;tekniikalla)"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>   
+   <l:dingbat key="guimenuendquote" text=""/>
 
    <l:gentext key="selectlanguage" text="Valitse kieli"/>
    <l:gentext key="selectformat" text="Valitse muoto"/>
@@ -67,21 +62,30 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="sect1" text="Osa &#8221;%t&#8221;"/>
-      <l:template name="sect2" text="Osa &#8221;%t&#8221;"/>
-      <l:template name="sect3" text="Osa &#8221;%t&#8221;"/>
-      <l:template name="sect4" text="Osa &#8221;%t&#8221;"/>
-      <l:template name="sect5" text="Osa &#8221;%t&#8221;"/>
+      <l:template name="sect1" text="Osa ”%t”"/>
+      <l:template name="sect2" text="Osa ”%t”"/>
+      <l:template name="sect3" text="Osa ”%t”"/>
+      <l:template name="sect4" text="Osa ”%t”"/>
+      <l:template name="sect5" text="Osa ”%t”"/>
       <l:template name="page.citation" text=" (sivu&#160;%p)"/>
-     
+
       <l:template name="intra-article" text="Artikkeli ”%t”"/>
       <l:template name="intra-book" text="Kirja ”%t”"/>
-      <l:template name="intra-chapter" text="Luku %n ”%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Kohta %n ”%t”"/>
-      <l:template name="intra-sect2" text="Kohta %n ”%t”"/>
-      <l:template name="intra-sect3" text="Kohta %n ”%t”"/>
-      <l:template name="intra-sect4" text="Kohta %n ”%t”"/>
+      <l:template name="intra-chapter" text="Luku&#160;%n ”%t”"/>
+      <l:template name="intra-sect1" text="Osa&#160;%n ”%t”"/>
+      <l:template name="intra-sect2" text="Osa&#160;%n ”%t”"/>
+      <l:template name="intra-sect3" text="Osa&#160;%n ”%t”"/>
+      <l:template name="intra-sect4" text="Osa&#160;%n ”%t”"/>
+
+      <l:template name="intra-example" text="Esimerkki&#160;%n ”%t”"/>
+      <l:template name="intra-figure" text="Kuva&#160;%n ”%t”"/>
+      <l:template name="intra-preface" text="Esipuhe ”%t”"/>
+      <l:template name="intra-procedure" text="Aliohjelma&#160;%n ”%t”"/>
+      <l:template name="intra-table" text="Taulu&#160;%n ”%t”"/>
+
+      <l:template name="intra-variablelist" text="”%t”"/>
+      <l:template name="intra-orderedlist" text="”%t”"/>
+      <l:template name="intra-itemizedlist" text="”%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
@@ -183,7 +187,7 @@
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
-   
+
    <l:context name="datetime-full">
       <l:template name="January" text="tammikuuta" lang="fi" />
       <l:template name="February" text="helmikuuta" lang="fi" />
@@ -198,14 +202,14 @@
       <l:template name="November" text="marraskuuta" lang="fi" />
       <l:template name="December" text="joulukuuta" lang="fi" />
    </l:context>
- 
+
    <l:context name="parameters">
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>
    </l:context>
-  
+
   <l:context name="datetime">
      <l:template name="titlepage.format" text=""/>
    </l:context>
-  
+
 </l:l10n>

@@ -10,11 +10,6 @@
    <l:gentext key="Contributor"     text="Colaborador"/>
    <l:gentext key="Contributors"    text="Colaboradores"/>
 
-   <l:gentext key="FlyerQuickstart"
-   text="NOVELL&#x00AE; GUÍA DE INICIO R&#xc1;PIDO"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Creado por SUSE&#x00AE; con XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
    <l:gentext key="hyphenation-push-character-count" text="5"/>
@@ -96,15 +91,24 @@
       <l:template name="sect5" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="section" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="simplesect" text="secci&#243;n llamada &#8220;%t&#8221;"/>
-     
+
       <l:template name="intra-article" text="Artículo “%t”"/>
       <l:template name="intra-book" text="Libro “%t”"/>
-      <l:template name="intra-chapter" text="Capítulo %n “%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Sección %n “%t”"/>
-      <l:template name="intra-sect2" text="Sección %n “%t”"/>
-      <l:template name="intra-sect3" text="Sección %n “%t”"/>
-      <l:template name="intra-sect4" text="Sección %n “%t”"/>
+      <l:template name="intra-chapter" text="Capítulo&#160;%n “%t”"/>
+      <l:template name="intra-sect1" text="Sección&#160;%n “%t”"/>
+      <l:template name="intra-sect2" text="Sección&#160;%n “%t”"/>
+      <l:template name="intra-sect3" text="Sección&#160;%n “%t”"/>
+      <l:template name="intra-sect4" text="Sección&#160;%n “%t”"/>
+
+      <l:template name="intra-example" text="Ejemplo&#160;%n “%t”"/>
+      <l:template name="intra-figure" text="Figura&#160;%n “%t”"/>
+      <l:template name="intra-preface" text="Prefacio “%t”"/>
+      <l:template name="intra-procedure" text="Procedimiento&#160;%n “%t”"/>
+      <l:template name="intra-table" text="Tabla&#160;%n “%t”"/>
+
+      <l:template name="intra-variablelist" text="“%t”"/>
+      <l:template name="intra-orderedlist" text="“%t”"/>
+      <l:template name="intra-itemizedlist" text="“%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">

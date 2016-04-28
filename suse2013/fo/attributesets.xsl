@@ -465,9 +465,9 @@
 <xsl:attribute-set name="bold.replacement.color">
  <xsl:attribute name="background-color">
     <xsl:choose>
-      <xsl:when test="$enable-bold != 'true'">&light-gray-old;</xsl:when>
-      <!-- We would use transparent, but XEP does not support it. Inherit seems
-           good enough. -->
+      <xsl:when test="$enable-bold != 'true'">&bold-replacement;</xsl:when>
+      <!--  We would use "transparent," but XEP does not support that. "inherit"
+            seems good enough. -->
       <xsl:otherwise>inherit</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -476,7 +476,7 @@
 <xsl:attribute-set name="italic.replacement.color">
   <xsl:attribute name="color">
     <xsl:choose>
-      <xsl:when test="$enable-italic != 'true'">&special-gray;</xsl:when>
+      <xsl:when test="$enable-italic != 'true'">&italic-replacement;</xsl:when>
       <xsl:otherwise>inherit</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>

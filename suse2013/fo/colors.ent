@@ -61,7 +61,8 @@
 <!ENTITY tango-plum           "rgb(117,80,123)">
 
 <!-- Special gray to replace italics -->
-<!ENTITY special-gray         "rgb(80,80,80)">
+<!ENTITY italic-replacement         "rgb(120,120,120)">
+<!ENTITY bold-replacement           "rgb(240,240,240)">
 
 <!-- High visibility testing colors -->
 <!ENTITY test1                "#F0F">

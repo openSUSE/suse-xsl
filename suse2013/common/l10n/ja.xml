@@ -9,13 +9,7 @@
    <l:gentext key="Contributor"     text="コントリビュータ"/>
    <l:gentext key="Contributors"    text="コントリビュータ"/>
 
-   <l:gentext key="FlyerQuickstart" 
-     text="NOVELL&#x00AE; &#x30af;&#x30a4;&#x30c3;&#x30af;&#x30b9;&#x30bf;&#x30fc;&#x30c8;&#x30ab;&#x30fc;&#x30c9;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Created by SUSE&#x00AE; with XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
-
 
    <l:dingbat key="guimenustartquote" text="&#65339;"/>
    <l:dingbat key="guimenuendquote" text="&#65341;"/>
@@ -66,48 +60,57 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="page.citation" text=" (%p&#160;&#12506;&#12540;&#12472;)"/>
-     
-     <l:template name="intra-article" text="項目 「%t」"/>
-      <l:template name="intra-book" text="ブック 「%t」"/>
-      <l:template name="intra-chapter" text="章 %n 「%t」"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="項 %n 「%t」"/>
-      <l:template name="intra-sect2" text="項 %n 「%t」"/>
-      <l:template name="intra-sect3" text="項 %n 「%t」"/>
-      <l:template name="intra-sect4" text="項 %n 「%t」"/>
+    <l:template name="page.citation" text=" (%p&#160;&#12506;&#12540;&#12472;)"/>
+
+    <l:template name="intra-article" text="項目 「%t」"/>
+    <l:template name="intra-book" text="ブック 「%t」"/>
+    <l:template name="intra-chapter" text="章 %n 「%t」"/>
+    <l:template name="intra-sect1" text="項&#160;%n 「%t」"/>
+    <l:template name="intra-sect2" text="項&#160;%n 「%t」"/>
+    <l:template name="intra-sect3" text="項&#160;%n 「%t」"/>
+    <l:template name="intra-sect4" text="項&#160;%n 「%t」"/>
+
+    <l:template name="intra-example" text="&#160;%n 「%t」"/>
+    <l:template name="intra-figure" text="図&#160;%n 「%t」"/>
+    <l:template name="intra-preface" text="前書き 「%t」"/>
+    <l:template name="intra-procedure" text="手順&#160;%n 「%t」"/>
+    <l:template name="intra-table" text="表&#160;%n 「%t」"/>
+
+    <l:template name="intra-variablelist" text="「%t」"/>
+    <l:template name="intra-orderedlist" text="「%t」"/>
+    <l:template name="intra-itemizedlist" text="「%t」"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber" text="&#20184;&#37682;&#160;%t"/>
-      <l:template name="bridgehead" style="nonumber" text="&#38917;&#160;&#12300;%t&#12301;"/>
-      <l:template name="chapter" style="nonumber" text="&#31532;&#160;&#049;&#160;&#31456;&#160;%t"/>
+      <l:template name="appendix" style="nonumber" text="&#20184;&#37682; 「%t」"/>
+      <l:template name="bridgehead" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="chapter" style="nonumber" text="&#31532; &#049; &#31456; 「%t」"/>
       <l:template name="chapter" text="&#31532;%n&#31456; %t"/>
-      <l:template name="equation" style="nonumber" text="&#24335;&#160;&#12300;%t&#12301;"/>
-      <l:template name="example" style="nonumber" text="&#20363;&#160;&#12300;%t&#12301;"/>
-      <l:template name="figure" style="nonumber" text="&#22259;&#160;&#12300;%t&#12301;"/>
-      <l:template name="part" style="nonumber" text="&#12497;&#12540;&#12488;&#160;&#12300;%t&#12301;"/>
-      <l:template name="procedure" style="nonumber" text="&#25163;&#38918;&#160;&#12300;%t&#12301;"/>
-      <l:template name="productionset" style="nonumber" text="&#12503;&#12525;&#12480;&#12463;&#12471;&#12519;&#12531;&#160;&#12300;%t&#12301;"/>
-      <l:template name="qandadiv" style="nonumber" text="&#21839;&#65306;&#12289;&#31572;&#65306;&#160;&#12300;%t&#12301;"/>
-      <l:template name="refsect1" style="nonumber" text="&#12300;%t&#12301;"/>
-      <l:template name="refsect2" style="nonumber" text="&#12300;%t&#12301;"/>
-      <l:template name="refsect3" style="nonumber" text="&#12300;%t&#12301;"/>
-      <l:template name="refsection" style="nonumber" text="&#12300;%t&#12301;"/>
-      <l:template name="sect1" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect2" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect3" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect4" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect5" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="section" style="nonumber" text="&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect1" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect2" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect3" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect4" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="sect5" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="section" text="%n&#38917; &#12300;%t&#12301;"/>
-      <l:template name="simplesect" style="nonumber" text="&#12300;%t&#12301;"/>
-      <l:template name="table" style="nonumber" text="&#34920;&#160;&#12300;%t&#12301;"/>
+      <l:template name="equation" style="nonumber" text="&#24335; 「%t」"/>
+      <l:template name="example" style="nonumber" text="&#20363; 「%t」"/>
+      <l:template name="figure" style="nonumber" text="&#22259; 「%t」"/>
+      <l:template name="part" style="nonumber" text="&#12497;&#12540;&#12488; 「%t」"/>
+      <l:template name="procedure" style="nonumber" text="&#25163;&#38918; 「%t」"/>
+      <l:template name="productionset" style="nonumber" text="&#12503;&#12525;&#12480;&#12463;&#12471;&#12519;&#12531; 「%t」"/>
+      <l:template name="qandadiv" style="nonumber" text="&#21839;&#65306;&#12289;&#31572;&#65306; 「%t」"/>
+      <l:template name="refsect1" style="nonumber" text="「%t」"/>
+      <l:template name="refsect2" style="nonumber" text="「%t」"/>
+      <l:template name="refsect3" style="nonumber" text="「%t」"/>
+      <l:template name="refsection" style="nonumber" text="「%t」"/>
+      <l:template name="sect1" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="sect2" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="sect3" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="sect4" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="sect5" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="section" style="nonumber" text="&#38917; 「%t」"/>
+      <l:template name="sect1" text="%n&#38917; 「%t」"/>
+      <l:template name="sect2" text="%n&#38917; 「%t」"/>
+      <l:template name="sect3" text="%n&#38917; 「%t」"/>
+      <l:template name="sect4" text="%n&#38917; 「%t」"/>
+      <l:template name="sect5" text="%n&#38917; 「%t」"/>
+      <l:template name="section" text="%n&#38917; 「%t」"/>
+      <l:template name="simplesect" style="nonumber" text="「%t」"/>
+      <l:template name="table" style="nonumber" text="&#34920; 「%t」"/>
    </l:context>
 
    <l:context name="xref-number">
@@ -196,7 +199,7 @@
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>
    </l:context>
-  
+
    <l:context name="datetime">
      <l:template name="titlepage.format" text="d/m/Y"/>
    </l:context>

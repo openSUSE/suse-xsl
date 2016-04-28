@@ -10,10 +10,6 @@
    <l:gentext key="Contributor"     text="贡献者"/>
    <l:gentext key="Contributors"    text="贡献者"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; &#x5feb;&#x901f;&#x5165;&#x95e8;&#x5361;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="&#x7531; SUSE&#x00AE; &#x4f7f;&#x7528; XSL-FO &#x521b;&#x5efa;"/>   
-
    <l:gentext key="admonseparator"  text=": "/>
    <l:gentext key="selectlanguage" text="选择语言"/>
    <l:gentext key="selectformat" text="选择格式"/>
@@ -44,7 +40,7 @@
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>   
+   <l:dingbat key="guimenuendquote" text=""/>
 
    <l:context name="authorgroup">
        <l:template name="sep" text=", "/>
@@ -144,22 +140,40 @@
       <l:template name="December" text="12" lang="zh_cn"/>
    </l:context>
 
+
    <l:context name="xref">
+     <!-- Discussed these translations with Yan Gao:
+       + You can use the connector "中的" (rough translation:
+         "the former item belongs to the latter item") as a prefix for the
+         last item. To avoid the complication of having to add these connectors
+         specifically before the last item, we will leave them away for the
+         moment.
+       + Use 《double angle brackets》 for the book/article title only.
+       + Adding the word "book" (apparently "第") sounds awkward, so leaving it
+         away. "Article" is fine though.
+       + Use “normal typographic quotes” for section titles.
+       + Do not use 「corner brackets」, they are not used in Simplified Chinese.
+
+       + Would 〈single angle brackets〉 make sense for the article title?
+
+      See also:
+      https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
+     -->
+
      <l:template name="intra-article" text="《%t》文章"/>
-     <l:template name="intra-book" text="《%t》第"/>
-     <l:template name="intra-chapter" text="章 %n 章“%t”中的第"/>
-     <!--<l:template name="intra-part" text="%B %t"/>-->
-     <l:template name="intra-sect1" text="中的第 %n 节“%t”"/>
-     <l:template name="intra-sect2" text="中的第 %n 节“%t”"/>
-     <l:template name="intra-sect3" text="中的第 %n 节“%t”"/>
-     <l:template name="intra-sect4" text="中的第 %n 节“%t”"/>
-     
-     <l:template name="intra-example" text="例 %n “%t”"/>
-     <l:template name="intra-figure" text="图 %n “%t”"/>
+     <l:template name="intra-book" text="《%t》"/>
+     <l:template name="intra-chapter" text="第&#160;%n 章 “%t”"/>
+     <l:template name="intra-sect1" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect2" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect3" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect4" text="第&#160;%n 节 “%t”"/>
+
+     <l:template name="intra-example" text="例&#160;%n “%t”"/>
+     <l:template name="intra-figure" text="图&#160;%n “%t”"/>
      <l:template name="intra-preface" text="前言 “%t”"/>
-     <l:template name="intra-procedure" text="过程 %n “%t”"/>
-     <l:template name="intra-table" text="表 %n “%t”"/>
-     
+     <l:template name="intra-procedure" text="过程&#160;%n “%t”"/>
+     <l:template name="intra-table" text="表&#160;%n “%t”"/>
+
      <l:template name="intra-variablelist" text="“%t”"/>
      <l:template name="intra-orderedlist" text="“%t”"/>
      <l:template name="intra-itemizedlist" text="“%t”"/>
@@ -172,7 +186,7 @@
    <l:context name="title">
       <l:template name="chapter" text="&#31532;&#160;%n&#160;&#31456;%t"/>
    </l:context>
-   
+
    <l:context name="datetime">
      <l:template name="titlepage.format" text="Y-m-d"/>
    </l:context>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" 
-  language="hu" 
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+  language="hu"
   english-language-name="Hungarian">
 
 
@@ -15,10 +15,6 @@
    <!-- Workaround for a bug in the original stylesheets -->
    <l:gentext key="PubDate" text="Kiadás dátuma"/>
    <l:gentext key="pubdate" text="kiadás dátuma"/>
-
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; GYORSKALAUZ K&#xc1;RTYA"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="K&#233;sz&#237;tette: SUSE&#x00AE; XSL-FO-val"/>
 
    <l:gentext key="admonseparator"  text=": "/>
 
@@ -70,56 +66,65 @@
       <l:template name="orderedlist-label" text=""/>
       <l:template name="orderedlist-title" text="%t"/>
    </l:context>
- 
+
    <l:context name="toc">
       <l:template name="part-number" text="%n."/>
       <l:template name="chapter-number" text="%n."/>
       <l:template name="sect1-number" text="%n."/>
       <l:template name="sect2-number" text="%n."/>
    </l:context>
- 
+
    <l:context name="xref">
-      <l:template name="intra-article" text="Cikk „%t”"/>
-      <l:template name="intra-book" text="Könyv „%t” "/>
-      <l:template name="intra-chapter" text="Fejezet %n „%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Szakasz %n „%t”"/>
-      <l:template name="intra-sect2" text="Szakasz %n „%t”"/>
-      <l:template name="intra-sect3" text="Szakasz %n „%t”"/>
-      <l:template name="intra-sect4" text="Szakasz %n „%t”"/>
+      <l:template name="intra-article" text="cikk „%t”"/>
+      <l:template name="intra-book" text="könyv „%t” "/>
+      <l:template name="intra-chapter" text="fejezet „%t”"/>
+      <l:template name="intra-sect1" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect2" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect3" text="%n.&#160;szakasz („%t”)"/>
+      <l:template name="intra-sect4" text="%n.&#160;szakasz („%t”)"/>
+
+      <l:template name="intra-example" text="%n.&#160;példa („%t”)"/>
+      <l:template name="intra-figure" text="%n.&#160;ábra („%t”)"/>
+      <l:template name="intra-preface" text="előszó („%t”)"/>
+      <l:template name="intra-procedure" text="%n.&#160;eljárás („%t”)"/>
+      <l:template name="intra-table" text="%n.&#160;táblázat („%t”)"/>
+
+      <l:template name="intra-variablelist" text="„%t”"/>
+      <l:template name="intra-orderedlist" text="„%t”"/>
+      <l:template name="intra-itemizedlist" text="„%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="%t&#160;mell&#233;klet"/>
-      <l:template name="bridgehead" text="&#8222;%t&#8221; szakasz;"/>
-      <l:template name="chapter" style="nonumber"  text="%t&#160;. fejezet"/>
-      <l:template name="equation" style="nonumber"  text="&#8222;%t&#8221;&#160;egyenlet"/>
-      <l:template name="example" style="nonumber"  text="&#8222;%t&#8221;&#160;p&#233;lda"/>
-      <l:template name="figure" style="nonumber"  text="&#8222;%t&#8221;&#160;&#225;bra"/>
-      <l:template name="part" style="nonumber"  text="&#8222;%t&#8221;&#160;r&#233;sz"/>
-      <l:template name="procedure" text=" %n. eljárás - %t"/>
-      <l:template name="procedure" style="nonumber"  text="&#8222;%t&#8221;&#160;elj&#225;r&#225;s"/>
-      <l:template name="productionset" style="nonumber"  text="&#8222;%t&#8221;&#160;produkci&#243;"/>
-      <l:template name="qandadiv" style="nonumber"  text="K&#233;rd&#233;s &#233;s v&#225;lasz &#160;&#8222;%t&#8221;"/>
-      <l:template name="refsect1" style="nonumber"  text="&#8222;%t&#8221; nev&#369; fejezet"/>
-      <l:template name="refsect2" style="nonumber"  text="&#8222;%t&#8221; nev&#369; fejezet"/>
-      <l:template name="refsect3" style="nonumber"  text="&#8222;%t&#8221; nev&#369; fejezet"/>
-      <l:template name="refsection" style="nonumber"  text="&#8222;%t&#8221; nev&#369; fejezet"/>
+      <l:template name="appendix" style="nonumber"  text="„%t” mell&#233;klet"/>
+      <l:template name="bridgehead" text="„%t” szakasz;"/>
+      <l:template name="chapter" style="nonumber"  text="„%t” fejezet"/>
+      <l:template name="equation" style="nonumber"  text="„%t” egyenlet"/>
+      <l:template name="example" style="nonumber"  text="„%t” p&#233;lda"/>
+      <l:template name="figure" style="nonumber"  text="„%t” &#225;bra"/>
+      <l:template name="part" style="nonumber"  text="„%t” r&#233;sz"/>
+      <l:template name="procedure" text=" %n. eljárás - „%t”"/>
+      <l:template name="procedure" style="nonumber"  text="„%t” elj&#225;r&#225;s"/>
+      <l:template name="productionset" style="nonumber"  text="„%t” produkci&#243;"/>
+      <l:template name="qandadiv" style="nonumber"  text="K&#233;rd&#233;s &#233;s v&#225;lasz „%t”"/>
+      <l:template name="refsect1" style="nonumber"  text="„%t” nev&#369; fejezet"/>
+      <l:template name="refsect2" style="nonumber"  text="„%t” nev&#369; fejezet"/>
+      <l:template name="refsect3" style="nonumber"  text="„%t” nev&#369; fejezet"/>
+      <l:template name="refsection" style="nonumber"  text="„%t” nev&#369; fejezet"/>
       <l:template name="sect1" text="%n. - %t"/>
-      <l:template name="sect1" style="nonumber" text="&#8222;%t&#8221;&#160;fejezet"/>
+      <l:template name="sect1" style="nonumber" text="„%t” fejezet"/>
       <l:template name="sect2" text="%n. - %t"/>
-      <l:template name="sect2" style="nonumber"  text="&#8222;%t&#8221;&#160;fejezet"/>
+      <l:template name="sect2" style="nonumber"  text="„%t” fejezet"/>
       <l:template name="sect3" text="%n. - %t"/>
-      <l:template name="sect3" style="nonumber"  text="&#8222;%t&#8221;&#160;fejezet"/>
+      <l:template name="sect3" style="nonumber"  text="„%t” fejezet"/>
       <l:template name="sect4" text="%n. - %t"/>
-      <l:template name="sect4" style="nonumber"  text="&#8222;%t&#8221;&#160;fejezet"/>
+      <l:template name="sect4" style="nonumber"  text="„%t” fejezet"/>
       <l:template name="sect5" text="%n. - %t"/>
-      <l:template name="sect5" style="nonumber"  text="&#8222;%t&#8221;&#160;fejezet"/>
-      <l:template name="section" style="nonumber"  text="&#8222;%t&#8221;fejezet"/>
-      <l:template name="section" text="%n. - %t"/>
-      <l:template name="simplesect" style="nonumber"  text="&#8222;%t&#8221; nev&#369; fejezet"/>
-      <l:template name="table" text="%n. t&#225;bl&#225;zat - %t"/>
-      <l:template name="table" style="nonumber"  text="&#8222;%t&#8221;&#160;t&#225;bl&#225;zat"/>
+      <l:template name="sect5" style="nonumber"  text="„%t” fejezet"/>
+      <l:template name="section" style="nonumber"  text="„%t” fejezet"/>
+      <l:template name="section" text="%n. - „%t”"/>
+      <l:template name="simplesect" style="nonumber"  text="„%t” nev&#369; fejezet"/>
+      <l:template name="table" text="%n. t&#225;bl&#225;zat - „%t”"/>
+      <l:template name="table" style="nonumber"  text="„%t” t&#225;bl&#225;zat"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
@@ -180,12 +185,12 @@
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
-   
+
    <l:context name="parameters">
     <l:template name="dot.after.step" text="."/>
     <l:template name="dot.after.section" text="."/>
    </l:context>
-   
+
    <l:context name="datetime-full">
       <l:template name="January" text="janu&#xe1;r" lang="hu" />
       <l:template name="February" text="febru&#xe1;r" lang="hu" />
@@ -198,11 +203,11 @@
       <l:template name="September" text="szeptember" lang="hu" />
       <l:template name="October" text="okt&#xf3;ber" lang="hu" />
       <l:template name="November" text="november" lang="hu" />
-      <l:template name="December" text="december" lang="hu" />  
+      <l:template name="December" text="december" lang="hu" />
    </l:context>
-  
+
   <l:context name="datetime">
      <l:template name="titlepage.format" text="d/m/Y"/>
   </l:context>
-  
+
 </l:l10n>
