@@ -254,10 +254,6 @@ div {
       
       ## Identifies the unique ID value of the element
       attribute xml:id { xsd:ID }
-    db.version.attribute =
-      
-      ## Specifies the DocBook version of the element and its descendants
-      attribute version { text }
     db.xml.lang.attribute =
       
       ## Specifies the natural language of the element and its descendants
@@ -927,18 +923,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:procedure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -968,18 +966,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:step"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1010,18 +1010,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:stepalternatives"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1074,18 +1076,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:abstract"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1108,18 +1112,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:personblurb"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1138,18 +1144,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:blockquote"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1252,18 +1260,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:formalpara"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1417,18 +1427,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:simplelist"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1492,90 +1504,100 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:example"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:example)"
                 "example must not occur among the children or descendants of example"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:example"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:figure)"
                 "figure must not occur among the children or descendants of example"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:example"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:table)"
                 "table must not occur among the children or descendants of example"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:example"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:equation)"
                 "equation must not occur among the children or descendants of example"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:example"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1600,18 +1622,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:informalexample"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1650,18 +1674,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:screen"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1685,90 +1711,100 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:figure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:example)"
                 "example must not occur among the children or descendants of figure"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:figure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:figure)"
                 "figure must not occur among the children or descendants of figure"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:figure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:table)"
                 "table must not occur among the children or descendants of figure"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:figure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:equation)"
                 "equation must not occur among the children or descendants of figure"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:figure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1790,18 +1826,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:informalfigure"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1826,18 +1864,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:mediaobject"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1864,18 +1904,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:inlinemediaobject"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1922,18 +1964,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:imageobject"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -1958,18 +2002,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:textobject"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -2102,18 +2148,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:imagedata"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -2702,18 +2750,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:legalnotice"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -2921,18 +2971,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:revhistory"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3500,18 +3552,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:set"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3538,18 +3592,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:book"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3585,18 +3641,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:appendix"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3619,18 +3677,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:chapter"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3655,18 +3715,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:part"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3689,18 +3751,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:preface"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3728,18 +3792,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:partintro"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3808,18 +3874,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:article"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3855,36 +3923,40 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:annotation"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:annotation)"
                 "annotation must not occur among the children or descendants of annotation"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:annotation"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -3904,16 +3976,18 @@ div {
           s:rule [
             context = "*[@xlink:type='extended']"
             "\x{a}" ~
-            "              "
+            "               "
             s:assert [
               test = "not(parent::*[@xlink:type='extended'])"
               "An XLink extended type element may not occur as the direct child of an XLink extended type element."
             ]
             "\x{a}" ~
+            "\x{a}" ~
             "            "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "         "
         ]
       ]
       attribute xlink:type {
@@ -3932,16 +4006,18 @@ div {
           s:rule [
             context = "*[@xlink:type='locator']"
             "\x{a}" ~
-            "              "
+            "               "
             s:assert [
               test = "parent::*[@xlink:type='extended']"
               "An XLink locator type element must occur as the direct child of an XLink extended type element."
             ]
             "\x{a}" ~
+            "\x{a}" ~
             "            "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "         "
         ]
       ]
       attribute xlink:type {
@@ -3960,16 +4036,18 @@ div {
           s:rule [
             context = "*[@xlink:type='arc']"
             "\x{a}" ~
-            "              "
+            "               "
             s:assert [
               test = "parent::*[@xlink:type='extended']"
               "An XLink arc type element must occur as the direct child of an XLink extended type element."
             ]
             "\x{a}" ~
+            "\x{a}" ~
             "            "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "         "
         ]
       ]
       attribute xlink:type {
@@ -3988,16 +4066,18 @@ div {
           s:rule [
             context = "*[@xlink:type='resource']"
             "\x{a}" ~
-            "              "
+            "               "
             s:assert [
               test = "parent::*[@xlink:type='extended']"
               "An XLink resource type element must occur as the direct child of an XLink extended type element."
             ]
             "\x{a}" ~
+            "\x{a}" ~
             "            "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "         "
         ]
       ]
       attribute xlink:type {
@@ -4016,17 +4096,19 @@ div {
           s:rule [
             context = "*[@xlink:type='title']"
             "\x{a}" ~
-            "              "
+            "               "
             s:assert [
               test =
                 "parent::*[@xlink:type='extended'] or parent::*[@xlink:type='locator'] or parent::*[@xlink:type='arc']"
               "An XLink title type element must occur as the direct child of an XLink extended, locator, or arc type element."
             ]
             "\x{a}" ~
+            "\x{a}" ~
             "            "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "         "
         ]
       ]
       attribute xlink:type {
@@ -4138,18 +4220,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:sect1"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4176,18 +4260,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:sect2"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4214,18 +4300,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:sect3"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4252,18 +4340,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:sect4"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4289,18 +4379,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:sect5"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4335,18 +4427,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:reference"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4369,18 +4463,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refentry"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4520,18 +4616,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refsynopsisdiv"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4554,18 +4652,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refsection"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4588,18 +4688,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refsect1"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4623,18 +4725,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refsect2"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4663,18 +4767,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:refsect3"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4699,18 +4805,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:glosslist"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4777,19 +4885,21 @@ div {
           s:pattern [
             name = "Glosssary 'see' type constraint"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:glosssee[@otherterm]"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test =
                   "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
                 "@otherterm on glosssee must point to a glossentry."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4814,19 +4924,21 @@ div {
           s:pattern [
             name = "Glossary 'seealso' type constraint"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:glossseealso[@otherterm]"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test =
                   "local-name(//*[@xml:id=current()/@otherterm]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@otherterm]) = 'http://docbook.org/ns/docbook'"
                 "@otherterm on glossseealso must point to a glossentry."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4857,19 +4969,21 @@ div {
           s:pattern [
             name = "Glossary 'firstterm' type constraint"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:firstterm[@linkend]"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test =
                   "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                 "@linkend on firstterm must point to a glossentry."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4890,19 +5004,21 @@ div {
           s:pattern [
             name = "Glossary 'glossterm' type constraint"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:glossterm[@linkend]"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test =
                   "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                 "@linkend on glossterm must point to a glossentry."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4923,19 +5039,21 @@ div {
           s:pattern [
             name = "Glossary 'glossterm' type constraint"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:glossterm[@linkend]"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test =
                   "local-name(//*[@xml:id=current()/@linkend]) = 'glossentry' and namespace-uri(//*[@xml:id=current()/@linkend]) = 'http://docbook.org/ns/docbook'"
                 "@linkend on glossterm must point to a glossentry."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4953,18 +5071,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:glossary"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -4988,18 +5108,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:glossdiv"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5314,18 +5436,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:index"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5366,18 +5490,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:indexdiv"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5481,18 +5607,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:task"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5521,18 +5649,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:tasksummary"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5555,18 +5685,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:taskprerequisites"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -5591,18 +5723,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:taskrelated"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -6176,36 +6310,40 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:entry"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:table)"
                 "table must not occur among the children or descendants of entry"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:entry"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:informaltable)"
                 "informaltable must not occur among the children or descendants of entry"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -6289,72 +6427,80 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:table"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:example)"
                 "example must not occur among the children or descendants of table"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:table"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:figure)"
                 "figure must not occur among the children or descendants of table"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:table"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:equation)"
                 "equation must not occur among the children or descendants of table"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:table"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -6377,18 +6523,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:informaltable"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -6666,216 +6814,240 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:example)"
                 "example must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:figure)"
                 "figure must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:table)"
                 "table must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:equation)"
                 "equation must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:sidebar)"
                 "sidebar must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:task)"
                 "task must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of caption"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:caption"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -6996,18 +7168,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:msgset"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -7138,18 +7312,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:msgexplan"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -7182,18 +7358,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:qandaset"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -7219,18 +7397,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:qandadiv"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -7340,18 +7520,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:imagedata"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -7397,18 +7579,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:imagedata"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8482,18 +8666,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:programlisting"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8512,108 +8698,120 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of caution"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of caution"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of caution"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of caution"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of caution"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:caution"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8631,108 +8829,120 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of important"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of important"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of important"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of important"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of important"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:important"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8750,108 +8960,120 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of note"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of note"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of note"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of note"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of note"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:note"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8867,108 +9089,120 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of tip"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of tip"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of tip"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of tip"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of tip"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:tip"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -8984,108 +9218,120 @@ div {
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:caution)"
                 "caution must not occur among the children or descendants of warning"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:important)"
                 "important must not occur among the children or descendants of warning"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:note)"
                 "note must not occur among the children or descendants of warning"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:tip)"
                 "tip must not occur among the children or descendants of warning"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Element exclusion"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "not(.//db:warning)"
                 "warning must not occur among the children or descendants of warning"
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:warning"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -9270,18 +9516,20 @@ div {
           s:pattern [
             name = "Root must have version"
             "\x{a}" ~
-            "              "
+            "               "
             s:rule [
               context = "/db:topic"
               "\x{a}" ~
-              "                "
+              "                  "
               s:assert [
                 test = "@version"
                 "If this element is the root element, it must have a version attribute."
               ]
               "\x{a}" ~
-              "              "
+              "\x{a}" ~
+              "               "
             ]
+            "\x{a}" ~
             "\x{a}" ~
             "            "
           ]
@@ -10026,6 +10274,9 @@ div {
   db.warning.attlist = db.warning.role.attribute? & db.common.attributes
   # ========= Changed attributes
   db.link.attlist &= db.xlink.simple.link.attributes
+  db.version.attribute =
+    ## Specifies the DocBook version of the element and its descendants
+    attribute version { "5.1-subset SUSEDoc-0.9" | text }
   # ======== Changed content model
   
   # Admonitions
@@ -10067,20 +10318,22 @@ div {
         s:pattern [
           name = "Root must have version"
           "\x{a}" ~
-          "            "
+          "          "
           s:rule [
             context = "/db:para"
             "\x{a}" ~
-            "              "
+            "            "
             s:assert [
               test = "@version"
               "The root element must have a version attribute."
             ]
             "\x{a}" ~
-            "            "
+            "\x{a}" ~
+            "          "
           ]
           "\x{a}" ~
-          "          "
+          "\x{a}" ~
+          "        "
         ]
       ]
       element para {

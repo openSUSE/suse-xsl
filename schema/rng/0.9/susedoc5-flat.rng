@@ -385,11 +385,6 @@
       <data type="ID" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"/>
     </attribute>
   </define>
-  <define name="db.version.attribute">
-    <attribute name="version">
-      <a:documentation>Specifies the DocBook version of the element and its descendants</a:documentation>
-    </attribute>
-  </define>
   <define name="db.xml.lang.attribute">
     <attribute name="xml:lang">
       <a:documentation>Specifies the natural language of the element and its descendants</a:documentation>
@@ -15183,6 +15178,15 @@ where the nonterminal
     <!-- ========= Changed attributes -->
     <define name="db.link.attlist" combine="interleave">
       <ref name="db.xlink.simple.link.attributes"/>
+    </define>
+    <define name="db.version.attribute">
+      <attribute name="version">
+        <a:documentation>Specifies the DocBook version of the element and its descendants</a:documentation>
+        <choice>
+          <value datatypeLibrary="">5.1-subset SUSEDoc-0.9</value>
+          <text/>
+        </choice>
+      </attribute>
     </define>
     <!-- ======== Changed content model -->
     <!-- Admonitions -->

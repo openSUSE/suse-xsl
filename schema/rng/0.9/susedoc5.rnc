@@ -843,6 +843,10 @@ include "docbookxi.rnc"
   #========= Changed attributes
   db.link.attlist &= db.xlink.simple.link.attributes
 
+  db.version.attribute =
+    ## Specifies the DocBook version of the element and its descendants
+    attribute version { "5.1-subset SUSEDoc-0.9" | text }
+
   #======== Changed content model
 
   # Admonitions
