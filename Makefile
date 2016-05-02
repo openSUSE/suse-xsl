@@ -132,9 +132,9 @@ all: $(HTMLSTYLESHEETS) $(SUSE_DICT) generate_xslns
 #-----------------------------
 install: | $(INST_DIRECTORIES)
 	install -m644 $(SUSE_DICT) $(ASPELLDIR)
-	install -m644 schema/rng/0.9/*.rnc $(RNGDIR_09)
+	install -m644 schema/rng/0.9/*.rn{c,g} $(RNGDIR_09)
 	install -m644 schema/rng/1.0/*.{rnc,ent} $(RNGDIR_10)
-	install -m644 $(DEV_NOVDOC_DIR)/*.{rnc,rng} $(RNGDIR_10)
+	install -m644 $(DEV_NOVDOC_DIR)/*.rn{c,g} $(RNGDIR_10)
 	install -m644 schema/dtd/1.0/{*.dtd,*.ent,catalog.xml,CATALOG} $(DTDDIR_10)
 	install -m644 $(DEV_CATALOG_DIR)/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION) $(VAR_SGML_DIR)
 	ln -s /var/lib/sgml/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION) $(SGML_DIR)
