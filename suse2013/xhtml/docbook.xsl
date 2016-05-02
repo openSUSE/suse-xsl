@@ -32,7 +32,7 @@
 
   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl"/>
 
-  <xsl:include href="../version.xsl"/>
+  <xsl:include href="../VERSION.xsl"/>
 
   <xsl:include href="../common/dates-revisions.xsl"/>
   <xsl:include href="../common/labels.xsl"/>

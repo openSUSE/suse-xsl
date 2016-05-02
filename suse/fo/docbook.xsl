@@ -11,7 +11,7 @@
 
 <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 
-<xsl:include href="../version.xsl"/>
+<xsl:include href="../VERSION.xsl"/>
 <xsl:include href="attributesets.xsl"/>
 <xsl:include href="fonts.xsl"/>
 <xsl:include href="../common/copy-nodes.xsl"/>
