@@ -2,14 +2,65 @@ namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 namespace ctrl = "http://nwalsh.com/xmlns/schema-control/"
 default namespace db = "http://docbook.org/ns/docbook"
 namespace html = "http://www.w3.org/1999/xhtml"
-namespace local = ""
+namespace local = "http://www.w3.org/2001/XInclude/local-attributes"
+namespace locattr = "http://www.w3.org/2001/XInclude/local-attributes"
 namespace mml = "http://www.w3.org/1998/Math/MathML"
+namespace ns1 = ""
 namespace rng = "http://relaxng.org/ns/structure/1.0"
 namespace s = "http://purl.oclc.org/dsdl/schematron"
 namespace svg = "http://www.w3.org/2000/svg"
+namespace trans = "http://docbook.org/ns/transclusion"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
+#
+div {
+  div {
+    div {
+      db.trans.idfixup.attribute =
+        
+        ## Defines a value to be appended to all ID values on the element
+        attribute trans:fixup {
+          
+          ## The suffix property is set to an empty string.
+          "none"
+          | 
+            ## The suffix property is set to the concatenation of the inherited
+            ## suffix value and the value specified in the trans:suffix attribute.
+            "suffix"
+          | 
+            ## The suffix property is set to a unique value for each element.
+            "auto"
+        }
+      db.trans.suffix.attribute =
+        
+        ## This attribute defines the value of the suffix property used when trans:idfixup="suffix".
+        [ a:defaultValue = "" ] attribute trans:suffix { text }
+      db.trans.linkscope.attribute =
+        
+        ## Defines how to correct ID references
+        [ a:defaultValue = "near" ]
+        attribute trans:linkscope {
+          
+          ## No adjustment is made.
+          "user"
+          | 
+            ## Each ID reference is adjusted to point to the closest element that has a matching ID.
+            "near"
+          | 
+            ## Each ID reference is adjusted to point to the first element in document order that has a matching ID.
+            "global"
+          | 
+            ## The value of the suffix property is added to every ID reference as a suffix.
+            "local"
+        }
+      db.xi.trans.attlist =
+        db.trans.idfixup.attribute?
+        & db.trans.suffix.attribute?
+        & db.trans.linkscope.attribute?
+    }
+  }
+}
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
 div {
@@ -9543,17 +9594,6 @@ div {
         }
     }
     div {
-      db.any.other.attribute = attribute * - local:* { text }
-      db.xi.include.attlist =
-        attribute href {
-          xsd:anyURI { pattern = "[^#]+" }
-        }?,
-        [ a:defaultValue = "xml" ] attribute parse { "xml" | "text" }?,
-        attribute xpointer { text }?,
-        attribute encoding { text }?,
-        attribute accept { text }?,
-        attribute accept-language { text }?,
-        db.any.other.attribute*
       db.xi.include =
         
         ## An XInclude
@@ -10275,6 +10315,7 @@ div {
   # ========= Changed attributes
   db.link.attlist &= db.xlink.simple.link.attributes
   db.version.attribute =
+    
     ## Specifies the DocBook version of the element and its descendants
     attribute version { "5.1-subset SUSEDoc-0.9" | text }
   # ======== Changed content model
@@ -10419,4 +10460,20 @@ div {
         db.varlistentry+
       }
   }
+  # XIncludes
+  db.any.other.attribute =
+    attribute * - (local:* | trans:* | ns1:*) { text }
+  db.xi.include.attlist =
+    
+    ## reference to your included file
+    attribute href {
+      xsd:anyURI { pattern = "[^#]+" }
+    }?,
+    [ a:defaultValue = "xml" ] attribute parse { "xml" | "text" }?,
+    attribute xpointer { text }?,
+    attribute encoding { text }?,
+    attribute accept { text }?,
+    attribute accept-language { text }?,
+    db.any.other.attribute*,
+    db.xi.trans.attlist?
 }
