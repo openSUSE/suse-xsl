@@ -1,4 +1,56 @@
-<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://relaxng.org/ns/structure/1.0" ns="http://docbook.org/ns/docbook">
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:locattr="http://www.w3.org/2001/XInclude/local-attributes" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:trans="http://docbook.org/ns/transclusion" xmlns="http://relaxng.org/ns/structure/1.0" ns="http://docbook.org/ns/docbook">
+  <!---->
+  <div><div xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:db="http://docbook.org/ns/docbook" xmlns:local="http://www.w3.org/2001/XInclude/local-attributes" xmlns:trans="http://docbook.org/ns/transclusion" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://relaxng.org/ns/structure/1.0">
+  <div>
+    <define name="db.trans.idfixup.attribute">
+      <attribute name="trans:fixup">
+        <a:documentation>Defines a value to be appended to all ID values on the element</a:documentation>
+        <choice>
+          <value datatypeLibrary="">none</value>
+          <a:documentation>The suffix property is set to an empty string.</a:documentation>
+          <value datatypeLibrary="">suffix</value>
+          <a:documentation>The suffix property is set to the concatenation of the inherited
+suffix value and the value specified in the trans:suffix attribute.</a:documentation>
+          <value datatypeLibrary="">auto</value>
+          <a:documentation>The suffix property is set to a unique value for each element.</a:documentation>
+        </choice>
+      </attribute>
+    </define>
+    <define name="db.trans.suffix.attribute">
+      <attribute name="trans:suffix" a:defaultValue="">
+        <a:documentation>This attribute defines the value of the suffix property used when trans:idfixup="suffix".</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.trans.linkscope.attribute">
+      <attribute name="trans:linkscope" a:defaultValue="near">
+        <a:documentation>Defines how to correct ID references</a:documentation>
+        <choice>
+          <value datatypeLibrary="">user</value>
+          <a:documentation>No adjustment is made.</a:documentation>
+          <value datatypeLibrary="">near</value>
+          <a:documentation>Each ID reference is adjusted to point to the closest element that has a matching ID.</a:documentation>
+          <value datatypeLibrary="">global</value>
+          <a:documentation>Each ID reference is adjusted to point to the first element in document order that has a matching ID.</a:documentation>
+          <value datatypeLibrary="">local</value>
+          <a:documentation>The value of the suffix property is added to every ID reference as a suffix.</a:documentation>
+        </choice>
+      </attribute>
+    </define>
+    <define name="db.xi.trans.attlist">
+      <interleave>
+        <optional>
+          <ref name="db.trans.idfixup.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.trans.suffix.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.trans.linkscope.attribute"/>
+        </optional>
+      </interleave>
+    </define>
+  </div>
+</div></div>
   <!--
     Use a catalog entry to resolve this:
     include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
@@ -13303,47 +13355,6 @@ where the nonterminal
     </define>
   </div>
   <div>
-    <define name="db.any.other.attribute">
-      <attribute>
-        <anyName>
-          <except>
-            <nsName ns=""/>
-          </except>
-        </anyName>
-      </attribute>
-    </define>
-    <define name="db.xi.include.attlist">
-      <optional>
-        <attribute name="href">
-          <data type="anyURI" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-            <param name="pattern">[^#]+</param>
-          </data>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="parse" a:defaultValue="xml">
-          <choice>
-            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">xml</value>
-            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">text</value>
-          </choice>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="xpointer"/>
-      </optional>
-      <optional>
-        <attribute name="encoding"/>
-      </optional>
-      <optional>
-        <attribute name="accept"/>
-      </optional>
-      <optional>
-        <attribute name="accept-language"/>
-      </optional>
-      <zeroOrMore>
-        <ref name="db.any.other.attribute"/>
-      </zeroOrMore>
-    </define>
     <define name="db.xi.include">
       <element name="xi:include">
         <a:documentation>An XInclude</a:documentation>
@@ -15114,9 +15125,9 @@ where the nonterminal
           <attribute name="shortentry">
             <a:documentation>Indicates if the short or long title should be used in a List of Tables</a:documentation>
             <choice>
-              <value datatypeLibrary="">0</value>
+              <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">0</value>
               <a:documentation>Indicates that the full title should be used.</a:documentation>
-              <value datatypeLibrary="">1</value>
+              <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">1</value>
               <a:documentation>Indicates that the short short title (titleabbrev) should be used.</a:documentation>
             </choice>
           </attribute>
@@ -15125,9 +15136,9 @@ where the nonterminal
           <attribute name="tocentry">
             <a:documentation>Indicates if the table should appear in a List of Tables</a:documentation>
             <choice>
-              <value datatypeLibrary="">0</value>
+              <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">0</value>
               <a:documentation>Indicates that the table should not occur in the List of Tables.</a:documentation>
-              <value datatypeLibrary="">1</value>
+              <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">1</value>
               <a:documentation>Indicates that the table should appear in the List of Tables.</a:documentation>
             </choice>
           </attribute>
@@ -15183,7 +15194,7 @@ where the nonterminal
       <attribute name="version">
         <a:documentation>Specifies the DocBook version of the element and its descendants</a:documentation>
         <choice>
-          <value datatypeLibrary="">5.1-subset SUSEDoc-0.9</value>
+          <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">5.1-subset SUSEDoc-0.9</value>
           <text/>
         </choice>
       </attribute>
@@ -15363,5 +15374,53 @@ where the nonterminal
         </element>
       </define>
     </div>
+    <!-- XIncludes -->
+    <define name="db.any.other.attribute">
+      <attribute>
+        <anyName>
+          <except>
+            <nsName ns="http://www.w3.org/2001/XInclude/local-attributes"/>
+            <nsName ns="http://docbook.org/ns/transclusion"/>
+            <nsName ns=""/>
+          </except>
+        </anyName>
+      </attribute>
+    </define>
+    <define name="db.xi.include.attlist">
+      <optional>
+        <attribute name="href">
+          <a:documentation>reference to your included file</a:documentation>
+          <data type="anyURI" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+            <param name="pattern">[^#]+</param>
+          </data>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="parse" a:defaultValue="xml">
+          <choice>
+            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">xml</value>
+            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">text</value>
+          </choice>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="xpointer"/>
+      </optional>
+      <optional>
+        <attribute name="encoding"/>
+      </optional>
+      <optional>
+        <attribute name="accept"/>
+      </optional>
+      <optional>
+        <attribute name="accept-language"/>
+      </optional>
+      <zeroOrMore>
+        <ref name="db.any.other.attribute"/>
+      </zeroOrMore>
+      <optional>
+        <ref name="db.xi.trans.attlist"/>
+      </optional>
+    </define>
   </div>
 </grammar>

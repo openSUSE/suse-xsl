@@ -16,8 +16,17 @@ namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace svg = "http://www.w3.org/2000/svg"
 namespace s = "http://purl.oclc.org/dsdl/schematron"
 namespace xlink = "http://www.w3.org/1999/xlink"
+namespace local = ""
+
+# Namespace for DocBook Transclusions
+# See http://docbook.org/docs/transclusion/
+namespace locattr="http://www.w3.org/2001/XInclude/local-attributes"
+namespace trans="http://docbook.org/ns/transclusion"
 
 datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
+
+#
+include "transclusion.rnc"
 
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
@@ -821,7 +830,6 @@ include "docbookxi.rnc"
       }?
     & db.rowheader.attribute?
 
-
   db.task.attlist =
     db.task.role.attribute?
     & db.common.attributes
@@ -992,6 +1000,21 @@ include "docbookxi.rnc"
         db.varlistentry+
       }
   }
+
+  # XIncludes
+  db.any.other.attribute = attribute * - (locattr:* | trans:* | local:*) { text }
+  db.xi.include.attlist =
+    ## reference to your included file
+    attribute href {
+      xsd:anyURI { pattern = "[^#]+" }
+    }?,
+    [ a:defaultValue = "xml" ] attribute parse { "xml" | "text" }?,
+    attribute xpointer { text }?,
+    attribute encoding { text }?,
+    attribute accept { text }?,
+    attribute accept-language { text }?,
+    db.any.other.attribute*,
+    db.xi.trans.attlist?
 
 } # end of include
 
