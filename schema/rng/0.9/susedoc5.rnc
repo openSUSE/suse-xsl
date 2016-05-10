@@ -28,6 +28,41 @@ datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 #
 include "transclusion.rnc"
 
+# XInclude 1.1
+div
+{
+  db.xi.href.attribute =
+    ## reference to your included source (absence of this attribute
+    ## means the same than href=""
+    attribute href {
+      ""
+      |
+      xsd:anyURI {  pattern = "[^#]+" }
+    }
+  db.xi.xpointer.attribute =
+    ## XPointer expression
+    attribute xpointer { text }
+  db.xi.parse.attribute =
+    ## Indicates how to parse the included resource (as XML or as text)
+    [ a:defaultValue = "xml" ] attribute parse { "xml" | "text" }
+  db.xi.encoding.attribute =
+    ## Specifies encoding of the xincluded source for non-XML processing
+    attribute encoding { text }
+  db.xi.accept.attribute =
+    ## Aid in content negotiation. Place the value in the HTTP request as an Accept header
+    attribute accept { text }
+  db.xi.accept-language.attribute =
+    ## Aid in content negotiation. Place the value in the HTTP request as an Accept-Language header
+    attribute accept-language { text }
+  db.xi.set-xml-id.attribute =
+    ## set or remove attribute xml:id from root element in xincluded file
+    attribute set-xml-id { text }
+  db.xi.fragid.attribute =
+    ## Generalization of the xpointer attribute. Include only partial structure from source
+    attribute fragid { text }
+}
+
+
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
 include "docbookxi.rnc"
@@ -1001,19 +1036,23 @@ include "docbookxi.rnc"
       }
   }
 
-  # XIncludes
-  db.any.other.attribute = attribute * - (locattr:* | trans:* | local:*) { text }
+  # XIncludes 1.1
+  # see https://www.w3.org/TR/xinclude-11/
+  #
+  db.any.other.attribute = attribute *
+                           - (locattr:* | trans:* | local:* | xlink:* | xml:* )
+                           { text }
   db.xi.include.attlist =
-    ## reference to your included file
-    attribute href {
-      xsd:anyURI { pattern = "[^#]+" }
-    }?,
-    [ a:defaultValue = "xml" ] attribute parse { "xml" | "text" }?,
-    attribute xpointer { text }?,
-    attribute encoding { text }?,
-    attribute accept { text }?,
-    attribute accept-language { text }?,
-    db.any.other.attribute*,
+    db.xi.href.attribute? &
+    # (db.xi.href-empty.attribute | db.xi.href-uri.attribute)? &
+    db.xi.parse.attribute? &
+    db.xi.xpointer.attribute? &
+    db.xi.fragid.attribute? &
+    db.xi.encoding.attribute? &
+    db.xi.accept.attribute? &
+    db.xi.accept-language.attribute? &
+    db.xi.set-xml-id.attribute? &
+    db.any.other.attribute* &
     db.xi.trans.attlist?
 
 } # end of include
