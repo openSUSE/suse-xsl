@@ -51,6 +51,60 @@ suffix value and the value specified in the trans:suffix attribute.</a:documenta
     </define>
   </div>
 </div></div>
+  <!-- XInclude 1.1 -->
+  <div>
+    <define name="db.xi.href.attribute">
+      <attribute name="href">
+        <a:documentation>reference to your included source (absence of this attribute
+means the same than href=""</a:documentation>
+        <choice>
+          <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"/>
+          <data type="anyURI" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+            <param name="pattern">[^#]+</param>
+          </data>
+        </choice>
+      </attribute>
+    </define>
+    <define name="db.xi.xpointer.attribute">
+      <attribute name="xpointer">
+        <a:documentation>XPointer expression</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.xi.parse.attribute">
+      <attribute name="parse" a:defaultValue="xml">
+        <a:documentation>Indicates how to parse the included resource (as XML or as text)</a:documentation>
+        <choice>
+          <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">xml</value>
+          <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">text</value>
+        </choice>
+      </attribute>
+    </define>
+    <define name="db.xi.encoding.attribute">
+      <attribute name="encoding">
+        <a:documentation>Specifies encoding of the xincluded source for non-XML processing</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.xi.accept.attribute">
+      <attribute name="accept">
+        <a:documentation>Aid in content negotiation. Place the value in the HTTP request as an Accept header</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.xi.accept-language.attribute">
+      <attribute name="accept-language">
+        <a:documentation>Aid in content negotiation. Place the value in the HTTP request as an Accept-Language header</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.xi.set-xml-id.attribute">
+      <attribute name="set-xml-id">
+        <a:documentation>set or remove attribute xml:id from root element in xincluded file</a:documentation>
+      </attribute>
+    </define>
+    <define name="db.xi.fragid.attribute">
+      <attribute name="fragid">
+        <a:documentation>Generalization of the xpointer attribute. Include only partial structure from source</a:documentation>
+      </attribute>
+    </define>
+  </div>
   <!--
     Use a catalog entry to resolve this:
     include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
@@ -15374,7 +15428,11 @@ where the nonterminal
         </element>
       </define>
     </div>
-    <!-- XIncludes -->
+    <!--
+      XIncludes 1.1
+      see https://www.w3.org/TR/xinclude-11/
+      
+    -->
     <define name="db.any.other.attribute">
       <attribute>
         <anyName>
@@ -15382,45 +15440,46 @@ where the nonterminal
             <nsName ns="http://www.w3.org/2001/XInclude/local-attributes"/>
             <nsName ns="http://docbook.org/ns/transclusion"/>
             <nsName ns=""/>
+            <nsName ns="http://www.w3.org/1999/xlink"/>
+            <nsName ns="http://www.w3.org/XML/1998/namespace"/>
           </except>
         </anyName>
       </attribute>
     </define>
     <define name="db.xi.include.attlist">
-      <optional>
-        <attribute name="href">
-          <a:documentation>reference to your included file</a:documentation>
-          <data type="anyURI" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
-            <param name="pattern">[^#]+</param>
-          </data>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="parse" a:defaultValue="xml">
-          <choice>
-            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">xml</value>
-            <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">text</value>
-          </choice>
-        </attribute>
-      </optional>
-      <optional>
-        <attribute name="xpointer"/>
-      </optional>
-      <optional>
-        <attribute name="encoding"/>
-      </optional>
-      <optional>
-        <attribute name="accept"/>
-      </optional>
-      <optional>
-        <attribute name="accept-language"/>
-      </optional>
-      <zeroOrMore>
-        <ref name="db.any.other.attribute"/>
-      </zeroOrMore>
-      <optional>
-        <ref name="db.xi.trans.attlist"/>
-      </optional>
+      <interleave>
+        <optional>
+          <ref name="db.xi.href.attribute"/>
+        </optional>
+        <optional>
+          <!-- (db.xi.href-empty.attribute | db.xi.href-uri.attribute)? & -->
+          <ref name="db.xi.parse.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.xpointer.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.fragid.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.encoding.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.accept.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.accept-language.attribute"/>
+        </optional>
+        <optional>
+          <ref name="db.xi.set-xml-id.attribute"/>
+        </optional>
+        <zeroOrMore>
+          <ref name="db.any.other.attribute"/>
+        </zeroOrMore>
+        <optional>
+          <ref name="db.xi.trans.attlist"/>
+        </optional>
+      </interleave>
     </define>
   </div>
 </grammar>
