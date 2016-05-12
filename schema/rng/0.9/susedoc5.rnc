@@ -962,11 +962,13 @@ include "docbookxi.rnc"
   #}
 
   # We only want to support CALS tables
-  db.informaltable.choice = notAllowed | db.cals.informaltable
-  db.table.choice = notAllowed | db.cals.table
+  div {
+    db.informaltable.choice = notAllowed | db.cals.informaltable
+    db.table.choice = notAllowed | db.cals.table
 
-  db.html.table = notAllowed
-  db.html.informaltable = notAllowed
+    db.html.table = notAllowed
+    db.html.informaltable = notAllowed
+  }
 
   # para
   div {
