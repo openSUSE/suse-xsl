@@ -1,4 +1,7 @@
 <grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:locattr="http://www.w3.org/2001/XInclude/local-attributes" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:trans="http://docbook.org/ns/transclusion" xmlns="http://relaxng.org/ns/structure/1.0" ns="http://docbook.org/ns/docbook">
+  <define name="suse.schema.version">
+    <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">5.1-subset SUSEDoc-0.9.1</value>
+  </define>
   <!---->
   <div><div xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:db="http://docbook.org/ns/docbook" xmlns:local="http://www.w3.org/2001/XInclude/local-attributes" xmlns:trans="http://docbook.org/ns/transclusion" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://relaxng.org/ns/structure/1.0">
   <div>
@@ -104,6 +107,44 @@ means the same than href=""</a:documentation>
         <a:documentation>Generalization of the xpointer attribute. Include only partial structure from source</a:documentation>
       </attribute>
     </define>
+  </div>
+  <!-- ======== Our own patterns -->
+  <div>
+    <define name="db.step.blocks">
+      <choice>
+        <ref name="db.para.blocks"/>
+        <ref name="db.remark"/>
+        <ref name="db.indexterm"/>
+        <!-- TODO: Remove that (currently we have too much of that) -->
+        <ref name="db.example"/>
+        <ref name="db.figure"/>
+        <ref name="db.informalexample"/>
+        <ref name="db.informalfigure"/>
+        <ref name="db.admonition.blocks"/>
+        <ref name="db.graphic.blocks"/>
+        <ref name="db.verbatim.blocks"/>
+        <ref name="db.extension.blocks"/>
+        <ref name="db.itemizedlist"/>
+        <ref name="db.orderedlist"/>
+        <ref name="db.simplelist"/>
+        <ref name="db.variablelist"/>
+        <ref name="db.calloutlist"/>
+        <ref name="db.calloutlist"/>
+        <ref name="db.annotation"/>
+        <ref name="db.xi.include"/>
+      </choice>
+    </define>
+    <!--
+      no db.publishing.blocks, db.technical.blocks
+      | db.formal.blocks - db.table - db.equation
+      | db.informal.blocks - db.informaltable - db.informalequation
+      | db.procedure
+      | db.segmentedlist
+      | db.glosslist
+      | db.bibliolist
+      | db.qandaset
+      - - - - 
+    -->
   </div>
   <!--
     Use a catalog entry to resolve this:
@@ -1163,25 +1204,6 @@ means the same than href=""</a:documentation>
   <define name="db.extension.inlines">
     <notAllowed/>
   </define>
-  <define name="db.nopara.blocks">
-    <choice>
-      <choice>
-        <ref name="db.list.blocks"/>
-        <ref name="db.formal.blocks"/>
-        <ref name="db.informal.blocks"/>
-        <ref name="db.publishing.blocks"/>
-        <ref name="db.graphic.blocks"/>
-        <ref name="db.technical.blocks"/>
-        <ref name="db.verbatim.blocks"/>
-        <ref name="db.bridgehead"/>
-        <ref name="db.remark"/>
-        <ref name="db.revhistory"/>
-      </choice>
-      <ref name="db.indexterm"/>
-      <ref name="db.synopsis.blocks"/>
-      <ref name="db.admonition.blocks"/>
-    </choice>
-  </define>
   <define name="db.para.blocks">
     <choice>
       <ref name="db.anchor"/>
@@ -1709,52 +1731,7 @@ means the same than href=""</a:documentation>
       This content model is blocks*, step|stepalternatives, blocks* but
       expressed this way it avoids UPA issues in XSD and DTD versions
     -->
-    <define name="db.step">
-      <element name="step">
-        <a:documentation>A unit of action in a procedure</a:documentation>
-        <s:pattern name="Root must have version">
-               <s:rule context="/db:step">
-                  <s:assert test="@version">If this element is the root element, it must have a version attribute.</s:assert>
-
-               </s:rule>
-
-            </s:pattern>
-        <ref name="db.step.attlist"/>
-        <ref name="db.step.info"/>
-        <choice>
-          <group>
-            <oneOrMore>
-              <ref name="db.all.blocks"/>
-            </oneOrMore>
-            <optional>
-              <choice>
-                <ref name="db.substeps"/>
-                <ref name="db.stepalternatives"/>
-              </choice>
-              <zeroOrMore>
-                <ref name="db.all.blocks"/>
-              </zeroOrMore>
-            </optional>
-            <optional>
-              <ref name="db.result"/>
-            </optional>
-          </group>
-          <group>
-            <choice>
-              <ref name="db.substeps"/>
-              <ref name="db.stepalternatives"/>
-            </choice>
-            <zeroOrMore>
-              <ref name="db.all.blocks"/>
-            </zeroOrMore>
-            <optional>
-              <ref name="db.result"/>
-            </optional>
-          </group>
-        </choice>
-      </element>
-    </define>
-  </div>
+    </div>
   <div>
     <define name="db.stepalternatives.role.attribute">
       <attribute name="role"/>
@@ -1927,27 +1904,7 @@ means the same than href=""</a:documentation>
     <define name="db.blockquote.info">
       <ref name="db._info.title.only"/>
     </define>
-    <define name="db.blockquote">
-      <element name="blockquote">
-        <a:documentation>A quotation set off from the main text</a:documentation>
-        <s:pattern name="Root must have version">
-               <s:rule context="/db:blockquote">
-                  <s:assert test="@version">If this element is the root element, it must have a version attribute.</s:assert>
-
-               </s:rule>
-
-            </s:pattern>
-        <ref name="db.blockquote.attlist"/>
-        <ref name="db.blockquote.info"/>
-        <optional>
-          <ref name="db.attribution"/>
-        </optional>
-        <oneOrMore>
-          <ref name="db.all.blocks"/>
-        </oneOrMore>
-      </element>
-    </define>
-  </div>
+    </div>
   <div>
     <define name="db.attribution.role.attribute">
       <attribute name="role"/>
@@ -2010,16 +1967,7 @@ means the same than href=""</a:documentation>
     <define name="db.bridgehead.role.attribute">
       <attribute name="role"/>
     </define>
-    <define name="db.bridgehead">
-      <element name="bridgehead">
-        <a:documentation>A free-floating heading</a:documentation>
-        <ref name="db.bridgehead.attlist"/>
-        <zeroOrMore>
-          <ref name="db.all.inlines"/>
-        </zeroOrMore>
-      </element>
-    </define>
-  </div>
+    </div>
   <div>
     <define name="db.remark.role.attribute">
       <attribute name="role"/>
@@ -10464,29 +10412,7 @@ where the nonterminal
     <define name="db.msgset.info">
       <ref name="db._info.title.only"/>
     </define>
-    <define name="db.msgset">
-      <element name="msgset">
-        <a:documentation>A detailed set of messages, usually error messages</a:documentation>
-        <s:pattern name="Root must have version">
-               <s:rule context="/db:msgset">
-                  <s:assert test="@version">If this element is the root element, it must have a version attribute.</s:assert>
-
-               </s:rule>
-
-            </s:pattern>
-        <ref name="db.msgset.attlist"/>
-        <ref name="db.msgset.info"/>
-        <choice>
-          <oneOrMore>
-            <ref name="db.msgentry"/>
-          </oneOrMore>
-          <oneOrMore>
-            <ref name="db.simplemsgentry"/>
-          </oneOrMore>
-        </choice>
-      </element>
-    </define>
-  </div>
+    </div>
   <div>
     <define name="db.msgentry.role.attribute">
       <attribute name="role"/>
@@ -13552,10 +13478,14 @@ where the nonterminal
       <define name="db.bibliosource">
         <notAllowed/>
       </define>
+      <define name="db.blockquote">
+        <notAllowed/>
+      </define>
+      <!-- db.book = notAllowed -->
+      <define name="db.bridgehead">
+        <notAllowed/>
+      </define>
       <!--
-        db.blockquote = notAllowed
-        db.book = notAllowed
-        db.bridgehead = notAllowed
         db.callout = notAllowed
         db.calloutlist = notAllowed
       -->
@@ -13906,7 +13836,9 @@ where the nonterminal
       <define name="db.msgrel">
         <notAllowed/>
       </define>
-      <!-- db.msgset = notAllowed -->
+      <define name="db.msgset">
+        <notAllowed/>
+      </define>
       <define name="db.msgsub">
         <notAllowed/>
       </define>
@@ -14236,6 +14168,26 @@ where the nonterminal
         db.year = notAllowed
       -->
     </div>
+    <!-- ======== General Patterns -->
+    <define name="db.nopara.blocks">
+      <choice>
+        <ref name="db.list.blocks"/>
+        <ref name="db.formal.blocks"/>
+        <ref name="db.informal.blocks"/>
+        <ref name="db.publishing.blocks"/>
+        <ref name="db.graphic.blocks"/>
+        <ref name="db.technical.blocks"/>
+        <ref name="db.verbatim.blocks"/>
+        <ref name="db.remark"/>
+        <ref name="db.indexterm"/>
+        <ref name="db.synopsis.blocks"/>
+        <ref name="db.admonition.blocks"/>
+      </choice>
+    </define>
+    <!--
+      | db.bridgehead
+      | db.revhistory
+    -->
     <!-- ======== Removed Attribute -->
     <define name="db.rdfalite.attributes">
       <empty/>
@@ -15248,12 +15200,12 @@ where the nonterminal
       <attribute name="version">
         <a:documentation>Specifies the DocBook version of the element and its descendants</a:documentation>
         <choice>
-          <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">5.1-subset SUSEDoc-0.9</value>
+          <ref name="suse.schema.version"/>
           <text/>
         </choice>
       </attribute>
     </define>
-    <!-- ======== Changed content model -->
+    <!-- ======== Changed Content Model -->
     <!-- Admonitions -->
     <div>
       <define name="db.admonition.blocks">
@@ -15277,24 +15229,26 @@ where the nonterminal
       }
     -->
     <!-- We only want to support CALS tables -->
-    <define name="db.informaltable.choice">
-      <choice>
+    <div>
+      <define name="db.informaltable.choice">
+        <choice>
+          <notAllowed/>
+          <ref name="db.cals.informaltable"/>
+        </choice>
+      </define>
+      <define name="db.table.choice">
+        <choice>
+          <notAllowed/>
+          <ref name="db.cals.table"/>
+        </choice>
+      </define>
+      <define name="db.html.table">
         <notAllowed/>
-        <ref name="db.cals.informaltable"/>
-      </choice>
-    </define>
-    <define name="db.table.choice">
-      <choice>
+      </define>
+      <define name="db.html.informaltable">
         <notAllowed/>
-        <ref name="db.cals.table"/>
-      </choice>
-    </define>
-    <define name="db.html.table">
-      <notAllowed/>
-    </define>
-    <define name="db.html.informaltable">
-      <notAllowed/>
-    </define>
+      </define>
+    </div>
     <!-- para -->
     <div>
       <!-- Disallow xml:id in paras -->
@@ -15374,6 +15328,55 @@ where the nonterminal
           <zeroOrMore>
             <ref name="db.all.blocks"/>
           </zeroOrMore>
+        </element>
+      </define>
+    </div>
+    <!-- step -->
+    <div>
+      <!-- Replaced db.all.blocks -> db.step.blocks -->
+      <define name="db.step">
+        <element name="step">
+          <a:documentation>A unit of action in a procedure</a:documentation>
+          <s:pattern name="Root must have version">
+               <s:rule context="/db:step">
+                  <s:assert test="@version">If this element is the root element, it must have a version attribute.</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+          <ref name="db.step.attlist"/>
+          <ref name="db.step.info"/>
+          <choice>
+            <group>
+              <oneOrMore>
+                <ref name="db.step.blocks"/>
+              </oneOrMore>
+              <optional>
+                <choice>
+                  <ref name="db.substeps"/>
+                  <ref name="db.stepalternatives"/>
+                </choice>
+                <zeroOrMore>
+                  <ref name="db.step.blocks"/>
+                </zeroOrMore>
+              </optional>
+              <optional>
+                <ref name="db.result"/>
+              </optional>
+            </group>
+            <group>
+              <choice>
+                <ref name="db.substeps"/>
+                <ref name="db.stepalternatives"/>
+              </choice>
+              <zeroOrMore>
+                <ref name="db.step.blocks"/>
+              </zeroOrMore>
+              <optional>
+                <ref name="db.result"/>
+              </optional>
+            </group>
+          </choice>
         </element>
       </define>
     </div>
