@@ -116,9 +116,9 @@ include "docbookxi.rnc"
   db.bibliorelation = notAllowed
   db.biblioset = notAllowed
   db.bibliosource = notAllowed
-  # db.blockquote = notAllowed
+  db.blockquote = notAllowed
   # db.book = notAllowed
-  # db.bridgehead = notAllowed
+  db.bridgehead = notAllowed
   # db.callout = notAllowed
   # db.calloutlist = notAllowed
   db.caption = notAllowed
@@ -266,7 +266,7 @@ include "docbookxi.rnc"
   db.msgmain = notAllowed
   db.msgorig = notAllowed
   db.msgrel = notAllowed
-  # db.msgset = notAllowed
+  db.msgset = notAllowed
   db.msgsub = notAllowed
   # db.msgtext = notAllowed
   db.nonterminal = notAllowed
