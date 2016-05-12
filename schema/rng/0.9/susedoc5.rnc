@@ -64,6 +64,39 @@ div
     attribute fragid { text }
 }
 
+#======== Our own patterns
+div
+{
+db.step.blocks =
+   db.para.blocks
+   | db.remark
+   | db.indexterm # TODO: Remove that (currently we have too much of that)
+   | db.example
+   | db.figure
+   | db.informalexample
+   | db.informalfigure
+   | db.admonition.blocks
+   | db.graphic.blocks
+   | db.verbatim.blocks
+   | db.extension.blocks
+   | db.itemizedlist
+   | db.orderedlist
+   | db.simplelist
+   | db.variablelist
+   | db.calloutlist
+   | db.calloutlist
+   | db.annotation
+   | db.xi.include
+   # no db.publishing.blocks, db.technical.blocks
+   #| db.formal.blocks - db.table - db.equation
+   #| db.informal.blocks - db.informaltable - db.informalequation
+   #| db.procedure
+   #| db.segmentedlist
+   #| db.glosslist
+   #| db.bibliolist
+   #| db.qandaset
+   # ----
+}
 
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
@@ -1010,6 +1043,43 @@ include "docbookxi.rnc"
         db.para,
         db.all.blocks*
       }
+  }
+
+  # step
+  div {
+    # Replaced db.all.blocks -> db.step.blocks
+    db.step =
+    ## A unit of action in a procedure
+    [
+      s:pattern [
+        name = "Root must have version"
+        "\x{a}" ~
+        "               "
+        s:rule [
+          context = "/db:step"
+          "\x{a}" ~
+          "                  "
+          s:assert [
+            test = "@version"
+            "If this element is the root element, it must have a version attribute."
+          ]
+          "\x{a}" ~
+          "               "
+        ]
+        "\x{a}" ~
+        "            "
+      ]
+    ]
+    element step {
+      db.step.attlist,
+      db.step.info,
+      ((db.step.blocks+,
+        ((db.substeps | db.stepalternatives), db.step.blocks*)?,
+        db.result?)
+       | ((db.substeps | db.stepalternatives),
+          db.step.blocks*,
+          db.result?))
+    }
   }
 
   # lists: itemizedlist, orderedlist, variablelist
