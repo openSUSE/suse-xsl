@@ -13,7 +13,7 @@ namespace trans = "http://docbook.org/ns/transclusion"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-suse.schema.version = "5.1-subset SUSEDoc-0.9.1"
+suse.schema.version = "5.1-subset SUSEDoc-0.9.2"
 #
 div {
   div {
@@ -1287,6 +1287,272 @@ div {
         & db.common.attributes
         & db.common.linking.attributes
         & db.footnote.label.attribute?
+      db.footnote =
+        
+        ## A footnote
+        [
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:footnote)"
+                "footnote must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:example)"
+                "example must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:figure)"
+                "figure must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:table)"
+                "table must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:equation)"
+                "equation must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:sidebar)"
+                "sidebar must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:task)"
+                "task must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:epigraph)"
+                "epigraph must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:caution)"
+                "caution must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:important)"
+                "important must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:note)"
+                "note must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:tip)"
+                "tip must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+          s:pattern [
+            name = "Element exclusion"
+            "\x{a}" ~
+            "               "
+            s:rule [
+              context = "db:footnote"
+              "\x{a}" ~
+              "                  "
+              s:assert [
+                test = "not(.//db:warning)"
+                "warning must not occur among the children or descendants of footnote"
+              ]
+              "\x{a}" ~
+              "\x{a}" ~
+              "               "
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "            "
+          ]
+        ]
+        element footnote { db.footnote.attlist, db.all.blocks+ }
     }
     div {
       db.formalpara.role.attribute = attribute role { text }
@@ -8700,7 +8966,6 @@ div {
           db.programlisting.attlist, db.verbatim.contentmodel
         }
     }
-    db.admonition.contentmodel = db._info.title.only, db.all.blocks+
     div {
       db.caution.role.attribute = attribute role { text }
       db.caution =
@@ -9682,7 +9947,7 @@ div {
     # db.filename = notAllowed
     # db.firstname = notAllowed
     db.firstterm = notAllowed
-    db.footnote = notAllowed
+    # db.footnote = notAllowed # For Meike ;)
     db.footnoteref = notAllowed
     db.foreignphrase = notAllowed
     # db.formalpara = notAllowed
@@ -9940,7 +10205,15 @@ div {
     | db.admonition.blocks
   # | db.bridgehead
   # | db.revhistory
-  
+  db.admonition.contentmodel =
+    db._info.title.only,
+    (db.para
+     | db.simplelist
+     | db.itemizedlist
+     | db.variablelist
+     | db.orderedlist
+     | db.verbatim.blocks
+     | db.remark)
   # ======== Removed Attribute
   db.rdfalite.attributes = empty
   db.xlink.attributes = empty

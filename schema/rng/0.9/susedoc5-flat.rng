@@ -1,6 +1,6 @@
 <grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:svg="http://www.w3.org/2000/svg" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:locattr="http://www.w3.org/2001/XInclude/local-attributes" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:trans="http://docbook.org/ns/transclusion" xmlns="http://relaxng.org/ns/structure/1.0" ns="http://docbook.org/ns/docbook">
   <define name="suse.schema.version">
-    <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">5.1-subset SUSEDoc-0.9.1</value>
+    <value datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">5.1-subset SUSEDoc-0.9.2</value>
   </define>
   <!---->
   <div><div xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:s="http://purl.oclc.org/dsdl/schematron" xmlns:ctrl="http://nwalsh.com/xmlns/schema-control/" xmlns:db="http://docbook.org/ns/docbook" xmlns:local="http://www.w3.org/2001/XInclude/local-attributes" xmlns:trans="http://docbook.org/ns/transclusion" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://relaxng.org/ns/structure/1.0">
@@ -2021,7 +2021,107 @@ means the same than href=""</a:documentation>
         </optional>
       </interleave>
     </define>
-    </div>
+    <define name="db.footnote">
+      <element name="footnote">
+        <a:documentation>A footnote</a:documentation>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:footnote)">footnote must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:example)">example must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:figure)">figure must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:table)">table must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:equation)">equation must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:sidebar)">sidebar must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:task)">task must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:epigraph)">epigraph must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:caution)">caution must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:important)">important must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:note)">note must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:tip)">tip must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <s:pattern name="Element exclusion">
+               <s:rule context="db:footnote">
+                  <s:assert test="not(.//db:warning)">warning must not occur among the children or descendants of footnote</s:assert>
+
+               </s:rule>
+
+            </s:pattern>
+        <ref name="db.footnote.attlist"/>
+        <oneOrMore>
+          <ref name="db.all.blocks"/>
+        </oneOrMore>
+      </element>
+    </define>
+  </div>
   <div>
     <define name="db.formalpara.role.attribute">
       <attribute name="role"/>
@@ -12791,12 +12891,6 @@ where the nonterminal
       </element>
     </define>
   </div>
-  <define name="db.admonition.contentmodel">
-    <ref name="db._info.title.only"/>
-    <oneOrMore>
-      <ref name="db.all.blocks"/>
-    </oneOrMore>
-  </define>
   <div>
     <define name="db.caution.role.attribute">
       <attribute name="role"/>
@@ -13640,9 +13734,7 @@ where the nonterminal
       <define name="db.firstterm">
         <notAllowed/>
       </define>
-      <define name="db.footnote">
-        <notAllowed/>
-      </define>
+      <!-- db.footnote = notAllowed # For Meike ;) -->
       <define name="db.footnoteref">
         <notAllowed/>
       </define>
@@ -14188,6 +14280,18 @@ where the nonterminal
       | db.bridgehead
       | db.revhistory
     -->
+    <define name="db.admonition.contentmodel">
+      <ref name="db._info.title.only"/>
+      <choice>
+        <ref name="db.para"/>
+        <ref name="db.simplelist"/>
+        <ref name="db.itemizedlist"/>
+        <ref name="db.variablelist"/>
+        <ref name="db.orderedlist"/>
+        <ref name="db.verbatim.blocks"/>
+        <ref name="db.remark"/>
+      </choice>
+    </define>
     <!-- ======== Removed Attribute -->
     <define name="db.rdfalite.attributes">
       <empty/>
