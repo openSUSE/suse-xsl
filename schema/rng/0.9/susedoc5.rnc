@@ -25,6 +25,8 @@ namespace trans="http://docbook.org/ns/transclusion"
 
 datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 
+suse.schema.version = "5.1-subset SUSEDoc-0.9.1"
+
 #
 include "transclusion.rnc"
 
@@ -888,9 +890,25 @@ include "docbookxi.rnc"
 
   db.version.attribute =
     ## Specifies the DocBook version of the element and its descendants
-    attribute version { "5.1-subset SUSEDoc-0.9" | text }
+    attribute version { suse.schema.version | text }
 
   #======== Changed content model
+
+  db.nopara.blocks =
+  (db.list.blocks
+   | db.formal.blocks
+   | db.informal.blocks
+   | db.publishing.blocks
+   | db.graphic.blocks
+   | db.technical.blocks
+   | db.verbatim.blocks
+   # | db.bridgehead
+   | db.remark
+   # | db.revhistory
+   )
+  # | db.indexterm
+  | db.synopsis.blocks
+  | db.admonition.blocks 
 
   # Admonitions
   div {
