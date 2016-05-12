@@ -13,6 +13,7 @@ namespace trans = "http://docbook.org/ns/transclusion"
 namespace xi = "http://www.w3.org/2001/XInclude"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
+suse.schema.version = "5.1-subset SUSEDoc-0.9.1"
 #
 div {
   div {
@@ -99,6 +100,40 @@ div {
     
     ## Generalization of the xpointer attribute. Include only partial structure from source
     attribute fragid { text }
+}
+# ======== Our own patterns
+div {
+  db.step.blocks =
+    db.para.blocks
+    | db.remark
+    | db.indexterm
+    | # TODO: Remove that (currently we have too much of that)
+      db.example
+    | db.figure
+    | db.informalexample
+    | db.informalfigure
+    | db.admonition.blocks
+    | db.graphic.blocks
+    | db.verbatim.blocks
+    | db.extension.blocks
+    | db.itemizedlist
+    | db.orderedlist
+    | db.simplelist
+    | db.variablelist
+    | db.calloutlist
+    | db.calloutlist
+    | db.annotation
+    | db.xi.include
+  # no db.publishing.blocks, db.technical.blocks
+  # | db.formal.blocks - db.table - db.equation
+  # | db.informal.blocks - db.informaltable - db.informalequation
+  # | db.procedure
+  # | db.segmentedlist
+  # | db.glosslist
+  # | db.bibliolist
+  # | db.qandaset
+  # - - - - 
+  
 }
 # Use a catalog entry to resolve this:
 # include "http://docbook.org/xml/5.1CR3/rng/docbook.rnc"
@@ -753,20 +788,6 @@ div {
     db.link.inlines =
       (db.xref | db.link | db.olink | db.anchor) | db.biblioref
     db.extension.inlines = notAllowed
-    db.nopara.blocks =
-      (db.list.blocks
-       | db.formal.blocks
-       | db.informal.blocks
-       | db.publishing.blocks
-       | db.graphic.blocks
-       | db.technical.blocks
-       | db.verbatim.blocks
-       | db.bridgehead
-       | db.remark
-       | db.revhistory)
-      | db.indexterm
-      | db.synopsis.blocks
-      | db.admonition.blocks
     db.para.blocks = db.anchor | db.para | db.formalpara | db.simpara
     db.all.blocks =
       (db.nopara.blocks | db.para.blocks | db.extension.blocks)
@@ -1049,41 +1070,7 @@ div {
       db.step.info = db._info.title.only
       # This content model is blocks*, step|stepalternatives, blocks* but
       # expressed this way it avoids UPA issues in XSD and DTD versions
-      db.step =
-        
-        ## A unit of action in a procedure
-        [
-          s:pattern [
-            name = "Root must have version"
-            "\x{a}" ~
-            "               "
-            s:rule [
-              context = "/db:step"
-              "\x{a}" ~
-              "                  "
-              s:assert [
-                test = "@version"
-                "If this element is the root element, it must have a version attribute."
-              ]
-              "\x{a}" ~
-              "\x{a}" ~
-              "               "
-            ]
-            "\x{a}" ~
-            "\x{a}" ~
-            "            "
-          ]
-        ]
-        element step {
-          db.step.attlist,
-          db.step.info,
-          ((db.all.blocks+,
-            ((db.substeps | db.stepalternatives), db.all.blocks*)?,
-            db.result?)
-           | ((db.substeps | db.stepalternatives),
-              db.all.blocks*,
-              db.result?))
-        }
+      
     }
     div {
       db.stepalternatives.role.attribute = attribute role { text }
@@ -1227,37 +1214,6 @@ div {
     div {
       db.blockquote.role.attribute = attribute role { text }
       db.blockquote.info = db._info.title.only
-      db.blockquote =
-        
-        ## A quotation set off from the main text
-        [
-          s:pattern [
-            name = "Root must have version"
-            "\x{a}" ~
-            "               "
-            s:rule [
-              context = "/db:blockquote"
-              "\x{a}" ~
-              "                  "
-              s:assert [
-                test = "@version"
-                "If this element is the root element, it must have a version attribute."
-              ]
-              "\x{a}" ~
-              "\x{a}" ~
-              "               "
-            ]
-            "\x{a}" ~
-            "\x{a}" ~
-            "            "
-          ]
-        ]
-        element blockquote {
-          db.blockquote.attlist,
-          db.blockquote.info,
-          db.attribution?,
-          db.all.blocks+
-        }
     }
     div {
       db.attribution.role.attribute = attribute role { text }
@@ -1304,10 +1260,6 @@ div {
         db.bridgehead.renderas-enum.attribute
         | db.bridgehead.renderas-other.attributes
       db.bridgehead.role.attribute = attribute role { text }
-      db.bridgehead =
-        
-        ## A free-floating heading
-        element bridgehead { db.bridgehead.attlist, db.all.inlines* }
     }
     div {
       db.remark.role.attribute = attribute role { text }
@@ -7251,36 +7203,6 @@ div {
     div {
       db.msgset.role.attribute = attribute role { text }
       db.msgset.info = db._info.title.only
-      db.msgset =
-        
-        ## A detailed set of messages, usually error messages
-        [
-          s:pattern [
-            name = "Root must have version"
-            "\x{a}" ~
-            "               "
-            s:rule [
-              context = "/db:msgset"
-              "\x{a}" ~
-              "                  "
-              s:assert [
-                test = "@version"
-                "If this element is the root element, it must have a version attribute."
-              ]
-              "\x{a}" ~
-              "\x{a}" ~
-              "               "
-            ]
-            "\x{a}" ~
-            "\x{a}" ~
-            "            "
-          ]
-        ]
-        element msgset {
-          db.msgset.attlist,
-          db.msgset.info,
-          (db.msgentry+ | db.simplemsgentry+)
-        }
     }
     div {
       db.msgentry.role.attribute = attribute role { text }
@@ -9694,9 +9616,9 @@ div {
     db.bibliorelation = notAllowed
     db.biblioset = notAllowed
     db.bibliosource = notAllowed
-    # db.blockquote = notAllowed
+    db.blockquote = notAllowed
     # db.book = notAllowed
-    # db.bridgehead = notAllowed
+    db.bridgehead = notAllowed
     # db.callout = notAllowed
     # db.calloutlist = notAllowed
     db.caption = notAllowed
@@ -9844,7 +9766,7 @@ div {
     db.msgmain = notAllowed
     db.msgorig = notAllowed
     db.msgrel = notAllowed
-    # db.msgset = notAllowed
+    db.msgset = notAllowed
     db.msgsub = notAllowed
     # db.msgtext = notAllowed
     db.nonterminal = notAllowed
@@ -10003,6 +9925,22 @@ div {
     # db.year = notAllowed
     
   }
+  # ======== General Patterns
+  db.nopara.blocks =
+    db.list.blocks
+    | db.formal.blocks
+    | db.informal.blocks
+    | db.publishing.blocks
+    | db.graphic.blocks
+    | db.technical.blocks
+    | db.verbatim.blocks
+    | db.remark
+    | db.indexterm
+    | db.synopsis.blocks
+    | db.admonition.blocks
+  # | db.bridgehead
+  # | db.revhistory
+  
   # ======== Removed Attribute
   db.rdfalite.attributes = empty
   db.xlink.attributes = empty
@@ -10356,8 +10294,8 @@ div {
   db.version.attribute =
     
     ## Specifies the DocBook version of the element and its descendants
-    attribute version { "5.1-subset SUSEDoc-0.9" | text }
-  # ======== Changed content model
+    attribute version { suse.schema.version | text }
+  # ======== Changed Content Model
   
   # Admonitions
   div {
@@ -10378,10 +10316,12 @@ div {
   # }
   
   # We only want to support CALS tables
-  db.informaltable.choice = notAllowed | db.cals.informaltable
-  db.table.choice = notAllowed | db.cals.table
-  db.html.table = notAllowed
-  db.html.informaltable = notAllowed
+  div {
+    db.informaltable.choice = notAllowed | db.cals.informaltable
+    db.table.choice = notAllowed | db.cals.table
+    db.html.table = notAllowed
+    db.html.informaltable = notAllowed
+  }
   # para
   div {
     # Disallow xml:id in paras
@@ -10457,6 +10397,45 @@ div {
       
       ## A question in a QandASet
       element question { db.question.attlist, db.para, db.all.blocks* }
+  }
+  # step
+  div {
+    # Replaced db.all.blocks -> db.step.blocks
+    db.step =
+      
+      ## A unit of action in a procedure
+      [
+        s:pattern [
+          name = "Root must have version"
+          "\x{a}" ~
+          "               "
+          s:rule [
+            context = "/db:step"
+            "\x{a}" ~
+            "                  "
+            s:assert [
+              test = "@version"
+              "If this element is the root element, it must have a version attribute."
+            ]
+            "\x{a}" ~
+            "\x{a}" ~
+            "               "
+          ]
+          "\x{a}" ~
+          "\x{a}" ~
+          "            "
+        ]
+      ]
+      element step {
+        db.step.attlist,
+        db.step.info,
+        ((db.step.blocks+,
+          ((db.substeps | db.stepalternatives), db.step.blocks*)?,
+          db.result?)
+         | ((db.substeps | db.stepalternatives),
+            db.step.blocks*,
+            db.result?))
+      }
   }
   # lists: itemizedlist, orderedlist, variablelist
   div {
