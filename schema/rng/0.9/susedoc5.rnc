@@ -458,6 +458,24 @@ include "docbookxi.rnc"
   # db.year = notAllowed
   }
 
+
+  #======== General Patterns
+  db.nopara.blocks =
+    db.list.blocks
+     | db.formal.blocks
+     | db.informal.blocks
+     | db.publishing.blocks
+     | db.graphic.blocks
+     | db.technical.blocks
+     | db.verbatim.blocks
+     | db.remark
+     | db.indexterm
+     | db.synopsis.blocks
+     | db.admonition.blocks
+     # | db.bridgehead
+     # | db.revhistory
+
+
   #======== Removed Attribute
 
   db.rdfalite.attributes = empty
@@ -925,23 +943,7 @@ include "docbookxi.rnc"
     ## Specifies the DocBook version of the element and its descendants
     attribute version { suse.schema.version | text }
 
-  #======== Changed content model
-
-  db.nopara.blocks =
-  (db.list.blocks
-   | db.formal.blocks
-   | db.informal.blocks
-   | db.publishing.blocks
-   | db.graphic.blocks
-   | db.technical.blocks
-   | db.verbatim.blocks
-   # | db.bridgehead
-   | db.remark
-   # | db.revhistory
-   )
-  # | db.indexterm
-  | db.synopsis.blocks
-  | db.admonition.blocks 
+  #======== Changed Content Model
 
   # Admonitions
   div {
