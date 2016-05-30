@@ -35,29 +35,56 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <fo:block space-after="&gutter;mm" text-align="start">
-      <xsl:choose>
-        <!-- Don't let Geeko overhang the right side of the page - it
+
+    <fo:table space-after="4em"><!--  border="1pt solid red" -->
+      <fo:table-body>
+        <fo:table-cell>
+          <fo:block text-align="start" padding-left="0">
+            <xsl:choose>
+              <!-- Don't let Geeko overhang the right side of the page - it
              is not mirrored, thus some letters would hang over the side
-             of hte page, instead of the tail. -->
-        <!-- FIXME: This is not the optimal implementation if we ever
+             of the page, instead of the tail. -->
+              <!-- FIXME: This is not the optimal implementation if we ever
              want to be able to switch out images easily. -->
-        <xsl:when test="$writing.mode ='rl'">
-          <xsl:attribute name="margin-right">
-            <xsl:value-of select="&columnfragment; + &gutter;"/>mm
-          </xsl:attribute>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:attribute name="margin-left">
-            <xsl:value-of select="&columnfragment; + &gutter; - $titlepage.logo.overhang"/>mm
-          </xsl:attribute>
-        </xsl:otherwise>
-      </xsl:choose>
-      <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
-        width="{$titlepage.logo.width}">
-        <xsl:call-template name="logo-image"/>
-      </fo:instream-foreign-object>
-    </fo:block>
+              <xsl:when test="$writing.mode = 'rl'">
+                <xsl:attribute name="margin-right">
+                  <xsl:value-of select="&columnfragment; + &gutter;"/>mm
+                </xsl:attribute>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:attribute name="margin-left">
+                  <xsl:value-of
+                    select="&columnfragment; + &gutter; - $titlepage.logo.overhang"
+                  />mm </xsl:attribute>
+              </xsl:otherwise>
+            </xsl:choose>
+          <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
+            width="{$titlepage.logo.width}">
+            <xsl:call-template name="logo-image"/>
+          </fo:instream-foreign-object>
+          </fo:block>
+        </fo:table-cell>
+        <fo:table-cell>
+            <xsl:choose>
+              <xsl:when test="articleinfo/orgname">
+                <xsl:apply-templates
+                  mode="article.titlepage.recto.auto.mode"
+                  select="articleinfo/orgname"/>
+              </xsl:when>
+              <xsl:when test="info/orgname">
+                <xsl:apply-templates
+                  mode="article.titlepage.recto.auto.mode"
+                  select="info/orgname"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <!-- Empty if no orgname is found -->
+                <fo:block/>
+              </xsl:otherwise>
+            </xsl:choose>
+        </fo:table-cell>
+      </fo:table-body>
+    </fo:table>
+
 
     <fo:block start-indent="{&columnfragment; + &gutter;}mm" text-align="start"
       role="article.titlepage.recto">
@@ -83,45 +110,60 @@
               mode="article.titlepage.recto.auto.mode" select="title"/>
           </xsl:when>
         </xsl:choose>
+       <xsl:choose>
+        <xsl:when test="articleinfo/subtitle">
+         <xsl:apply-templates
+          mode="article.titlepage.recto.auto.mode"
+          select="articleinfo/subtitle"/>
+        </xsl:when>
+        <xsl:when test="artheader/subtitle">
+         <xsl:apply-templates
+          mode="article.titlepage.recto.auto.mode"
+          select="artheader/subtitle"/>
+        </xsl:when>
+        <xsl:when test="info/subtitle">
+         <xsl:apply-templates
+          mode="article.titlepage.recto.auto.mode"
+          select="info/subtitle"/>
+        </xsl:when>
+        <xsl:when test="subtitle">
+         <xsl:apply-templates
+          mode="article.titlepage.recto.auto.mode"
+          select="subtitle"/>
+        </xsl:when>
+       </xsl:choose>
       </fo:block>
 
     <fo:block padding-before="{2 * &gutterfragment;}mm"
       padding-start="{&column; + &columnfragment; + &gutter;}mm">
       <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$dark-green)"/></xsl:attribute>
-
-      <xsl:choose>
-        <xsl:when test="articleinfo/subtitle">
-          <xsl:apply-templates
-            mode="article.titlepage.recto.auto.mode"
-            select="articleinfo/subtitle"/>
-        </xsl:when>
-        <xsl:when test="artheader/subtitle">
-          <xsl:apply-templates
-            mode="article.titlepage.recto.auto.mode"
-            select="artheader/subtitle"/>
-        </xsl:when>
-        <xsl:when test="info/subtitle">
-          <xsl:apply-templates
-            mode="article.titlepage.recto.auto.mode"
-            select="info/subtitle"/>
-        </xsl:when>
-        <xsl:when test="subtitle">
-          <xsl:apply-templates
-            mode="article.titlepage.recto.auto.mode"
-            select="subtitle"/>
-        </xsl:when>
-      </xsl:choose>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="articleinfo/productname[not(@role='abbrev')]"/>
+            select="(articleinfo/productname[not(@role='abbrev')] | info/productname[not(@role='abbrev')])[1]"/>
     </fo:block>
 
+    <fo:block>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/corpauthor"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/corpauthor"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/authorgroup"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/authorgroup"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/author"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/author"/>
+    </fo:block>
+   
+   <fo:block-container top="245mm" left="&column;mm"
+    absolute-position="fixed">
+    <fo:block text-align="right">
+     <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
+      width="{$titlepage.logo.width}">
+      <xsl:call-template name="logo-image"/>
+     </fo:instream-foreign-object>
+     <xsl:apply-templates select="articleinfo/mediaobject | info/mediaobject"
+      mode="article.titlepage.recto.auto.mode"/> 
+    </fo:block>
+   </fo:block-container>
 
+     
+   <fo:block page-break-before="always">
     <xsl:choose>
       <xsl:when test="articleinfo/abstract or info/abstract">
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/abstract"/>
@@ -131,7 +173,8 @@
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="abstract"/>
       </xsl:when>
     </xsl:choose>
-
+    </fo:block>
+     
     <fo:block>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="articleinfo/othercredit"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="info/othercredit"/>
@@ -152,7 +195,16 @@
     </fo:block>
   </xsl:template>
 
-
+  <xsl:template match="orgname" mode="article.titlepage.recto.auto.mode">
+    <fo:block text-align="end" font-size="&x-large;" xsl:use-attribute-sets="dark-green">
+      <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+    </fo:block>
+  </xsl:template>
+ 
+  <xsl:template match="mediaobject" mode="article.titlepage.recto.auto.mode">
+   <xsl:call-template name="select.mediaobject"/>
+  </xsl:template>
+ 
   <xsl:template match="articleinfo/mediaobject" mode="article.titlepage.recto.auto.mode">
     <fo:block break-after="page">
       <xsl:call-template name="select.mediaobject"/>
@@ -196,8 +248,19 @@
 
   <xsl:template match="author|corpauthor"
     mode="article.titlepage.recto.auto.mode">
+   <xsl:variable name="person">
+    <xsl:call-template name="person.name.first-last"/>
+   </xsl:variable>
     <fo:block space-before="1em" font-size="{&large; * $sans-fontsize-adjust}pt" text-align="start">
-      <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+       <xsl:value-of select="$person"/>
+       <xsl:if test="affiliation/jobtitle">
+        <xsl:text>, </xsl:text>
+        <xsl:value-of select="affiliation/jobtitle"/>
+        <xsl:text>, </xsl:text>
+       </xsl:if>
+       <xsl:if test="affiliation/orgname">
+        <xsl:value-of select="affiliation/orgname"/>
+       </xsl:if>
     </fo:block>
   </xsl:template>
 
