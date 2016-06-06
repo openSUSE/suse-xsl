@@ -330,6 +330,8 @@ Suite 200
 Cambridge MA 02141
 USA</xsl:param>
 
+<xsl:param name="enable.secondary.branding" select="1"/>
+
 <xsl:param name="styleroot" select="'WARNING: styleroot unset!'"/>
 
 <!-- Should navigation titles be displayed? 0=no, 1=yes

@@ -36,18 +36,20 @@
   </xsl:variable>
 
   <!-- Geeko tail cover image -->
-  <!-- FIXME: Review LTR/RTL situation...  -->
-  <fo:block-container top="{(2 - &goldenratio;) * $height}{$unit}" left="0"
-    text-align="right"
-    absolute-position="fixed">
-    <fo:block>
-    <!-- Almost golden ratio... -->
-      <fo:instream-foreign-object content-width="{$titlepage.background.width}"
-        width="{$titlepage.background.width}">
-        <xsl:call-template name="secondary-branding"/>
-      </fo:instream-foreign-object>
-    </fo:block>
-  </fo:block-container>
+  <xsl:if test="$enable.secondary.branding = 1">
+    <!-- FIXME: Review LTR/RTL situation...  -->
+    <fo:block-container top="{(2 - &goldenratio;) * $height}{$unit}" left="0"
+      text-align="right"
+      absolute-position="fixed">
+      <fo:block>
+      <!-- Almost golden ratio... -->
+        <fo:instream-foreign-object content-width="{$titlepage.background.width}"
+          width="{$titlepage.background.width}">
+          <xsl:call-template name="secondary-branding"/>
+        </fo:instream-foreign-object>
+      </fo:block>
+    </fo:block-container>
+  </xsl:if>
 
   <!-- Logo -->
   <fo:block-container top="{$page.margin.top}" absolute-position="fixed"
