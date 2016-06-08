@@ -35,7 +35,7 @@ NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/novdoc/dtd/$(NOVDOC_VERSION)
 #SUSESCHEMA_RNG_PATH := $(SUSE_SCHEMA_PATH)/geekodoc/rng/$(SUSEDOC_VERSION)
 
 #--------------------------------------------------------------
-# stylsheet directory names
+# stylesheet directory names
 
 DIR2005          := suse
 DIR2013_SUSE     := suse2013
