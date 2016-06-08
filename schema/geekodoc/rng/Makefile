@@ -10,29 +10,43 @@
 # * python3-rnginline (from obs://home:thomas-schraitle/python3-rnginline)
 
 
+.SUFFIXES: .rng rnc
+
+SUSESCHEMA := geekodoc5
+DOCBOOKXI_RNC_PATH  := /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
+DOCBOOKXI_RNC := $(notdir $(DOCBOOKXI_RNC_PATH))
+DOCBOOKXI_RNG := $(patsubst .rnc,.rng,$(DOCBOOKXI_RNC))
+
+
 .PHONY: all clean
-all: geekodoc5-flat.rnc
+
+all: $(SUSESCHEMA)-flat.rnc
 
 clean:
-	rm geekodoc5-flat.rn{c,g} geekodoc5.rng docbookxi.rn{c,g} 2>/dev/null || true
+	rm $(SUSESCHEMA)-flat.rn{c,g} $(DOCBOOKXI_RNC) $(DOCBOOKXI_RNG) 2>/dev/null || true
 
-docbookxi.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
+
+.INTERMEDIATE: $(SUSESCHEMA).rng $(SUSESCHEMA)-flat.rni
+
+
+$(DOCBOOKXI_RNC): $(DOCBOOKXI_RNC_PATH)
 	@echo "* Linking $< -> $@"
-	ln -sf $< .
+	ln -sf $<
 
-geekodoc5.rng: docbookxi.rnc geekodoc5.rnc
+$(SUSESCHEMA).rng: $(DOCBOOKXI_RNC) $(SUSESCHEMA).rnc
 	@echo "* Converting $< -> $@"
 	trang $< $@
-	@sed -i -r 's_\s+$__' $@
 
-geekodoc5-flat.rng: geekodoc5.rng
+$(SUSESCHEMA)-flat.rni: $(SUSESCHEMA).rng
 	@echo "* Flattening $< -> $@"
-	rnginline $< $@.unclean
-	xmllint -o $@.unclean --nsclean --format $@
-	rm $@.unclean
+	rnginline $< $@
+
+$(SUSESCHEMA)-flat.rng: $(SUSESCHEMA)-flat.rni
+	echo '* Improving $< -> $@'
+	xmllint -o $@ --nsclean --format $<
 	@sed -i -r 's_\s+$__' $@
 
-geekodoc5-flat.rnc: geekodoc5-flat.rng
+$(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
 	@sed -i -r 's_\s+$__' $@
