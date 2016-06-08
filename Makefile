@@ -231,7 +231,7 @@ $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp: schema/dtd/1.0/novdocx.dtd | $(DEV_NOVDOC_DIR
 	 < $< > $@
 
 .INTERMEDIATE: $(DEV_NOVDOC_DIR)/novdocxi.rnc
-$(DEV_NOVDOC_DIR)/novdocxi.rnc: schema/rng/1.0/novdocxi.rnc | $(DEV_NOVDOC_DIR)
+$(DEV_NOVDOC_DIR)/novdocxi.rnc: schema/NovDoc/rng/1.0/novdocxi.rnc | $(DEV_NOVDOC_DIR)
 	(cd $(DEV_NOVDOC_DIR) && ln -s $(CDIR)/$<)
 
 #-----------------------------
