@@ -25,14 +25,14 @@ SUSE_STYLES_PATH := $(DB_XML_PATH)/stylesheet
 
 NOVDOC_NAME     := novdoc
 NOVDOC_VERSION  := 1.0
-NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/dtd/$(NOVDOC_VERSION)
+NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/NovDoc/dtd/$(NOVDOC_VERSION)
 
 #--------------------------------------------------------------
-# SUSEDOC
+# GEEKODOC
 
-#SUSEDOC_NAME     := susedoc
-#SUSEDOC_VERSION  := 0.9
-#SUSEDOC_RNG_PATH := $(SUSE_SCHEMA_PATH)/rng/$(SUSEDOC_VERSION)
+#GEEKODOC_NAME     := geekodoc
+#GEEKODOC_VERSION  := 0.9
+#GEEKODOC_RNG_PATH := $(SUSE_SCHEMA_PATH)/GeekoDoc/rng/$(SUSEDOC_VERSION)
 
 #--------------------------------------------------------------
 # stylsheet directory names
