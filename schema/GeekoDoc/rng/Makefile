@@ -26,13 +26,18 @@ $(DOCBOOKXI_RNC): $(DOCBOOKXI_RNC_PATH)
 	ln -sf $<
 
 .INTERMEDIATE: $(SUSESCHEMA).rng
-$(SUSESCHEMA).rng: $(DOCBOOKXI_RNC) $(SUSESCHEMA).rnc
+$(SUSESCHEMA).rng: $(SUSESCHEMA).rnc $(DOCBOOKXI_RNC)
 	@echo "* Converting $< -> $@"
 	trang $< $@
 
-$(SUSESCHEMA)-flat.rng: $(SUSESCHEMA).rng
+$(SUSESCHEMA)-flat.rni: $(SUSESCHEMA).rng
 	@echo "* Flattening $< -> $@"
 	rnginline $< $@
+
+.INTERMEDIATE: $(SUSESCHEMA)-flat.rni
+$(SUSESCHEMA)-flat.rng: $(SUSESCHEMA)-flat.rni
+	echo '* Improving $< -> $@'
+	xmllint -o $@ --nsclean --format $<
 
 $(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
 	@echo "* Converting $< -> $@"
