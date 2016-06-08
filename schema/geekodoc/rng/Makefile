@@ -23,10 +23,10 @@ DOCBOOKXI_RNG := $(patsubst .rnc,.rng,$(DOCBOOKXI_RNC))
 all: $(SUSESCHEMA)-flat.rnc
 
 clean:
-	rm $(SUSESCHEMA)-flat.rn{c,g} $(DOCBOOKXI_RNC) $(DOCBOOKXI_RNG) 2>/dev/null || true
+	rm $(SUSESCHEMA)-flat.rnc $(DOCBOOKXI_RNC) $(DOCBOOKXI_RNG) 2>/dev/null || true
 
 
-.INTERMEDIATE: $(SUSESCHEMA).rng $(SUSESCHEMA)-flat.rni
+.INTERMEDIATE: $(SUSESCHEMA).rng $(SUSESCHEMA)-flat.rni $(SUSESCHEMA)-flat.rng
 
 
 $(DOCBOOKXI_RNC): $(DOCBOOKXI_RNC_PATH)
@@ -44,7 +44,6 @@ $(SUSESCHEMA)-flat.rni: $(SUSESCHEMA).rng
 $(SUSESCHEMA)-flat.rng: $(SUSESCHEMA)-flat.rni
 	echo '* Improving $< -> $@'
 	xmllint -o $@ --nsclean --format $<
-	@sed -i -r 's_\s+$$__' $@
 
 $(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
 	@echo "* Converting $< -> $@"
