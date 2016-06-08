@@ -44,10 +44,10 @@ $(SUSESCHEMA)-flat.rni: $(SUSESCHEMA).rng
 $(SUSESCHEMA)-flat.rng: $(SUSESCHEMA)-flat.rni
 	echo '* Improving $< -> $@'
 	xmllint -o $@ --nsclean --format $<
-	@sed -i -r 's_\s+$__' $@
+	@sed -i -r 's_\s+$$__' $@
 
 $(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
-	@sed -i -r 's_\s+$__' $@
+	@sed -i -r 's_\s+$$__' $@
 
