@@ -24,7 +24,7 @@ serve different purposes.
 
 
 Creating Flat GeekoDoc
----------------------
+----------------------
 
 Creating the flat GeekoDoc schema requires the `rnginline` tool at
 https://github.com/h4l/rnginline/
@@ -86,11 +86,11 @@ Creating a Flat GeekoDoc Schema
 
 3. Create the flat RNG version:
 
-   $ rnginline geekodoc5.rng geekodoc-flat.rng
+   $ rnginline geekodoc5.rng geekodoc5-flat.rng
 
 4. Optional: Cleanup and remove unnecessary namespaces:
 
-   $ mv geekodoc-flat.rng _flat.rng
+   $ mv geekodoc5-flat.rng _flat.rng
    $ xmllint -o geekodoc5-flat.rng --nsclean --format flat.rng
    $ rm _flat.rng
 
