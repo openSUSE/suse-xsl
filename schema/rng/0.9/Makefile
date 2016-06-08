@@ -9,27 +9,30 @@
 # * docbook_5
 # * python3-rnginline (from obs://home:thomas-schraitle/python3-rnginline)
 
+SUSESCHEMA := susedoc5
+DOCBOOKXI  := /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
+
 
 .PHONY: all clean
-all: susedoc5-flat.rnc
+all: $(SUSESCHEMA)-flat.rnc
 
 clean:
-	rm susedoc5-flat.rn{c,g} susedoc5.rng docbook.rn{c,g} 2>/dev/null || true
+	rm $(SUSESCHEMA)-flat.rn{c,g} docbook.rn{c,g} 2>/dev/null || true
 
-docbook.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
+docbook.rnc: $(DOCBOOKXI)
 	@echo "* Linking $< -> $@"
-	ln -sf $< .
+	ln -sf $<
 
-susedoc5.rng: docbookxi.rnc susedoc5.rnc
+.INTERMEDIATE: $(SUSESCHEMA).rng
+$(SUSESCHEMA).rng: docbookxi.rnc $(SUSESCHEMA).rnc
 	@echo "* Converting $< -> $@"
 	trang $< $@
 
-susedoc5-flat.rng: susedoc5.rng
+$(SUSESCHEMA)-flat.rng: $(SUSESCHEMA).rng
 	@echo "* Flattening $< -> $@"
 	rnginline $< $@
 
-susedoc5-flat.rnc: susedoc5-flat.rng
+$(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
-	@sed -i -r 's/\s+//' $@
-
+	sed -i -r 's/\s+$$//' $@
