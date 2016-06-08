@@ -10,13 +10,13 @@ In general, XML instances of Novdoc should be compatible to DocBook.
 GeekoDoc
 =======
 
-GeekoDoc is a RELAX NG schema and a subset of DocBook 5. Currently, it can be
+GeekoDoc is a RELAX NG schema and a subset of DocBook 5.1. Currently, it can be
 used in two variants:
 
 1. As the file `geekodoc5.rn{c,g}` which is based on `docbookxi.rn{c,g}`. In
    other words, the GeekoDoc schema cannot life without the DocBook schema.
 2. As a single`geekodoc5-flat.rn{c,g}`. This file is independant from the
-   DocBook schema and can be used without having DocBook 5 installed on
+   DocBook schema and can be used without having DocBook 5.1 installed on
    your system.
 
 Both variants contain the same structure, elements, and attributes. They
@@ -26,10 +26,17 @@ serve different purposes.
 Creating Flat GeekoDoc
 ----------------------
 
-Creating the flat GeekoDoc schema requires the `rnginline` tool at
-https://github.com/h4l/rnginline/
+To build a flat GeekoDoc schema, you will need:
 
-Use one of the following methods to install `rnginline`:
+* Standard Unix tools, particularly: `make`, `sed`
+* The DocBook 5.1 schemas, installed at
+  `/usr/share/xml/docbook/schema/rng/5.1`
+* `xmllint` (usually part of a package called `libxml2-tools`
+* `trang`
+* `rnginline`
+
+Use one of the following methods to install `rnginline` 
+(https://github.com/h4l/rnginline/):
 
 * Install from an RPM package
 * Install it in a Python virtual environment
@@ -42,7 +49,7 @@ The following procedure can be used for openSUSE Leap 42.1:
 
 1. Add the repository:
 
-   $ sudo zypper ar http://download.opensuse.org/repositories/home:/thomas-schraitle/openSUSE_Leap_42.1/home:thomas-schraitle.repo
+   $ sudo zypper ar http://download.opensuse.org/repositories/home:/thomas-schraitle/openSUSE_Leap_42.1
 
 2. Install it:
 
