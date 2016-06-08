@@ -200,16 +200,16 @@ db.xlink.show.enumeration=
 
 ## An application traversing to the ending resource should load it in a new window, frame, pane, or other relevant presentation context.
 "new"
-| 
+|
 ## An application traversing to the ending resource should load the resource in the same window, frame, pane, or other relevant presentation context in which the starting resource was loaded.
 "replace"
-| 
+|
 ## An application traversing to the ending resource should load its presentation in place of the presentation of the starting resource.
 "embed"
-| 
+|
 ## The behavior of an application traversing to the ending resource is unconstrained by XLink. The application should look for other markup present in the link to determine the appropriate behavior.
 "other"
-| 
+|
 ## The behavior of an application traversing to the ending resource is unconstrained by this specification. No other markup is present to help the application determine the appropriate behavior.
 "none"
 db.xlink.show.attribute=
@@ -220,13 +220,13 @@ db.xlink.actuate.enumeration=
 
 ## An application should traverse to the ending resource immediately on loading the starting resource.
 "onLoad"
-| 
+|
 ## An application should traverse from the starting resource to the ending resource only on a post-loading event triggered for the purpose of traversal.
 "onRequest"
-| 
+|
 ## The behavior of an application traversing to the ending resource is unconstrained by this specification. The application should look for other markup present in the link to determine the appropriate behavior.
 "other"
-| 
+|
 ## The behavior of an application traversing to the ending resource is unconstrained by this specification. No other markup is present to help the application determine the appropriate behavior.
 "none"
 db.xlink.actuate.attribute=
@@ -280,13 +280,13 @@ db.revisionflag.enumeration=
 
 ## The element has been changed.
 "changed"
-| 
+|
 ## The element is new (has been added to the document).
 "added"
-| 
+|
 ## The element has been deleted.
 "deleted"
-| 
+|
 ## Explicitly turns off revision markup for this element.
 "off"
 db.revisionflag.attribute=
@@ -297,13 +297,13 @@ db.dir.enumeration=
 
 ## Left-to-right text
 "ltr"
-| 
+|
 ## Right-to-left text
 "rtl"
-| 
+|
 ## Left-to-right override
 "lro"
-| 
+|
 ## Right-to-left override
 "rlo"
 db.dir.attribute=
@@ -365,14 +365,14 @@ attribute format { text }?,
 (
 ## Indentifies the location of the data by URI
 attribute fileref { xsd:anyURI }
-| 
+|
 ## Identifies the location of the data by external identifier (entity name)
 attribute entityref { xsd:ENTITY })
 db.verbatim.continuation.enumeration=
 
 ## Line numbering continues from the immediately preceding element with the same name.
 "continues"
-| 
+|
 ## Line numbering restarts (begins at 1, usually).
 "restarts"
 db.verbatim.continuation.attribute=
@@ -383,7 +383,7 @@ db.verbatim.linenumbering.enumeration=
 
 ## Lines are numbered.
 "numbered"
-| 
+|
 ## Lines are not numbered.
 "unnumbered"
 db.verbatim.linenumbering.attribute=
@@ -425,7 +425,7 @@ db.spacing.enumeration=
 
 ## The spacing should be "compact".
 "compact"
-| 
+|
 ## The spacing should be "normal".
 "normal"
 db.spacing.attribute=
@@ -436,7 +436,7 @@ db.pgwide.enumeration=
 
 ## The element should be rendered in the current text flow (with the flow column width).
 "0"
-| 
+|
 ## The element should be rendered across the full text page.
 "1"
 db.pgwide.attribute=
@@ -451,7 +451,7 @@ db.performance.enumeration=
 
 ## The content describes an optional step or steps.
 "optional"
-| 
+|
 ## The content describes a required step or steps.
 "required"
 db.performance.attribute=
@@ -482,7 +482,7 @@ db.scalefit.enumeration=
 
 ## False (do not scale-to-fit; anamorphic scaling may occur)
 "0"
-| 
+|
 ## True (scale-to-fit; anamorphic scaling is forbidden)
 "1"
 db.scale.attribute=
@@ -501,51 +501,51 @@ db.halign.enumeration=
 
 ## Centered horizontally
 "center"
-| 
+|
 ## Aligned horizontally on the specified character
 "char"
-| 
+|
 ## Fully justified (left and right margins or edges)
 "justify"
-| 
+|
 ## Left aligned
 "left"
-| 
+|
 ## Right aligned
 "right"
 db.valign.enumeration=
 
 ## Aligned on the bottom of the region
 "bottom"
-| 
+|
 ## Centered vertically
 "middle"
-| 
+|
 ## Aligned on the top of the region
 "top"
 db.biblio.class.enumeration=
 
 ## A digital object identifier.
 "doi"
-| 
+|
 ## An international standard book number.
 "isbn"
-| 
+|
 ## An international standard technical report number (ISO 10444).
 "isrn"
-| 
+|
 ## An international standard serial number.
 "issn"
-| 
+|
 ## An international standard text code.
 "istc"
-| 
+|
 ## A Library of Congress reference number.
 "libraryofcongress"
-| 
+|
 ## A publication number (an internal number or possibly organizational standard).
 "pubsnumber"
-| 
+|
 ## A Uniform Resource Identifier
 "uri"
 db.biblio.class-enum.attribute=
@@ -1265,16 +1265,16 @@ db.bridgehead.renderas.enumeration =
 
 ## Render as a first-level section
 "sect1"
-| 
+|
 ## Render as a second-level section
 "sect2"
-| 
+|
 ## Render as a third-level section
 "sect3"
-| 
+|
 ## Render as a fourth-level section
 "sect4"
-| 
+|
 ## Render as a fifth-level section
 "sect5"
 db.bridgehead.renderas-enum.attribute =
@@ -1800,7 +1800,7 @@ db.orderedlist.continuation.enumeration =
 
 ## Specifies that numbering should begin where the preceding list left off
 "continues"
-| 
+|
 ## Specifies that numbering should begin again at 1
 "restarts"
 db.orderedlist.continuation.attribute =
@@ -1815,7 +1815,7 @@ db.orderedlist.inheritnum.enumeration =
 
 ## Specifies that numbering should ignore list nesting
 "ignore"
-| 
+|
 ## Specifies that numbering should inherit from outer-level lists
 "inherit"
 db.orderedlist.inheritnum.attribute =
@@ -1826,16 +1826,16 @@ db.orderedlist.numeration.enumeration =
 
 ## Specifies Arabic numeration (1, 2, 3, …)
 "arabic"
-| 
+|
 ## Specifies upper-case alphabetic numeration (A, B, C, …)
 "upperalpha"
-| 
+|
 ## Specifies lower-case alphabetic numeration (a, b, c, …)
 "loweralpha"
-| 
+|
 ## Specifies upper-case Roman numeration (I, II, III, …)
 "upperroman"
-| 
+|
 ## Specifies lower-case Roman numeration (i, ii, iii …)
 "lowerroman"
 db.orderedlist.numeration.attribute =
@@ -2001,10 +2001,10 @@ db.simplelist.type.enumeration =
 
 ## A tabular presentation in row-major order.
 "horiz"
-| 
+|
 ## A tabular presentation in column-major order.
 "vert"
-| 
+|
 ## An inline presentation, usually a comma-delimited list.
 "inline"
 db.simplelist.type.attribute =
@@ -2306,7 +2306,7 @@ db.literallayout.class.enumeration =
 
 ## The literal layout should be formatted with a monospaced font
 "monospaced"
-| 
+|
 ## The literal layout should be formatted with the current font
 "normal"
 db.literallayout.class.attribute =
@@ -3532,13 +3532,13 @@ db.orgname.class.enumeration =
 
 ## A consortium
 "consortium"
-| 
+|
 ## A corporation
 "corporation"
-| 
+|
 ## An informal organization
 "informal"
-| 
+|
 ## A non-profit organization
 "nonprofit"
 db.orgname.class-enum.attribute =
@@ -3934,37 +3934,37 @@ db.bibliorelation.type.enumeration =
 
 ## The described resource pre-existed the referenced resource, which is essentially the same intellectual content presented in another format
 "hasformat"
-| 
+|
 ## The described resource includes the referenced resource either physically or logically
 "haspart"
-| 
+|
 ## The described resource has a version, edition, or adaptation, namely, the referenced resource
 "hasversion"
-| 
+|
 ## The described resource is the same intellectual content of the referenced resource, but presented in another format
 "isformatof"
-| 
+|
 ## The described resource is a physical or logical part of the referenced resource
 "ispartof"
-| 
+|
 ## The described resource is referenced, cited, or otherwise pointed to by the referenced resource
 "isreferencedby"
-| 
+|
 ## The described resource is supplanted, displaced, or superceded by the referenced resource
 "isreplacedby"
-| 
+|
 ## The described resource is required by the referenced resource, either physically or logically
 "isrequiredby"
-| 
+|
 ## The described resource is a version, edition, or adaptation of the referenced resource; changes in version imply substantive changes in content rather than differences in format
 "isversionof"
-| 
+|
 ## The described resource references, cites, or otherwise points to the referenced resource
 "references"
-| 
+|
 ## The described resource supplants, displaces, or supersedes the referenced resource
 "replaces"
-| 
+|
 ## The described resource requires the referenced resource to support its function, delivery, or coherence of content
 "requires"
 db.bibliorelation.type-enum.attribute =
@@ -4002,13 +4002,13 @@ db.bibliocoverage.spacial.enumeration =
 
 ## The DCMI Point identifies a point in space using its geographic coordinates
 "dcmipoint"
-| 
+|
 ## ISO 3166 Codes for the representation of names of countries
 "iso3166"
-| 
+|
 ## The DCMI Box identifies a region of space using its geographic limits
 "dcmibox"
-| 
+|
 ## The Getty Thesaurus of Geographic Names
 "tgn"
 db.bibliocoverage.spatial-enum.attribute =
@@ -4033,7 +4033,7 @@ db.bibliocoverage.temporal.enumeration =
 
 ## A specification of the limits of a time interval
 "dcmiperiod"
-| 
+|
 ## W3C Encoding rules for dates and times—a profile based on ISO 8601
 "w3c-dtf"
 db.bibliocoverage.temporal-enum.attribute =
@@ -4109,40 +4109,40 @@ db.othercredit.class.enumeration =
 
 ## A copy editor
 "copyeditor"
-| 
+|
 ## A graphic designer
 "graphicdesigner"
-| 
+|
 ## A production editor
 "productioneditor"
-| 
+|
 ## A technical editor
 "technicaleditor"
-| 
+|
 ## A translator
 "translator"
-| 
+|
 ## An indexer
 "indexer"
-| 
+|
 ## A proof-reader
 "proofreader"
-| 
+|
 ## A cover designer
 "coverdesigner"
-| 
+|
 ## An interior designer
 "interiordesigner"
-| 
+|
 ## An illustrator
 "illustrator"
-| 
+|
 ## A reviewer
 "reviewer"
-| 
+|
 ## A typesetter
 "typesetter"
-| 
+|
 ## A converter (a persons responsible for conversion, not an application)
 "conversion"
 db.othercredit.class-enum.attribute =
@@ -4480,10 +4480,10 @@ db.parameter.class.enumeration =
 
 ## A command
 "command"
-| 
+|
 ## A function
 "function"
-| 
+|
 ## An option
 "option"
 db.parameter.class.attribute =
@@ -4507,13 +4507,13 @@ db.replaceable.class.enumeration =
 
 ## A command
 "command"
-| 
+|
 ## A function
 "function"
-| 
+|
 ## An option
 "option"
-| 
+|
 ## A parameter
 "parameter"
 db.replaceable.class.attribute =
@@ -4628,55 +4628,55 @@ db.citetitle.pubwork.enumeration =
 
 ## An article
 "article"
-| 
+|
 ## A bulletin board system
 "bbs"
-| 
+|
 ## A book
 "book"
-| 
+|
 ## A CD-ROM
 "cdrom"
-| 
+|
 ## A chapter (as of a book)
 "chapter"
-| 
+|
 ## A DVD
 "dvd"
-| 
+|
 ## An email message
 "emailmessage"
-| 
+|
 ## A gopher page
 "gopher"
-| 
+|
 ## A journal
 "journal"
-| 
+|
 ## A manuscript
 "manuscript"
-| 
+|
 ## A posting to a newsgroup
 "newsposting"
-| 
+|
 ## A part (as of a book)
 "part"
-| 
+|
 ## A reference entry
 "refentry"
-| 
+|
 ## A section (as of a book or article)
 "section"
-| 
+|
 ## A series
 "series"
-| 
+|
 ## A set (as of books)
 "set"
-| 
+|
 ## A web page
 "webpage"
-| 
+|
 ## A wiki page
 "wiki"
 db.citetitle.pubwork.attribute =
@@ -4803,13 +4803,13 @@ db.trademark.class.enumeration =
 
 ## A copyright
 "copyright"
-| 
+|
 ## A registered copyright
 "registered"
-| 
+|
 ## A service
 "service"
-| 
+|
 ## A trademark
 "trade"
 db.trademark.class.attribute =
@@ -5502,19 +5502,19 @@ db.article.class.enumeration =
 
 ## A collection of frequently asked questions.
 "faq"
-| 
+|
 ## An article in a journal or other periodical.
 "journalarticle"
-| 
+|
 ## A description of a product.
 "productsheet"
-| 
+|
 ## A specification.
 "specification"
-| 
+|
 ## A technical report.
 "techreport"
-| 
+|
 ## A white paper.
 "whitepaper"
 db.article.class.attribute =
@@ -5820,8 +5820,8 @@ db.extendedlink.role.attribute = attribute role { text }
 db.extendedlink.attlist =
 db.extendedlink.role.attribute?
 & db.common.attributes
-& 
-## Identifies the XLink link type 
+&
+## Identifies the XLink link type
 [ a:defaultValue = "extended" ]
 attribute xlink:type {
 
@@ -5842,8 +5842,8 @@ db.locator.role.attribute = attribute role { text }
 db.locator.attlist =
 db.locator.role.attribute?
 & db.common.attributes
-& 
-## Identifies the XLink link type 
+&
+## Identifies the XLink link type
 [ a:defaultValue = "locator" ]
 attribute xlink:type {
 
@@ -5864,8 +5864,8 @@ db.arc.role.attribute = attribute role { text }
 db.arc.attlist =
 db.arc.role.attribute?
 & db.common.attributes
-& 
-## Identifies the XLink link type 
+&
+## Identifies the XLink link type
 [ a:defaultValue = "arc" ]
 attribute xlink:type {
 
@@ -6231,16 +6231,16 @@ db.refmiscinfo.class.enumeration=
 
 ## The name of the software product or component to which this topic applies
 "source"
-| 
+|
 ## The version of the software product or component to which this topic applies
 "version"
-| 
+|
 ## The section title of the reference page (e.g., User Commands)
 "manual"
-| 
+|
 ## The section title of the reference page (believed synonymous with "manual" but in wide use)
 "sectdesc"
-| 
+|
 ## The name of the software product or component to which this topic applies (e.g., SunOS x.y; believed synonymous with "source" but in wide use)
 "software"
 db.refmiscinfo.class-enum.attribute=
@@ -7220,7 +7220,7 @@ db.significance.enumeration=
 
 ## Normal
 "normal"
-| 
+|
 ## Preferred
 "preferred"
 db.significance.attribute=
@@ -7239,10 +7239,10 @@ db.scope.enumeration=
 
 ## All indexes
 "all"
-| 
+|
 ## The global index (as for a combined index of a set of books)
 "global"
-| 
+|
 ## The local index (the index for this document only)
 "local"
 db.scope.attribute=
@@ -7878,13 +7878,13 @@ db.area.units.enumeration=
 
 ## Coordinates expressed as a pair of CALS graphic coordinates.
 "calspair"
-| 
+|
 ## Coordinates expressed as a line and column.
 "linecolumn"
-| 
+|
 ## Coordinates expressed as a pair of lines and columns.
 "linecolumnpair"
-| 
+|
 ## Coordinates expressed as a line range.
 "linerange"
 db.area.units-enum.attribute=
@@ -8357,19 +8357,19 @@ attribute frame {
 
 ## Frame all four sides of the table. In some environments with limited control over table border formatting, such as HTML, this may imply additional borders.
 "all"
-| 
+|
 ## Frame only the bottom of the table.
 "bottom"
-| 
+|
 ## Place no border on the table. In some environments with limited control over table border formatting, such as HTML, this may disable other borders as well.
 "none"
-| 
+|
 ## Frame the left and right sides of the table.
 "sides"
-| 
+|
 ## Frame the top of the table.
 "top"
-| 
+|
 ## Frame the top and bottom of the table.
 "topbot"
 }
@@ -8380,7 +8380,7 @@ attribute colsep {
 
 ## No column separator rule.
 "0"
-| 
+|
 ## Provide a column separator rule on the right
 "1"
 }
@@ -8391,7 +8391,7 @@ attribute rowsep {
 
 ## No row separator rule.
 "0"
-| 
+|
 ## Provide a row separator rule below
 "1"
 }
@@ -8402,7 +8402,7 @@ attribute orient {
 
 ## 90 degrees counter-clockwise from the rest of the text flow.
 "land"
-| 
+|
 ## The same orientation as the rest of the text flow.
 "port"
 }
@@ -8417,10 +8417,10 @@ attribute rowheader {
 
 ## Indicates that entries in the first column of the table are functionally row headers (analogous to the way that a thead provides column headers).
 "firstcol"
-| 
+|
 ## Indicates that row headers are identified by use of the headers attribute on entries in the table.
 "headers"
-| 
+|
 ## Indicates that entries in the first column have no special significance with respect to column headers.
 "norowheader"
 }
@@ -8431,16 +8431,16 @@ attribute align {
 
 ## Centered.
 "center"
-| 
+|
 ## Aligned on a particular character.
 "char"
-| 
+|
 ## Left and right justified.
 "justify"
-| 
+|
 ## Left justified.
 "left"
-| 
+|
 ## Right justified.
 "right"
 }
@@ -8451,10 +8451,10 @@ attribute valign {
 
 ## Aligned on the bottom of the entry.
 "bottom"
-| 
+|
 ## Aligned in the middle.
 "middle"
-| 
+|
 ## Aligned at the top of the entry.
 "top"
 }
@@ -8474,7 +8474,7 @@ db.specify-span-directly.attributes=
 
 ## Specifies a starting column by name.
 attribute namest { text }
-& 
+&
 ## Specifies an ending column by name.
 attribute nameend { text }
 db.column-spec.attributes=
@@ -8640,7 +8640,7 @@ attribute rotate {
 
 ## Do not rotate the cell.
 "0"
-| 
+|
 ## Rotate the cell 90 degrees counter-clockwise.
 "1"
 }
@@ -8651,13 +8651,13 @@ attribute scope {
 
 ## Applies to the row
 "row"
-| 
+|
 ## Applies to the column
 "col"
-| 
+|
 ## Applies to the row group
 "rowgroup"
-| 
+|
 ## Applies to the column group
 "colgroup"
 }
@@ -8816,23 +8816,23 @@ db.cals.table.role.attribute?
 & db.rowsep.attribute?
 & db.frame.attribute?
 & db.pgwide.attribute?
-& 
+&
 ## Indicates if the short or long title should be used in a List of Tables
 attribute shortentry {
 
 ## Indicates that the full title should be used.
 "0"
-| 
+|
 ## Indicates that the short short title (titleabbrev) should be used.
 "1"
 }?
-& 
+&
 ## Indicates if the table should appear in a List of Tables
 attribute tocentry {
 
 ## Indicates that the table should not occur in the List of Tables.
 "0"
-| 
+|
 ## Indicates that the table should appear in the List of Tables.
 "1"
 }?
@@ -8983,10 +8983,10 @@ db.html.coreattrs=
 
 ## This attribute assigns a class name or set of class names to an element. Any number of elements may be assigned the same class name or names. Multiple class names must be separated by white space characters.
 attribute class { text }?
-& 
+&
 ## This attribute specifies style information for the current element.
 attribute style { text }?
-& 
+&
 ## This attribute offers advisory information about the element for which it is set.
 attribute title { text }?
 db.html.i18n=
@@ -8997,31 +8997,31 @@ db.html.events=
 
 ## Occurs when the pointing device button is clicked over an element.
 attribute onclick { text }?
-& 
+&
 ## Occurs when the pointing device button is double clicked over an element.
 attribute ondblclick { text }?
-& 
+&
 ## Occurs when the pointing device button is pressed over an element.
 attribute onmousedown { text }?
-& 
+&
 ## Occurs when the pointing device button is released over an element.
 attribute onmouseup { text }?
-& 
+&
 ## Occurs when the pointing device is moved onto an element.
 attribute onmouseover { text }?
-& 
+&
 ## Occurs when the pointing device is moved while it is over an element.
 attribute onmousemove { text }?
-& 
+&
 ## Occurs when the pointing device is moved away from an element.
 attribute onmouseout { text }?
-& 
+&
 ## Occurs when a key is pressed and released over an element.
 attribute onkeypress { text }?
-& 
+&
 ## Occurs when a key is pressed down over an element.
 attribute onkeydown { text }?
-& 
+&
 ## Occurs when a key is released over an element.
 attribute onkeyup { text }?
 db.html.attrs=
@@ -9036,23 +9036,23 @@ attribute align {
 
 ## Left-flush data/Left-justify text. This is the default value for table data.
 "left"
-| 
+|
 ## Center data/Center-justify text. This is the default value for table headers.
 "center"
-| 
+|
 ## Right-flush data/Right-justify text.
 "right"
-| 
+|
 ## Double-justify text.
 "justify"
-| 
+|
 ## Align text around a specific character. If a user agent doesn't support character alignment, behavior in the presence of this value is unspecified.
 "char"
 }?
-& 
+&
 ## This attribute specifies a single character within a text fragment to act as an axis for alignment. The default value for this attribute is the decimal point character for the current language as set by the lang attribute (e.g., the period in English and the comma in French). User agents are not required to support this attribute.
 attribute char { text }?
-& 
+&
 ## When present, this attribute specifies the offset to the first occurrence of the alignment character on each line. If a line doesn't include the alignment character, it should be horizontally shifted to end at the alignment position. When charoff is used to set the offset of an alignment character, the direction of offset is determined by the current text direction (set by the dir attribute). In left-to-right texts (the default), offset is from the left margin. In right-to-left texts, offset is from the right margin. User agents are not required to support this attribute.
 attribute charoff {
 xsd:integer >> a:documentation [ "An explicit offset." ]
@@ -9066,13 +9066,13 @@ attribute valign {
 
 ## Cell data is flush with the top of the cell.
 "top"
-| 
+|
 ## Cell data is centered vertically within the cell. This is the default value.
 "middle"
-| 
+|
 ## Cell data is flush with the bottom of the cell.
 "bottom"
-| 
+|
 ## All cells in the same row as a cell whose valign attribute has this value should have their textual data positioned so that the first text line occurs on a baseline common to all cells in the row. This constraint does not apply to subsequent text lines in these cells.
 "baseline"
 }?
@@ -9080,74 +9080,74 @@ db.html.table.attributes=
 
 ## Provides a summary of the table's purpose and structure for user agents rendering to non-visual media such as speech and Braille.
 attribute summary { text }?
-& 
+&
 ## Specifies the desired width of the entire table and is intended for visual user agents. When the value is a percentage value, the value is relative to the user agent's available horizontal space. In the absence of any width specification, table width is determined by the user agent.
 attribute width {
 xsd:integer >> a:documentation [ "An explicit width." ]
 | xsd:string { pattern = "[0-9]+%" }
 >> a:documentation [ "A percentage width." ]
 }?
-& 
+&
 ## Specifies the width (in pixels only) of the frame around a table.
 attribute border { xsd:nonNegativeInteger }?
-& 
+&
 ## Specifies which sides of the frame surrounding a table will be visible.
 attribute frame {
 
 ## No sides. This is the default value.
 "void"
-| 
+|
 ## The top side only.
 "above"
-| 
+|
 ## The bottom side only.
 "below"
-| 
+|
 ## The top and bottom sides only.
 "hsides"
-| 
+|
 ## The left-hand side only.
 "lhs"
-| 
+|
 ## The right-hand side only.
 "rhs"
-| 
+|
 ## The right and left sides only.
 "vsides"
-| 
+|
 ## All four sides.
 "box"
-| 
+|
 ## All four sides.
 "border"
 }?
-& 
+&
 ## Specifies which rules will appear between cells within a table. The rendering of rules is user agent dependent.
 attribute rules {
 
 ## No rules. This is the default value.
 "none"
-| 
+|
 ## Rules will appear between row groups (see thead, tfoot, and tbody) and column groups (see colgroup and col) only.
 "groups"
-| 
+|
 ## Rules will appear between rows only.
 "rows"
-| 
+|
 ## Rules will appear between columns only.
 "cols"
-| 
+|
 ## Rules will appear between all rows and columns.
 "all"
 }?
-& 
+&
 ## Specifies how much space the user agent should leave between the left side of the table and the left-hand side of the leftmost column, the top of the table and the top side of the topmost row, and so on for the right and bottom of the table. The attribute also specifies the amount of space to leave between cells.
 attribute cellspacing {
 xsd:integer >> a:documentation [ "An explicit spacing." ]
 | xsd:string { pattern = "[0-9]+%" }
 >> a:documentation [ "A percentage spacing." ]
 }?
-& 
+&
 ## Specifies the amount of space between the border of the cell and its contents. If the value of this attribute is a pixel length, all four margins should be this distance from the contents. If the value of the attribute is a percentage length, the top and bottom margins should be equally separated from the content based on a percentage of the available vertical space, and the left and right margins should be equally separated from the content based on a percentage of the available horizontal space.
 attribute cellpadding {
 xsd:integer >> a:documentation [ "An explicit padding." ]
@@ -9158,29 +9158,29 @@ db.html.tablecell.attributes=
 
 ## Provides an abbreviated form of the cell's content and may be rendered by user agents when appropriate in place of the cell's content. Abbreviated names should be short since user agents may render them repeatedly. For instance, speech synthesizers may render the abbreviated headers relating to a particular cell before rendering that cell's content.
 attribute abbr { text }?
-& 
+&
 ## This attribute may be used to place a cell into conceptual categories that can be considered to form axes in an n-dimensional space. User agents may give users access to these categories (e.g., the user may query the user agent for all cells that belong to certain categories, the user agent may present a table in the form of a table of contents, etc.). Please consult an HTML reference for more details.
 attribute axis { text }?
-& 
+&
 ## Specifies the list of header cells that provide header information for the current data cell. The value of this attribute is a space-separated list of cell names; those cells must be named by setting their id attribute. Authors generally use the headers attribute to help non-visual user agents render header information about data cells (e.g., header information is spoken prior to the cell data), but the attribute may also be used in conjunction with style sheets.
 attribute headers { text }?
-& 
+&
 ## Specifies the set of data cells for which the current header cell provides header information. This attribute may be used in place of the headers attribute, particularly for simple tables.
 attribute scope {
 
 ## The current cell provides header information for the rest of the row that contains it
 "row"
-| 
+|
 ## The current cell provides header information for the rest of the column that contains it.
 "col"
-| 
+|
 ## The header cell provides header information for the rest of the row group that contains it.
 "rowgroup"
-| 
+|
 ## The header cell provides header information for the rest of the column group that contains it.
 "colgroup"
 }?
-& 
+&
 ## Specifies the number of rows spanned by the current cell. The default value of this attribute is one (1
 ## ). The value zero (0
 ## ) means that the cell spans all rows from the current row to the last row of the table section (thead
@@ -9188,7 +9188,7 @@ attribute scope {
 ## , or tfoot
 ## ) in which the cell is defined.
 attribute rowspan { xsd:nonNegativeInteger }?
-& 
+&
 ## Specifies the number of columns spanned by the current cell. The default value of this attribute is one (1
 ## ). The value zero (0
 ## ) means that the cell spans all columns from the current column to the last column of the column group (colgroup
@@ -9601,14 +9601,14 @@ element caption { db.html.caption.attlist, db.all.inlines* }
 div{
 db.html.col.attlist =
 db.html.attrs
-& 
+&
 ## This attribute, whose value must be an integer > 0, specifies the number of columns spanned
 ##  by the col
 ##  element; the col
 ##  element shares its attributes with all the columns it spans. The default value for this attribute is 1 (i.e., a single column). If the span attribute is set to N > 1, the current col
 ##  element shares its attributes with the next N-1 columns.
 attribute span { xsd:nonNegativeInteger }?
-& 
+&
 ## Specifies a default width for each column spanned by the current col
 ##  element. It has the same meaning as the width
 ##  attribute for the colgroup
@@ -9624,14 +9624,14 @@ element col { db.html.col.attlist, empty }
 div{
 db.html.colgroup.attlist =
 db.html.attrs
-& 
+&
 ## This attribute, which must be an integer > 0, specifies the number of columns in a column group. In the absence of a span attribute, each colgroup
 ##  defines a column group containing one column. If the span attribute is set to N > 0, the current colgroup
 ##  element defines a column group containing N columns. User agents must ignore this attribute if the colgroup
 ##  element contains one or more col
 ##  elements.
 attribute span { xsd:nonNegativeInteger }?
-& 
+&
 ## This attribute specifies a default width for each column in the current column group. In addition to the standard pixel, percentage, and relative values, this attribute allows the special form 0*
 ##  (zero asterisk) which means that the width of the each column in the group should be the minimum width necessary to hold the column's contents. This implies that a column's entire contents must be known before its width may be correctly computed. Authors should be aware that specifying 0*
 ##  will prevent visual user agents from rendering a table incrementally. This attribute is overridden for any column in the column group whose width is specified via a col
@@ -9826,7 +9826,7 @@ db.msgmain.role.attribute?
 db.msgmain.info = db._info.title.only
 db.msgmain =
 
-## The primary component of a message in a message set 
+## The primary component of a message in a message set
 [
 s:pattern [
 name = "Root must have version"
@@ -10018,10 +10018,10 @@ db.qandaset.defaultlabel.enumeration =
 
 ## No labels
 "none"
-| 
+|
 ## Numeric labels
 "number"
-| 
+|
 ## "Q:" and "A:" labels
 "qanda"
 db.qandaset.defaultlabel.attribute =
@@ -10380,7 +10380,7 @@ db.imagedata.mathml.role.attribute = attribute role { text }
 db.imagedata.mathml.attlist =
 db.imagedata.mathml.role.attribute?
 & db.common.attributes
-& 
+&
 ## Specifies that the format of the data is MathML
 attribute format {
 
@@ -10439,7 +10439,7 @@ db.imagedata.svg.role.attribute = attribute role { text }
 db.imagedata.svg.attlist =
 db.imagedata.svg.role.attribute?
 & db.common.attributes
-& 
+&
 ## Specifies that the format of the data is SVG
 attribute format {
 
@@ -10519,46 +10519,46 @@ db.tag.class.enumeration =
 
 ## An attribute
 "attribute"
-| 
+|
 ## An attribute value
 "attvalue"
-| 
+|
 ## An element
 "element"
-| 
+|
 ## An empty element tag
 "emptytag"
-| 
+|
 ## An end tag
 "endtag"
-| 
+|
 ## A general entity
 "genentity"
-| 
+|
 ## The local name part of a qualified name
 "localname"
-| 
+|
 ## A namespace
 "namespace"
-| 
+|
 ## A numeric character reference
 "numcharref"
-| 
+|
 ## A parameter entity
 "paramentity"
-| 
+|
 ## A processing instruction
 "pi"
-| 
+|
 ## The prefix part of a qualified name
 "prefix"
-| 
+|
 ## An SGML comment
 "comment"
-| 
+|
 ## A start tag
 "starttag"
-| 
+|
 ## An XML processing instruction
 "xmlpi"
 db.tag.class.attribute =
@@ -10666,13 +10666,13 @@ db.productname.class.enumeration =
 
 ## A name with a copyright
 "copyright"
-| 
+|
 ## A name with a registered copyright
 "registered"
-| 
+|
 ## A name of a service
 "service"
-| 
+|
 ## A name which is trademarked
 "trade"
 db.productname.class.attribute =
@@ -10705,55 +10705,55 @@ db.database.class.enumeration =
 
 ## An alternate or secondary key
 "altkey"
-| 
+|
 ## A constraint
 "constraint"
-| 
+|
 ## A data type
 "datatype"
-| 
+|
 ## A field
 "field"
-| 
+|
 ## A foreign key
 "foreignkey"
-| 
+|
 ## A group
 "group"
-| 
+|
 ## An index
 "index"
-| 
+|
 ## The first or primary key
 "key1"
-| 
+|
 ## An alternate or secondary key
 "key2"
-| 
+|
 ## A name
 "name"
-| 
+|
 ## The primary key
 "primarykey"
-| 
+|
 ## A (stored) procedure
 "procedure"
-| 
+|
 ## A record
 "record"
-| 
+|
 ## A rule
 "rule"
-| 
+|
 ## The secondary key
 "secondarykey"
-| 
+|
 ## A table
 "table"
-| 
+|
 ## A user
 "user"
-| 
+|
 ## A view
 "view"
 db.database.class.attribute =
@@ -10776,7 +10776,7 @@ db.application.class.enumeration =
 
 ## A hardware application
 "hardware"
-| 
+|
 ## A software application
 "software"
 db.application.class.attribute =
@@ -10941,70 +10941,70 @@ db.keycap.function.enumeration =
 
 ## The "Alt" key
 "alt"
-| 
+|
 ## The "Alt Graph" key
 "altgr"
-| 
+|
 ## The "Backspace" key
 "backspace"
-| 
+|
 ## The "Command" key
 "command"
-| 
+|
 ## The "Control" key
 "control"
-| 
+|
 ## The "Delete" key
 "delete"
-| 
+|
 ## The down arrow
 "down"
-| 
+|
 ## The "End" key
 "end"
-| 
+|
 ## The "Enter" key
 "enter"
-| 
+|
 ## The "Escape" key
 "escape"
-| 
+|
 ## The "Home" key
 "home"
-| 
+|
 ## The "Insert" key
 "insert"
-| 
+|
 ## The left arrow
 "left"
-| 
+|
 ## The "Meta" key
 "meta"
-| 
+|
 ## The "Option" key
 "option"
-| 
+|
 ## The page down key
 "pagedown"
-| 
+|
 ## The page up key
 "pageup"
-| 
+|
 ## The right arrow
 "right"
-| 
+|
 ## The "Return" key
 "return"
-| 
+|
 ## The "Shift" key
 "shift"
-| 
+|
 ## The spacebar
 "space"
-| 
+|
 ## The "Tab" key
 "tab"
-| 
+|
 ## The up arrow
 "up"
 db.keycap.function-enum.attribute =
@@ -11054,16 +11054,16 @@ db.keycombo.action.enumeration =
 
 ## A (single) mouse click.
 "click"
-| 
+|
 ## A double mouse click.
 "double-click"
-| 
+|
 ## A mouse or key press.
 "press"
-| 
+|
 ## Sequential clicks or presses.
 "seq"
-| 
+|
 ## Simultaneous clicks or presses.
 "simul"
 db.keycombo.action-enum.attribute =
@@ -11181,22 +11181,22 @@ db.filename.class.enumeration =
 
 ## A device
 "devicefile"
-| 
+|
 ## A directory
 "directory"
-| 
+|
 ## A filename extension
 "extension"
-| 
+|
 ## A header file (as for a programming language)
 "headerfile"
-| 
+|
 ## A library file
 "libraryfile"
-| 
+|
 ## A partition (as of a hard disk)
 "partition"
-| 
+|
 ## A symbolic link
 "symlink"
 db.filename.class.attribute =
@@ -11309,7 +11309,7 @@ db.rep.enumeration=
 
 ## Can not be repeated.
 "norepeat"
-| 
+|
 ## Can be repeated.
 "repeat"
 db.rep.attribute=
@@ -11320,10 +11320,10 @@ db.choice.enumeration=
 
 ## Formatted to indicate that it is optional.
 "opt"
-| 
+|
 ## Formatted without indication.
 "plain"
-| 
+|
 ## Formatted to indicate that it is required.
 "req"
 db.choice.opt.attribute=
@@ -11654,7 +11654,7 @@ db.paramdef.choice.enumeration =
 
 ## Formatted to indicate that it is optional.
 "opt"
-| 
+|
 ## Formatted to indicate that it is required.
 "req"
 db.paramdef.choice.attribute =
@@ -11696,7 +11696,7 @@ db.classsynopsis.class.enumeration =
 
 ## This is the synopsis of a class
 "class"
-| 
+|
 ## This is the synopsis of an interface
 "interface"
 db.classsynopsis.class.attribute =
@@ -12905,67 +12905,67 @@ db.systemitem.class.enumeration =
 
 ## A daemon or other system process (syslogd)
 "daemon"
-| 
+|
 ## A domain name (example.com)
 "domainname"
-| 
+|
 ## An ethernet address (00:05:4E:49:FD:8E)
 "etheraddress"
-| 
+|
 ## An event of some sort (SIGHUP)
 "event"
-| 
+|
 ## An event handler of some sort (hangup)
 "eventhandler"
-| 
+|
 ## A filesystem (ext3)
 "filesystem"
-| 
+|
 ## A fully qualified domain name (my.example.com)
 "fqdomainname"
-| 
+|
 ## A group name (wheel)
 "groupname"
-| 
+|
 ## An IP address (127.0.0.1)
 "ipaddress"
-| 
+|
 ## A library (libncurses)
 "library"
-| 
+|
 ## A macro
 "macro"
-| 
+|
 ## A netmask (255.255.255.192)
 "netmask"
-| 
+|
 ## A newsgroup (comp.text.xml)
 "newsgroup"
-| 
+|
 ## An operating system name (Hurd)
 "osname"
-| 
+|
 ## A process (gnome-cups-icon)
 "process"
-| 
+|
 ## A protocol (ftp)
 "protocol"
-| 
+|
 ## A resource
 "resource"
-| 
+|
 ## A security context (a role, permission, or security token, for example)
 "securitycontext"
-| 
+|
 ## A server (mail.example.com)
 "server"
-| 
+|
 ## A service (ppp)
 "service"
-| 
+|
 ## A system name (hephaistos)
 "systemname"
-| 
+|
 ## A user name (ndw)
 "username"
 db.systemitem.class-enum.attribute =
