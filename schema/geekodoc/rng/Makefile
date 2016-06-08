@@ -23,13 +23,17 @@ docbook.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
 geekodoc5.rng: docbookxi.rnc geekodoc5.rnc
 	@echo "* Converting $< -> $@"
 	trang $< $@
+	@sed -i -r 's_\s+$__' $@
 
 geekodoc5-flat.rng: geekodoc5.rng
 	@echo "* Flattening $< -> $@"
-	rnginline $< $@
+	rnginline $< $@.unclean
+	xmllint -o $@.unclean --nsclean --format $@
+	rm $@.unclean
+	@sed -i -r 's_\s+$__' $@
 
 geekodoc5-flat.rnc: geekodoc5-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
-	@sed -i -r 's/\s+//' $@
+	@sed -i -r 's_\s+$__' $@
 
