@@ -18,20 +18,20 @@ div {
 
   ## Defines a value to be appended to all ID values on the element
   attribute trans:fixup {
-   
+
    ## The suffix property is set to an empty string.
    "none"
-   | 
+   |
      ## The suffix property is set to the concatenation of the inherited
      ## suffix value and the value specified in the trans:suffix attribute.
      "suffix"
-   | 
+   |
      ## The suffix property is set to a unique value for each element.
      "auto"
   }
 
  db.trans.suffix.attribute =
-  
+
   ## This attribute defines the value of the suffix property used when trans:idfixup="suffix".
   [ a:defaultValue = "" ] attribute trans:suffix { text }
 
@@ -44,13 +44,13 @@ div {
 
    ## No adjustment is made.
    "user"
-   | 
+   |
      ## Each ID reference is adjusted to point to the closest element that has a matching ID.
      "near"
-   | 
+   |
      ## Each ID reference is adjusted to point to the first element in document order that has a matching ID.
      "global"
-   | 
+   |
      ## The value of the suffix property is added to every ID reference as a suffix.
      "local"
   }

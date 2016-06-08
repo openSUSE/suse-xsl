@@ -39,4 +39,3 @@ geekodoc5-flat.rnc: geekodoc5-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
 	@sed -i -r 's/\s+//' $@
-

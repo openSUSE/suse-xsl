@@ -1,12 +1,12 @@
-# 
+#
 # Novdoc5 Schema
-# 
+#
 # See http://docbook.org/docs/howto
-# 
+#
 # This schema is (or should be) an (re)implementation of Novdoc4 in
 # DocBook 5.
-# 
-# Author: Thomas Schraitle, 2013 
+#
+# Author: Thomas Schraitle, 2013
 #
 
 namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
@@ -18,7 +18,7 @@ namespace mml = "http://www.w3.org/1998/Math/MathML"
 namespace svg = "http://www.w3.org/2000/svg"
 namespace xlink = "http://www.w3.org/1999/xlink"
 
-include "susedoc5.rnc" inherit = db 
+include "susedoc5.rnc" inherit = db
 {
   # Redefine element pattern as notAllowed here:
   db.anchor = notAllowed
@@ -47,13 +47,13 @@ include "susedoc5.rnc" inherit = db
   db.synopsis = notAllowed
 
   | (db.productionset | db.constraintdef)
-  | db.msgset 
+  | db.msgset
   # Attributes
   db.href.attributes = empty
-  
+
   # Other content models:
   db.table.choice = db.cals.table
-  
+
   db.admonition.blocks = db.important | db.note | db.tip | db.warning
   db.graphic.blocks = db.mediaobject
   db.informaltable.choice = db.cals.informaltable
@@ -62,20 +62,20 @@ include "susedoc5.rnc" inherit = db
   db.publishing.blocks = notAllowed
   db.technical.blocks = db.procedure | db.msgset
   db.verbatim.blocks = db.screen | db.programlisting
-  
-  db.link.inlines = (db.xref | db.link ) 
-    
-      
+
+  db.link.inlines = (db.xref | db.link )
+
+
   div {
     # http://lists.xml.org/archives/xml-dev/200710/msg00067.html
     # Needed to omit some attributes in attribute wildcard
     # Error message would be:
     # conflicting ID-types for attribute "id" from namespace "http://www.w3.org/XML/1998/namespace" of element X
-    db._any.attribute = 
+    db._any.attribute =
         ## Any attribute including in any attribute in any namespace.
         attribute * - ( xml:id | linkend) { text }
   }
-  
+
   div {
     # Removed any block elements inside glossdiv
     db.glossdiv =
@@ -87,7 +87,7 @@ include "susedoc5.rnc" inherit = db
         db.glossentry+
         }
   }
-  
+
   div {
     db.glossentry =
         ## An entry in a Glossary or GlossList
@@ -101,7 +101,7 @@ include "susedoc5.rnc" inherit = db
             db.glossdef+
         }
   }
-  
+
 }
 
 # --- EOF ---
