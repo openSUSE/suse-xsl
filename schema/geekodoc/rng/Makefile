@@ -42,7 +42,7 @@ $(SUSESCHEMA)-flat.rni: $(SUSESCHEMA).rng
 	rnginline $< $@
 
 $(SUSESCHEMA)-flat.rng: $(SUSESCHEMA)-flat.rni
-	echo '* Improving $< -> $@'
+	echo '* Cleaning up schema contents $< -> $@'
 	xmllint -o $@ --nsclean --format $<
 
 $(SUSESCHEMA)-flat.rnc: $(SUSESCHEMA)-flat.rng
