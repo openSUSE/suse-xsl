@@ -14,12 +14,12 @@
 all: geekodoc5-flat.rnc
 
 clean:
-	rm geekodoc5-flat.rn{c,g} geekodoc5.rng docbook.rn{c,g} 2>/dev/null || true
+	rm geekodoc5-flat.rn{c,g} geekodoc5.rng docbookxi.rn{c,g} 2>/dev/null || true
 
 flat: geekodoc5-flat.rnc
 	rm geekodoc5{,-flat}.rng docbook.rn{c,g} 2>/dev/null || true
 
-docbook.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
+docbookxi.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
 	@echo "* Linking $< -> $@"
 	ln -sf $< .
 
