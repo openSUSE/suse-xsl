@@ -11,24 +11,24 @@
 
 
 .PHONY: all clean
-all: susedoc5-flat.rnc
+all: geekodoc5-flat.rnc
 
 clean:
-	rm susedoc5-flat.rn{c,g} susedoc5.rng docbook.rn{c,g} 2>/dev/null || true
+	rm geekodoc5-flat.rn{c,g} geekodoc5.rng docbook.rn{c,g} 2>/dev/null || true
 
 docbook.rnc: /usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc
 	@echo "* Linking $< -> $@"
 	ln -sf $< .
 
-susedoc5.rng: docbookxi.rnc susedoc5.rnc
+geekodoc5.rng: docbookxi.rnc geekodoc5.rnc
 	@echo "* Converting $< -> $@"
 	trang $< $@
 
-susedoc5-flat.rng: susedoc5.rng
+geekodoc5-flat.rng: geekodoc5.rng
 	@echo "* Flattening $< -> $@"
 	rnginline $< $@
 
-susedoc5-flat.rnc: susedoc5-flat.rng
+geekodoc5-flat.rnc: geekodoc5-flat.rng
 	@echo "* Converting $< -> $@"
 	trang $< $@
 	@sed -i -r 's/\s+//' $@
