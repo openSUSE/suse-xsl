@@ -1,38 +1,38 @@
 NovDoc
 ======
 
-This is the Novdoc and SUSEDoc schemas. Although Novdoc is technically not
+This is the Novdoc and geekodoc schemas. Although Novdoc is technically not
 based on DocBook the tags and structure are.
 
 In general, XML instances of Novdoc should be compatible to DocBook.
 
 
-SUSEDoc
+GeekoDoc
 =======
 
-SUSEDoc is a RELAX NG schema and a subset of DocBook 5. Currently, it can be
+GeekoDoc is a RELAX NG schema and a subset of DocBook 5. Currently, it can be
 used in two variants:
 
-1. As the file `susedoc5.rn{c,g}` which is based on `docbookxi.rn{c,g}`. In
-   other words, the SUSEDoc schema cannot life without the DocBook schema.
-2. As a single`susedoc5-flat.rn{c,g}`. This file is totally independant of
-   any DocBook schema and can be used without having DocBook 5 installed on
+1. As the file `geekodoc5.rn{c,g}` which is based on `docbookxi.rn{c,g}`. In
+   other words, the GeekoDoc schema cannot life without the DocBook schema.
+2. As a single`geekodoc5-flat.rn{c,g}`. This file is independant from the
+   DocBook schema and can be used without having DocBook 5 installed on
    your system.
 
 Both variants contain the same structure, elements, and attributes. They
 serve different purposes.
 
 
-Creating Flat SUSEDoc
----------------------
+Creating Flat GeekoDoc
+----------------------
 
-Creating the flat SUSEDoc schema requires the `rnginline` tool at
+Creating the flat GeekoDoc schema requires the `rnginline` tool at
 https://github.com/h4l/rnginline/
 
 Use one of the following methods to install `rnginline`:
 
-* Install over an RPM package
-* Install it over a Python virtual environment
+* Install from an RPM package
+* Install it in a Python virtual environment
 
 
 Installing rnginline from RPM Package
@@ -75,26 +75,26 @@ Installing rnginline using a Python Virtual Environment
 The executable can be found in `.env3/bin/rnginline`.
 
 
-Creating a Flat SUSEDoc Schema
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating a Flat GeekoDoc Schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Update your `suse-xsl` GitHub repository.
 
 2. Convert the official compact version into the XML version with trang:
 
-   $ trang susedoc5.rnc susedoc5.rng
+   $ trang geekodoc.rnc geekodoc5.rng
 
 3. Create the flat RNG version:
 
-   $ rnginline susedoc5.rng susedoc-flat.rng
+   $ rnginline geekodoc5.rng geekodoc5-flat.rng
 
 4. Optional: Cleanup and remove unnecessary namespaces:
 
-   $ mv susedoc-flat.rng _flat.rng
-   $ xmllint -o susedoc5-flat.rng --nsclean --format flat.rng
+   $ mv geekodoc5-flat.rng _flat.rng
+   $ xmllint -o geekodoc5-flat.rng --nsclean --format flat.rng
    $ rm _flat.rng
 
 5. Optional: Create the compact version:
 
-   $ trang susedoc5-flat.rng susedoc5-flat.rnc
+   $ trang geekodoc5-flat.rng geekodoc5-flat.rnc
 

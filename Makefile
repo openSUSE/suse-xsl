@@ -25,17 +25,17 @@ SUSE_STYLES_PATH := $(DB_XML_PATH)/stylesheet
 
 NOVDOC_NAME     := novdoc
 NOVDOC_VERSION  := 1.0
-NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/dtd/$(NOVDOC_VERSION)
+NOVDOC_DTD_PATH := $(SUSE_SCHEMA_PATH)/novdoc/dtd/$(NOVDOC_VERSION)
 
 #--------------------------------------------------------------
-# SUSEDOC
+# GEEKODOC
 
-#SUSEDOC_NAME     := susedoc
-#SUSEDOC_VERSION  := 0.9
-#SUSEDOC_RNG_PATH := $(SUSE_SCHEMA_PATH)/rng/$(SUSEDOC_VERSION)
+#SUSESCHEMA_NAME     := geekodoc
+#SUSESCHEMA_VERSION  := 0.9
+#SUSESCHEMA_RNG_PATH := $(SUSE_SCHEMA_PATH)/geekodoc/rng/$(SUSEDOC_VERSION)
 
 #--------------------------------------------------------------
-# stylsheet directory names
+# stylesheet directory names
 
 DIR2005          := suse
 DIR2013_SUSE     := suse2013
@@ -50,9 +50,9 @@ ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 BUILD_DIR       := build
 DEV_ASPELL_DIR  := $(BUILD_DIR)/aspell
 DEV_CATALOG_DIR := $(BUILD_DIR)/catalogs
-DEV_SCHEMA_DIR  := $(BUILD_DIR)/schema
+DEV_SCHEMA_DIR  := $(BUILD_DIR)/schema/dev
 DEV_NOVDOC_DIR  := $(DEV_SCHEMA_DIR)/novdoc
-DEV_SUSEDOC_DIR := $(DEV_SCHEMA_DIR)/susedoc
+DEV_SUSEDOC_DIR := $(DEV_SCHEMA_DIR)/geekodoc
 DEV_STYLE_DIR   := $(BUILD_DIR)/stylesheet
 DEV_HTML_DIR    := $(BUILD_DIR)/$(DIR2005)/html
 
@@ -201,19 +201,19 @@ $(DEV_CATALOG_DIR)/CATALOG.$(NOVDOC_NAME)-$(NOVDOC_VERSION):
 # schemas cannot be build under build/schema, because the *-core files
 # are included
 
-#schema/rng/1.0/novdocx-core.rnc: schema/dtd/1.0/novdocx.dtd.tmp
+#schema/novdoc/rng/novdocx-core.rnc: schema/novdoc/dtd/novdocx.dtd.tmp
 $(DEV_NOVDOC_DIR)/novdocx-core.rnc: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
 	trang -I dtd -i no-generate-start $< $@
 
-#schema/rng/1.0/novdocx-core.rng: schema/dtd/1.0/novdocx.dtd.tmp
+#schema/novdoc/rng/novdocx-core.rng: schema/novdoc/dtd/novdocx.dtd.tmp
 $(DEV_NOVDOC_DIR)/novdocx-core.rng: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
 	trang -I dtd -i no-generate-start $< $@
 
-#schema/rng/1.0/novdocx.rng: schema/rng/1.0/novdocx.rnc schema/rng/1.0/novdocx-core.rnc
-$(DEV_NOVDOC_DIR)/novdocx.rng: schema/rng/1.0/novdocx.rnc $(DEV_NOVDOC_DIR)/novdocx-core.rnc
+#schema/novdoc/rng/novdocx.rng: schema/novdoc/rng/novdocx.rnc schema/novdoc/rng/novdocx-core.rnc
+$(DEV_NOVDOC_DIR)/novdocx.rng: schema/novdoc/rng/novdocx.rnc $(DEV_NOVDOC_DIR)/novdocx-core.rnc
 	trang -I rnc $< $@
 
-#schema/rng/1.0/novdocxi.rng: schema/rng/1.0/novdocxi.rnc schema/rng/1.0/novdocx-core.rnc
+#schema/novdoc/rng/novdocxi.rng: schema/novdoc/rng/novdocxi.rnc schema/novdoc/rng/novdocx-core.rnc
 $(DEV_NOVDOC_DIR)/novdocxi.rng: $(DEV_NOVDOC_DIR)/novdocxi.rnc $(DEV_NOVDOC_DIR)/novdocx-core.rnc
 	trang -I rnc $< $@
 
@@ -226,12 +226,12 @@ $(DEV_NOVDOC_DIR)/novdocxi.rng: $(DEV_NOVDOC_DIR)/novdocxi.rnc $(DEV_NOVDOC_DIR)
 # As the entities are not used in RELAX NG anyway, this is uncritical.
 #
 .INTERMEDIATE: $(DEV_NOVDOC_DIR)/novdocx.dtd.tmp
-$(DEV_NOVDOC_DIR)/novdocx.dtd.tmp: schema/dtd/1.0/novdocx.dtd | $(DEV_NOVDOC_DIR)
+$(DEV_NOVDOC_DIR)/novdocx.dtd.tmp: schema/novdoc/dtd/novdocx.dtd | $(DEV_NOVDOC_DIR)
 	sed 's:\(%[ \t]*ISO[^\.]*\.module[ \t]*\)"INCLUDE":\1"IGNORE":g' \
 	 < $< > $@
 
 .INTERMEDIATE: $(DEV_NOVDOC_DIR)/novdocxi.rnc
-$(DEV_NOVDOC_DIR)/novdocxi.rnc: schema/rng/1.0/novdocxi.rnc | $(DEV_NOVDOC_DIR)
+$(DEV_NOVDOC_DIR)/novdocxi.rnc: schema/novdoc/rng/novdocxi.rnc | $(DEV_NOVDOC_DIR)
 	(cd $(DEV_NOVDOC_DIR) && ln -s $(CDIR)/$<)
 
 #-----------------------------

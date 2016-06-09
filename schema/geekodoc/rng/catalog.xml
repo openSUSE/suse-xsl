@@ -1,0 +1,13 @@
+<?xml version='1.0'?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+<!-- XML Catalog data for GeekoDoc XML Relax NG schema -->
+
+<!-- See XML Catalogs at http://www.oasis-open.org/committees/entity/ for
+     detailed information on supplying and using catalog data. -->
+
+ <group xml:base="./">
+  <rewriteSystem
+    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/develop/schema/geekodoc/rng/"
+    rewritePrefix="."/>
+ </group>
+</catalog>

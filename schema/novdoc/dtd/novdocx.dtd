@@ -34,13 +34,13 @@
    href       CDATA       #IMPLIED
    parse      (xml|text)  "xml"
    xpointer   CDATA       #IMPLIED
-   encoding   CDATA       #IMPLIED 
+   encoding   CDATA       #IMPLIED
    accept     CDATA       #IMPLIED
-   accept-language CDATA  #IMPLIED 
+   accept-language CDATA  #IMPLIED
    os        CDATA        #IMPLIED
    arch      CDATA        #IMPLIED
    >
-   
+
 <!ELEMENT xi:fallback ANY>
 
 <!ENTITY % NOVDOC.XINCLUDE "IGNORE">
@@ -99,7 +99,7 @@
                     (book  %xi_include.def;)+,
                     setindex?)>
 
-<!ELEMENT setinfo (productname* , productnumber*, 
+<!ELEMENT setinfo (productname* , productnumber*,
                    date?, releaseinfo?,
                    legalnotice*,
                    authorgroup*, abstract*) >
@@ -125,7 +125,7 @@
                    (sect1*|(refentry
                    %xi_include.def;)*))|(sect1+|(refentry %xi_include.def;)+)),
                   (index|glossary|appendix %xi_include.def;)*)>
-               
+
 <!ELEMENT articleinfo ((author|authorgroup|date|releaseinfo|productname|
                         productnumber|legalnotice|indexterm|abstract
                         %xi_include.def;)+)>
@@ -387,10 +387,10 @@
                                techreport|whitepaper)        #IMPLIED
                %profiling.attributes;
                %xmlbase;  >
-               
+
 <!ATTLIST articleinfo
                role           CDATA     #IMPLIED
-               %xmlbase; 
+               %xmlbase;
                %profiling.attributes; >
 
 <!ATTLIST author
@@ -426,7 +426,7 @@
                %lang.attrib;
                %dir.attrib;
                %profiling.attributes; >
-               
+
 <!ATTLIST bridgehead
                %profiling.attributes;
                %xmlbase;
@@ -688,7 +688,7 @@
                %profiling.attributes;
                %xmlbase;>
 
-<!ATTLIST literallayout 
+<!ATTLIST literallayout
                remap            CDATA     #IMPLIED
                role           CDATA     #IMPLIED
                linenumbering  (numbered | unnumbered) #IMPLIED
@@ -814,7 +814,7 @@
 <!ATTLIST refclass
                %profiling.attributes;
                %xmlbase;>
-               
+
 <!ATTLIST refmiscinfo
 							class (source|version|manual|other) #IMPLIED >
 
@@ -843,9 +843,9 @@
                remap          CDATA     #IMPLIED
                %lang.attrib;
                %dir.attrib;
-               %profiling.attributes; 
+               %profiling.attributes;
                %xmlbase; >
-               
+
 <!ATTLIST refentrytitle
                role           CDATA     #IMPLIED
                %xmlbase;>
@@ -873,7 +873,7 @@
                %dir.attrib;
                %profiling.attributes;
                %xmlbase;>
-               
+
 <!ATTLIST simplemsgentry
                id             ID        #IMPLIED
                remap          CDATA     #IMPLIED
@@ -955,7 +955,7 @@
                %profiling.attributes;
                %xmlbase;>
 
-<!ATTLIST setinfo 
+<!ATTLIST setinfo
                id             ID        #IMPLIED
                role           CDATA     #IMPLIED
                %profiling.attributes;
@@ -1074,7 +1074,7 @@
 
 <!ATTLIST trademark
                remap      CDATA           #IMPLIED
-               class (service | trade | registered | copyright) #IMPLIED               
+               class (service | trade | registered | copyright) #IMPLIED
                %profiling.attributes;
                %xmlbase;>
 
@@ -1237,7 +1237,7 @@
 %ISOpub;
 ]]>
 
-<!-- 
+<!--
 <!ENTITY % NOVELLmisc.module "INCLUDE">
 <![ %NOVELLmisc.module; [
  <!ENTITY % NOVELLmisc PUBLIC "-//Novell//ENTITIES Misc//EN" "novell.ent">
