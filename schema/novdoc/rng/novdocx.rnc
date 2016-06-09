@@ -6,21 +6,21 @@
 
 # novdocx.dtd is a subset of DocBook and all instances should be valid
 # DocBook files, however, the docbookx.dtd is not directly referenced.
-# 
+#
 # Please use the following formal public identifier:
-# 
+#
 # "-//Novell//DTD NovDoc XML V1.0//EN" "novdocx.dtd"
-# 
+#
 # The following is copyright information required for the docbook dtd:
-# 
+#
 # Copyright 1992-2002 HaL Computer Systems, Inc.,
 # O'Reilly & Associates, Inc., ArborText, Inc., Fujitsu Software
 # Corporation, Norman Walsh, Sun Microsystems, Inc., and the
 # Organization for the Advancement of Structured Information
 # Standards (OASIS).
-# 
+#
 # $Id: novdocx.dtd 42467 2009-06-22 16:16:33Z toms $
-# 
+#
 # Permission to use, copy, modify and distribute the DocBook XML DTD
 # and its accompanying documentation for any purpose and without fee
 # is hereby granted in perpetuity, provided that the above copyright
@@ -1059,7 +1059,7 @@ attlist_warning &=
   profiling.attributes,
   xmlbase
 # This parameter entity "deactivates" all IDREF(S).
-# 
+#
 # So somebody can validate a separate file even if some
 # xref/link elements points outside this file.
 #
@@ -1097,7 +1097,7 @@ any =
 # End of %__HIDE__
 
 # Entities which are used by SUSE
-# 
+#
 # If someone doesn't need that, it can be switched off with the proper
 # parameter entity declaration, e.g.:
 # <!ENTITY % ISOlat1.module "IGNORE">
@@ -1114,7 +1114,7 @@ any =
 # <![ %NOVELLmisc.module; [
 #  <!ENTITY % NOVELLmisc PUBLIC "-//Novell//ENTITIES Misc//EN" "novell.ent">
 # <!- -end of NOVELLmisc.module- ->]]>
-# 
+#
 # <![ %NOVELLmisc.module; [
 # %NOVELLmisc;
 # ]]>

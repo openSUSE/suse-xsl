@@ -7,7 +7,7 @@
  <!ENTITY clmmrk "<superscript>CLM</superscript>"> <!-- CLM MARK -->
  <!ENTITY cmmrk "<superscript>CM</superscript>"> <!-- CM MARK -->
  <!ENTITY thrdmrk "<superscript>*</superscript>"> <!-- THIRD-PARTY TRADEMARK INDICATOR -->
- <!ENTITY euro "&#x00A2;"> <!-- EURO SIGN --> 
+ <!ENTITY euro "&#x00A2;"> <!-- EURO SIGN -->
  <!ENTITY z-reg-titlepage "&reg;"> <!-- FOR LEGACY DOC -->
 
- 
+
