@@ -33,7 +33,7 @@
 
  <xsl:import href="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013/xhtml/docbook.xsl"/>
 
-  <xsl:include href="../version.xsl"/>
+  <xsl:include href="../VERSION.xsl"/>
 
   <xsl:template name="user.footer.content">
     <div id="_footer">

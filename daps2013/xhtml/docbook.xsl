@@ -32,7 +32,7 @@
 
   <xsl:import href="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013/xhtml/docbook.xsl"/>
 
-  <xsl:include href="../version.xsl"/>
+  <xsl:include href="../VERSION.xsl"/>
 
   <xsl:param name="suse.content" select="0"/>
 
