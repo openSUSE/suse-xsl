@@ -80,7 +80,8 @@
 <!ENTITY % profiling.attributes
    "os        CDATA     #IMPLIED
     arch      CDATA     #IMPLIED
-    condition CDATA     #IMPLIED">
+    condition CDATA     #IMPLIED
+    vendor    CDATA     #IMPLIED">
 <!ENTITY % xmlbase
    "xml:base  CDATA     #IMPLIED">
 
@@ -821,7 +822,6 @@
 <!ATTLIST remark
                role           CDATA     #IMPLIED
                revision     CDATA     #IMPLIED
-               vendor      CDATA     #IMPLIED
                %profiling.attributes;
                %xmlbase;>
 
