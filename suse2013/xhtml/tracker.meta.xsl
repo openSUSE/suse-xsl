@@ -73,7 +73,7 @@
       <xsl:with-param name="component-candidate" select="($bugtracker/dm:component[normalize-space(.) != ''])[last()]"/>
       <xsl:with-param name="product-candidate" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
       <xsl:with-param name="version-candidate" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="labels-candidate" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
+      <xsl:with-param name="labels-candidate" select="($bugtracker/dm:labels[normalize-space(.) != ''])[last()]"/>
     </xsl:call-template>
   </xsl:template>
 
