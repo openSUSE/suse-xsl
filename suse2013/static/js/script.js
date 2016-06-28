@@ -173,7 +173,6 @@ function tracker() {
 }
 
 function githubUrl(sectionNumber, sectionName, permalink) {
-  var labels = ghLabels.split(",")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
   var url = trackerUrl + "?title=" + encodeURIComponent(sectionName)
      + "&amp;body=" + encodeURIComponent(body);
@@ -183,8 +182,11 @@ function githubUrl(sectionNumber, sectionName, permalink) {
   if (ghMilestone) {
     url += "&amp;milestone=" + encodeURIComponent(ghMilestone);
   }
-  for(var i = 0; i < labels.length; i++) {
-    url += "&amp;labels[]=" + labels[i];
+  if (ghLabels) {
+    var labels = ghLabels.split(",");
+    for(var i = 0; i < labels.length; i++) {
+      url += "&amp;labels[]=" + labels[i];
+    }
   }
   return url;
 }
