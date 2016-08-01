@@ -1,4 +1,48 @@
 -------------------------------------------------------------------
+Fr Aug 01 16:00:00 UTC 2015 - sknorr@suse.de
+
+Stable release DAPS 2.0.6:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Schema
+  - Completely removed schemas from SUSE XSL Stylesheets: Schemas
+    can now be found at https://github.com/openSUSE/geekodoc
+
+* SUSE Word List for aspell
+  - Added more words, many of which were found in SUSE release
+    notes
+
+* Stylesheets (PDF)
+  - Allow disabling secondary branding (Geeko Tail) via parameter:
+    enable.secondary.branding=0
+
+* Stylesheets (XHTML)
+  - Added syntax highlighting for screens
+    - To enable, add language="..." to your screen
+    - Recognized languages are: bash, c++, css, diff, html, xml,
+      http, ini, json, java, javascript, makefile, nginx, php,
+      perl, python, ruby, sql, crmsh, dockerfile, lisp, yaml
+  - Report Bug Links: Fixed ampersands in Bugzilla URLs
+  - Report Bug Links: Fixed JavaScript responsible for GitHub labels
+
+* Common Stylesheet Changes
+  - Fixed a number of L10N issues in CJK and European languages
+    (suse-xsl #218, suse-xsl #51, suse-xsl #200, suse-xsl #82,
+    suse-xsl #87, suse-xsl #79)
+  - Reverted back to VERSION.xsl as used by upstream for
+    compatibility
+  - Improved screen trimming behavior to fix screens that contain
+    whitespace at beginning and end
+
+* Packaging
+  - Added more fonts to requires to avoid broken foreign-language
+    PDF builds in the build service
+  - Removed mentions of schemas from spec file (see top)
+
+
+-------------------------------------------------------------------
 Fr Apr 22 09:00:00 UTC 2015 - toms@opensuse.org
 
 Stable release DAPS 2.0.5:
@@ -143,7 +187,7 @@ Thu Jun 11 12:50:28 UTC 2015 - fsundermeyer@opensuse.org
 Hotfix for version 2.0-rc6:
   * Reverted the move of the stylesheets to
     /usr/share/xml/suse/stylesheet
-    because of serious compatibilioty issues.
+    because of serious compatibility issues.
     The stylesheets remain in
     /usr/share/xml/suse/docbook.
 
