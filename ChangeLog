@@ -1,7 +1,7 @@
 -------------------------------------------------------------------
 Fri Aug 01 16:00:00 UTC 2016 - sknorr@suse.de
 
-Stable release DAPS 2.0.6:
+Stable release of the SUSE XSL stylesheets 2.0.6:
 
 Find issues in our GitHub tracker at
 https://github.com/openSUSE/suse-xsl/issues/NUMBER
@@ -44,7 +44,7 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 -------------------------------------------------------------------
 Fri Apr 22 09:00:00 UTC 2016 - toms@opensuse.org
 
-Stable release DAPS 2.0.5:
+Stable release of the SUSE XSL stylesheets 2.0.5:
 
 Find issues in our GitHub tracker at
 https://github.com/openSUSE/suse-xsl/issues/NUMBER
@@ -99,7 +99,7 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 -------------------------------------------------------------------
 Tue Dec 02 13:41:00 UTC 2015 - toms@opensuse.org
 
-Stable release DAPS 2.0.4:
+Stable release of the SUSE XSL stylesheets 2.0.4:
 
 Find issues in our GitHub tracker at 
 https://github.com/openSUSE/suse-xsl/issues/NUMBER
@@ -140,7 +140,7 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 -------------------------------------------------------------------
 Tue Aug 11 15:11:52 UTC 2015 - toms@opensuse.org
 
-Stable release 2.0.3 (only for OBS):
+Stable release of the SUSE XSL stylesheets 2.0.3 (only for OBS):
 
 - Schema:
   . Fixed #41: Missing prompt element
@@ -156,7 +156,7 @@ Stable release 2.0.3 (only for OBS):
 -------------------------------------------------------------------
 Tue Jul 02 09:11:00 UTC 2015 - toms@opensuse.org
 
-Stable release 2.0.1
+Stable release of the SUSE XSL stylesheets 2.0.1
 
 - Schema
   . Enabled subtitle and textobject (susedoc5.rnc)
@@ -174,7 +174,7 @@ Stable release 2.0.1
 -------------------------------------------------------------------
 Fri Jun 19 12:47:56 UTC 2015 - fsundermeyer@opensuse.org
 
-Stable release 2.0
+Stable release of the SUSE XSL stylesheets 2.0
 
 - added latest products to .js file to create correct Bugzilla
   links in Draft mode
