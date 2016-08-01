@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
-Fr Aug 01 16:00:00 UTC 2015 - sknorr@suse.de
+Fri Aug 01 16:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release DAPS 2.0.6:
 
@@ -41,9 +41,8 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
     PDF builds in the build service
   - Removed mentions of schemas from spec file (see top)
 
-
 -------------------------------------------------------------------
-Fr Apr 22 09:00:00 UTC 2015 - toms@opensuse.org
+Fri Apr 22 09:00:00 UTC 2016 - toms@opensuse.org
 
 Stable release DAPS 2.0.5:
 
@@ -96,7 +95,6 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
   - Update Requires/Recommends (also fixes suse-xsl #220)
   - suse_beta => suse2013
   - Improve package description in Spec file
-
 
 -------------------------------------------------------------------
 Tue Dec 02 13:41:00 UTC 2015 - toms@opensuse.org
