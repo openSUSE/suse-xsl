@@ -173,32 +173,34 @@ function tracker() {
 }
 
 function githubUrl(sectionNumber, sectionName, permalink) {
-  var labels = ghLabels.split(",")
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
   var url = trackerUrl + "?title=" + encodeURIComponent(sectionName)
-     + "&body=" + encodeURIComponent(body);
+     + "&amp;body=" + encodeURIComponent(body);
   if (ghAssignee) {
-    url += "&assignee=" + encodeURIComponent(ghAssignee);
+    url += "&amp;assignee=" + encodeURIComponent(ghAssignee);
   }
   if (ghMilestone) {
-    url += "&milestone=" + encodeURIComponent(ghMilestone);
+    url += "&amp;milestone=" + encodeURIComponent(ghMilestone);
   }
-  for(var i = 0; i < labels.length; i++) {
-    url += "&labels[]=" + labels[i];
+  if (ghLabels) {
+    var labels = ghLabels.split(",");
+    for(var i = 0; i < labels.length; i++) {
+      url += "&amp;labels[]=" + labels[i];
+    }
   }
   return url;
 }
 
 function bugzillaUrl(sectionNumber, sectionName, permalink) {
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var url = trackerUrl + "?&product=" + encodeURIComponent(bscProduct)
-    + '&component=' + encodeURIComponent(bscComponent)
-    + "&short_desc=[doc]+&comment=" + encodeURIComponent(body);
+  var url = trackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
+    + '&amp;component=' + encodeURIComponent(bscComponent)
+    + "&amp;short_desc=[doc]+&amp;comment=" + encodeURIComponent(body);
   if (bscAssignee) {
-    url += "&assigned_to=" + encodeURIComponent(bscAssignee);
+    url += "&amp;assigned_to=" + encodeURIComponent(bscAssignee);
   }
   if (bscVersion) {
-    url += "&version=" + encodeURIComponent(bscVersion);
+    url += "&amp;version=" + encodeURIComponent(bscVersion);
   }
   return url;
 }

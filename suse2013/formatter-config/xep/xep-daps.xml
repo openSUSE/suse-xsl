@@ -317,8 +317,8 @@
         </font>
       </font-family>
     </font-group>
-    <font-group label="KoreanFonts" embed="true" subset="true">
-      <font-family name="KoreanSerif">
+    <font-group label="UnFonts" embed="true" subset="true">
+      <font-family name="UnBatang">
         <font>
           <font-data ttf="UnBatang.ttf"/>
         </font>
@@ -334,7 +334,7 @@
           <transform slant-angle="12"/>
         </font>
       </font-family>
-      <font-family name="KoreanSans">
+      <font-family name="UnDotum">
         <font>
           <font-data ttf="UnDotum.ttf"/>
         </font>

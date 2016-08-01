@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" 
-   language="lt" 
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+   language="lt"
    english-language-name="Lithuanian">
 
    <l:gentext key="LocalisedLanguageName" text="Lietuvi&#371;"/>
@@ -11,12 +11,7 @@
    <l:gentext key="Contributor"     text="Bendradarbis"/>
    <l:gentext key="Contributors"    text="Bendradarbiai"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; ATMINTINĖ"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="Sukūrė SUSE&#x00AE; su XSL-FO"/>
-
    <l:gentext key="admonseparator"  text=": "/>
- 
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
@@ -70,55 +65,58 @@
    </l:context>
 
    <l:context name="xref">
-      <l:template name="sect1" text="&#8222;%t&#8220;"/>
-      <l:template name="sect2" text="&#8222;%t&#8220;"/>
-      <l:template name="sect3" text="&#8222;%t&#8220;"/>
-      <l:template name="sect4" text="&#8222;%t&#8220;"/>
-      <l:template name="sect5" text="&#8222;%t&#8220;"/>
+      <l:template name="sect1" text="„%t“"/>
+      <l:template name="sect2" text="„%t“"/>
+      <l:template name="sect3" text="„%t“"/>
+      <l:template name="sect4" text="„%t“"/>
+      <l:template name="sect5" text="„%t“"/>
       <l:template name="page.citation" text=" (p.&#160;%p)"/>
-     
-      <l:template name="intra-article" text="Straipsnis “%t”"/>
-      <l:template name="intra-book" text="Knyga “%t”"/>
-      <l:template name="intra-chapter" text="Skyrius %n “%t”"/>
-      <!--<l:template name="intra-part" text="%B %t"/>-->
-      <l:template name="intra-sect1" text="Skyrius %n “%t”"/>
-      <l:template name="intra-sect2" text="Skyrius %n “%t”"/>
-      <l:template name="intra-sect3" text="Skyrius %n “%t”"/>
-      <l:template name="intra-sect4" text="Skyrius %n “%t”"/>
-      <l:template name="intra-preface" text="Įvadas “%t”"/>
-      <l:template name="intra-figure" text="Pav. %n “%t”"/>
-      <l:template name="intra-table" text="Lentelė %n “%t”"/>
-      <l:template name="intra-example" text="Pavyzdys %n “%t”"/>
-      <l:template name="intra-procedure" text="Procedūra %n “%t”"/>
-     
+
+      <l:template name="intra-article" text="Straipsnis „%t“"/>
+      <l:template name="intra-book" text="Knyga „%t“"/>
+      <l:template name="intra-chapter" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-sect1" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-sect2" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-sect3" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-sect4" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-preface" text="Įvadas „%t“"/>
+      <!-- "Pav." seems wrong ... why is this an abbreviation only? It also
+           looks very similar to "Pavyzdys"... Both seem to be ~correct (Google
+           Translate, but calling two somewhat separate items the ~same
+           would seem wrong. -->
+      <l:template name="intra-figure" text="Pav.&#160;%n „%t“"/>
+      <l:template name="intra-table" text="Lentelė&#160;%n „%t“"/>
+      <l:template name="intra-example" text="Pavyzdys&#160;%n „%t“"/>
+      <l:template name="intra-procedure" text="Procedūra&#160;%n „%t“"/>
+
       <l:template name="intra-variablelist" text="“%t”"/>
       <l:template name="intra-orderedlist" text="“%t”"/>
       <l:template name="intra-itemizedlist" text="“%t”"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="Priedas.&#160;%t"/>
-      <l:template name="bridgehead" text="&#8222;%t&#8220;"/>
-      <l:template name="chapter" style="nonumber"  text="%t"/>
-      <l:template name="equation" style="nonumber"  text="Lygtis&#160;&#8222;%t&#8220;"/>
-      <l:template name="example" style="nonumber"  text="Pavyzdys&#160;&#8222;%t&#8220;"/>
-      <l:template name="figure" style="nonumber"  text="Pav.&#160;&#8222;%t&#8220;"/>
-      <l:template name="part" style="nonumber"  text="&#8222;%t&#8220;&#160;dalis"/>
-      <l:template name="procedure" style="nonumber"  text="Proced&#363;ra&#160;&#8222;%t&#8220;"/>
-      <l:template name="productionset" style="nonumber"  text="&#8222;%t&#8220;&#160;produktas"/>
-      <l:template name="qandadiv" style="nonumber"  text="K ir A apie &#8222;%t&#8220;"/>
-      <l:template name="refsect1" style="nonumber"  text="vadianama &#8222;%t&#8220;"/>
-      <l:template name="refsect2" style="nonumber"  text="vadinama &#8222;%t&#8220;"/>
-      <l:template name="refsect3" style="nonumber"  text="vadinama &#8222;%t&#8220;"/>
-      <l:template name="refsection" style="nonumber"  text="vadinama &#8222;%t&#8220;"/>
-      <l:template name="sect1" style="nonumber" text="&#8222;%t&#8220;"/>
-      <l:template name="sect2" style="nonumber"  text="&#8222;%t&#8220;"/>
-      <l:template name="sect3" style="nonumber"  text="&#8222;%t&#8220;"/>
-      <l:template name="sect4" style="nonumber"  text="&#8222;%t&#8220;"/>
-      <l:template name="sect5" style="nonumber"  text="&#8222;%t&#8220;"/>
-      <l:template name="section" style="nonumber"  text="&#8222;%t&#8220;"/>
-      <l:template name="simplesect" style="nonumber"  text="vadinama &#8222;%t&#8220;"/>
-      <l:template name="table" style="nonumber"  text="lentel&#279;&#160;&#8222;%t&#8220;"/>
+      <l:template name="appendix" style="nonumber"  text="Priedas. „%t“"/>
+      <l:template name="bridgehead" text="„%t“"/>
+      <l:template name="chapter" style="nonumber"  text="„%t“"/>
+      <l:template name="equation" style="nonumber"  text="Lygtis „%t“"/>
+      <l:template name="example" style="nonumber"  text="Pavyzdys „%t“"/>
+      <l:template name="figure" style="nonumber"  text="Pav. „%t“"/>
+      <l:template name="part" style="nonumber"  text="„%t“ dalis"/>
+      <l:template name="procedure" style="nonumber"  text="Proced&#363;ra „%t“"/>
+      <l:template name="productionset" style="nonumber"  text="„%t“ produktas"/>
+      <l:template name="qandadiv" style="nonumber"  text="K ir A apie „%t“"/>
+      <l:template name="refsect1" style="nonumber"  text="vadianama „%t“"/>
+      <l:template name="refsect2" style="nonumber"  text="vadinama „%t“"/>
+      <l:template name="refsect3" style="nonumber"  text="vadinama „%t“"/>
+      <l:template name="refsection" style="nonumber"  text="vadinama „%t“"/>
+      <l:template name="sect1" style="nonumber" text="„%t“"/>
+      <l:template name="sect2" style="nonumber"  text="„%t“"/>
+      <l:template name="sect3" style="nonumber"  text="„%t“"/>
+      <l:template name="sect4" style="nonumber"  text="„%t“"/>
+      <l:template name="sect5" style="nonumber"  text="„%t“"/>
+      <l:template name="section" style="nonumber"  text="„%t“"/>
+      <l:template name="simplesect" style="nonumber"  text="vadinama „%t“"/>
+      <l:template name="table" style="nonumber"  text="lentel&#279; „%t“"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
@@ -185,5 +183,5 @@
    <l:context name="datetime">
      <l:template name="titlepage.format" text="Y-m-d"/>
    </l:context>
-  
+
 </l:l10n>

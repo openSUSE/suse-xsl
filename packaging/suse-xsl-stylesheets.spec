@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.5
+Version:        2.0.6
 Release:        0
 
 ###############################################################
@@ -33,18 +33,10 @@ Release:        0
 #
 ################################################################
 
-%define novdocversion   1.0
-%define novdocname      novdoc
-%define regcat          %{_bindir}/sgml-register-catalog
-%define dbstyles        %{_datadir}/xml/docbook/stylesheet/nwalsh/current
-%define suse_schemas_catalog catalog-for-suse_schemas.xml
-%define susexsl_catalog      catalog-for-%{name}.xml
-%define suse_schemas_groupname suse_schemas
-
-%define suse_xml_dir    %{_datadir}/xml/suse
-%define db_xml_dir      %{_datadir}/xml/docbook
-%define suse_schema_dir %{suse_xml_dir}/schema
-%define suse_styles_dir %{db_xml_dir}/stylesheet
+%define dbstyles          %{_datadir}/xml/docbook/stylesheet/nwalsh/current
+%define susexsl_catalog   catalog-for-%{name}.xml
+%define db_xml_dir        %{_datadir}/xml/docbook
+%define suse_styles_dir   %{db_xml_dir}/stylesheet
 
 Summary:        SUSE-Branded Stylesheets for DocBook
 License:        GPL-2.0 or GPL-3.0
@@ -77,62 +69,52 @@ Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook5-xsl-stylesheets >= 1.77
 
 Requires:       libxslt
+Requires:       aspell-en
 
 Recommends:     daps
+
 
 #------
 # Fonts
 #------
-%if 0%{?suse_version} >= 1220
-Requires:       dejavu-fonts
+
+# Western fallback: currently necessary for building with XEP, it seems.
+Requires:       ghostscript-fonts-std
+
+# Western fallback 2: These should make the Ghostscript fonts unnecessary.
 Requires:       gnu-free-fonts
-Requires:       liberation-fonts
-Recommends:     agfa-fonts
-# Japanese:
-Recommends:     sazanami-fonts
-# Korean:
-Recommends:     un-fonts
-%else
-Requires:       dejavu
-Requires:       freefont
-Requires:       liberation-fonts
-Recommends:     aspell aspell-en
-Recommends:     agfa-fonts
-# Japanese:
-Recommends:     sazanami-fonts
-# Korean:
-Recommends:     unfonts
-%endif
-# Chinese -- only available from M17N:fonts in Code 11:
-Recommends:     wqy-microhei-fonts
 
-%if 0%{?sles_version}
-Recommends:     ttf-founder-simplified
-%endif
+# "Generic" font for use in cases where we don't want one of the gnu-free-fonts
+Requires:       dejavu-fonts
 
-# FONTS USED IN suse2013 STYLESHEETS
-# A rather simplistic solution which roughly means that you need M17N:fonts to
-# build the new stylesheets on older OS's.
-%if 0%{?suse_version} >= 1220
+# FONTS USED IN "suse" (aka "suse2005") STYLESHEETS
+# Proprietary Western:
+Recommends:     agfa-fonts
+# Fallback for proprietary Western:
+Requires:       liberation-fonts
+# Japanese:
+Requires:       sazanami-fonts
+# Korean:
+Requires:       un-fonts
+# Chinese:
+Requires:       wqy-microhei-fonts
+
+
+# FONTS USED IN "suse2013" STYLESHEETS
+# Western fonts:
 Requires:       google-opensans-fonts
 Requires:       sil-charis-fonts
-%else
-Recommends:     google-opensans-fonts
-Recommends:     sil-charis-fonts
-%endif
 # Monospace -- dejavu-fonts, already required
 # Western fonts fallback -- gnu-free-fonts, already required
-
-# Chinese simplified -- wqy-microhei-fonts, already recommended
+# Chinese simplified -- wqy-microhei-fonts, already required
 # Chinese traditional:
-Recommends:     arphic-uming-fonts
+Requires:       arphic-uming-fonts
 # Japanese:
-Recommends:     ipa-pgothic-fonts
-Recommends:     ipa-pmincho-fonts
-# Korean:
-Recommends:     nanum-fonts
+Requires:       ipa-pgothic-fonts
+Requires:       ipa-pmincho-fonts
+# Korean -- un-fonts, already required
 # Arabic:
-Recommends:     arabic-amiri-fonts
+Requires:       arabic-amiri-fonts
 
 
 %description
@@ -161,13 +143,6 @@ make install DESTDIR=$RPM_BUILD_ROOT  LIBDIR=%_libdir
 
 #----------------------
 %post
-# register catalogs
-#
-# SGML CATALOG
-#
-if [ -x %{regcat} ]; then
-  %{regcat} -a %{_datadir}/sgml/CATALOG.%{novdocname}-%{novdocversion} >/dev/null 2>&1 || true
-fi
 # XML Catalogs
 #
 # remove existing entries first - needed for
@@ -175,14 +150,10 @@ fi
 # delete ...
 if [ "2" = "$1" ]; then
  edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-  --del %{suse_schemas_groupname} || true
- edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
   --del %{name} || true
 fi
 
 # ... and (re)add it again
-edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-  --add %{_sysconfdir}/xml/%{suse_schemas_catalog}
 edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
   --add %{_sysconfdir}/xml/%{susexsl_catalog}
 
@@ -200,12 +171,6 @@ exit 0
 #
 if [ "0" = "$1" ]; then
   if [ ! -f %{_sysconfdir}/xml/%{suse_schemas_catalog} -a -x /usr/bin/edit-xml-catalog ] ; then
-    # SGML: novdoc dtd entry
-    %{regcat} -r %{_datadir}/sgml/CATALOG.%{novdocname}-%{novdocversion} >/dev/null 2>&1 || true
-    # XML
-    # schemas entry
-    edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-        --del %{suse_schemas_groupname}
     # susexsl entry
     edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
         --del %{name}
@@ -227,8 +192,6 @@ exit 0
 %dir %{_datadir}/suse-xsl-stylesheets
 %dir %{_datadir}/suse-xsl-stylesheets/aspell
 
-%dir %{suse_xml_dir}
-
 %dir %{suse_styles_dir}
 %dir %{suse_styles_dir}/suse
 %dir %{suse_styles_dir}/suse-ns
@@ -238,13 +201,6 @@ exit 0
 %dir %{suse_styles_dir}/daps2013-ns
 %dir %{suse_styles_dir}/opensuse2013
 %dir %{suse_styles_dir}/opensuse2013-ns
-
-%dir %{suse_schema_dir}
-%dir %{suse_schema_dir}/dtd
-%dir %{suse_schema_dir}/rng
-%dir %{suse_schema_dir}/dtd/1.0
-%dir %{suse_schema_dir}/rng/0.9
-%dir %{suse_schema_dir}/rng/1.0
 
 %dir %{_ttfontsdir}
 
@@ -260,13 +216,7 @@ exit 0
 %{suse_styles_dir}/opensuse2013/*
 %{suse_styles_dir}/opensuse2013-ns/*
 
-# SUSE Schemas
-%{suse_schema_dir}/dtd/*
-%{suse_schema_dir}/rng/*
-
 # Catalogs
-%config /var/lib/sgml/CATALOG.*
-%{_datadir}/sgml/CATALOG.*
 %config %{_sysconfdir}/xml/*.xml
 
 # Fonts

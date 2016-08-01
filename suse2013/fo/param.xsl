@@ -119,6 +119,7 @@ task before
      "<screen>ls -l</screen>" "ls - -l"? -->
 <!-- <xsl:param name="hyphenate.verbatim" select="'1'"/> -->
 
+<xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
 <!-- 18. Graphics =============================================== -->
 
@@ -153,7 +154,7 @@ task before
 
 <xsl:param name="alignment">
   <xsl:choose>
-    <xsl:when test="enable-text-justification = 'false'">start</xsl:when>
+    <xsl:when test="$enable-text-justification = 'false'">start</xsl:when>
     <xsl:otherwise>justify</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -328,6 +329,8 @@ task before
 Suite 200
 Cambridge MA 02141
 USA</xsl:param>
+
+<xsl:param name="enable.secondary.branding" select="1"/>
 
 <xsl:param name="styleroot" select="'WARNING: styleroot unset!'"/>
 

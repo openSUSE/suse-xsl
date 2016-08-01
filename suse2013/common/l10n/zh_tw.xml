@@ -14,14 +14,10 @@
    <l:gentext key="tableofcontents" text="&#30446;&#37636;"/>
    <l:gentext key="index symbols" text="&#31526;&#34399;"/>
 
-   <l:gentext key="FlyerQuickstart" text="NOVELL&#x00AE; &#x5feb;&#x901f;&#x5165;&#x9580;&#x5361;"/>
-   <!-- FlyerCopyright: Moved to copyright_quick.xml -->
-   <l:gentext key="FlyerMadeby"  text="&#x7531; SUSE® &#x5229;&#x7528; XSL-FO &#x88fd;&#x4f5c;"/>
-
    <l:gentext key="admonseparator"  text=": "/>
 
-   <l:dingbat key="guimenustartquote" text="&#x300c;"/><!-- ã -->
-   <l:dingbat key="guimenuendquote" text="&#x300d;"/><!-- ã -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
    <l:dingbat key="startquote" text="&#x300c;"/>
    <l:dingbat key="endquote" text="&#x300d;"/>
 
@@ -63,7 +59,7 @@
   <l:context name="title">
     <l:template name="part" text="%n. %t"/>
   </l:context>
-  
+
   <l:context name="title-numbered">
      <!--<l:template name="part" text="&#31532; %n. %t &#37096;&#20998;"/>--><!--removed at linguist's request-->
      <l:template name="part" text="%n. %t"/>
@@ -80,6 +76,12 @@
       <l:template name="procedure-title" text="%t"/>
       <l:template name="table-label" text="&#34920;&#26684; %n"/>
       <l:template name="table-title" text="%t"/>
+      <l:template name="variablelist-label" text=""/>
+      <l:template name="variablelist-title" text="%t"/>
+      <l:template name="itemizedlist-label" text=""/>
+      <l:template name="itemizedlist-title" text="%t"/>
+      <l:template name="orderedlist-label" text=""/>
+      <l:template name="orderedlist-title" text="%t"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
@@ -156,49 +158,65 @@
 	<l:template name="sect3" text="&#31456;&#31680;&#x300c;%t&#x300d;"/>
 	<l:template name="sect4" text="&#31456;&#31680;&#x300c;%t&#x300d;"/>
 	<l:template name="sect5" text="&#31456;&#31680;&#x300c;%t&#x300d;"/>
-	
+
 	<l:template name="page.citation" text=" [%p&#38913;]"/>
+      <!--
+       + You can use the connector "中的" (rough translation:
+         "the former item belongs to the latter item") as a prefix for the
+         last item. To avoid the complication of having to add these connectors
+         specifically before the last item, we will leave them away for the
+         moment.
+       + Use 《double angle brackets》 for the book/article title only.
+       + Adding the word "book" (apparently "第") sounds awkward, so leaving it
+         away. "Article" is fine though.
+       + Use 「corner brackets」for section titles.
+       + Use “normal typographic quotes”, they are not used in Traditional Chinese.
+
+       + Would 〈single angle brackets〉 make sense for the article title?
+
+      See also:
+      https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
+     -->
     <l:template name="intra-article" text="《%t》文章"/>
-    <l:template name="intra-book" text="《%t》第"/>
+    <l:template name="intra-book" text="《%t》"/>
     <l:template name="intra-chapter" text="章 %n 章「%t」"/>
-    <!--<l:template name="intra-part" text="%B %t"/>-->
-    <l:template name="intra-sect1" text="中的第 %n 節「%t」"/>
-    <l:template name="intra-sect2" text="中的第 %n 節「%t」"/>
-    <l:template name="intra-sect3" text="中的第 %n 節「%t」"/>
-    <l:template name="intra-sect4" text="中的第 %n 節「%t」"/>
+    <l:template name="intra-sect1" text="第 %n 節「%t」"/>
+    <l:template name="intra-sect2" text="第 %n 節「%t」"/>
+    <l:template name="intra-sect3" text="第 %n 節「%t」"/>
+    <l:template name="intra-sect4" text="第 %n 節「%t」"/>
 
-    <l:template name="intra-example" text="範例 %n “%t”"/>
-    <l:template name="intra-figure" text="圖形 %n “%t”"/>
-    <l:template name="intra-preface" text="序言 “%t”"/>
-    <l:template name="intra-procedure" text="過程 %n “%t”"/>
-    <l:template name="intra-table" text="表格 %n “%t”"/>
+    <l:template name="intra-example" text="範例 %n 「%t」"/>
+    <l:template name="intra-figure" text="圖形 %n 「%t」"/>
+    <l:template name="intra-preface" text="序言 「%t」"/>
+    <l:template name="intra-procedure" text="過程 %n 「%t」"/>
+    <l:template name="intra-table" text="表格 %n 「%t」"/>
 
-    <l:template name="intra-variablelist" text="“%t”"/>
-    <l:template name="intra-orderedlist" text="“%t”"/>
-    <l:template name="intra-itemizedlist" text="“%t”"/>
+    <l:template name="intra-variablelist" text="「%t」"/>
+    <l:template name="intra-orderedlist" text="「%t」"/>
+    <l:template name="intra-itemizedlist" text="「%t」"/>
    </l:context>
 
    <l:context name="xref-number">
-      <l:template name="part" text="&#31532;%n&#37096;&#20998;"/>
-      <l:template name="chapter" text="&#31532; %n &#31456;"/> 
+      <l:template name="part" text="&#31532; %n &#37096;&#20998;"/>
+      <l:template name="chapter" text="&#31532; %n &#31456;"/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-	<l:template name="appendix" text="&#38468;&#37636; %n %t"/>
-	<l:template name="chapter" text="&#31532; %n &#31456;&#x300c;%t&#x300d;"/> 
-	<l:template name="example" text="&#31684;&#20363; %n &#x300c;%t&#x300d;"/>
-	<l:template name="figure" text="&#22294;&#24418; %n &#x300c;%t&#x300d;"/>
-	<l:template name="part" text="&#31532; %n &#37096;&#20998;&#x300c;%t&#x300d;"/>
-	<l:template name="sect1" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="sect2" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="sect3" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="sect4" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="sect5" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="section" text="&#31532; %n &#31680;&#x300c;%t&#x300d;"/>
-	<l:template name="table" text="&#34920;&#26684; %n &#x300c;%t&#x300d;"/>
-        <l:template name="procedure" text="&#31243;&#24207;&#x00A0;%n, &#x300c;%t&#x300d;"/>
+	<l:template name="appendix" text="&#38468;&#37636; %n 「%t」"/>
+	<l:template name="chapter" text="&#31532; %n &#31456; 「%t」"/>
+	<l:template name="example" text="&#31684;&#20363; %n 「%t」"/>
+	<l:template name="figure" text="&#22294;&#24418; %n 「%t」"/>
+	<l:template name="part" text="&#31532; %n &#37096;&#20998; 「%t」"/>
+	<l:template name="sect1" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="sect2" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="sect3" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="sect4" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="sect5" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="section" text="&#31532; %n &#31680; 「%t」"/>
+	<l:template name="table" text="&#34920;&#26684; %n 「%t」"/>
+        <l:template name="procedure" text="&#31243;&#24207;&#x00A0;%n, 「%t」"/>
    </l:context>
- 
+
    <l:context name="parameters">
      <l:template name="dot.after.section" text=""/>
      <l:template name="dot.after.step" text=""/>

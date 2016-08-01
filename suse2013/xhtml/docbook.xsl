@@ -32,7 +32,7 @@
 
   <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl"/>
 
-  <xsl:include href="../version.xsl"/>
+  <xsl:include href="../VERSION.xsl"/>
 
   <xsl:include href="../common/dates-revisions.xsl"/>
   <xsl:include href="../common/labels.xsl"/>
@@ -646,7 +646,7 @@ if ( protocol != 'file:' ) {
   if (agent.indexOf('android') != -1 && agent.indexOf('chrom') != -1 ) {
       file = 'fonts-nolocal.css';
   }
-  document.write('<link rel="stylesheet" type="text/css" href="' + wanted + '://static.opensuse.org/fonts/'+ file +'"></link>');
+  document.write('<link rel="stylesheet" type="text/css" href="' + wanted + '://static.opensuse.org/fonts/'+ file +'"></link>');cd
 }
 else {
    document.write('<link rel="stylesheet" type="text/css" href="static/css/fonts-onlylocal.css"></link>');
@@ -667,6 +667,26 @@ else {
       <xsl:call-template name="make.script.link">
         <xsl:with-param name="script.filename" select="$daps.header.js.custom"/>
       </xsl:call-template>
+    </xsl:if>
+    <xsl:if test="$enable.source.highlighting = 1">
+      <xsl:call-template name="make.script.link">
+        <xsl:with-param name="script.filename" select="$daps.header.js.highlight"/>
+      </xsl:call-template>
+      <script>
+<xsl:text disable-output-escaping="yes">
+<![CDATA[
+$(document).ready(function() {
+  $('.verbatim-wrap.highlight').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+hljs.configure({
+  useBR: false
+});
+hljs.initHighlightingOnLoad();
+]]>
+</xsl:text>
+      </script>
     </xsl:if>
   </xsl:template>
 

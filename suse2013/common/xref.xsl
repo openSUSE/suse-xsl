@@ -27,41 +27,39 @@
 
 <xsl:template name="create.linkto.other.book">
   <xsl:param name="target"/>
+  <!-- It seems we can't get any useful value here anyway, so lets trust the
+       caller to get it right... -->
+  <xsl:param name="lang" select="'en'"/>
+  <!-- Make sure that we transform zh-TW to zh_tw etc. -->
+  <xsl:param name="lang-normalized" select="translate($lang, '-ABCDEFGHIJKLMNOPQRSTUVWXYZ', '_abcdefghijklmnopqrstuvwxyz')"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
   <xsl:variable name="target.article" select="$target/ancestor-or-self::article"/>
   <xsl:variable name="target.book" select="$target/ancestor-or-self::book"/>
-  <xsl:variable name="lang" select="ancestor-or-self::*/@lang"/>
   <xsl:variable name="text">
     <xsl:apply-templates select="$target" mode="intra.title.markup">
       <xsl:with-param name="linkend" select="@linkend"/>
+      <xsl:with-param name="lang" select="$lang-normalized"/>
     </xsl:apply-templates>
   </xsl:variable>
-
-  <!--<xsl:message>====== create.linkto.other.book:
-    linkend=<xsl:value-of select="@linkend"/>
-     target=<xsl:value-of select="local-name($target)"/>
-    refelem=<xsl:value-of select="$refelem"/>
-       text=<xsl:value-of select="$text"/>
-  </xsl:message>-->
 
   <xsl:copy-of select="$text"/>
 </xsl:template>
 
 
-<!-- ################################################################### -->
   <xsl:template match="sect1" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
-    <!--<xsl:message>sect1 intra.title.markup
-  <xsl:call-template name="xpath.location"/>
-  </xsl:message>-->
-    <xsl:apply-templates select="parent::*" mode="intra.title.markup"/>
+    <xsl:param name="lang" select="'en'"/>
+    <xsl:apply-templates select="parent::*" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
     <xsl:text>, </xsl:text>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref'"/>
           <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
@@ -71,19 +69,20 @@
   <xsl:template match="sect2|sect3|sect4|sect5" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
-    <!--<xsl:message><xsl:value-of select="local-name(.)"/> intra.title.markup
-  <xsl:call-template name="xpath.location"/>
-  </xsl:message>-->
+    <xsl:param name="lang" select="'en'"/>
     <xsl:apply-templates
       select="ancestor::appendix|ancestor::article|
       ancestor::chapter|ancestor::glossary|ancestor::preface"
-      mode="intra.title.markup"/>
+      mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
     <xsl:text>, </xsl:text>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref'"/>
           <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
@@ -93,17 +92,18 @@
   <xsl:template match="appendix|chapter" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
-    <!--<xsl:message><xsl:value-of select="local-name(.)"/> intra.title.markup
-  <xsl:call-template name="xpath.location"/>
-  </xsl:message>-->
+    <xsl:param name="lang" select="'en'"/>
     <!-- We don't want parts -->
-    <xsl:apply-templates select="ancestor::book" mode="intra.title.markup"/>
+    <xsl:apply-templates select="ancestor::book" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
     <xsl:text>, </xsl:text>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref'"/>
           <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
@@ -113,8 +113,10 @@
   <xsl:template match="preface" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
-    <xsl:apply-templates select="parent::*" mode="intra.title.markup"/>
-    <!--<xsl:apply-templates select="." mode="title.markup"/>-->
+    <xsl:param name="lang" select="'en'"/>
+    <xsl:apply-templates select="parent::*" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
 
     <xsl:text>, </xsl:text>
     <xsl:call-template name="substitute-markup">
@@ -122,6 +124,7 @@
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref'"/>
           <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
@@ -131,25 +134,28 @@
   <xsl:template match="part" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
+    <xsl:param name="lang" select="'en'"/>
     <!-- We don't want parts, so skip them -->
-    <xsl:apply-templates select="parent::*" mode="intra.title.markup"/>
+    <xsl:apply-templates select="parent::*" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
   </xsl:template>
 
 
   <xsl:template match="article|book" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
-    <!--<xsl:message><xsl:value-of select="local-name(.)"/> intra.title.markup
-  <xsl:call-template name="xpath.location"/>
-  </xsl:message>-->
+    <xsl:param name="lang" select="'en'"/>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
           <xsl:with-param name="context" select="'xref'"/>
           <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
+
   </xsl:template>
 
 
@@ -159,28 +165,37 @@
    mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
+    <xsl:param name="lang" select="'en'"/>
 
-    <xsl:apply-templates select="parent::*"
-      mode="intra.title.markup"/>
+    <xsl:apply-templates select="parent::*" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+    </xsl:apply-templates>
     <xsl:choose>
       <xsl:when test="title">
         <xsl:text>, </xsl:text>
-        <xsl:apply-templates select="." mode="title.markup"/>
+        <xsl:apply-templates select="." mode="title.markup">
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> without title used for intra xref linking.</xsl:message>
         <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
       </xsl:otherwise>
     </xsl:choose>
+
   </xsl:template>
 
 
   <xsl:template match="varlistentry" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
+    <xsl:param name="lang" select="'en'"/>
+
     <xsl:apply-templates select="ancestor::appendix|ancestor::article|
       ancestor::chapter|ancestor::glossary|ancestor::preface"
-      mode="intra.title.markup"/>
+      mode="intra.title.markup">
+      <xsl:param name="lang" select="$lang"/>
+    </xsl:apply-templates>
     <xsl:value-of select="concat(' ', term[1])"/>
   </xsl:template>
 
