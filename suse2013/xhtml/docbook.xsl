@@ -683,7 +683,6 @@ $(document).ready(function() {
 hljs.configure({
   useBR: false
 });
-hljs.initHighlightingOnLoad();
 ]]>
 </xsl:text>
       </script>
