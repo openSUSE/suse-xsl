@@ -1,5 +1,17 @@
 -------------------------------------------------------------------
-Fri Aug 01 16:00:00 UTC 2016 - sknorr@suse.de
+Thu Aug 04 18:00:00 UTC 2016 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.6.1:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Stylesheets (XHTML)
+  - Fixed style of <section><title> elements
+  - Turned of syntax highlighting in cases where it is unexpected
+
+-------------------------------------------------------------------
+Mon Aug 01 16:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.6:
 
