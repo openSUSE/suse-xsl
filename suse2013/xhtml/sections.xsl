@@ -236,6 +236,46 @@
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
 
+<!-- Fix up the output of section elements to look like the output of sectX
+elements, to fix their display. -->
+<xsl:template match="section" mode="common.html.attributes">
+  <xsl:variable name="section" select="."/>
+
+  <xsl:variable name="renderas">
+    <xsl:choose>
+      <xsl:when test="$section/@renderas = 'sect1'">1</xsl:when>
+      <xsl:when test="$section/@renderas = 'sect2'">2</xsl:when>
+      <xsl:when test="$section/@renderas = 'sect3'">3</xsl:when>
+      <xsl:when test="$section/@renderas = 'sect4'">4</xsl:when>
+      <xsl:when test="$section/@renderas = 'sect5'">5</xsl:when>
+      <xsl:otherwise><xsl:value-of select="''"/></xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="level">
+    <xsl:choose>
+      <xsl:when test="$renderas != ''">
+        <xsl:value-of select="$renderas"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="section.level">
+          <xsl:with-param name="node" select="$section"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <xsl:variable name="class" select="concat('sect',$level)"/>
+  <xsl:variable name="inherit" select="0"/>
+  <xsl:call-template name="generate.html.lang"/>
+  <xsl:call-template name="dir">
+    <xsl:with-param name="inherit" select="$inherit"/>
+  </xsl:call-template>
+  <xsl:apply-templates select="." mode="class.attribute">
+    <xsl:with-param name="class" select="$class"/>
+  </xsl:apply-templates>
+</xsl:template>
+
 <!-- Hook for additional customizations -->
 <xsl:template name="create.header.line">
   <xsl:param name="object" select="."/>
