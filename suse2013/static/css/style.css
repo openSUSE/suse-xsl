@@ -1099,7 +1099,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
     border-top: 1px solid #999;
     clear: both;
     display: none;
-    color: 666;
+    color: #666;
 }
 
 .offline .online-contents {
@@ -2297,7 +2297,7 @@ ul {
 }
 
 .qandadiv {
-    margin: 0 0 40px 0;#
+    margin: 0 0 40px 0;
 }
 
 .answer .table-title, .answer .verbatim-wrap, .answer .variablelist {
@@ -2479,7 +2479,7 @@ p.ds-message {
 }
 
 @page {
-    size: 100%;
+    size: portrait;
     margin: 20mm 22.5mm 22.5mm 22.5mm;
 }
 
