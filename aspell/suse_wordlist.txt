@@ -600,6 +600,7 @@ failover
 failovers
 failsafe
 Failsafe
+fallbacks
 fallocate
 Faq
 FastCGI
