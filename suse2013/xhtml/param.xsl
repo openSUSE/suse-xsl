@@ -127,7 +127,7 @@ set       toc,title
   <xsl:param name="html.stylesheet">
 <xsl:if test="$build.for.web != 1">static/css/fonts-onlylocal.css</xsl:if><xsl:text>&#10;</xsl:text>
 <xsl:value-of select="$daps.header.css.standard"/><xsl:text>&#10;</xsl:text>
-<xsl:if test="$enable.source.highlighting = 1"><xsl:value-of select="$daps.header.css.highlight"/></xsl:if>
+<xsl:if test="$enable.source.highlighting = 1"><xsl:value-of select="$daps.header.css.highlight"/><xsl:text>&#10;</xsl:text></xsl:if>
 <xsl:value-of select="$extra.css"/>
 </xsl:param>
   <xsl:param name="make.clean.html" select="1"/>
