@@ -57,7 +57,7 @@
   </xsl:variable>
 
   <!-- Need to do that to have chapter/... names in the footer, too... -->
-  <fo:marker marker-class-name="section.head.marker.short">
+  <!--<fo:marker role="component.title" marker-class-name="section.head.marker.short">
     <xsl:choose>
       <xsl:when test="titleabbrev = ''">
         <xsl:call-template name="shorten-section-markers">
@@ -70,7 +70,7 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-  </fo:marker>
+  </fo:marker>-->
 
 
   <fo:block xsl:use-attribute-sets="section.title.properties">
