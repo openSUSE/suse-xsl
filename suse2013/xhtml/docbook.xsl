@@ -626,15 +626,6 @@
     <xsl:param name="node" select="."/>
 
     <xsl:if test="$build.for.web = 1">
-      <!-- Load fonts from the web:
-        if (we are online) {
-          if (Chrome/Android) {
-            Use a CSS file without local() fonts, as
-            Chrome/Chromium on Android do not understand local(). }
-          else {
-            Download the normal CSS that contains references to the web
-            fonts. }
-           -->
       <script type="text/javascript">
 <xsl:text disable-output-escaping="yes">
 <![CDATA[
