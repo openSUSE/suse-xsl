@@ -646,7 +646,7 @@ if ( protocol != 'file:' ) {
   if (agent.indexOf('android') != -1 && agent.indexOf('chrom') != -1 ) {
       file = 'fonts-nolocal.css';
   }
-  document.write('<link rel="stylesheet" type="text/css" href="' + wanted + '://static.opensuse.org/fonts/'+ file +'"></link>');cd
+  document.write('<link rel="stylesheet" type="text/css" href="' + wanted + '://static.opensuse.org/fonts/'+ file +'"></link>');
 }
 else {
    document.write('<link rel="stylesheet" type="text/css" href="static/css/fonts-onlylocal.css"></link>');
