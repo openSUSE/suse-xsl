@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
-Thu Sep 15 13:00:00 UTC 2016 - sknorr@suse.de
+Thu Sep 15 15:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.6.2:
 
@@ -22,6 +22,8 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 * Stylesheets (XHTML)
   - Fixed embedded JavaScript, removed old Chrome/Android quirk
   - Fixed embedding of branding CSS
+  - Made syntax highlighting functional with openSUSE and DAPS
+    brandings
 
 -------------------------------------------------------------------
 Thu Aug 04 18:00:00 UTC 2016 - sknorr@suse.de
