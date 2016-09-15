@@ -22,6 +22,7 @@ aggregatable
 AGP
 AHCI
 aKregator
+allocable
 ALSA
 ALUA
 amaroK
@@ -148,6 +149,8 @@ Biarch
 bigalloc
 Bindmount
 binutils
+biometric
+biometrics
 BIOS
 BIOSes
 bitmask
@@ -331,6 +334,7 @@ cp
 CPACF
 cpio
 cpu
+CPUID
 CPUs
 cramfs
 crashkernel
@@ -366,6 +370,10 @@ CTC
 CTCP
 Ctrl
 cucme
+cumulate
+cumulated
+cumulates
+cumulating
 cupsctl
 cupsd
 cURL
@@ -540,6 +548,8 @@ enableHttp
 enableHttps
 enableInterOp
 enablement
+encoding
+encodings
 encryptions
 endian
 Engenio
@@ -573,7 +583,7 @@ ESSID
 ESX
 ESXi
 eth
-ethernet
+Etherboot
 ethtool
 ethx
 ETR
@@ -600,6 +610,7 @@ failover
 failovers
 failsafe
 Failsafe
+fallbacks
 fallocate
 Faq
 FastCGI
@@ -638,7 +649,8 @@ FinePoint
 FineReader
 Firefox
 FireGL
-Firewire
+firewalled
+firewalling
 FireWire
 firstboot
 Firstboot
@@ -736,6 +748,7 @@ globbed
 Globbed
 globbing
 Globbing
+GlusterFS
 GLX
 GmbH
 gnokii
@@ -883,6 +896,8 @@ hwbios
 hwtype
 HWtype
 HWTYPE
+hypercall
+hypercalls
 hyperthreaded
 hyperthreading
 hypervisor
@@ -968,6 +983,7 @@ Inpainting
 InputDevice
 inputrc
 insserv
+installable
 instlux
 instserver
 instsource
@@ -1074,6 +1090,7 @@ jpeg
 JPG
 JPGs
 JS
+JSON
 JSP
 JSxx
 JuK
@@ -1393,6 +1410,8 @@ Minix
 mirrorability
 misconfigured
 misordering
+mistyped
+mistyping
 mitigations
 MI/X
 mkdir
@@ -1687,7 +1706,15 @@ ot
 other's
 ou
 OU
+overamplifies
+overamplified
 overamplification
+overamplify
+overamplifying
+overcommit
+overcommits
+overcommitted
+overcommitting
 OWA
 Pack
 PackageKit
@@ -1967,6 +1994,7 @@ quickfind
 Quicktime
 ra
 radvd
+RADOS
 RAID
 RAIDn
 RAIDs
@@ -2035,16 +2063,34 @@ relogin
 RenderX
 renice
 reniced
+repartition
+repartitioned
+repartitioning
+repartitions
+repo
 repos
+repost
+reposted
+reposts
 reposting
 reprofile
 resave
 resaving
 resends
 resize
-Resize
 resized
+resizes
+resizing
 resync
+resyncs
+resynced
+resynchronize
+resynchronized
+resynchronizes
+resynchronization
+resynchronizing
+resynchronization
+resyncing
 retitle
 REXX
 rfb
@@ -2067,6 +2113,8 @@ ROMs
 ROOTELEMENTS
 rootid
 ROOTID
+rootkit
+rootkits
 Rosegarden
 Roxio
 rpasswd
@@ -2159,6 +2207,7 @@ SDL
 sdpd
 sdptool
 sdX
+SeaBIOS
 searchable
 searchd
 searchlist
@@ -2203,6 +2252,7 @@ SFTP
 SGI
 sha
 ShamirAdleman
+shareable
 SHARENAME
 SharePoint
 shmctl
@@ -2271,6 +2321,7 @@ SoundForge
 SourceForge
 SourceSafe
 S/PDIF
+SPARC
 Speedstep
 SphinxSearchDaemon
 SPident
@@ -2609,6 +2660,7 @@ uninterruptible
 uniprocessor
 unistroke
 unix
+unmaintained
 unmanaged
 unmark
 unmount
@@ -2685,6 +2737,7 @@ vif
 vimtutor
 Vinagre
 VIPArip
+virsh
 virtfs
 virtio
 VirtualBox
@@ -2762,6 +2815,8 @@ WebDraw
 webhelp
 websafe
 Websafe
+WebSocket
+WebSockets
 Websphere
 WebSphere
 WEP

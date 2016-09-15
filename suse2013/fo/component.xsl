@@ -56,23 +56,6 @@
     <xsl:apply-templates select="$node" mode="titleabbrev.markup"/>
   </xsl:variable>
 
-  <!-- Need to do that to have chapter/... names in the footer, too... -->
-  <fo:marker marker-class-name="section.head.marker.short">
-    <xsl:choose>
-      <xsl:when test="titleabbrev = ''">
-        <xsl:call-template name="shorten-section-markers">
-          <xsl:with-param name="title" select="$title"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="shorten-section-markers">
-          <xsl:with-param name="title" select="$titleabbrev"/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </fo:marker>
-
-
   <fo:block xsl:use-attribute-sets="section.title.properties">
     <xsl:if test="$pagewide != 0">
       <!-- Doesn't work to use 'all' here since not a child of fo:flow -->

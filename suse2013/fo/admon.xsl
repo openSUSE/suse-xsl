@@ -98,7 +98,6 @@
   <xsl:variable name="color">
     <xsl:call-template name="admon.symbol.color"/>
   </xsl:variable>
-  <!-- <xsl:variable name="graphic.width" select="6.1"/> -->
   <xsl:variable name="graphic.width" select="8"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="graphical.admonition.properties">
@@ -107,7 +106,7 @@
       provisional-label-separation="&gutter;mm">
       <fo:list-item>
           <fo:list-item-label end-indent="label-end()">
-            <fo:block text-align="end" padding-before="1.2mm" padding-after="1.2mm">
+            <fo:block text-align="start" padding-before="1.2mm" padding-after="1.2mm">
               <fo:instream-foreign-object content-width="{$graphic.width}mm">
                 <xsl:call-template name="admon.symbol">
                   <xsl:with-param name="color" select="$color"/>

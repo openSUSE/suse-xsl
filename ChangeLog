@@ -1,4 +1,29 @@
 -------------------------------------------------------------------
+Thu Sep 15 13:00:00 UTC 2016 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.6.2:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Packaging
+  - Fixed post/postun segments of spec file
+
+* SUSE Word List for aspell
+  - Added more words
+
+* Stylesheets (common)
+  - Added `VERSION.xsl` for `suse2005` stylesheets
+
+* Stylesheets (PDF)
+  - Removed duplicate `fo:marker`s that led to build errors with XEP
+    (suse-xsl #260)
+
+* Stylesheets (XHTML)
+  - Fixed embedded JavaScript, removed old Chrome/Android quirk
+  - Fixed embedding of branding CSS
+
+-------------------------------------------------------------------
 Thu Aug 04 18:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.6.1:
@@ -8,7 +33,7 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 
 * Stylesheets (XHTML)
   - Fixed style of <section><title> elements
-  - Turned of syntax highlighting in cases where it is unexpected
+  - Turned off syntax highlighting in cases where it is unexpected
 
 -------------------------------------------------------------------
 Mon Aug 01 16:00:00 UTC 2016 - sknorr@suse.de
