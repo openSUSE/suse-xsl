@@ -3,94 +3,84 @@
   "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
   "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
 
-<!--
-  IMPORTANT:
-  Only use this catalog in case you want to use the NovDOC from a
-  suse-xsl checkout from https://github.com/openSUSE/suse-xsl.git
-
-  If using DAPS, set XML_DEVEL_CATALOG to this file, if using
-  saxon or xsltproc, set XML_CATALOG_FILES accordingly
-
-  For development purposes only!
-  
-  See the XML Catalog Specification at 
-  https://www.oasis-open.org/committees/download.php/14809/xml-catalogs.html
--->
-
-
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-  <group xml:base="../schema/">
-    <public publicId="-//Novell//DTD NovDoc XML V1.0//EN"
-	uri="novdocx.dtd"/>
-    <system systemId="novdocx.dtd"
-        uri="novdocx.dtd"/>
-  </group>
   <group xml:base="../">
+
    <rewriteSystem
      systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse"
-     rewritePrefix="suse"/> 
+     rewritePrefix="suse"/>
    <rewriteURI
      uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse"
      rewritePrefix="suse"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns"
-    rewritePrefix="build/stylesheet/suse-ns"/>
-  
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns"
-    rewritePrefix="build/stylesheet/suse-ns"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
-    rewritePrefix="suse2013"/> 
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
-    rewritePrefix="suse2013"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
-    rewritePrefix="build/stylesheet/suse2013-ns"/>
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
-    rewritePrefix="build/stylesheet/suse2013-ns"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013"
-    rewritePrefix="opensuse2013"/>
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013"
-    rewritePrefix="opensuse2013"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013-ns"
-    rewritePrefix="build/stylesheet/opensuse2013-ns"/>
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013-ns"
-    rewritePrefix="build/stylesheet/opensuse2013-ns"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013"
-    rewritePrefix="daps2013"/>
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013"
-    rewritePrefix="daps2013"/>
-  <rewriteSystem
-    systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
-    rewritePrefix="build/stylesheet/daps2013-ns"/>
-  <rewriteURI
-    uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
-    rewritePrefix="build/stylesheet/daps2013-ns"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
+     rewritePrefix="suse2013"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
+     rewritePrefix="suse2013"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013"
+     rewritePrefix="opensuse2013"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013"
+     rewritePrefix="opensuse2013"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013"
+     rewritePrefix="daps2013"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013"
+     rewritePrefix="daps2013"/>
+
+
+   <!-- FIXME: All the -ns URLs here are complete hogwash because the -ns
+   versions are generated and not part of the repository. -->
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns"
+     rewritePrefix="build/stylesheet/suse-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns"
+     rewritePrefix="build/stylesheet/suse-ns"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
+     rewritePrefix="build/stylesheet/suse2013-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
+     rewritePrefix="build/stylesheet/suse2013-ns"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013-ns"
+     rewritePrefix="build/stylesheet/opensuse2013-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/opensuse2013-ns"
+     rewritePrefix="build/stylesheet/opensuse2013-ns"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
+     rewritePrefix="build/stylesheet/daps2013-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
+     rewritePrefix="build/stylesheet/daps2013-ns"/>
+
   </group>
-  
-  <!-- 
+
+  <!--
      HINT: If you want to develop with the latest DocBook stylesheets
            version, proceed as follows:
-     
+
      1. Download http://snapshots.docbook.org/docbook-xsl-snapshot.tar.bz2
      2. Unpack to /tmp
      3. Remove the comments from the following <group>:
   -->
   <!--<group xml:base="file:///tmp/docbook-xsl-snapshot/">
-    <rewriteSystem 
-      systemIdStartString="http://docbook.sourceforge.net/release/xsl/current" 
+    <rewriteSystem
+      systemIdStartString="http://docbook.sourceforge.net/release/xsl/current"
       rewritePrefix="."/>
     <rewriteURI
-      uriStartString="http://docbook.sourceforge.net/release/xsl/current" 
+      uriStartString="http://docbook.sourceforge.net/release/xsl/current"
       rewritePrefix="."/>
   </group>-->
 
