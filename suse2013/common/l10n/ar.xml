@@ -3,6 +3,9 @@
    language="ar"
    english-language-name="Arabic">
 
+<!-- FIXME: Check whether we need straight quotes everywhere, our Arabic SLE
+translators apparently want those. - sknorr, 2016-09-30 -->
+
    <l:gentext key="SeeAlso"         text="طالع أيضًا"/>
    <l:gentext key="Authors"         text="الكتاب"/>
    <l:gentext key="TableofContents" text="المحتويات"/>
@@ -19,6 +22,9 @@
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
+
+   <l:dingbat key="startquote" text='"'/>
+   <l:dingbat key="endquote" text='"'/>
 
    <l:context name="styles">
       <l:template name="person-name" text="الأول-الأخير"/>
@@ -52,13 +58,13 @@
            everywhere. I just took the translations from the DocBook
            stylesheets. Expect issues to crop up. -->
 
-      <l:template name="intra-article" text="مقال “%t”"/>
-      <l:template name="intra-book" text="كتاب “%t”"/>
-      <l:template name="intra-chapter" text="فصل&#160;%n “%t”"/>
-      <l:template name="intra-sect1" text="القسم&#160;%n “%t”"/>
-      <l:template name="intra-sect2" text="القسم&#160;%n “%t”"/>
-      <l:template name="intra-sect3" text="القسم&#160;%n “%t”"/>
-      <l:template name="intra-sect4" text="القسم&#160;%n “%t”"/>
+      <l:template name="intra-article" text='مقال "%t"'/>
+      <l:template name="intra-book" text='كتاب "%t"'/>
+      <l:template name="intra-chapter" text='فصل&#160;%n "%t"'/>
+      <l:template name="intra-sect1" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect2" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect3" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect4" text='القسم&#160;%n "%t"'/>
 
       <l:template name="intra-example" text="مثال&#160;%n “%t”"/>
       <l:template name="intra-figure" text="شكل&#160;%n “%t”"/>

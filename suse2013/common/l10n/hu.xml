@@ -76,18 +76,22 @@
 
    <l:context name="xref">
       <l:template name="intra-article" text="cikk „%t”"/>
-      <l:template name="intra-book" text="könyv „%t” "/>
-      <l:template name="intra-chapter" text="fejezet „%t”"/>
-      <l:template name="intra-sect1" text="%n.&#160;szakasz („%t”)"/>
-      <l:template name="intra-sect2" text="%n.&#160;szakasz („%t”)"/>
-      <l:template name="intra-sect3" text="%n.&#160;szakasz („%t”)"/>
-      <l:template name="intra-sect4" text="%n.&#160;szakasz („%t”)"/>
+      <!-- Linguist said that the inclusion of the word for book does not work
+      in HU and suggests removing it because it is obviously an
+      external book name. -->
+      <!--<l:template name="intra-book" text="könyv „%t”"/>-->
+      <l:template name="intra-book" text="„%t”"/>
+      <l:template name="intra-chapter" text="%n.&#160;fejezet (%t)"/>
+      <l:template name="intra-sect1" text="%n.&#160;szakasz (%t)"/>
+      <l:template name="intra-sect2" text="%n.&#160;szakasz (%t)"/>
+      <l:template name="intra-sect3" text="%n.&#160;szakasz (%t)"/>
+      <l:template name="intra-sect4" text="%n.&#160;szakasz (%t)"/>
 
-      <l:template name="intra-example" text="%n.&#160;példa („%t”)"/>
-      <l:template name="intra-figure" text="%n.&#160;ábra („%t”)"/>
-      <l:template name="intra-preface" text="előszó („%t”)"/>
-      <l:template name="intra-procedure" text="%n.&#160;eljárás („%t”)"/>
-      <l:template name="intra-table" text="%n.&#160;táblázat („%t”)"/>
+      <l:template name="intra-example" text="%n.&#160;példa (%t)"/>
+      <l:template name="intra-figure" text="%n.&#160;ábra (%t)"/>
+      <l:template name="intra-preface" text="előszó (%t)"/>
+      <l:template name="intra-procedure" text="%n.&#160;eljárás (%t)"/>
+      <l:template name="intra-table" text="%n.&#160;táblázat (%t)"/>
 
       <l:template name="intra-variablelist" text="„%t”"/>
       <l:template name="intra-orderedlist" text="„%t”"/>
