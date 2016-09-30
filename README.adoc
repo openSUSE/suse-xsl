@@ -1,4 +1,4 @@
-SUSE XSL Stylesheets 2.0.6.2
+SUSE XSL Stylesheets 2.0.6.3
 ============================
 Thomas Schraitle <toms@opensuse.org>
 
