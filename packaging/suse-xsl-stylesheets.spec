@@ -34,6 +34,7 @@ Release:        0
 #
 ################################################################
 
+%define susexsl_catalog   catalog-for-%{name}.xml
 %define db_xml_dir        %{_datadir}/xml/docbook
 %define suse_styles_dir   %{db_xml_dir}/stylesheet
 
@@ -142,14 +143,20 @@ make install DESTDIR=%{buildroot}  LIBDIR=%{_libdir}
 #----------------------
 
 %post
-%reconfigure_fonts_post
-if [ ! -f %{_sysconfdir}/xml/suse-catalog.xml -a -x %{_bindir}/edit-xml-catalog ] ; then
-    # susexsl entry
-    edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-       --del %{name}
-    edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-       --del suse_schemas
+# XML Catalogs
+#
+# remove existing entries first - needed for
+# zypper in, since it does not call postun
+# delete ...
+if [ "2" = "$1" ]; then
+  edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+    --del %{name} || true
 fi
+
+# ... and (re)add it again
+edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+  --add %{_sysconfdir}/xml/%{susexsl_catalog}
+%reconfigure_fonts_post
 exit 0
 
 #----------------------
@@ -157,6 +164,8 @@ exit 0
 %postun
 if [ "0" = "$1" ]; then
   %reconfigure_fonts_post
+  edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
+    --del %{name} || true
 fi
 
 exit 0
