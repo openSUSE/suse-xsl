@@ -13,6 +13,9 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
   - Remove mentions of NovDoc, as NovDoc is now part of a separate
     package
 
+* Stylesheets (common)
+  - Updated translations for `suse2013` stylesheets
+
 -------------------------------------------------------------------
 Thu Sep 15 15:00:00 UTC 2016 - sknorr@suse.de
 
