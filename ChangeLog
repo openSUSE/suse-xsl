@@ -1,4 +1,19 @@
 -------------------------------------------------------------------
+Thu Sep 30 14:00:00 UTC 2016 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.6.3:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Packaging
+  - Update post/postun segments of spec file to install the catalog
+
+* Catalog
+  - Remove mentions of NovDoc, as NovDoc is now part of a separate
+    package
+
+-------------------------------------------------------------------
 Thu Sep 15 15:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.6.2:
