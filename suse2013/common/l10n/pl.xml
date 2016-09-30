@@ -180,4 +180,25 @@
    <l:context name="datetime">
      <l:template name="titlepage.format" text="m/d/Y"/>
    </l:context>
+<l:context name="datetime-full">
+<l:template name="January" text="stycznia"/>
+<l:template name="February" text="lutego"/>
+<l:template name="March" text="marca"/>
+<l:template name="April" text="kwietnia"/>
+<l:template name="May" text="maja"/>
+<l:template name="June" text="czerwca"/>
+<l:template name="July" text="lipca"/>
+<l:template name="August" text="sierpnia"/>
+<l:template name="September" text="września"/>
+<l:template name="October" text="października"/>
+<l:template name="November" text="listopada"/>
+<l:template name="December" text="grudnia"/>
+<l:template name="Monday" text="poniedziałek"/>
+<l:template name="Tuesday" text="wtorek"/>
+<l:template name="Wednesday" text="środa"/>
+<l:template name="Thursday" text="czwartek"/>
+<l:template name="Friday" text="piątek"/>
+<l:template name="Saturday" text="sobota"/>
+<l:template name="Sunday" text="niedziela"/>
+</l:context>
 </l:l10n>

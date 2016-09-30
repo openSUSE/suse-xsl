@@ -80,7 +80,7 @@
       <l:template name="simplesect" text="Sezione «%t»"/>
 
       <l:template name="intra-article" text="Articolo «%t»"/>
-      <l:template name="intra-book" text="Libro «%t» "/>
+      <l:template name="intra-book" text="Libro «%t»"/>
       <l:template name="intra-chapter" text="Capitolo %n «%t»"/>
       <l:template name="intra-sect1" text="Sezione&#160;%n «%t»"/>
       <l:template name="intra-sect2" text="Sezione&#160;%n «%t»"/>

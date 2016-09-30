@@ -187,6 +187,10 @@
       <l:template name="chapter" text="&#31532;&#160;%n&#160;&#31456;%t"/>
    </l:context>
 
+  <l:context name="xref-number-and-title">
+    <l:template name="chapter" text="第 %n 章 “%t”"/>
+  </l:context>
+
    <l:context name="datetime">
      <l:template name="titlepage.format" text="Y-m-d"/>
    </l:context>

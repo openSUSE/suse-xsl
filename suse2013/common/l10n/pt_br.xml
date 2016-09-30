@@ -45,6 +45,9 @@
    <l:gentext key="version" text="Versão"/>
    <l:gentext key="Version" text="Versão"/>
 
+   <l:gentext key="step" text="etapa"/>
+   <l:gentext key="Step" text="Etapa"/>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 

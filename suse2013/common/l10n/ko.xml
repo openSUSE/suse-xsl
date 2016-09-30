@@ -17,6 +17,8 @@
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
 
+   <l:gentext key="PubDate" text="게시일"/>
+   <l:gentext key="pubdate" text="게시일"/>
    <l:gentext key="selectlanguage" text="언어 선택"/>
    <l:gentext key="selectformat" text="형식 선택"/>
    <l:gentext key="formathtml" text="웹 페이지"/>
@@ -70,11 +72,11 @@
 
       <l:template name="intra-article" text="문서 “%t”"/>
       <l:template name="intra-book" text="책 “%t”"/>
-      <l:template name="intra-chapter" text="장 %n “%t”"/>
-      <l:template name="intra-sect1" text="절 %n “%t”"/>
-      <l:template name="intra-sect2" text="절 %n “%t”"/>
-      <l:template name="intra-sect3" text="절 %n “%t”"/>
-      <l:template name="intra-sect4" text="절 %n “%t”"/>
+      <l:template name="intra-chapter" text="%n장 “%t”"/>
+      <l:template name="intra-sect1" text="%n절 “%t”"/>
+      <l:template name="intra-sect2" text="%n절 “%t”"/>
+      <l:template name="intra-sect3" text="%n절 “%t”"/>
+      <l:template name="intra-sect4" text="%n절 “%t”"/>
 
       <l:template name="intra-example" text="예 %n “%t”"/>
       <l:template name="intra-figure" text="그림 %n “%t”"/>
