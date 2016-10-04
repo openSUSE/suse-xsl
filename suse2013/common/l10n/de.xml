@@ -175,4 +175,26 @@
    <l:context name="datetime">
      <l:template name="titlepage.format" text="d.m.Y"/>
    </l:context>
+
+   <l:context name="datetime-full">
+     <l:template name="January" text="Januar"/>
+     <l:template name="February" text="Februar"/>
+     <l:template name="March" text="März"/>
+     <l:template name="April" text="April"/>
+     <l:template name="May" text="Mai"/>
+     <l:template name="June" text="Juni"/>
+     <l:template name="July" text="Juli"/>
+     <l:template name="August" text="August"/>
+     <l:template name="September" text="September"/>
+     <l:template name="October" text="Oktober"/>
+     <l:template name="November" text="November"/>
+     <l:template name="December" text="Dezember"/>
+     <l:template name="Monday" text="Montag"/>
+     <l:template name="Tuesday" text="Dienstag"/>
+     <l:template name="Wednesday" text="Mittwoch"/>
+     <l:template name="Thursday" text="Donnerstag"/>
+     <l:template name="Friday" text="Freitag"/>
+     <l:template name="Saturday" text="Samstag"/>
+     <l:template name="Sunday" text="Sonntag"/>
+   </l:context>
 </l:l10n>
