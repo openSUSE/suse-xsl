@@ -209,10 +209,12 @@
                XEP. -->
       </xsl:if>
 
-      <fo:block>
-        <xsl:attribute name="margin-{$start-border}">&columnfragment;mm</xsl:attribute>
-        <xsl:apply-templates select="$preamble"/>
-      </fo:block>
+      <xsl:if test="$preamble != ''">
+        <fo:block>
+          <xsl:attribute name="margin-{$start-border}">&columnfragment;mm</xsl:attribute>
+          <xsl:apply-templates select="$preamble"/>
+        </fo:block>
+      </xsl:if>
 
       <fo:list-block
         xsl:use-attribute-sets="list.block.spacing list.block.properties">
