@@ -132,6 +132,8 @@ backtraces
 balancer
 balancers
 bandwidth
+barclamp
+barclamps
 basename
 Bash
 bashrc
