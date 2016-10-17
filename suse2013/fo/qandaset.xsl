@@ -43,8 +43,8 @@
     </xsl:if>
   </xsl:variable>
 
-  <!-- toms: added only font-family, font-size and keep-with-next.within-column
-  -->
+  <!-- changes v/ upstream: added font-family, font-size and
+  keep-with-next.within-column attributes. -->
   <fo:list-item role="{local-name()}" id="{$entry.id}"
    xsl:use-attribute-sets="list.item.spacing"
    keep-with-next.within-column="always">
