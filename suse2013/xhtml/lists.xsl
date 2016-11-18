@@ -81,27 +81,27 @@ Copyright: 2012, Thomas Schraitle, Stefan Knorr
   </div>
  </xsl:template>
  
-<xsl:template match="substeps">
-  <xsl:variable name="numeration">
-    <xsl:call-template name="procedure.step.numeration"/>
-  </xsl:variable>
-
-  <xsl:call-template name="anchor"/>
-
-  <ol type="{$numeration}">
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:call-template name="id.attribute"/>
-    <xsl:apply-templates/>
-  </ol>
-</xsl:template>
 
 <xsl:template match="step">
   <li>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:call-template name="id.attribute"/>
-    <xsl:call-template name="anchor"/>
-    <xsl:apply-templates/>
+     <xsl:call-template name="anchor"/>
+    <xsl:if test="@performance='optional'">
+   
+     <div class="step-optional">
+     <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'step.optional'"/>
+     </xsl:call-template>
+    <!--</fo:block>
+	</fo:float>-->
+     </div>
+   
+    </xsl:if>
+     <xsl:apply-templates/>
   </li>
+  
+  
 </xsl:template>
 
- </xsl:stylesheet>
+</xsl:stylesheet>

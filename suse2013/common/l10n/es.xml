@@ -48,6 +48,8 @@
    <l:gentext key="version" text="Versión"/>
    <l:gentext key="Version" text="Versión"/>
 
+   <l:gentext key="step.optional" text=" (Opcional)"/>
+
    <l:gentext key="part" text="Parte"/>
 
    <l:context name="styles">
