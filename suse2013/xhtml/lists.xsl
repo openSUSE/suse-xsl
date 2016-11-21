@@ -6,8 +6,9 @@
     is padded a bit more.
     Also make sure, variablelist entries can be linked to.
 
-    Author(s): Thomas Schraitle <toms@opensuse.org>, Stefan Knorr <sknorr@suse.de>
-    Copyright: 2012, Thomas Schraitle, Stefan Knorr
+    Author(s): Thomas Schraitle <toms@opensuse.org>,
+      Stefan Knorr <sknorr@suse.de>, Janina Setz <jsetz@suse.com>
+    Copyright: 2012, 2016, Thomas Schraitle, Stefan Knorr, Janina Setz
 
 -->
 <xsl:stylesheet version="1.0"
@@ -83,24 +84,30 @@
     </div>
   </xsl:template>
 
+  <!-- Handle step performance="optional" -->
+
+  <!-- For the common case, where there is a para as the first item within step,
+  we handle this in the para template further down. For the much less common
+  case of "anything else" (e.g. a list as first element), we handle this
+  directly in the step template. -->
   <xsl:template match="step">
    <li>
      <xsl:call-template name="common.html.attributes"/>
      <xsl:call-template name="id.attribute"/>
      <xsl:call-template name="anchor"/>
-     <xsl:if test="@performance='optional' and *[1][local-name()!='para']">
-
-     <div class="step-optional">
+     <xsl:if test="@performance='optional'
+                   and *[1][local-name()!='para' and local-name()!='simpara']">
+     <p class="step-optional">
       <xsl:call-template name="gentext">
        <xsl:with-param name="key" select="'step.optional'"/>
       </xsl:call-template>
-     </div>
+     </p>
     </xsl:if>
     <xsl:apply-templates/>
    </li>
   </xsl:template>
 
-  <xsl:template match="para">
+  <xsl:template match="step/*[1][local-name()='para' or local-name()='simpara']">
    <xsl:call-template name="paragraph">
      <xsl:with-param name="class">
        <xsl:if test="@role and $para.propagates.style != 0">
@@ -114,7 +121,7 @@
          </xsl:call-template>
        </xsl:if>
        <xsl:call-template name="anchor"/>
-       <xsl:if test="../@performance='optional' and ../*[1][local-name()='para']">
+       <xsl:if test="../@performance='optional'">
          <span class="step-optional">
            <xsl:call-template name="gentext">
              <xsl:with-param name="key" select="'step.optional'"/>

@@ -3,9 +3,9 @@
   Purpose:
     Unconditionally use a filled circle as the bullet before lists.
 
-  Author(s):  Stefan Knorr <sknorr@suse.de>
+  Author(s):  Stefan Knorr <sknorr@suse.de>, Janina Setz <jsetz@suse.com>
 
-  Copyright:  2013, Stefan Knorr
+  Copyright:  2013, 2016, Stefan Knorr, Janina Setz
 
 -->
 <!DOCTYPE xsl:stylesheet
@@ -148,7 +148,11 @@
   </xsl:choose>
 </xsl:template>
 
-
+  <!-- Styling with a line on the left side +
+  Handle step performance="optional": For the common case, where there is a
+  para as the first item within step, we handle this in the para template
+  further down. For the much less common case of "anything else" (e.g. a list
+  as first element), we handle this directly in the step template.-->
 <xsl:template match="procedure">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -270,7 +274,8 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <fo:block>
-        <xsl:if test="@performance='optional' and *[1][local-name()!='para']" >
+        <xsl:if test="@performance='optional' and
+                      *[1][local-name()!='para' and local-name()!='simpara']">
           <fo:inline color="&mid-gray;" xsl:use-attribute-sets="italicized">
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'step.optional'"/>
@@ -307,7 +312,7 @@
         <xsl:with-param name="arch-value" select="@arch"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:if test="../@performance='optional'">
+    <xsl:if test="(self::para or self::simpara) and ../@performance='optional'">
       <fo:inline color="&mid-gray;" xsl:use-attribute-sets="italicized">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'step.optional'"/>
