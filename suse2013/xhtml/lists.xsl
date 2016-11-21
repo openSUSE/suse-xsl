@@ -83,4 +83,48 @@
     </div>
   </xsl:template>
 
+  <xsl:template match="step">
+   <li>
+     <xsl:call-template name="common.html.attributes"/>
+     <xsl:call-template name="id.attribute"/>
+     <xsl:call-template name="anchor"/>
+     <xsl:if test="@performance='optional' and *[1][local-name()!='para']">
+
+     <div class="step-optional">
+      <xsl:call-template name="gentext">
+       <xsl:with-param name="key" select="'step.optional'"/>
+      </xsl:call-template>
+     </div>
+    </xsl:if>
+    <xsl:apply-templates/>
+   </li>
+  </xsl:template>
+
+  <xsl:template match="para">
+   <xsl:call-template name="paragraph">
+     <xsl:with-param name="class">
+       <xsl:if test="@role and $para.propagates.style != 0">
+         <xsl:value-of select="@role"/>
+       </xsl:if>
+     </xsl:with-param>
+     <xsl:with-param name="content">
+       <xsl:if test="position() = 1 and parent::listitem">
+         <xsl:call-template name="anchor">
+           <xsl:with-param name="node" select="parent::listitem"/>
+         </xsl:call-template>
+       </xsl:if>
+       <xsl:call-template name="anchor"/>
+       <xsl:if test="../@performance='optional' and ../*[1][local-name()='para']">
+         <span class="step-optional">
+           <xsl:call-template name="gentext">
+             <xsl:with-param name="key" select="'step.optional'"/>
+           </xsl:call-template>
+         </span>
+         <xsl:text> </xsl:text>
+       </xsl:if>
+       <xsl:apply-templates/>
+     </xsl:with-param>
+   </xsl:call-template>
+  </xsl:template>
+
 </xsl:stylesheet>
