@@ -2309,6 +2309,7 @@ li > p {
 }
 .step-optional {
     color: #666;
+    font-style: italic;
     
 }
 .step-optional + p{
