@@ -271,20 +271,14 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
      <fo:block>
-      <xsl:if test="@performance='optional'">
-        <fo:float float="left">
-	 <fo:block color="&white;" background-color="{$dark-green}"
-		   font-size='6pt' padding="0mm 1mm 0mm 1mm" margin-left="1cm" margin-right="2mm" margin-top="-2mm">
+      <xsl:if test="@performance='optional' and *[1][local-name()!='para']" >
+	 <fo:inline color="&mid-gray;" xsl:use-attribute-sets="italicized">
 	 <xsl:call-template name="gentext">
 	  <xsl:with-param name="key" select="'step.optional'"/>
 	 </xsl:call-template>
-	 </fo:block>
-	</fo:float>
+	 </fo:inline>
       </xsl:if>
-       
-       <fo:block clear="both">
 	 <xsl:apply-templates/>
-      </fo:block>
      </fo:block>
      </fo:list-item-body>
     
@@ -315,7 +309,14 @@
         <xsl:with-param name="arch-value" select="@arch"/>
       </xsl:call-template>
     </xsl:if>
-
+    <xsl:if test="../@performance='optional'">
+     <fo:inline color="&mid-gray;" xsl:use-attribute-sets="italicized">
+      <xsl:call-template name="gentext">
+       <xsl:with-param name="key" select="'step.optional'"/>
+      </xsl:call-template>
+     </fo:inline>
+     <xsl:text> </xsl:text>
+    </xsl:if>
     <xsl:apply-templates/>
 
     <xsl:if test="@arch != ''">

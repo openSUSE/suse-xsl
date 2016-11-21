@@ -2308,13 +2308,7 @@ li > p {
     font-weight: normal;
 }
 .step-optional {
-    font-size: 8pt;
-    color: #FFFFFF;
-    background-color: #439239;
-    display: inline-block;
-    padding: 0mm 2mm 0mm 2mm;
-    margin-top: 10px;
-    vertical-align: super;
+    color: #666;
     
 }
 .step-optional + p{
