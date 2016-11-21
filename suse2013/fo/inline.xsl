@@ -125,6 +125,7 @@
   <xsl:param name="mode" select="'normal'"/>
   <xsl:param name="before" select="''"/>
   <xsl:param name="after" select="''"/>
+   <xsl:param name="textcolor" select="'&black;'"/>
   <xsl:variable name="mono-verbatim-ancestor">
     <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
                   ancestor::programlisting or ancestor::synopsis">1</xsl:if>
@@ -135,7 +136,7 @@
   </xsl:variable>
 
   <fo:inline xsl:use-attribute-sets="monospace.properties mono.bold"
-    font-style="normal">
+    font-style="normal" color="{$textcolor}">
     <xsl:if test="$lighter-formatting != 1">
       <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
       <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
@@ -311,10 +312,21 @@
 <xsl:template match="command|userinput">
   <xsl:param name="purpose" select="'none'"/>
   <xsl:param name="mode" select="'normal'"/>
+  <xsl:param name="commandcolor" >
+   <xsl:choose>
+    <xsl:when test="self::command and ancestor::screen">
+     <xsl:value-of select="$dark-green"/>
+    </xsl:when>
+    <xsl:otherwise>
+     &black;
+    </xsl:otherwise>
+   </xsl:choose>
+  </xsl:param>
 
   <xsl:call-template name="inline.boldmonoseq">
     <xsl:with-param name="purpose" select="$purpose"/>
     <xsl:with-param name="mode" select="$mode"/>
+    <xsl:with-param name="textcolor" select="$commandcolor"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -385,11 +397,21 @@
 
 <!-- Mode: mono-ancestor -->
 <xsl:template match="command|userinput" mode="mono-ancestor">
-  <xsl:param name="purpose" select="'none'"/>
-
+ <xsl:param name="purpose" select="'none'"/>
+   <xsl:param name="commandcolor" >
+   <xsl:choose>
+    <xsl:when test="self::command and parent::screen">
+     <xsl:value-of select="$dark-green"/>
+    </xsl:when>
+    <xsl:otherwise>
+     &black;
+    </xsl:otherwise>
+   </xsl:choose>
+  </xsl:param>
   <xsl:call-template name="inline.boldmonoseq">
     <xsl:with-param name="purpose" select="$purpose"/>
     <xsl:with-param name="mode" select="'mono-ancestor'"/>
+     <xsl:with-param name="textcolor" select="$commandcolor"/>
   </xsl:call-template>
 </xsl:template>
 
