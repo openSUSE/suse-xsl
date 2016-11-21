@@ -2307,6 +2307,14 @@ ul {
 li > p {
     font-weight: normal;
 }
+.step-optional {
+    color: #666;
+    font-style: italic;
+    
+}
+.step-optional + p{
+    margin-top: 0;
+}
 
 .procedure > p {
     margin: 0 10px 5px;

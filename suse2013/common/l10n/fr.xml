@@ -47,6 +47,8 @@
    <l:gentext key="version" text="Version"/>
    <l:gentext key="Version" text="Version"/>
 
+   <l:gentext key="step.optional" text=" (Optionnelle)"/>
+   
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
