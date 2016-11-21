@@ -247,7 +247,7 @@ orientation: <xsl:value-of select="$orientation"/>
       </xsl:attribute>
       <xsl:apply-templates select="." mode="title.markup"/>
     </xsl:element>
-    <xsl:if test="following-sibling::*[
+    <xsl:if test="self::set or following-sibling::*[
                     self::chapter|self::article|self::book
                     |self::part|self::preface|self::appendix|self::glossary
                     |self::sect1|self::bibliography]">
