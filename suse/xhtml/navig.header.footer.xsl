@@ -196,7 +196,8 @@ orientation: <xsl:value-of select="$orientation"/>
             <xsl:with-param name="setdiff-last" select="generate-id($setdiff[last()])"/>
           </xsl:apply-templates>
           <xsl:if test="$row2">
-            <strong>
+            <xsl:text> </xsl:text>
+            <strong class="head-nav-chunk">
               <xsl:if test="count($prev) >0 and $isprev">
                 <a accesskey="p">
                   <xsl:attribute name="title">
@@ -214,7 +215,6 @@ orientation: <xsl:value-of select="$orientation"/>
                 </a>
                 <xsl:text> </xsl:text>
               </xsl:if>
-              
               <xsl:if test="count($next) >0 and $isnext">
                   <xsl:text> </xsl:text>
                   <a accesskey="n">
