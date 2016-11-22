@@ -177,7 +177,7 @@ orientation: <xsl:value-of select="$orientation"/>
   <xsl:variable name="ancestorrootnode" select="key('id', $rootid)/ancestor::*"/>
   <xsl:variable name="setdiff" select="ancestor::*[count(. | $ancestorrootnode) 
                                 != count($ancestorrootnode)]"/>
-    
+
 <!--<xsl:if test="$debug">
               <xsl:message>breadcrumbs.navigation:
     Element:  <xsl:value-of select="local-name(.)"/>
@@ -192,9 +192,12 @@ orientation: <xsl:value-of select="$orientation"/>
     <xsl:if test="$generate.breadcrumbs != 0">
       <div class="breadcrumbs">
         <p>
-          <xsl:apply-templates select="$setdiff"  mode="breadcrumbs"/>
+          <xsl:apply-templates select="$setdiff"  mode="breadcrumbs">
+            <xsl:with-param name="setdiff-last" select="generate-id($setdiff[last()])"/>
+          </xsl:apply-templates>
           <xsl:if test="$row2">
-            <strong>
+            <xsl:text> </xsl:text>
+            <strong class="head-nav-chunk">
               <xsl:if test="count($prev) >0 and $isprev">
                 <a accesskey="p">
                   <xsl:attribute name="title">
@@ -212,7 +215,6 @@ orientation: <xsl:value-of select="$orientation"/>
                 </a>
                 <xsl:text> </xsl:text>
               </xsl:if>
-              
               <xsl:if test="count($next) >0 and $isnext">
                   <xsl:text> </xsl:text>
                   <a accesskey="n">
@@ -236,8 +238,9 @@ orientation: <xsl:value-of select="$orientation"/>
       </div>
     </xsl:if>
 </xsl:template>
-  
+
 <xsl:template match="*" mode="breadcrumbs">
+    <xsl:param name="setdiff-last" select="''"/>
     <xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
       <xsl:attribute name="href">
         <xsl:call-template name="href.target">
@@ -247,10 +250,7 @@ orientation: <xsl:value-of select="$orientation"/>
       </xsl:attribute>
       <xsl:apply-templates select="." mode="title.markup"/>
     </xsl:element>
-    <xsl:if test="following-sibling::*[
-                    self::chapter|self::article|self::book
-                    |self::part|self::preface|self::appendix|self::glossary
-                    |self::sect1|self::bibliography]">
+    <xsl:if test="generate-id() != $setdiff-last">
       <span class="breadcrumbs-sep">
         <xsl:copy-of select="$breadcrumbs.separator"/>
       </span>
