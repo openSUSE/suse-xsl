@@ -260,4 +260,6 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="para[normalize-space(.)='' and not(*)]"/>
+
 </xsl:stylesheet>
