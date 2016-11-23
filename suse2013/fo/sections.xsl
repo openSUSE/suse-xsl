@@ -124,7 +124,7 @@
   <xsl:param name="marker" select="1"/>
   <xsl:param name="marker.title"/>
 
-  <fo:block xsl:use-attribute-sets="section.title.properties">
+  <fo:block xsl:use-attribute-sets="section.title.properties" hyphenate="false">
     <xsl:if test="$marker != 0">
       <fo:marker marker-class-name="section.head.marker.short">
         <xsl:call-template name="shorten-section-markers">
