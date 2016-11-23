@@ -148,7 +148,7 @@
      text. Welp.
      xref.properties are also applied to ulinks, to be consistent. -->
 <xsl:attribute-set name="xref.properties"
-                   use-attribute-sets="dark-green title.font">
+                   use-attribute-sets="title.font">
   <xsl:attribute name="font-style">
     <xsl:choose>
       <xsl:when test="self::xref and $enable-italic = 'true'">italic</xsl:when>
@@ -169,6 +169,14 @@
                       ancestor::term)"><xsl:value-of select="$sans-xheight-adjust"/>em</xsl:when>
       <xsl:otherwise>1em</xsl:otherwise>
     </xsl:choose>
+  </xsl:attribute>
+  <xsl:attribute name="color">
+    <xsl:choose>
+     <xsl:when test="ancestor::remark">&white;</xsl:when>
+     <xsl:otherwise>
+      <xsl:value-of select="$dark-green"/>
+     </xsl:otherwise>
+  </xsl:choose>
   </xsl:attribute>
 </xsl:attribute-set>
 
