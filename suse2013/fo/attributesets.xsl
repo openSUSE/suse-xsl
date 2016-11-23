@@ -173,7 +173,9 @@
   <xsl:attribute name="color">
     <xsl:choose>
      <xsl:when test="ancestor::remark">&white;</xsl:when>
-     <xsl:otherwise>&dark-green;</xsl:otherwise>
+     <xsl:otherwise>
+      <xsl:value-of select="$dark-green"/>
+     </xsl:otherwise>
   </xsl:choose>
   </xsl:attribute>
 </xsl:attribute-set>
