@@ -114,6 +114,12 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="formalpara/title/text()[last()]">
+ <xsl:call-template name="trim-verbatim-whitespace-end">
+  <xsl:with-param name="input" select="."/>
+ </xsl:call-template>
+</xsl:template>
+
 
 <xsl:template name="arch-arrows">
   <!-- It's enough to have one input param to determine both whether we want a
