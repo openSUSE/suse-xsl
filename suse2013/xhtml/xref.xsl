@@ -13,7 +13,8 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
 
 
   <xsl:template name="anchor">
@@ -74,8 +75,8 @@
     <xsl:apply-templates select="."/>
   </xsl:template>
 
-  <xsl:template match="ulink" name="ulink">
-    <xsl:param name="url" select="@url"/>
+  <xsl:template match="ulink|link" name="ulink">
+    <xsl:param name="url" select="@url|@xlink:href"/>
     <xsl:variable name="link-text">
       <xsl:apply-templates mode="no.anchor.mode"/>
     </xsl:variable>
@@ -121,7 +122,7 @@
   </xsl:template>
 
 
-<xsl:template match="xref" name="xref">
+<xsl:template match="xref|link[@linkend]" name="xref">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
