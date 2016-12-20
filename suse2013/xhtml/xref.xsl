@@ -153,7 +153,7 @@
   <xsl:when test="$rootid != '' and $xref.in.samebook != 0">
    <xsl:apply-imports/>
   </xsl:when>
-  <xsl:when test="$xref.in.samebook != 0 or /set/@id=$rootid or /article/@id=$rootid">
+  <xsl:when test="$xref.in.samebook != 0 or /set/@id=$rootid or /set/@xml:id=$rootid">
    <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
    <xsl:apply-imports/>
