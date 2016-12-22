@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<book lang="en" id="book.foo">
+ <title>Foo Bar in the Fooish Bar</title>
+ <bookinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </bookinfo>
+
+ <chapter id="cha.procedure">
+  <title>Procedures</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps tofu microdosing.
+  </para>
+  <procedure>
+  <step>
+   <para>
+    Aesthetic put a bird on it waistcoat brunch tumeric.
+   </para>
+  </step>
+  <step>
+   <para>
+    Snackwave chambray succulents sartorial.
+   </para>
+  </step>
+  <step>
+   <para>
+     Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+   </para>
+  </step>
+ </procedure>
+ </chapter>
+</book>

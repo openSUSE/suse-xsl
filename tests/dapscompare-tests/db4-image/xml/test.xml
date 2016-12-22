@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<book lang="en" id="book.foo">
+ <title>Foo Bar in the Fooish Bar</title>
+ <bookinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </bookinfo>
+
+ <chapter id="cha.image">
+  <title>Images</title>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette chia pork belly vegan, neutra truffaut.
+  </para>
+  <figure>
+   <title>Figure</title>
+   <mediaobject role="html">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+   <mediaobject role="fo">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+  </figure>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette chia pork belly vegan, neutra truffaut.
+  </para>
+  <informalfigure>
+   <mediaobject role="html">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+   <mediaobject role="fo">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+  </informalfigure>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette <inlinemediaobject>
+    <textobject role="description"><phrase>Hamburger</phrase>
+    </textobject>
+    <imageobject role="fo">
+     <imagedata fileref="hamburger_button.png" width="0.8em" format="PNG"/>
+    </imageobject>
+    <imageobject role="html">
+     <imagedata fileref="hamburger_button.png" width="1em" format="PNG"/>
+    </imageobject>
+    </inlinemediaobject> chia pork belly vegan, neutra truffaut.
+  </para>
+ </chapter>
+</book>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<article lang="en" id="art.foo">
+ <title>Foo Bar in the Fooish Bar</title>
+ <articleinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </articleinfo>
+ <abstract>
+  <para>
+  Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+  meditation kinfolk schlitz. Letterpress church-key subway tile synth
+  flannel. Irony kombucha crucifix you probably haven't heard of them kale
+  chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+  butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+  godard kombucha, forage heirloom.
+  </para>
+ </abstract>
+
+ <sect1 id="sec.sec0">
+  <title>Section 0</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat.
+  </para>
+ </sect1>
+
+ <sect1 id="sec.sec1">
+  <title>Section 1</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat.
+  </para>
+ </sect1>
+
+ <sect1 id="sec.sec2">
+  <title>Section 2</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat.
+  </para>
+  <sect2 id="sec.sec2.sec0">
+   <title>Subsection</title>
+   <para>
+    Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+    cronut prism helvetica artisan church-key vice waistcoat.
+   </para>
+  </sect2>
+  <sect2 id="sec.sec2.sec1">
+   <title>Subsection</title>
+   <para>
+    Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+    cronut prism helvetica artisan church-key vice waistcoat.
+   </para>
+  </sect2>
+  <sect2 id="sec.sec2.sec2">
+   <title>Subsection</title>
+   <para>
+    Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+    cronut prism helvetica artisan church-key vice waistcoat.
+   </para>
+   <sect3 id="sec.sec2.sec2.sec0">
+    <title>Subsection</title>
+    <para>
+     Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+     cronut prism helvetica artisan church-key vice waistcoat.
+    </para>
+   </sect3>
+   <sect3 id="sec.sec2.sec2.sec1">
+    <title>Subsection</title>
+    <para>
+     Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+     cronut prism helvetica artisan church-key vice waistcoat.
+    </para>
+   </sect3>
+   <sect3 id="sec.sec2.sec2.sec2">
+    <title>Subsection</title>
+    <para>
+     Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+     cronut prism helvetica artisan church-key vice waistcoat.
+    </para>
+   </sect3>
+  </sect2>
+ </sect1>
+
+ <sect1 id="sec.sec3">
+  <title>Section 3</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat.
+  </para>
+ </sect1>
+
+</article>

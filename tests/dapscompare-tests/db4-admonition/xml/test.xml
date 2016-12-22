@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<book lang="en" id="book.foo">
+ <title>Foo Bar in the Fooish Bar</title>
+ <bookinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </bookinfo>
+
+ <chapter id="cha.admonition">
+  <title>Admonitions</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps tofu microdosing.
+  </para>
+  <tip>
+   <title>Humblebrag Farm-to-table, a tip</title>
+   <para>
+    Poutine chillwave street art, tote bag next level post-ironic banjo
+    hashtag semiotics fam XOXO typewriter cred marfa 90's.
+   </para>
+  </tip>
+  <note>
+   <title>Sustainable Post-Ironic Lyft Tote Bag, a note</title>
+   <para>
+    Cliche tilde post-ironic butcher twee selfies fingerstache pinterest
+    health goth. Kitsch post-ironic organic cardigan gentrify.
+   </para>
+  </note>
+  <important>
+   <title>Bespoke Seitan Pork Belly, an important</title>
+   <para>
+    La croix lomo bespoke occupy subway tile pinterest pabst stumptown,
+    post-ironic scenester snackwave jean shorts schlitz YOLO iceland.
+   </para>
+  </important>
+  <warning>
+   <title>Fingerstache Vape, a warning</title>
+   <para>
+    Edison bulb williamsburg kickstarter woke. Freegan art party flexitarian
+    beard, 8-bit migas echo park.
+   </para>
+  </warning>
+  <caution>
+   <title>Cronut Man, a caution</title>
+   <para>
+    Forage PBR&amp;B vinyl, ethical next level fam hashtag blog single-origin
+    coffee irony shoreditch neutra whatever messenger bag.
+   </para>
+  </caution>
+ </chapter>
+</book>

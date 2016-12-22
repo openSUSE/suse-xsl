@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<book lang="en" id="book.foo">
+ <title>Foo Bar in the Fooish Bar</title>
+ <bookinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </bookinfo>
+
+ <chapter id="cha.inline">
+  <title>Inline Elements</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps, <emphasis>yuccie four loko</emphasis> vexillologist
+   marfa sriracha narwhal lo-fi gluten-free pork belly tofu microdosing.
+  </para>
+  <para>
+   Typewriter YOLO raclette you
+   <emphasis role="bold">probably</emphasis> haven't heard of them beard.
+   Mixtape brunch raw denim, shabby chic chia wolf vinyl kinfolk pug selvage
+   vice kickstarter single-origin coffee meggings post-ironic.
+  </para>
+  <para>
+   Lo-fi ugh XOXO keytar fanny pack photo booth. Semiotics farm-to-table
+   sriracha salvia aesthetic <quote>enamel pin</quote>, kale chips raclette
+   meditation blog before they sold out gochujang.
+  </para>
+  <para>
+   Austin celiac knausgaard fixie man bun farm-to-table sriracha
+   asymmetrical truffaut, VHS green juice flexitarian vexillologist
+   kickstarter cliche. Irony af selvage mlkshk
+   <phrase role="productname">iPhone</phrase> pok pok. Kitsch chartreuse
+   wayfarers, four loko pabst brooklyn microdosing waistcoat.
+  </para>
+  <para>
+   Air plant lo-fi salvia, tilde tumeric
+   brook<superscript>lyn</superscript> echo park.
+  </para>
+  <para>
+   Srirach<subscript>a</subscript> neutra chicharrones, cliche kitsch unicorn
+   ennui quinoa umami direct trade lumbersexual. Schlitz single-origin coffee
+   plaid, street art readymade selfies craft beer chartreuse etsy man bun
+   blue bottle subway tile hella.
+  </para>
+  <para>
+   Meggings ramps freegan messenger bag shoreditch, wayfarers fam letterpress
+   neutra gentrify celiac <citetitle>Trust fund forage tumblr single-origin
+   coffee</citetitle>.
+  </para>
+ </chapter>
+</book>

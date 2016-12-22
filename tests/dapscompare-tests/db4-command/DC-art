@@ -1,0 +1,11 @@
+## Basics
+MAIN="test.xml"
+ROOTID="cha.command"
+
+## Profiling
+# "[no]quick" is not an actual OS -- it determines whether or not the links into
+# the Quick Start Guide should be added
+PROFOS="osuse;noquick"
+PROFARCH="x86;amd64;em64t"
+
+STYLEROOT="../../../suse2013"
