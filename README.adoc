@@ -7,6 +7,7 @@ Thomas Schraitle <toms@opensuse.org>
 
 This project contains customization layers for the DocBook XSL stylesheets.
 
+
 Requirements for Building the Stylesheets
 -----------------------------------------
 
@@ -19,6 +20,13 @@ For a successful build, you will need:
 * `xsltproc`
 * `xmlcatalog`
 * `aspell`
+
+
+Requirements for Testing the Stylesheets
+----------------------------------------
+
+* `dapscompare` from Documentation:Tools
+
 
 Requirements for Using the Stylesheets
 --------------------------------------
