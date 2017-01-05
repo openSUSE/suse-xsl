@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.list">
+  <title>Lists</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Drinking vinegar photo booth banjo flexitarian
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Taxidermy chambray wolf cred cronut
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Cold-pressed bicycle rights
+    </para>
+   </listitem>
+  </itemizedlist>
+  <para>
+   YOLO intelligentsia yuccie mustache:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Cray etsy pickled tofu
+    </para>
+   </listitem>
+  </itemizedlist>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps:
+  </para>
+  <itemizedlist>
+   <listitem>
+    <para>
+     Drinking vinegar photo booth banjo flexitarian
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Taxidermy chambray wolf cred cronut
+    </para>
+    <itemizedlist>
+     <listitem>
+      <para>
+       Cray etsy pickled tofu
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Chicharrones humblebrag microdosing
+      </para>
+     </listitem>
+    </itemizedlist>
+   </listitem>
+   <listitem>
+    <para>
+     Cold-pressed bicycle rights
+    </para>
+   </listitem>
+  </itemizedlist>
+  <para>
+   Poutine chillwave street art, tote bag next level post-ironic banjo hashtag.
+  </para>
+  <orderedlist>
+   <listitem>
+    <para>
+     Drinking vinegar tattooed you probably haven't heard of them green juice.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Polaroid tumblr actually next level.
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Cold-pressed bicycle rights
+    </para>
+   </listitem>
+  </orderedlist>
+  <para>
+   YOLO intelligentsia yuccie mustache:
+  </para>
+  <orderedlist>
+   <listitem>
+    <para>
+     Cray etsy pickled tofu
+    </para>
+   </listitem>
+  </orderedlist>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps:
+  </para>
+  <orderedlist>
+   <listitem>
+    <para>
+     Drinking vinegar photo booth banjo flexitarian
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     Taxidermy chambray wolf cred cronut
+    </para>
+    <itemizedlist>
+     <listitem>
+      <para>
+       Cray etsy pickled tofu
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Chicharrones humblebrag microdosing
+      </para>
+     </listitem>
+    </itemizedlist>
+   </listitem>
+   <listitem>
+    <para>
+     Cold-pressed bicycle rights
+    </para>
+   </listitem>
+  </orderedlist>
+ </chapter>
+</book>

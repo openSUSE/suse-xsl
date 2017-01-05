@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.inline">
+  <title>Inline Elements</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps, <emphasis>yuccie four loko</emphasis> vexillologist
+   marfa sriracha narwhal lo-fi gluten-free pork belly tofu microdosing.
+  </para>
+  <para>
+   Typewriter YOLO raclette you
+   <emphasis role="bold">probably</emphasis> haven't heard of them beard.
+   Mixtape brunch raw denim, shabby chic chia wolf vinyl kinfolk pug selvage
+   vice kickstarter single-origin coffee meggings post-ironic.
+  </para>
+  <para>
+   Lo-fi ugh XOXO keytar fanny pack photo booth. Semiotics farm-to-table
+   sriracha salvia aesthetic <quote>enamel pin</quote>, kale chips raclette
+   meditation blog before they sold out gochujang.
+  </para>
+  <para>
+   Austin celiac knausgaard fixie man bun farm-to-table sriracha
+   asymmetrical truffaut, VHS green juice flexitarian vexillologist
+   kickstarter cliche. Irony af selvage mlkshk
+   <phrase role="productname">iPhone</phrase> pok pok. Kitsch chartreuse
+   wayfarers, four loko pabst brooklyn microdosing waistcoat.
+  </para>
+  <para>
+   Air plant lo-fi salvia, tilde tumeric
+   brook<superscript>lyn</superscript> echo park.
+  </para>
+  <para>
+   Srirach<subscript>a</subscript> neutra chicharrones, cliche kitsch unicorn
+   ennui quinoa umami direct trade lumbersexual. Schlitz single-origin coffee
+   plaid, street art readymade selfies craft beer chartreuse etsy man bun
+   blue bottle subway tile hella.
+  </para>
+  <para>
+   Meggings ramps freegan messenger bag shoreditch, wayfarers fam letterpress
+   neutra gentrify celiac <citetitle>Trust fund forage tumblr single-origin
+   coffee</citetitle>.
+  </para>
+  <para>
+   <package>sriracha-roasted-cashews</package> neutra chicharrones, cliche
+   kitsch unicorn ennui quinoa umami direct trade lumbersexual. Schlitz
+   single-origin coffee plaid, street art readymade selfies craft beer
+   chartreuse etsy man bun blue bottle subway tile hella.
+  </para>
+ </chapter>
+</book>

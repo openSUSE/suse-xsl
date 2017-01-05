@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.reference">
+  <title>References</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps <link xlink:href="https://www.opensuse.org">tofu
+   microdosing</link>.
+  </para>
+  <para>
+   Godard blue bottle fam hell of, vegan hoodie swag DIY ennui forage pop-up:
+   <xref linkend="cha.reference"/>.
+  </para>
+ </chapter>
+</book>

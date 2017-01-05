@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.image">
+  <title>Images</title>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette chia pork belly vegan, neutra truffaut.
+  </para>
+  <figure>
+   <title>Figure</title>
+   <mediaobject role="html">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+   <mediaobject role="fo">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+  </figure>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette chia pork belly vegan, neutra truffaut.
+  </para>
+  <informalfigure>
+   <mediaobject role="html">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+   <mediaobject role="fo">
+    <imageobject>
+     <imagedata fileref="miracle.png" width="70%" format="PNG"/>
+    </imageobject>
+   </mediaobject>
+  </informalfigure>
+  <para>
+   Letterpress selfies tousled, bespoke banjo bitters taxidermy salvia.
+   Church-key raclette <inlinemediaobject>
+    <textobject role="description"><phrase>Hamburger</phrase>
+    </textobject>
+    <imageobject role="fo">
+     <imagedata fileref="hamburger_button.png" width="0.8em" format="PNG"/>
+    </imageobject>
+    <imageobject role="html">
+     <imagedata fileref="hamburger_button.png" width="1em" format="PNG"/>
+    </imageobject>
+    </inlinemediaobject> chia pork belly vegan, neutra truffaut.
+  </para>
+ </chapter>
+</book>

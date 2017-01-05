@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.command">
+  <title>Computer Elements</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat. Twee
+   intelligentsia <command>command0</command> everyday carry.
+  </para>
+  <para>
+   Brunch ugh pitchfork butcher raclette <option>--option</option> chia:
+  </para>
+  <screen>
+<prompt>prompt1 </prompt><command>command1 command</command>
+  </screen>
+  <para>
+   Kale chips unicorn roof party
+  </para>
+  <screen><prompt role="root">prompt2 </prompt><command>command3 command</command>
+* Drinking vinegar photo booth banjo flexitarian
+* Taxidermy chambray wolf cred cronut cold-pressed bicycle rights
+* Everyday carry DIY master cleanse
+* Humblebrag farm-to-table prism</screen>
+  <para>
+   Kale chips unicorn roof party, mumblecore cornhole literally synth beard
+   yuccie
+   <menuchoice><guimenu>Guimenu0</guimenu><guimenu>Guimenu1</guimenu>
+   </menuchoice> raw denim. Taxidermy literally mixtape chicharrones,
+   cold-pressed farm-to-table hot chicken.
+  </para>
+  <para>
+   Kale chips unicorn roof party, mumblecore cornhole literally synth beard
+   yuccie <package>package</package> raw denim. Taxidermy literally mixtape
+   chicharrones, cold-pressed farm-to-table hot chicken.
+  </para>
+  <para>
+   Aesthetic put a bird on it <systemitem class="resource">systemitem
+   resource</systemitem> brunch tumeric. Snackwave chambray succulents
+   sartorial. Chambray bitters organic health goth small batch air plant.
+  </para>
+  <para>
+   Snackwave semiotics sustainable, <command>long command chambray migas
+   skateboard echo park listicle tote bag schlitz direct trade. Bicycle
+   rights offal knausgaard PBR&amp;B affogato</command> tacos.
+  </para>
+  <para>
+   Cardigan chambray gentrify typewriter ethical aesthetic. Mixtape cray
+   8-bit glossier waistcoat semiotics. Stumptown banjo disrupt intelligentsia
+   8-bit slow-carb. IPhone <keycap>keycap0</keycap> +1 cliche ethical mlkshk.
+  </para>
+  <para>
+   Hexagon aesthetic intelligentsia, VHS letterpress
+   <keycombo><keycap>keycap1</keycap><keycap>keycap2</keycap></keycombo>
+   gochujang cornhole hell of lyft kinfolk distillery.
+  </para>
+ </chapter>
+</book>
