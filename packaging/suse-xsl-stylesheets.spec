@@ -118,10 +118,6 @@ These are SUSE-branded XSLT 1.0 stylesheets for DocBook 4 and 5 that are be used
 to create the HTML, PDF, and EPUB versions of SUSE documentation. These
 stylesheets are based on the original DocBook XSLT 1.0 stylesheets.
 
-This package also provides descriptions of two XML formats which authors can
-use: The NovDoc DTD, a subset of the DocBook 4 DTD and the SUSEdoc schema, a
-subset of the DocBook 5 schema.
-
 #--------------------------------------------------------------------------
 
 %prep
