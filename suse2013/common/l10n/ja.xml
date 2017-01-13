@@ -4,6 +4,7 @@
         english-language-name="Japanese">
 
    <l:gentext key="LocalisedLanguageName" text="&#26085;&#26412;&#35486;"/>
+   <l:gentext key="Authors" text="著者"/>
    <l:gentext key="ListofAuthors" text="&#33879;&#32773;"/>
    <l:gentext key="TableofContents" text="&#30446;&#27425;"/>
    <l:gentext key="Contributor"     text="コントリビュータ"/>
