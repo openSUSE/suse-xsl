@@ -57,10 +57,13 @@
    <l:gentext key="Part" text=""/>
    <l:gentext key="part" text=""/>
 
+   <!-- Not quite sure why we need this: most of our other l10n files do not
+   override the authorgroup context, only the zh_*.xml files do. However, we do
+   remove the "and" (且) character. Maybe this was a translator request once. -->
    <l:context name="authorgroup">
-       <l:template name="sep" text=", "/>
-       <l:template name="sep2" text=", "/>
-       <l:template name="seplast" text=", "/>
+       <l:template name="sep" text="、"/>
+       <l:template name="sep2" text="、"/>
+       <l:template name="seplast" text="、"/>
    </l:context>
 
   <l:context name="title">
