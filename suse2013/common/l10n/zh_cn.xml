@@ -188,7 +188,7 @@
    </l:context>
 
   <l:context name="xref-number-and-title">
-    <l:template name="appendix" text="附录 %n %t"/>
+    <l:template name="appendix" text="附录 %n “%t”"/>
     <l:template name="chapter" text="第 %n 章 “%t”"/>
     <l:template name="procedure" text="过程 %n “%t”"/>
     <l:template name="productionset" text="产品 %n “%t”"/>
