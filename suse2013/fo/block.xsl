@@ -100,7 +100,7 @@
 
   <xsl:if test="$title-str != ''">
     <fo:inline keep-with-next.within-line="always"
-      font-size="{$sans-xheight-adjust}em" padding-end="0.2em"
+      padding-end="0.2em"
       xsl:use-attribute-sets="variablelist.term.properties">
       <xsl:copy-of select="$title-str"/>
       <xsl:if test="$last-char != ''

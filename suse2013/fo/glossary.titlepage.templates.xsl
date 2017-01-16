@@ -27,7 +27,7 @@
   <xsl:template name="glossary.titlepage.recto">
     <fo:block
       xsl:use-attribute-sets="glossary.titlepage.recto.style"
-      font-size="&super-large;pt" font-family="{$title.fontset}">
+      font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
       <xsl:attribute name="margin-{$start-border}">
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
@@ -58,7 +58,7 @@
   <xsl:template match="title" mode="glossdiv.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="glossdiv.titlepage.recto.style"
-      font-size="&xxx-large;pt" font-family="{$title.fontset}">
+      font-size="{&xxx-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
       <xsl:attribute name="margin-{$start-border}">
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>

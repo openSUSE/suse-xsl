@@ -160,7 +160,7 @@
   </xsl:template>
 
   <xsl:template match="title" mode="article.titlepage.recto.auto.mode">
-    <fo:block font-size="&super-large;pt" line-height="{$base-lineheight * 0.85}em"
+    <fo:block font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt" line-height="{$base-lineheight * 0.85}em"
       xsl:use-attribute-sets="article.titlepage.recto.style dark-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
@@ -168,7 +168,7 @@
   </xsl:template>
 
   <xsl:template match="subtitle" mode="article.titlepage.recto.auto.mode">
-    <fo:block font-size="&xx-large;pt" line-height="{$base-lineheight * 0.75}em"
+    <fo:block font-size="{&xx-large; * $fontsize-adjust * $sans-xheight-adjust}pt" line-height="{$base-lineheight * 0.75}em"
       xsl:use-attribute-sets="article.titlepage.recto.style mid-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
@@ -176,7 +176,7 @@
   </xsl:template>
 
   <xsl:template match="productname[1]" mode="article.titlepage.recto.auto.mode">
-    <fo:block text-align="start" font-size="&xx-large;pt"
+    <fo:block text-align="start" font-size="{&xx-large; * $fontsize-adjust * $sans-xheight-adjust}pt"
       xsl:use-attribute-sets="mid-green">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
       <xsl:if test="../productnumber">
@@ -187,7 +187,7 @@
   </xsl:template>
 
   <xsl:template match="authorgroup" mode="article.titlepage.recto.auto.mode">
-    <fo:block font-size="&large;pt" space-before="1em" text-align="start">
+    <fo:block font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt" space-before="1em" text-align="start">
       <xsl:call-template name="person.name.list">
         <xsl:with-param name="person.list" select="author|corpauthor"/>
       </xsl:call-template>
@@ -196,7 +196,7 @@
 
   <xsl:template match="author|corpauthor"
     mode="article.titlepage.recto.auto.mode">
-    <fo:block space-before="1em" font-size="&large;pt" text-align="start">
+    <fo:block space-before="1em" font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt" text-align="start">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
@@ -204,7 +204,7 @@
   <xsl:template match="editor|othercredit"
     mode="article.titlepage.recto.auto.mode">
     <xsl:if test=". = ((../othercredit)|(../editor))[1]">
-      <fo:block font-size="&normal;pt">
+      <fo:block font-size="{&normal; * $fontsize-adjust * $sans-xheight-adjust}pt">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key">
             <xsl:choose>

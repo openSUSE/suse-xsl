@@ -123,7 +123,7 @@
   <fo:list-item>
     <fo:list-item-label end-indent="label-end()">
       <fo:block text-align="end" width="&column;mm" font-family="{$title.fontset}"
-        font-size="&large;pt" line-height="{$line-height}">
+        font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt" line-height="{$line-height}">
         <fo:basic-link internal-destination="{$id}">
           <xsl:if test="$label != ''">
             <xsl:copy-of select="$label"/>
@@ -135,12 +135,12 @@
       <fo:block line-height="{$line-height}" padding-after="{&gutter; div 2}mm">
         <fo:basic-link internal-destination="{$id}">
           <fo:inline keep-with-next.within-line="always"
-            font-family="{$title.fontset}" font-size="&large;pt">
+            font-family="{$title.fontset}" font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt">
             <xsl:apply-templates select="." mode="titleabbrev.markup"/>
           </fo:inline>
           <fo:leader leader-pattern="space" leader-length="&gutterfragment;mm"
             keep-with-next.within-line="always"/>
-          <fo:inline keep-together.within-line="always" font-size="&large;pt"
+          <fo:inline keep-together.within-line="always" font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt"
             xsl:use-attribute-sets="toc.pagenumber.properties" color="&mid-gray;">
             <fo:page-number-citation ref-id="{$id}"/>
           </fo:inline>
@@ -266,7 +266,7 @@
     </xsl:variable>
 
     <fo:list-block role="TOC.{local-name()}" relative-align="baseline"
-       font-size="&xx-large;pt"
+       font-size="{&xx-large; * $fontsize-adjust * $sans-xheight-adjust}pt"
        keep-with-next.within-column="always"
        xsl:use-attribute-sets="toc.level2.properties dark-green sans.bold.noreplacement"
        provisional-distance-between-starts="{&column; + &gutter;}mm"

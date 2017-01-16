@@ -214,9 +214,9 @@ task before
 
 <xsl:param name="body.font.master" select="'&normal;'"/>
 <xsl:param name="body.font.size">
-  <xsl:value-of select="($body.font.master * $fontsize-adjust) div $mono-xheight-adjust"/>pt
+  <xsl:value-of select="$body.font.master * $fontsize-adjust"/>pt
 </xsl:param>
-<xsl:param name="footnote.font.size" select="'&small;pt'"/>
+<xsl:param name="footnote.font.size"><xsl:value-of select="&super-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:param>
 
 
 <!-- 21. Property Sets ========================================== -->

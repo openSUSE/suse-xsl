@@ -27,7 +27,7 @@
   <xsl:template match="title" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style component.title.style"
-      font-size="&super-large;pt" font-family="{$title.fontset}">
+      font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
       <xsl:attribute name="margin-{$start-border}">
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
@@ -40,7 +40,7 @@
   <xsl:template match="subtitle" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
-      font-family="{$title.fontset}" font-size="&small;pt">
+      font-family="{$title.fontset}" font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt">
       <xsl:apply-templates select="." mode="appendix.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
@@ -48,7 +48,7 @@
   <xsl:template match="corpauthor" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
-      font-family="{$title.fontset}" font-size="&small;pt">
+      font-family="{$title.fontset}" font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt">
       <xsl:apply-templates select="." mode="appendix.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
@@ -56,7 +56,7 @@
   <xsl:template match="authorgroup" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
-      font-family="{$title.fontset}" font-size="&small;pt">
+      font-family="{$title.fontset}" font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt">
       <xsl:apply-templates select="." mode="appendix.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
@@ -64,7 +64,7 @@
   <xsl:template match="author" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
-      font-family="{$title.fontset}" font-size="&small;pt">
+      font-family="{$title.fontset}" font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt">
       <xsl:apply-templates select="." mode="appendix.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
@@ -72,7 +72,7 @@
   <xsl:template match="othercredit" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
-      font-family="{$title.fontset}" font-size="&small;pt">
+      font-family="{$title.fontset}" font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt">
       <xsl:apply-templates select="." mode="appendix.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
