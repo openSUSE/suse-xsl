@@ -26,7 +26,7 @@
    <l:gentext key="formathtml" text="網頁"/>
    <l:gentext key="formatsinglehtml" text="單一網頁"/>
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-bok (EPUB)"/>
+   <l:gentext key="formatepub" text="E-book (EPUB)"/> <!-- According to Google Translate, this should be: 電子書（EPUB） -->
    <l:gentext key="contentsoverview" text="內容"/>
    <l:gentext key="showcontentsoverview" text="顯示內容"/>
    <l:gentext key="find" text="尋找"/>
