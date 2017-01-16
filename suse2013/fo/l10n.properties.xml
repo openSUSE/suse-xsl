@@ -201,7 +201,7 @@
     <!-- dummy values... -->
     <prop name="sans-lineheight-adjust" ref-lang="default"/>
     <prop name="mono-lineheight-adjust" ref-lang="default"/>
-    <prop name="sans-cutoff-factor">0.75</prop>
+    <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
@@ -222,7 +222,7 @@
     <prop name="sans-lineheight-adjust">1</prop>
     <prop name="mono-lineheight-adjust" ref-lang="default"/>
     <!-- cutoff factor untested -->
-    <prop name="sans-cutoff-factor">0.75</prop>
+    <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
@@ -248,7 +248,7 @@
     <prop name="sans-lineheight-adjust">1</prop>
     <prop name="mono-lineheight-adjust">1</prop>
     <!-- cutoff factor untested -->
-    <prop name="sans-cutoff-factor">0.75</prop>
+    <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
@@ -286,7 +286,7 @@
     <prop name="sans-lineheight-adjust">1</prop>
     <prop name="mono-lineheight-adjust" ref-lang="default"/>
     <!-- cutoff factor untested -->
-    <prop name="sans-cutoff-factor">0.6</prop>
+    <prop name="sans-cutoff-factor">0.75</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
