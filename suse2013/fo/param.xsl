@@ -301,6 +301,26 @@ task before
   </xsl:call-template>
 </xsl:param>
 
+<!-- Callouts font basically hardcoded to be the default font (since these
+are always just normal numbers). -->
+<xsl:param name="callout-font-stack">
+  <xsl:call-template name="get.l10n.property">
+    <xsl:with-param name="property" select="'sans'"/>
+    <xsl:with-param name="property.language" select="'default'"/>
+  </xsl:call-template>
+</xsl:param>
+<xsl:param name="enable-callout-font-semibold">
+  <xsl:call-template name="get.l10n.property">
+    <xsl:with-param name="property" select="'enable-sans-semibold'"/>
+    <xsl:with-param name="property.language" select="'default'"/>
+  </xsl:call-template>
+</xsl:param>
+<xsl:param name="callout-font-weight">
+  <xsl:choose>
+    <xsl:when test="$enable-callout-font-semibold">600</xsl:when>
+    <xsl:otherwise>700</xsl:otherwise>
+  </xsl:choose>
+</xsl:param>
 
 
 <!-- 24. EBNF =================================================== -->

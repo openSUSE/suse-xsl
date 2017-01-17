@@ -25,9 +25,9 @@
 <xsl:template name="callout-bug">
   <xsl:param name="conum" select='1'/>
   <xsl:variable name="instream-font-size" select="80"/>
+   <!-- Most fonts's default figures are so-called "tabular figures," that is,
+        monospaced figures. Don't use a font where that doesn't apply here. -->
   <xsl:variable name="font-metrics-ratio" select="&sans-numbers-ratio;"/>
-    <!-- Most fonts's default figures are so-called "tabular figures," that is,
-         monospaced figures. Don't use a font where that doesn't apply here. -->
   <xsl:variable name="width">
     <xsl:choose>
       <xsl:when test="$conum &lt; 10">100</xsl:when>
@@ -46,13 +46,13 @@
     <svg:svg xmlns:svg="http://www.w3.org/2000/svg" height="100px" width="{$width}">
       <svg:rect height="100" rx="50" ry="50" x="0" y="0"
         fill="{$color}" stroke="none" width="{$width}"/>
-      <svg:text y="{$instream-font-size - 1}" fill="&white;" font-family="{$sans-stack}"
+      <svg:text y="{$instream-font-size - 1}" fill="&white;" font-family="{$callout-font-stack}"
         font-size="{$instream-font-size}" text-anchor="middle"
-        xsl:use-attribute-sets="sans.bold.noreplacement">
+        font-weight="{$callout-font-weight}">
         <xsl:attribute name="x">
           <xsl:choose>
-            <xsl:when test="substring($conum,1,1) = 1">
-              <xsl:value-of select="($width div 2) - 7"/>
+            <xsl:when test="substring($conum,1,1) = '1'">
+              <xsl:value-of select="($width div 2) - 3"/>
             </xsl:when>
               <!-- Callout (1) as well as (10) and up will be horribly
                    off-center if they are not special-cased. -->
