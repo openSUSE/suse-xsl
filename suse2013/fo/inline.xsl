@@ -318,7 +318,7 @@
      <xsl:value-of select="$dark-green"/>
     </xsl:when>
     <xsl:otherwise>
-     &black;
+     inherit
     </xsl:otherwise>
    </xsl:choose>
   </xsl:param>
