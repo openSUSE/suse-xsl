@@ -185,7 +185,7 @@
           select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
       </xsl:if>
 
-      <fo:inline xsl:use-attribute-sets="italicized">
+      <fo:inline xsl:use-attribute-sets="xref.basic.properties">
         <xsl:call-template name="create.linkto.other.book">
           <xsl:with-param name="target" select="$target"/>
           <xsl:with-param name="lang" select="$lang"/>

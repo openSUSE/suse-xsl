@@ -148,7 +148,7 @@
      font, thus they use x-height scaling adapted to work inside sans
      text. Welp.
      xref.properties are also applied to ulinks, to be consistent. -->
-<xsl:attribute-set name="xref.properties"
+<xsl:attribute-set name="xref.basic.properties"
                    use-attribute-sets="title.font">
   <xsl:attribute name="font-style">
     <xsl:choose>
@@ -171,13 +171,17 @@
       <xsl:otherwise>1em</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="xref.properties"
+                   use-attribute-sets="title.font xref.basic.properties">
   <xsl:attribute name="color">
     <xsl:choose>
      <xsl:when test="ancestor::remark">&white;</xsl:when>
      <xsl:otherwise>
       <xsl:value-of select="$dark-green"/>
      </xsl:otherwise>
-  </xsl:choose>
+    </xsl:choose>
   </xsl:attribute>
 </xsl:attribute-set>
 
