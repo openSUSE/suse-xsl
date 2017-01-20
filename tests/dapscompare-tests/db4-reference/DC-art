@@ -1,5 +1,5 @@
 ## Basics
-MAIN="test.xml"
+MAIN="main.xml"
 ROOTID="cha.reference"
 
 ## Profiling

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE set
+[
+]>
+<set xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en" xml:id="set.foo">
+ <title>Set</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </info>
+ <xi:include href="test.xml" parse="xml"/>
+ <xi:include href="external.xml" parse="xml"/>
+</set>

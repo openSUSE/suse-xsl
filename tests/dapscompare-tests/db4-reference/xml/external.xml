@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet
+ href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
+[
+
+]>
+<book lang="en" id="book.external">
+ <title>Foo Bar in the Fooish Bar</title>
+ <bookinfo>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <firstname>Linda</firstname>
+    <surname>McLane</surname>
+   </author>
+   <author>
+    <firstname>Lance</firstname>
+    <surname>McLorne</surname>
+   </author>
+   <author>
+    <firstname>Ludvig</firstname>
+    <surname>McLence</surname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+ </bookinfo>
+
+ <chapter id="cha.external">
+  <title>External References</title>
+  <para>
+   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+   salvia shabby chic ramps tofu microdosing.
+  </para>
+  <sect1 id="sec.external.more-reference">
+   <title>More References</title>
+   <para>
+    Butcher chicharrones lyft, asymmetrical copper mug jianbing etsy af next
+    level banh mi man bun. Photo booth pork belly pug migas, irony mumblecore
+    green juice hot chicken hashtag DIY PBR&amp;B pour-over.
+   </para>
+   <sect2 id="sec.external.reference.literal">
+    <title>With a Literal Like <literal>la croix</literal></title>
+    <para>
+     Man braid fashion axe typewriter.
+    </para>
+   </sect2>
+   <sect2 id="sec.external.reference.command">
+    <title>With a Command Like <command>mixtape</command></title>
+    <para>
+     Everyday carry bespoke cornhole sartorial bitters.
+    </para>
+   </sect2>
+   <sect2 id="sec.external.reference.guimenu">
+    <title>With a Guimenu Like <guimenu>Irony Mumblecore Green</guimenu></title>
+    <para>
+     Kinfolk hella freegan cliche.
+    </para>
+   </sect2>
+   <sect2 id="sec.external.reference.menuchoice">
+    <title>With a Menuchoice Like <menuchoice><guimenu>Irony</guimenu><guimenu>Mumblecore</guimenu><guimenu>Green</guimenu></menuchoice></title>
+    <para>
+     Readymade listicle kale chips drinking vinegar.
+    </para>
+   </sect2>
+  </sect1>
+ </chapter>
+</book>

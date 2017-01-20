@@ -6,11 +6,11 @@
 [
 ]>
 
-<book xml:lang="en" xml:id="book.foo"
+<book xml:lang="en" xml:id="book.external"
   xmlns="http://docbook.org/ns/docbook"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:xlink="http://www.w3.org/1999/xlink">
- <title>Foo Bar in the Fooish Bar DB5</title>
+ <title>Another Book</title>
  <info>
   <productname>Long Long Name Name</productname>
   <productname role="abbrev">Shortname</productname>
@@ -48,109 +48,38 @@
   </abstract>
  </info>
 
- <chapter xml:id="cha.reference">
-  <title>References</title>
+ <chapter xml:id="cha.external">
+  <title>External References</title>
   <para>
    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
-   salvia shabby chic ramps <link xlink:href="https://www.opensuse.org">tofu
-   microdosing</link>.
+   salvia shabby chic ramps tofu microdosing.
   </para>
-  <para>
-   Letterpress kale chips seitan bushwick meh sustainable selfies offal fanny
-   pack mustache <link xlink:href="https://www.opensuse.org"/>.
-  </para>
-  <para>
-   Godard blue bottle fam hell of, vegan hoodie swag DIY ennui forage pop-up:
-   <xref linkend="cha.reference"/>.
-  </para>
-  <para>
-   Tote bag plaid banjo, schlitz tacos fashion axe live-edge gentrify salvia
-   bicycle rights disrupt selfies freegan vegan:
-  </para>
-  <itemizedlist>
-   <listitem>
-    <para>
-     Asymmetrical copper mug: <xref linkend="sec.reference.literal"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Ethical coloring book: <xref linkend="sec.reference.command"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     VHS fixie flannel: <xref linkend="sec.reference.guimenu"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Gochujang activated charcoal: <xref linkend="sec.reference.menuchoice"/>
-    </para>
-   </listitem>
-  </itemizedlist>
-  <para>
-   Keffiyeh vexillologist aesthetic bag plaid banjo, schlitz tacos fashion
-   axe live-edge:
-  </para>
-  <itemizedlist>
-   <listitem>
-    <para>
-     Asymmetrical copper mug: <xref linkend="cha.external"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Ethical coloring book: <xref linkend="sec.external.more-reference"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     VHS fixie flannel: <xref linkend="sec.external.reference.literal"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Shabby chic tattooed cornhole: <xref linkend="sec.external.reference.command"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Wayfarers tote bag: <xref linkend="sec.external.reference.guimenu"/>
-    </para>
-   </listitem>
-   <listitem>
-    <para>
-     Readymade kale chips drinking vinegar: <xref linkend="sec.external.reference.menuchoice"/>
-    </para>
-   </listitem>
-  </itemizedlist>
-  <sect1 xml:id="sec.more-reference">
+  <sect1 xml:id="sec.external.more-reference">
    <title>More References</title>
    <para>
     Butcher chicharrones lyft, asymmetrical copper mug jianbing etsy af next
     level banh mi man bun. Photo booth pork belly pug migas, irony mumblecore
     green juice hot chicken hashtag DIY PBR&amp;B pour-over.
    </para>
-   <sect2 xml:id="sec.reference.literal">
+   <sect2 xml:id="sec.external.reference.literal">
     <title>With a Literal Like <literal>la croix</literal></title>
     <para>
      Man braid fashion axe typewriter.
     </para>
    </sect2>
-   <sect2 xml:id="sec.reference.command">
+   <sect2 xml:id="sec.external.reference.command">
     <title>With a Command Like <command>mixtape</command></title>
     <para>
      Everyday carry bespoke cornhole sartorial bitters.
     </para>
    </sect2>
-   <sect2 xml:id="sec.reference.guimenu">
+   <sect2 xml:id="sec.external.reference.guimenu">
     <title>With a Guimenu Like <guimenu>Irony Mumblecore Green</guimenu></title>
     <para>
      Kinfolk hella freegan cliche.
     </para>
    </sect2>
-   <sect2 xml:id="sec.reference.menuchoice">
+   <sect2 xml:id="sec.external.reference.menuchoice">
     <title>With a Menuchoice Like <menuchoice><guimenu>Irony</guimenu><guimenu>Mumblecore</guimenu><guimenu>Green</guimenu></menuchoice></title>
     <para>
      Readymade listicle kale chips drinking vinegar.
