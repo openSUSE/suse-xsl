@@ -16,9 +16,10 @@
 <!ENTITY xxx-small            "6">
 <!ENTITY xx-small             "7">
 <!ENTITY x-small              "8">
-<!ENTITY small                "9">
-<!ENTITY normal               "10">
-<!ENTITY large                "12">
+<!ENTITY small                "9.5">
+<!-- Odd numbers to be bug-compatible with previous versions. -->
+<!ENTITY normal               "11.15">
+<!ENTITY large                "12.5">
 <!ENTITY x-large              "14">
 <!ENTITY xx-large             "16">
 <!ENTITY xxx-large            "20">
