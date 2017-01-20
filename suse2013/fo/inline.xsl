@@ -125,7 +125,7 @@
   <xsl:param name="mode" select="'normal'"/>
   <xsl:param name="before" select="''"/>
   <xsl:param name="after" select="''"/>
-   <xsl:param name="textcolor" select="'&black;'"/>
+   <xsl:param name="textcolor" select="'inherit'"/>
   <xsl:variable name="mono-verbatim-ancestor">
     <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
                   ancestor::programlisting or ancestor::synopsis">1</xsl:if>
@@ -317,9 +317,7 @@
     <xsl:when test="self::command and ancestor::screen">
      <xsl:value-of select="$dark-green"/>
     </xsl:when>
-    <xsl:otherwise>
-     inherit
-    </xsl:otherwise>
+    <xsl:otherwise>inherit</xsl:otherwise>
    </xsl:choose>
   </xsl:param>
 
@@ -403,9 +401,7 @@
     <xsl:when test="self::command and parent::screen">
      <xsl:value-of select="$dark-green"/>
     </xsl:when>
-    <xsl:otherwise>
-     &black;
-    </xsl:otherwise>
+    <xsl:otherwise>inherit</xsl:otherwise>
    </xsl:choose>
   </xsl:param>
   <xsl:call-template name="inline.boldmonoseq">
@@ -582,7 +578,8 @@
   <xsl:param name="count" select="1"/>
   <xsl:param name="color">
     <xsl:choose>
-      <xsl:when test="ancestor::title">&dark-green;</xsl:when>
+      <!-- FIXME: This has the side effect of looking wrong in TOCs. suse-xsl#297 -->
+      <xsl:when test="ancestor::title"><xsl:value-of select="$dark-green"/></xsl:when>
       <xsl:otherwise>&black;</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
