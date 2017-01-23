@@ -189,11 +189,11 @@
 
   <fo:block id="{$id}"
             xsl:use-attribute-sets="section.level1.properties">
-    <fo:block font-size="{&small; * $fontsize-adjust * $sans-xheight-adjust}pt" space-before="1.12em" space-after="0.75em"
+    <fo:block font-size="{&small; * $sans-fontsize-adjust}pt" space-before="1.12em" space-after="0.75em"
        keep-with-next="always" xsl:use-attribute-sets="sans.bold">
       <xsl:value-of select="title" />
     </fo:block>
-    <fo:block font-size="{&xxx-small; * $fontsize-adjust * $sans-xheight-adjust}pt">
+    <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
     </fo:block>
   </fo:block>
@@ -206,7 +206,7 @@
 
   <fo:block id="{$id}"
             xsl:use-attribute-sets="section.level2.properties">
-    <fo:block font-size="{&x-small; * $fontsize-adjust * $sans-xheight-adjust}pt"
+    <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt"
       keep-with-next="always"
       space-before="1.12em" space-after="0.5em"
       space-after.precedence="2">
@@ -222,13 +222,13 @@
 
   <fo:block id="{$id}"
             xsl:use-attribute-sets="section.level2.properties">
-    <fo:block font-size="{&x-small; * $fontsize-adjust * $sans-xheight-adjust}pt"
+    <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt"
       keep-with-next="always"
       space-before="1.12em" space-after="0.5em"
       space-after.precedence="2">
       <xsl:value-of select="title"/>
     </fo:block>
-    <fo:block font-size="{&xxx-small; * $fontsize-adjust * $sans-xheight-adjust}pt">
+    <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
     </fo:block>
   </fo:block>
@@ -240,11 +240,11 @@
   </xsl:variable>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="section.level3.properties">
-    <fo:block font-size="{&x-small; * $fontsize-adjust * $sans-xheight-adjust}pt" space-before="1.12em" space-after="0.5em"
+    <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt" space-before="1.12em" space-after="0.5em"
       xsl:use-attribute-sets="italicized.noreplacement">
       <xsl:value-of select="title"/>
     </fo:block>
-    <fo:block font-size="{&xxx-small; * $fontsize-adjust * $sans-xheight-adjust}pt">
+    <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
     </fo:block>
   </fo:block>
@@ -257,10 +257,10 @@
 
   <fo:block id="{$id}"
             xsl:use-attribute-sets="section.level4.properties">
-    <fo:block font-size="{&x-small; * $fontsize-adjust * $sans-xheight-adjust}pt" font-weight="normal">
+    <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt" font-weight="normal">
       <xsl:value-of select="title"/>
     </fo:block>
-    <fo:block font-size="{&xxx-small; * $fontsize-adjust * $sans-xheight-adjust}pt">
+    <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
     </fo:block>
   </fo:block>
@@ -268,7 +268,7 @@
 
 <xsl:template match="screen[ancestor::sect1[@role='legal']]">
   <fo:block xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style"
-            font-size="{(&xxx-small; * $fontsize-adjust * $sans-xheight-adjust) - 1.1}pt"
+            font-size="{(&xxx-small; * $sans-fontsize-adjust) - 1.1}pt"
             white-space-collapse='false'
             white-space-treatment='preserve'
             linefeed-treatment='preserve'>

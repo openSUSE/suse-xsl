@@ -34,7 +34,7 @@
 <!-- Set ==================================================== -->
 <xsl:template match="title" mode="set.titlepage.recto.auto.mode">
   <fo:block xsl:use-attribute-sets="set.titlepage.recto.style"
-    font-size="{&ultra-large; * $fontsize-adjust * $sans-xheight-adjust}pt" space-before="&columnfragment;mm"
+    font-size="{&ultra-large; * $sans-fontsize-adjust}pt" space-before="&columnfragment;mm"
     font-family="{$title.fontset}">
     <xsl:call-template name="division.title">
       <xsl:with-param name="node" select="ancestor-or-self::set[1]"/>
@@ -47,7 +47,7 @@
 <xsl:template match="title" mode="part.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="part.titlepage.recto.style sans.bold.noreplacement"
-    font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt" space-before="&columnfragment;mm"
+    font-size="{&super-large; * $sans-fontsize-adjust}pt" space-before="&columnfragment;mm"
     font-family="{$title.fontset}">
     <xsl:call-template name="division.title">
       <xsl:with-param name="node" select="ancestor-or-self::part[1]"/>
@@ -58,7 +58,7 @@
 <xsl:template match="subtitle" mode="part.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="part.titlepage.recto.style sans.bold.noreplacement"
-    font-size="{&xxx-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-style="normal"
+    font-size="{&xxx-large; * $sans-fontsize-adjust}pt" font-style="normal"
     space-before="&gutter;mm" font-family="{$title.fontset}">
     <xsl:apply-templates select="." mode="part.titlepage.recto.mode"/>
   </fo:block>
@@ -87,11 +87,11 @@
       <xsl:choose>
         <xsl:when test="ancestor-or-self::article">
           <xsl:attribute name="space-after">&gutter;mm</xsl:attribute>
-          <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+          <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
         </xsl:when>
         <xsl:when test="ancestor-or-self::book">
           <xsl:attribute name="space-after">&column;mm</xsl:attribute>
-          <xsl:attribute name="font-size"><xsl:value-of select="&super-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+          <xsl:attribute name="font-size"><xsl:value-of select="&super-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
         </xsl:when>
         <xsl:otherwise/>
       </xsl:choose>

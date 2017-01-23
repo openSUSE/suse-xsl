@@ -32,7 +32,7 @@
 <xsl:attribute-set name="admonition.title.properties">
   <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
   <xsl:attribute name="font-weight">normal</xsl:attribute>
-  <xsl:attribute name="font-size"><xsl:value-of select="&x-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&x-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
   <xsl:attribute name="text-align">start</xsl:attribute>
@@ -89,25 +89,25 @@
 <xsl:attribute-set name="toc.level1.properties"
   use-attribute-sets="toc.common.properties title.name.color">
   <xsl:attribute name="font-weight">normal</xsl:attribute>
-  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="text-transform">uppercase</xsl:attribute>
 </xsl:attribute-set>
 <!-- preface, chapter, appendix, glossary -->
 <xsl:attribute-set name="toc.level2.properties"
   use-attribute-sets="toc.common.properties sans.bold.noreplacement">
   <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight * 0.85"/>em</xsl:attribute>
-  <xsl:attribute name="font-size"><xsl:value-of select="&xx-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&xx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <!-- sect1 -->
 <xsl:attribute-set name="toc.level3.properties"
   use-attribute-sets="toc.common.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="font-weight">normal</xsl:attribute>
 </xsl:attribute-set>
 <!-- sect2 -->
 <xsl:attribute-set name="toc.level4.properties"
   use-attribute-sets="toc.common.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="font-weight">normal</xsl:attribute>
 </xsl:attribute-set>
 
@@ -325,7 +325,7 @@
     <xsl:value-of select="$sans.font.family"/>
   </xsl:attribute>
   <xsl:attribute name="font-size">
-    <xsl:value-of select="&small; * $fontsize-adjust * $sans-xheight-adjust"/>pt
+    <xsl:value-of select="&small; * $sans-fontsize-adjust"/>pt
   </xsl:attribute>
   <xsl:attribute name="margin-{$start-border}">
     <xsl:value-of select="$title.margin.left"/>
@@ -400,7 +400,7 @@
   <xsl:attribute name="hyphenation-character"><xsl:value-of select="$hook"/></xsl:attribute>
   <!-- Is this the right solution or leave this hard-coded (i.e. without
   $fontsize-adjust)? We need at least 80 characters on a line... -->
-  <xsl:attribute name="font-size"><xsl:value-of select="&small; * $fontsize-adjust * $mono-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&small; * $mono-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
 </xsl:attribute-set>
 
@@ -422,30 +422,30 @@
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.title.level1.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.level2.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&xx-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&xx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.level3.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&x-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&x-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.level4.properties"
   use-attribute-sets="sans.bold.noreplacement">
-  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.level5.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="section.title.level6.properties"
   use-attribute-sets="sans.bold.noreplacement">
-  <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="formal.title.properties"
   use-attribute-sets="normal.para.spacing dark-green sans.bold.noreplacement">
   <xsl:attribute name="font-family"><xsl:value-of select="$sans.font.family"/></xsl:attribute>
-  <xsl:attribute name="font-size"><xsl:value-of select="&small; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&small; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="text-transform">uppercase</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>

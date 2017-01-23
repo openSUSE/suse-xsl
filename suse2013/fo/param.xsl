@@ -203,6 +203,9 @@ task before
   </xsl:call-template>
 </xsl:param>
 
+<xsl:param name="sans-fontsize-adjust" select="$fontsize-adjust * $sans-xheight-adjust"/>
+<xsl:param name="mono-fontsize-adjust" select="$fontsize-adjust * $mono-xheight-adjust"/>
+
 <xsl:param name="body.font.family" select="$serif-stack"/>
 <!-- It is not helpful to set dingbat font family, as the symbol font is always
      included anyway -->
@@ -216,7 +219,7 @@ task before
 <xsl:param name="body.font.size">
   <xsl:value-of select="$body.font.master * $fontsize-adjust"/>pt
 </xsl:param>
-<xsl:param name="footnote.font.size"><xsl:value-of select="&super-large; * $fontsize-adjust * $sans-xheight-adjust"/>pt</xsl:param>
+<xsl:param name="footnote.font.size"><xsl:value-of select="&super-large; * $sans-fontsize-adjust"/>pt</xsl:param>
 
 
 <!-- 21. Property Sets ========================================== -->

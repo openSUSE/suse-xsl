@@ -26,7 +26,7 @@
   <xsl:template name="bibliography.titlepage.recto">
     <fo:block
       xsl:use-attribute-sets="bibliography.titlepage.recto.style"
-      font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
+      font-size="{&super-large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
       <xsl:attribute name="margin-{$start-border}">
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>

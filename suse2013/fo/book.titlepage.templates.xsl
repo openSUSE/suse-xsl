@@ -154,7 +154,7 @@
 
 <xsl:template match="subtitle" mode="book.titlepage.recto.auto.mode">
   <fo:block
-    xsl:use-attribute-sets="title.font" font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt"
+    xsl:use-attribute-sets="title.font" font-size="{&super-large; * $sans-fontsize-adjust}pt"
     space-before="&gutterfragment;mm">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
   </fo:block>
@@ -164,7 +164,7 @@
   mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" hyphenate="false"
     line-height="{$base-lineheight * 0.85}em"
-    font-weight="normal" font-size="{&super-large; * $fontsize-adjust * $sans-xheight-adjust}pt"
+    font-weight="normal" font-size="{&super-large; * $sans-fontsize-adjust}pt"
     space-after="&gutterfragment;mm"
     xsl:use-attribute-sets="title.font sans.bold.noreplacement mid-green">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
@@ -177,7 +177,7 @@
 <xsl:template match="title" mode="book.titlepage.verso.auto.mode">
   <fo:block
     xsl:use-attribute-sets="book.titlepage.verso.style sans.bold"
-    font-size="{&x-large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
+    font-size="{&x-large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
     <xsl:call-template name="book.verso.title"/>
   </fo:block>
 </xsl:template>
@@ -304,7 +304,7 @@
 </xsl:template>
 
 <xsl:template match="title" mode="book.titlepage.verso.auto.mode">
-    <fo:block font-size="{&x-large; * $fontsize-adjust * $sans-xheight-adjust}pt"
+    <fo:block font-size="{&x-large; * $sans-fontsize-adjust}pt"
       xsl:use-attribute-sets="book.titlepage.verso.style dark-green sans.bold.noreplacement title.font">
       <xsl:call-template name="book.verso.title"/>
     </fo:block>
@@ -312,7 +312,7 @@
 
 <xsl:template match="productname[not(@role='abbrev')]" mode="book.titlepage.verso.auto.mode">
   <fo:block xsl:use-attribute-sets="book.titlepage.verso.style"
-    font-size="{&large; * $fontsize-adjust * $sans-xheight-adjust}pt" font-family="{$title.fontset}">
+    font-size="{&large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
     <xsl:text> </xsl:text>
     <xsl:if test="../productnumber">
@@ -341,7 +341,7 @@
 </xsl:template>
 
 <xsl:template match="editor" mode="book.titlepage.verso.auto.mode">
-  <fo:block font-size="{&normal; * $fontsize-adjust * $sans-xheight-adjust}pt">
+  <fo:block font-size="{&normal; * $sans-fontsize-adjust}pt">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
   </fo:block>
 </xsl:template>
