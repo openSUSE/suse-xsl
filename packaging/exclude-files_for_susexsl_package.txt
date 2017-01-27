@@ -8,6 +8,8 @@ fonts/*.sfd
 packaging
 packaging/*
 set-version.sh
+tests
+tests/*
 .git
 .git/*
 .gitignore
