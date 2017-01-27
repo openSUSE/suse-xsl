@@ -1,4 +1,36 @@
 -------------------------------------------------------------------
+Thu Jan 27 17:00:00 UTC 2017 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.7:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Packaging
+  - Fixed post/postun segments of spec file
+
+* SUSE Word List for aspell
+  - Added more words
+
+* Stylesheets (common)
+  - Translation fixes for zh_CN, zh_TW (suse-xsl #292)
+  - Support of performance="optional" in step (suse-xsl #245)
+  - Do not output empty paras (suse-xsl #270)
+  - Make links and xrefs within remarks readable (suse-xsl #266)
+
+* Stylesheets (PDF)
+  - Make sure procedures appear in qandasets (re: suse-xsl #200)
+  - Color commands in screens green for consistency with HTML version
+    (suse-xsl #216)
+  - Remove hyphenations from ToC and titles (suse-xsl #253)
+  - Use text scaling capabilities for all text
+  - Use sans font for intra-xrefs
+
+* Stylesheets (XHTML)
+  - Old "suse" stylesheets: fix breadcrumbs
+  - Add a caution icon to HTML
+
+-------------------------------------------------------------------
 Thu Sep 30 14:00:00 UTC 2016 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.6.3:
