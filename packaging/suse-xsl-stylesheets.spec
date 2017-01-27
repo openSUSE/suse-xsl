@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.6.3
+Version:        2.0.7
 Release:        0
 
 ###############################################################
