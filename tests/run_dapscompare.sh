@@ -41,6 +41,7 @@ if [[ $1 == 'reference' ]] || [[ $(ls dapscompare-tests/*/dapscompare-reference 
   # in the future take better care of not running into an inconsistent state,
   # so far it does not do much to avoid that.
   echo -n "Purging old reference images..."
+  cd $TESTPATH
   $BINARY clean > /dev/null
   echo "Done"
 else
