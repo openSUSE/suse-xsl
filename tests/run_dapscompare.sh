@@ -18,9 +18,11 @@ TESTPATH="$MYPATH/dapscompare-tests"
 
 # v >0.2.1 = dapscompare; v >0.3 = dapscmp
 BINARY=$(which dapscompare 2> /dev/null || which dapscmp 2> /dev/null)
+VERSION=0
 if [[ ! "$BINARY" ]]; then
   exit_on_error "dapscompare is not installed!"
 fi
+VERSION="$($BINARY --help | grep -i -m1 '^version:' | awk '{print $3}')"
 
 TESTCOMMAND='compare'
 # The check whether we need to do a reference run is by no means perfect. It
@@ -53,13 +55,17 @@ if [[ $1 ]]; then
   exit_on_error "Unrecognized option $1!"
 fi
 
-EXTRAARGS="--load-config"
+EXTRAARGS=
+# reference
 if [[ -f "$MYPATH/dapscompare.conf" && 'reference' ]]; then
   EXTRAARGS=$(cat "$MYPATH/dapscompare.conf")
+# comparison + older version
+elif [[ $VERSION == '0.2.0' ]] || [[ $VERSION == '0.2.1' ]]; then
+  EXTRAARGS="--load-config"
 fi
 
 echo -n "Making the stylesheets..."
-cd .. && make > /dev/null
+cd "$MYPATH/.." && make > /dev/null
 echo "Done"
 
 
