@@ -16,6 +16,12 @@ function exit_on_error {
 MYPATH=$(dirname "$(realpath -s "$0")")
 TESTPATH="$MYPATH/dapscompare-tests"
 
+# v >0.2.1 = dapscompare; v >0.3 = dapscmp
+BINARY=$(which dapscompare 2> /dev/null || which dapscmp 2> /dev/null)
+if [[ ! "$BINARY" ]]; then
+  exit_on_error "dapscompare is not installed!"
+fi
+
 TESTCOMMAND='compare'
 # The check whether we need to do a reference run is by no means perfect. It
 # only checks if there are any image directories (at all) and does not bother
@@ -35,7 +41,7 @@ if [[ $1 == 'reference' ]] || [[ $(ls dapscompare-tests/*/dapscompare-reference 
   # in the future take better care of not running into an inconsistent state,
   # so far it does not do much to avoid that.
   echo -n "Purging old reference images..."
-  dapscompare clean > /dev/null
+  $BINARY clean > /dev/null
   echo "Done"
 else
   echo "Will do a comparison run."
@@ -55,7 +61,6 @@ echo -n "Making the stylesheets..."
 cd .. && make > /dev/null
 echo "Done"
 
-which dapscompare > /dev/null || exit_on_error "dapscompare is not installed!"
 
 cd $TESTPATH
 
@@ -65,7 +70,7 @@ for DCFILE in */DC-*; do
 done
 echo "Done"
 
-dapscompare $TESTCOMMAND $EXTRAARGS
+$BINARY $TESTCOMMAND $EXTRAARGS
 
 # optipng can reduce the size of HTML-generated images dramatically (often
 # around 30%), images generated from PDFs are usually already (almost)
