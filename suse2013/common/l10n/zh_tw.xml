@@ -207,13 +207,14 @@
    </l:context>
 
    <l:context name="xref-number">
-      <l:template name="part" text="&#31532; %n &#37096;&#20998;"/>
-      <l:template name="chapter" text="&#31532; %n &#31456;"/>
-      <l:template name="sect1" text="第 %n 節"/>
-      <l:template name="sect2" text="第 %n 節"/>
-      <l:template name="sect3" text="第 %n 節"/>
-      <l:template name="sect4" text="第 %n 節"/>
-      <l:template name="sect5" text="第 %n 節"/>
+      <l:template name="part" text="第 %n 部分"/>
+      <l:template name="chapter" text="第 %n 章"/>
+      <l:template name="procedure" text="程序 %n"/>
+      <l:template name="sect1" text="第 %n 節"/>
+      <l:template name="sect2" text="第 %n 節"/>
+      <l:template name="sect3" text="第 %n 節"/>
+      <l:template name="sect4" text="第 %n 節"/>
+      <l:template name="sect5" text="第 %n 節"/>
    </l:context>
 
    <!-- Submitted upstream with: https://github.com/docbook/xslt10-stylesheets/pull/23 (Jan 2017) -->
