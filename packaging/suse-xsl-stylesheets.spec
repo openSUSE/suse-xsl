@@ -88,7 +88,12 @@ Requires:       dejavu-fonts
 # Proprietary Western:
 Recommends:     agfa-fonts
 # Fallback for proprietary Western:
+# (openSUSE provides liberation2-fonts, while SLE is currently stuck on v1.)
+%if 0%{?sles_version}
+Requires:       liberation2-fonts
+%else
 Requires:       liberation-fonts
+%endif
 # Japanese:
 Requires:       sazanami-fonts
 # Korean:
