@@ -1,4 +1,24 @@
 -------------------------------------------------------------------
+Thu Feb 08 19:00:00 UTC 2017 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.7.1:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* Packaging
+  - On non-SLE platforms, require liberation2-fonts instead of
+    liberation-fonts (suse-xsl #298)
+
+* SUSE Word List for aspell
+  - Added more words from the SUSE Enterprise Storage and
+    SUSE OpenStack Cloud documentation, removed duplicates
+
+* Stylesheets (common)
+  - Fix zh_TW of "Procedure" in certain circumstances (further to
+    suse-xsl #292)
+
+-------------------------------------------------------------------
 Thu Jan 27 17:00:00 UTC 2017 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.7:
