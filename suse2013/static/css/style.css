@@ -1580,6 +1580,18 @@ em .guimenu, i .guimenu, .question em {
     font-style: normal; /* Don't use italics within italics... */
 }
 
+sub, sup {
+    line-height: 0;
+    font-size: 66.6%;
+}
+
+sub {
+    vertical-align: sub;
+}
+sup {
+    vertical-align: super;
+}
+
 strong, b, .imprint-label, .version-info .productname,
 .version-info .productnumber, .toc-title, .formalpara-title {
     font-weight: 600;
