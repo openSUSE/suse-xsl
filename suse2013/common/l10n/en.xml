@@ -48,6 +48,7 @@
 
    <l:gentext key="tasksummary" text="Summary"/>
    <l:gentext key="taskprerequisites" text="Requirements"/>
+   <l:gentext key="taskrelated" text="Related"/>
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
