@@ -1,4 +1,22 @@
 -------------------------------------------------------------------
+Thu May 11 17:00:00 UTC 2017 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.7.2:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+* SUSE Word List for aspell
+  - Removed duplicate and invalid words
+
+* Stylesheets (common)
+  - Add a compact style for admonitions, enabled by role="compact" attribute
+    (suse-xsl #211)
+
+* Stylesheets (HTML)
+  - Fix superscript/subscript styles
+
+-------------------------------------------------------------------
 Thu Feb 08 19:00:00 UTC 2017 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.7.1:
