@@ -103,7 +103,24 @@
   <xsl:variable name="color">
     <xsl:call-template name="admon.symbol.color"/>
   </xsl:variable>
-  <xsl:variable name="graphic.width" select="8"/>
+  <xsl:variable name="graphic.width">
+    <xsl:choose>
+      <xsl:when test="@role='compact'">5</xsl:when>
+      <xsl:otherwise>8</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="additional.title.properties">
+    <xsl:choose>
+      <xsl:when test="@role='compact'">admonition.compact.title.properties</xsl:when>
+      <xsl:otherwise>admonition.normal.title.properties</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="padding">
+    <xsl:choose>
+      <xsl:when test="@role='compact'">0.7mm</xsl:when>
+      <xsl:otherwise>3mm</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="graphical.admonition.properties">
     <fo:list-block
@@ -121,10 +138,18 @@
           </fo:list-item-label>
           <fo:list-item-body start-indent="body-start()">
             <fo:block padding-start="{(&gutter; - 0.75) div 2}mm"
-              padding-before="3mm" padding-after="3mm">
-              <xsl:if test="$admon.textlabel != 0 or title or info/title">
-                <fo:block xsl:use-attribute-sets="admonition.title.properties"
-                  color="{$color}">
+              padding-before="{$padding}" padding-after="{$padding}">
+              <xsl:if test="((title or info/title) or ($admon.textlabel != 0 and not(@role='compact')))">
+                <fo:block xsl:use-attribute-sets="admonition.title.properties {$additional.title.properties}">
+                  <xsl:attribute name="color">
+                    <xsl:choose>
+                      <xsl:when test="not(@role='compact')">
+                        <xsl:value-of select="$color"/>
+                      </xsl:when>
+                      <xsl:otherwise>&darker-gray;</xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:attribute>
+                  <xsl:value-of select="@role"/>
                   <xsl:apply-templates select="." mode="object.title.markup">
                     <xsl:with-param name="allow-anchors" select="1"/>
                   </xsl:apply-templates>

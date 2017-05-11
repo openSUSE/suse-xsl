@@ -30,6 +30,15 @@
         <xsl:with-param name="key" select="$admon.type"/>
       </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="class">
+      <xsl:text>admonition </xsl:text>
+      <xsl:value-of select="local-name(.)"/>
+      <xsl:text> </xsl:text>
+      <xsl:choose>
+        <xsl:when test="@role='compact'">compact</xsl:when>
+        <xsl:otherwise>normal</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
     
     <div>
       <xsl:call-template name="id.attribute">
@@ -37,16 +46,20 @@
         <xsl:with-param name="force" select="1"/>
       </xsl:call-template>
       <xsl:call-template name="generate.class.attribute">
-        <xsl:with-param name="class">admonition <xsl:value-of select="local-name()"/></xsl:with-param>
+        <xsl:with-param name="class" select="$class"/>
       </xsl:call-template>
       <img class="symbol" alt="{$alt}" title="{$admon.type}">
         <xsl:attribute name="src">
           <xsl:call-template name="admon.graphic"/>
         </xsl:attribute>
       </img>
-      <h6>
-        <xsl:apply-templates select="." mode="object.title.markup"/>
-      </h6>
+      <!-- compact admons can have no title unless explicitly set, otherwise,
+      we always generate at least the text Note/Tip/... -->
+      <xsl:if test="((title or info/title) or ($admon.textlabel != 0 and not(@role='compact')))">
+        <h6>
+          <xsl:apply-templates select="." mode="object.title.markup"/>
+        </h6>
+      </xsl:if>
       <xsl:apply-templates/>
     </div>
   </xsl:template>

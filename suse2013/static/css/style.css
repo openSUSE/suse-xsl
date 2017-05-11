@@ -1493,75 +1493,96 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 /* Thou shalt not ... */
 
 .admonition {
+    margin: 17px 0 24px;
+}
+
+.admonition.normal {
     border-width: 1px;
     border-radius: 3px;
     border-style: solid;
     padding: 10px;
-    margin: 17px 0 24px;
 }
 
-.tip {
+.tip.admonition.normal {
     border-color: #439239;
     background: #FFF url(../images/dots-green.png) repeat-x scroll top;
 }
 
-.note {
+.note.admonition.normal {
     border-color: #666;
     background: #FFF url(../images/dots-darkgray.png) repeat-x scroll top;
 }
 
-.note ul, .note .orderedlist, .warning ul, .warning .orderedlist {
+.note.admonition.normal ul, .note.admonition.normal .orderedlist,
+.warning.admonition.normal ul, .warning.admonition.normal .orderedlist {
     color: #666;
 }
 
-.important {
+.important.admonition.normal {
     border-color: #BB7B03;
     background: #FFF url(../images/dots-orange.png) repeat-x scroll top;
 }
 
-.important ul, .important .orderedlist {
+.important.admonition.normal ul, .important .orderedlist {
     color: #BB7B03;
 }
 
-.warning, .caution {
+.warning.admonition.normal, .caution.admonition.normal {
     border-color: #8C0000;
     background: #FFF url(../images/dots-red.png) repeat-x scroll top;
 }
 
 .admonition > h6 {
     font-weight: 600;
+}
+
+.admonition.normal > h6 {
     vertical-align: middle;
     display: table-cell;
     height: 36px;
 }
 
-.tip > h6 {
+/* FIXME: does not look correct with multi-line items. */
+.admonition.compact > h6 {
+    color: #666;
+    height: 24px;
+}
+
+.tip.admonition.normal > h6 {
     color: #439239;
 }
 
-.note > h6 {
+.note.admonition.normal > h6 {
     color: #333;
 }
 
-.important > h6 {
+.important.admonition.normal > h6 {
     color: #BB7B03;
 }
 
-.warning > h6, .caution > h6 {
+.warning.admonition.normal > h6, .caution.admonition.normal > h6 {
     color: #8C0000;
 }
 
-.symbol {
+.admonition > .symbol {
     width: 36px;
     height: 36px;
     margin: 0 10px 0 0;
-    background-repeat: no-repeat;
     float: left;
-    overflow: hidden;
+}
+
+.admonition.compact > .symbol {
+    width: 24px;
+    height: 24px;
+    margin-left: 0;
 }
 
 .admonition p {
     margin: 10px 0 0 !important;
+}
+
+.admonition.compact > p:nth-child(1) {
+    margin-top: 0 !important;
 }
 
 /* Text styles */
@@ -3037,7 +3058,7 @@ p.ds-message {
         padding-left: 10px;
     }
 
-    .admonition > .symbol {
+    .admonition.normal > .symbol {
         float: none;
         /* Remove proprietary attributes later on */
         padding-left: -webkit-calc(50% - 18px);
