@@ -54,40 +54,120 @@
    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
    salvia shabby chic ramps tofu microdosing.
   </para>
-  <tip>
-   <title>Humblebrag Farm-to-table, a tip</title>
+  <sect1 xml:id="sec.admonition.normal">
+   <title>Normal Admonitions</title>
    <para>
-    Poutine chillwave street art, tote bag next level post-ironic banjo
-    hashtag semiotics fam XOXO typewriter cred marfa 90's.
+    The Almond Café is a bit too humblebraggy and
+    <quote>selling something</quote> is just code for <quote>homeless.</quote>
    </para>
-  </tip>
-  <note>
-   <title>Sustainable Post-Ironic Lyft Tote Bag, a note</title>
+   <tip>
+    <title>Humblebrag Farm-to-table, a tip</title>
+    <para>
+     Poutine chillwave street art, tote bag next level post-ironic banjo
+     hashtag semiotics fam XOXO typewriter cred marfa 90's.
+    </para>
+   </tip>
+   <note>
+    <title>Sustainable Post-Ironic Lyft Tote Bag, a note</title>
+    <para>
+     Cliche tilde post-ironic butcher twee selfies fingerstache pinterest
+     health goth. Kitsch post-ironic organic cardigan gentrify.
+    </para>
+   </note>
+   <important>
+    <title>Bespoke Seitan Pork Belly, an important</title>
+    <para>
+     La croix lomo bespoke occupy subway tile pinterest pabst stumptown,
+     post-ironic scenester snackwave jean shorts schlitz YOLO iceland.
+    </para>
+   </important>
+   <warning>
+    <title>Fingerstache Vape, a warning</title>
+    <para>
+     Edison bulb williamsburg kickstarter woke. Freegan art party flexitarian
+     beard, 8-bit migas echo park.
+    </para>
+   </warning>
+   <caution>
+    <title>Cronut Man, a caution</title>
+    <para>
+     Forage PBR&amp;B vinyl, ethical next level fam hashtag blog single-origin
+     coffee irony shoreditch neutra whatever messenger bag.
+    </para>
+   </caution>
+  </sect1>
+
+  <sect1 xml:id="sec.admonition.compact">
+   <title>Compact Admonitions</title>
    <para>
-    Cliche tilde post-ironic butcher twee selfies fingerstache pinterest
-    health goth. Kitsch post-ironic organic cardigan gentrify.
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
    </para>
-  </note>
-  <important>
-   <title>Bespoke Seitan Pork Belly, an important</title>
-   <para>
-    La croix lomo bespoke occupy subway tile pinterest pabst stumptown,
-    post-ironic scenester snackwave jean shorts schlitz YOLO iceland.
-   </para>
-  </important>
-  <warning>
-   <title>Fingerstache Vape, a warning</title>
-   <para>
-    Edison bulb williamsburg kickstarter woke. Freegan art party flexitarian
-    beard, 8-bit migas echo park.
-   </para>
-  </warning>
-  <caution>
-   <title>Cronut Man, a caution</title>
-   <para>
-    Forage PBR&amp;B vinyl, ethical next level fam hashtag blog single-origin
-    coffee irony shoreditch neutra whatever messenger bag.
-   </para>
-  </caution>
+   <tip role="compact">
+    <para>
+     Poutine chillwave street art, tote bag next level post-ironic banjo
+     hashtag semiotics fam XOXO typewriter cred marfa 90's.
+    </para>
+   </tip>
+   <note role="compact">
+    <para>
+     Cliche tilde post-ironic butcher twee selfies fingerstache pinterest
+     health goth. Kitsch post-ironic organic cardigan gentrify.
+    </para>
+   </note>
+   <important role="compact">
+    <para>
+     La croix lomo bespoke occupy subway tile pinterest pabst stumptown,
+     post-ironic scenester snackwave jean shorts schlitz YOLO iceland.
+    </para>
+   </important>
+   <warning role="compact">
+    <para>
+     Edison bulb williamsburg kickstarter woke. Freegan art party flexitarian
+     beard, 8-bit migas echo park.
+    </para>
+   </warning>
+   <caution role="compact">
+    <para>
+     Forage PBR&amp;B vinyl, ethical next level fam hashtag blog single-origin
+     coffee irony shoreditch neutra whatever messenger bag.
+    </para>
+   </caution>
+   <tip role="compact">
+    <title>Humblebrag Farm-to-table, a tip</title>
+    <para>
+     Poutine chillwave street art, tote bag next level post-ironic banjo
+     hashtag semiotics fam XOXO typewriter cred marfa 90's.
+    </para>
+   </tip>
+   <note role="compact">
+    <title>Sustainable Post-Ironic Lyft Tote Bag, a note</title>
+    <para>
+     Cliche tilde post-ironic butcher twee selfies fingerstache pinterest
+     health goth. Kitsch post-ironic organic cardigan gentrify.
+    </para>
+   </note>
+   <important role="compact">
+    <title>Bespoke Seitan Pork Belly, an important</title>
+    <para>
+     La croix lomo bespoke occupy subway tile pinterest pabst stumptown,
+     post-ironic scenester snackwave jean shorts schlitz YOLO iceland.
+    </para>
+   </important>
+   <warning role="compact">
+    <title>Fingerstache Vape, a warning</title>
+    <para>
+     Edison bulb williamsburg kickstarter woke. Freegan art party flexitarian
+     beard, 8-bit migas echo park.
+    </para>
+   </warning>
+   <caution role="compact">
+    <title>Cronut Man, a caution</title>
+    <para>
+     Forage PBR&amp;B vinyl, ethical next level fam hashtag blog single-origin
+     coffee irony shoreditch neutra whatever messenger bag.
+    </para>
+   </caution>
+  </sect1>
  </chapter>
 </book>
