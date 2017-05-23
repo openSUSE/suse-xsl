@@ -8,6 +8,10 @@ fonts/*.sfd
 packaging
 packaging/*
 set-version.sh
+suse/db2mediawiki
+suse/db2mediawiki/*
+suse/drupal
+suse/drupal/*
 tests
 tests/*
 .git
