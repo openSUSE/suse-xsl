@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE book
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <info>
+  <productname>Long Long Name Name</productname>
+  <productname role="abbrev">Shortname</productname>
+  <productnumber>93/4</productnumber>
+  <authorgroup>
+   <author>
+    <personname>
+     <firstname>Linda</firstname>
+     <surname>McLane</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Lance</firstname>
+     <surname>McLorne</surname>
+    </personname>
+   </author>
+   <author>
+    <personname>
+     <firstname>Ludvig</firstname>
+     <surname>McLence</surname>
+    </personname>
+   </author>
+  </authorgroup>
+  <date>2016-10-31</date>
+  <abstract>
+   <para>
+    Gluten-free kitsch scenester mumblecore quinoa, la croix post-ironic
+    meditation kinfolk schlitz. Letterpress church-key subway tile synth
+    flannel. Irony kombucha crucifix you probably haven't heard of them kale
+    chips pitchfork. Poke gluten-free activated charcoal tilde plaid, fam
+    butcher franzen tumblr brooklyn. Normcore church-key vape chicharrones
+    godard kombucha, forage heirloom.
+   </para>
+  </abstract>
+ </info>
+
+ <chapter xml:id="cha.remark-footnote">
+  <title>Remarks and Footnotes</title>
+  <para>
+   Pour-over pork belly XOXO edison bulb shabby chic, actually meggings
+   cronut prism helvetica artisan church-key vice waistcoat. Twee
+   intelligentsia everyday carry.<remark>Inline remark.</remark>
+  </para>
+  <remark>
+   Block remark - 8-bit slow carb glossier stumptown banjo waistcoat.
+  </remark>
+  <para>
+   Snackwave semiotics sustainable, chambray migas
+   skateboard echo park listicle tote bag schlitz direct trade. Bicycle
+   rights offal knausgaard PBR&amp;B affogato tacos.
+  </para>
+  <para>
+   Cardigan chambray gentrify typewriter ethical aesthetic. Mixtape cray
+   8-bit glossier waistcoat semiotics. Stumptown banjo disrupt intelligentsia
+   8-bit slow-carb<footnote><para>Footnote IPhone +1 cliche ethical
+   mlkshk</para></footnote>.
+  </para>
+  <para>
+   Hexagon aesthetic intelligentsia, VHS letterpress
+   gochujang cornhole hell of lyft kinfolk distillery<footnote><para>Another
+   footnote: Brunch ugh pitchfork butcher raclette chia</para></footnote>.
+  </para>
+ </chapter>
+</book>
