@@ -19,12 +19,11 @@
               priority="2">
   <!-- this only works if the first thing in a footnote is a para, -->
   <!-- which is ok, because it usually is. -->
-  <fo:block>
-    <xsl:call-template name="format.footnote.mark">
-      <xsl:with-param name="mark">
-        <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
-      </xsl:with-param>
-    </xsl:call-template>
+  <fo:block xsl:use-attribute-sets="footnote.wrap">
+    <fo:inline xsl:use-attribute-sets="serif.bold">
+      <xsl:apply-templates select="ancestor::footnote" mode="footnote.number"/>
+    </fo:inline>
+    <fo:leader leader-pattern="space" leader-length="0.5em"/>
     <xsl:apply-templates/>
   </fo:block>
 </xsl:template>

@@ -269,6 +269,11 @@ are overridden somewhere. Probably because of the original stylesheets. -->
 <xsl:attribute-set name="compact.list.item.spacing"
   use-attribute-sets="list-orphans-widows"/>
 
+<xsl:attribute-set name="footnote.wrap">
+  <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight * 0.85"/>em</xsl:attribute>
+  <xsl:attribute name="margin-bottom">&gutterfragment;mm</xsl:attribute>
+</xsl:attribute-set>
+
 
 <!-- 14. QAndASet =============================================== -->
 <xsl:attribute-set name="qanda.title.level1.properties"
