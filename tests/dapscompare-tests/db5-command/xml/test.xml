@@ -64,11 +64,17 @@
   <para>
    Kale chips unicorn roof party
   </para>
-  <screen><prompt role="root">prompt2 </prompt><command>command3 command</command>
+  <screen>
+   
+<prompt role="root">prompt2 </prompt><command>command3 command</command>
 * Drinking vinegar photo booth banjo flexitarian
 * Taxidermy chambray wolf cred cronut cold-pressed bicycle rights
 * Everyday carry DIY master cleanse
-* Humblebrag farm-to-table prism</screen>
+* Humblebrag farm-to-table prism
+   
+    
+
+</screen>
   <para>
    Kale chips unicorn roof party, mumblecore cornhole literally synth beard
    yuccie
@@ -101,5 +107,30 @@
    <keycombo><keycap>keycap1</keycap><keycap>keycap2</keycap></keycombo>
    gochujang cornhole hell of lyft kinfolk distillery.
   </para>
+  <screen><prompt role="user">prompt2<co xml:id="co.1"/> </prompt>untagged command<co xml:id="co.2"/>
+Snackwave<co xml:id="co.3"/> semiotics <co xml:id="co.4"/>sustainable<co xml:id="co.5"/>
+Taxidermy <co xml:id="co.6"/>put a bird on it<co xml:id="co.7"/>
+<co xml:id="co.8"/>Everyday <co xml:id="co.9"/>carry DIY master cleanse
+Schlitz direct<co xml:id="co.10"/>trade<co xml:id="co.11"/></screen>
+
+  <calloutlist>
+    <callout arearefs="co.1">
+      <para>
+       Roof party
+      </para>
+    </callout>
+    <callout arearefs="co.2">
+      <para>
+       Glossier waistcoat semiotics. Stumptown banjo disrupt intelligentsia
+       chambray gentrify typewriter ethical aesthetic. Mixtape cray +1 cliche
+       ethical mumblecore cornhole literally mlkshk.
+      </para>
+    </callout>
+    <callout arearefs="co.1 co.3 co.11">
+      <para>
+       Brunch tumeric
+      </para>
+    </callout>
+  </calloutlist>
  </chapter>
 </book>
