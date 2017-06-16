@@ -89,11 +89,13 @@ Requires:       dejavu-fonts
 Recommends:     agfa-fonts
 # Fallback for proprietary Western:
 # (openSUSE provides liberation2-fonts, while SLE 12 is currently stuck on v1.)
-%if 0%{?is_opensuse} || 0%{suse_version} > 1320
+# bsc#1044521
+%if ( 0%{?is_opensuse} && 0%{?sle_version} > 120200 ) || 0%{suse_version} > 1320
 Requires:       liberation2-fonts
 %else
 Requires:       liberation-fonts
 %endif
+
 # Japanese:
 Requires:       sazanami-fonts
 # Korean:
