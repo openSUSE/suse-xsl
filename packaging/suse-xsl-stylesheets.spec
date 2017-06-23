@@ -63,14 +63,14 @@ BuildRequires:  xerces-j2
 BuildRequires:  fontpackages-devel
 BuildRequires:  trang
 
+# docbook_4/docbook_5 are required to be able to transform DocBook documents
+# that use predefined DocBook entities.
 Requires:       docbook_4
 Requires:       docbook_5
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook5-xsl-stylesheets >= 1.77
 Requires:       libxslt
 Requires:       aspell-en
-
-Recommends:     daps
 
 
 #------
