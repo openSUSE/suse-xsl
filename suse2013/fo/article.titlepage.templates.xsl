@@ -65,22 +65,14 @@
           </fo:block>
         </fo:table-cell>
         <fo:table-cell>
-            <xsl:choose>
-              <xsl:when test="articleinfo/orgname">
-                <xsl:apply-templates
-                  mode="article.titlepage.recto.auto.mode"
-                  select="articleinfo/orgname"/>
-              </xsl:when>
-              <xsl:when test="info/orgname">
-                <xsl:apply-templates
-                  mode="article.titlepage.recto.auto.mode"
-                  select="info/orgname"/>
-              </xsl:when>
-              <xsl:otherwise>
-                <!-- Empty if no orgname is found -->
-                <fo:block/>
-              </xsl:otherwise>
-            </xsl:choose>
+          <xsl:choose>
+            <xsl:when test="/article[@role='sbp']">
+              <xsl:call-template name="sbp-head"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <fo:block/>
+            </xsl:otherwise>
+          </xsl:choose>
         </fo:table-cell>
       </fo:table-body>
     </fo:table>
@@ -195,9 +187,10 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="orgname" mode="article.titlepage.recto.auto.mode">
+  <xsl:template name="sbp-head">
     <fo:block text-align="end" font-size="&x-large;" xsl:use-attribute-sets="dark-green">
-      <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+    <!-- FIXME: Run this through l10n machinery. -->
+      SUSE Best Practices
     </fo:block>
   </xsl:template>
  
