@@ -68,6 +68,10 @@
 <!ENTITY test1                "#F0F">
 <!ENTITY test1border          "1px solid #F0F">
 <!ENTITY test2                "#F00">
-<!ENTITY test2border          "1px solid #0BF">
+<!ENTITY test2border          "1px solid #F00">
 <!ENTITY test3                "#0F0">
 <!ENTITY test3border          "1px solid #0F0">
+<!ENTITY test4                "#0FF">
+<!ENTITY test4border          "1px solid #0FF">
+<!ENTITY test5                "#00F">
+<!ENTITY test5border          "1px solid #00F">

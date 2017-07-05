@@ -141,20 +141,13 @@
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/author"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/author"/>
     </fo:block>
-   
-   <fo:block-container top="245mm" left="&column;mm"
-    absolute-position="fixed">
-    <fo:block text-align="right">
-     <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
-      width="{$titlepage.logo.width}">
-      <xsl:call-template name="logo-image"/>
-     </fo:instream-foreign-object>
-     <xsl:apply-templates select="articleinfo/mediaobject | info/mediaobject"
-      mode="article.titlepage.recto.auto.mode"/> 
-    </fo:block>
-   </fo:block-container>
 
-     
+   <xsl:if test="articleinfo/cover[@role='logos'] or info/cover[@role='logos']">
+     <xsl:call-template name="cover-logo-lockup">
+       <xsl:with-param name="node" select="(articleinfo/cover[@role='logos']|info/cover[@role='logos'])[1]"/>
+     </xsl:call-template>
+   </xsl:if>
+
    <fo:block page-break-before="always">
     <xsl:choose>
       <xsl:when test="articleinfo/abstract or info/abstract">
@@ -193,7 +186,70 @@
       SUSE Best Practices
     </fo:block>
   </xsl:template>
- 
+
+  <xsl:template name="cover-logo-lockup">
+    <xsl:param name="node" select="."/>
+    <fo:block-container top="245mm" left="&column;mm"
+    width="{&column; * 6 + &gutter; * 6}mm"
+    absolute-position="fixed">
+    <fo:block>
+      <fo:table width="100%"
+        table-layout="fixed" block-progression-dimension="auto">
+        <!-- A maximum of four logos should hopefully be fine. -->
+        <fo:table-body>
+          <fo:table-row>
+            <fo:table-cell>
+              <fo:block/>
+            </fo:table-cell>
+            <fo:table-cell display-align="center" margin="0">
+              <xsl:if test="$node/mediaobject[4]">
+                <xsl:attribute name="border-right">&thinline;mm solid &black;</xsl:attribute>
+              </xsl:if>
+              <fo:block padding="{&gutter; * .5}mm &gutter;mm">
+                <xsl:if test="$node/mediaobject[4]">
+                  <xsl:apply-templates select="$node/mediaobject[4]"/>
+                </xsl:if>
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell display-align="center" margin="0">
+              <xsl:if test="$node/mediaobject[3]">
+                <xsl:attribute name="border-right">&thinline;mm solid &black;</xsl:attribute>
+              </xsl:if>
+              <fo:block padding="{&gutter; * .5}mm &gutter;mm">
+                <xsl:if test="$node/mediaobject[3]">
+                  <xsl:apply-templates select="$node/mediaobject[3]"/>
+                </xsl:if>
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell display-align="center" margin="0">
+              <xsl:if test="$node/mediaobject[2]">
+                <xsl:attribute name="border-right">&thinline;mm solid &black;</xsl:attribute>
+              </xsl:if>
+              <fo:block padding="0" margin="0" width="auto" height="auto" text-align="center" line-height="1em">
+                <xsl:if test="$node/mediaobject[2]">
+                  <xsl:variable name="imagepath2" select="concat($img.src.path,$node/mediaobject[2]/imageobject[1]/imagedata[1]/@fileref)"/>
+                  <fo:external-graphic src="url({$imagepath2})" padding="0" margin="0" width="&column;mm" height="auto" content-width="scale-to-fit" content-height="scale-to-fit"/>
+<!--                  <xsl:apply-templates select="$node/mediaobject[2]"/>-->
+                </xsl:if>
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell display-align="center" margin="0">
+              <fo:block padding="0" margin="0" width="auto" height="auto" text-align="center" line-height="1em">
+                <xsl:if test="$node/mediaobject[1]">
+                  <xsl:variable name="imagepath1" select="concat($img.src.path,$node/mediaobject[1]/imageobject[1]/imagedata[1]/@fileref)"/>
+                  <fo:external-graphic src="url({$imagepath1})" padding="0" margin="0" width="&column;mm" height="auto" content-width="scale-to-fit" content-height="scale-to-fit"/>
+<!--                  <xsl:apply-templates select="$node/mediaobject[1]"/>-->
+                </xsl:if>
+               </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </fo:table-body>
+      </fo:table>
+    </fo:block>
+    </fo:block-container>
+  </xsl:template>
+
+
   <xsl:template match="mediaobject" mode="article.titlepage.recto.auto.mode">
    <xsl:call-template name="select.mediaobject"/>
   </xsl:template>
