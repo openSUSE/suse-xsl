@@ -11,12 +11,13 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
-<xsl:template match="caution|tip|warning|important|note" mode="title.markup">
+<xsl:template match="d:caution|d:tip|d:warning|d:important|d:note" mode="title.markup">
   <xsl:param name="allow-anchors" select="0"/>
-  <xsl:variable name="title" select="(title|info/title)[1]"/>
+  <xsl:variable name="title" select="(d:title|d:info/d:title)[1]"/>
     <xsl:call-template name="gentext">
       <xsl:with-param name="key">
         <xsl:choose>
@@ -38,9 +39,9 @@
     </xsl:if>
 </xsl:template>
 
-<xsl:template match="refnamediv" mode="title.markup">
+<xsl:template match="d:refnamediv" mode="title.markup">
   <!-- Delegate it to the refname template -->
-  <xsl:apply-templates select="refname" mode="title.markup"/>
+  <xsl:apply-templates select="d:refname" mode="title.markup"/>
 </xsl:template>
 
 
@@ -54,7 +55,7 @@
          investigate it further.
 -->
 <!--
-<xsl:template match="ulink" mode="no.anchor.mode">
+<xsl:template match="d:ulink" mode="no.anchor.mode">
   <xsl:param name="url" select="@url"/>
   <xsl:choose>
     <xsl:when test="count(child::node())=0">

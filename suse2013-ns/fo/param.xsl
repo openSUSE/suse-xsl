@@ -6,7 +6,7 @@
     the DocBook XSL Stylesheets User Reference, see link below)
 
     See Also:
-    * http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html
+    * http://docbook.sourceforge.net/release/xsl-ns/current/doc/fo/index.html
 
   Author(s):  Stefan Knorr <sknorr@suse.de>
               Thomas Schraitle <toms@opensuse.org>
@@ -23,8 +23,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 <!-- 1. Admonitions  ============================================ -->

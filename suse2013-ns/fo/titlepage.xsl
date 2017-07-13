@@ -17,25 +17,27 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet  version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
-<xsl:template match="abstract" mode="titlepage.mode">
+<xsl:template match="d:abstract" mode="titlepage.mode">
   <fo:block xsl:use-attribute-sets="abstract.properties">
     <fo:block xsl:use-attribute-sets="abstract.title.properties">
-      <xsl:if test="title|info/title">
-        <xsl:apply-templates select="title|info/title"/>
+      <xsl:if test="d:title|d:info/d:title">
+        <xsl:apply-templates select="d:title|d:info/d:title"/>
       </xsl:if>
     </fo:block>
-    <xsl:apply-templates select="*[not(self::title)]" mode="titlepage.mode"/>
+    <xsl:apply-templates select="*[not(self::d:title)]" mode="titlepage.mode"/>
   </fo:block>
 </xsl:template>
 
 <!-- At the request of both Chinese translation teams, do not use "by Author
 x and Author y" and instead use "Authors: Author x and Author y" -->
 <xsl:template name="verso.authorgroup">
-  <xsl:param name="person.list" select="author|corpauthor|othercredit|editor"/>
+  <xsl:param name="person.list" select="d:author|d:corpauthor|d:othercredit|d:editor"/>
   <xsl:param name="person.count" select="count($person.list)"/>
   <fo:block>
     <!-- I will assume Japanese and Korean are similar, even though there was
@@ -71,10 +73,10 @@ x and Author y" and instead use "Authors: Author x and Author y" -->
       </xsl:otherwise>
     </xsl:choose>
     <xsl:call-template name="person.name.list">
-      <xsl:with-param name="person.list" select="author|corpauthor|editor"/>
+      <xsl:with-param name="person.list" select="d:author|d:corpauthor|d:editor"/>
     </xsl:call-template>
   </fo:block>
-  <xsl:apply-templates select="othercredit" mode="titlepage.mode"/>
+  <xsl:apply-templates select="d:othercredit" mode="titlepage.mode"/>
 </xsl:template>
 
 </xsl:stylesheet>

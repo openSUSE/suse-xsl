@@ -9,9 +9,10 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
   
   <xsl:template name="graphical.admonition">
     <xsl:param name="admonition" select="."/>
@@ -55,7 +56,7 @@
       </img>
       <!-- compact admons can have no title unless explicitly set, otherwise,
       we always generate at least the text Note/Tip/... -->
-      <xsl:if test="((title or info/title) or ($admon.textlabel != 0 and not(@role='compact')))">
+      <xsl:if test="((d:title or d:info/d:title) or ($admon.textlabel != 0 and not(@role='compact')))">
         <h6>
           <xsl:apply-templates select="." mode="object.title.markup"/>
         </h6>

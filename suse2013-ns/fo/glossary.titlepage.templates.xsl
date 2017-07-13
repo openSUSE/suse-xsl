@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 
@@ -32,30 +34,30 @@
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
       <xsl:call-template name="component.title">
-        <xsl:with-param name="node" select="ancestor-or-self::glossary[1]"/>
+        <xsl:with-param name="node" select="ancestor-or-self::d:glossary[1]"/>
       </xsl:call-template>
     </fo:block>
     <xsl:choose>
-      <xsl:when test="glossaryinfo/subtitle">
-        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="glossaryinfo/subtitle"/>
+      <xsl:when test="d:glossaryinfo/d:subtitle">
+        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:glossaryinfo/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="docinfo/subtitle">
-        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="docinfo/subtitle"/>
+      <xsl:when test="d:docinfo/d:subtitle">
+        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:docinfo/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="info/subtitle">
-        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="info/subtitle"/>
+      <xsl:when test="d:info/d:subtitle">
+        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:info/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="subtitle">
-        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="subtitle"/>
+      <xsl:when test="d:subtitle">
+        <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:subtitle"/>
       </xsl:when>
     </xsl:choose>
 
-    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="glossaryinfo/itermset"/>
-    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="docinfo/itermset"/>
-    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="info/itermset"/>
+    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:glossaryinfo/d:itermset"/>
+    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:docinfo/d:itermset"/>
+    <xsl:apply-templates mode="glossary.titlepage.recto.auto.mode" select="d:info/d:itermset"/>
   </xsl:template>
 
-  <xsl:template match="title" mode="glossdiv.titlepage.recto.auto.mode">
+  <xsl:template match="d:title" mode="glossdiv.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="glossdiv.titlepage.recto.style"
       font-size="{&xxx-large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
@@ -63,7 +65,7 @@
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
       <xsl:call-template name="component.title">
-        <xsl:with-param name="node" select="ancestor-or-self::glossdiv[1]"/>
+        <xsl:with-param name="node" select="ancestor-or-self::d:glossdiv[1]"/>
       </xsl:call-template>
     </fo:block>
   </xsl:template>

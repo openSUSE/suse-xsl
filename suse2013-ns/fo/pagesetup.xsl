@@ -21,9 +21,10 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
 <xsl:template name="product">
@@ -38,28 +39,28 @@
 
   -->
   <xsl:variable name="productnumber"
-    select="(ancestor-or-self::set/setinfo/productnumber|
-             ancestor-or-self::book/bookinfo/productnumber|
-             ancestor-or-self::article/articleinfo/productnumber|
-             ancestor-or-self::set/info/productnumber|
-             ancestor-or-self::book/info/productnumber|
-             ancestor-or-self::article/info/productnumber)[last()]"/>
+    select="(ancestor-or-self::d:set/d:setinfo/d:productnumber|
+             ancestor-or-self::d:book/d:bookinfo/d:productnumber|
+             ancestor-or-self::d:article/d:articleinfo/d:productnumber|
+             ancestor-or-self::d:set/d:info/d:productnumber|
+             ancestor-or-self::d:book/d:info/d:productnumber|
+             ancestor-or-self::d:article/d:info/d:productnumber)[last()]"/>
 
   <xsl:variable name="productname-long"
-    select="(ancestor-or-self::set/setinfo/productname[not(@role='abbrev')]|
-             ancestor-or-self::book/bookinfo/productname[not(@role='abbrev')]|
-             ancestor-or-self::article/articleinfo/productname[not(@role='abbrev')]|
-             ancestor-or-self::set/info/productname[not(@role='abbrev')]|
-             ancestor-or-self::book/info/productname[not(@role='abbrev')]|
-             ancestor-or-self::article/info/productname[not(@role='abbrev')])[last()]"/>
+    select="(ancestor-or-self::d:set/d:setinfo/d:productname[not(@role='abbrev')]|
+             ancestor-or-self::d:book/d:bookinfo/d:productname[not(@role='abbrev')]|
+             ancestor-or-self::d:article/d:articleinfo/d:productname[not(@role='abbrev')]|
+             ancestor-or-self::d:set/d:info/d:productname[not(@role='abbrev')]|
+             ancestor-or-self::d:book/d:info/d:productname[not(@role='abbrev')]|
+             ancestor-or-self::d:article/d:info/d:productname[not(@role='abbrev')])[last()]"/>
 
   <xsl:variable name="productname-abbreviation"
-    select="(ancestor-or-self::set/setinfo/productname[@role='abbrev']|
-             ancestor-or-self::book/bookinfo/productname[@role='abbrev']|
-             ancestor-or-self::article/articleinfo/productname[@role='abbrev']|
-             ancestor-or-self::set/info/productname[@role='abbrev']|
-             ancestor-or-self::book/info/productname[@role='abbrev']|
-             ancestor-or-self::article/info/productname[@role='abbrev'])[last()]"/>
+    select="(ancestor-or-self::d:set/d:setinfo/d:productname[@role='abbrev']|
+             ancestor-or-self::d:book/d:bookinfo/d:productname[@role='abbrev']|
+             ancestor-or-self::d:article/d:articleinfo/d:productname[@role='abbrev']|
+             ancestor-or-self::d:set/d:info/d:productname[@role='abbrev']|
+             ancestor-or-self::d:book/d:info/d:productname[@role='abbrev']|
+             ancestor-or-self::d:article/d:info/d:productname[@role='abbrev'])[last()]"/>
 
   <xsl:choose>
     <xsl:when test="$productname-abbreviation">
@@ -73,7 +74,7 @@
   <xsl:apply-templates select="$productnumber" mode="footer"/>
 </xsl:template>
 
-<xsl:template match="productname|productnumber" mode="footer">
+<xsl:template match="d:productname|d:productnumber" mode="footer">
   <xsl:variable name="content-candidate">
     <xsl:value-of select="."/>
   </xsl:variable>
@@ -128,7 +129,7 @@
       <xsl:when test="($sequence='odd' or $sequence='even') and $position='center'">
         <xsl:if test="$pageclass != 'titlepage'">
           <xsl:choose>
-            <xsl:when test="ancestor::book and ($double.sided != 0)">
+            <xsl:when test="ancestor::d:book and ($double.sided != 0)">
               <fo:retrieve-marker retrieve-class-name="section.head.marker"
                 retrieve-position="first-including-carryover"
                 retrieve-boundary="page-sequence"/>
@@ -192,17 +193,17 @@
     </xsl:when>
     <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="ancestor::book">
+          <xsl:when test="ancestor::d:book">
             <fo:retrieve-marker
               retrieve-class-name="section.head.marker.short"
               retrieve-position="first-including-carryover"
               retrieve-boundary="page-sequence"/>
-            <xsl:if test="(ancestor-or-self::set/setinfo/productname|
-              ancestor-or-self::book/bookinfo/productname|
-              ancestor-or-self::article/articleinfo/productname|
-              ancestor-or-self::set/info/productname|
-              ancestor-or-self::book/info/productname|
-              ancestor-or-self::article/info/productname)">
+            <xsl:if test="(ancestor-or-self::d:set/d:setinfo/d:productname|
+              ancestor-or-self::d:book/d:bookinfo/d:productname|
+              ancestor-or-self::d:article/d:articleinfo/d:productname|
+              ancestor-or-self::d:set/d:info/d:productname|
+              ancestor-or-self::d:book/d:info/d:productname|
+              ancestor-or-self::d:article/d:info/d:productname)">
               <!-- FIXME/UNHACKME: This causes some line break problems in
                    Arabic, so xsl:if this out for the moment. -->
               <xsl:if test="$writing.mode = 'lr'">
@@ -803,7 +804,7 @@
   <xsl:param name="default-pagemaster"/>
 
   <xsl:choose>
-    <xsl:when test="self::appendix[@role='legal']">
+    <xsl:when test="self::d:appendix[@role='legal']">
       <xsl:text>legal</xsl:text>
       <xsl:if test="$draft.mode = 'yes'">
         <xsl:text>-draft</xsl:text>
@@ -825,11 +826,11 @@
   <xsl:param name="position" select="''"/>
   <xsl:param name="gentext-key" select="''"/>
 
-  <xsl:variable name="title" select="(ancestor-or-self::set/title |
-    ancestor-or-self::book/bookinfo/title |
-    ancestor-or-self::book/title |
-    ancestor-or-self::article/articleinfo/title |
-    ancestor-or-self::article/title
+  <xsl:variable name="title" select="(ancestor-or-self::d:set/d:title |
+    ancestor-or-self::d:book/d:bookinfo/d:title |
+    ancestor-or-self::d:book/d:title |
+    ancestor-or-self::d:article/d:articleinfo/d:title |
+    ancestor-or-self::d:article/d:title
     )[last()]"/>
   
   <xsl:call-template name="product"/>
@@ -845,11 +846,11 @@
   <xsl:param name="position" select="''"/>
   <xsl:param name="gentext-key" select="''"/>
   
-  <xsl:variable name="title" select="(ancestor-or-self::set/title |
-                         ancestor-or-self::book/bookinfo/title |
-                         ancestor-or-self::book/title |
-                         ancestor-or-self::article/articleinfo/title |
-                         ancestor-or-self::article/title
+  <xsl:variable name="title" select="(ancestor-or-self::d:set/d:title |
+                         ancestor-or-self::d:book/d:bookinfo/d:title |
+                         ancestor-or-self::d:book/d:title |
+                         ancestor-or-self::d:article/d:articleinfo/d:title |
+                         ancestor-or-self::d:article/d:title
                          )[last()]"/>
 
   <!-- pageclass can be front, body, back -->

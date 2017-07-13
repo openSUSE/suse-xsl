@@ -12,9 +12,10 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="xlink fo">
+  exclude-result-prefixes="xlink fo d">
 
 
 <xsl:template match="*" mode="intra.title.markup">
@@ -33,8 +34,8 @@
   <!-- Make sure that we transform zh-TW to zh_tw etc. -->
   <xsl:param name="lang-normalized" select="translate($lang, '-ABCDEFGHIJKLMNOPQRSTUVWXYZ', '_abcdefghijklmnopqrstuvwxyz')"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
-  <xsl:variable name="target.article" select="$target/ancestor-or-self::article"/>
-  <xsl:variable name="target.book" select="$target/ancestor-or-self::book"/>
+  <xsl:variable name="target.article" select="$target/ancestor-or-self::d:article"/>
+  <xsl:variable name="target.book" select="$target/ancestor-or-self::d:book"/>
   <xsl:variable name="text">
     <xsl:apply-templates select="$target" mode="intra.title.markup">
       <xsl:with-param name="linkend" select="@linkend"/>
@@ -46,7 +47,7 @@
 </xsl:template>
 
 
-  <xsl:template match="sect1" mode="intra.title.markup">
+  <xsl:template match="d:sect1" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
@@ -66,13 +67,13 @@
   </xsl:template>
 
 
-  <xsl:template match="sect2|sect3|sect4|sect5" mode="intra.title.markup">
+  <xsl:template match="d:sect2|d:sect3|d:sect4|d:sect5" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
     <xsl:apply-templates
-      select="ancestor::appendix|ancestor::article|
-      ancestor::chapter|ancestor::glossary|ancestor::preface"
+      select="ancestor::d:appendix|ancestor::d:article|
+      ancestor::d:chapter|ancestor::d:glossary|ancestor::d:preface"
       mode="intra.title.markup">
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
@@ -89,12 +90,12 @@
   </xsl:template>
 
 
-  <xsl:template match="appendix|chapter" mode="intra.title.markup">
+  <xsl:template match="d:appendix|d:chapter" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
     <!-- We don't want parts -->
-    <xsl:apply-templates select="ancestor::book" mode="intra.title.markup">
+    <xsl:apply-templates select="ancestor::d:book" mode="intra.title.markup">
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
     <xsl:text>, </xsl:text>
@@ -110,7 +111,7 @@
   </xsl:template>
 
 
-  <xsl:template match="preface" mode="intra.title.markup">
+  <xsl:template match="d:preface" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
@@ -131,7 +132,7 @@
   </xsl:template>
 
 
-  <xsl:template match="part" mode="intra.title.markup">
+  <xsl:template match="d:part" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
@@ -142,7 +143,7 @@
   </xsl:template>
 
 
-  <xsl:template match="article|book" mode="intra.title.markup">
+  <xsl:template match="d:article|d:book" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
@@ -160,8 +161,8 @@
 
 
   <xsl:template
-   match="variablelist|orderedlist|itemizedlist|procedure|table|figure|equation|
-          caution|warning|important|note|tip"
+   match="d:variablelist|d:orderedlist|d:itemizedlist|d:procedure|d:table|d:figure|d:equation|
+          d:caution|d:warning|d:important|d:note|d:tip"
    mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
@@ -171,7 +172,7 @@
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
     <xsl:choose>
-      <xsl:when test="title">
+      <xsl:when test="d:title">
         <xsl:text>, </xsl:text>
         <xsl:apply-templates select="." mode="title.markup">
           <xsl:with-param name="lang" select="$lang"/>
@@ -186,17 +187,17 @@
   </xsl:template>
 
 
-  <xsl:template match="varlistentry" mode="intra.title.markup">
+  <xsl:template match="d:varlistentry" mode="intra.title.markup">
     <xsl:param name="linkend"/>
     <xsl:param name="first" select="0"/>
     <xsl:param name="lang" select="'en'"/>
 
-    <xsl:apply-templates select="ancestor::appendix|ancestor::article|
-      ancestor::chapter|ancestor::glossary|ancestor::preface"
+    <xsl:apply-templates select="ancestor::d:appendix|ancestor::d:article|
+      ancestor::d:chapter|ancestor::d:glossary|ancestor::d:preface"
       mode="intra.title.markup">
       <xsl:param name="lang" select="$lang"/>
     </xsl:apply-templates>
-    <xsl:value-of select="concat(' ', term[1])"/>
+    <xsl:value-of select="concat(' ', d:term[1])"/>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -5,15 +5,17 @@
      to force an ID.
      
    See Also:
-     * http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html
+     * http://docbook.sourceforge.net/release/xsl-ns/current/doc/html/index.html
 
    Author(s): Stefan Knorr <sknorr@suse.de>
    Copyright: 2012, Stefan Knorr
 
 -->
 
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns="http://www.w3.org/1999/xhtml">
 
 

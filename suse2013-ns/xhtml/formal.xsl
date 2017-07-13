@@ -9,20 +9,21 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
-  <xsl:template match="example">
+  <xsl:template match="d:example">
     <xsl:choose>
-      <xsl:when test="glosslist|bibliolist|itemizedlist|orderedlist|
-                      segmentedlist|simplelist|variablelist|programlistingco|
-                      screenco|screenshot|cmdsynopsis|funcsynopsis|
-                      classsynopsis|fieldsynopsis|constructorsynopsis|
-                      destructorsynopsis|methodsynopsis|formalpara|para|
-                      simpara|address|blockquote|graphicco|mediaobjectco|
-                      indexterm|beginpage">
+      <xsl:when test="d:glosslist|d:bibliolist|d:itemizedlist|d:orderedlist|
+                      d:segmentedlist|d:simplelist|d:variablelist|d:programlistingco|
+                      d:screenco|d:screenshot|d:cmdsynopsis|d:funcsynopsis|
+                      d:classsynopsis|d:fieldsynopsis|d:constructorsynopsis|
+                      d:destructorsynopsis|d:methodsynopsis|d:formalpara|d:para|
+                      d:simpara|d:address|d:blockquote|d:graphicco|d:mediaobjectco|
+                      d:indexterm|d:beginpage">
         <div class="complex-example">
           <xsl:apply-imports/>
         </div>
@@ -35,7 +36,7 @@
 
 
   <xsl:template
-    match="procedure|example|table|figure|variablelist|itemizedlist|orderedlist"
+    match="d:procedure|d:example|d:table|d:figure|d:variablelist|d:itemizedlist|d:orderedlist"
     mode="object.label.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>
@@ -43,7 +44,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="procedure|example|table|figure|variablelist|itemizedlist|orderedlist"
+  <xsl:template match="d:procedure|d:example|d:table|d:figure|d:variablelist|d:itemizedlist|d:orderedlist"
     mode="object.title.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>

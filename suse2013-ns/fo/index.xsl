@@ -23,17 +23,19 @@
   %fonts;
   %colors;
   %metrics;
-  <!ENTITY primary   'normalize-space(concat(primary/@sortas, " ", primary))'>
-  <!ENTITY secondary 'normalize-space(concat(secondary/@sortas, " ", secondary))'>
-  <!ENTITY tertiary  'normalize-space(concat(tertiary/@sortas, " ", tertiary))'>
+  <!ENTITY primary   'normalize-space(concat(d:primary/@sortas, " ", d:primary))'>
+  <!ENTITY secondary 'normalize-space(concat(d:secondary/@sortas, " ", d:secondary))'>
+  <!ENTITY tertiary  'normalize-space(concat(d:tertiary/@sortas, " ", d:tertiary))'>
 ]>
-<xsl:stylesheet  version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:rx="http://www.renderx.com/XSL/Extensions">
 
 
-<xsl:template match="indexterm" name="indexterm">
+<xsl:template match="d:indexterm" name="indexterm">
     <xsl:choose>
       <xsl:when test="$xep.extensions != 0">
         <fo:wrapper>
@@ -43,11 +45,11 @@
           <xsl:attribute name="rx:key">
             <xsl:value-of select="&primary;"/>
             <xsl:if test="@significance='preferred'"><xsl:value-of select="$significant.flag"/></xsl:if>
-            <xsl:if test="secondary">
+            <xsl:if test="d:secondary">
               <xsl:text>, </xsl:text>
               <xsl:value-of select="&secondary;"/>
             </xsl:if>
-            <xsl:if test="tertiary">
+            <xsl:if test="d:tertiary">
               <xsl:text>, </xsl:text>
               <xsl:value-of select="&tertiary;"/>
             </xsl:if>
@@ -62,14 +64,14 @@
           <xsl:comment>
             <xsl:call-template name="comment-escape-string">
               <xsl:with-param name="string">
-                <xsl:value-of select="primary"/>
-                <xsl:if test="secondary">
+                <xsl:value-of select="d:primary"/>
+                <xsl:if test="d:secondary">
                   <xsl:text>, </xsl:text>
-                  <xsl:value-of select="secondary"/>
+                  <xsl:value-of select="d:secondary"/>
                 </xsl:if>
-                <xsl:if test="tertiary">
+                <xsl:if test="d:tertiary">
                   <xsl:text>, </xsl:text>
-                  <xsl:value-of select="tertiary"/>
+                  <xsl:value-of select="d:tertiary"/>
                 </xsl:if>
               </xsl:with-param>
             </xsl:call-template>

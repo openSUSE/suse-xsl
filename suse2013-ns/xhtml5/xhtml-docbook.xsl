@@ -1,62 +1,63 @@
 <?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:exslt="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl exslt" version="1.0">
+  exclude-result-prefixes="exsl exslt d" version="1.0">
 
   <!-- Upstream... -->
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/VERSION.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/param.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/lib/lib.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/l10n.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/common.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/utility.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/labels.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/titles.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/subtitles.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/gentext.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/targets.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/olink.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/pi.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/autotoc.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/autoidx.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/lists.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/callout.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/verbatim.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/graphics.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/xref.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/formal.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/table.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/htmltbl.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/sections.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/inline.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/footnote.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/html.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/info.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/keywords.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/division.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/toc.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/index.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/refentry.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/math.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/admon.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/component.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/biblio.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/biblio-iso690.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/glossary.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/block.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/task.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/qandaset.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/synop.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/titlepage.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/titlepage.templates.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/pi.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/ebnf.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunker.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/html-rtf.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/annotations.xsl"/>
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/VERSION.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/param.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/lib/lib.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/l10n.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/common.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/utility.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/labels.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/titles.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/subtitles.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/gentext.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/targets.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/olink.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/pi.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/autotoc.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/autoidx.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/lists.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/callout.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/verbatim.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/graphics.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/xref.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/formal.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/table.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/htmltbl.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/sections.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/inline.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/footnote.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/html.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/info.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/keywords.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/division.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/toc.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/index.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/refentry.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/math.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/admon.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/component.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/biblio.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/biblio-iso690.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/glossary.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/block.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/task.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/qandaset.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/synop.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/titlepage.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/titlepage.templates.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/pi.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/ebnf.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/chunker.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/html-rtf.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/annotations.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/common/addns.xsl"/>
 
 
   <!--Same as xhtml but with doctypes removed from xsl:output -->
@@ -151,11 +152,11 @@
 
   <xsl:template name="head.content.abstract">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="info" select="(articleinfo     |bookinfo     |prefaceinfo     |chapterinfo     |appendixinfo     |sectioninfo     |sect1info     |sect2info     |sect3info     |sect4info     |sect5info     |referenceinfo     |refentryinfo     |partinfo     |info     |docinfo)[1]"/>
-    <xsl:if test="$info and $info/abstract">
+    <xsl:variable name="info" select="(d:articleinfo     |d:bookinfo     |d:prefaceinfo     |d:chapterinfo     |d:appendixinfo     |d:sectioninfo     |d:sect1info     |d:sect2info     |d:sect3info     |d:sect4info     |d:sect5info     |d:referenceinfo     |d:refentryinfo     |d:partinfo     |d:info     |d:docinfo)[1]"/>
+    <xsl:if test="$info and $info/d:abstract">
       <meta name="description">
         <xsl:attribute name="content">
-          <xsl:for-each select="$info/abstract[1]/*">
+          <xsl:for-each select="$info/d:abstract[1]/*">
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() &lt; last()">
               <xsl:text> </xsl:text>
@@ -297,30 +298,30 @@
   <!-- ============================================================ -->
 
   <xsl:template match="*" mode="head.keywords.content">
-    <xsl:apply-templates select="chapterinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="appendixinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="prefaceinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="bookinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="setinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="articleinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="artheader/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sect1info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sect2info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sect3info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sect4info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sect5info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="sectioninfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="refsect1info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="refsect2info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="refsect3info/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="bibliographyinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="glossaryinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="indexinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="refentryinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="partinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="referenceinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="docinfo/keywordset" mode="html.header"/>
-    <xsl:apply-templates select="info/keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:chapterinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:appendixinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:prefaceinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:bookinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:setinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:articleinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:artheader/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sect1info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sect2info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sect3info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sect4info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sect5info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:sectioninfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:refsect1info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:refsect2info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:refsect3info/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:bibliographyinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:glossaryinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:indexinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:refentryinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:partinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:referenceinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:docinfo/d:keywordset" mode="html.header"/>
+    <xsl:apply-templates select="d:info/d:keywordset" mode="html.header"/>
 
     <xsl:if test="$inherit.keywords != 0                 and parent::*">
       <xsl:apply-templates select="parent::*" mode="head.keywords.content"/>
@@ -336,12 +337,12 @@
                 in this chunk should be referenced. I don't think it
                 does any harm to reference them all, but it adds
                 unnecessary bloat to each chunk. -->
-    <xsl:if test="$annotation.support != 0 and //annotation">
+    <xsl:if test="$annotation.support != 0 and //d:annotation">
       <xsl:call-template name="add.annotation.links"/>
       <script type="text/javascript">
         <xsl:text>
   // Create PopupWindow objects</xsl:text>
-        <xsl:for-each select="//annotation">
+        <xsl:for-each select="//d:annotation">
           <xsl:text>
   var popup_</xsl:text>
           <xsl:value-of select="generate-id(.)"/>
@@ -393,8 +394,8 @@
 
   <xsl:template name="user.header.navigation">
     <xsl:param name="node" select="."/>
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:param name="nav.context"/>
   </xsl:template>
 
@@ -408,15 +409,15 @@
 
   <xsl:template name="user.footer.navigation">
     <xsl:param name="node" select="."/>
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:param name="nav.context"/>
   </xsl:template>
 
   <!-- To use the same stripped nodeset everywhere, it should
   be created as a global variable here.
   Used by docbook.xsl, chunk-code.xsl and chunkfast.xsl -->
-  <xsl:variable name="no.namespace"></xsl:variable>
+  <xsl:variable name="with.namespace"></xsl:variable>
 
   <xsl:template match="/">
     <!-- * Get a title for current doc so that we let the user -->

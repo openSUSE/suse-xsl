@@ -10,9 +10,10 @@
 -->
 <xsl:stylesheet  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
   <xsl:template name="component.title">
@@ -26,15 +27,15 @@
   <xsl:variable name="level">
     <xsl:choose>
       <!-- chapters and other book children should get <h1> -->
-      <xsl:when test="$node/parent::book">0</xsl:when>
-      <xsl:when test="ancestor::section">
-        <xsl:value-of select="count(ancestor::section)+1"/>
+      <xsl:when test="$node/parent::d:book">0</xsl:when>
+      <xsl:when test="ancestor::d:section">
+        <xsl:value-of select="count(ancestor::d:section)+1"/>
       </xsl:when>
-      <xsl:when test="ancestor::sect5">6</xsl:when>
-      <xsl:when test="ancestor::sect4">5</xsl:when>
-      <xsl:when test="ancestor::sect3">4</xsl:when>
-      <xsl:when test="ancestor::sect2">3</xsl:when>
-      <xsl:when test="ancestor::sect1">2</xsl:when>
+      <xsl:when test="ancestor::d:sect5">6</xsl:when>
+      <xsl:when test="ancestor::d:sect4">5</xsl:when>
+      <xsl:when test="ancestor::d:sect3">4</xsl:when>
+      <xsl:when test="ancestor::d:sect2">3</xsl:when>
+      <xsl:when test="ancestor::d:sect1">2</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -68,7 +69,7 @@
 </xsl:template>
 
 
-  <xsl:template match="article">
+  <xsl:template match="d:article">
     <xsl:call-template name="id.warning"/>
 
     <xsl:element name="{$div.element}" namespace="http://www.w3.org/1999/xhtml">
@@ -98,16 +99,16 @@
         </xsl:with-param>
       </xsl:call-template>
       </div>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/legalnotice"/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/legalnotice"/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/legalnotice"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:legalnotice"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:legalnotice"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
 
       <xsl:apply-templates/>
       <xsl:call-template name="process.footnotes"/>
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="chapter|preface|appendix" name="chapter-preface-appendix">
+  <xsl:template match="d:chapter|d:preface|d:appendix" name="chapter-preface-appendix">
     <!-- Need to be able to call this template via name, too, so we can avoid
          applying imported templates in sections.xsl/template that
          matches "sect1[@role='legal']|…". -->
@@ -123,13 +124,13 @@
 
       <xsl:call-template name="component.separator"/>
       <xsl:choose>
-        <xsl:when test="self::appendix">
+        <xsl:when test="self::d:appendix">
           <xsl:call-template name="appendix.titlepage"/>
         </xsl:when>
-        <xsl:when test="self::chapter">
+        <xsl:when test="self::d:chapter">
           <xsl:call-template name="chapter.titlepage"/>
         </xsl:when>
-        <xsl:when test="self::preface">
+        <xsl:when test="self::d:preface">
           <xsl:call-template name="preface.titlepage"/>
         </xsl:when>
         <xsl:otherwise>
@@ -157,15 +158,15 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="chapter/title|chapter/chapterinfo/title|chapter/info/title" mode="titlepage.mode" priority="2">
+  <xsl:template match="d:chapter/d:title|d:chapter/d:chapterinfo/d:title|d:chapter/d:info/d:title" mode="titlepage.mode" priority="2">
     <xsl:call-template name="component.title">
-      <xsl:with-param name="node" select="ancestor::chapter[1]"/>
+      <xsl:with-param name="node" select="ancestor::d:chapter[1]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="chapter/subtitle|chapter/chapterinfo/subtitle|chapter/info/subtitle|chapter/docinfo/subtitle" mode="titlepage.mode" priority="2">
+  <xsl:template match="d:chapter/d:subtitle|d:chapter/d:chapterinfo/d:subtitle|d:chapter/d:info/d:subtitle|d:chapter/d:docinfo/d:subtitle" mode="titlepage.mode" priority="2">
     <xsl:call-template name="component.subtitle">
-      <xsl:with-param name="node" select="ancestor::chapter[1]"/>
+      <xsl:with-param name="node" select="ancestor::d:chapter[1]"/>
     </xsl:call-template>
   </xsl:template>
 

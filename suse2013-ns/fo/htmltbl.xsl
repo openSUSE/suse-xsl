@@ -16,11 +16,13 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
-<xsl:template match="thead" mode="htmlTable">
+<xsl:template match="d:thead" mode="htmlTable">
   <fo:table-header start-indent="0pt" end-indent="0pt"
     background-color="&light-gray-old;">
     <xsl:apply-templates mode="htmlTable"/>

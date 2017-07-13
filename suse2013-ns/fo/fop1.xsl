@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
   <xsl:template name="fop1-document-information">
     <xsl:variable name="authors"
-      select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
+      select="(//d:author|//d:editor|//d:corpauthor|//d:authorgroup)[1]"/>
     <xsl:variable name="node"
       select="(/* | key('id', $rootid))[last()]"/>
 
@@ -16,10 +17,10 @@
       <xsl:apply-templates select="$node[1]" mode="label.markup"/>
       <xsl:apply-templates select="$node[1]" mode="title.markup"/>
       <xsl:variable name="productname">
-         <xsl:value-of select="$node[1]/*/productname[1]"/>
+         <xsl:value-of select="$node[1]/*/d:productname[1]"/>
       </xsl:variable>
       <xsl:variable name="productnumber">
-         <xsl:value-of select="$node[1]/*/productnumber[1]"/>
+         <xsl:value-of select="$node[1]/*/d:productnumber[1]"/>
       </xsl:variable>
       <xsl:if test="$productname != ''">
         <!-- Checking for productname only is not an oversight - if there is
@@ -47,19 +48,19 @@
             <xsl:if test="$authors">
               <xsl:variable name="author">
                 <xsl:choose>
-                  <xsl:when test="$authors[self::authorgroup]">
+                  <xsl:when test="$authors[self::d:authorgroup]">
                     <xsl:call-template name="person.name.list">
                       <xsl:with-param name="person.list"
-                        select="$authors/*[self::author|self::corpauthor|
-                                     self::othercredit|self::editor]"
+                        select="$authors/*[self::d:author|self::d:corpauthor|
+                                     self::d:othercredit|self::d:editor]"
                       />
                     </xsl:call-template>
                   </xsl:when>
-                  <xsl:when test="$authors[self::corpauthor]">
+                  <xsl:when test="$authors[self::d:corpauthor]">
                     <xsl:value-of select="$authors"/>
                   </xsl:when>
-                  <xsl:when test="$authors[orgname]">
-                    <xsl:value-of select="$authors/orgname"/>
+                  <xsl:when test="$authors[d:orgname]">
+                    <xsl:value-of select="$authors/d:orgname"/>
                   </xsl:when>
                   <xsl:otherwise>
                     <xsl:call-template name="person.name">
@@ -75,9 +76,9 @@
             </xsl:if>
 
             <!-- Subject -->
-            <xsl:if test="//subjectterm">
+            <xsl:if test="//d:subjectterm">
               <dc:description>
-                <xsl:for-each select="//subjectterm">
+                <xsl:for-each select="//d:subjectterm">
                   <xsl:value-of select="normalize-space(.)"/>
                   <xsl:if test="position() != last()">
                     <xsl:text>, </xsl:text>
@@ -92,9 +93,9 @@
             <!-- PDF properties go here -->
 
             <!-- Keywords -->
-            <xsl:if test="//keyword">
+            <xsl:if test="//d:keyword">
               <pdf:Keywords>
-                <xsl:for-each select="//keyword">
+                <xsl:for-each select="//d:keyword">
                   <xsl:value-of select="normalize-space(.)"/>
                   <xsl:if test="position() != last()">
                     <xsl:text>, </xsl:text>
@@ -119,7 +120,7 @@
     </fo:declarations>
   </xsl:template>
 
-  <xsl:template match="set|book|article" mode="fop1.outline"
+  <xsl:template match="d:set|d:book|d:article" mode="fop1.outline"
     priority="2">
 
     <xsl:variable name="id">
@@ -145,10 +146,10 @@
     </fo:bookmark>
 
     <xsl:if  test="contains($toc.params, 'toc')
-      and (book|part|reference|preface|chapter|appendix|article|topic
-      |glossary|bibliography|index|setindex
-      |refentry
-      |sect1|sect2|sect3|sect4|sect5|section)">
+      and (d:book|d:part|d:reference|d:preface|d:chapter|d:appendix|d:article|d:topic
+      |d:glossary|d:bibliography|d:index|d:setindex
+      |d:refentry
+      |d:sect1|d:sect2|d:sect3|d:sect4|d:sect5|d:section)">
       <fo:bookmark internal-destination="toc...{$id}">
         <fo:bookmark-title>
           <xsl:call-template name="gentext">

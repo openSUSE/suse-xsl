@@ -20,12 +20,13 @@
 ]>
 <xsl:stylesheet  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:xlink='http://www.w3.org/1999/xlink'
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="xlink">
+  exclude-result-prefixes="xlink d">
 
 
-<xsl:template match="ulink|link" name="ulink">
+<xsl:template match="d:ulink|d:link" name="ulink">
   <xsl:param name="url" select="(@url|@xlink:href)[last()]"/>
 
   <xsl:variable name="ulink.url">
@@ -92,7 +93,7 @@
   <fo:leader leader-pattern="space" leader-length="0.2em"/>
 </xsl:template>
 
-<xsl:template match="chapter|appendix" mode="insert.title.markup">
+<xsl:template match="d:chapter|d:appendix" mode="insert.title.markup">
   <xsl:param name="purpose"/>
   <xsl:param name="xrefstyle"/>
   <xsl:param name="title"/>
@@ -145,12 +146,12 @@
 </xsl:template>
 
 
-<xsl:template match="xref" name="xref">
+<xsl:template match="d:xref" name="xref">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
-  <xsl:variable name="target.book" select="($target/ancestor-or-self::article|$target/ancestor-or-self::book)[1]"/>
-  <xsl:variable name="this.book" select="(ancestor-or-self::article|ancestor-or-self::book)[1]"/>
+  <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
+  <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
   <xsl:variable name="lang" select="(ancestor-or-self::*/@lang|ancestor-or-self::*/@xml:lang)[1]"/>
   <xsl:variable name="xref.in.samebook">
     <xsl:call-template name="is.xref.in.samebook">
@@ -164,8 +165,8 @@
 
   <xsl:choose>
     <xsl:when test="$xref.in.samebook != 0 or
-                    /set/@id=$rootid or
-                    /article/@id=$rootid">
+                    /d:set/@id=$rootid or
+                    /d:article/@id=$rootid">
        <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
        <xsl:apply-imports/>
@@ -173,10 +174,10 @@
     <xsl:otherwise>
       <!-- A reference into another book -->
       <xsl:variable name="target.chapandapp"
-                    select="($target/ancestor-or-self::chapter[@lang!='']
-                            | $target/ancestor-or-self::appendix[@lang!='']
-                            | $target/ancestor-or-self::chapter[@xml:lang!='']
-                            | $target/ancestor-or-self::appendix[@xml:lang!=''])[1]"/>
+                    select="($target/ancestor-or-self::d:chapter[@lang!='']
+                            | $target/ancestor-or-self::d:appendix[@lang!='']
+                            | $target/ancestor-or-self::d:chapter[@xml:lang!='']
+                            | $target/ancestor-or-self::d:appendix[@xml:lang!=''])[1]"/>
 
       <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
                     $target.chapandapp/@lang != $this.book/@lang">

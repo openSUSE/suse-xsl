@@ -12,24 +12,25 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:date="http://exslt.org/dates-and-times"
-  exclude-result-prefixes="date">
+  exclude-result-prefixes="date d">
 
 
   <xsl:template name="date.and.revision.inner">
     <xsl:variable name="date">
-      <xsl:apply-templates select="(bookinfo/date | info/date |
-        articleinfo/date | ancestor::book/bookinfo/date |
-        ancestor::set/setinfo/date | ancestor::book/info/date |
-        ancestor::set/info/date)[1]"/>
+      <xsl:apply-templates select="(d:bookinfo/d:date | d:info/d:date |
+        d:articleinfo/d:date | ancestor::d:book/d:bookinfo/d:date |
+        ancestor::d:set/d:setinfo/d:date | ancestor::d:book/d:info/d:date |
+        ancestor::d:set/d:info/d:date)[1]"/>
     </xsl:variable>
 
     <xsl:variable name="version"
-      select="(bookinfo/releaseinfo | articleinfo/releaseinfo |
-               info/releaseinfo | ancestor::book/bookinfo/releaseinfo |
-               ancestor::set/setinfo/releaseinfo |
-               ancestor::book/info/releaseinfo |
-               ancestor::set/info/releaseinfo)[1]"/>
+      select="(d:bookinfo/d:releaseinfo | d:articleinfo/d:releaseinfo |
+               d:info/d:releaseinfo | ancestor::d:book/d:bookinfo/d:releaseinfo |
+               ancestor::d:set/d:setinfo/d:releaseinfo |
+               ancestor::d:book/d:info/d:releaseinfo |
+               ancestor::d:set/d:info/d:releaseinfo)[1]"/>
 
     <!-- Make SVN revision numbers look a little less cryptic. Git does
          (by design) not have a feature that randomly changes your

@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:rx="http://www.renderx.com/XSL/Extensions"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
   <xsl:template name="xep-document-information">
   <rx:meta-info>
     <xsl:variable name="authors"
-                  select="(//author|//editor|//corpauthor|//authorgroup)[1]"/>
+                  select="(//d:author|//d:editor|//d:corpauthor|//d:authorgroup)[1]"/>
     <xsl:if test="$authors">
       <xsl:variable name="author">
         <xsl:choose>
-          <xsl:when test="$authors[self::authorgroup]">
+          <xsl:when test="$authors[self::d:authorgroup]">
             <xsl:call-template name="person.name.list">
               <xsl:with-param name="person.list"
-                        select="$authors/*[self::author|self::corpauthor|
-                               self::othercredit|self::editor]"/>
+                        select="$authors/*[self::d:author|self::d:corpauthor|
+                               self::d:othercredit|self::d:editor]"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="$authors[self::corpauthor]">
+          <xsl:when test="$authors[self::d:corpauthor]">
             <xsl:value-of select="$authors"/>
           </xsl:when>
-          <xsl:when test="$authors[orgname]">
-            <xsl:value-of select="$authors/orgname"/>
+          <xsl:when test="$authors[d:orgname]">
+            <xsl:value-of select="$authors/d:orgname"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="person.name">
@@ -47,10 +48,10 @@
       <xsl:apply-templates select="$node[1]" mode="label.markup"/>
       <xsl:apply-templates select="$node[1]" mode="title.markup"/>
       <xsl:variable name="productname">
-          <xsl:value-of select="$node[1]/*/productname[1]"/>
+          <xsl:value-of select="$node[1]/*/d:productname[1]"/>
       </xsl:variable>
       <xsl:variable name="productnumber">
-         <xsl:value-of select="$node[1]/*/productnumber[1]"/>
+         <xsl:value-of select="$node[1]/*/d:productnumber[1]"/>
       </xsl:variable>
       <xsl:if test="$productname != ''">
         <!-- Checking for productname only is not an oversight - if there is
@@ -76,11 +77,11 @@
       </xsl:attribute>
     </xsl:element>
 
-    <xsl:if test="//keyword">
+    <xsl:if test="//d:keyword">
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">keywords</xsl:attribute>
         <xsl:attribute name="value">
-          <xsl:for-each select="//keyword">
+          <xsl:for-each select="//d:keyword">
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
@@ -90,11 +91,11 @@
       </xsl:element>
     </xsl:if>
 
-    <xsl:if test="//subjectterm">
+    <xsl:if test="//d:subjectterm">
       <xsl:element name="rx:meta-field">
         <xsl:attribute name="name">subject</xsl:attribute>
         <xsl:attribute name="value">
-          <xsl:for-each select="//subjectterm">
+          <xsl:for-each select="//d:subjectterm">
             <xsl:value-of select="normalize-space(.)"/>
             <xsl:if test="position() != last()">
               <xsl:text>, </xsl:text>
@@ -106,7 +107,7 @@
   </rx:meta-info>
 </xsl:template>
 
-  <xsl:template match="set|book|article" mode="xep.outline">
+  <xsl:template match="d:set|d:book|d:article" mode="xep.outline">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -129,9 +130,9 @@
       </xsl:if>
 
       <xsl:if test="contains($toc.params, 'toc')
-                    and set|book|part|reference|section|sect1|refentry
-                        |article|topic|bibliography|glossary|chapter
-                        |appendix">
+                    and d:set|d:book|d:part|d:reference|d:section|d:sect1|d:refentry
+                        |d:article|d:topic|d:bibliography|d:glossary|d:chapter
+                        |d:appendix">
         <rx:bookmark internal-destination="toc...{$id}">
           <rx:bookmark-label>
             <xsl:call-template name="gentext">

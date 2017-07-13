@@ -5,9 +5,10 @@
 ]>
 
 <xsl:stylesheet 
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook" 
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="#default"
+  exclude-result-prefixes="#default d"
   version="1.0">
 
   <!-- $Id: docbook.xsl,v 1.1 2011-09-16 21:43:45 bobs Exp $ -->

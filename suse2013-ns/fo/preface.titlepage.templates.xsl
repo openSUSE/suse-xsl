@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
   <!-- Preface ==================================================== -->
@@ -31,59 +33,59 @@
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
       <xsl:call-template name="component.title">
-        <xsl:with-param name="node" select="ancestor-or-self::preface[1]"/>
+        <xsl:with-param name="node" select="ancestor-or-self::d:preface[1]"/>
       </xsl:call-template>
     </fo:block>
     <xsl:choose>
-      <xsl:when test="prefaceinfo/subtitle">
-        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/subtitle"/>
+      <xsl:when test="d:prefaceinfo/d:subtitle">
+        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="docinfo/subtitle">
-        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/subtitle"/>
+      <xsl:when test="d:docinfo/d:subtitle">
+        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="info/subtitle">
-        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/subtitle"/>
+      <xsl:when test="d:info/d:subtitle">
+        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:subtitle"/>
       </xsl:when>
-      <xsl:when test="subtitle">
-        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="subtitle"/>
+      <xsl:when test="d:subtitle">
+        <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:subtitle"/>
       </xsl:when>
     </xsl:choose>
 
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/corpauthor"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/corpauthor"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/corpauthor"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/authorgroup"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/authorgroup"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/authorgroup"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/author"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/author"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/author"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/othercredit"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/othercredit"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/othercredit"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/releaseinfo"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/releaseinfo"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/releaseinfo"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/copyright"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/copyright"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/copyright"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/legalnotice"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/legalnotice"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/legalnotice"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/pubdate"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/pubdate"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/pubdate"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/revision"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/revision"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/revision"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/revhistory"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/revhistory"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/revhistory"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/abstract"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/abstract"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/abstract"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="prefaceinfo/itermset"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="docinfo/itermset"/>
-    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="info/itermset"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:corpauthor"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:corpauthor"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:authorgroup"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:authorgroup"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:author"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:author"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:author"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:othercredit"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:othercredit"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:othercredit"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:releaseinfo"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:releaseinfo"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:releaseinfo"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:copyright"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:copyright"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:legalnotice"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:legalnotice"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:pubdate"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:pubdate"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:pubdate"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:revision"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:revision"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:revision"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:revhistory"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:revhistory"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:abstract"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:abstract"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:prefaceinfo/d:itermset"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:docinfo/d:itermset"/>
+    <xsl:apply-templates mode="preface.titlepage.recto.auto.mode" select="d:info/d:itermset"/>
   </xsl:template>
 </xsl:stylesheet>

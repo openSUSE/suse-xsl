@@ -11,13 +11,14 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    exclude-result-prefixes="exsl l t d">
 
-  <xsl:template match="abstract">
+  <xsl:template match="d:abstract">
     <div class="myownabstract">
       <xsl:call-template name="common.html.attributes"/>
       <xsl:call-template name="id.attribute"/>
@@ -25,11 +26,11 @@
       <!-- We are only interested in a "normal" processing, but suppress
            titles anyway -->
       <!--<xsl:call-template name="sidebar.titlepage"/>-->
-      <xsl:apply-templates select="*[not(self::title)]"/>
+      <xsl:apply-templates select="*[not(self::d:title)]"/>
     </div>
   </xsl:template>
 
-  <xsl:template match="para[@arch]">
+  <xsl:template match="d:para[@arch]">
     <xsl:variable name="arch">
       <xsl:call-template name="readable.arch.string">
         <xsl:with-param name="input" select="@arch"/>
@@ -42,9 +43,9 @@
       </xsl:if>
     </xsl:with-param>
     <xsl:with-param name="content">
-      <xsl:if test="position() = 1 and parent::listitem">
+      <xsl:if test="position() = 1 and parent::d:listitem">
         <xsl:call-template name="anchor">
-          <xsl:with-param name="node" select="parent::listitem"/>
+          <xsl:with-param name="node" select="parent::d:listitem"/>
         </xsl:call-template>
       </xsl:if>
       <xsl:call-template name="anchor"/>
@@ -110,7 +111,7 @@
   </xsl:template>
 
 
-<xsl:template match="formalpara/title|formalpara/info/title">
+<xsl:template match="d:formalpara/d:title|d:formalpara/d:info/d:title">
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
@@ -131,6 +132,6 @@
   </span>
 </xsl:template>
 
-<xsl:template match="para[normalize-space(.)='' and not(*)]"/>
+<xsl:template match="d:para[normalize-space(.)='' and not(*)]"/>
 
 </xsl:stylesheet>

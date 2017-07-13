@@ -6,7 +6,7 @@
     the DocBook XSL Stylesheets User Reference, see link below)
 
     See Also:
-    * http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html
+    * http://docbook.sourceforge.net/release/xsl-ns/current/doc/fo/index.html
 
   Author(s):  Stefan Knorr <sknorr@suse.de>
               Thomas Schraitle <toms@opensuse.org>
@@ -23,8 +23,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 <!-- 1. Admonitions  ============================================ -->
@@ -78,8 +80,8 @@ are overridden somewhere. Probably because of the original stylesheets. -->
   <xsl:attribute name="font-size"><xsl:value-of select="1 div $sans-xheight-adjust * 0.85"/>em</xsl:attribute>
   <xsl:attribute name="color">
     <xsl:choose>
-      <xsl:when test="self::sect1|self::sect2|self::sect3|self::sect4|
-                      self::sect5|self::section|ancestor::article">
+      <xsl:when test="self::d:sect1|self::d:sect2|self::d:sect3|self::d:sect4|
+                      self::d:sect5|self::d:section|ancestor::d:article">
         &mid-gray;
       </xsl:when>
       <xsl:otherwise>
@@ -160,7 +162,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
                    use-attribute-sets="title.font">
   <xsl:attribute name="font-style">
     <xsl:choose>
-      <xsl:when test="self::xref and $enable-italic = 'true'">italic</xsl:when>
+      <xsl:when test="self::d:xref and $enable-italic = 'true'">italic</xsl:when>
       <!-- Use normal for ulinks -->
       <xsl:otherwise>normal</xsl:otherwise>
     </xsl:choose>
@@ -169,13 +171,13 @@ are overridden somewhere. Probably because of the original stylesheets. -->
     <xsl:choose>
       <!-- Someone might be crazy enough to put an xref inside a verbatim
            element. -->
-      <xsl:when test="ancestor::screen or ancestor::computeroutput or
-                  ancestor::userinput or ancestor::programlisting or
-                  ancestor::synopsis"><xsl:value-of select="$sans-xheight-adjust div $mono-xheight-adjust"/>em</xsl:when>
+      <xsl:when test="ancestor::d:screen or ancestor::d:computeroutput or
+                  ancestor::d:userinput or ancestor::d:programlisting or
+                  ancestor::d:synopsis"><xsl:value-of select="$sans-xheight-adjust div $mono-xheight-adjust"/>em</xsl:when>
       <!-- term and most titles are already sans'd, thus there is no need to
            adapt font size further. -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                      ancestor::term)"><xsl:value-of select="$sans-xheight-adjust"/>em</xsl:when>
+      <xsl:when test="not(ancestor::d:title[not(parent::d:formalpara)] or
+                      ancestor::d:term)"><xsl:value-of select="$sans-xheight-adjust"/>em</xsl:when>
       <xsl:otherwise>1em</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -185,7 +187,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
                    use-attribute-sets="title.font xref.basic.properties">
   <xsl:attribute name="color">
     <xsl:choose>
-     <xsl:when test="ancestor::remark">&white;</xsl:when>
+     <xsl:when test="ancestor::d:remark">&white;</xsl:when>
      <xsl:otherwise>
       <xsl:value-of select="$dark-green"/>
      </xsl:otherwise>
@@ -228,7 +230,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
      element is used before the list) -->
   <xsl:attribute name="keep-with-next.within-column">
     <xsl:choose>
-      <xsl:when test="self::listitem[not(preceding-sibling::*)][not(parent::varlistentry)]">always</xsl:when>
+      <xsl:when test="self::d:listitem[not(preceding-sibling::*)][not(parent::d:varlistentry)]">always</xsl:when>
       <xsl:otherwise>auto</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -238,7 +240,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
     <xsl:choose>
       <!-- FIXME: surely, there is something wrong here... why do I
            have to use not(f-s::*) instead of last()? -->
-      <xsl:when test="self::listitem[not(following-sibling::*)][preceding-sibling::*][not(parent::varlistentry)]">always</xsl:when>
+      <xsl:when test="self::d:listitem[not(following-sibling::*)][preceding-sibling::*][not(parent::d:varlistentry)]">always</xsl:when>
       <xsl:otherwise>auto</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -248,19 +250,19 @@ are overridden somewhere. Probably because of the original stylesheets. -->
   use-attribute-sets="list-orphans-widows">
   <xsl:attribute name="space-before.optimum">
    <xsl:choose>
-    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:when test="self::d:answer">0</xsl:when>
     <xsl:otherwise>0.8em</xsl:otherwise>
    </xsl:choose>
   </xsl:attribute>
   <xsl:attribute name="space-before.minimum">
    <xsl:choose>
-    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:when test="self::d:answer">0</xsl:when>
     <xsl:otherwise>0.6em</xsl:otherwise>
    </xsl:choose>
   </xsl:attribute>
   <xsl:attribute name="space-before.maximum">
    <xsl:choose>
-    <xsl:when test="self::answer">0</xsl:when>
+    <xsl:when test="self::d:answer">0</xsl:when>
     <xsl:otherwise>1em</xsl:otherwise>
    </xsl:choose>
   </xsl:attribute>
@@ -350,7 +352,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
       <xsl:choose>
         <!-- or ancestor::procedure or ancestor::orderedlist or
              ancestor::itemizedlist or ancestor::calloutlist ??-->
-        <xsl:when test="ancestor::entry">start</xsl:when>
+        <xsl:when test="ancestor::d:entry">start</xsl:when>
         <xsl:otherwise>inherit</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>
@@ -362,8 +364,8 @@ are overridden somewhere. Probably because of the original stylesheets. -->
     <xsl:attribute name="margin-top">
       <xsl:choose>
        <!-- (parent::question/para[2] or parent::question )  -->
-        <xsl:when test="parent::callout|parent::listitem| parent::question|
-                        parent::step|parent::substep">0</xsl:when>
+        <xsl:when test="parent::d:callout|parent::d:listitem| parent::d:question|
+                        parent::d:step|parent::d:substep">0</xsl:when>
         <xsl:otherwise>0.3em</xsl:otherwise>
       </xsl:choose>
     </xsl:attribute>

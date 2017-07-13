@@ -18,41 +18,43 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet  version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
-<xsl:template match="section/title
-                     |simplesect/title
-                     |sect1/title
-                     |sect2/title
-                     |sect3/title
-                     |sect4/title
-                     |sect5/title
-                     |section/info/title
-                     |simplesect/info/title
-                     |sect1/info/title
-                     |sect2/info/title
-                     |sect3/info/title
-                     |sect4/info/title
-                     |sect5/info/title
-                     |section/sectioninfo/title
-                     |sect1/sect1info/title
-                     |sect2/sect2info/title
-                     |sect3/sect3info/title
-                     |sect4/sect4info/title
-                     |sect5/sect5info/title"
+<xsl:template match="d:section/d:title
+                     |d:simplesect/d:title
+                     |d:sect1/d:title
+                     |d:sect2/d:title
+                     |d:sect3/d:title
+                     |d:sect4/d:title
+                     |d:sect5/d:title
+                     |d:section/d:info/d:title
+                     |d:simplesect/d:info/d:title
+                     |d:sect1/d:info/d:title
+                     |d:sect2/d:info/d:title
+                     |d:sect3/d:info/d:title
+                     |d:sect4/d:info/d:title
+                     |d:sect5/d:info/d:title
+                     |d:section/d:sectioninfo/d:title
+                     |d:sect1/d:sect1info/d:title
+                     |d:sect2/d:sect2info/d:title
+                     |d:sect3/d:sect3info/d:title
+                     |d:sect4/d:sect4info/d:title
+                     |d:sect5/d:sect5info/d:title"
               mode="titlepage.mode"
               priority="2">
 
   <xsl:variable name="section"
-                select="(ancestor::section |
-                        ancestor::simplesect |
-                        ancestor::sect1 |
-                        ancestor::sect2 |
-                        ancestor::sect3 |
-                        ancestor::sect4 |
-                        ancestor::sect5)[position() = last()]"/>
+                select="(ancestor::d:section |
+                        ancestor::d:simplesect |
+                        ancestor::d:sect1 |
+                        ancestor::d:sect2 |
+                        ancestor::d:sect3 |
+                        ancestor::d:sect4 |
+                        ancestor::d:sect5)[position() = last()]"/>
 
   <fo:block keep-with-next.within-column="always">
     <xsl:variable name="id">
@@ -87,7 +89,7 @@
 
     <xsl:variable name="level">
       <xsl:choose>
-        <xsl:when test="ancestor::article and ancestor::appendix">
+        <xsl:when test="ancestor::d:article and ancestor::d:appendix">
           <xsl:value-of select="$level-candidate + 1"/>
         </xsl:when>
         <xsl:otherwise>
@@ -182,7 +184,7 @@
 
 <!-- ======================================================================= -->
 
-<xsl:template match="sect1[@role='legal']">
+<xsl:template match="d:sect1[@role='legal']">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -191,7 +193,7 @@
             xsl:use-attribute-sets="section.level1.properties">
     <fo:block font-size="{&small; * $sans-fontsize-adjust}pt" space-before="1.12em" space-after="0.75em"
        keep-with-next="always" xsl:use-attribute-sets="sans.bold">
-      <xsl:value-of select="title" />
+      <xsl:value-of select="d:title" />
     </fo:block>
     <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
@@ -199,7 +201,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="bridgehead[parent::sect1[@role='legal']]">
+<xsl:template match="d:bridgehead[parent::d:sect1[@role='legal']]">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -215,7 +217,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="sect2[parent::sect1[@role='legal']]">
+<xsl:template match="d:sect2[parent::d:sect1[@role='legal']]">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -226,7 +228,7 @@
       keep-with-next="always"
       space-before="1.12em" space-after="0.5em"
       space-after.precedence="2">
-      <xsl:value-of select="title"/>
+      <xsl:value-of select="d:title"/>
     </fo:block>
     <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
@@ -234,7 +236,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="sect3[ancestor::sect1[@role='legal']]">
+<xsl:template match="d:sect3[ancestor::d:sect1[@role='legal']]">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -242,7 +244,7 @@
   <fo:block id="{$id}" xsl:use-attribute-sets="section.level3.properties">
     <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt" space-before="1.12em" space-after="0.5em"
       xsl:use-attribute-sets="italicized.noreplacement">
-      <xsl:value-of select="title"/>
+      <xsl:value-of select="d:title"/>
     </fo:block>
     <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
@@ -250,7 +252,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="sect4[ancestor::sect1[@role='legal']]">
+<xsl:template match="d:sect4[ancestor::d:sect1[@role='legal']]">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -258,7 +260,7 @@
   <fo:block id="{$id}"
             xsl:use-attribute-sets="section.level4.properties">
     <fo:block font-size="{&x-small; * $sans-fontsize-adjust}pt" font-weight="normal">
-      <xsl:value-of select="title"/>
+      <xsl:value-of select="d:title"/>
     </fo:block>
     <fo:block font-size="{&xxx-small; * $sans-fontsize-adjust}pt">
       <xsl:apply-templates/>
@@ -266,7 +268,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="screen[ancestor::sect1[@role='legal']]">
+<xsl:template match="d:screen[ancestor::d:sect1[@role='legal']]">
   <fo:block xsl:use-attribute-sets="monospace.verbatim.properties shade.verbatim.style"
             font-size="{(&xxx-small; * $sans-fontsize-adjust) - 1.1}pt"
             white-space-collapse='false'

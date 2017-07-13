@@ -9,9 +9,10 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
   <xsl:template name="make.toc">
@@ -19,7 +20,7 @@
     <xsl:param name="toc.title.p" select="true()"/>
     <xsl:param name="nodes" select="/NOT-AN-ELEMENT"/>
 
-    <xsl:variable name="nodes.plus" select="$nodes | qandaset"/>
+    <xsl:variable name="nodes.plus" select="$nodes | d:qandaset"/>
 
     <xsl:choose>
       <xsl:when test="$manual.toc != ''">
@@ -27,7 +28,7 @@
           <xsl:call-template name="object.id"/>
         </xsl:variable>
         <xsl:variable name="toc" select="document($manual.toc, .)"/>
-        <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
+        <xsl:variable name="tocentry" select="$toc//d:tocentry[@linkend=$id]"/>
         <xsl:if test="$tocentry and $tocentry/*">
           <div class="toc">
             <!--<xsl:copy-of select="$toc.title"/>-->
@@ -98,12 +99,12 @@
         1 = yes, create a label
     -->
       <xsl:choose>
-        <xsl:when test="self::article">0</xsl:when>
-        <xsl:when test="self::book">0</xsl:when>
-        <xsl:when test="ancestor-or-self::preface and
+        <xsl:when test="self::d:article">0</xsl:when>
+        <xsl:when test="self::d:book">0</xsl:when>
+        <xsl:when test="ancestor-or-self::d:preface and
                         number($preface.autolabel) = 0">0</xsl:when>
-        <xsl:when test="ancestor-or-self::glossary">0</xsl:when>
-        <xsl:when test="ancestor-or-self::bibliography">0</xsl:when>
+        <xsl:when test="ancestor-or-self::d:glossary">0</xsl:when>
+        <xsl:when test="ancestor-or-self::d:bibliography">0</xsl:when>
         <xsl:otherwise>1</xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -144,8 +145,8 @@
 
 
   <!-- http://sagehill.net/docbookxsl/TOCcontrol.html#BriefSetToc -->
-  <xsl:template match="book|part/appendix|chapter|toc|lot|index|glossary|
-                       bibliography|article|preface|refentry|reference" mode="toc-abstract">
+  <xsl:template match="d:book|d:part/d:appendix|d:chapter|d:toc|d:lot|d:index|d:glossary|
+                       d:bibliography|d:article|d:preface|d:refentry|d:reference" mode="toc-abstract">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="subtoc">
@@ -153,23 +154,23 @@
       <xsl:with-param name="nodes" select="EMPTY"/>
     </xsl:call-template>
     <xsl:choose>
-      <xsl:when test="self::book">
-        <xsl:apply-templates select="(bookinfo/abstract|bookinfo/highlights|abstract|highlights)[1]" mode="toc-abstract"/>
+      <xsl:when test="self::d:book">
+        <xsl:apply-templates select="(d:bookinfo/d:abstract|d:bookinfo/d:highlights|d:abstract|d:highlights)[1]" mode="toc-abstract"/>
       </xsl:when>
-      <xsl:when test="self::appendix|self::chapter|self::toc|self::lot|
-                      self::index|self::glossary|self::bibliography|
-                      self::article|self::preface|self::refentry|self::reference
+      <xsl:when test="self::d:appendix|self::d:chapter|self::d:toc|self::d:lot|
+                      self::d:index|self::d:glossary|self::d:bibliography|
+                      self::d:article|self::d:preface|self::d:refentry|self::d:reference
                   and local-name($toc-context) = 'part'">
         <xsl:choose>
-          <xsl:when test="*[contains(local-name(), 'info')]/abstract|
-                          *[contains(local-name(), 'info')]/highlights|
-                          abstract|highlights">
-            <xsl:apply-templates select="(*[contains(local-name(), 'info')]/abstract|
-                                          *[contains(local-name(), 'info')]/highlights|
-                                          abstract|highlights)[1]" mode="toc-abstract"/>
+          <xsl:when test="*[contains(local-name(), 'info')]/d:abstract|
+                          *[contains(local-name(), 'info')]/d:highlights|
+                          d:abstract|d:highlights">
+            <xsl:apply-templates select="(*[contains(local-name(), 'info')]/d:abstract|
+                                          *[contains(local-name(), 'info')]/d:highlights|
+                                          d:abstract|d:highlights)[1]" mode="toc-abstract"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates select="(para)[1]" mode="toc-abstract">
+            <xsl:apply-templates select="(d:para)[1]" mode="toc-abstract">
               <xsl:with-param name="trim" select="1"/>
             </xsl:apply-templates>
           </xsl:otherwise>
@@ -178,7 +179,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="abstract|highlights|para" mode="toc-abstract">
+  <xsl:template match="d:abstract|d:highlights|d:para" mode="toc-abstract">
     <xsl:param name="trim" select="0"/>
     <xsl:param name="teaser">
       <xsl:apply-templates/>
@@ -206,7 +207,7 @@
   </xsl:template>
 
 
-  <xsl:template match="figure|table|example|equation|procedure" mode="toc">
+  <xsl:template match="d:figure|d:table|d:example|d:equation|d:procedure" mode="toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:element name="{$toc.listitem.type}"

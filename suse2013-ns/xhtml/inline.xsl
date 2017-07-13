@@ -10,9 +10,10 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
   <xsl:template name="inline.sansseq">
@@ -36,7 +37,7 @@
     </span>
   </xsl:template>
 
-  <xsl:template match="prompt" mode="common.html.attributes">
+  <xsl:template match="d:prompt" mode="common.html.attributes">
     <xsl:variable name="class">
       <xsl:choose>
         <xsl:when test="@role">prompt <xsl:value-of select="@role"/></xsl:when>
@@ -49,7 +50,7 @@
     </xsl:apply-templates>
   </xsl:template>
 
-  <xsl:template match="email">
+  <xsl:template match="d:email">
     <xsl:if test="not($email.delimiters.enabled = 0)">
       <xsl:text>&lt;</xsl:text>
     </xsl:if>
@@ -67,7 +68,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="keycap">
+  <xsl:template match="d:keycap">
     <!-- See also Ticket#84 -->
     <xsl:choose>
       <xsl:when test="@function">
@@ -86,7 +87,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="keycombo">
+  <xsl:template match="d:keycombo">
     <xsl:variable name="action" select="@action"/>
     <xsl:for-each select="*">
       <xsl:if test="position()&gt;1">
@@ -96,33 +97,33 @@
     </xsl:for-each>
   </xsl:template>
 
-  <xsl:template match="function/parameter" priority="2">
+  <xsl:template match="d:function/d:parameter" priority="2">
     <xsl:call-template name="inline.italicseq"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>, </xsl:text>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="parameter">
+  <xsl:template match="d:parameter">
     <xsl:call-template name="inline.italicseq"/>
   </xsl:template>
 
-  <xsl:template match="function/replaceable" priority="2">
+  <xsl:template match="d:function/d:replaceable" priority="2">
     <xsl:call-template name="inline.italicseq"/>
     <xsl:if test="following-sibling::*">
       <xsl:text>, </xsl:text>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="replaceable" priority="1">
+  <xsl:template match="d:replaceable" priority="1">
     <xsl:call-template name="inline.italicseq"/>
   </xsl:template>
 
-  <xsl:template match="command">
+  <xsl:template match="d:command">
     <xsl:call-template name="inline.monoseq"/>
   </xsl:template>
 
-  <xsl:template match="productname">
+  <xsl:template match="d:productname">
     <xsl:call-template name="inline.charseq"/>
     <!-- We don't want to process @class attribute here -->
   </xsl:template>

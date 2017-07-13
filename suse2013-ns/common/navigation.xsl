@@ -29,21 +29,22 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    exclude-result-prefixes="exsl l t d">
   
   <!-- ===================================================== -->
   <xsl:template name="is.next.node.in.navig">
     <xsl:param name="next"/>
     
     <xsl:variable name="next.book"
-      select="($next/ancestor-or-self::book |
-      $next/ancestor-or-self::article)[last()]"/>
+      select="($next/ancestor-or-self::d:book |
+      $next/ancestor-or-self::d:article)[last()]"/>
     <xsl:variable name="this.book"
-      select="(ancestor-or-self::book|ancestor-or-self::article)[last()]"/>
+      select="(ancestor-or-self::d:book|ancestor-or-self::d:article)[last()]"/>
     <!-- Compare the current "book" ID (be it really a book or an article)
        with the "next" or "previous" book or article ID
      -->
@@ -55,10 +56,10 @@
     <xsl:param name="prev"/>
     
     <xsl:variable name="prev.book"
-      select="($prev/ancestor-or-self::book |
-      $prev/ancestor-or-self::article)[last()]"/>
+      select="($prev/ancestor-or-self::d:book |
+      $prev/ancestor-or-self::d:article)[last()]"/>
     <xsl:variable name="this.book"
-      select="(ancestor-or-self::book|ancestor-or-self::article)[last()]"/>
+      select="(ancestor-or-self::d:book|ancestor-or-self::d:article)[last()]"/>
     <!-- Compare the current "book" ID (be it really a book or an article)
        with the "next" or "previous" book or article ID
      -->
@@ -75,13 +76,13 @@
        ancestor or self nodes for book or article, but only one node.
      -->
     <xsl:variable name="next.book"
-      select="($next/ancestor-or-self::book |
-      $next/ancestor-or-self::article)[last()]"/>
+      select="($next/ancestor-or-self::d:book |
+      $next/ancestor-or-self::d:article)[last()]"/>
     <xsl:variable name="prev.book"
-      select="($prev/ancestor-or-self::book |
-      $prev/ancestor-or-self::article)[last()]"/>
+      select="($prev/ancestor-or-self::d:book |
+      $prev/ancestor-or-self::d:article)[last()]"/>
     <xsl:variable name="this.book"
-      select="(ancestor-or-self::book|ancestor-or-self::article)[last()]"/>
+      select="(ancestor-or-self::d:book|ancestor-or-self::d:article)[last()]"/>
     <!-- Compare the current "book" ID (be it really a book or an article)
        with the "next" or "previous" book or article ID
      -->
@@ -111,8 +112,8 @@
   <xsl:template name="is.xref.in.samebook">
     <xsl:param name="target" select="NOT_A_NODE"/>
     
-    <xsl:variable name="target.book" select="($target/ancestor-or-self::article|$target/ancestor-or-self::book)[1]"/>
-    <xsl:variable name="this.book" select="(ancestor-or-self::article|ancestor-or-self::book)[1]"/>
+    <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
+    <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
     
     <xsl:choose>
       <xsl:when test="(generate-id($target.book) = generate-id($this.book))">1</xsl:when>

@@ -18,13 +18,15 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 
   <!--  Appendix ================================================== -->
-  <xsl:template match="title" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:title" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style component.title.style"
       font-size="{&super-large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
@@ -32,12 +34,12 @@
         <xsl:value-of select="$title.margin.left"/>
       </xsl:attribute>
       <xsl:call-template name="component.title">
-        <xsl:with-param name="node" select="ancestor-or-self::appendix[1]"/>
+        <xsl:with-param name="node" select="ancestor-or-self::d:appendix[1]"/>
       </xsl:call-template>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="subtitle" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:subtitle" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
       font-family="{$title.fontset}" font-size="{&small; * $sans-fontsize-adjust}pt">
@@ -45,7 +47,7 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="corpauthor" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:corpauthor" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
       font-family="{$title.fontset}" font-size="{&small; * $sans-fontsize-adjust}pt">
@@ -53,7 +55,7 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="authorgroup" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:authorgroup" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
       font-family="{$title.fontset}" font-size="{&small; * $sans-fontsize-adjust}pt">
@@ -61,7 +63,7 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="author" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:author" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
       font-family="{$title.fontset}" font-size="{&small; * $sans-fontsize-adjust}pt">
@@ -69,7 +71,7 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="othercredit" mode="appendix.titlepage.recto.auto.mode">
+  <xsl:template match="d:othercredit" mode="appendix.titlepage.recto.auto.mode">
     <fo:block
       xsl:use-attribute-sets="appendix.titlepage.recto.style"
       font-family="{$title.fontset}" font-size="{&small; * $sans-fontsize-adjust}pt">

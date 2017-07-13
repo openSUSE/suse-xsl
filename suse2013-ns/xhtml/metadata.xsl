@@ -4,12 +4,13 @@
 -->
 
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook" 
   xmlns:dp="urn:x-suse:xmlns:docproperties"
   xmlns:date="http://exslt.org/dates-and-times"
   xmlns="http://www.w3.org/1999/xhtml"
   extension-element-prefixes="date"
-  exclude-result-prefixes="date">
+  exclude-result-prefixes="date d">
 
  <!-- Use a key to find the node dp:filename in 'METAFILE' -->
  <xsl:param name="metafilename" select="'METAFILE'"/>
@@ -83,16 +84,16 @@
               -->
               <xsl:variable name="xmlbase.filename">
                 <xsl:variable name="_xmlbase" 
-                  select="(ancestor-or-self::chapter|
-                  ancestor-or-self::preface|
-                  ancestor-or-self::appendix|
-                  ancestor-or-self::glossary)/@xml:base"/>
+                  select="(ancestor-or-self::d:chapter|
+                  ancestor-or-self::d:preface|
+                  ancestor-or-self::d:appendix|
+                  ancestor-or-self::d:glossary)/@xml:base"/>
                 <xsl:choose>
                   <xsl:when test="$_xmlbase != ''">
                     <xsl:value-of select="$_xmlbase"/>
                   </xsl:when>
                   <xsl:otherwise>
-                    <xsl:value-of select="ancestor-or-self::book/@xml:base"/>
+                    <xsl:value-of select="ancestor-or-self::d:book/@xml:base"/>
                   </xsl:otherwise>
                 </xsl:choose>
               </xsl:variable>

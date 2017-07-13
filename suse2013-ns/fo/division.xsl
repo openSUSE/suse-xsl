@@ -17,8 +17,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet  version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 <xsl:template name="division.title">
@@ -45,7 +47,7 @@
   </xsl:variable>
 
   <xsl:variable name="number">
-      <xsl:apply-templates select="($node/parent::part|$node/parent::partinfo/parent::part)[last()]" mode="label.markup"/>
+      <xsl:apply-templates select="($node/parent::d:part|$node/parent::d:partinfo/parent::d:part)[last()]" mode="label.markup"/>
   </xsl:variable>
 
   <fo:list-block relative-align="baseline"
@@ -86,14 +88,14 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="nodes" select="$part/reference|
-                                     $part/preface|
-                                     $part/chapter|
-                                     $part/appendix|
-                                     $part/article|
-                                     $part/bibliography|
-                                     $part/glossary|
-                                     $part/index"/>
+  <xsl:variable name="nodes" select="$part/d:reference|
+                                     $part/d:preface|
+                                     $part/d:chapter|
+                                     $part/d:appendix|
+                                     $part/d:article|
+                                     $part/d:bibliography|
+                                     $part/d:glossary|
+                                     $part/d:index"/>
 
   <xsl:if test="$actually-do = 1">
     <xsl:if test="count($nodes) &gt; 0 and contains($toc.params, 'toc')">
@@ -108,7 +110,7 @@
 </xsl:template>
 
 
-<xsl:template match="part" mode="part.titlepage.mode">
+<xsl:template match="d:part" mode="part.titlepage.mode">
   <!-- done this way to force the context node to be the part -->
   <xsl:param name="additional.content"/>
 

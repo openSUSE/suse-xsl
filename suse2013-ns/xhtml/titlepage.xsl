@@ -10,12 +10,14 @@
    Copyright:   2012, Stefan Knorr
 
 -->
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns="http://www.w3.org/1999/xhtml">
 
 
-<xsl:template match="book/title|article/title|set/title" mode="titlepage.mode">
+<xsl:template match="d:book/d:title|d:article/d:title|d:set/d:title" mode="titlepage.mode">
   <xsl:variable name="id">
     <xsl:choose>
       <!-- if title is in an *info wrapper, get the grandparent -->

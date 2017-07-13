@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   xmlns:d="http://docbook.org/ns/docbook"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
    xmlns:exsl="http://exslt.org/common"
-   exclude-result-prefixes="exsl">
+   exclude-result-prefixes="exsl d">
 
-<xsl:template match="programlisting|screen|synopsis">
+<xsl:template match="d:programlisting|d:screen|d:synopsis">
   <xsl:param name="suppress-numbers" select="'0'"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
@@ -45,7 +46,7 @@
     <xsl:call-template name="pi-attribute">
       <xsl:with-param name="pis"
                       select="(processing-instruction('dbsuse-fo') |
-                              ../processing-instruction('dbsuse-fo')[parent::example])[last()]"/>
+                              ../processing-instruction('dbsuse-fo')[parent::d:example])[last()]"/>
       <xsl:with-param name="attribute" select="'font-size'"/>
     </xsl:call-template>
   </xsl:variable>
@@ -112,7 +113,7 @@
   <xsl:choose>
     <!-- Need a block-container for these features -->
     <xsl:when test="@width != '' or
-                    (self::programlisting and
+                    (self::d:programlisting and
                     starts-with($writing.mode, 'rl'))">
       <fo:block-container start-indent="0pt" end-indent="0pt">
         <xsl:if test="@width != ''">
@@ -121,7 +122,7 @@
           </xsl:attribute>
         </xsl:if>
         <!-- All known program code is left-to-right -->
-        <xsl:if test="self::programlisting and
+        <xsl:if test="self::d:programlisting and
                       starts-with($writing.mode, 'rl')">
           <xsl:attribute name="writing-mode">lr-tb</xsl:attribute>
         </xsl:if>

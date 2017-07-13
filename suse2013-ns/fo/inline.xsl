@@ -24,25 +24,27 @@
   %fonts;
   %colors;
   %metrics;
-  <!--<!ENTITY % common.entities SYSTEM "http://docbook.sourceforge.net/release/xsl/current/common/entities.ent">-->
+  <!--<!ENTITY % common.entities SYSTEM "http://docbook.sourceforge.net/release/xsl-ns/current/common/entities.ent">-->
   <!--%common.entities;-->
   <!-- Needed to define it here as the parent::variablelist is missing :-( -->
   
-  <!ENTITY comment.block.parents "parent::answer|parent::appendix|parent::article|parent::bibliodiv|
-                                parent::bibliography|parent::blockquote|parent::caution|parent::chapter|
-                                parent::glossary|parent::glossdiv|parent::important|parent::index|
-                                parent::indexdiv|parent::listitem|parent::note|parent::orderedlist|
-                                parent::variablelist|
-                                parent::partintro|parent::preface|parent::procedure|parent::qandadiv|
-                                parent::qandaset|parent::question|parent::refentry|parent::refnamediv|
-                                parent::refsect1|parent::refsect2|parent::refsect3|parent::refsection|
-                                parent::refsynopsisdiv|parent::sect1|parent::sect2|parent::sect3|parent::sect4|
-                                parent::sect5|parent::section|parent::setindex|parent::sidebar|
-                                parent::simplesect|parent::taskprerequisites|parent::taskrelated|
-                                parent::tasksummary|parent::warning|parent::topic">
+  <!ENTITY comment.block.parents "parent::d:answer|parent::d:appendix|parent::d:article|parent::d:bibliodiv|
+                                parent::d:bibliography|parent::d:blockquote|parent::d:caution|parent::d:chapter|
+                                parent::d:glossary|parent::d:glossdiv|parent::d:important|parent::d:index|
+                                parent::d:indexdiv|parent::d:listitem|parent::d:note|parent::d:orderedlist|
+                                parent::d:variablelist|
+                                parent::d:partintro|parent::d:preface|parent::d:procedure|parent::d:qandadiv|
+                                parent::d:qandaset|parent::d:question|parent::d:refentry|parent::d:refnamediv|
+                                parent::d:refsect1|parent::d:refsect2|parent::d:refsect3|parent::d:refsection|
+                                parent::d:refsynopsisdiv|parent::d:sect1|parent::d:sect2|parent::d:sect3|parent::d:sect4|
+                                parent::d:sect5|parent::d:section|parent::d:setindex|parent::d:sidebar|
+                                parent::d:simplesect|parent::d:taskprerequisites|parent::d:taskrelated|
+                                parent::d:tasksummary|parent::d:warning|parent::d:topic">
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
@@ -60,12 +62,12 @@
   <xsl:param name="before" select="''"/>
   <xsl:param name="after" select="''"/>
   <xsl:variable name="mono-verbatim-ancestor">
-    <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
-                  ancestor::programlisting or ancestor::synopsis">1</xsl:if>
+    <xsl:if test="$mode = 'mono-ancestor' or ancestor::d:screen or
+                  ancestor::d:programlisting or ancestor::d:synopsis">1</xsl:if>
   </xsl:variable>
   <xsl:variable name="lighter-formatting">
     <xsl:if test="$mono-verbatim-ancestor = 1 or
-                  ancestor::title[not(parent::formalpara)]">1</xsl:if>
+                  ancestor::d:title[not(parent::d:formalpara)]">1</xsl:if>
   </xsl:variable>
 
   <fo:inline xsl:use-attribute-sets="monospace.properties" font-weight="normal"
@@ -76,8 +78,8 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
+      <xsl:when test="not(ancestor::d:title[not(parent::d:formalpara)] or
+                          ancestor::d:term)">
         <xsl:attribute name="font-size"
           ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
       </xsl:when>
@@ -127,12 +129,12 @@
   <xsl:param name="after" select="''"/>
    <xsl:param name="textcolor" select="'inherit'"/>
   <xsl:variable name="mono-verbatim-ancestor">
-    <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
-                  ancestor::programlisting or ancestor::synopsis">1</xsl:if>
+    <xsl:if test="$mode = 'mono-ancestor' or ancestor::d:screen or
+                  ancestor::d:programlisting or ancestor::d:synopsis">1</xsl:if>
   </xsl:variable>
   <xsl:variable name="lighter-formatting">
     <xsl:if test="$mono-verbatim-ancestor = 1 or
-                  ancestor::title[not(parent::formalpara)]">1</xsl:if>
+                  ancestor::d:title[not(parent::d:formalpara)]">1</xsl:if>
   </xsl:variable>
 
   <fo:inline xsl:use-attribute-sets="monospace.properties mono.bold"
@@ -143,8 +145,8 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
+      <xsl:when test="not(ancestor::d:title[not(parent::d:formalpara)] or
+                          ancestor::d:term)">
         <xsl:attribute name="font-size"
           ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
       </xsl:when>
@@ -193,12 +195,12 @@
   <xsl:param name="before" select="''"/>
   <xsl:param name="after" select="''"/>
   <xsl:variable name="mono-verbatim-ancestor">
-    <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
-                  ancestor::programlisting or ancestor::synopsis">1</xsl:if>
+    <xsl:if test="$mode = 'mono-ancestor' or ancestor::d:screen or
+                  ancestor::d:programlisting or ancestor::d:synopsis">1</xsl:if>
   </xsl:variable>
   <xsl:variable name="lighter-formatting">
     <xsl:if test="$mono-verbatim-ancestor = 1 or
-                  ancestor::title[not(parent::formalpara)]">1</xsl:if>
+                  ancestor::d:title[not(parent::d:formalpara)]">1</xsl:if>
   </xsl:variable>
 
   <fo:inline xsl:use-attribute-sets="monospace.properties italicized"
@@ -209,8 +211,8 @@
     </xsl:if>
     <xsl:choose>
       <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
+      <xsl:when test="not(ancestor::d:title[not(parent::d:formalpara)] or
+                          ancestor::d:term)">
         <xsl:attribute name="font-size"
           ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
       </xsl:when>
@@ -279,15 +281,15 @@
 
   <fo:inline xsl:use-attribute-sets="italicized">
     <xsl:choose>
-      <xsl:when test="(ancestor::title/parent::set or
-                       ancestor::title/parent::setinfo/parent::set or
-                       ancestor::title/parent::info/parent::set or
-                       ancestor::title/parent::book or
-                       ancestor::title/parent::bookinfo/parent::book or
-                       ancestor::title/parent::info/parent::book or
-                       ancestor::title/parent::article or
-                       ancestor::title/parent::articleinfo/parent::article or
-                       ancestor::title/parent::info/parent::article) and
+      <xsl:when test="(ancestor::d:title/parent::d:set or
+                       ancestor::d:title/parent::d:setinfo/parent::d:set or
+                       ancestor::d:title/parent::d:info/parent::d:set or
+                       ancestor::d:title/parent::d:book or
+                       ancestor::d:title/parent::d:bookinfo/parent::d:book or
+                       ancestor::d:title/parent::d:info/parent::d:book or
+                       ancestor::d:title/parent::d:article or
+                       ancestor::d:title/parent::d:articleinfo/parent::d:article or
+                       ancestor::d:title/parent::d:info/parent::d:article) and
                       not($purpose='xref')">
         <xsl:attribute name="font-style">normal</xsl:attribute>
       </xsl:when>
@@ -309,12 +311,12 @@
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 <!-- No mode -->
-<xsl:template match="command|userinput">
+<xsl:template match="d:command|d:userinput">
   <xsl:param name="purpose" select="'none'"/>
   <xsl:param name="mode" select="'normal'"/>
   <xsl:param name="commandcolor" >
    <xsl:choose>
-    <xsl:when test="self::command and ancestor::screen">
+    <xsl:when test="self::d:command and ancestor::d:screen">
      <xsl:value-of select="$dark-green"/>
     </xsl:when>
     <xsl:otherwise>inherit</xsl:otherwise>
@@ -328,10 +330,10 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="classname|exceptionname|interfacename|methodname
-                    |computeroutput|constant|envar|filename|function|literal
-                    |code|option|parameter|prompt|systemitem|varname|email|uri
-                    |cmdsynopsis/command|package">
+<xsl:template match="d:classname|d:exceptionname|d:interfacename|d:methodname
+                    |d:computeroutput|d:constant|d:envar|d:filename|d:function|d:literal
+                    |d:code|d:option|d:parameter|d:prompt|d:systemitem|d:varname|d:email|d:uri
+                    |d:cmdsynopsis/d:command|d:package">
   <xsl:param name="purpose" select="'none'"/>
   <xsl:param name="mode" select="'normal'"/>
 
@@ -341,7 +343,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="sgmltag|tag" name="sgmltag">
+<xsl:template match="d:sgmltag|d:tag" name="sgmltag">
   <xsl:param name="purpose" select="'none'"/>
   <xsl:param name="mode" select="'normal'"/>
   <xsl:variable name="class">
@@ -382,7 +384,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="replaceable|structfield">
+<xsl:template match="d:replaceable|d:structfield">
   <xsl:param name="purpose" select="'none'"/>
   <xsl:param name="mode" select="'normal'"/>
 
@@ -394,11 +396,11 @@
 
 
 <!-- Mode: mono-ancestor -->
-<xsl:template match="command|userinput" mode="mono-ancestor">
+<xsl:template match="d:command|d:userinput" mode="mono-ancestor">
  <xsl:param name="purpose" select="'none'"/>
    <xsl:param name="commandcolor" >
    <xsl:choose>
-    <xsl:when test="self::command and parent::screen">
+    <xsl:when test="self::d:command and parent::d:screen">
      <xsl:value-of select="$dark-green"/>
     </xsl:when>
     <xsl:otherwise>inherit</xsl:otherwise>
@@ -411,10 +413,10 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="classname|exceptionname|interfacename|methodname
-                    |computeroutput|constant|envar|filename|function|literal
-                    |code|option|parameter|prompt|systemitem|varname|email|uri
-                    |cmdsynopsis/command|package"
+<xsl:template match="d:classname|d:exceptionname|d:interfacename|d:methodname
+                    |d:computeroutput|d:constant|d:envar|d:filename|d:function|d:literal
+                    |d:code|d:option|d:parameter|d:prompt|d:systemitem|d:varname|d:email|d:uri
+                    |d:cmdsynopsis/d:command|d:package"
   mode="mono-ancestor">
   <xsl:param name="purpose" select="'none'"/>
 
@@ -424,7 +426,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="sgmltag|tag" mode="mono-ancestor">
+<xsl:template match="d:sgmltag|d:tag" mode="mono-ancestor">
   <xsl:param name="purpose" select="'none'"/>
 
   <xsl:call-template name="sgmltag">
@@ -433,7 +435,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="replaceable|structfield"
+<xsl:template match="d:replaceable|d:structfield"
   mode="mono-ancestor">
   <xsl:param name="purpose" select="'none'"/>
 
@@ -444,7 +446,7 @@
 </xsl:template>
 
 
-<xsl:template match="keycap">
+<xsl:template match="d:keycap">
   <xsl:variable name="cap">
     <xsl:choose>
       <xsl:when test="@function and normalize-space(.) = ''">
@@ -471,9 +473,9 @@
     <xsl:value-of select="string-length(normalize-space($cap))*$instream-font-size*$font-metrics-ratio"/>
   </xsl:variable>
 
-  <xsl:if test="not(parent::keycombo)">
+  <xsl:if test="not(parent::d:keycombo)">
     <xsl:if test="(preceding-sibling::*|preceding-sibling::text()) and
-                  not(preceding-sibling::remark)">
+                  not(preceding-sibling::d:remark)">
       <fo:leader leader-pattern="space" leader-length="0.2em"/>
     </xsl:if>
   </xsl:if>
@@ -505,20 +507,20 @@
     </svg:svg>
   </fo:instream-foreign-object>
 
-  <xsl:if test="not(parent::keycombo)">
+  <xsl:if test="not(parent::d:keycombo)">
     <xsl:if test="(following-sibling::*|following-sibling::text()) and
-                  not(following-sibling::remark)">
+                  not(following-sibling::d:remark)">
     <fo:leader leader-pattern="space" leader-length="0.2em"/>
     </xsl:if>
   </xsl:if>
 
 </xsl:template>
 
-<xsl:template match="keycombo">
+<xsl:template match="d:keycombo">
   <xsl:variable name="joinchar">–</xsl:variable>
 
   <xsl:if test="(preceding-sibling::*|preceding-sibling::text()) and
-                not(preceding-sibling::remark)">
+                not(preceding-sibling::d:remark)">
     <fo:leader leader-pattern="space" leader-length="0.2em"/>
   </xsl:if>
 
@@ -532,28 +534,28 @@
   </xsl:for-each>
 
   <xsl:if test="(following-sibling::*|following-sibling::text()) and
-                not(following-sibling::remark)">
+                not(following-sibling::d:remark)">
     <fo:leader leader-pattern="space" leader-length="0.2em"/>
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="guibutton|guiicon|guilabel|hardware|interface|
-         interfacedefinition|keysym|keycode|mousebutton|property|returnvalue|
-         structname|symbol|token|type">
+<xsl:template match="d:guibutton|d:guiicon|d:guilabel|d:hardware|d:interface|
+         d:interfacedefinition|d:keysym|d:keycode|d:mousebutton|d:property|d:returnvalue|
+         d:structname|d:symbol|d:token|d:type">
   <xsl:call-template name="inline.italicseq"/>
 </xsl:template>
   
-<xsl:template match="guimenu|guisubmenu">
+<xsl:template match="d:guimenu|d:guisubmenu">
   <xsl:call-template name="gentext.guimenu.startquote"/>
   <xsl:call-template name="inline.italicseq"/>
   <xsl:call-template name="gentext.guimenu.endquote"/>
 </xsl:template>
 
-<xsl:template match="package">
+<xsl:template match="d:package">
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
-<xsl:template match="prompt">
+<xsl:template match="d:prompt">
   <xsl:variable name="color">
     <xsl:choose>
       <xsl:when test="@role = 'rootprompt' and format.print = 0">&dark-blood;</xsl:when>
@@ -569,23 +571,23 @@
 <!-- Avoid formatting overload (e.g. no need for green text that is also
      italic). This also avoids the ugly look that occurs when italics
      are replaced with gray text in CJK languages. -->
-<xsl:template match="xref/citetitle">
+<xsl:template match="d:xref/d:citetitle">
   <xsl:apply-templates/>
 </xsl:template>
 
 <xsl:template name="process.menuchoice">
-  <xsl:param name="nodelist" select="guibutton|guiicon|guilabel|guimenu|guimenuitem|guisubmenu|interface"/><!-- not(shortcut) -->
+  <xsl:param name="nodelist" select="d:guibutton|d:guiicon|d:guilabel|d:guimenu|d:guimenuitem|d:guisubmenu|d:interface"/><!-- not(shortcut) -->
   <xsl:param name="count" select="1"/>
   <xsl:param name="color">
     <xsl:choose>
       <!-- FIXME: This has the side effect of looking wrong in TOCs. suse-xsl#297 -->
-      <xsl:when test="ancestor::title"><xsl:value-of select="$dark-green"/></xsl:when>
+      <xsl:when test="ancestor::d:title"><xsl:value-of select="$dark-green"/></xsl:when>
       <xsl:otherwise>&black;</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
   <xsl:param name="height">
     <xsl:choose>
-      <xsl:when test="ancestor::title or ancestor::term">0.55</xsl:when>
+      <xsl:when test="ancestor::d:title or ancestor::d:term">0.55</xsl:when>
       <xsl:otherwise>0.47</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
@@ -630,7 +632,7 @@
      Missing parent::variablelist in comment.block.parents
   -->
   <!-- Also needed for colorful remarks now... -->
-  <xsl:template match="remark">
+  <xsl:template match="d:remark">
     <xsl:param name="wrapper">
       <xsl:choose>
         <xsl:when test="&comment.block.parents;">block</xsl:when>

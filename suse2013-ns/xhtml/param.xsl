@@ -6,7 +6,7 @@
       the DocBook XSL Stylesheets User Reference, see link below)
 
    See Also:
-     * http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html
+     * http://docbook.sourceforge.net/release/xsl-ns/current/doc/html/index.html
 
    Author(s):     Thomas Schraitle <toms@opensuse.org>,
                   Stefan Knorr <sknorr@suse.de>
@@ -16,9 +16,10 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:saxon="http://icl.com/saxon"
   extension-element-prefixes="saxon"
-  exclude-result-prefixes="saxon"
+  exclude-result-prefixes="saxon d"
   xmlns="http://www.w3.org/1999/xhtml">
 
 <!-- 0. Parameters for External Manipulation =================== -->

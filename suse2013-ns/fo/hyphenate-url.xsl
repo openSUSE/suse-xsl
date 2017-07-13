@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id: hyphenate-url.xsl 43839 2009-08-31 14:50:03Z toms $ -->
 <!DOCTYPE xsl:stylesheet >
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
 <!-- 
@@ -152,7 +154,7 @@
 
 
 <!-- ==================================================================== -->
-<xsl:template match="filename" mode="hyphenate-url">
+<xsl:template match="d:filename" mode="hyphenate-url">
   <xsl:apply-templates mode="hyphenate-url"/>
 </xsl:template>
 
@@ -164,7 +166,7 @@
 </xsl:template>
 
 
-<xsl:template match="text()[preceding-sibling::replaceable]" mode="hyphenate-url">
+<xsl:template match="text()[preceding-sibling::d:replaceable]" mode="hyphenate-url">
  <xsl:call-template name="hyphenate-url">
    <xsl:with-param name="url" select="."/>
    <xsl:with-param name="removestartslash" select="false()"/>
@@ -172,7 +174,7 @@
 </xsl:template>
 
 
-<xsl:template match="replaceable" mode="hyphenate-url">
+<xsl:template match="d:replaceable" mode="hyphenate-url">
  <xsl:call-template name="inline.italicseq">
    <xsl:with-param name="content">
      <xsl:call-template name="hyphenate-url">
