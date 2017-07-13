@@ -1,0 +1,316 @@
+#!/usr/bin/env python3
+"""
+Migrates namespace-aware stylesheets into non-namespace stylesheets
+
+Usage:
+   {proc} [-h | --help]
+   {proc} [-v ...] INPUTDIR OUTPUTDIR
+
+Options:
+   -h, --help    Shows this help
+   -v            Raise verbosity level
+
+Arguments:
+   INPUTDIR      is the destination for the namespace-aware stylesheets
+   OUTPUTDIR     is the directory containing non-namespaced stylesheets
+
+"""
+__version__ = "0.1.0"
+__author__ = "Thomas Schraitle <toms@suse.de>"
+
+
+from docopt import docopt
+import logging
+from logging.config import dictConfig
+from lxml import etree
+import os.path
+import re
+import shutil
+import sys
+
+
+NSMAP = dict(date='http://exslt.org/dates-and-times',
+             xsl='http://www.w3.org/1999/XSL/Transform',
+             d='http://docbook.org/ns/docbook',
+             xlink='http://www.w3.org/1999/xlink',
+             xi='http://www.w3.org/2001/XInclude',
+             )
+
+#: Create logging dict for configuration
+DEFAULT_LOGGING_DICT = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+             # from logging import BASIC_FORMAT
+            'format': '[%(levelname)s] %(message)s'
+        },
+    },
+    'handlers': {
+        'default': {
+            'level': 'NOTSET',
+            'formatter': 'standard',
+            'class': 'logging.StreamHandler',
+            # 'stream': 'ext://sys.stderr',
+        },
+    },
+    'loggers': {
+        __name__: {
+            'handlers': ['default'],
+            'level': 'INFO',
+            'propagate': True
+        }
+    }
+}
+#: Map verbosity to log levels
+LOGLEVELS = {None: logging.WARNING,  # 0
+             0: logging.WARNING,
+             1: logging.INFO,
+             2: logging.DEBUG,
+             }
+
+#: Don't add namespace to any xsl files in these directories
+IGNOREDIRS = ('extensions',
+              'images',
+              'tools',
+              'build',
+              'slides',
+              'static',
+              'website',
+              'wordml',
+              )
+
+#: Ignore files
+IGNOREFILES=('string-replace.xsl',
+             'arch-string.xsl',
+             'html-rtf.xsl',
+             'html2xhtml.xsl',
+             'olink.xsl',
+             'addns.xsl',
+             'stripns.xsl',
+             'tbl.xsl',
+             'VERSION.xsl',
+             'xsl.xsl',
+             )
+
+#: Don't add namespace to files in these particular locations
+IGNOREFILESINPATH = ('common/string-replace.xsl',
+                     'common/arch-string.xsl',
+                     'fo/colors.ent',
+                     'fo/fonts.ent',
+                     'fo/metrics.ent',
+                     'fo/l10n.properties.xsl',
+                     'version.xsl',
+                     )
+
+log = logging.getLogger(__name__)
+
+#: Global variable to switch on/off copying of files
+#: If True, only debug messages are shown
+DRYRUN=False
+
+
+def copy(src, dest, *, follow_symlinks=True):
+    """Copy data and all stat info ("cp -p src dst").
+       Return the file's destination.
+
+       The destination may be a directory.
+
+       If follow_symlinks is false, symlinks won't be followed. 
+       This resembles GNU's "cp -P src dst".
+    """
+    msg = '{} Copy %r -> %r'
+    msg = msg.format('(Dry)') if DRYRUN else msg.format('')
+    func = lambda src, dst, *, follow_symlinks=True: None if DRYRUN else shutil.copyfile
+    #
+    log.debug(msg, src, dest)
+    return func(src, dest, follow_symlinks=follow_symlinks)
+
+
+def copytree(src, dest, symlinks=False, ignore=None, copy_function=copy,
+             ignore_dangling_symlinks=False):
+    """Recursively copy a directory tree
+    """
+    msg = '{} Copy tree %r -> %r'
+    msg = msg.format('(Dry)') if DRYRUN else msg.format('')
+    func = lambda src, dst, symlinks=False, ignore=None, copy_function=copy, ignore_dangling_symlinks=False: None if DRYRUN else shutil.copytree
+    #
+    log.debug(msg, src, dest)
+    return func(src, dest, symlinks, ignore, copy_function, ignore_dangling_symlinks)
+
+
+def mkdir(name, mode=511, exist_ok=True):
+    """Create a directory
+    """
+    msg = ' {} Create dir %r'
+    msg = msg.format('(Dry)') if DRYRUN else msg.format('')
+    if DRYRUN:
+        func = lambda name, mode=mode, exist_ok=exist_ok: None
+    else:
+        func = os.makedirs
+    log.debug(msg, name)
+    try:
+        return func(name, mode=mode, exist_ok=exist_ok)
+    except FileExistsError:
+        pass
+
+
+def createdirs(outputdir, dirs):
+    """Create the directory structure in the output directory
+    """
+    #if dirs is None:
+    #    log.info("Creating output directory %r", outputdir)
+    #    mkdir(outputdir)
+    #    return
+    for d in dirs:
+        path = os.path.join(outputdir, d)
+        mkdir(path)
+
+
+def passthrufiles(path):
+    """Check, if the files are copied unmodified
+    """
+    _, ext = os.path.splitext(path)
+    if ext not in ('.xsl', '.ent'):
+        return True
+    else:
+        return False
+
+REGEXES=dict(
+    INC=(r"""(xsl\:(import|include)\s+href="http\://docbook.sourceforge.net/release/xsl)""",
+         r"""\1-ns"""),
+    RELEASE=(r"""(http://docbook.sourceforge.net/release/xsl)""",
+             r"""\1-ns"""),
+    GHCONTENT=(r"""(https?://raw.githubusercontent.com/openSUSE/suse-xsl/master/[^/]*)""",
+               r""" """),
+    STRIPADD=(r"""stripns\.xsl""", r"""addns.xsl"""),
+    NS=(r"""no\.namespace""", r"""with.namespace"""),
+    CUT=(r"""(namesp\.\s+)cut""", r"""\1add"""),
+    STRIPNS=('stripped namespace before', 'added namespace before'),
+    STRIPNSFROMDB=r'(Unable to )strip( the namespace from )DB5( document)', r'\1add\2DB4\3'),
+    TEST=(r"""(namespace-uri\(/\*\)\s*)=(\s*['"]http://docbook.org/ns/docbook['"])""",
+          r'\1!=\2'),
+    VARIABLE=(r"""(<xsl:variable name="db.prefix">)(</xsl:variable>)""",
+              r"\1d:\2")
+    )
+
+
+
+def filterxsl(src, dest):
+    """Do some regex work on specific xsl files
+    """
+    return None
+    # -----
+    with open(src, 'r') as infile:
+        with open(dest, 'w') as outfile:
+            for line in infile:
+                for key, value in REGEXES.items():
+                    line = re.sub(key, value, line)
+                    outfile.write(line)
+                # outfile.write(line) # ???
+
+
+
+def copy_or_process(inputdir, src, outputdir):
+    """Copy or process
+    """
+    r = os.path.relpath(src, inputdir).lstrip(".")
+    dest = os.path.join(outputdir, r)
+    # log.debug("copy_or_process(%r, %r)", src, dest)
+
+    # just copy specific files unmodified
+    if passthrufiles(src) or r in IGNOREFILESINPATH
+        log.info("Copy %r", src)
+        copy(src, dest)
+    # just copy some specific paths unmodified
+    #elif r in IGNOREFILESINPATH:
+    #    log.info("Copy %r", src)
+    #    copy(src, dest)
+    else:
+        #
+        log.info("Modify %r", dest)
+        filterxsl(src, dest)
+
+
+def walk(inputdir, outputdir):
+    """Walk through the input directory
+    """
+    # walk through all files and directories
+    for root, dirs, files in os.walk(inputdir):
+        log.debug("root=%r, dirs=%r, files=%i", root, dirs, len(files))  # files
+        r = os.path.relpath(root, inputdir).lstrip(".")
+        for d in dirs:
+            if d in IGNOREDIRS:
+                src = os.path.join(root, d)
+                dest = os.path.join(outputdir, r, d)
+                # copy whole directory
+                copytree(src, dest)
+
+        # createdirs(outputdir, dirs)
+
+        for f in files:
+            src = os.path.join(root, f)
+            dest = os.path.join(outputdir, r)
+            log.debug("Create dir %r", dest)
+            os.makedirs(dest, exist_ok=True)
+            copy_or_process(inputdir, src, outputdir)
+
+
+# -----------------------------------------------------------------------------
+def checkargs(args):
+    """Check arguments
+    """
+    inputdir, outputdir = args['INPUTDIR'], args['OUTPUTDIR']
+    if not os.path.exists(os.path.realpath(inputdir)):
+        raise FileNotFoundError("Couldn't find directory %r!" % inputdir)
+    if os.path.exists(os.path.realpath(outputdir)):
+        raise FileExistsError("Output dir %r already exists!" % outputdir)
+    args['INPUTDIR'] = args['INPUTDIR'].rstrip("/")
+    args['OUTPUTDIR'] = args['OUTPUTDIR'].rstrip("/")
+
+
+def parsecli(cliargs=None):
+    """Parse CLI arguments with docopt
+
+    :param list cliargs: List of commandline arguments
+    :return: dictionary from docopt
+    :rtype: dict
+    """
+
+    version = "%s %s" % (__name__, __version__)
+    args = docopt(__doc__.format(proc=os.path.basename(sys.argv[0])),
+                  argv=cliargs,
+                  version=version)
+    dictConfig(DEFAULT_LOGGING_DICT)
+    log.setLevel(LOGLEVELS.get(args['-v'], logging.DEBUG))
+    checkargs(args)
+    log.debug("CLI result: %s", args)
+    return args
+
+
+def main(cliargs=None):
+    """Entry point for the application script
+
+    :param list cliargs: Arguments to parse or None (=use sys.argv)
+    :return: return codes from ``ERROR_CODES``
+    """
+    try:
+        args = parsecli(cliargs)
+        # Do some useful stuff here...
+        inputdir, outputdir = args['INPUTDIR'], args['OUTPUTDIR']
+        log.info("Input=%r, output=%r", inputdir, outputdir)
+        # Create the outmost directory first:
+        log.debug("Create %s directory", outputdir)
+        os.mkdir(outputdir)
+        walk(inputdir, outputdir)
+
+    except (FileNotFoundError, FileExistsError, IOError) as error:
+        log.fatal(error)
+        return 10
+    except etree.XMLSyntaxError as error:
+        log.fatal(error)
+        return 20
+
+
+if __name__ == "__main__":
+    sys.exit(main())
