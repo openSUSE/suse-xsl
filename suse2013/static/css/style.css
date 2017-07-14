@@ -1815,8 +1815,9 @@ code, .command, .keycap, .literal, .package {
 paddings/borders... In some rare case, there might e.g. be an image inside a
 code/etc. element and then this might backfire. */
 code *, .keycap *, .replaceable *, .literal *, .package * {
-    padding: 0;
-    border: none;
+    padding: 0 !important;
+    border: none !important;
+    display: inline;
 }
 
 
