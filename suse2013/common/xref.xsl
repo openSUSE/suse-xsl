@@ -194,7 +194,7 @@
     <xsl:apply-templates select="ancestor::appendix|ancestor::article|
       ancestor::chapter|ancestor::glossary|ancestor::preface"
       mode="intra.title.markup">
-      <xsl:param name="lang" select="$lang"/>
+      <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
     <xsl:value-of select="concat(' ', term[1])"/>
   </xsl:template>
