@@ -408,15 +408,7 @@ USA</xsl:param>
 
 <!-- Creator string for PDF -->
 <xsl:param name="pdf-creator">
-  <!-- FIXME: add DAPS version, see: daps#226 -->
-  <xsl:text>DAPS (https://opensuse.github.io/daps) using the </xsl:text>
-  <xsl:value-of select="$STYLE.NAME"/>
-  <xsl:text> </xsl:text>
-  <xsl:value-of select="$STYLE.VERSION"/>
-  <xsl:text> (based on DocBook XSL</xsl:text>
-  <xsl:text> </xsl:text>
-  <xsl:value-of select="$VERSION"/>
-  <xsl:text>)</xsl:text>
+  <xsl:call-template name="converter-string"/>
 </xsl:param>
 
 <!-- Trim away empty lines from the beginning and end of screens -->
