@@ -62,13 +62,18 @@
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
         <xsl:with-param name="source">
-          <xsl:value-of select="local-name(.)"/>
-          <xsl:text> in </xsl:text>
+          <xsl:text>(in </xsl:text>
           <xsl:value-of select="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)[last()]"/>
+          <xsl:text>)</xsl:text>
         </xsl:with-param>
-        <xsl:with-param name="context-desc">screen</xsl:with-param>
-        <xsl:with-param name="message">String in screen is longer than <xsl:value-of
-          select="$screen.max.length"/> characters.</xsl:with-param>
+        <xsl:with-param name="context-desc" select="local-name(.)"/>
+        <xsl:with-param name="message">
+           <xsl:text>String in </xsl:text>
+           <xsl:value-of select="local-name(.)"/>
+           <xsl:text> is longer than </xsl:text>
+           <xsl:value-of select="$screen.max.length"/>
+           <xsl:text> characters.</xsl:text>
+         </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>
