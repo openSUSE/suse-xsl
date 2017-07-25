@@ -62,7 +62,9 @@
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
         <xsl:with-param name="source">
-          <xsl:call-template name="xpath.location"/>
+          <xsl:value-of select="local-name(.)"/>
+          <xsl:text> in </xsl:text>
+          <xsl:value-of select="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)[last()]"/>
         </xsl:with-param>
         <xsl:with-param name="context-desc">screen</xsl:with-param>
         <xsl:with-param name="message">String in screen is longer than <xsl:value-of
