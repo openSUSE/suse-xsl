@@ -83,24 +83,30 @@
  
 
 <xsl:template match="glossentry">
+ <xsl:variable name="permalink">
+  <xsl:text> </xsl:text>
+  <xsl:call-template name="create.permalink"/>
+ </xsl:variable>
   <xsl:choose>
     <xsl:when test="$glossentry.show.acronym = 'primary'">
       <dt>
         <xsl:call-template name="id.attribute">
           <xsl:with-param name="force" select="1"/>
         </xsl:call-template>
+
         <span>
-        <xsl:choose>
-          <xsl:when test="acronym|abbrev">
-            <xsl:apply-templates select="acronym|abbrev"/>
-            <xsl:text> (</xsl:text>
-            <xsl:apply-templates select="glossterm"/>
-            <xsl:text>)</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="glossterm"/>
-          </xsl:otherwise>
-        </xsl:choose>
+         <xsl:choose>
+           <xsl:when test="acronym|abbrev">
+             <xsl:apply-templates select="acronym|abbrev"/>
+             <xsl:text> (</xsl:text>
+             <xsl:apply-templates select="glossterm"/>
+             <xsl:text>)</xsl:text>
+           </xsl:when>
+           <xsl:otherwise>
+             <xsl:apply-templates select="glossterm"/>
+           </xsl:otherwise>
+         </xsl:choose>
+         <xsl:copy-of select="$permalink"/>
         </span>
       </dt>
     </xsl:when>
@@ -110,13 +116,14 @@
           <xsl:with-param name="force" select="1"/>
         </xsl:call-template>
         <span>
-        <xsl:apply-templates select="glossterm"/>
+         <xsl:apply-templates select="glossterm"/>
+         <xsl:copy-of select="$permalink"/>
 
-        <xsl:if test="acronym|abbrev">
-          <xsl:text> (</xsl:text>
-          <xsl:apply-templates select="acronym|abbrev"/>
-          <xsl:text>)</xsl:text>
-        </xsl:if>
+         <xsl:if test="acronym|abbrev">
+           <xsl:text> (</xsl:text>
+           <xsl:apply-templates select="acronym|abbrev"/>
+           <xsl:text>)</xsl:text>
+         </xsl:if>
         </span>
       </dt>
     </xsl:when>
@@ -126,7 +133,8 @@
           <xsl:with-param name="force" select="1"/>
         </xsl:call-template>
         <span>
-        <xsl:apply-templates select="glossterm"/>
+          <xsl:apply-templates select="glossterm"/>
+          <xsl:copy-of select="$permalink"/>
         </span>
       </dt>
     </xsl:otherwise>
