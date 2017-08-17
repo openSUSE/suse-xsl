@@ -247,6 +247,7 @@ CEE
 Ceilometer
 Celeron
 CellWriter
+CentOS
 centric
 CentricStor
 Ceph
@@ -2238,7 +2239,8 @@ SamePage
 Sametime
 SAMR
 Samsung
-Sandboxing
+sandboxed
+sandboxing
 SANs
 sapcontrol
 SAPDatabase
@@ -2521,6 +2523,8 @@ subprocess
 subprocesses
 subprofile
 subprofiles
+subproject
+subprojects
 subqueries
 subrealms
 substring
@@ -2533,6 +2537,7 @@ subusers
 subvolume
 subvolumes
 sudo
+sudoers
 suEXEC
 SUID
 Suid
