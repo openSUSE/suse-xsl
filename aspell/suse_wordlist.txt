@@ -67,6 +67,8 @@ aRts
 asound
 ASpeed
 aspell
+assignee
+assignees
 assistive
 AST
 ASUS
@@ -1299,6 +1301,8 @@ libvirt
 libvirtd
 libxl
 libzypp
+licensor
+licensors
 Lifebook
 lifecycle
 LifeMeeting
@@ -1306,6 +1310,7 @@ LiliPond
 LilyPond
 Linbit
 Linphone
+lintian
 linux
 linuxbridge
 linuxptp
@@ -1397,6 +1402,7 @@ Makefile
 malware
 ManageRAID
 ManageVE
+Mandriva
 mapname
 marc
 MariaDB
@@ -1421,6 +1427,7 @@ MDS
 MDSs
 mdstat
 mediumx
+MeeGo
 MEI
 Mellanox
 mem
@@ -1747,6 +1754,7 @@ organizationalUnit
 os
 OSA
 OsaMedium
+osc
 OSD
 osd
 OSDs
@@ -2594,8 +2602,8 @@ sysmaster
 SysRq
 sysstat
 systables
-systemwide
 systemd
+systemwide
 SYSV
 tablatures
 tapeipl
@@ -2781,6 +2789,7 @@ unsets
 untagged
 untar
 untarred
+untrusted
 unzoned
 updatedb
 Upgradability
@@ -2972,8 +2981,8 @@ workset
 Workspaces
 workspaces
 workstation
-workstations
 workstation's
+workstations
 WPA
 wpg
 writeback
