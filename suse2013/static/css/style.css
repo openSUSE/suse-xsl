@@ -106,7 +106,7 @@ html, body {
 }
 
 #_content {
-    background: url(../images/dots-gray.png) repeat-x scroll 0px 0px;
+    background: #FFF url(../images/dots-gray.png) repeat-x scroll 0px 0px;
     min-height: 139px;
     clear: both;
     min-width: 150px;
@@ -1083,7 +1083,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 .bottom-button:hover, .bottom-button:focus,
 .bottom-button:active {
     border: 1px solid rgba(20,20,20,0.5);
-    background: #DEDEDE;
+    background-color: #DEDEDE;
 }
 
 .bottom-button:hover:before, .bottom-button:focus:before,
@@ -2522,7 +2522,7 @@ p.ds-message {
 }
 
 .draft {
-    background: url(../images/draft.png) no-repeat fixed left 50%;
+    background: #FFF url(../images/draft.png) no-repeat fixed left 50%;
 }
 
 @page {
