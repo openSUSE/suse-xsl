@@ -1936,6 +1936,13 @@ code, .literal, .replaceable, .package {
     font-weight: 600;
 }
 
+/* highlight.js likes to recolor our text. ugh! */
+.callout * {
+    color: #FFF !important;
+    font-weight: 600 !important;
+    background-color: transparent !important;
+}
+
 .verbatim-wrap .callout {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1943,7 +1950,9 @@ code, .literal, .replaceable, .package {
     user-select: none;
 }
 
-.calloutlist .callout {
+/* xrefs in a calloutlist can contain .callout too, so make sure we don't
+catch those. */
+.calloutlist td:nth-child(1) .callout {
     position: relative;
     top: 2px;
     float: right;
