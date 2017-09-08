@@ -53,13 +53,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Eksempel&#160;%n"/>
+      <l:template name="example-label" text="Eksempel&#160;%n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Figur&#160;%n"/>
+      <l:template name="figure-label" text="Figur&#160;%n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Fremgangsm&#229;de&#160;%n"/>
+      <l:template name="procedure-label" text="Fremgangsm&#229;de&#160;%n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tabel&#160;%n"/>
+      <l:template name="table-label" text="Tabel&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>

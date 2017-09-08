@@ -48,13 +48,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="%n&#160;pavyzdys"/>
+      <l:template name="example-label" text="%n&#160;pavyzdys:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="%n&#160;pav."/>
+      <l:template name="figure-label" text="%n&#160;pav.:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="%n&#160;proced&#363;ra"/>
+      <l:template name="procedure-label" text="%n&#160;proced&#363;ra:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="%n&#160;lentel&#279;"/>
+      <l:template name="table-label" text="%n&#160;lentel&#279;:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>

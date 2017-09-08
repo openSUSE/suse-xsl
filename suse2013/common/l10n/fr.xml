@@ -13,7 +13,7 @@
    <l:gentext key="Contributor"     text="Contributeur"/>
    <l:gentext key="Contributors"    text="Contributeurs"/>
 
-   <l:gentext key="admonseparator"  text=" : "/>
+   <l:gentext key="admonseparator"  text="&#160;: "/>
 
    <l:gentext key="hyphenation-push-character-count" text="4"/>
    <l:gentext key="hyphenation-remain-character-count" text="4"/>
@@ -31,7 +31,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigation"/>
-   <l:gentext key="sharethispage" text="Partager cette page : "/>
+   <l:gentext key="sharethispage" text="Partager cette page&#160;: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="shareviagoogleplus" text="Google+"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
@@ -56,13 +56,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Exemple %n"/>
+      <l:template name="example-label" text="Exemple %nt&#160;:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Figure %n"/>
+      <l:template name="figure-label" text="Figure %nt&#160;:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Proc&#233;dure %n"/>
+      <l:template name="procedure-label" text="Proc&#233;dure %nt&#160;:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tableau %n"/>
+      <l:template name="table-label" text="Tableau %n&#160;:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>

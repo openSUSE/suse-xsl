@@ -44,13 +44,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="&#20363; %n"/>
+      <l:template name="example-label" text="&#20363; %n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="&#22259; %n"/>
+      <l:template name="figure-label" text="&#22259; %n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="&#25163;&#38918; %n"/>
+      <l:template name="procedure-label" text="&#25163;&#38918; %n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#34920; %n"/>
+      <l:template name="table-label" text="&#34920; %n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
