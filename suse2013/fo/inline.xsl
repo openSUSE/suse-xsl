@@ -112,7 +112,6 @@
   </fo:inline>
 </xsl:template>
 
-
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
     <xsl:call-template name="simple.xlink">
@@ -178,7 +177,6 @@
     </xsl:if>
   </fo:inline>
 </xsl:template>
-
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
@@ -443,6 +441,11 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="emphasis" mode="mono-ancestor">
+ <xsl:call-template name="inline.italicmonoseq">
+  <xsl:with-param name="mode" select="'mono-ancestor'"/>
+ </xsl:call-template>
+</xsl:template>
 
 <xsl:template match="keycap">
   <xsl:variable name="cap">
