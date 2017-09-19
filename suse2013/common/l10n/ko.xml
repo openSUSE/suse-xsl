@@ -70,6 +70,7 @@
    <l:context name="xref">
       <l:template name="page.citation" text="%p&#54168;&#51060;&#51648; "/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="문서 “%t”"/>
       <l:template name="intra-book" text="책 “%t”"/>
       <l:template name="intra-chapter" text="%n장 “%t”"/>

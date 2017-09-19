@@ -81,6 +81,7 @@
       <l:template name="section" text="Sezione «%t»"/>
       <l:template name="simplesect" text="Sezione «%t»"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Articolo «%t»"/>
       <l:template name="intra-book" text="Libro «%t»"/>
       <l:template name="intra-chapter" text="Capitolo %n «%t»"/>

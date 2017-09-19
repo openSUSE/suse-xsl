@@ -69,6 +69,7 @@
       <l:template name="sect5" text="Osa ”%t”"/>
       <l:template name="page.citation" text=" (sivu&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikkeli ”%t”"/>
       <l:template name="intra-book" text="Kirja ”%t”"/>
       <l:template name="intra-chapter" text="Luku&#160;%n ”%t”"/>

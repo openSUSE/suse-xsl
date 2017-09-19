@@ -72,6 +72,7 @@
       <l:template name="sect5" text="„%t“"/>
       <l:template name="page.citation" text=" (p.&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Straipsnis „%t“"/>
       <l:template name="intra-book" text="Knyga „%t“"/>
       <l:template name="intra-chapter" text="Skyrius&#160;%n „%t“"/>

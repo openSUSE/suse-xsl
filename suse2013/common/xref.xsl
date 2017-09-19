@@ -25,6 +25,22 @@
 </xsl:template>
 
 
+<xsl:template name="generate.intra.separator">
+ <xsl:param name="lang"/>
+  <xsl:variable name="comma">
+   <xsl:call-template name="gentext.template">
+    <xsl:with-param name="context" select="'xref'"/>
+    <xsl:with-param name="name"  select="'intra-separator'"/>
+    <xsl:with-param name="lang" select="$lang"/>
+   </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:choose>
+   <xsl:when test="$comma != ''"><xsl:value-of select="$comma"/></xsl:when>
+   <xsl:otherwise><xsl:text>, </xsl:text></xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
 <xsl:template name="create.linkto.other.book">
   <xsl:param name="target"/>
   <!-- It seems we can't get any useful value here anyway, so lets trust the
@@ -41,7 +57,6 @@
       <xsl:with-param name="lang" select="$lang-normalized"/>
     </xsl:apply-templates>
   </xsl:variable>
-
   <xsl:copy-of select="$text"/>
 </xsl:template>
 
@@ -53,7 +68,9 @@
     <xsl:apply-templates select="parent::*" mode="intra.title.markup">
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
-    <xsl:text>, </xsl:text>
+    <xsl:call-template name="generate.intra.separator">
+     <xsl:with-param name="lang" select="$lang"/>
+    </xsl:call-template>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
@@ -76,7 +93,9 @@
       mode="intra.title.markup">
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
-    <xsl:text>, </xsl:text>
+    <xsl:call-template name="generate.intra.separator">
+     <xsl:with-param name="lang" select="$lang"/>
+    </xsl:call-template>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
@@ -97,7 +116,9 @@
     <xsl:apply-templates select="ancestor::book" mode="intra.title.markup">
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
-    <xsl:text>, </xsl:text>
+    <xsl:call-template name="generate.intra.separator">
+     <xsl:with-param name="lang" select="$lang"/>
+    </xsl:call-template>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
@@ -118,7 +139,9 @@
       <xsl:with-param name="lang" select="$lang"/>
     </xsl:apply-templates>
 
-    <xsl:text>, </xsl:text>
+    <xsl:call-template name="generate.intra.separator">
+     <xsl:with-param name="lang" select="$lang"/>
+    </xsl:call-template>
     <xsl:call-template name="substitute-markup">
       <xsl:with-param name="template">
         <xsl:call-template name="gentext.template">
@@ -155,7 +178,6 @@
         </xsl:call-template>
       </xsl:with-param>
     </xsl:call-template>
-
   </xsl:template>
 
 
@@ -172,7 +194,9 @@
     </xsl:apply-templates>
     <xsl:choose>
       <xsl:when test="title">
-        <xsl:text>, </xsl:text>
+        <xsl:call-template name="generate.intra.separator">
+         <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
         <xsl:apply-templates select="." mode="title.markup">
           <xsl:with-param name="lang" select="$lang"/>
         </xsl:apply-templates>
@@ -182,7 +206,6 @@
         <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
       </xsl:otherwise>
     </xsl:choose>
-
   </xsl:template>
 
 

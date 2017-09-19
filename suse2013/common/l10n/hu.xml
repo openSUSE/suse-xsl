@@ -79,6 +79,7 @@
       <!-- Linguist said that the inclusion of the word for book does not work
       in HU and suggests removing it because it is obviously an
       external book name. -->
+      <l:template name="intra-separator" text=", "/>
       <!--<l:template name="intra-book" text="könyv „%t”"/>-->
       <l:template name="intra-book" text="„%t”"/>
       <l:template name="intra-chapter" text="%n.&#160;fejezet (%t)"/>

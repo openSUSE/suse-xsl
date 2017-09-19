@@ -70,6 +70,7 @@
    <l:context name="xref">
       <l:template name="page.citation" text=" (p&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artigo “%t”"/>
       <l:template name="intra-book" text="Livro “%t”"/>
       <l:template name="intra-chapter" text="Capítulo %n “%t”"/>

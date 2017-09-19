@@ -73,6 +73,7 @@
       <l:template name="sect5" text="Avsnittet ”%t”"/>
       <l:template name="page.citation" text=" (sidan&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikel ”%t”"/>
       <l:template name="intra-book" text="Bok ”%t”"/>
       <l:template name="intra-chapter" text="Kapitel&#160;%n ”%t”"/>
