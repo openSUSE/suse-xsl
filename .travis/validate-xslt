@@ -1,11 +1,17 @@
 #!/bin/bash
 
 # Find out where we are:
-ME="$(test -L $(realpath $BASH_SOURCE) && readlink -e $(realpath $BASH_SOURCE) || echo $(realpath $BASH_SOURCE))"
-MYPATH="${ME%/*}"
+SCRIPT=$(readlink -f "$BASH_SOURCE")
+MYPATH="${SCRIPT%/*}"
 
 # Assign RELAX NG
 RNG="$MYPATH/xslt10.rnc"
+
+echo $RNG
+if [[ ! -e $RNG ]]; then
+ echo "Couldn't find the RNG schema"
+ exit 10
+fi
 
 # These are the directories to investigate:
 DIRS=$(echo "suse2013/common/*.xsl suse2013/epub3/*.xsl suse2013/fo/*.xsl suse2013/xhtml/*.xsl suse2013/xhtml5/*.xsl")
