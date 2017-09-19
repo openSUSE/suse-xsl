@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Find out where we are:
+ME="$(test -L $(realpath $BASH_SOURCE) && readlink -e $(realpath $BASH_SOURCE) || echo $(realpath $BASH_SOURCE))"
+MYPATH="${ME%/*}"
+
+# Assign RELAX NG
+RNG="$MYPATH/xslt10.rnc"
+
+# These are the directories to investigate:
+DIRS=$(echo "suse2013/common/*.xsl suse2013/epub3/*.xsl suse2013/fo/*.xsl suse2013/xhtml/*.xsl suse2013/xhtml5/*.xsl")
+
+# Ignore the following files:
+IGNORE="suse2013/fo/logo.xsl"
+
+for ign in $IGNORE; do
+    DIRS=$(echo $DIRS | sed -e "s#$ign##g")
+done
+
+result=0
+for xslt in $DIRS; do
+  echo -n "> Validating $xslt..."
+  jing -c $RNG $xslt
+  r=$?
+  [[ $r -eq 0 ]] && echo "ok"
+  [[ $r -eq 0 ]] || result=1
+done
+
+exit $result
