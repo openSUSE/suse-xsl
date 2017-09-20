@@ -93,7 +93,6 @@
           <strong class="arch-arrow-end">
           </strong>
         </xsl:if>
-
       </p>
     </xsl:variable>
 
@@ -109,8 +108,7 @@
     </xsl:choose>
   </xsl:template>
 
-
-<xsl:template match="formalpara/title|formalpara/info/title">
+  <xsl:template match="formalpara/title|formalpara/info/title">
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
@@ -119,9 +117,9 @@
       <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
     </xsl:if>
   </xsl:variable>
-
+  
   <span class="formalpara-title">
-    <xsl:copy-of select="$titleStr"/>
+   <xsl:copy-of select="$titleStr"/>
     <xsl:if test="$lastChar != '' and not(contains($runinhead.title.end.punct, $lastChar))">
       <xsl:call-template name="gentext">
         <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
@@ -129,6 +127,12 @@
     </xsl:if>
     <xsl:text>&#160;</xsl:text>
   </span>
+</xsl:template>
+
+<xsl:template match="formalpara/title/node()[last()][not(self::*)]">
+ <xsl:call-template name="trim-verbatim-whitespace-end">
+  <xsl:with-param name="input" select="."/>
+ </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="para[normalize-space(.)='' and not(*)]"/>
