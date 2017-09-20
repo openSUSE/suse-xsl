@@ -3,6 +3,9 @@
 # Find out where we are:
 SCRIPT=$(readlink -f "$BASH_SOURCE")
 MYPATH="${SCRIPT%/*}"
+# Our config files:
+XSLTFILES_CONFIG=$MYPATH/xsltfiles.txt
+IGNOREFILE_CONFIG=$MYPATH/ignore-xslt.txt
 
 # Assign RELAX NG
 RNG="$MYPATH/xslt10.rnc"
@@ -13,18 +16,30 @@ if [[ ! -e $RNG ]]; then
  exit 10
 fi
 
-# These are the directories to investigate:
-DIRS=$(echo "suse2013/common/*.xsl suse2013/epub3/*.xsl suse2013/fo/*.xsl suse2013/xhtml/*.xsl suse2013/xhtml5/*.xsl")
+function readfilecfg() {
+    # Read lines from a file while avoiding lines with #
+    local RESULT=""
+    local LINE
+    local FILEINPUT=$1
+    while read -r LINE; do
+      [[ "$LINE" =~ ^#.*$ ]] && continue;
+      RESULT="$RESULT $LINE";
+    done < $FILEINPUT
+    echo $RESULT
+}
 
-# Ignore the following files:
-IGNORE="suse2013/fo/logo.xsl"
+# These are the directories to investigate:
+XSLTFILES=$(readfilecfg $XSLTFILES_CONFIG)
+
+# Fill the ignore list
+IGNORE="$(readfilecfg $IGNOREFILE_CONFIG)"
 
 for ign in $IGNORE; do
-    DIRS=$(echo $DIRS | sed -e "s#$ign##g")
+    XSLTFILES=$(echo $XSLTFILES | sed -e "s#$ign##g")
 done
 
 result=0
-for xslt in $DIRS; do
+for xslt in $XSLTFILES; do
   echo -n "> Validating $xslt..."
   jing -c $RNG $xslt
   r=$?
