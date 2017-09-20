@@ -1,9 +1,9 @@
 SUSE XSL Stylesheets 2.0.7.2
 ============================
-Thomas Schraitle <toms@opensuse.org>
 
 :numbered:
 :website: https://github.com/openSUSE/suse-xsl
+image:https://travis-ci.org/openSUSE/suse-xsl.svg?branch=develop["Build Status", link="https://travis-ci.org/openSUSE/suse-xsl"]
 
 This project contains customization layers for the DocBook XSL stylesheets.
 
