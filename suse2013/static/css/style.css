@@ -1782,6 +1782,7 @@ code, .command, .keycap, .replaceable, .package {
     font-weight: normal;
     padding: 0 4px;
     border-bottom: 1px solid #C1C1C3;
+    border-bottom-style: dotted;
     color: #333;
     text-transform: none;
     display: inline-block;
