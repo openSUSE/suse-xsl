@@ -14,11 +14,11 @@ before_install:
     - sudo apt-get update
     - sudo apt-get install -y jing
 
-install:
-    - echo "Installation complete"
+# install:
+#    - echo "Installation complete"
 
 script:
-    - ./.travis/validate-xslt
+    - ./tests/validate-xslt
 
 # blacklist
 branches:
