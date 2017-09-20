@@ -1,0 +1,4 @@
+# Config file for validate-xslt
+#
+# List of files to ignore; relative filenames to repository root
+suse2013/fo/logo.xsl
