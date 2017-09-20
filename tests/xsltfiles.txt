@@ -1,0 +1,6 @@
+# Stylesheets to investigate:
+suse2013/common/*.xsl
+suse2013/epub3/*.xsl
+suse2013/fo/*.xsl
+suse2013/xhtml/*.xsl
+suse2013/xhtml5/*.xsl
