@@ -185,6 +185,13 @@
 
   </xsl:template>
 
+  <xsl:template match="step" mode="intra.title.markup">
+    <xsl:param name="linkend"/>
+    <xsl:param name="first" select="0"/>
+    <xsl:param name="lang" select="'en'"/>
+
+    <xsl:apply-templates select="." mode="xref-to"/>
+  </xsl:template>
 
   <xsl:template match="varlistentry" mode="intra.title.markup">
     <xsl:param name="linkend"/>
