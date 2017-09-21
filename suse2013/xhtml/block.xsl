@@ -117,7 +117,7 @@
       <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
     </xsl:if>
   </xsl:variable>
-  
+
   <span class="formalpara-title">
    <xsl:copy-of select="$titleStr"/>
     <xsl:if test="$lastChar != '' and not(contains($runinhead.title.end.punct, $lastChar))">
@@ -129,7 +129,7 @@
   </span>
 </xsl:template>
 
-<xsl:template match="formalpara/title/node()[last()][not(self::*)]">
+<xsl:template match="formalpara/title/node()[last()][self::text()]">
  <xsl:call-template name="trim-verbatim-whitespace-end">
   <xsl:with-param name="input" select="."/>
  </xsl:call-template>
