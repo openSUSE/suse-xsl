@@ -2189,6 +2189,18 @@ a:hover .package, a:focus .package, a:active .package {
     display: block;
 }
 
+.task-title-wrap {
+  margin-top: 1.5em;
+}
+
+.taskprerequisites  {
+  margin-top: 1.2em;
+}
+
+.tasksummary {
+  margin-top: -0.5em;
+}
+
 .task-contents .procedure-contents {
   border-left: none;
 }
@@ -2199,6 +2211,7 @@ a:hover .package, a:focus .package, a:active .package {
 }
 
 .procedure-contents > p:first-child,
+.task-contents > p:first-child,
 .procedure-contents > ol:first-child > li:first-child > p:first-child {
     margin-top: 0;
 }
@@ -2207,8 +2220,10 @@ a:hover .package, a:focus .package, a:active .package {
     margin-top: 4px;
 }
 
-.procedure-contents > p, .procedure-contents > .informalfigure,
-.procedure-contents > .admonition {
+.procedure-contents > p,
+.procedure-contents > .informalfigure,
+.procedure-contents > .admonition,
+.task-contents > * {
     margin-left: 12px;
     margin-right: 17px;
 }
@@ -3096,6 +3111,7 @@ p.ds-message {
     .sect4 > .verbatim-wrap, .sect5 > .verbatim-wrap, .sect6 > .verbatim-wrap,
     .sect > .verbatim-wrap, .chapter > .verbatim-wrap, .article > .verbatim-wrap,
     .procedure-contents, .procedure-title-wrap + .procedure-contents,
+    .task-contents, .task-title-wrap + .task-contents,
     div.figure, .complex-example .example-contents {
         margin-left: -10px;
         margin-right: -10px;
