@@ -71,6 +71,7 @@
   </fo:block>
  </xsl:template>
 
+
 <!-- <xsl:template match="tasksummary/para[1]|taskprerequisites/para[1]|taskrelated/para[1]">
   <fo:block>
    <xsl:apply-templates/>

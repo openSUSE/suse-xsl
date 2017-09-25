@@ -515,12 +515,9 @@ are overridden somewhere. Probably because of the original stylesheets. -->
 </xsl:attribute-set>
 
 <xsl:attribute-set name="task.children.title.spacing">
- <xsl:attribute name="space-before.optimum"><xsl:value-of select="5* &gutterfragment;"/>mm</xsl:attribute>
- <!-- <xsl:attribute name="space-before.minimum"><xsl:value-of select="&gutterfragment; div 3"/>mm</xsl:attribute>-->
- <!-- <xsl:attribute name="space-before.maximum"><xsl:value-of select="&gutterfragment;"/>mm</xsl:attribute>-->
- <xsl:attribute name="space-after.optimum"><xsl:value-of select="&gutterfragment; div 10"/>mm</xsl:attribute>
- <!-- <xsl:attribute name="space-after.minimum"><xsl:value-of select="&gutterfragment; div 5"/>mm</xsl:attribute>-->
- <!-- <xsl:attribute name="space-after.maximum"><xsl:value-of select="&gutterfragment; div 2"/>mm</xsl:attribute>-->
+ <xsl:attribute name="space-before.minimum">1.2em</xsl:attribute>
+ <xsl:attribute name="space-before.optimum">1.5em</xsl:attribute>
+ <xsl:attribute name="space-before.maximum">2em</xsl:attribute>
 </xsl:attribute-set>
 
 <!-- 22. Profiling ============================================== -->
