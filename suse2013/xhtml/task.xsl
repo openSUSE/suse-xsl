@@ -37,9 +37,9 @@
   </div>
  </xsl:template>
 
- <xsl:template match="tasksummary|taskprerequisites">
+ <xsl:template match="taskprerequisites|taskrelated">
   <div class="{local-name(.)}">
-   <h6 class="{local-name(.)}-title">
+   <h6 class="task-title name">
     <xsl:call-template name="gentext">
      <xsl:with-param name="key" select="local-name(.)"/>
     </xsl:call-template>
@@ -48,4 +48,10 @@
   </div>
  </xsl:template>
  
+  <xsl:template match="tasksummary">
+  <div class="{local-name(.)}">
+   <xsl:apply-templates/>
+  </div>
+ </xsl:template>
+
 </xsl:stylesheet>
