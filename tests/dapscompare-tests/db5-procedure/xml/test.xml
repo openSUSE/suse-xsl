@@ -167,7 +167,54 @@
       </listitem>
      </itemizedlist> -->
     </taskprerequisites>
+    <procedure xml:id="pro.task.">
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+   <taskrelated>
+    <para>
+     Chicharrones green juice narwhal cred, tote bag sustainable tattooed.
+     Food truck art party meggings beard squid
+    </para>
+   </taskrelated>
+  </task>
+ </sect1>
+ <sect1 xml:id="sec.task-with-procedure-title">
+   <title>Task with Procedure Title</title>
+   <para>
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
+   </para>
+   <task>
+    <title>Task</title>
+    <tasksummary>
+     <para>
+      Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+      salvia shabby chic ramps tofu microdosing.
+     </para>
+    </tasksummary>
+    <taskprerequisites>
+     <para>
+      Skateboard tbh lo-fi, letterpress single-origin coffee pickled
+      chicharrones man braid food truck poke. Intelligentsia veniam in you
+      probably haven't heard of them chia eiusmod.
+     </para>
+    </taskprerequisites>
     <procedure>
+     <title>My Funny Procedure</title>
     <step>
      <para>
       Aesthetic put a bird on it waistcoat brunch tumeric.
