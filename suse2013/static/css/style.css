@@ -2189,6 +2189,10 @@ a:hover .package, a:focus .package, a:active .package {
     display: block;
 }
 
+.task-contents .procedure-contents {
+  border-left: none;
+}
+
 .procedure-title-wrap + .procedure-contents,
 .task-title-wrap + .task-contents {
     margin: 10px 0 24px;
