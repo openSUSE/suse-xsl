@@ -20,8 +20,9 @@
 <xsl:template match="*" mode="intra.title.markup">
   <xsl:param name="linkend"/>
   <xsl:param name="first" select="0"/>
-  <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.</xsl:message>
-  <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
+  <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.
+  - affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/>
+  - linkend: <xsl:value-of select="$linkend"/></xsl:message>
 </xsl:template>
 
 
