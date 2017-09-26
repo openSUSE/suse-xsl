@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.7.2
+Version:        2.0.7.3
 Release:        0
 
 ###############################################################
@@ -48,8 +48,10 @@ Source2:        %{name}.rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
-BuildRequires:  aspell
-BuildRequires:  aspell-en
+# BuildRequires:  aspell
+# BuildRequires:  aspell-en
+BuildRequires:  hunspell
+BuildRequires:  hunspell-tools
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
 BuildRequires:  docbook5-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes
@@ -70,7 +72,7 @@ Requires:       docbook_5
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook5-xsl-stylesheets >= 1.77
 Requires:       libxslt
-Requires:       aspell-en
+Recommends:     aspell-en
 
 
 #------
@@ -128,7 +130,7 @@ stylesheets are based on the original DocBook XSLT 1.0 stylesheets.
 #--------------------------------------------------------------------------
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
 
 #--------------------------------------------------------------------------
 
@@ -185,7 +187,7 @@ exit 0
 
 # Directories
 %dir %{_datadir}/suse-xsl-stylesheets
-%dir %{_datadir}/suse-xsl-stylesheets/aspell
+%dir %{_datadir}/suse-xsl-stylesheets/hunspell
 
 %dir %{suse_styles_dir}
 %dir %{suse_styles_dir}/suse
@@ -220,8 +222,8 @@ exit 0
 # Documentation
 %doc %{_defaultdocdir}/%{name}/*
 
-# SUSE aspell dictionary
-%{_datadir}/suse-xsl-stylesheets/aspell/en_US-suse-addendum.rws
+# SUSE hunspell dictionary
+%{_datadir}/suse-xsl-stylesheets/hunspell/*
 
 #----------------------
 
