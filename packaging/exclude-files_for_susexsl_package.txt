@@ -1,7 +1,7 @@
-aspell/[aft]*.txt
-aspell/add_context
-aspell/*.sh
-aspell/oxygen
+spell/[aft]*.txt
+spell/add_context
+spell/*.sh
+spell/oxygen
 build
 build/*
 fonts/*.sfd
