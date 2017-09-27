@@ -94,5 +94,47 @@
    single-origin coffee plaid, street art readymade selfies craft beer
    chartreuse etsy man bun blue bottle subway tile hella.
   </para>
+  <sect1>
+   <title>Hyphenated Filenames</title>
+   <para>
+    The brown, grumpy, heavy, disgruntled tapir falls onto the long and
+    nice file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/current/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The brown, grumpy, heavy, disgruntled tapir falls onto the long and
+    niiiiice file
+     <filename>/etc/fop.xconf</filename>.
+   </para>
+   <para>
+    The grumpy, heavy, disgruntled elephant dances around the file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/current/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The grumpy, heavy, funnny disgruntled falls onto the long and
+    nice file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/current/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The disgruntled tapir falls onto the long and
+    nice file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/current/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The disgruntled tapir falls onto the long and
+    nice file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/<replaceable>VERSION</replaceable>/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The disgruntled tapir looong file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/<replaceable>VERSION</replaceable>/fo/inline.xsl</filename>.
+   </para>
+   <para>
+    The disgruntled tapir falls onto the long and
+    nice file
+     <filename>/usr/share/xml/docbook/stylesheet/nwalsh/<replaceable>VERSION</replaceable>/fo/inline.xsl</filename>.
+    The looooooong winding road to <filename>/etc/bash_completion.d/rpmdevtools.bash-completion</filename>.
+   </para>
+  </sect1>
  </chapter>
 </book>
