@@ -394,13 +394,13 @@ USA</xsl:param>
 
 
 <!-- Characters for the hyphenation algorithm:
-          Contains characters hyhenated before or after other text
+     Contains characters "hyhenated" before or after other text
 -->
 <xsl:param name="ulink.hyphenate.before.chars"
    >.,%?&amp;#\~+{_-</xsl:param>
 <xsl:param name="ulink.hyphenate.after.chars"
    >/:@=};</xsl:param>
-
+<xsl:param name="ulink.hyphenate">&#x200B;</xsl:param>
 
 <!-- Show arrows before and after a paragraph that applies only to a certain
      architecture? -->
