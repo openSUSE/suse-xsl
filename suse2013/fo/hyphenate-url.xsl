@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: hyphenate-url.xsl 43839 2009-08-31 14:50:03Z toms $ -->
+<!--
+  Purpose:
+    Hyphenate URLs and filename-like strings
+
+  Dependand Parameters:
+   * ulink.hyphenate
+     http://docbook.sourceforge.net/release/xsl/current/doc/fo/ulink.hyphenate.html
+
+  Templates:
+   * hyphenate-url: Prepare URL to be hyphenated
+     Parameters:
+     - url: The respective URL
+     - removestartslash: Remove a start slash, if available?
+     - removeendslash:   Remove the trailing slash, if available?
+     - insertendslash:   Insert a slash at the end of the hyphenated URL?
+
+   * hyphenate-url-string: Hyphenate URL
+     Parameters:
+     - url: The URL, removed from schemas like http://, ftp://, etc. and
+            a trailing slash
+
+   Modes:
+    * hyphenate-url
+
+
+  Author(s):  Stefan Knorr <sknorr@suse.de>,
+              Thomas Schraitle <toms@opensuse.org>
+
+  Copyright:  2013-2017 Stefan Knorr, Thomas Schraitle
+
+-->
 <!DOCTYPE xsl:stylesheet >
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -7,12 +37,6 @@
 
 <!-- 
  Template hyphenate-url: Prepare URL to be hyphenated
-
- Parameters:
- * url: The respective URL
- * removestartslash: Remove a start slash, if available?
- * removeendslash:   Remove the trailing slash, if available?
- * insertendslash:   Insert a slash at the end of the hyphenated URL?
 -->
 <xsl:template name="hyphenate-url">
   <xsl:param name="url" select="''"/>
@@ -113,10 +137,6 @@
 
 <!-- 
  Template hyphenate-url-string: Hyphenate URL
- 
- Parameter:
- * url: The URL, removed from schemas like http://, ftp://, etc. and
-        a trailing slash
 -->
 <xsl:template name="hyphenate-url-string">
   <xsl:param name="url" select="''"/>
@@ -183,6 +203,5 @@
    </xsl:with-param>
  </xsl:call-template>
 </xsl:template>
-
 
 </xsl:stylesheet>
