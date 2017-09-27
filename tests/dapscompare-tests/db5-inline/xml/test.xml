@@ -135,6 +135,10 @@
      <filename>/usr/share/xml/docbook/stylesheet/nwalsh/<replaceable>VERSION</replaceable>/fo/inline.xsl</filename>.
     The looooooong winding road to <filename>/etc/bash_completion.d/rpmdevtools.bash-completion</filename>.
    </para>
+   <para>
+    If the operation is performed properly, change the last line in the
+    <filename>/etc/salt/master.d/reactor.conf</filename>:
+   </para>
   </sect1>
  </chapter>
 </book>
