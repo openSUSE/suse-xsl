@@ -4,6 +4,8 @@ aspell/*.sh
 aspell/oxygen
 build
 build/*
+env
+env/*
 fonts/*.sfd
 packaging
 packaging/*
@@ -20,3 +22,5 @@ tests/*
 .travis.yml
 *.~
 *~
+.tmp
+.tmp/*
