@@ -71,6 +71,9 @@ Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook5-xsl-stylesheets >= 1.77
 Requires:       libxslt
 Requires:       aspell-en
+Requires:       sgml-skel >= 0.7
+Requires(post): sgml-skel >= 0.7
+Requires(postun): sgml-skel >= 0.7
 
 
 #------
@@ -138,40 +141,43 @@ stylesheets are based on the original DocBook XSLT 1.0 stylesheets.
 #--------------------------------------------------------------------------
 
 %install
-make install DESTDIR=%{buildroot}  LIBDIR=%{_libdir}
+make install DESTDIR=%{buildroot} LIBDIR=%{_libdir}
 
 # create symlinks:
 %fdupes -s %{buildroot}/%{_datadir}
 
 #----------------------
-
 %post
 # XML Catalogs
 #
-# remove existing entries first - needed for
+# remove old existing entries first - needed for
 # zypper in, since it does not call postun
 # delete ...
+
 if [ "2" = "$1" ]; then
   edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
     --del %{name} || true
 fi
 
-# ... and (re)add it again
-edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
-  --add %{_sysconfdir}/xml/%{susexsl_catalog}
+# ... and (re)add new catalogs
+update-xml-catalog
+
 %reconfigure_fonts_post
 exit 0
 
-#----------------------
 
 %postun
+update-xml-catalog
+
 if [ "0" = "$1" ]; then
   %reconfigure_fonts_post
+
   edit-xml-catalog --group --catalog %{_sysconfdir}/xml/suse-catalog.xml \
     --del %{name} || true
 fi
 
 exit 0
+
 
 #----------------------
 
@@ -212,7 +218,7 @@ exit 0
 %{suse_styles_dir}/opensuse2013-ns/*
 
 # Catalogs
-%config %{_sysconfdir}/xml/*.xml
+%config %{_sysconfdir}/xml/catalog.d/%{name}.xml
 
 # Fonts
 %{_ttfontsdir}/*
