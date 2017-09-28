@@ -187,6 +187,7 @@
       See also:
       https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
      -->
+    <l:template name="intra-separator" text=", "/>
     <l:template name="intra-article" text="《%t》文章"/>
     <l:template name="intra-book" text="《%t》"/>
     <l:template name="intra-chapter" text="第 %n 章「%t」"/>

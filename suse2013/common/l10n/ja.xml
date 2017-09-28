@@ -63,13 +63,14 @@
    <l:context name="xref">
     <l:template name="page.citation" text=" (%p&#160;&#12506;&#12540;&#12472;)"/>
 
+    <l:template name="intra-separator" text="、 "/>
     <l:template name="intra-article" text="項目 「%t」"/>
-    <l:template name="intra-book" text="ブック 『%t』"/>
-    <l:template name="intra-chapter" text="章 %n 「%t」"/>
-    <l:template name="intra-sect1" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect2" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect3" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect4" text="項&#160;%n 「%t」"/>
+    <l:template name="intra-book" text="『%t』"/>
+    <l:template name="intra-chapter" text="「%t」の章"/>
+    <l:template name="intra-sect1" text="のセクション「%t」"/>
+    <l:template name="intra-sect2" text="のセクション「%t」"/>
+    <l:template name="intra-sect3" text="のセクション「%t」"/>
+    <l:template name="intra-sect4" text="のセクション「%t」"/>
 
     <l:template name="intra-example" text="&#160;%n 「%t」"/>
     <l:template name="intra-figure" text="図&#160;%n 「%t」"/>

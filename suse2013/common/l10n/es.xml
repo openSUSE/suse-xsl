@@ -73,7 +73,7 @@
 
    <l:context name="xref">
       <l:template name="page.citation" text=" (p.&#160;%p)"/>
-		  <l:template name="bridgehead" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
+		    <l:template name="bridgehead" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="chapter" text="Cap&#237;tulo&#160;%t"/>
       <l:template name="equation" text="Ecuaci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="example" text="Ejemplo&#160;&#8220;%t&#8221;"/>
@@ -94,6 +94,7 @@
       <l:template name="section" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="simplesect" text="secci&#243;n llamada &#8220;%t&#8221;"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artículo “%t”"/>
       <l:template name="intra-book" text="Libro “%t”"/>
       <l:template name="intra-chapter" text="Capítulo&#160;%n “%t”"/>
