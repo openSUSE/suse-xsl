@@ -1,6 +1,6 @@
 # Makefile for suse-xsl-stylesheets
 #
-# Copyright (C) 2011-2015 SUSE Linux GmbH
+# Copyright (C) 2011-2017 SUSE Linux GmbH
 #
 # Author:
 # Frank Sundermeyer <fsundermeyer at opensuse dot org>
@@ -12,7 +12,7 @@ endif
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
 # HINT: Also raise version number in packaging/suse-xsl-stylesheets.spec
-VERSION       := 2.0.7.2
+VERSION       := 2.0.7.3
 CDIR          := $(shell pwd)
 DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
@@ -35,13 +35,15 @@ ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 # Directories and files that will be created
 
 BUILD_DIR       := build
-DEV_ASPELL_DIR  := $(BUILD_DIR)/aspell
+DEV_HUNGSPELL_DIR := $(BUILD_DIR)/hunspell
 DEV_CATALOG_DIR := $(BUILD_DIR)/catalogs
 DEV_STYLE_DIR   := $(BUILD_DIR)/stylesheet
 DEV_HTML_DIR    := $(BUILD_DIR)/$(DIR2005)/html
 
-# aspell dictionary
-SUSE_DICT := $(BUILD_DIR)/aspell/en_US-suse-addendum.rws
+# hunspell dictionary
+SUSE_DICT := $(BUILD_DIR)/hunspell/en_US-suse-addendum.dic
+
+DICTFILES := spell/suse_wordlist.txt
 
 # Catalog stuff
 #
@@ -62,7 +64,7 @@ DEV_DIR2013_DAPS     := $(DEV_STYLE_DIR)/$(DIR2013_DAPS)-ns
 DEV_DIR2013_OPENSUSE := $(DEV_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
 DEV_DIR2013_SUSE     := $(DEV_STYLE_DIR)/$(DIR2013_SUSE)-ns
 
-DEV_DIRECTORIES := $(DEV_ASPELL_DIR) $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
+DEV_DIRECTORIES := $(DEV_HUNGSPELL_DIR) $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
    $(DEV_DIR2005) $(DEV_DIR2013_DAPS) \
    $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
 
@@ -85,7 +87,7 @@ DAPSSTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)-ns
 OPENSUSESTYLEDIR2013    := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)
 OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
 
-ASPELLDIR     := $(DESTDIR)$(PREFIX)/suse-xsl-stylesheets/aspell
+HUNSPELLDIR   := $(DESTDIR)$(PREFIX)/suse-xsl-stylesheets/hunspell
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
 CATALOG_DIR   := $(DESTDIR)/etc/xml
@@ -96,7 +98,7 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) $(DAPSSTYLEDIR2013) \
    $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS)
 
-INST_DIRECTORIES := $(ASPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
+INST_DIRECTORIES := $(HUNSPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
    $(RNGDIR_09) $(RNGDIR_10) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) \
    $(VAR_SGML_DIR)
 
@@ -108,7 +110,7 @@ all: $(HTMLSTYLESHEETS) $(SUSE_DICT) generate_xslns
 
 #-----------------------------
 install: | $(INST_DIRECTORIES)
-	install -m644 $(SUSE_DICT) $(ASPELLDIR)
+	install -m644 $(DEV_HUNGSPELL_DIR)/* $(HUNSPELLDIR)
 	install -m644 $(DEV_CATALOG_DIR)/*.xml $(CATALOG_DIR)
 	install -m644 COPYING* $(DOCDIR)
 	install -m644 fonts/*.ttf $(TTF_FONT_DIR)
@@ -130,14 +132,20 @@ clean:
 	rm -rf $(BUILD_DIR)
 
 #-----------------------------
-# Generate SUSE aspell dictionary
+# Generate SUSE hunspell dictionary
 #
-$(SUSE_DICT): $(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt
-	aspell --lang=en create master ./$@ < $<
+$(SUSE_DICT): $(DEV_HUNGSPELL_DIR)/suse_wordlist_tmp.txt
+	@echo "Creating hunspell dictionary..."
+	cd $(DEV_HUNGSPELL_DIR)
+	wordlist2hunspell $(abspath $<) en_US
+	# creates en_US.aff and en_US.dic files
+	mv -vi en_US.dic $(SUSE_DICT)
+	mv -vi en_US.aff $(patsubst %.dic,%.aff,$(SUSE_DICT))
 
-.INTERMEDIATE: $(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt
-$(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt: aspell/suse_wordlist.txt | $(DEV_ASPELL_DIR)
-	cat $< | sort | uniq > $@
+
+.INTERMEDIATE: $(DEV_HUNGSPELL_DIR)/suse_wordlist_tmp.txt
+$(DEV_HUNGSPELL_DIR)/suse_wordlist_tmp.txt: $(DICTFILES) | $(DEV_HUNGSPELL_DIR)
+	cat $^ | sort | uniq > $@
 
 #-----------------------------
 # auto-generate the DocBook5 (xsl-ns) stylesheets
