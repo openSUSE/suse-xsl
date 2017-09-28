@@ -44,13 +44,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="&#20363; %n"/>
+      <l:template name="example-label" text="&#20363; %n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="&#22259; %n"/>
+      <l:template name="figure-label" text="&#22259; %n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="&#25163;&#38918; %n"/>
+      <l:template name="procedure-label" text="&#25163;&#38918; %n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#34920; %n"/>
+      <l:template name="table-label" text="&#34920; %n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -63,13 +63,14 @@
    <l:context name="xref">
     <l:template name="page.citation" text=" (%p&#160;&#12506;&#12540;&#12472;)"/>
 
+    <l:template name="intra-separator" text="、 "/>
     <l:template name="intra-article" text="項目 「%t」"/>
-    <l:template name="intra-book" text="ブック 『%t』"/>
-    <l:template name="intra-chapter" text="章 %n 「%t」"/>
-    <l:template name="intra-sect1" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect2" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect3" text="項&#160;%n 「%t」"/>
-    <l:template name="intra-sect4" text="項&#160;%n 「%t」"/>
+    <l:template name="intra-book" text="『%t』"/>
+    <l:template name="intra-chapter" text="「%t」の章"/>
+    <l:template name="intra-sect1" text="のセクション「%t」"/>
+    <l:template name="intra-sect2" text="のセクション「%t」"/>
+    <l:template name="intra-sect3" text="のセクション「%t」"/>
+    <l:template name="intra-sect4" text="のセクション「%t」"/>
 
     <l:template name="intra-example" text="&#160;%n 「%t」"/>
     <l:template name="intra-figure" text="図&#160;%n 「%t」"/>

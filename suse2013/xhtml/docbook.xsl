@@ -42,6 +42,8 @@
   <xsl:include href="../common/arch-string.xsl"/>
   <xsl:include href="../common/xref.xsl"/>
   <xsl:include href="../common/trim-verbatim.xsl"/>
+  <xsl:include href="../common/converter-string.xsl"/>
+  <xsl:include href="../common/screen-length.xsl"/>
 
   <xsl:include href="param.xsl"/>
   <xsl:include href="create-permalink.xsl"/>
@@ -193,7 +195,7 @@
     <link rev="made" href="{$link.mailto.url}"/>
   </xsl:if>
 
-  <meta name="generator" content="DocBook {$DistroTitle} V{$VERSION}"/>
+  <xsl:call-template name="meta-generator"/>
 
   <xsl:if test="$product-name != ''">
     <meta name="product-name" content="{$product-name}"/>
@@ -234,6 +236,18 @@
   </xsl:if>
 
     <xsl:apply-templates select="." mode="head.keywords.content"/>
+  </xsl:template>
+
+  <xsl:template name="meta-generator">
+    <xsl:element name="meta">
+      <xsl:attribute name="name">generator</xsl:attribute>
+      <xsl:attribute name="content">
+        <xsl:call-template name="converter-string"/>
+        <xsl:if test="$is.chunk != 0">
+          <xsl:text> - chunked</xsl:text>
+        </xsl:if>
+      </xsl:attribute>
+    </xsl:element>
   </xsl:template>
 
   <xsl:template match="refentry" mode="titleabbrev.markup">

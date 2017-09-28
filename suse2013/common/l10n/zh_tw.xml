@@ -14,7 +14,7 @@
    <l:gentext key="tableofcontents" text="&#30446;&#37636;"/>
    <l:gentext key="index symbols" text="&#31526;&#34399;"/>
 
-   <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="admonseparator"  text="︰ "/>
 
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
@@ -78,13 +78,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="&#31684;&#20363; %n"/>
+      <l:template name="example-label" text="&#31684;&#20363; %n︰"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="&#22294;&#24418; %n"/>
+      <l:template name="figure-label" text="&#22294;&#24418; %n︰"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="&#31243;&#24207; %n"/>
+      <l:template name="procedure-label" text="&#31243;&#24207; %n︰"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#34920;&#26684; %n"/>
+      <l:template name="table-label" text="&#34920;&#26684; %n︰"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -187,6 +187,7 @@
       See also:
       https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
      -->
+    <l:template name="intra-separator" text=", "/>
     <l:template name="intra-article" text="《%t》文章"/>
     <l:template name="intra-book" text="《%t》"/>
     <l:template name="intra-chapter" text="第 %n 章「%t」"/>

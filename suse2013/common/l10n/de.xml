@@ -46,19 +46,19 @@
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
-   <l:dingbat key="startquote" text="&#x0201E;"/>
-   <l:dingbat key="endquote" text="&#x0201C;"/>
+   <l:dingbat key="startquote" text="„"/>
+   <l:dingbat key="endquote" text="“"/>
 
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Beispiel %n"/>
+      <l:template name="example-label" text="Beispiel %n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Abbildung %n"/>
+      <l:template name="figure-label" text="Abbildung %n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Prozedur %n"/>
+      <l:template name="procedure-label" text="Prozedur %n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tabelle %n"/>
+      <l:template name="table-label" text="Tabelle %n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -71,24 +71,25 @@
    <l:context name="xref">
       <l:template name="page.citation" text=" (S.&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikel „%t”"/>
       <l:template name="intra-book" text="Buch „%t”"/>
-      <l:template name="intra-chapter" text="Kapitel %n „%t”"/>
+      <l:template name="intra-chapter" text="Kapitel %n „%t“"/>
       <!--<l:template name="intra-part" text="%n „%t”"/>-->
-      <l:template name="intra-sect1" text="Abschnitt %n „%t”"/>
-      <l:template name="intra-sect2" text="Abschnitt %n „%t”"/>
-      <l:template name="intra-sect3" text="Abschnitt %n „%t”"/>
-      <l:template name="intra-sect4" text="Abschnitt %n „%t”"/>
+      <l:template name="intra-sect1" text="Abschnitt %n „%t“"/>
+      <l:template name="intra-sect2" text="Abschnitt %n „%t“"/>
+      <l:template name="intra-sect3" text="Abschnitt %n „%t“"/>
+      <l:template name="intra-sect4" text="Abschnitt %n „%t“"/>
 
-      <l:template name="intra-example" text="Beispiel %n “%t”"/>
-      <l:template name="intra-figure" text="Abbildung %n “%t”"/>
-      <l:template name="intra-preface" text="Vorwort “%t”"/>
-      <l:template name="intra-procedure" text="Prozedur %n “%t”"/>
-      <l:template name="intra-table" text="Tabelle %n “%t”"/>
+      <l:template name="intra-example" text="Beispiel %n „%t“"/>
+      <l:template name="intra-figure" text="Abbildung %n „%t“"/>
+      <l:template name="intra-preface" text="Vorwort „%t“"/>
+      <l:template name="intra-procedure" text="Prozedur %n „%t“"/>
+      <l:template name="intra-table" text="Tabelle %n „%t“"/>
 
-      <l:template name="intra-variablelist" text="“%t”"/>
-      <l:template name="intra-orderedlist" text="“%t”"/>
-      <l:template name="intra-itemizedlist" text="“%t”"/>
+      <l:template name="intra-variablelist" text="„%t“"/>
+      <l:template name="intra-orderedlist" text="„%t“"/>
+      <l:template name="intra-itemizedlist" text="„%t“"/>
    </l:context>
 
    <l:context name="xref-number-and-title">

@@ -137,12 +137,21 @@
     <xsl:param name="version-candidate" select="''"/>
     <xsl:param name="labels-candidate" select="''"/>
 
+    <!-- normalize-space() is now only applied to some properties where
+    extraneous spaces are exceedingly unlikely. Unfortunately, people use
+    product strings etc. with extraneous spaces all the time (bsc#1049081,
+    and there was at least one bug before that about the same issue).
+    However, this fix only works for DocBook 5 - in DocBook 4, we rely on the
+    pi-attribute template that comes with the DocBook stylesheets and that
+    template hard-codes a normalize-space(). For good reason, I suspect,
+    otherwise they probably couldn't even begin to handle PIs "attributes"
+    like regular attributes. -->
     <xsl:variable name="url" select="normalize-space($url-candidate)"/>
     <xsl:variable name="assignee" select="normalize-space($assignee-candidate)"/>
-    <xsl:variable name="component" select="normalize-space($component-candidate)"/>
-    <xsl:variable name="product" select="normalize-space($product-candidate)"/>
-    <xsl:variable name="version" select="normalize-space($version-candidate)"/>
-    <xsl:variable name="labels" select="normalize-space($labels-candidate)"/>
+    <xsl:variable name="component" select="$component-candidate"/>
+    <xsl:variable name="product" select="$product-candidate"/>
+    <xsl:variable name="version" select="$version-candidate"/>
+    <xsl:variable name="labels" select="$labels-candidate"/>
 
     <xsl:variable name="type">
       <xsl:choose>
@@ -201,7 +210,6 @@
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">WARNING</xsl:with-param>
           <xsl:with-param name="context-desc">tracker</xsl:with-param>
-          <!--<xsl:with-param name="context-desc-field-length" select="8"/>-->
           <xsl:with-param name="message">
             <xsl:text>Tracker URL in dm:docmanager/dm:bugtracker/dm:url not found. </xsl:text>
             <xsl:text>Check if there is a dm:url available inside set.</xsl:text>

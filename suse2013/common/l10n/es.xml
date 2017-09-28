@@ -55,13 +55,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Ejemplo %n"/>
+      <l:template name="example-label" text="Ejemplo %n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Figura %n"/>
+      <l:template name="figure-label" text="Figura %n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Procedimiento %n"/>
+      <l:template name="procedure-label" text="Procedimiento %n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tabla %n"/>
+      <l:template name="table-label" text="Tabla %n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -73,7 +73,7 @@
 
    <l:context name="xref">
       <l:template name="page.citation" text=" (p.&#160;%p)"/>
-		  <l:template name="bridgehead" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
+		    <l:template name="bridgehead" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="chapter" text="Cap&#237;tulo&#160;%t"/>
       <l:template name="equation" text="Ecuaci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="example" text="Ejemplo&#160;&#8220;%t&#8221;"/>
@@ -94,6 +94,7 @@
       <l:template name="section" text="Secci&#243;n&#160;&#8220;%t&#8221;"/>
       <l:template name="simplesect" text="secci&#243;n llamada &#8220;%t&#8221;"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artículo “%t”"/>
       <l:template name="intra-book" text="Libro “%t”"/>
       <l:template name="intra-chapter" text="Capítulo&#160;%n “%t”"/>

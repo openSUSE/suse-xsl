@@ -9,6 +9,8 @@
   <xsl:param name="suppress-numbers" select="'0'"/>
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
+  <xsl:call-template name="check.screenlength"/>
+
   <xsl:variable name="content">
     <xsl:choose>
       <xsl:when test="$suppress-numbers = '0'
@@ -133,6 +135,5 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-
 
 </xsl:stylesheet>

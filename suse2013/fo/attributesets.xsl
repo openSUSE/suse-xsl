@@ -269,6 +269,11 @@ are overridden somewhere. Probably because of the original stylesheets. -->
 <xsl:attribute-set name="compact.list.item.spacing"
   use-attribute-sets="list-orphans-widows"/>
 
+<xsl:attribute-set name="footnote.wrap">
+  <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight * 0.85"/>em</xsl:attribute>
+  <xsl:attribute name="margin-bottom">&gutterfragment;mm</xsl:attribute>
+</xsl:attribute-set>
+
 
 <!-- 14. QAndASet =============================================== -->
 <xsl:attribute-set name="qanda.title.level1.properties"
@@ -410,6 +415,12 @@ are overridden somewhere. Probably because of the original stylesheets. -->
   $fontsize-adjust)? We need at least 80 characters on a line... -->
   <xsl:attribute name="font-size"><xsl:value-of select="&small; * $mono-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="line-height"><xsl:value-of select="$base-lineheight"/>em</xsl:attribute>
+ <xsl:attribute name="space-after.minimum">
+  <xsl:choose>
+   <xsl:when test="following-sibling::procedure">2em</xsl:when>
+   <xsl:otherwise>inherit</xsl:otherwise>
+  </xsl:choose>
+ </xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:attribute-set name="section.title.properties">

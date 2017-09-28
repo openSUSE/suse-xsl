@@ -56,13 +56,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Voorbeeld&#160;%n"/>
+      <l:template name="example-label" text="Voorbeeld&#160;%n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Afbeelding&#160;%n"/>
+      <l:template name="figure-label" text="Afbeelding&#160;%n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Procedure&#160;%n"/>
+      <l:template name="procedure-label" text="Procedure&#160;%n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tabel&#160;%n"/>
+      <l:template name="table-label" text="Tabel&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -80,6 +80,7 @@
       <l:template name="sect5" text="Gedeelte “%t”"/>
       <l:template name="page.citation" text=" (pagina&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikel “%t”"/>
       <l:template name="intra-book" text="Boek “%t” "/>
       <l:template name="intra-chapter" text="Hoofdstuk&#160;%n “%t”"/>

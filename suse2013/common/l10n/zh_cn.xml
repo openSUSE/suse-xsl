@@ -10,7 +10,7 @@
    <l:gentext key="Contributor"     text="贡献者"/>
    <l:gentext key="Contributors"    text="贡献者"/>
 
-   <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="admonseparator"  text="︰ "/>
    <l:gentext key="selectlanguage" text="选择语言"/>
    <l:gentext key="selectformat" text="选择格式"/>
    <l:gentext key="formathtml" text="网页"/>
@@ -24,7 +24,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
 
    <l:gentext key="navigation" text="导航"/>
-   <l:gentext key="sharethispage" text="分享此页： "/>
+   <l:gentext key="sharethispage" text="分享此页︰ "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="shareviagoogleplus" text="Google+"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
@@ -54,13 +54,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="&#20363; %n"/>
+      <l:template name="example-label" text="&#20363; %n︰"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="&#22270; %n"/>
+      <l:template name="figure-label" text="&#22270; %n︰"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="&#36807;&#31243; %n"/>
+      <l:template name="procedure-label" text="&#36807;&#31243; %n︰"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#34920; %n"/>
+      <l:template name="table-label" text="&#34920; %n︰"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -162,7 +162,7 @@
       See also:
       https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
      -->
-
+     <l:template name="intra-separator" text=", "/>
      <l:template name="intra-article" text="《%t》文章"/>
      <l:template name="intra-book" text="《%t》"/>
      <l:template name="intra-chapter" text="第&#160;%n 章 “%t”"/>

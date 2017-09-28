@@ -96,23 +96,37 @@
   </xsl:choose>
 </xsl:template>
 
+<xsl:template name="compact.or.normal.block">
+ <xsl:variable name="color">
+  <xsl:call-template name="admon.symbol.color"/>
+ </xsl:variable>
+ <fo:block>
+  <xsl:attribute name="color">
+   <xsl:choose>
+    <xsl:when test="not(@role = 'compact')">
+     <xsl:value-of select="$color"/>
+    </xsl:when>
+    <xsl:otherwise>&darker-gray;</xsl:otherwise>
+   </xsl:choose>
+  </xsl:attribute>
+  <xsl:value-of select="@role"/>
+  <xsl:apply-templates select="." mode="object.title.markup">
+   <xsl:with-param name="allow-anchors" select="1"/>
+  </xsl:apply-templates>
+ </fo:block>
+</xsl:template>
+
 <xsl:template name="graphical.admonition">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
   <xsl:variable name="color">
-    <xsl:call-template name="admon.symbol.color"/>
+   <xsl:call-template name="admon.symbol.color"/>
   </xsl:variable>
   <xsl:variable name="graphic.width">
     <xsl:choose>
       <xsl:when test="@role='compact'">5</xsl:when>
       <xsl:otherwise>8</xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-  <xsl:variable name="additional.title.properties">
-    <xsl:choose>
-      <xsl:when test="@role='compact'">admonition.compact.title.properties</xsl:when>
-      <xsl:otherwise>admonition.normal.title.properties</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
   <xsl:variable name="padding">
@@ -140,20 +154,19 @@
             <fo:block padding-start="{(&gutter; - 0.75) div 2}mm"
               padding-before="{$padding}" padding-after="{$padding}">
               <xsl:if test="((title or info/title) or ($admon.textlabel != 0 and not(@role='compact')))">
-                <fo:block xsl:use-attribute-sets="admonition.title.properties {$additional.title.properties}">
-                  <xsl:attribute name="color">
-                    <xsl:choose>
-                      <xsl:when test="not(@role='compact')">
-                        <xsl:value-of select="$color"/>
-                      </xsl:when>
-                      <xsl:otherwise>&darker-gray;</xsl:otherwise>
-                    </xsl:choose>
-                  </xsl:attribute>
-                  <xsl:value-of select="@role"/>
-                  <xsl:apply-templates select="." mode="object.title.markup">
-                    <xsl:with-param name="allow-anchors" select="1"/>
-                  </xsl:apply-templates>
-                </fo:block>
+                <xsl:choose>
+                 <xsl:when test="@role='compact'">
+                  <fo:block
+                   xsl:use-attribute-sets="admonition.title.properties admonition.compact.title.properties">
+                   <xsl:call-template name="compact.or.normal.block"/>
+                  </fo:block>
+                 </xsl:when>
+                 <xsl:otherwise>
+                  <fo:block xsl:use-attribute-sets="admonition.title.properties admonition.normal.title.properties">
+                   <xsl:call-template name="compact.or.normal.block"/>
+                  </fo:block>
+                 </xsl:otherwise>
+                </xsl:choose>
               </xsl:if>
               <fo:block xsl:use-attribute-sets="admonition.properties">
                 <xsl:apply-templates/>

@@ -18,6 +18,8 @@
   <xsl:variable name="supported" select="concat('|', $highlight.supported.languages, '|')"/>
   <xsl:variable name="language" select="translate(normalize-space(@language), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ|', 'abcdefghijklmnopqrstuvwxyz')"/>
 
+  <xsl:call-template name="check.screenlength"/>
+
   <div>
     <xsl:attribute name="class">
       <xsl:text>verbatim-wrap</xsl:text>

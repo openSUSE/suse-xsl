@@ -71,6 +71,7 @@
       <l:template name="sect5" text="Sekcja „%t”"/>
       <l:template name="page.citation" text=" (page&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artykuł „%t”"/>
       <l:template name="intra-book" text="Książka „%t”"/>
       <l:template name="intra-chapter" text="Rozdział %n „%t”"/>

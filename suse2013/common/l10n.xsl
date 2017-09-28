@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id: $ -->
 <!DOCTYPE xsl:stylesheet >
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
@@ -15,7 +14,7 @@
 <xsl:template name="gentext.guimenu.endquote">
    <xsl:call-template name="gentext.dingbat">
     <xsl:with-param name="dingbat">guimenuendquote</xsl:with-param>
-  </xsl:call-template>  
+  </xsl:call-template>
 </xsl:template>
     
 

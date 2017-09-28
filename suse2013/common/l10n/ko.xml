@@ -51,13 +51,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="&#50696;&#51228; %n"/>
+      <l:template name="example-label" text="&#50696;&#51228; %n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text=" &#44536;&#47548; %n"/>
+      <l:template name="figure-label" text=" &#44536;&#47548; %n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="&#51208;&#52264; %n"/>
+      <l:template name="procedure-label" text="&#51208;&#52264; %n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#54364;&#160;%n"/>
+      <l:template name="table-label" text="&#54364;&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -70,6 +70,7 @@
    <l:context name="xref">
       <l:template name="page.citation" text="%p&#54168;&#51060;&#51648; "/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="문서 “%t”"/>
       <l:template name="intra-book" text="책 “%t”"/>
       <l:template name="intra-chapter" text="%n장 “%t”"/>

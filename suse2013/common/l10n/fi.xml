@@ -45,13 +45,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="Esimerkki&#160;%n"/>
+      <l:template name="example-label" text="Esimerkki&#160;%n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Kuva&#160;%n"/>
+      <l:template name="figure-label" text="Kuva&#160;%n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Toiminto&#160;%n"/>
+      <l:template name="procedure-label" text="Toiminto&#160;%n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Taulukko&#160;%n"/>
+      <l:template name="table-label" text="Taulukko&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -69,6 +69,7 @@
       <l:template name="sect5" text="Osa ”%t”"/>
       <l:template name="page.citation" text=" (sivu&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikkeli ”%t”"/>
       <l:template name="intra-book" text="Kirja ”%t”"/>
       <l:template name="intra-chapter" text="Luku&#160;%n ”%t”"/>

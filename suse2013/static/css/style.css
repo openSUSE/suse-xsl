@@ -106,7 +106,7 @@ html, body {
 }
 
 #_content {
-    background: url(../images/dots-gray.png) repeat-x scroll 0px 0px;
+    background: #FFF url(../images/dots-gray.png) repeat-x scroll 0px 0px;
     min-height: 139px;
     clear: both;
     min-width: 150px;
@@ -1083,7 +1083,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 .bottom-button:hover, .bottom-button:focus,
 .bottom-button:active {
     border: 1px solid rgba(20,20,20,0.5);
-    background: #DEDEDE;
+    background-color: #DEDEDE;
 }
 
 .bottom-button:hover:before, .bottom-button:focus:before,
@@ -1381,7 +1381,7 @@ h6.version-info {
 }
 
 .name, .refentry h2, .refentrytitle a, h2, .indexdiv h3, .qandadiv-title,
-.qandaset .title {
+.qandaset .title, .glossdiv .title {
     color: #439239;
 }
 
@@ -1815,8 +1815,9 @@ code, .command, .keycap, .literal, .package {
 paddings/borders... In some rare case, there might e.g. be an image inside a
 code/etc. element and then this might backfire. */
 code *, .keycap *, .replaceable *, .literal *, .package * {
-    padding: 0;
-    border: none;
+    padding: 0 !important;
+    border: none !important;
+    display: inline;
 }
 
 
@@ -1935,6 +1936,13 @@ code, .literal, .replaceable, .package {
     font-weight: 600;
 }
 
+/* highlight.js likes to recolor our text. ugh! */
+.callout * {
+    color: #FFF !important;
+    font-weight: 600 !important;
+    background-color: transparent !important;
+}
+
 .verbatim-wrap .callout {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1942,7 +1950,9 @@ code, .literal, .replaceable, .package {
     user-select: none;
 }
 
-.calloutlist .callout {
+/* xrefs in a calloutlist can contain .callout too, so make sure we don't
+catch those. */
+.calloutlist td:nth-child(1) .callout {
     position: relative;
     top: 2px;
     float: right;
@@ -2521,7 +2531,7 @@ p.ds-message {
 }
 
 .draft {
-    background: url(../images/draft.png) no-repeat fixed left 50%;
+    background: #FFF url(../images/draft.png) no-repeat fixed left 50%;
 }
 
 @page {

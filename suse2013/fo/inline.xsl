@@ -27,7 +27,7 @@
   <!--<!ENTITY % common.entities SYSTEM "http://docbook.sourceforge.net/release/xsl/current/common/entities.ent">-->
   <!--%common.entities;-->
   <!-- Needed to define it here as the parent::variablelist is missing :-( -->
-  
+
   <!ENTITY comment.block.parents "parent::answer|parent::appendix|parent::article|parent::bibliodiv|
                                 parent::bibliography|parent::blockquote|parent::caution|parent::chapter|
                                 parent::glossary|parent::glossdiv|parent::important|parent::index|
@@ -46,6 +46,68 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
+
+<xsl:template name="inline.text">
+  <xsl:param name="content">
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates mode="mono-ancestor"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:param>
+  <xsl:param name="purpose" select="'none'"/>
+  <xsl:param name="mode" select="'normal'"/>
+  <xsl:param name="before" select="''"/>
+  <xsl:param name="after" select="''"/>
+  <xsl:variable name="mono-verbatim-ancestor">
+    <xsl:if test="$mode = 'mono-ancestor' or ancestor::screen or
+                  ancestor::programlisting or ancestor::synopsis">1</xsl:if>
+  </xsl:variable>
+  <xsl:variable name="lighter-formatting">
+    <xsl:if test="$mono-verbatim-ancestor = 1 or
+                  ancestor::title[not(parent::formalpara)]">1</xsl:if>
+  </xsl:variable>
+
+  <fo:inline>
+   <xsl:if test="$lighter-formatting != 1">
+    <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
+    <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
+   </xsl:if>
+   <xsl:choose>
+    <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
+    <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
+     ancestor::term)">
+     <xsl:attribute name="font-size"><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
+    </xsl:when>
+    <xsl:otherwise>
+     <xsl:attribute name="font-size"><xsl:value-of select="$mono-xheight-adjust div $sans-xheight-adjust"/>em</xsl:attribute>
+    </xsl:otherwise>
+   </xsl:choose>
+
+   <xsl:if test="$lighter-formatting != 1">
+    <fo:leader leader-pattern="space" leader-length="0.2em"/>
+   </xsl:if>
+   <xsl:call-template name="anchor"/>
+   <xsl:if test="@dir">
+    <xsl:attribute name="direction">
+     <xsl:choose>
+      <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+      <xsl:otherwise>rtl</xsl:otherwise>
+     </xsl:choose>
+    </xsl:attribute>
+   </xsl:if>
+   <xsl:if test="$before != ''">
+    <xsl:value-of select="$before"/>
+   </xsl:if>
+   <xsl:copy-of select="$content"/>
+   <xsl:if test="$after != ''">
+    <xsl:value-of select="$after"/>
+   </xsl:if>
+   <xsl:if test="$lighter-formatting != 1">
+    <fo:leader leader-pattern="space" leader-length="0.2em"/>
+   </xsl:if>
+  </fo:inline>
+</xsl:template>
 
 <xsl:template name="inline.monoseq">
   <xsl:param name="content">
@@ -70,48 +132,15 @@
 
   <fo:inline xsl:use-attribute-sets="monospace.properties" font-weight="normal"
     font-style="normal">
-    <xsl:if test="$lighter-formatting != 1">
-      <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
-      <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
-    </xsl:if>
-    <xsl:choose>
-      <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust div $sans-xheight-adjust"/>em</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
-    <xsl:call-template name="anchor"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="direction">
-        <xsl:choose>
-          <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
-          <xsl:otherwise>rtl</xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$before != ''">
-      <xsl:value-of select="$before"/>
-    </xsl:if>
-    <xsl:copy-of select="$content"/>
-    <xsl:if test="$after != ''">
-      <xsl:value-of select="$after"/>
-    </xsl:if>
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
+    <xsl:call-template name="inline.text">
+     <xsl:with-param name="mode" select="$mode"/>
+     <xsl:with-param name="after" select="$after"/>
+     <xsl:with-param name="before" select="$before"/>
+     <xsl:with-param name="content" select="$content"/>
+     <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:call-template>
   </fo:inline>
 </xsl:template>
-
 
 <xsl:template name="inline.boldmonoseq">
   <xsl:param name="content">
@@ -137,48 +166,15 @@
 
   <fo:inline xsl:use-attribute-sets="monospace.properties mono.bold"
     font-style="normal" color="{$textcolor}">
-    <xsl:if test="$lighter-formatting != 1">
-      <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
-      <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
-    </xsl:if>
-    <xsl:choose>
-      <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust div $sans-xheight-adjust"/>em</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
-    <xsl:call-template name="anchor"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="direction">
-        <xsl:choose>
-          <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
-          <xsl:otherwise>rtl</xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$before != ''">
-      <xsl:value-of select="$before"/>
-    </xsl:if>
-    <xsl:copy-of select="$content"/>
-    <xsl:if test="$after != ''">
-      <xsl:value-of select="$after"/>
-    </xsl:if>
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
+    <xsl:call-template name="inline.text">
+     <xsl:with-param name="mode" select="$mode"/>
+     <xsl:with-param name="after" select="$after"/>
+     <xsl:with-param name="before" select="$before"/>
+     <xsl:with-param name="content" select="$content"/>
+     <xsl:with-param name="purpose" select="$purpose"/>
+    </xsl:call-template>
   </fo:inline>
 </xsl:template>
-
 
 <xsl:template name="inline.italicmonoseq">
   <xsl:param name="content">
@@ -203,45 +199,13 @@
 
   <fo:inline xsl:use-attribute-sets="monospace.properties italicized"
     font-weight="normal">
-    <xsl:if test="$lighter-formatting != 1">
-      <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
-      <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
-    </xsl:if>
-    <xsl:choose>
-      <xsl:when test="$mono-verbatim-ancestor = 1"/> <!-- do nothing -->
-      <xsl:when test="not(ancestor::title[not(parent::formalpara)] or
-                          ancestor::term)">
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust"/>em</xsl:attribute>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:attribute name="font-size"
-          ><xsl:value-of select="$mono-xheight-adjust div $sans-xheight-adjust"/>em</xsl:attribute>
-      </xsl:otherwise>
-    </xsl:choose>
-
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
-    <xsl:call-template name="anchor"/>
-    <xsl:if test="@dir">
-      <xsl:attribute name="direction">
-        <xsl:choose>
-          <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
-          <xsl:otherwise>rtl</xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:if test="$before != ''">
-      <xsl:value-of select="$before"/>
-    </xsl:if>
-    <xsl:copy-of select="$content"/>
-    <xsl:if test="$after != ''">
-      <xsl:value-of select="$after"/>
-    </xsl:if>
-    <xsl:if test="$lighter-formatting != 1">
-      <fo:leader leader-pattern="space" leader-length="0.2em"/>
-    </xsl:if>
+   <xsl:call-template name="inline.text">
+    <xsl:with-param name="mode" select="$mode"/>
+    <xsl:with-param name="after" select="$after"/>
+    <xsl:with-param name="before" select="$before"/>
+    <xsl:with-param name="content" select="$content"/>
+    <xsl:with-param name="purpose" select="$purpose"/>
+   </xsl:call-template>
   </fo:inline>
 </xsl:template>
 
@@ -443,6 +407,20 @@
   </xsl:call-template>
 </xsl:template>
 
+<xsl:template match="emphasis" mode="mono-ancestor">
+ <xsl:choose>
+  <xsl:when test="@role='bold' or @role='strong'">
+   <xsl:call-template name="inline.boldmonoseq">
+    <xsl:with-param name="mode" select="'mono-ancestor'"/>
+   </xsl:call-template>
+  </xsl:when>
+  <xsl:otherwise>
+    <xsl:call-template name="inline.italicmonoseq">
+   <xsl:with-param name="mode" select="'mono-ancestor'"/>
+  </xsl:call-template>
+  </xsl:otherwise>
+ </xsl:choose>
+</xsl:template>
 
 <xsl:template match="keycap">
   <xsl:variable name="cap">
@@ -542,7 +520,7 @@
          structname|symbol|token|type">
   <xsl:call-template name="inline.italicseq"/>
 </xsl:template>
-  
+
 <xsl:template match="guimenu|guisubmenu">
   <xsl:call-template name="gentext.guimenu.startquote"/>
   <xsl:call-template name="inline.italicseq"/>
@@ -623,10 +601,10 @@
   </xsl:choose>
 </xsl:template>
 
-  
-  <!-- 
-     Needed to fix a bug in the common/entities.ent for the 
-     DocBook stylesheets. 
+
+  <!--
+     Needed to fix a bug in the common/entities.ent for the
+     DocBook stylesheets.
      Missing parent::variablelist in comment.block.parents
   -->
   <!-- Also needed for colorful remarks now... -->

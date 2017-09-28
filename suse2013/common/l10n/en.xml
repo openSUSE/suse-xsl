@@ -43,10 +43,17 @@
    <l:gentext key="Version" text="Version"/>
 
    <l:gentext key="step.optional" text="(Optional)"/>
+   <l:gentext key="GlossSeeAlso" text="See also"/>
+   <l:gentext key="glossseealso" text="See also"/>
+
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="See also %t."/>
+   </l:context>
 
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
@@ -75,6 +82,7 @@
       <l:template name="sect5" text="Section “%t”"/>
       <l:template name="page.citation" text=" (page&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Article “%t”"/>
       <l:template name="intra-book" text="Book “%t”"/>
       <l:template name="intra-chapter" text="Chapter&#160;%n “%t”"/>

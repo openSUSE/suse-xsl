@@ -43,13 +43,13 @@
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
-      <l:template name="example-label" text="P&#345;&#237;klad&#160;%n"/>
+      <l:template name="example-label" text="P&#345;&#237;klad&#160;%n:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Obr&#225;zek&#160;%n"/>
+      <l:template name="figure-label" text="Obr&#225;zek&#160;%n:"/>
       <l:template name="figure-title" text="%t"/>
-      <l:template name="procedure-label" text="Postup&#160;%n"/>
+      <l:template name="procedure-label" text="Postup&#160;%n:"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="Tabulka&#160;%n"/>
+      <l:template name="table-label" text="Tabulka&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
@@ -67,6 +67,7 @@
       <l:template name="sect5" text="&#268;&#225;st &#8222;%t&#8220;"/>
       <l:template name="page.citation" text=" (strana&#160;%p)"/>
 
+      <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Článek „%t”"/>
       <l:template name="intra-book" text="Kniha „%t”"/>
       <l:template name="intra-chapter" text="Kapitola&#160;%n „%t”"/>
