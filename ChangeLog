@@ -1,4 +1,40 @@
 -------------------------------------------------------------------
+Thu Sep 28 09:45:00 UTC 2017 - toms@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.8:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+PDF only:
+* Support footnotes, requested by Stefan Quandt
+  (suse-xsl #313, suse-xsl #314)
+* No colons after type/number in languages other than English
+  (suse-xsl #334)
+
+HTML only:
+* Glossdiv Title: rendered in gray instead of green
+  (suse-xsl #350)
+
+PDF/HTML:
+* No more spaces at the end of titles in formalparas
+  (suse-xsl #288)
+* Intra xref to step doesn't work (suse-xsl #343)
+
+I18N:
+* ja: don't generate the word "book" in intra-xrefs (suse-xsl #323)
+* Correct German quotes (suse-xsl #324, suse-xsl #340)
+* glossseealso: "See Also" -> "See also" (suse-xsl #330)
+
+General:
+* Exclude drupal and db2mediawiki stylesheets as they are now
+  obsolete (suse-xsl #310, suse-xsl #312)
+* Check length of text content in screen (suse-xsl #328)
+* Validate stylesheets through Jing in Travis (suse-xsl #327,
+  suse-xsl #337, suse-xsl #342)
+
+
+-------------------------------------------------------------------
 Thu May 11 17:00:00 UTC 2017 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.7.2:
