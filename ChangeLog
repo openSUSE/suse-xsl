@@ -33,6 +33,9 @@ General:
 * Validate stylesheets through Jing in Travis (suse-xsl #327,
   suse-xsl #337, suse-xsl #342)
 
+Spec File:
+* Use catalog.d mechanism and remove old XML catalog files, see
+  https://en.opensuse.org/openSUSE:Packaging_XML_Schemas_and_Stylesheets#Add_XML_Catalog_Support
 
 -------------------------------------------------------------------
 Thu May 11 17:00:00 UTC 2017 - sknorr@suse.de
