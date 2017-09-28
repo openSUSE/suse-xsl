@@ -1381,7 +1381,7 @@ h6.version-info {
 }
 
 .name, .refentry h2, .refentrytitle a, h2, .indexdiv h3, .qandadiv-title,
-.qandaset .title {
+.qandaset .title, .glossdiv .title {
     color: #439239;
 }
 
