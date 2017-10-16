@@ -56,13 +56,11 @@
   </para>
   <figure>
    <title>Figure</title>
-   <mediaobject role="html">
-    <imageobject>
+   <mediaobject>
+    <imageobject role="html">
      <imagedata fileref="miracle.png" width="70%" format="PNG"/>
     </imageobject>
-   </mediaobject>
-   <mediaobject role="fo">
-    <imageobject>
+    <imageobject role="fo">
      <imagedata fileref="miracle.png" width="70%" format="PNG"/>
     </imageobject>
    </mediaobject>
@@ -72,13 +70,11 @@
    Church-key raclette chia pork belly vegan, neutra truffaut.
   </para>
   <informalfigure>
-   <mediaobject role="html">
-    <imageobject>
+   <mediaobject>
+    <imageobject role="html">
      <imagedata fileref="miracle.png" width="70%" format="PNG"/>
     </imageobject>
-   </mediaobject>
-   <mediaobject role="fo">
-    <imageobject>
+    <imageobject role="fo">
      <imagedata fileref="miracle.png" width="70%" format="PNG"/>
     </imageobject>
    </mediaobject>
