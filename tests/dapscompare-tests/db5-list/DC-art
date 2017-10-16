@@ -9,4 +9,4 @@ PROFOS="osuse;noquick"
 PROFARCH="x86;amd64;em64t"
 
 STYLEROOT="../../../build/stylesheet/suse2013-ns"
-SCHEMA="file:///usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc"
+DOCBOOK5_RNG_URI="file:///usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc"
