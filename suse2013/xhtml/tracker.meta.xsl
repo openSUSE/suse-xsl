@@ -38,10 +38,17 @@
   <xsl:template name="create.bugtracker.information">
     <xsl:param name="node" select="."/>
 
-    <!-- Check for the proper DocBook 5/DocManager elements. -->
+    <!-- Check for the proper DocBook 5/DocManager elements. Since this is
+    XML, it should support profiling out of the box. -->
     <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/*[contains(local-name(.), 'info')]/dm:docmanager/dm:bugtracker"/>
-    <!-- Check for fallback version via processing instruction. -->
-    <xsl:variable name="bugtracker-pi" select="ancestor-or-self::*/*[contains(local-name(.), 'info')]/processing-instruction('dbsuse-bugtracker')"/>
+    <!-- Check for fallback version via processing instruction. We allow this
+    PI both (1) in [book|set|article]info elements, and (2) in
+    [book|set|article]info/bibliosource[@bugtracker]. (1) is the original
+    version. (2) allows for profiling (which is a somewhat important use case
+    for release notes). -->
+    <xsl:variable name="bugtracker-pi"
+      select="(ancestor-or-self::*/*[contains(local-name(.), 'info')]/processing-instruction('dbsuse-bugtracker')|
+               ancestor-or-self::*/*[contains(local-name(.), 'info')]/bibliosource[@role='bugtracker']/processing-instruction('dbsuse-bugtracker'))[last()]"/>
 
     <xsl:choose>
       <xsl:when test="$bugtracker-docmanager != ''">
