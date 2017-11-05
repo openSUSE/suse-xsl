@@ -16,13 +16,15 @@ function exit_on_error {
 MYPATH=$(dirname "$(realpath -s "$0")")
 TESTPATH="$MYPATH/dapscompare-tests"
 
-# v >0.2.1 = dapscompare; v >0.3 = dapscmp
-BINARY=$(which dapscompare 2> /dev/null || which dapscmp 2> /dev/null)
+BINARY=$(which dapscmp 2> /dev/null)
 VERSION=0
 if [[ ! "$BINARY" ]]; then
   exit_on_error "dapscompare is not installed!"
 fi
 VERSION="$($BINARY --help | grep -i -m1 '^version:' | awk '{print $3}')"
+
+echo "dapscompare version $VERSION"
+echo "  (make sure to use 0.5.1 or higher for reasonable results)"
 
 TESTCOMMAND='compare'
 # The check whether we need to do a reference run is by no means perfect. It
@@ -57,11 +59,8 @@ fi
 
 EXTRAARGS=
 # reference
-if [[ -f "$MYPATH/dapscompare.conf" && 'reference' ]]; then
+if [[ -f "$MYPATH/dapscompare.conf" ]]; then
   EXTRAARGS=$(cat "$MYPATH/dapscompare.conf")
-# comparison + older version
-elif [[ $VERSION == '0.2.0' ]] || [[ $VERSION == '0.2.1' ]]; then
-  EXTRAARGS="--load-config"
 fi
 
 echo -n "Making the stylesheets..."
