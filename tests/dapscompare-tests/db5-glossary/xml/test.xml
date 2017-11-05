@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml"
+                 title="Profiling step"?>
+<!DOCTYPE article
+[
+]>
+
+<book xml:lang="en" xml:id="book.foo"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Foo Bar in the Fooish Bar DB5</title>
+ <chapter xml:id="cha.glossary">
+  <title>Glossary</title>
+  <para>
+   Gluten-free kitsch scenester mumblecore quinoa.
+  </para>
+  <glossary xml:id="gl.glossary">
+   <title>A Foo Glossary</title>
+   <glossdiv>
+    <title>This Is a Glossdiv</title>
+    <glossentry xml:id="gle.atom">
+     <glossterm>Atom</glossterm>
+     <glossdef>
+      <para>
+       An atom is the smallest constituent unit of ordinary matter that
+       has the properties of a chemical element.
+      </para>
+     </glossdef>
+    </glossentry>
+    <glossentry xml:id="gle.electron">
+     <glossterm>Electron</glossterm>
+     <glossdef>
+      <para>
+       The electron is a subatomic particle, symbol e<superscript>−</superscript>
+       or β<superscript>−</superscript>, with a negative elementary electric charge.
+      </para>
+      <glossseealso otherterm="gle.atom"/>
+     </glossdef>
+    </glossentry>
+   </glossdiv>
+  </glossary>
+ </chapter>
+</book>
