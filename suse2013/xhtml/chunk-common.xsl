@@ -104,16 +104,7 @@
       <div class="crumbs">
         <xsl:call-template name="generate.breadcrumbs.back"/>
         <xsl:choose>
-          <xsl:when test="$rootelementname = 'article'">
-            <xsl:apply-templates select="." mode="breadcrumbs">
-              <xsl:with-param name="class">single-crumb</xsl:with-param>
-              <xsl:with-param name="context" select="$context"/>
-            </xsl:apply-templates>
-            <xsl:if test="$context = 'header'">
-              <div class="bubble-corner active-contents"> </div>
-            </xsl:if>
-          </xsl:when>
-          <xsl:when test="$rootelementname = 'book' or $rootelementname = 'set'">
+          <xsl:when test="$rootelementname != 'article'">
             <xsl:for-each select="ancestor-or-self::*">
               <xsl:choose>
                 <xsl:when test="$rootid != '' and descendant::*[@id = string($rootid)]"/>
@@ -129,9 +120,15 @@
               </xsl:choose>
             </xsl:for-each>
           </xsl:when>
-          <!-- NOP: not sure the breadcrumbs makes much sense if we don't
-          have set/book/article. -->
-          <xsl:otherwise/>
+          <xsl:otherwise>
+            <xsl:apply-templates select="." mode="breadcrumbs">
+              <xsl:with-param name="class">single-crumb</xsl:with-param>
+              <xsl:with-param name="context" select="$context"/>
+            </xsl:apply-templates>
+            <xsl:if test="$context = 'header'">
+              <div class="bubble-corner active-contents"> </div>
+            </xsl:if>
+          </xsl:otherwise>
         </xsl:choose>
       </div>
     </xsl:if>
