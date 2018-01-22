@@ -61,6 +61,29 @@
   <xsl:copy-of select="$text"/>
 </xsl:template>
 
+ <xsl:template match="section" mode="intra.title.markup">
+    <xsl:param name="linkend"/>
+    <xsl:param name="first" select="0"/>
+    <xsl:param name="lang" select="'en'"/>
+    <xsl:variable name="level" select="count(ancestor-or-self::section)"/>
+
+   <!--<xsl:message>######## section <xsl:value-of select="$linkend"/></xsl:message>-->
+   <xsl:apply-templates select="parent::*" mode="intra.title.markup">
+      <xsl:with-param name="lang" select="$lang"/>
+   </xsl:apply-templates>
+   <xsl:call-template name="generate.intra.separator">
+     <xsl:with-param name="lang" select="$lang"/>
+   </xsl:call-template>
+   <xsl:call-template name="substitute-markup">
+      <xsl:with-param name="template">
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'xref'"/>
+          <xsl:with-param name="name"  select="concat('intra-', local-name())"/>
+          <xsl:with-param name="lang" select="$lang"/>
+        </xsl:call-template>
+      </xsl:with-param>
+   </xsl:call-template>
+ </xsl:template>
 
   <xsl:template match="sect1" mode="intra.title.markup">
     <xsl:param name="linkend"/>
