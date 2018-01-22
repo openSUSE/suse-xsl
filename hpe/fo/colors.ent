@@ -1,0 +1,84 @@
+<!--
+   Purpose:
+     Consistently define colors throughout the stylesheets.
+
+   Author(s):   Stefan Knorr <sknorr@suse.de>
+   Copyright:   2013, Stefan Knorr
+
+-->
+
+<!-- Colors from the new SUSE homepage (actually not an official palette).
+     Prefer these colors. -->
+
+<!ENTITY white                "rgb(255,255,255)">
+<!ENTITY lighter-gray         "#E6E7E8">
+<!ENTITY light-gray           "#CFD0D2">
+<!ENTITY mid-gray             "#BBBDBF">
+<!ENTITY mid-dark-gray        "#666666">
+<!ENTITY dark-gray            "#333333">
+<!ENTITY darker-gray          "#231F20">
+<!--<!ENTITY hint-green           "rgb(247,250,246)">-->
+<!ENTITY chamaeleon-green     "#00B388">
+<!ENTITY mid-green            "&chamaeleon-green;">
+<!ENTITY darker-green         "&chamaeleon-green;">
+<!ENTITY dark-green           "&chamaeleon-green;">
+
+<!-- HPE, turquoise accent: #56C4CF -->
+<!-- HPE, orange accent: #F58C6F -->
+<!-- HPE, purple accent: #614767 -->
+<!-- HPE, navy accent: #69807C -->
+
+<!-- HPE, light-gray: #BBBDBF -->
+<!-- HPE, mid-light gray: #CFD0D2-->
+<!-- HPE, lighter gray: #E6E7E8 -->
+<!-- HPE, dark green-gray: #231F20 -->
+
+<!-- Official SUSE color palette. Second of order. Don't use any greens from
+     here. -->
+
+<!ENTITY suse-green-old       "&chamaeleon-green;">
+<!ENTITY black                "rgb(0,0,0)">
+<!-- No need to define white again. -->
+<!--<!ENTITY dark-gray-old        "rgb(70,69,71)">-->
+<!--<!ENTITY medium-gray-old      "rgb(185,185,185)">-->
+<!--<!ENTITY light-gray-old       "rgb(239,239,240)"> --> <!-- #EFEFF0 -->
+<!--<!ENTITY extra-light-gray-old "rgb(245,245,246)">-->
+<!--<!ENTITY bright-green-old     "rgb(212,223,76)">-->
+<!--<!ENTITY medium-green-old     "rgb(0,165,79)">-->
+<!--<!ENTITY dark-green-old       "rgb(0,132,62)">-->
+
+
+<!-- Official OpenSUSE color. Use these, if nothing fitting can be found in
+     either of the palettes above. Don't use any greens from here. -->
+
+<!--<!ENTITY light-orange         "rgb(252,174,27)">-->
+<!ENTITY mid-orange           "rgb(190,126,2)">
+<!--<!ENTITY dark-orange          "rgb(227,80,1)">-->
+<!--<!ENTITY light-butter         "rgb(255,255,102)">-->
+<!--<!ENTITY dark-butter          "rgb(178,178,71)">-->
+<!--<!ENTITY light-lemon          "rgb(148,208,6)">-->
+<!--<!ENTITY dark-lemon           "rgb(34,120,8)">-->
+<!--<!ENTITY light-plum           "rgb(212,196,255)">-->
+<!ENTITY dark-plum            "#614767">
+<!--<!ENTITY light-sky            "rgb(80,130,255)">-->
+<!ENTITY dark-sky             "#56C4CF">
+<!--<!ENTITY light-dust           "rgb(186,189,183)">-->
+<!--<!ENTITY dark-dust            "rgb(46,52,54)">-->
+<!--<!ENTITY light-blood          "rgb(255,77,77)">-->
+<!ENTITY dark-blood           "rgb(140,0,0)"> <!-- Can we leave this intact?  -->
+<!--<!ENTITY suse-os              "rgb(115,186,37)">-->
+
+<!-- Purple from the Tango set for remarks (matches the HTML version) -->
+<!ENTITY tango-plum           "#614767">
+
+<!-- Special gray to replace italics -->
+<!ENTITY italic-replacement         "rgb(120,120,120)">
+<!ENTITY bold-replacement           "rgb(240,240,240)">
+
+<!-- High visibility testing colors -->
+<!ENTITY test1                "#F0F">
+<!ENTITY test1border          "1px solid #F0F">
+<!ENTITY test2                "#F00">
+<!ENTITY test2border          "1px solid #0BF">
+<!ENTITY test3                "#0F0">
+<!ENTITY test3border          "1px solid #0F0">
