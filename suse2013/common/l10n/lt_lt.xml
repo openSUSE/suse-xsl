@@ -80,6 +80,8 @@
       <l:template name="intra-sect2" text="Skyrius&#160;%n „%t“"/>
       <l:template name="intra-sect3" text="Skyrius&#160;%n „%t“"/>
       <l:template name="intra-sect4" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-sect5" text="Skyrius&#160;%n „%t“"/>
+      <l:template name="intra-section" text="Skyrius&#160;%n „%t“"/>
       <l:template name="intra-preface" text="Įvadas „%t“"/>
       <!-- "Pav." seems wrong ... why is this an abbreviation only? It also
            looks very similar to "Pavyzdys"... Both seem to be ~correct (Google

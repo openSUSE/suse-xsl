@@ -85,6 +85,8 @@
       <l:template name="intra-sect2" text="Afsnit&#160;%n “%t”"/>
       <l:template name="intra-sect3" text="Afsnit&#160;%n “%t”"/>
       <l:template name="intra-sect4" text="Afsnit&#160;%n “%t”"/>
+      <l:template name="intra-sect5" text="Afsnit&#160;%n “%t”"/>
+      <l:template name="intra-section" text="Afsnit&#160;%n “%t”"/>
 
       <l:template name="intra-example" text="Eksempel&#160;%n “%t”"/>
       <l:template name="intra-figure" text="Figur&#160;%n “%t”"/>

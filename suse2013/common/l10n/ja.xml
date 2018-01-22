@@ -71,6 +71,8 @@
     <l:template name="intra-sect2" text="のセクション「%t」"/>
     <l:template name="intra-sect3" text="のセクション「%t」"/>
     <l:template name="intra-sect4" text="のセクション「%t」"/>
+    <l:template name="intra-sect5" text="のセクション「%t」"/>
+    <l:template name="intra-section" text="のセクション「%t」"/>
 
     <l:template name="intra-example" text="&#160;%n 「%t」"/>
     <l:template name="intra-figure" text="図&#160;%n 「%t」"/>

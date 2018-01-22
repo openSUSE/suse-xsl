@@ -75,6 +75,8 @@
       <l:template name="intra-sect2" text="Oddíl&#160;%n „%t”"/>
       <l:template name="intra-sect3" text="Oddíl&#160;%n „%t”"/>
       <l:template name="intra-sect4" text="Oddíl&#160;%n „%t”"/>
+      <l:template name="intra-sect5" text="Oddíl&#160;%n „%t”"/>
+      <l:template name="intra-section" text="Oddíl&#160;%n „%t”"/>
 
       <l:template name="intra-example" text="Příklad&#160;%n „%t”"/>
       <l:template name="intra-figure" text="Obrázek&#160;%n „%t”"/>

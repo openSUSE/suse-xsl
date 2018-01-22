@@ -80,6 +80,8 @@
       <l:template name="intra-sect2" text="Abschnitt %n „%t“"/>
       <l:template name="intra-sect3" text="Abschnitt %n „%t“"/>
       <l:template name="intra-sect4" text="Abschnitt %n „%t“"/>
+      <l:template name="intra-sect5" text="Abschnitt %n „%t“"/>
+      <l:template name="intra-section" text="Abschnitt %n „%t“"/>
 
       <l:template name="intra-example" text="Beispiel %n „%t“"/>
       <l:template name="intra-figure" text="Abbildung %n „%t“"/>

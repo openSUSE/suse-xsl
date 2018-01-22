@@ -65,6 +65,8 @@ translators apparently want those. - sknorr, 2016-09-30 -->
       <l:template name="intra-sect2" text='القسم&#160;%n "%t"'/>
       <l:template name="intra-sect3" text='القسم&#160;%n "%t"'/>
       <l:template name="intra-sect4" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect5" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-section" text='القسم&#160;%n "%t"'/>
 
       <l:template name="intra-example" text="مثال&#160;%n “%t”"/>
       <l:template name="intra-figure" text="شكل&#160;%n “%t”"/>

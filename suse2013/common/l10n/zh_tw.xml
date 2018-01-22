@@ -195,6 +195,8 @@
     <l:template name="intra-sect2" text="第 %n 節「%t」"/>
     <l:template name="intra-sect3" text="第 %n 節「%t」"/>
     <l:template name="intra-sect4" text="第 %n 節「%t」"/>
+    <l:template name="intra-sect5" text="第 %n 節「%t」"/>
+    <l:template name="intra-section" text="第 %n 節「%t」"/>
 
     <l:template name="intra-example" text="範例 %n 「%t」"/>
     <l:template name="intra-figure" text="圖形 %n 「%t」"/>
