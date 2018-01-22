@@ -19,7 +19,7 @@
 
    Authors:    Thomas Schraitle <toms@opensuse.org>,
                Stefan Knorr <sknorr@suse.de>
-   Copyright:  2012, 2013, Thomas Schraitle, Stefan Knorr
+   Copyright:  2012-2018 Thomas Schraitle, Stefan Knorr
 
 -->
 
