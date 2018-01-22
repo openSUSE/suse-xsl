@@ -78,6 +78,8 @@
       <l:template name="intra-sect2" text="Seção %n “%t”"/>
       <l:template name="intra-sect3" text="Seção %n “%t”"/>
       <l:template name="intra-sect4" text="Seção %n “%t”"/>
+      <l:template name="intra-sect5" text="Seção %n “%t”"/>
+      <l:template name="intra-section" text="Seção %n “%t”"/>
 
       <l:template name="intra-example" text="Exemplo&#160;%n “%t”"/>
       <l:template name="intra-figure" text="Figura&#160;%n “%t”"/>

@@ -89,6 +89,8 @@
       <l:template name="intra-sect2" text="Sezione&#160;%n «%t»"/>
       <l:template name="intra-sect3" text="Sezione&#160;%n «%t»"/>
       <l:template name="intra-sect4" text="Sezione&#160;%n «%t»"/>
+      <l:template name="intra-sect5" text="Sezione&#160;%n «%t»"/>
+      <l:template name="intra-section" text="Sezione&#160;%n «%t»"/>
 
       <l:template name="intra-example" text="Esempio&#160;%n «%t»"/>
       <l:template name="intra-figure" text="Figura&#160;%n «%t»"/>

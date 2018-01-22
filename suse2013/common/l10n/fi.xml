@@ -77,6 +77,8 @@
       <l:template name="intra-sect2" text="Osa&#160;%n ”%t”"/>
       <l:template name="intra-sect3" text="Osa&#160;%n ”%t”"/>
       <l:template name="intra-sect4" text="Osa&#160;%n ”%t”"/>
+      <l:template name="intra-sect5" text="Osa&#160;%n ”%t”"/>
+      <l:template name="intra-section" text="Osa&#160;%n ”%t”"/>
 
       <l:template name="intra-example" text="Esimerkki&#160;%n ”%t”"/>
       <l:template name="intra-figure" text="Kuva&#160;%n ”%t”"/>

@@ -90,6 +90,7 @@
       <l:template name="intra-sect2" text="Section&#160;%n “%t”"/>
       <l:template name="intra-sect3" text="Section&#160;%n “%t”"/>
       <l:template name="intra-sect4" text="Section&#160;%n “%t”"/>
+      <l:template name="intra-sect5" text="Section&#160;%n “%t”"/>
       <l:template name="intra-section" text="Section&#160;%n “%t”"/>
       <l:template name="intra-preface" text="Preface “%t”"/>
       <l:template name="intra-figure" text="Figure&#160;%n “%t”"/>

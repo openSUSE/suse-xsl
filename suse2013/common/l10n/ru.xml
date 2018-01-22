@@ -77,6 +77,8 @@
       <l:template name="intra-sect2" text="Раздел&#160;%n «%t»"/>
       <l:template name="intra-sect3" text="Раздел&#160;%n «%t»"/>
       <l:template name="intra-sect4" text="Раздел&#160;%n «%t»"/>
+      <l:template name="intra-sect5" text="Раздел&#160;%n «%t»"/>
+      <l:template name="intra-section" text="Раздел&#160;%n «%t»"/>
 
       <l:template name="intra-example" text="Пример&#160;%n «%t»"/>
       <l:template name="intra-figure" text="Рисунок&#160;%n «%t»"/>

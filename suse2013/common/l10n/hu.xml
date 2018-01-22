@@ -87,6 +87,8 @@
       <l:template name="intra-sect2" text="%n.&#160;szakasz (%t)"/>
       <l:template name="intra-sect3" text="%n.&#160;szakasz (%t)"/>
       <l:template name="intra-sect4" text="%n.&#160;szakasz (%t)"/>
+      <l:template name="intra-sect5" text="%n.&#160;szakasz (%t)"/>
+      <l:template name="intra-section" text="%n.&#160;szakasz (%t)"/>
 
       <l:template name="intra-example" text="%n.&#160;példa (%t)"/>
       <l:template name="intra-figure" text="%n.&#160;ábra (%t)"/>

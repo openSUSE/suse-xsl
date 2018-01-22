@@ -88,6 +88,8 @@
       <l:template name="intra-sect2" text="Paragraaf&#160;%n “%t”"/>
       <l:template name="intra-sect3" text="Paragraaf&#160;%n “%t”"/>
       <l:template name="intra-sect4" text="Paragraaf&#160;%n “%t”"/>
+      <l:template name="intra-sect5" text="Paragraaf&#160;%n “%t”"/>
+      <l:template name="intra-section" text="Paragraaf&#160;%n “%t”"/>
 
       <l:template name="intra-example" text="Voorbeeld&#160;%n “%t”"/>
       <l:template name="intra-figure" text="Afbeelding&#160;%n “%t”"/>

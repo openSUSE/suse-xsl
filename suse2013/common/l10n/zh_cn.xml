@@ -170,6 +170,8 @@
      <l:template name="intra-sect2" text="第&#160;%n 节 “%t”"/>
      <l:template name="intra-sect3" text="第&#160;%n 节 “%t”"/>
      <l:template name="intra-sect4" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect5" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-section" text="第&#160;%n 节 “%t”"/>
 
      <l:template name="intra-example" text="例&#160;%n “%t”"/>
      <l:template name="intra-figure" text="图&#160;%n “%t”"/>

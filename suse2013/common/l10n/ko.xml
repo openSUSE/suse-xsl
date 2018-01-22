@@ -78,6 +78,8 @@
       <l:template name="intra-sect2" text="%n절 “%t”"/>
       <l:template name="intra-sect3" text="%n절 “%t”"/>
       <l:template name="intra-sect4" text="%n절 “%t”"/>
+      <l:template name="intra-sect5" text="%n절 “%t”"/>
+      <l:template name="intra-section" text="%n절 “%t”"/>
 
       <l:template name="intra-example" text="예 %n “%t”"/>
       <l:template name="intra-figure" text="그림 %n “%t”"/>
