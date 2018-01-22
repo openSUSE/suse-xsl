@@ -1,6 +1,6 @@
 # Makefile for suse-xsl-stylesheets
 #
-# Copyright (C) 2011-2015 SUSE Linux GmbH
+# Copyright (C) 2011-2018 SUSE Linux GmbH
 #
 # Author:
 # Frank Sundermeyer <fsundermeyer at opensuse dot org>
@@ -27,10 +27,11 @@ URL           := https://raw.githubusercontent.com/openSUSE/suse-xsl/master
 
 DIR2005          := suse
 DIR2013_SUSE     := suse2013
+DIR2013_HPE      := hpe
 DIR2013_OPENSUSE := opensuse2013
 DIR2013_DAPS     := daps2013
 
-ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
+ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_HPE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 
 #--------------------------------------------------------------
 # Directories and files that will be created
@@ -62,14 +63,17 @@ DEV_DIR2005          := $(DEV_STYLE_DIR)/$(DIR2005)-ns
 DEV_DIR2013_DAPS     := $(DEV_STYLE_DIR)/$(DIR2013_DAPS)-ns
 DEV_DIR2013_OPENSUSE := $(DEV_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
 DEV_DIR2013_SUSE     := $(DEV_STYLE_DIR)/$(DIR2013_SUSE)-ns
+DEV_DIR2013_HPE      := $(DEV_STYLE_DIR)/$(DIR2013_HPE)-ns
 
 DEV_DIRECTORIES := $(DEV_ASPELL_DIR) $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
    $(DEV_DIR2005) $(DEV_DIR2013_DAPS) \
-   $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
+   $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE) \
+   $(DEV_DIR2013_HPE)
 
 LOCAL_STYLEDIRS := $(DIR2005) $(DEV_DIR2005) \
    $(DIR2013_SUSE) $(DEV_DIR2013_SUSE) $(DIR2013_DAPS) $(DEV_DIR2013_DAPS) \
-   $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE)
+   $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE) \
+   $(DIR2013_HPE) $(DEV_DIR2013_HPE)
 
 
 #-------------------------------------------------------
@@ -81,6 +85,8 @@ STYLEDIR2005            := $(INST_STYLE_ROOT)/$(DIR2005)
 STYLEDIR2005-NS         := $(INST_STYLE_ROOT)/$(DIR2005)-ns
 SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
 SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
+HPESTYLEDIR2013         := $(INST_STYLE_ROOT)/$(DIR2013_HPE)
+HPESTYLEDIR2013-NS      := $(INST_STYLE_ROOT)/$(DIR2013_HPE)-ns
 DAPSSTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)
 DAPSSTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)-ns
 OPENSUSESTYLEDIR2013    := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)
@@ -95,7 +101,8 @@ VAR_SGML_DIR  := $(DESTDIR)/var/lib/sgml
 
 INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) $(DAPSSTYLEDIR2013) \
-   $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS)
+   $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS) \
+   $(HPESTYLEDIR2013) $(HPESTYLEDIR2013-NS)
 
 INST_DIRECTORIES := $(ASPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
    $(RNGDIR_09) $(RNGDIR_10) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) \
@@ -121,6 +128,8 @@ install: | $(INST_DIRECTORIES)
 	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_OPENSUSE) . | (cd  $(OPENSUSESTYLEDIR2013-NS); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_HPE) . | (cd  $(HPESTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_HPE) . | (cd  $(HPESTYLEDIR2013-NS); tar xp)
 	for SDIR in $(INST_STYLEDIRS); do \
 	   sed -i "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl; \
 	done
@@ -151,6 +160,7 @@ generate_xslns: | $(LOCAL_STYLEDIRS)
 	bin/xslns-build $(DIR2013_DAPS) $(DEV_DIR2013_DAPS)
 	bin/xslns-build $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE)
 	bin/xslns-build $(DIR2013_SUSE) $(DEV_DIR2013_SUSE)
+	bin/xslns-build $(DIR2013_HPE) $(DEV_DIR2013_HPE)
 
 #-----------------------------
 # Auto-generate HTML stylesheets from XHTML:
