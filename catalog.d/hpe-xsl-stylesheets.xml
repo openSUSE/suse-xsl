@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <group id="hpe-xsl-stylesheets" xml:base="..">
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/hpe"
+     rewritePrefix="hpe"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/hpe"
+     rewritePrefix="hpe"/>
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/hpe-ns"
+     rewritePrefix="hpe-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/hpe-ns"
+     rewritePrefix="hpe-ns"/>
+  </group>
+</catalog>
