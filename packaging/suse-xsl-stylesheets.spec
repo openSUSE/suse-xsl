@@ -41,7 +41,7 @@ Release:        0
 Summary:        SUSE-Branded Stylesheets for DocBook
 License:        GPL-2.0 or GPL-3.0
 Group:          Productivity/Publishing/XML
-Url:            http://sourceforge.net/p/daps/suse-xslt
+Url:            https://github.com/openSUSE/suse-xsl
 Source0:        %{name}-%{version}.tar.bz2
 Source1:        susexsl-fetch-source-git
 Source2:        %{name}.rpmlintrc
