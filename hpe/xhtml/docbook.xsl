@@ -698,37 +698,14 @@ hljs.configure({
           <xsl:value-of select="date:year()"/>
           <xsl:text> </xsl:text>
         </xsl:if>
-        SUSE</p>
+        Hewlett Packard Enterprise Development LP</p>
       <xsl:if test="$generate.footer.links != 0">
         <ul>
           <li>
-            <a href="http://www.suse.com/company/careers/" target="_top">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">susecareers</xsl:with-param>
-              </xsl:call-template>
-            </a>
+            <a href="https://www.hpe.com/us/en/about/legal/terms-of-use.html" target="_top">Terms of Use</a>
           </li>
           <li>
-            <a href="http://www.suse.com/company/legal/" target="_top">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">suselegal</xsl:with-param>
-              </xsl:call-template>
-            </a>
-          </li>
-          <li>
-            <a href="http://www.suse.com/company/" target="_top">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">suseabout</xsl:with-param>
-              </xsl:call-template>
-            </a>
-          </li>
-          <li>
-            <a href="http://www.suse.com/ContactsOffices/contacts_offices.jsp"
-              target="_top">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">susecontact</xsl:with-param>
-              </xsl:call-template>
-            </a>
+            <a href="https://www.hpe.com/us/en/legal/privacy.html" target="_top">Privacy Policy</a>
           </li>
         </ul>
       </xsl:if>
