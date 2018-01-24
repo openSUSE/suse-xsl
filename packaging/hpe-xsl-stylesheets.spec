@@ -21,7 +21,7 @@
 Name:           hpe-xsl-stylesheets
 Version:        1.0.0
 Release:        0
-Summary:        SUSE-Branded Stylesheets for DocBook
+Summary:        HPE-Branded Stylesheets for DocBook
 License:        GPL-2.0 OR GPL-3.0
 Group:          Productivity/Publishing/XML
 URL:            https://github.com/openSUSE/suse-xsl
