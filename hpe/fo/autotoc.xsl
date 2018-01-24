@@ -141,7 +141,7 @@
           <fo:leader leader-pattern="space" leader-length="&gutterfragment;mm"
             keep-with-next.within-line="always"/>
           <fo:inline keep-together.within-line="always" font-size="{&large; * $sans-fontsize-adjust}pt"
-            xsl:use-attribute-sets="toc.pagenumber.properties" color="&mid-gray;">
+            xsl:use-attribute-sets="toc.pagenumber.properties">
             <fo:page-number-citation ref-id="{$id}"/>
           </fo:inline>
         </fo:basic-link>

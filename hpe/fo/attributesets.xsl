@@ -78,13 +78,8 @@ are overridden somewhere. Probably because of the original stylesheets. -->
   <xsl:attribute name="font-size"><xsl:value-of select="1 div $sans-xheight-adjust * 0.85"/>em</xsl:attribute>
   <xsl:attribute name="color">
     <xsl:choose>
-      <xsl:when test="self::sect1|self::sect2|self::sect3|self::sect4|
-                      self::sect5|self::section|ancestor::article">
-        &mid-gray;
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$chamaeleon-green"/>
-      </xsl:otherwise>
+      <xsl:when test="$format.print = 1">&mid-dark-gray;</xsl:when>
+      <xsl:otherwise>&navy-green;</xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
 </xsl:attribute-set>
@@ -624,7 +619,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
 <xsl:param name="mid-green">
   <!-- See above... -->
   <xsl:choose>
-    <xsl:when test="$format.print = 1">&mid-gray;</xsl:when>
+    <xsl:when test="$format.print = 1">&mid-dark-gray;</xsl:when>
     <xsl:otherwise>&mid-green;</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
@@ -632,7 +627,7 @@ are overridden somewhere. Probably because of the original stylesheets. -->
 <xsl:param name="chamaeleon-green">
   <!-- See above... -->
   <xsl:choose>
-    <xsl:when test="$format.print = 1">&mid-gray;</xsl:when>
+    <xsl:when test="$format.print = 1">&mid-dark-gray;</xsl:when>
     <xsl:otherwise>&chamaeleon-green;</xsl:otherwise>
   </xsl:choose>
 </xsl:param>

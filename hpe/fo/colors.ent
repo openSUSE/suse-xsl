@@ -26,7 +26,7 @@
 <!-- HPE, turquoise accent: #56C4CF -->
 <!-- HPE, orange accent: #F58C6F -->
 <!-- HPE, purple accent: #614767 -->
-<!-- HPE, navy accent: #69807C -->
+<!-- HPE, navy green accent: #69807C -->
 
 <!-- HPE, light-gray: #BBBDBF -->
 <!-- HPE, mid-light gray: #CFD0D2-->
@@ -52,7 +52,8 @@
      either of the palettes above. Don't use any greens from here. -->
 
 <!--<!ENTITY light-orange         "rgb(252,174,27)">-->
-<!ENTITY mid-orange           "rgb(190,126,2)">
+<!ENTITY mid-orange           "#F58C6F">
+<!ENTITY navy-green           "#69807C">
 <!--<!ENTITY dark-orange          "rgb(227,80,1)">-->
 <!--<!ENTITY light-butter         "rgb(255,255,102)">-->
 <!--<!ENTITY dark-butter          "rgb(178,178,71)">-->

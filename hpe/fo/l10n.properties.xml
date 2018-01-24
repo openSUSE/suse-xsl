@@ -130,7 +130,7 @@
 
   <lang code="default">
     <prop name="serif" ref-name="sans"/>
-    <prop name="sans">'MetricHPE', sans-serif</prop>
+    <prop name="sans">'MetricHPE', 'Open Sans', OpenSans, sans-serif</prop>
     <prop name="mono">'HPE Simple TT','DejaVu Sans Mono', DejaVuSansMono, monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">true</prop>

@@ -82,7 +82,7 @@
           <xsl:text>&dark-blood;</xsl:text>
         </xsl:when>
         <xsl:when test="local-name($node)='tip'">
-          <xsl:text>&dark-green;</xsl:text>
+          <xsl:text>&navy-green;</xsl:text>
         </xsl:when>
         <xsl:when test="local-name($node)='important'">
           <xsl:text>&mid-orange;</xsl:text>

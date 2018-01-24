@@ -535,7 +535,7 @@
   <xsl:variable name="color">
     <xsl:choose>
       <xsl:when test="@role = 'rootprompt' and format.print = 0">&dark-blood;</xsl:when>
-      <xsl:otherwise>&mid-gray;</xsl:otherwise>
+      <xsl:otherwise>&dark-gray;</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
