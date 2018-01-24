@@ -66,7 +66,7 @@
 <!--<!ENTITY light-dust           "rgb(186,189,183)">-->
 <!--<!ENTITY dark-dust            "rgb(46,52,54)">-->
 <!--<!ENTITY light-blood          "rgb(255,77,77)">-->
-<!ENTITY dark-blood           "rgb(140,0,0)"> <!-- Can we leave this intact?  -->
+<!ENTITY dark-blood           "#D93A09">
 <!--<!ENTITY suse-os              "rgb(115,186,37)">-->
 
 <!-- Purple from the Tango set for remarks (matches the HTML version) -->

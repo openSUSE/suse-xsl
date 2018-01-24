@@ -165,8 +165,8 @@
   <fo:block text-align="start" hyphenate="false"
     line-height="{$base-lineheight * 0.85}em"
     font-weight="600" font-size="{&super-large; * $sans-fontsize-adjust}pt"
-    space-after="&gutterfragment;mm"
-    xsl:use-attribute-sets="title.font sans.bold.noreplacement mid-green">
+    space-after="&gutterfragment;mm" color="&black;"
+    xsl:use-attribute-sets="title.font sans.bold.noreplacement">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
     <xsl:text> </xsl:text>
     <xsl:apply-templates select="../productnumber[not(@role='abbrev')]"

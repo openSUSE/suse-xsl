@@ -177,7 +177,7 @@
 
   <xsl:template match="productname[1]" mode="article.titlepage.recto.auto.mode">
     <fo:block text-align="start" font-size="{&xx-large; * $sans-fontsize-adjust}pt"
-      xsl:use-attribute-sets="mid-green">
+      color="&black;">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
       <xsl:if test="../productnumber">
         <xsl:text> </xsl:text>

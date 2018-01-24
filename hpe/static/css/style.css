@@ -122,7 +122,7 @@ html, body {
 
 #_logo {
     float: left;
-    margin: 33px 22px 16px 11px;
+    margin: 33px 22px 16px 10px;
     width: 91px;
     height: 38px;
 }
@@ -140,17 +140,16 @@ html, body {
     position: absolute;
     top: 33px;
     left: 0;
-    height: 36px;
+    height: 42px;
     text-overflow: ellipsis;
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
     margin: 0 0 0 130px;
-    height: 36px;
     max-width: 70%;
-    max-width: calc(100% - 120px);
-    max-width: -moz-calc(100% - 120px);
-    max-width: -webkit-calc(100% - 120px);
+    max-width: calc(100% - 140px);
+    max-width: -moz-calc(100% - 140px);
+    max-width: -webkit-calc(100% - 140px);
 }
 
 #_header .crumb, #_header .crumbs > span {
@@ -229,7 +228,7 @@ html, body {
 .single-contents-icon, #_print-button:before, #_share-fb:before,
 #_share-gp:before, #_share-tw:before, #_share-mail:before,
 .arch-arrow-start:after, .arch-arrow-end, .ulink:after, .link:after {
-    background-image: url(../images/icons.png);
+    background-image: url(../images/icons.svg);
     background-repeat: no-repeat;
 }
 
@@ -256,7 +255,7 @@ html, body {
 #_header .book-link, #_header .overview-icon {
     display: inline-block;
     vertical-align: middle;
-    height: 36px;
+    height: 42px;
 }
 
 .toc-icon, .find-icon, #_header .book-icon, #_header .overview-icon,
@@ -383,7 +382,7 @@ html, body {
 
 #_pickers .bubble .selected {
     background-color: #5E9632;
-    background-image: url(../images/tick.png);
+    background-image: url(../images/tick.svg);
     background-repeat: no-repeat;
     background-position: right top;
 }
@@ -410,6 +409,7 @@ html, body {
     border-top: 1px solid #E3E3E3;
     position: relative;
     z-index: 4;
+    padding: 10px 0;
 }
 
 #_toolbar {
@@ -483,7 +483,7 @@ html, body {
     float: left;
     display: block;
     vertical-align: middle;
-    line-height: 56px;
+    line-height: 60px;
     color: #333;
     font-weight: normal;
 }
@@ -520,19 +520,22 @@ html, body {
     display: block;
 }
 
-.toc-icon {
-    background-position: -144px 0px;
+#_toolbar .toc-icon, #_toolbar .find-icon, #_toolbar .tools-icon, #_toolbar .nav-inner .prev-icon, #_toolbar .nav-inner .next-icon,
+#_header .book-icon, #_header .overview-icon,
+.nav-link > .prev-icon, .nav-link > .next-icon {
     border: 3px solid #FFF;
+    background-color: #00B388;
+    border-radius: 50%;
 }
 
-.active .toc-icon, a:hover > .toc-icon, a:focus > .toc-icon,
-a:active > .toc-icon,
-.active .find-icon, a:hover > .find-icon, a:focus > .find-icon,
-a:active > .find-icon,
-.nav-inner > a:hover > .prev-icon, .nav-inner > a:focus > .prev-icon,
-.nav-inner > a:active > .prev-icon,
-.nav-inner > a:hover > .next-icon, .nav-inner > a:focus > .next-icon,
-.nav-inner > a:active > .next-icon {
+.toc-icon {
+    background-position: -144px 0px;
+}
+
+#_toolbar .active .toc-icon, #_toolbar a:hover .toc-icon, #_toolbar a:focus .toc-icon, #_toolbar a:active .toc-icon,
+#_toolbar .active .find-icon, #_toolbar a:hover .find-icon, #_toolbar a:focus .find-icon, #_toolbar a:active .find-icon,
+#_toolbar .nav-inner > a:hover > .prev-icon, #_toolbar .nav-inner > a:focus > .prev-icon, #_toolbar .nav-inner > a:active > .prev-icon,
+#_toolbar .nav-inner > a:hover > .next-icon, #_toolbar .nav-inner > a:focus > .next-icon, #_toolbar .nav-inner > a:active > .next-icon {
     border-color: #00B388;
 }
 
@@ -540,27 +543,23 @@ a:active > .find-icon,
     background-position: -180px 0px;
 }
 
-.nav-inner > a > .prev-icon {
+.nav-inner > a > .prev-icon, .nav-inner > span >.prev-icon {
     background-position: -252px 0px;
 }
 
-.nav-inner > span >.prev-icon {
-    background-position: -324px 0px;
-}
-
-.nav-inner > a > .next-icon {
+.nav-inner > a > .next-icon, .nav-inner > span >.next-icon {
     background-position: -288px 0px;
 }
 
-.nav-inner > span > .next-icon {
-    background-position: -324px -36px;
+.nav-inner > span > .next-icon, .nav-inner > span >.prev-icon {
+    opacity: .5;
 }
 
 .bubble-corner {
     width: 0;
     height: 0;
     border-width: 0 15px 15px;
-    border-color: transparent transparent #FFF;
+    border-color: transparent transparent #333;
     border-style: solid;
     position: relative;
     z-index: 7;
@@ -577,11 +576,6 @@ a:active > .find-icon,
     position: absolute;
 }
 
-#_toc-area > .bubble, #_find-area > .bubble, .pickers .bubble,
-#_toc-bubble-wrap > .bubble {
-    box-shadow: 1px 1px 3px 0px #333;
-}
-
 #_fixed-header-wrap .bubble {
     position: relative;
     margin: 4px 0 -3px;
@@ -595,7 +589,7 @@ a:active > .find-icon,
     left: 0;
     width: 100%;
     padding: 0;
-    top: 66px;
+    top: 74px;
 }
 
 #_toc-bubble-wrap > .bubble {
@@ -712,7 +706,7 @@ a:active > .find-icon,
     width: 30px;
     height: 100%;
     margin: 0;
-    background-image: url(../images/arrow.png);
+    background-image: url(../images/arrow.svg);
     background-position: -30px 8.5px;
     background-repeat: no-repeat;
 }
@@ -722,7 +716,7 @@ a:active > .find-icon,
 }
 
 #_bubble-toc .active > a {
-    background-color: #5E9632;
+    background-color: #00B388;
     color: #FFF;
 }
 #_bubble-toc .active {
@@ -829,8 +823,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
     position: fixed;
     top: 0;
     width: 100%;
-    box-shadow: 0 5px 5px #FFF;
-    border-bottom: 1px solid #E3E3E3;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.2);
     background-color: #FFF;
     padding: 0;
     line-height: 100%;
@@ -910,7 +903,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
     display: block;
     clear: both;
     margin: 20px 0 0 0;
-    height: 36px;
+    height: 42px;
     overflow: hidden;
 }
 
@@ -932,11 +925,11 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 
 
 .nav-label {
-    line-height: 36px;
+    line-height: 42px;
     display: block;
     color: #333;
     text-overflow: ellipsis;
-    height: 36px;
+    height: 42px;
     text-decoration: none;
 }
 
@@ -1131,10 +1124,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
 }
 
 [id]:target > span, .admonition[id]:target > h6 {
-    background-color: rgba(255,255,0,0.3);
-    /* Clean the below up in Q3 2013 or so... */
-    -webkit-transition: background-color 0.2s ease-out 0.3s;
-    -moz-transition: background-color 0.2s ease-out 0.3s;
+    background-color: rgba(245,140,111,.5);
     transition: background-color 0.2s ease-out 0.3s;
 }
 
@@ -1455,7 +1445,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 }
 
 .warning.admonition.normal, .caution.admonition.normal {
-    border-color: #8C0000;
+    border-color: #D93A09;
 }
 
 .admonition > h6 {
@@ -1487,7 +1477,7 @@ a.leads-to-page:active .name, .refentrytitle a:hover, .refentrytitle a:focus,
 }
 
 .warning.admonition.normal > h6, .caution.admonition.normal > h6 {
-    color: #8C0000;
+    color: #D93A09;
 }
 
 .admonition > .symbol {
@@ -1798,7 +1788,6 @@ code, .literal, .replaceable, .package {
 .verbatim-wrap {
     padding: 10px;
     background-color: #EFEFF0;
-    border-radius: 5px;
     margin: 5px 0;
     border: 1px solid #999;
 }
@@ -2357,7 +2346,7 @@ div.itemizedlist {
     margin: 4px 0 0;
     width: 17px;
     height: 15px;
-    background-image: url(../images/arrow.png);
+    background-image: url(../images/arrow.svg);
     background-position: -98px 0;
     background-repeat: no-repeat;
 }
@@ -2469,7 +2458,7 @@ p.ds-message {
 }
 
 .draft {
-    background: #FFF url(../images/draft.png) no-repeat fixed left 50%;
+    background: #FFF url(../images/draft.svg) no-repeat fixed left 50%;
 }
 
 @page {
