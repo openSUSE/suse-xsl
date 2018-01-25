@@ -195,8 +195,9 @@ html, body {
     height: 36px;
     display: inline-block;
     vertical-align: bottom;
-    background-color: #EFEFF0;
-    border-radius: 18px;
+    background-color: #00B388;
+    border: 3px solid #FFF;
+    color: #FFF;
 }
 
 #_header .crumbs.active {
@@ -205,14 +206,13 @@ html, body {
 
 #_header .single-crumb:hover, #_header .single-crumb:focus,
 #_header .single-crumb:active {
-    background-color: #999;
-    color: #FFF;
+    border-color: #00B388;
 }
 
 #_header .single-contents-icon {
     width: 36px;
     height: 36px;
-    background-position: -36px 0px;
+    background-position: 0px 0px;
     margin: -4px 5px 0 0;
     padding: 0;
     display: inline-block;
@@ -281,6 +281,10 @@ html, body {
     float: left;
 }
 
+#_fixed-header > .crumbs > span {
+    padding: 0 3px;
+}
+
 #_fixed-header .book-icon, #_fixed-header .overview-icon,
 #_fixed-header .single-contents-icon {
     width: 18px;
@@ -299,20 +303,36 @@ html, body {
 #_fixed-header .single-contents-icon {
     background-position: -235px -72px;
     height: 15px;
+    margin-top: 5px;
 }
 
 .active #_fixed-header .single-contents-icon {
     background-position: -271px -72px;
 }
-#_fixed-header a {
+
+#_fixed-header > .crumbs > a, #_fixed-header > .crumbs > span, #_fixed-header > .buttons > a {
     line-height: 24px;
+}
+
+#_fixed-header > .crumbs > a,
+#_fixed-header > .buttons > a,
+#_fixed-header > .buttons > .button > a {
     border-bottom: 3px solid transparent;
 }
 
-#_fixed-header a:hover, #_fixed-header a:focus, #_fixed-header a:active {
-  color: #333;
-  border-color: #00B388;
+#_fixed-header > .crumbs > a:hover, #_fixed-header > .crumbs > a:focus, #_fixed-header > .crumbs > a:active,
+#_fixed-header > .buttons > a:hover, #_fixed-header > .buttons > a:focus, #_fixed-header > .buttons > a:active,
+#_fixed-header > .buttons > .button > a:hover, #_fixed-header > .buttons > .button > a:focus, #_fixed-header > .buttons > .button > a:active {
+    color: #333;
+    border-color: #00B388;
 }
+
+#_fixed-header > .crumbs > .book-link, #_fixed-header > .crumbs > .book-link,
+#_fixed-header > .crumbs > .overview-link,
+#_fixed-header > .buttons > .button > a {
+    padding: 5px 0 2px;
+}
+
 
 /* Language and Format Pickers */
 
@@ -578,7 +598,7 @@ html, body {
 
 #_fixed-header-wrap .bubble {
     position: relative;
-    margin: 4px 0 -3px;
+    margin-bottom: -3px;
 }
 
 #_toc-area > .bubble-corner, #_find-area > .bubble-corner {
@@ -1912,7 +1932,6 @@ catch those. */
     font-weight: normal;
     font-style: normal;
     border-bottom: none;
-    display: inline;
     padding: 0;
 }
 
@@ -2708,7 +2727,7 @@ p.ds-message {
     }
 
     #_nav-area {
-        border-top: 1px solid #7DC24D;
+        border-top: 1px solid #E3E3E3;
     }
 
     .nav-inner > .tool-spacer {
@@ -2775,7 +2794,7 @@ p.ds-message {
 
     #_logo {
         margin-right: 10px;
-        margin-left: 53px;
+        margin-left: 15px;
     }
 
     #_header .single-contents-icon:hover, #_header .single-contents-icon:focus,
