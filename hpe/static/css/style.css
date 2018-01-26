@@ -138,7 +138,7 @@ html, body {
 
 #_header .crumbs {
     position: absolute;
-    top: 33px;
+    top: 30px;
     left: 0;
     height: 42px;
     text-overflow: ellipsis;
@@ -230,6 +230,17 @@ html, body {
 .arch-arrow-start:after, .arch-arrow-end, .ulink:after, .link:after {
     background-image: url(../images/icons.svg);
     background-repeat: no-repeat;
+}
+
+body.no-svg .toc-icon, body.no-svg .find-icon, body.no-svg .book-icon,
+body.no-svg .prev-icon, body.no-svg .next-icon, body.no-svg .overview-icon,
+body.no-svg .back-icon, body.no-svg #_find-button, body.no-svg .bubble-closer,
+body.no-svg .single-contents-icon, body.no-svg #_print-button:before,
+body.no-svg #_share-fb:before, body.no-svg #_share-gp:before,
+body.no-svg #_share-tw:before, body.no-svg #_share-mail:before,
+body.no-svg .arch-arrow-start:after, body.no-svg .arch-arrow-end,
+body.no-svg .ulink:after, body.no-svg .link:after {
+    background-image: url(../images/icons.png);
 }
 
 /* A somewhat ugly trick to make the documents look okay even without stylesheet. */
@@ -329,7 +340,8 @@ html, body {
 
 #_fixed-header > .crumbs > .book-link, #_fixed-header > .crumbs > .book-link,
 #_fixed-header > .crumbs > .overview-link,
-#_fixed-header > .buttons > .button > a {
+#_fixed-header > .buttons > .button > a,
+#_fixed-header > .buttons > .button > span {
     padding: 5px 0 2px;
 }
 
@@ -2795,11 +2807,6 @@ p.ds-message {
     #_logo {
         margin-right: 10px;
         margin-left: 15px;
-    }
-
-    #_header .single-contents-icon:hover, #_header .single-contents-icon:focus,
-    #_header .single-contents-icon:active {
-        background-position: -36px -36px;
     }
 
     #_toolbar .active .bubble-corner {

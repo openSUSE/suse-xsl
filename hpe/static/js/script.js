@@ -35,6 +35,12 @@ var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
 
 
 $(function() {
+
+  svgeezy.init('nocheck', 'png');
+  if (!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image", "1.1")) {
+    $("body").addClass("no-svg")
+  }
+
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
 
