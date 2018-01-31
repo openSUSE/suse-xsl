@@ -638,8 +638,27 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
+
     <xsl:if test="$build.for.web = 1">
-      <link rel="stylesheet" type="text/css" href="static/css/fonts.css"></link>
+      <script type="text/javascript">
+<xsl:text disable-output-escaping="yes">
+<![CDATA[
+var protocol = window.location.protocol.toLowerCase();
+if ( protocol != 'file:' ) {
+  var agent = navigator.userAgent.toLowerCase();
+  var wanted = ( protocol == 'https:') ? 'https' : 'http';
+  var file = 'fonts.css';
+  document.write('<link rel="stylesheet" type="text/css" href="' + wanted + '://static.opensuse.org/fonts/'+ file +'"></link>');
+}
+else {
+   document.write('<link rel="stylesheet" type="text/css" href="static/css/fonts-onlylocal.css"></link>');
+}
+]]>
+</xsl:text>
+      </script>
+      <noscript>
+        <link rel="stylesheet" type="text/css" href="http://static.opensuse.org/fonts/fonts.css"></link>
+      </noscript>
     </xsl:if>
     <xsl:if test="$daps.header.js.library != ''">
       <xsl:call-template name="make.script.link">

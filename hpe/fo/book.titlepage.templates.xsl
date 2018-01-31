@@ -146,7 +146,6 @@
 <xsl:template match="title" mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" line-height="1.2" hyphenate="false"
     xsl:use-attribute-sets="title.font title.name.color sans.bold.noreplacement"
-    font-weight="700"
     font-size="{&ultra-large;}pt">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
   </fo:block>

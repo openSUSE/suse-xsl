@@ -129,19 +129,19 @@
   </prop-types>
 
   <lang code="default">
-    <prop name="serif" ref-name="sans"/>
-    <prop name="sans">'MetricHPE', 'Open Sans', OpenSans, sans-serif</prop>
-    <prop name="mono">'HPE Simple TT','DejaVu Sans Mono', DejaVuSansMono, monospace</prop>
+    <prop name="serif">'Charis SIL', CharisSIL, serif</prop>
+    <prop name="sans">'Open Sans', OpenSans, sans-serif</prop>
+    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, monospace</prop>
     <prop name="enable-bold">true</prop>
-    <prop name="enable-serif-semibold">true</prop>
+    <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">true</prop>
     <prop name="enable-mono-semibold">false</prop>
     <prop name="enable-italic">true</prop>
     <prop name="fontsize-adjust">1</prop>
-    <prop name="sans-xheight-adjust">1</prop>
-    <prop name="mono-xheight-adjust">0.895</prop> <!-- if we decide to go for Metric + DejaVuSansMono instead, use: 0.81 -->
+    <prop name="sans-xheight-adjust">0.916</prop>
+    <prop name="mono-xheight-adjust">0.895</prop>
     <prop name="base-lineheight">1.6</prop>
-    <prop name="sans-lineheight-adjust">1</prop>
+    <prop name="sans-lineheight-adjust">1.125</prop>
     <prop name="mono-lineheight-adjust">1.125</prop>
     <prop name="sans-cutoff-factor">1</prop>
     <prop name="enable-text-justification">true</prop>

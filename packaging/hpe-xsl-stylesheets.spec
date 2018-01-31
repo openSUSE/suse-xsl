@@ -19,7 +19,7 @@
 %define suse_styles_dir   %{db_xml_dir}/stylesheet
 #
 Name:           hpe-xsl-stylesheets
-Version:        1.0.0
+Version:        1.0.2
 Release:        0
 Summary:        HPE-Branded Stylesheets for DocBook
 License:        GPL-2.0 OR GPL-3.0
@@ -33,11 +33,9 @@ BuildRequires:  suse-xsl-stylesheets
 BuildRequires:  unzip
 
 Requires:       sgml-skel >= 0.7
-Requires:       suse-xsl-stylesheets
 # Delegate all font related dependencies to suse-xsl-stylesheets
-# However, for HPE, we need special fonts:
-Requires:       hpe-fonts
-#
+Requires:       suse-xsl-stylesheets
+
 Requires(post): sgml-skel >= 0.7
 Requires(postun): sgml-skel >= 0.7
 #
