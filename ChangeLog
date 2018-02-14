@@ -1,4 +1,29 @@
 -------------------------------------------------------------------
+Thu Feb 14 15:27:00 UTC 2018 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.9:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Bug tracker PIs are now allowed in the info element which means they can now
+  be profiled properly
+* Update GitHub issues URL syntax to properly apply labels again
+
+PDF/HTML:
+* Support for intra xrefs to "section" and "sect5" elements
+
+Packaging:
+* Exclude env/ and *.tmp files from TAR ball
+* Remove dependencies on liberation2-fonts and aspell
+* Remove SUSE dictionary from this package: It does not belong here
+
+Test cases:
+* Markup fixes for dapscompare tests
+* Use correct SCHEMA for dapscompare tests
+
+-------------------------------------------------------------------
 Thu Sep 28 09:45:00 UTC 2017 - toms@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.8:

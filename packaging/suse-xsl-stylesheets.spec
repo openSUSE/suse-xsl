@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.8.1
+Version:        2.0.9
 Release:        0
 
 ###############################################################
@@ -182,9 +182,6 @@ exit 0
 %defattr(-,root,root)
 
 # Directories
-%dir %{_datadir}/suse-xsl-stylesheets
-%dir %{_datadir}/suse-xsl-stylesheets/aspell
-
 %dir %{suse_styles_dir}
 %dir %{suse_styles_dir}/suse
 %dir %{suse_styles_dir}/suse-ns
@@ -217,9 +214,6 @@ exit 0
 
 # Documentation
 %doc %{_defaultdocdir}/%{name}/*
-
-# SUSE aspell dictionary
-%{_datadir}/suse-xsl-stylesheets/aspell/en_US-suse-addendum.rws
 
 #----------------------
 
