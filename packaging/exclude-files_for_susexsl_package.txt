@@ -1,7 +1,3 @@
-aspell/[aft]*.txt
-aspell/add_context
-aspell/*.sh
-aspell/oxygen
 build
 build/*
 env

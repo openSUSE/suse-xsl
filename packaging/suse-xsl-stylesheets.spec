@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets
-Version:        2.0.8
+Version:        2.0.8.1
 Release:        0
 
 ###############################################################
@@ -48,8 +48,6 @@ Source2:        %{name}.rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
-BuildRequires:  aspell
-BuildRequires:  aspell-en
 BuildRequires:  docbook-xsl-stylesheets >= 1.77
 BuildRequires:  docbook5-xsl-stylesheets >= 1.77
 BuildRequires:  fdupes

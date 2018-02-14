@@ -36,13 +36,9 @@ ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 # Directories and files that will be created
 
 BUILD_DIR       := build
-DEV_ASPELL_DIR  := $(BUILD_DIR)/aspell
 DEV_CATALOG_DIR := $(BUILD_DIR)/catalog.d
 DEV_STYLE_DIR   := $(BUILD_DIR)/stylesheet
 DEV_HTML_DIR    := $(BUILD_DIR)/$(DIR2005)/html
-
-# aspell dictionary
-SUSE_DICT := $(BUILD_DIR)/aspell/en_US-suse-addendum.rws
 
 # Catalog stuff
 SUSEXSL_CATALOG    := catalog.d/$(PACKAGE).xml
@@ -63,7 +59,7 @@ DEV_DIR2013_DAPS     := $(DEV_STYLE_DIR)/$(DIR2013_DAPS)-ns
 DEV_DIR2013_OPENSUSE := $(DEV_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
 DEV_DIR2013_SUSE     := $(DEV_STYLE_DIR)/$(DIR2013_SUSE)-ns
 
-DEV_DIRECTORIES := $(DEV_ASPELL_DIR) $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
+DEV_DIRECTORIES := $(DEV_CATALOG_DIR) $(DEV_HTML_DIR) \
    $(DEV_DIR2005) $(DEV_DIR2013_DAPS) \
    $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
 
@@ -86,7 +82,6 @@ DAPSSTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)-ns
 OPENSUSESTYLEDIR2013    := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)
 OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
 
-ASPELLDIR     := $(DESTDIR)$(PREFIX)/suse-xsl-stylesheets/aspell
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
 CATALOG_DIR   := $(DESTDIR)/etc/xml/catalog.d
@@ -97,19 +92,18 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) $(DAPSSTYLEDIR2013) \
    $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS)
 
-INST_DIRECTORIES := $(ASPELLDIR) $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
+INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
    $(RNGDIR_09) $(RNGDIR_10) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) \
    $(VAR_SGML_DIR)
 
 #############################################################
 
 all: $(DEV_SUSEXSL_CATALOG)
-all: $(HTMLSTYLESHEETS) $(SUSE_DICT) generate_xslns
+all: $(HTMLSTYLESHEETS) generate_xslns
 	@echo "Ready to install..."
 
 #-----------------------------
 install: | $(INST_DIRECTORIES)
-	install -m644 $(SUSE_DICT) $(ASPELLDIR)
 	install -m644 $(DEV_CATALOG_DIR)/*.xml $(CATALOG_DIR)
 	install -m644 COPYING* $(DOCDIR)
 	install -m644 fonts/*.ttf $(TTF_FONT_DIR)
@@ -129,16 +123,6 @@ install: | $(INST_DIRECTORIES)
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
-
-#-----------------------------
-# Generate SUSE aspell dictionary
-#
-$(SUSE_DICT): $(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt
-	aspell --lang=en create master ./$@ < $<
-
-.INTERMEDIATE: $(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt
-$(DEV_ASPELL_DIR)/suse_wordlist_tmp.txt: aspell/suse_wordlist.txt | $(DEV_ASPELL_DIR)
-	cat $< | sort | uniq > $@
 
 #-----------------------------
 # auto-generate the DocBook5 (xsl-ns) stylesheets
