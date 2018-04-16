@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Mon Apr 16 13:37:00 UTC 2018 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.10:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Treat simpara in listitem like para in listitem
+* Allow "Draft" watermark to shine through again
+
+-------------------------------------------------------------------
 Thu Feb 14 15:27:00 UTC 2018 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.9:
