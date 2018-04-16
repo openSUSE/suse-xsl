@@ -68,7 +68,6 @@ Requires:       docbook_5
 Requires:       docbook-xsl-stylesheets >= 1.77
 Requires:       docbook5-xsl-stylesheets >= 1.77
 Requires:       libxslt
-Requires:       aspell-en
 Requires:       sgml-skel >= 0.7
 Requires(post): sgml-skel >= 0.7
 Requires(postun): sgml-skel >= 0.7
