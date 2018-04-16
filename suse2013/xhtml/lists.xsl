@@ -134,4 +134,26 @@
    </xsl:call-template>
   </xsl:template>
 
+<xsl:template match="listitem/simpara" priority="10">
+  <!-- Unlike the original DocBook stylesheets, if a listitem contains only a
+  single simpara, we still want to output the <p> wrapper... This is essentially
+  a copy of the match="para" template. -->
+  <xsl:call-template name="paragraph">
+    <xsl:with-param name="class">
+      <xsl:if test="@role and $para.propagates.style != 0">
+        <xsl:value-of select="@role"/>
+      </xsl:if>
+    </xsl:with-param>
+    <xsl:with-param name="content">
+      <xsl:if test="position() = 1 and parent::d:listitem">
+        <xsl:call-template name="anchor">
+          <xsl:with-param name="node" select="parent::d:listitem"/>
+        </xsl:call-template>
+      </xsl:if>
+      <xsl:call-template name="anchor"/>
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
+</xsl:template>
+
 </xsl:stylesheet>
