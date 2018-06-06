@@ -56,6 +56,8 @@
       <l:template name="example-title" text="%t"/>
       <l:template name="figure-label" text="Abbildung %n:"/>
       <l:template name="figure-title" text="%t"/>
+      <l:template name="glosslist-label" text=""/>
+      <l:template name="glosslist-title" text="%t"/>
       <l:template name="procedure-label" text="Prozedur %n:"/>
       <l:template name="procedure-title" text="%t"/>
       <l:template name="table-label" text="Tabelle %n:"/>
