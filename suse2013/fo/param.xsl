@@ -100,6 +100,7 @@ set       toc,title
 
 <!-- 16. Glossary =============================================== -->
 <xsl:param name="glossary.as.blocks" select="1"/>
+<xsl:param name="glosslist.as.blocks" select="1"/>
 
 <!-- 17. Miscellaneous ========================================== -->
 <xsl:param name="bookmarks.collapse" select="0"/>
