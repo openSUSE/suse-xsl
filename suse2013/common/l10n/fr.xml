@@ -60,6 +60,8 @@
       <l:template name="example-title" text="%t"/>
       <l:template name="figure-label" text="Figure %nt&#160;:"/>
       <l:template name="figure-title" text="%t"/>
+      <l:template name="glosslist-label" text=""/>
+      <l:template name="glosslist-title" text="%t"/>
       <l:template name="procedure-label" text="Proc&#233;dure %nt&#160;:"/>
       <l:template name="procedure-title" text="%t"/>
       <l:template name="table-label" text="Tableau %n&#160;:"/>
