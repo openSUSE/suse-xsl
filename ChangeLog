@@ -1,6 +1,20 @@
 -------------------------------------------------------------------
 Mon Apr 16 13:37:00 UTC 2018 - sknorr@suse.de
 
+Stable release of the SUSE XSL stylesheets 2.0.11:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Fix label code for "Report Bug" links leading to GitHub
+
+PDF/HTML
+* Fix display of glosslists
+
+-------------------------------------------------------------------
+Mon Apr 16 13:37:00 UTC 2018 - sknorr@suse.de
+
 Stable release of the SUSE XSL stylesheets 2.0.10:
 
 Find issues in our GitHub tracker at
