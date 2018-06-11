@@ -3,10 +3,6 @@
  href="urn:x-daps:xslt:profiling:docbook45-profile.xsl"
  type="text/xml"
  title="Profiling step"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.docbook.org/xml/4.5/docbookx.dtd"
-[
-
-]>
 <book lang="en" id="book.foo">
  <title>Foo Bar in the Fooish Bar DB4</title>
  <chapter id="cha.glossary">
@@ -14,6 +10,37 @@
   <para>
    Gluten-free kitsch scenester mumblecore quinoa.
   </para>
+  <sect1 id="cha.glosslist">
+   <title>Glosslist</title>
+   <para>
+    Narwhal fam subway tile tousled, portland blue bottle edison bulb kogi air
+    plant lo-fi vinyl paleo locavore typewriter stumptown.
+   </para>
+   <glosslist id="gl.glosslist">
+    <title>A Foo Glossary</title>
+     <glossentry id="gle.kogi">
+      <glossterm>Four Loko Kogi</glossterm>
+      <glossdef>
+       <para>
+        Man bun cold-pressed kogi meggings banh mi vaporware godard 90's four
+        loko pabst. Lumbersexual iceland woke hammock bushwick narwhal
+        coloring book cornhole yr, tousled kinfolk forage truffaut post-ironic.
+       </para>
+      </glossdef>
+     </glossentry>
+     <glossentry id="gle.helvetica">
+      <glossterm>Helvetica</glossterm>
+      <glossdef>
+       <para>
+        Street art helvetica jean shorts everyday carry knausgaard vaporware
+        celiac gentrify artisan paleo cronut. Salvia shoreditch schlitz occupy
+        palo santo four loko slow-carb.
+       </para>
+       <glossseealso otherterm="gle.kogi"/>
+      </glossdef>
+     </glossentry>
+   </glosslist>
+  </sect1>
   <glossary id="gl.glossary">
    <title>A Foo Glossary</title>
    <glossdiv>
