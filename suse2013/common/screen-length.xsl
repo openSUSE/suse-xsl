@@ -14,10 +14,11 @@
 
   <!-- Maximum preferred screen length of a string before line break -->
   <xsl:param name="screen.max.length" select="80"/>
-
+  <xsl:param name="screen.max.lines" select="250"/>
 
   <xsl:template name="splitscreen">
     <xsl:param name="text" select="string(.)"/>
+    <xsl:param name="linecount" select="1"/>
 
     <xsl:choose>
       <xsl:when test="contains($text, '&#10;')">
@@ -28,17 +29,19 @@
           <xsl:value-of select="substring-after($text, '&#10;')"/>
         </xsl:variable>
 
-        <xsl:if test="string-length($text-before-first-break) >
-                      $screen.max.length">1</xsl:if>
-
-        <xsl:if test="not($text-after-first-break = '')">
-          <xsl:call-template name="splitscreen">
-            <xsl:with-param name="text" select="$text-after-first-break"/>
-          </xsl:call-template>
-        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="string-length($text-before-first-break) &gt;
+                          $screen.max.length">longlines</xsl:when>
+          <xsl:when test="$linecount &gt; $screen.max.lines">manylines</xsl:when>
+          <xsl:when test="not($text-after-first-break = '')">
+            <xsl:call-template name="splitscreen">
+              <xsl:with-param name="text" select="$text-after-first-break"/>
+              <xsl:with-param name="linecount" select="$linecount + 1"/>
+            </xsl:call-template>
+          </xsl:when>
+        </xsl:choose>
       </xsl:when>
-      <xsl:when test="string-length($text) > $screen.max.length">1</xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
+      <xsl:otherwise>goodlines</xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
@@ -58,21 +61,33 @@
     </xsl:variable>
 
     <!-- Apply it only to programlisting and screen -->
-    <xsl:if test="(self::programlisting or self::screen) and number($result) > 0">
+    <xsl:if test="(self::programlisting or self::screen) and $result != 'goodlines'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
         <xsl:with-param name="source">
-          <xsl:text>(in </xsl:text>
-          <xsl:value-of select="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)[last()]"/>
-          <xsl:text>)</xsl:text>
+          <xsl:if test="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)">
+            <xsl:text>(in </xsl:text>
+            <xsl:value-of select="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)[last()]"/>
+            <xsl:text>)</xsl:text>
+          </xsl:if>
         </xsl:with-param>
         <xsl:with-param name="context-desc" select="local-name(.)"/>
         <xsl:with-param name="message">
-           <xsl:text>String in </xsl:text>
-           <xsl:value-of select="local-name(.)"/>
-           <xsl:text> is longer than </xsl:text>
-           <xsl:value-of select="$screen.max.length"/>
-           <xsl:text> characters.</xsl:text>
+          <xsl:choose>
+            <xsl:when test="$result = 'manylines'">
+              <xsl:value-of select="local-name(.)"/>
+              <xsl:text> has more than </xsl:text>
+              <xsl:value-of select="$screen.max.lines"/>
+              <xsl:text> lines.</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>Line in </xsl:text>
+              <xsl:value-of select="local-name(.)"/>
+              <xsl:text> is longer than </xsl:text>
+              <xsl:value-of select="$screen.max.length"/>
+              <xsl:text> characters.</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
          </xsl:with-param>
       </xsl:call-template>
     </xsl:if>
