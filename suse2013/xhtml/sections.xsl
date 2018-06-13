@@ -11,6 +11,7 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:dm="urn:x-suse:ns:docmanager"
   exclude-result-prefixes="exsl">
 
   <xsl:template name="create.header.title">
@@ -160,6 +161,7 @@
       <xsl:call-template name="create.permalink">
          <xsl:with-param name="object" select="."/>
       </xsl:call-template>
+      <xsl:call-template name="editlink"/>
     </xsl:element>
   </div>
 </xsl:template>
@@ -229,6 +231,7 @@
     <xsl:call-template name="create.permalink">
        <xsl:with-param name="object" select="$section"/>
     </xsl:call-template>
+    <xsl:call-template name="editlink"/>
     <xsl:call-template name="create.header.line">
        <xsl:with-param name="object" select="$section"/>
     </xsl:call-template>
@@ -284,16 +287,7 @@ elements, to fix their display. -->
 <xsl:template name="debug.filename-id">
   <xsl:param name="node" select="."/>
   <xsl:variable name="xmlbase"
-    select="ancestor-or-self::*[self::chapter or
-                                self::appendix or
-                                self::part or
-                                self::reference or
-                                self::preface or
-                                self::glossary or
-                                self::sect1 or
-                                self::sect2 or
-                                self::sect3 or
-                                self::sect4][1]/@xml:base"/>
+    select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
 
   <xsl:if test="$draft.mode = 'yes' and $xmlbase != ''">
     <div class="doc-status">
@@ -318,5 +312,13 @@ elements, to fix their display. -->
   </xsl:if>
 </xsl:template>
 
+<xsl:template name="editlink">
+  <xsl:variable name="editurl" select="ancestor-or-self::*/*[concat(local-name(.), 'info')]/dm:docmanager/dm:editurl[1]"/>
+  <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
+  <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
+    <a class="report-bug" target="_blank" href="{$editurl}{$xmlbase}"
+      title="Edit the source file for this section">Edit source</a>
+  </xsl:if>
+</xsl:template>
 
 </xsl:stylesheet>
