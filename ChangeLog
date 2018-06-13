@@ -1,5 +1,19 @@
 -------------------------------------------------------------------
-Mon Apr 16 13:37:00 UTC 2018 - sknorr@suse.de
+Wed Jun 13 13:37:00 UTC 2018 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.12:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Add "Edit Source" link feature to draft mode documents
+
+PDF/HTML:
+* Fix "infinite" recursion issue in splitscreen template
+
+-------------------------------------------------------------------
+Mon Jun 11 13:37:00 UTC 2018 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.11:
 
@@ -9,7 +23,7 @@ https://github.com/openSUSE/suse-xsl/issues/NUMBER
 HTML only:
 * Fix label code for "Report Bug" links leading to GitHub
 
-PDF/HTML
+PDF/HTML:
 * Fix display of glosslists
 
 -------------------------------------------------------------------
