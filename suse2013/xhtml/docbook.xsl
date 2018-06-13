@@ -68,7 +68,6 @@
   <xsl:include href="titlepage.xsl"/>
   <xsl:include href="titlepage.templates.xsl"/>
 
-  <xsl:include href="metadata.xsl"/>
   <xsl:include href="tracker.meta.xsl"/>
 
 
@@ -608,7 +607,6 @@
           <xsl:call-template name="outerelement.class.attribute">
             <xsl:with-param name="node" select="'id-content'"/>
           </xsl:call-template>
-          <xsl:call-template name="metadata"/>
           <div class="documentation">
 
           <xsl:apply-templates select="."/>
