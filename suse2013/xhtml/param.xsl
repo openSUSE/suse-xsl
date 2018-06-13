@@ -62,6 +62,14 @@
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
+  <!-- Force showing "Edit Source" link, even if draft mode is off -->
+  <!-- (dm:editurl needs to be defined in the document) -->
+  <xsl:param name="show.edit.link" select="0"/>
+    <!-- Override with:
+            ––param="show.editlink=1"
+         (don't copy from here, for technical reasons I can't use hyphens and
+         must use dashes). -->
+
 
 <!-- 1. Admonitions  ============================================ -->
   <!-- Use graphics in admonitions?  0=no, 1=yes -->

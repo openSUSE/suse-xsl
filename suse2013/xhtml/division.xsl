@@ -57,6 +57,7 @@
       <xsl:call-template name="create.permalink.singlehtml">
         <xsl:with-param name="object" select="$node"/>
       </xsl:call-template>
+      <xsl:call-template name="editlink"/>
     </h1>
   </xsl:template>
 
