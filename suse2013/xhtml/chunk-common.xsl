@@ -621,7 +621,6 @@
             <xsl:call-template name="outerelement.class.attribute">
               <xsl:with-param name="node" select="'id-content'"/>
             </xsl:call-template>
-            <xsl:call-template name="metadata"/>
             <div class="documentation">
 
             <xsl:copy-of select="$content"/>

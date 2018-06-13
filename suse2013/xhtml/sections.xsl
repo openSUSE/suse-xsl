@@ -299,7 +299,7 @@ elements, to fix their display. -->
     <div class="doc-status">
       <ul>
         <li>
-          <span class="ds-label">Filename: </span>
+          <span class="ds-label">File Name: </span>
           <xsl:value-of select="$xmlbase"/>
         </li>
         <li>
