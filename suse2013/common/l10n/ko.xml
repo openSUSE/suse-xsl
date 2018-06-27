@@ -150,27 +150,27 @@
 
    <l:context name="xep-bookmark-title">
       <l:template name="article" text="%t"/>
-      <l:template name="appendix" text="%n. %t"/>
-      <l:template name="article/appendix" text="%n. %t"/>
+      <l:template name="appendix" text="%n. %t"/>
+      <l:template name="article/appendix" text="%n. %t"/>
       <l:template name="bibliography" text="%t"/>
       <l:template name="book" text="%t"/>
-      <l:template name="bridgehead" text="%n. %t"/>
-      <l:template name="chapter" text="%n. %t"/>
+      <l:template name="bridgehead" text="%n. %t"/>
+      <l:template name="chapter" text="%n. %t"/>
       <l:template name="glossary" text="%t"/>
       <l:template name="index" text="%t"/>
-      <l:template name="part" text="%n. %t"/>
+      <l:template name="part" text="%n. %t"/>
       <l:template name="preface" text="%t"/>
       <l:template name="reference" text="%t"/>
       <l:template name="refentry" text="%t"/>
       <l:template name="refsect1" text="%t"/>
       <l:template name="refsect2" text="%t"/>
       <l:template name="refsect3" text="%t"/>
-      <l:template name="sect1" text="%n. %t"/>
-      <l:template name="sect2" text="%n. %t"/>
-      <l:template name="sect3" text="%n %t"/>
-      <l:template name="sect4" text="%n %t"/>
-      <l:template name="sect5" text="%n %t"/>
-      <l:template name="section" text="%n. %t"/>
+      <l:template name="sect1" text="%n. %t"/>
+      <l:template name="sect2" text="%n. %t"/>
+      <l:template name="sect3" text="%n %t"/>
+      <l:template name="sect4" text="%n %t"/>
+      <l:template name="sect5" text="%n %t"/>
+      <l:template name="section" text="%n. %t"/>
       <l:template name="set" text="%t"/>
       <l:template name="simplesect" text="%t"/>
       <l:template name="toc" text="%t"/>

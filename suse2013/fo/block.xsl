@@ -109,7 +109,7 @@
           <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
         </xsl:call-template>
       </xsl:if>
-      <xsl:text>&#160;</xsl:text>
+      <fo:leader leader-pattern="space" leader-length=".3em"/>
     </fo:inline>
   </xsl:if>
 </xsl:template>
