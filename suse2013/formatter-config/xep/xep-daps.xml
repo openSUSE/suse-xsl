@@ -430,7 +430,7 @@
     <font-alias name="Helvetica" value="FreeSans"/>
     <font-alias name="Times" value="FreeSerif"/>
     <font-alias name="Courier" value="FreeMono"/>
-    <font-alias name="Dingbats" value="ZapfDingbats">
+    <font-alias name="Dingbats" value="ZapfDingbats"/>
   </fonts>
 
 
