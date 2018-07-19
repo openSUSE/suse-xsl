@@ -48,18 +48,18 @@ translators apparently want those. - sknorr, 2016-09-30 -->
    </l:context>
 
    <l:context name="xref">
-      <l:template name="sect1" text="القسم “%t”"/>
-      <l:template name="sect2" text="القسم “%t”"/>
-      <l:template name="sect3" text="القسم “%t”"/>
-      <l:template name="sect4" text="القسم “%t”"/>
-      <l:template name="sect5" text="القسم “%t”"/>
+      <l:template name="sect1" text='القسم "%t"'/>
+      <l:template name="sect2" text='القسم "%t"'/>
+      <l:template name="sect3" text='القسم "%t"'/>
+      <l:template name="sect4" text='القسم "%t"'/>
+      <l:template name="sect5" text='القسم "%t"'/>
       <l:template name="page.citation" text=" (الصفحة&#160;%p)"/>
 
       <!-- Added the following items, some of them might be wrong...
            It seems "ال" == "the", but I still was not sure whether to add this
            everywhere. I just took the translations from the DocBook
            stylesheets. Expect issues to crop up. -->
-      <l:template name="intra-separator" text=", "/>
+      <l:template name="intra-separator" text="، "/>
       <l:template name="intra-article" text='مقال "%t"'/>
       <l:template name="intra-book" text='كتاب "%t"'/>
       <l:template name="intra-chapter" text='فصل&#160;%n "%t"'/>
@@ -70,42 +70,50 @@ translators apparently want those. - sknorr, 2016-09-30 -->
       <l:template name="intra-sect5" text='القسم&#160;%n "%t"'/>
       <l:template name="intra-section" text='القسم&#160;%n "%t"'/>
 
-      <l:template name="intra-example" text="مثال&#160;%n “%t”"/>
-      <l:template name="intra-figure" text="شكل&#160;%n “%t”"/>
-      <l:template name="intra-preface" text=" “%t”"/>
-      <l:template name="intra-procedure" text="إجراء&#160;%n “%t”"/>
-      <l:template name="intra-table" text="جدول&#160;%n “%t”"/>
+      <l:template name="intra-example" text='مثال&#160;%n "%t"'/>
+      <l:template name="intra-figure" text='شكل&#160;%n "%t"'/>
+      <l:template name="intra-preface" text=' "%t"'/>
+      <l:template name="intra-procedure" text='إجراء&#160;%n "%t"'/>
+      <l:template name="intra-table" text='جدول&#160;%n "%t"'/>
 
-      <l:template name="intra-variablelist" text="“%t”"/>
-      <l:template name="intra-orderedlist" text="“%t”"/>
-      <l:template name="intra-itemizedlist" text="“%t”"/>
+      <l:template name="intra-variablelist" text='"%t"'/>
+      <l:template name="intra-orderedlist" text='"%t"'/>
+      <l:template name="intra-itemizedlist" text='"%t"'/>
    </l:context>
 
    <l:context name="xref-number-and-title">
-      <l:template name="appendix" style="nonumber"  text="الملحق “%t”"/>
-      <l:template name="bridgehead" text="القسم “%t”"/>
-      <l:template name="chapter" style="nonumber"  text="الفصل “%t”"/>
-      <l:template name="equation" style="nonumber"  text="المعادلة “%t”"/>
-      <l:template name="example" style="nonumber"  text="المثال “%t”"/>
-      <l:template name="figure" style="nonumber"  text="الرسم التوضيحي “%t”"/>
-      <l:template name="part" style="nonumber"  text="الجزء “%t”"/>
-      <l:template name="procedure" style="nonumber"  text="الإجراء “%t”"/>
-      <l:template name="productionset" style="nonumber"  text="الإنتاج “%t”"/>
+      <l:template name="appendix" style="nonumber"  text='الملحق "%t"'/>
+      <l:template name="bridgehead" text='القسم "%t"'/>
+      <l:template name="chapter" style="nonumber"  text='الفصل "%t"'/>
+      <l:template name="equation" style="nonumber"  text='المعادلة "%t"'/>
+      <l:template name="example" style="nonumber"  text='المثال "%t"'/>
+      <l:template name="figure" style="nonumber"  text='الرسم التوضيحي "%t"'/>
+      <l:template name="part" style="nonumber"  text='الجزء "%t"'/>
+      <l:template name="procedure" style="nonumber"  text='الإجراء "%t"'/>
+      <l:template name="productionset" style="nonumber"  text='الإنتاج "%t"'/>
       <!-- FIXME: "Q & A" is quite possibly wrong - this is the tranlsation for
            qandadiv (i.e. not for qandaset) from the original stylesheets. -->
-      <l:template name="qandadiv" style="nonumber"  text="س و ج “%t”"/>
-      <l:template name="refsect1" style="nonumber"  text="اسم القسم “%t”"/>
-      <l:template name="refsect2" style="nonumber"  text="اسم القسم “%t”"/>
-      <l:template name="refsect3" style="nonumber"  text="اسم القسم “%t”"/>
-      <l:template name="refsection" style="nonumber"  text="اسم القسم “%t”"/>
-      <l:template name="sect1" style="nonumber" text="القسم “%t”"/>
-      <l:template name="sect2" style="nonumber"  text="القسم “%t”"/>
-      <l:template name="sect3" style="nonumber"  text="القسم “%t”"/>
-      <l:template name="sect4" style="nonumber"  text="القسم “%t”"/>
-      <l:template name="sect5" style="nonumber"  text="القسم “%t”"/>
-      <l:template name="section" style="nonumber"  text="القسم “%t”"/>
-      <l:template name="simplesect" style="nonumber"  text="اسم القسم “%t”"/>
-      <l:template name="table" style="nonumber"  text="الجدول “%t”"/>
+      <l:template name="qandadiv" style="nonumber"  text='س و ج "%t"'/>
+      <l:template name="refsect1" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsect2" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsect3" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsection" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="sect1" style="nonumber" text='القسم "%t"'/>
+      <l:template name="sect2" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect3" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect4" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect5" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="section" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="simplesect" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="table" style="nonumber"  text='الجدول "%t"'/>
+      <!-- Patrick Tinley: taking these from nwalsh5 file, trying to fix
+      quotes and comma in external xrefs -->
+      <l:template name="sect1" text='قسم %n، "%t"'/>
+      <l:template name="sect2" text='قسم %n، "%t"'/>
+      <l:template name="sect3" text='قسم %n، "%t"'/>
+      <l:template name="sect4" text='قسم %n، "%t"'/>
+      <l:template name="sect5" text='قسم %n، "%t"'/>
+      <l:template name="section" text='قسم %n، "%t"'/>
    </l:context>
 
 <!-- fs 2013-05-29:
