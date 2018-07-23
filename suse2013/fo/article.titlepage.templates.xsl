@@ -66,7 +66,7 @@
         </fo:table-cell>
         <fo:table-cell>
           <xsl:choose>
-            <xsl:when test="/article[@role='sbp']">
+            <xsl:when test="ancestor-or-self::article[@role='sbp'] or $publishing.series = 'sbp'">
               <xsl:call-template name="sbp-head"/>
             </xsl:when>
             <xsl:otherwise>

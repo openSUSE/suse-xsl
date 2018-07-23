@@ -415,4 +415,12 @@ USA</xsl:param>
 <!-- Trim away empty lines from the beginning and end of screens -->
 <xsl:param name="trim.verbatim" select="1"/>
 
+
+<!-- Enabling SUSE Best Practices series header, mostly so we can use
+AsciiDoc for SBP (AsciiDoc does not allow setting role="sbp" on the article
+tag, because there is no such thing as an article tag). Values: 'normal',
+'sbp' (= SUSE Best Practices) -->
+<xsl:param name="publishing.series" select="''"/>
+
+
 </xsl:stylesheet>
