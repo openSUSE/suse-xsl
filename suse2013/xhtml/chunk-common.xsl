@@ -581,6 +581,9 @@
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
+        <xsl:call-template name="bypass">
+          <xsl:with-param name="format" select="'chunk'"/>
+        </xsl:call-template>
         <div id="_outer-wrap">
           <xsl:if test="$generate.header != 0">
             <div id="_white-bg">
