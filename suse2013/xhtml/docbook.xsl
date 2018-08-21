@@ -551,6 +551,21 @@
         >offline js-off</xsl:if></xsl:attribute>
   </xsl:template>
 
+  <xsl:template name="bypass">
+    <!-- Bypass blocks help disabled, e.g. blind users navigate more quickly.
+    Hard-to-parse W3C spec: https://www.w3.org/TR/WCAG20/#navigation-mechanisms-skip -->
+    <xsl:if test="not($optimize.plain.text = 1)">
+      <xsl:param name="format">single</xsl:param>
+      <div class="bypass-block">
+        <a href="#_content">Skip to content</a>
+        <xsl:if test="$format = 'chunk'">
+          <a href="#_bottom-navigation">Skip to page navigation: Previous Page [access key p]/Next Page [access key n]</a>
+        </xsl:if>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+
 <xsl:template match="*" mode="process.root">
   <xsl:param name="prev"/>
   <xsl:param name="next"/>
@@ -581,6 +596,7 @@
     <body>
       <xsl:call-template name="body.attributes"/>
       <xsl:call-template name="outerelement.class.attribute"/>
+      <xsl:call-template name="bypass"/>
       <div id="_outer-wrap">
         <div id="_white-bg">
           <div id="_header">
