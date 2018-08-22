@@ -40,6 +40,11 @@
    <l:gentext key="version.info" text="Platí pro "/>
    <l:gentext key="totopofpage" text="Nahoru"/>
 
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Jdi na obsah"/>
+     <l:template name="bypass-to-nav" text="Jdi na navigaci: předchozí stránka [klávesa p]/další stránka [klávesa n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 

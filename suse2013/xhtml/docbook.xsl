@@ -554,12 +554,25 @@
   <xsl:template name="bypass">
     <!-- Bypass blocks help disabled, e.g. blind users navigate more quickly.
     Hard-to-parse W3C spec: https://www.w3.org/TR/WCAG20/#navigation-mechanisms-skip -->
+    <xsl:param name="format" select="'single'"/>
     <xsl:if test="not($optimize.plain.text = 1)">
-      <xsl:param name="format">single</xsl:param>
       <div class="bypass-block">
-        <a href="#_content">Skip to content</a>
+        <a href="#_content">
+          <xsl:call-template name="gentext.template">
+            <xsl:with-param name="context" select="'bypass-block'"/>
+            <xsl:with-param name="name" select="'bypass-to-content'"/>
+          </xsl:call-template>
+        </a>
         <xsl:if test="$format = 'chunk'">
-          <a href="#_bottom-navigation">Skip to page navigation: Previous Page [access key p]/Next Page [access key n]</a>
+          <!-- Going to #_bottom-navigation an admittedly quirky choice but
+          the other two places in which we have this kind of page nav
+          (regular header and fixed header) do not assign an ID to it. -->
+          <a href="#_bottom-navigation">
+            <xsl:call-template name="gentext.template">
+              <xsl:with-param name="context" select="'bypass-block'"/>
+              <xsl:with-param name="name" select="'bypass-to-nav'"/>
+            </xsl:call-template>
+          </a>
         </xsl:if>
       </div>
     </xsl:if>

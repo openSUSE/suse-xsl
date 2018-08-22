@@ -41,6 +41,12 @@
    <l:gentext key="version.info" text="適用先"/>
    <l:gentext key="totopofpage" text="トップへ"/>
 
+   <!-- FIXME: Needs translation. -->
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Jump to content"/>
+     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
