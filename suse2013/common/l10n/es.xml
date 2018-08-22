@@ -52,6 +52,11 @@
 
    <l:gentext key="part" text="Parte"/>
 
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Saltar a contenido"/>
+     <l:template name="bypass-to-nav" text="Saltar a navegación de páginas: página anterior [tecla acceso p]/página siguiente [tecla acceso n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 

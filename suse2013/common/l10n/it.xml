@@ -47,6 +47,12 @@
 
    <l:gentext key="step.optional" text="(Opzionale)"/>
 
+   <!-- FIXME: Needs translation. -->
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Saltar al contenuto"/>
+     <l:template name="bypass-to-nav" text="Saltar alla navigazione delle pagine: pagina precedente [chiave d’accesso p]/pagina successiva [chiave d’accesso n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 

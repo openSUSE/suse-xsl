@@ -53,6 +53,11 @@
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
 
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Passer au contenu"/>
+     <l:template name="bypass-to-nav" text="Passer à la navigation aux pages: page antérieure [touche directe p]/page suivante [touche directe n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 

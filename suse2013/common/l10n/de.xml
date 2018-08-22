@@ -49,6 +49,11 @@
    <l:dingbat key="startquote" text="„"/>
    <l:dingbat key="endquote" text="“"/>
 
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Zum Inhalt springen"/>
+     <l:template name="bypass-to-nav" text="Zur Seitennavigation springen: vorherige Seite [Zugriffstaste p]/nächste Seite [Zugriffstaste n]"/>
+   </l:context>
+
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
 
