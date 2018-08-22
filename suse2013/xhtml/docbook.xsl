@@ -564,7 +564,7 @@
           </xsl:call-template>
         </a>
         <xsl:if test="$format = 'chunk'">
-          <!-- Going to #_bottom-navigation an admittedly quirky choice but
+          <!-- Going to #_bottom-navigation is an admittedly quirky choice but
           the other two places in which we have this kind of page nav
           (regular header and fixed header) do not assign an ID to it. -->
           <a href="#_bottom-navigation">
