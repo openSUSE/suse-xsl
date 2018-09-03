@@ -73,14 +73,14 @@
 
     <l:template name="intra-separator" text="、 "/>
     <l:template name="intra-article" text="項目 「%t」"/>
-    <l:template name="intra-book" text="『%t』"/>
-    <l:template name="intra-chapter" text="「%t」の章"/>
-    <l:template name="intra-sect1" text="のセクション「%t」"/>
-    <l:template name="intra-sect2" text="のセクション「%t」"/>
-    <l:template name="intra-sect3" text="のセクション「%t」"/>
-    <l:template name="intra-sect4" text="のセクション「%t」"/>
-    <l:template name="intra-sect5" text="のセクション「%t」"/>
-    <l:template name="intra-section" text="のセクション「%t」"/>
+    <l:template name="intra-book"    text="『%t』"/>
+    <l:template name="intra-chapter" text="「%t」章"/>
+    <l:template name="intra-sect1"   text="セクション「%t」"/>
+    <l:template name="intra-sect2"   text="セクション「%t」"/>
+    <l:template name="intra-sect3"   text="セクション「%t」"/>
+    <l:template name="intra-sect4"   text="セクション「%t」"/>
+    <l:template name="intra-sect5"   text="セクション「%t」"/>
+    <l:template name="intra-section" text="セクション「%t」"/>
 
     <l:template name="intra-example" text="&#160;%n 「%t」"/>
     <l:template name="intra-figure" text="図&#160;%n 「%t」"/>
