@@ -134,6 +134,12 @@
       <l:template name="section" text="%n&#38917;"/>
    </l:context>
 
+   <l:context name="authorgroup">
+      <l:template name="sep" text="、"/>
+      <l:template name="sep2" text="、"/>
+      <l:template name="seplast" text="、"/>
+   </l:context>
+
    <l:context name="xep-bookmark-title">
       <l:template name="article" text="%t"/>
       <l:template name="appendix" text="%n. %t"/>
