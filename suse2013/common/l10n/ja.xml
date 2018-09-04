@@ -71,16 +71,16 @@
    <l:context name="xref">
     <l:template name="page.citation" text=" (%p&#160;&#12506;&#12540;&#12472;)"/>
 
-    <l:template name="intra-separator" text="、 "/>
+    <l:template name="intra-separator" text="、"/>
     <l:template name="intra-article" text="項目 「%t」"/>
-    <l:template name="intra-book" text="『%t』"/>
-    <l:template name="intra-chapter" text="「%t」の章"/>
-    <l:template name="intra-sect1" text="のセクション「%t」"/>
-    <l:template name="intra-sect2" text="のセクション「%t」"/>
-    <l:template name="intra-sect3" text="のセクション「%t」"/>
-    <l:template name="intra-sect4" text="のセクション「%t」"/>
-    <l:template name="intra-sect5" text="のセクション「%t」"/>
-    <l:template name="intra-section" text="のセクション「%t」"/>
+    <l:template name="intra-book"    text="『%t』"/>
+    <l:template name="intra-chapter" text="第%n章「%t」"/>
+    <l:template name="intra-sect1"   text="%n項「%t」"/>
+    <l:template name="intra-sect2"   text="%n項「%t」"/>
+    <l:template name="intra-sect3"   text="%n項「%t」"/>
+    <l:template name="intra-sect4"   text="%n項「%t」"/>
+    <l:template name="intra-sect5"   text="%n項「%t」"/>
+    <l:template name="intra-section" text="%n項「%t」"/>
 
     <l:template name="intra-example" text="&#160;%n 「%t」"/>
     <l:template name="intra-figure" text="図&#160;%n 「%t」"/>
@@ -97,7 +97,7 @@
       <l:template name="appendix" style="nonumber" text="&#20184;&#37682; 「%t」"/>
       <l:template name="bridgehead" style="nonumber" text="&#38917; 「%t」"/>
       <l:template name="chapter" style="nonumber" text="&#31532; &#049; &#31456; 「%t」"/>
-      <l:template name="chapter" text="&#31532;%n&#31456; %t"/>
+      <l:template name="chapter" text="&#31532;%n&#31456; 「%t」"/>
       <l:template name="equation" style="nonumber" text="&#24335; 「%t」"/>
       <l:template name="example" style="nonumber" text="&#20363; 「%t」"/>
       <l:template name="figure" style="nonumber" text="&#22259; 「%t」"/>
@@ -132,6 +132,12 @@
       <l:template name="sect4" text="%n&#38917;"/>
       <l:template name="sect5" text="%n&#38917;"/>
       <l:template name="section" text="%n&#38917;"/>
+   </l:context>
+
+   <l:context name="authorgroup">
+      <l:template name="sep" text="、"/>
+      <l:template name="sep2" text="、"/>
+      <l:template name="seplast" text="、"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
