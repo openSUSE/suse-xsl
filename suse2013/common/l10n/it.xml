@@ -9,6 +9,9 @@
    <l:gentext key="Authors"       text="Autori"/>
    <l:gentext key="Contributor"   text="Collaboratore"/>
    <l:gentext key="Contributors"  text="Collaboratori"/>
+   <l:gentext key="Warning" text="Avviso"/>
+   <l:gentext key="warning" text="avviso"/>
+   <l:gentext key="WARNING" text="AVVISO"/>
 
    <l:gentext key="admonseparator"  text=": "/>
 
