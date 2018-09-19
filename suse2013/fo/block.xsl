@@ -28,48 +28,58 @@
      this gives them a tool to do that. -->
 <xsl:template match="processing-instruction('pdfpagebreak')">
   <xsl:param name="arguments" select="."/>
-  <xsl:param name="selected-stylesheets">
+  <xsl:param name="selected-stylesheets">any</xsl:param>
+  <xsl:param name="selected-formatter">any</xsl:param>
+
+  <xsl:variable name="pi-style">
+    <xsl:variable name="tmp">
+      <xsl:call-template name="pi-attribute">
+        <xsl:with-param name="pis" select="."/>
+        <xsl:with-param name="attribute">style</xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="contains($arguments, 'style=&quot;')">
-        <xsl:value-of select="normalize-space(substring-before(substring-after($arguments, 'style=&quot;'), '&quot;'))"/>
-      </xsl:when>
-      <xsl:otherwise>any</xsl:otherwise>
+      <xsl:when test="$tmp != ''"><xsl:value-of select="$tmp"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$selected-stylesheets"/></xsl:otherwise>
     </xsl:choose>
-  </xsl:param>
-  <xsl:param name="selected-formatter">
+  </xsl:variable>
+  <xsl:variable name="pi-formatter">
+    <xsl:variable name="tmp">
+      <xsl:call-template name="pi-attribute">
+        <xsl:with-param name="pis" select="."/>
+        <xsl:with-param name="attribute">formatter</xsl:with-param>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:choose>
-      <xsl:when test="contains($arguments, 'formatter=&quot;')">
-        <xsl:value-of select="normalize-space(substring-before(substring-after($arguments, 'formatter=&quot;'), '&quot;'))"/>
-      </xsl:when>
-      <xsl:otherwise>any</xsl:otherwise>
+      <xsl:when test="$tmp != ''"><xsl:value-of select="$tmp"/></xsl:when>
+      <xsl:otherwise><xsl:value-of select="$selected-formatter"/></xsl:otherwise>
     </xsl:choose>
-  </xsl:param>
-  <xsl:param name="these-stylesheets">
+  </xsl:variable>
+
+  <xsl:variable name="these-stylesheets">
     <xsl:choose>
-      <xsl:when test="$selected-stylesheets = 'any' or
-                      $selected-stylesheets = $STYLE.ID">
+      <xsl:when test="$pi-style = 'any' or
+                      $pi-style = $STYLE.ID">1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="this-formatter">
+    <xsl:choose>
+      <xsl:when test="$pi-formatter = 'any' or
+                      ($pi-formatter = 'fop' and $fop1.extensions = 1) or
+                      ($pi-formatter = 'xep' and $xep.extensions = 1)">
         <xsl:text>1</xsl:text>
       </xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
-  </xsl:param>
-  <xsl:param name="this-formatter">
-    <xsl:choose>
-      <xsl:when test="$selected-formatter = 'any' or
-                      ($selected-formatter = 'fop' and $fop1.extensions = 1) or
-                      ($selected-formatter = 'xep' and $xep.extensions = 1)">
-        <xsl:text>1</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
+  </xsl:variable>
 
   <xsl:if test="$this-formatter = 1 and $these-stylesheets = 1">
       <xsl:message>Creating a manual page break.</xsl:message>
-      <xsl:if test="$selected-stylesheets = 'any'">
+      <xsl:if test="$pi-style = 'any'">
         <xsl:message>(!) Use style="<xsl:value-of select="$STYLE.ID"/>" to limit this page break to these stylesheets.</xsl:message>
       </xsl:if>
-      <xsl:if test="$selected-formatter = 'any'">
+      <xsl:if test="$pi-formatter = 'any'">
         <xsl:message>(!) Use formatter="<xsl:choose>
             <xsl:when test="$fop1.extensions = 1">fop</xsl:when>
             <xsl:when test="$xep.extensions = 1">xep</xsl:when>
