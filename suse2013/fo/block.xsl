@@ -27,45 +27,29 @@
 <!-- Some people would like to hard code page breaks into their PDFs,
      this gives them a tool to do that. -->
 <xsl:template match="processing-instruction('pdfpagebreak')">
-  <xsl:param name="arguments" select="."/>
-  <xsl:param name="selected-stylesheets">any</xsl:param>
-  <xsl:param name="selected-formatter">any</xsl:param>
-
   <xsl:variable name="pi-style">
-    <xsl:variable name="tmp">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="."/>
-        <xsl:with-param name="attribute">style</xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$tmp != ''"><xsl:value-of select="$tmp"/></xsl:when>
-      <xsl:otherwise><xsl:value-of select="$selected-stylesheets"/></xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis" select="."/>
+      <xsl:with-param name="attribute">style</xsl:with-param>
+    </xsl:call-template>
   </xsl:variable>
   <xsl:variable name="pi-formatter">
-    <xsl:variable name="tmp">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="."/>
-        <xsl:with-param name="attribute">formatter</xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:choose>
-      <xsl:when test="$tmp != ''"><xsl:value-of select="$tmp"/></xsl:when>
-      <xsl:otherwise><xsl:value-of select="$selected-formatter"/></xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="pi-attribute">
+      <xsl:with-param name="pis" select="."/>
+      <xsl:with-param name="attribute">formatter</xsl:with-param>
+    </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="these-stylesheets">
+  <xsl:variable name="matching-style">
     <xsl:choose>
-      <xsl:when test="$pi-style = 'any' or
+      <xsl:when test="$pi-style = '' or $pi-style = 'any' or
                       $pi-style = $STYLE.ID">1</xsl:when>
       <xsl:otherwise>0</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:variable name="this-formatter">
+  <xsl:variable name="matching-formatter">
     <xsl:choose>
-      <xsl:when test="$pi-formatter = 'any' or
+      <xsl:when test="$pi-formatter = '' or $pi-formatter = 'any' or
                       ($pi-formatter = 'fop' and $fop1.extensions = 1) or
                       ($pi-formatter = 'xep' and $xep.extensions = 1)">
         <xsl:text>1</xsl:text>
@@ -74,12 +58,12 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:if test="$this-formatter = 1 and $these-stylesheets = 1">
+  <xsl:if test="$matching-formatter = 1 and $matching-style = 1">
       <xsl:message>Creating a manual page break.</xsl:message>
-      <xsl:if test="$pi-style = 'any'">
+      <xsl:if test="$pi-style = ''">
         <xsl:message>(!) Use style="<xsl:value-of select="$STYLE.ID"/>" to limit this page break to these stylesheets.</xsl:message>
       </xsl:if>
-      <xsl:if test="$pi-formatter = 'any'">
+      <xsl:if test="$pi-formatter = ''">
         <xsl:message>(!) Use formatter="<xsl:choose>
             <xsl:when test="$fop1.extensions = 1">fop</xsl:when>
             <xsl:when test="$xep.extensions = 1">xep</xsl:when>
