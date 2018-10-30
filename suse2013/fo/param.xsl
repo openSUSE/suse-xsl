@@ -83,7 +83,7 @@ set       toc,title
 </xsl:attribute-set>
 
 <!-- 11. Linking ================================================ -->
-
+<xsl:param name="generate.consistent.ids" select="1"/>
 
 <!-- 12. Cross References ======================================= -->
 
