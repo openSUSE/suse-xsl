@@ -161,6 +161,7 @@ set       toc,title
 
 <!-- 13. Linking ================================================ -->
 <xsl:param name="ulink.target">_blank</xsl:param>
+<xsl:param name="generate.consistent.ids" select="1"/>
 
 <!-- 14. Cross References ======================================= -->
 
