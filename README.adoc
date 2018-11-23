@@ -1,4 +1,4 @@
-SUSE XSL Stylesheets 2.0.12
+SUSE XSL Stylesheets 2.0.13
 ============================
 
 :numbered:

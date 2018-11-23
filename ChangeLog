@@ -1,4 +1,26 @@
 -------------------------------------------------------------------
+Wed Nov 23 13:37:00 UTC 2018 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.13:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Add bypass blocks for accessibility (FATE#326549)
+* Bug Report links: Added section names to Bugzilla bug title
+* openSUSE2013 only: Fixed highlighting
+
+PDF only:
+* Fixed XML issue in XEP formatter configuration
+
+PDF/HTML:
+* Use reproducibly generated IDs (gh#openSUSE/daps#482)
+* Don't try to use no-break space in Korean, our Korean fonts do
+  not support that
+* Update Italian, Japanese, Arabic localizations
+
+-------------------------------------------------------------------
 Wed Jun 13 13:37:00 UTC 2018 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.12:
