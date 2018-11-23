@@ -50,10 +50,9 @@
 
    <l:gentext key="step.optional" text="(Valgfit)"/>
 
-   <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Naviger til begyndelsen"/>
+     <l:template name="bypass-to-nav" text="Naviger til sidenavigationen: forrige side [genvejstast p]/næste side [genvejstast n]"/>
    </l:context>
 
    <l:context name="styles">

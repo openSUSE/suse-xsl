@@ -47,10 +47,9 @@
 
    <l:gentext key="step.optional" text="(Необязательно)"/>
 
-   <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Перейти к началу текста"/>
+     <l:template name="bypass-to-nav" text="Перейти к навигации по странице: предыдущая страница [клавиша доступа p]/следующая страница [клавиша доступа n]"/>
    </l:context>
 
    <l:context name="styles">
