@@ -163,7 +163,7 @@ function tracker() {
 
       $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
         + url
-        + "\" title=\"Report a bug against this section\">Report Bug</a> ");
+        + "\" title=\"Report a documentation bug against this section\">Report Documentation Bug</a> ");
       return true;
     });
   }
