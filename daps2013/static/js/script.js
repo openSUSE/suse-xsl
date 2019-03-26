@@ -1,8 +1,40 @@
+/*
+JavaScript for SUSE documentation
+
+Authors:
+   Stefan Knorr, Thomas Schraitle, Adam Spiers
+
+License: GPL 2+
+
+(c) 2012-2019 SUSE LLC
+*/
+
 var active = false;
 var deactivatePosition = -1;
 
-$(function() {
+var trackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
+var trackerType = $( 'meta[name="tracker-type"]' ).attr('content');
 
+// we handle Github (= gh) and bugzilla.suse.com (= bsc), default to bsc
+if ((trackerType != 'gh') && (trackerType != 'bsc')) {
+  trackerType = 'bsc';
+}
+
+// For Bugzilla
+var bscComponent = $( 'meta[name="tracker-bsc-component"]' ).attr('content');
+if (!bscComponent) {
+  bscComponent = 'Documentation'; // default component
+}
+var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content');
+var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content');
+var bscVersion = $( 'meta[name="tracker-bsc-version"]' ).attr('content');
+// For GitHub
+var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content');
+var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content');
+var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
+
+
+$(function() {
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
 
@@ -103,8 +135,74 @@ $(function() {
     $('#_toolbar').addClass('only-nav');
   }
 
+  tracker();
 });
 
+
+function tracker() {
+  // do not create links if there is no URL
+  if ( typeof(trackerUrl) == 'string') {
+    $('.permalink:not([href^=#idm])').each(function () {
+      var permalink = this.href;
+      var sectionNumber = "";
+      var sectionName = "";
+      var url = "";
+      if ( $(this).prevAll('span.number')[0] ) {
+        sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
+      }
+      if ( $(this).prevAll('span.number')[0] ) {
+        sectionName = $(this).prevAll('span.name')[0].innerHTML;
+      }
+
+      if (trackerType == 'bsc') {
+        url = bugzillaUrl(sectionNumber, sectionName, permalink);
+      }
+      else {
+        url = githubUrl(sectionNumber, sectionName, permalink);
+      }
+
+      $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
+        + url
+        + "\" title=\"Report a bug against this section of the documentation\">Report Documentation Bug</a> ");
+      return true;
+    });
+  }
+  else {
+    return false;
+  }
+}
+
+function githubUrl(sectionNumber, sectionName, permalink) {
+  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var url = trackerUrl
+     + "?title=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
+     + "&amp;body=" + encodeURIComponent(body);
+  if (ghAssignee) {
+    url += "&amp;assignee=" + encodeURIComponent(ghAssignee);
+  }
+  if (ghMilestone) {
+    url += "&amp;milestone=" + encodeURIComponent(ghMilestone);
+  }
+  if (ghLabels) {
+    url += "&amp;labels=" + encodeURIComponent(ghLabels);
+  }
+  return url;
+}
+
+function bugzillaUrl(sectionNumber, sectionName, permalink) {
+  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var url = trackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
+    + '&amp;component=' + encodeURIComponent(bscComponent)
+    + "&amp;short_desc=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
+    + "&amp;comment=" + encodeURIComponent(body);
+  if (bscAssignee) {
+    url += "&amp;assigned_to=" + encodeURIComponent(bscAssignee);
+  }
+  if (bscVersion) {
+    url += "&amp;version=" + encodeURIComponent(bscVersion);
+  }
+  return url;
+}
 
 function activate( elm ) {
   var element = elm;
