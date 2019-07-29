@@ -1,5 +1,5 @@
 #
-# spec file for package suse-xsl-stylesheets
+# spec file for package suse-xsl-stylesheets-sbp
 #
 # Copyright (c) 2017 SUSE LINUX GmbH, Nuernberg, Germany.
 #
@@ -16,8 +16,8 @@
 #
 
 
-Name:           suse-xsl-stylesheets
-Version:        2.0.9
+Name:           suse-xsl-stylesheets-sbp
+Version:        2.0.13
 Release:        0
 
 ###############################################################
@@ -38,7 +38,7 @@ Release:        0
 %define db_xml_dir        %{_datadir}/xml/docbook
 %define suse_styles_dir   %{db_xml_dir}/stylesheet
 
-Summary:        SUSE-Branded Stylesheets for DocBook
+Summary:        SUSE Best Practices Stylesheets for DocBook
 License:        GPL-2.0 or GPL-3.0
 Group:          Productivity/Publishing/XML
 Url:            https://github.com/openSUSE/suse-xsl
@@ -115,7 +115,7 @@ Requires:       arabic-amiri-fonts
 
 
 %description
-These are SUSE-branded XSLT 1.0 stylesheets for DocBook 4 and 5 that are be used
+These are SUSE Best Practices XSLT 1.0 stylesheets for DocBook 4 and 5 that are be used
 to create the HTML, PDF, and EPUB versions of SUSE documentation. These
 stylesheets are based on the original DocBook XSLT 1.0 stylesheets.
 
@@ -182,28 +182,16 @@ exit 0
 
 # Directories
 %dir %{suse_styles_dir}
-%dir %{suse_styles_dir}/suse
-%dir %{suse_styles_dir}/suse-ns
-%dir %{suse_styles_dir}/suse2013
-%dir %{suse_styles_dir}/suse2013-ns
-%dir %{suse_styles_dir}/daps2013
-%dir %{suse_styles_dir}/daps2013-ns
-%dir %{suse_styles_dir}/opensuse2013
-%dir %{suse_styles_dir}/opensuse2013-ns
+%dir %{suse_styles_dir}/suse2013-sbp
+%dir %{suse_styles_dir}/suse2013-sbp-ns
 
 %dir %{_ttfontsdir}
 
 %dir %{_defaultdocdir}/%{name}
 
 # stylesheets
-%{suse_styles_dir}/suse/*
-%{suse_styles_dir}/suse-ns/*
-%{suse_styles_dir}/suse2013/*
-%{suse_styles_dir}/suse2013-ns/*
-%{suse_styles_dir}/daps2013/*
-%{suse_styles_dir}/daps2013-ns/*
-%{suse_styles_dir}/opensuse2013/*
-%{suse_styles_dir}/opensuse2013-ns/*
+%{suse_styles_dir}/suse2013-sbp/*
+%{suse_styles_dir}/suse2013-sbp-ns/*
 
 # Catalogs
 %config %{_sysconfdir}/xml/catalog.d/%{name}.xml

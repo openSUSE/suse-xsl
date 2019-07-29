@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <group id="suse-xsl-stylesheets-sbp" xml:base="..">
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
+     rewritePrefix="suse2013-sbp"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013"
+     rewritePrefix="suse2013-sbp"/>
+
+
+   <!-- FIXME: All the -ns URLs here are complete hogwash because the -ns
+   versions are generated and not part of the repository. -->
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
+     rewritePrefix="build/stylesheet/suse2013-sbp-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2013-ns"
+     rewritePrefix="build/stylesheet/suse2013-sbp-ns"/>
+
+  </group>
+
+  <!--
+     HINT: If you want to develop with the latest DocBook stylesheets
+           version, proceed as follows:
+
+     1. Download http://snapshots.docbook.org/docbook-xsl-snapshot.tar.bz2
+     2. Unpack to /tmp
+     3. Remove the comments from the following <group>:
+  -->
+  <!--<group xml:base="file:///tmp/docbook-xsl-snapshot/">
+    <rewriteSystem
+      systemIdStartString="http://docbook.sourceforge.net/release/xsl/current"
+      rewritePrefix="."/>
+    <rewriteURI
+      uriStartString="http://docbook.sourceforge.net/release/xsl/current"
+      rewritePrefix="."/>
+  </group>-->
+
+ <!-- Make sure the standard catalog is found as well -->
+ <!-- <nextCatalog catalog="file:///etc/xml/catalog" /> -->
+</catalog>
