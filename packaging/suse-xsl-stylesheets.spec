@@ -185,8 +185,6 @@ exit 0
 %dir %{suse_styles_dir}/suse2013-sbp
 %dir %{suse_styles_dir}/suse2013-sbp-ns
 
-%dir %{_ttfontsdir}
-
 %dir %{_defaultdocdir}/%{name}
 
 # stylesheets
@@ -195,9 +193,6 @@ exit 0
 
 # Catalogs
 %config %{_sysconfdir}/xml/catalog.d/%{name}.xml
-
-# Fonts
-%{_ttfontsdir}/*
 
 # Documentation
 %doc %{_defaultdocdir}/%{name}/*
