@@ -666,6 +666,29 @@
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
 
+    <xsl:text>&#10;</xsl:text>
+
+    <xsl:if test="$canonical-url-base != ''">
+      <xsl:variable name="ischunk">
+        <xsl:call-template name="chunk"/>
+      </xsl:variable>
+      <xsl:variable name="filename">
+        <xsl:choose>
+          <xsl:when test="$ischunk = 1">
+            <xsl:apply-templates mode="chunk-filename" select="."/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($root.filename,$html.ext)"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="canonical.url">
+        <xsl:value-of select="concat($canonical-url-base,'/',$filename)"/>
+      </xsl:variable>
+      <link rel="canonical" href="{$canonical.url}"/>
+    </xsl:if>
+    <xsl:text>&#10;</xsl:text>
+
     <xsl:if test="$build.for.web = 1">
       <script type="text/javascript">
 <xsl:text disable-output-escaping="yes">
