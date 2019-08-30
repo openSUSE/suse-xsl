@@ -1,4 +1,17 @@
 -------------------------------------------------------------------
+Fri Aug 29 13:37:00 UTC 2019 - sknorr@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.14:
+
+Find issues in our GitHub tracker at
+https://github.com/openSUSE/suse-xsl/issues/NUMBER
+
+HTML only:
+* Improve text of Report Bug links
+* Support inserting <link rel=canonical> via XSLT parameter
+  $canonical-url-base=https://some.example.org/doc
+
+-------------------------------------------------------------------
 Wed Nov 23 13:37:00 UTC 2018 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.13:
