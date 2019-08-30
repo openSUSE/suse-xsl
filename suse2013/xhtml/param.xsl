@@ -25,7 +25,7 @@
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>
     <!-- Override this parameter from the command line by adding
-             ––stringparam="homepage=http://www.example.com"
+             ––stringparam="homepage=https://www.example.com"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
@@ -33,8 +33,15 @@
   <xsl:param name="overview-page" select="''"/>
   <xsl:param name="overview-page-title" select="''"/>
     <!-- Override with
-             ––stringparam="overview-page=http://www.example.com"
+             ––stringparam="overview-page=https://www.example.com"
              ––stringparam="overview-page-title='Back to Overview'"
+         (don't copy from here, for technical reasons I can't use hyphens and
+         must use dashes). -->
+
+  <!-- Base URL for <link rel=canonical> tags. No tags included if unset. -->
+  <xsl:param name="canonical-url-base" select="''"/>
+    <!-- Override with:
+            ––stringparam="canonical-url-base=https://www.example.com"
          (don't copy from here, for technical reasons I can't use hyphens and
          must use dashes). -->
 
