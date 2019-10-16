@@ -22,7 +22,8 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xlink='http://www.w3.org/1999/xlink'
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="xlink">
+  xmlns:exsl="http://exslt.org/common"
+  exclude-result-prefixes="xlink exsl">
 
 
 <xsl:template match="ulink|link" name="ulink">
@@ -145,6 +146,17 @@
 </xsl:template>
 
 
+<xsl:template name="create.xref.with.xrefstyle.to.another.book">
+ <xsl:variable name="rtf">
+     <xsl:apply-imports/>
+ </xsl:variable>
+ <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
+
+  <fo:inline xsl:use-attribute-sets="xref.basic.properties">
+    <xsl:copy-of select="$node/*"/>
+  </fo:inline>
+</xsl:template>
+
 <xsl:template match="xref" name="xref">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
@@ -163,6 +175,20 @@
   </xsl:call-template>
 
   <xsl:choose>
+    <!-- If we point to another book AND we have an xrefstyle present,
+         output the same text content as the original xref template but
+         remove the link.
+    -->
+    <xsl:when test="$xref.in.samebook = 0 and @xrefstyle">
+      <xsl:variable name="rtf">
+        <xsl:apply-imports/>
+      </xsl:variable>
+      <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
+
+      <fo:inline xsl:use-attribute-sets="xref.basic.properties">
+         <xsl:copy-of select="$node/node()"/>
+      </fo:inline>
+    </xsl:when>
     <xsl:when test="$xref.in.samebook != 0 or
                     /set/@id=$rootid or
                     /article/@id=$rootid">
