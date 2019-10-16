@@ -13,7 +13,9 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns:exsl="http://exslt.org/common"
+  xmlns="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="exsl">
 
 
   <xsl:template name="anchor">
@@ -139,11 +141,13 @@
   </xsl:call-template>
 
  <!--
-    The xref resolution is a bit tricky. We need to distinguish 3 cases:
+    The xref resolution is a bit tricky. We need to distinguish these cases:
 
     1. if $rootid = '' -> use original code
     2. if $rootid != '' and rootid points to the root node -> use original code
     3. if (1) or (2) does not apply -> reference into another book
+    4. if we point to another book AND we have an @xrefstyle -> output the
+       same text content as the original xref template but remove the link
  -->
  <xsl:choose>
   <xsl:when test="$rootid = ''">
@@ -152,7 +156,23 @@
   <xsl:when test="$rootid != '' and $xref.in.samebook != 0">
    <xsl:apply-imports/>
   </xsl:when>
-  <xsl:when test="$xref.in.samebook != 0 or /set/@id=$rootid or /article/@id=$rootid">
+  <!-- If we point to another book AND we have an xrefstyle present,
+       skip creating intra-xrefs and use the default, but without
+       a clickable text.
+    -->
+  <xsl:when test="$xref.in.samebook = 0 and @xrefstyle">
+   <xsl:variable name="rtf">
+    <xsl:apply-imports/>
+   </xsl:variable>
+   <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
+
+   <span class="intraxref">
+    <xsl:copy-of select="$node/node()"/>
+   </span>
+  </xsl:when>
+  <xsl:when test="$xref.in.samebook != 0 or
+                  /set/@id=$rootid or
+                  /article/@id=$rootid">
    <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
    <xsl:apply-imports/>
