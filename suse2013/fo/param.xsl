@@ -345,7 +345,7 @@ are always just normal numbers). -->
 <xsl:param name="print.product" select="1"/>
 
 <!-- Where to link for SUSE documentation -->
-<xsl:param name="suse.doc.url">https://www.suse.com/documentation</xsl:param>
+<xsl:param name="suse.doc.url">https://documentation.suse.com</xsl:param>
 
 <!-- SUSE  -->
 <xsl:param name="company.address">SUSE LLC
