@@ -1,4 +1,23 @@
 -------------------------------------------------------------------
+Fri Nov 22 16:09:00 UTC 2019 - toms@suse.de
+
+Stable release of the SUSE XSL stylesheets 2.0.15:
+
+https://github.com/openSUSE/suse-xsl/releases/tag/2.0.15
+
+General:
+* Update architecture names to current nomenclature
+
+HTML + PDF:
+* Fix old documentation link www.suse.com/documentation
+  and replace it with https://documentation.suse.com/
+  (#402)
+* Disable intra-xrefs
+  If we point to another book AND we have an @xrefstyle
+  -> output the same text content as the original xref
+  template but remove the link(#398)
+
+-------------------------------------------------------------------
 Fri Aug 29 13:37:00 UTC 2019 - sknorr@suse.de
 
 Stable release of the SUSE XSL stylesheets 2.0.14:
