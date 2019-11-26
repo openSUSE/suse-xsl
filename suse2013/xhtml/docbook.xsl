@@ -739,7 +739,28 @@ hljs.configure({
 </xsl:text>
       </script>
     </xsl:if>
+    <xsl:if test="$external.js != ''">
+      <xsl:call-template name="make.multi.script.link">
+        <xsl:with-param name="input" select="$external.js"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
+
+  <xsl:template name="make.multi.script.link">
+    <xsl:param name="input" select="''"/>
+    <xsl:variable name="input-sanitized" select="concat(normalize-space($input),' ')"/>
+    <xsl:if test="string-length($input) &gt; 1">
+      <xsl:variable name="this" select="substring-before($input-sanitized,' ')"/>
+      <xsl:variable name="next" select="substring-after($input-sanitized,' ')"/>
+      <xsl:call-template name="make.script.link">
+        <xsl:with-param name="script.filename" select="$this"/>
+      </xsl:call-template>
+      <xsl:call-template name="make.multi.script.link">
+        <xsl:with-param name="input" select="$next"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
 
   <xsl:template name="user.footer.content">
     <div id="_footer">

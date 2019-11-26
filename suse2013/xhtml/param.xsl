@@ -24,58 +24,57 @@
 <!-- 0. Parameters for External Manipulation =================== -->
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>
-    <!-- Override this parameter from the command line by adding
-             ––stringparam="homepage=https://www.example.com"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+    <!-- Override with:
+             -stringparam="homepage=https://www.example.com"
+    -->
 
   <!-- Add a link back (up) to an external overview page. -->
   <xsl:param name="overview-page" select="''"/>
   <xsl:param name="overview-page-title" select="''"/>
-    <!-- Override with
-             ––stringparam="overview-page=https://www.example.com"
-             ––stringparam="overview-page-title='Back to Overview'"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+    <!-- Override with:
+             -stringparam="overview-page=https://www.example.com"
+             -stringparam="overview-page-title='Back to Overview'"
+    -->
 
   <!-- Base URL for <link rel=canonical> tags. No tags included if unset. -->
   <xsl:param name="canonical-url-base" select="''"/>
     <!-- Override with:
-            ––stringparam="canonical-url-base=https://www.example.com"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+            -stringparam="canonical-url-base=https://www.example.com"
+    -->
 
   <!-- Toggle the SUSE footer and SUSE e-mail button. Set to 0 if the
        documentation won't be available at a suse.com address.-->
   <xsl:param name="suse.content" select="1"/>
     <!-- Override with:
-            ––param="suse.content=0"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+            -param="suse.content=0"
+    -->
 
   <!-- Toggle inclusion of @font-face CSS. Set to 1 if you want to host
        the HTML on the internet or 0 if you are building for a locally
        installed package. -->
   <xsl:param name="build.for.web" select="1"/>
     <!-- Override with:
-            ––param="build.for.web=0"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+            -param="build.for.web=0"
+    -->
 
   <!-- Whether to optimize for plain text output -->
   <xsl:param name="optimize.plain.text" select="0"/>
     <!-- Override with:
-            ––param="optimize.plain.text=1"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+            -param="optimize.plain.text=1"
+    -->
 
-  <!-- Force showing "Edit Source" link, even if draft mode is off -->
-  <!-- (dm:editurl needs to be defined in the document) -->
-  <xsl:param name="show.edit.link" select="0"/>
+  <!-- Show "Edit Source" link always or only when draft mode is on.
+       (dm:editurl needs to be defined in the document) -->
+  <xsl:param name="show.edit.link" select="1"/>
     <!-- Override with:
-            ––param="show.editlink=1"
-         (don't copy from here, for technical reasons I can't use hyphens and
-         must use dashes). -->
+            -param="show.edit.link=0"
+    -->
+
+  <!-- Include external JS, can take multiple space-separated paths. -->
+  <xsl:param name="external.js" select="''"/>
+    <!-- Override with:
+            -stringparam="external.js='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
+    -->
 
 
 <!-- 1. Admonitions  ============================================ -->
