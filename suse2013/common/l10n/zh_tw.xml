@@ -43,7 +43,7 @@
    <l:gentext key="navigation" text="導覽"/>
    <l:gentext key="sharethispage" text="共享此頁面︰ "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="電子郵件"/>
    <l:gentext key="printthispage" text="列印此頁面"/>

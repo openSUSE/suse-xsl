@@ -34,7 +34,7 @@
    <l:gentext key="navigation" text="Naršymas"/>
    <l:gentext key="sharethispage" text="Bendrinti šį puslapį: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="El. paštas"/>
    <l:gentext key="printthispage" text="Spausdinti šį puslapį"/>

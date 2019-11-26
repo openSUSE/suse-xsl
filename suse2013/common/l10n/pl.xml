@@ -33,7 +33,7 @@
    <l:gentext key="navigation" text="Nawigacja"/>
    <l:gentext key="sharethispage" text="Udostępnij tę stronę: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-mail"/>
    <l:gentext key="printthispage" text="Drukuj tę stronę"/>

@@ -31,7 +31,7 @@
    <l:gentext key="navigation" text="Navigasjon"/>
    <l:gentext key="sharethispage" text="Del denne siden: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-post"/>
    <l:gentext key="printthispage" text="Skriv ut denne siden"/>
