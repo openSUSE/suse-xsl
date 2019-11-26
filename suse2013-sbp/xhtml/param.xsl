@@ -397,12 +397,15 @@ task before
 
 <xsl:param name="glossentry.show.acronym">yes</xsl:param>
 
-  <!-- Wrap an <img/> tag <a>
-       0=no, 1=yes
-  -->
+  <!-- Wrap <img/> tags with a link (<a>), so you can click through to a big
+       version of the image. -->
   <xsl:param name="wrap.img.with.a" select="1"/>
 
   <!-- Trim away empty lines from the beginning and end of screens -->
   <xsl:param name="trim.verbatim" select="1"/>
+
+  <!-- The amount of characters allowed for teasers on part pages and within
+       og:description/meta description tags.-->
+  <xsl:param name="teaser.length" select="300"/>
 
 </xsl:stylesheet>

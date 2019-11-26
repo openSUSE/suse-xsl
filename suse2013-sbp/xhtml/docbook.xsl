@@ -85,7 +85,7 @@
  + remove the inline styles for draft mode, so they can be substituted by styles
    in the real stylesheet
  -->
- <xsl:template name="head.content">
+<xsl:template name="head.content">
   <xsl:param name="node" select="."/>
   <xsl:param name="product-name">
     <xsl:call-template name="product.name"/>
@@ -166,6 +166,54 @@
     </xsl:if>
   </xsl:param>
 
+  <xsl:variable name="meta-og.description">
+    <xsl:variable name="info"
+      select=" (articleinfo|bookinfo|prefaceinfo|chapterinfo|appendixinfo
+               |sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info
+               |referenceinfo
+               |refentryinfo
+               |partinfo
+               |info
+               |docinfo)[1]"/>
+    <xsl:variable name="first-para" select="(descendant::para|descendant::simpara)[1]"/>
+    <xsl:choose>
+      <xsl:when test="$info and $info/abstract">
+        <xsl:for-each select="$info/abstract[1]/*">
+          <xsl:value-of select="normalize-space(.)"/>
+          <xsl:if test="position() &lt; last()">
+            <xsl:text> </xsl:text>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- Except for the lack of markup here, this code is very similar to that in autotoc.xsl. Unify later if possible. -->
+        <xsl:variable name="teaser">
+          <xsl:apply-templates/>
+        </xsl:variable>
+        <xsl:variable name="teaser-safe">
+          <xsl:call-template name="string-replace">
+            <xsl:with-param name="input" select="$teaser"/>
+            <xsl:with-param name="search-string" select="'&quot;'"/>
+            <!-- The xslns-build script we use to transform the stylesheets to
+            their namespaced version is unsafe for the string &amp;quot; as the
+            value here, so we just replace double quotes with a space and hope
+            for the best. -->
+            <xsl:with-param name="replace-string" select="' '"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <xsl:choose>
+          <xsl:when test="string-length(normalize-space($teaser-safe)) &gt; $teaser.length">
+            <xsl:value-of select="substring(normalize-space($teaser-safe),1,$teaser.length)"/>
+            <xsl:value-of select="'…'"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$teaser-safe"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <title><xsl:value-of select="$title"/></title>
 
   <meta name="viewport"
@@ -208,34 +256,78 @@
     <meta name="chapter-title" content="{$substructure.title.long}"/>
   </xsl:if>
 
-  <xsl:if test="$generate.meta.abstract != 0">
-    <xsl:variable name="info" select="(articleinfo|bookinfo|prefaceinfo|chapterinfo|appendixinfo|
-              sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info
-             |referenceinfo
-             |refentryinfo
-             |partinfo
-             |info
-             |docinfo)[1]"/>
-    <xsl:if test="$info and $info/abstract">
-      <meta name="description">
-        <xsl:attribute name="content">
-          <xsl:for-each select="$info/abstract[1]/*">
-            <xsl:value-of select="normalize-space(.)"/>
-            <xsl:if test="position() &lt; last()">
-              <xsl:text> </xsl:text>
-            </xsl:if>
-          </xsl:for-each>
-        </xsl:attribute>
-      </meta>
-    </xsl:if>
-  </xsl:if>
+  <meta name="description" content="{$meta-og.description}"/>
 
   <xsl:if test="$use.tracker.meta != 0">
     <xsl:call-template name="create.bugtracker.information"/>
   </xsl:if>
 
-    <xsl:apply-templates select="." mode="head.keywords.content"/>
-  </xsl:template>
+  <xsl:apply-templates select="." mode="head.keywords.content"/>
+
+  <xsl:if test="$canonical-url-base != ''">
+    <xsl:variable name="ischunk">
+      <xsl:call-template name="chunk"/>
+    </xsl:variable>
+    <xsl:variable name="filename">
+      <xsl:choose>
+        <xsl:when test="$ischunk = 1">
+          <xsl:apply-templates mode="chunk-filename" select="."/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($root.filename,$html.ext)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="canonical.url">
+      <xsl:value-of select="concat($canonical-url-base,'/',$filename)"/>
+    </xsl:variable>
+    <xsl:variable name="og.title">
+      <!-- localize punctuation -->
+      <xsl:if test="$product != ''">
+        <xsl:value-of select="$product"/>
+        <xsl:text>: </xsl:text>
+      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="$substructure.title.long != ''">
+          <xsl:value-of select="$substructure.title.long"/>
+          <xsl:text> (</xsl:text>
+          <xsl:value-of select="$structure.title"/>
+          <xsl:text>)</xsl:text>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$structure.title"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="og.image">
+      <xsl:choose>
+        <!-- Ignoring stuff like inlinemediaobjects here, because those are
+        likely very small anyway. Let's hope SVGs work too.-->
+        <xsl:when
+          test="(descendant::figure/descendant::imagedata/@fileref
+                |descendant::informalfigure/descendant::imagedata/@fileref)[1]">
+          <xsl:value-of
+            select="concat($canonical-url-base, '/', $img.src.path,
+                    (descendant::figure/descendant::imagedata/@fileref
+                    |descendant::informalfigure/descendant::imagedata/@fileref)[1])"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="concat($canonical-url-base, '/', $daps.header.logo)"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <link rel="canonical" href="{$canonical.url}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="og:title" content="{$og.title}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="og:image" content="{$og.image}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="og:description" content="{$meta-og.description}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="og:url" content="{$canonical.url}"/>
+  </xsl:if>
+
+</xsl:template>
 
   <xsl:template name="meta-generator">
     <xsl:element name="meta">
@@ -666,27 +758,6 @@
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
 
-    <xsl:text>&#10;</xsl:text>
-
-    <xsl:if test="$canonical-url-base != ''">
-      <xsl:variable name="ischunk">
-        <xsl:call-template name="chunk"/>
-      </xsl:variable>
-      <xsl:variable name="filename">
-        <xsl:choose>
-          <xsl:when test="$ischunk = 1">
-            <xsl:apply-templates mode="chunk-filename" select="."/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($root.filename,$html.ext)"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:variable>
-      <xsl:variable name="canonical.url">
-        <xsl:value-of select="concat($canonical-url-base,'/',$filename)"/>
-      </xsl:variable>
-      <link rel="canonical" href="{$canonical.url}"/>
-    </xsl:if>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:if test="$build.for.web = 1">

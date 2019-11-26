@@ -169,7 +169,7 @@
                                           abstract|highlights)[1]" mode="toc-abstract"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:apply-templates select="(para)[1]" mode="toc-abstract">
+            <xsl:apply-templates select="(descendant::para|descendant::simpara)[1]" mode="toc-abstract">
               <xsl:with-param name="trim" select="1"/>
             </xsl:apply-templates>
           </xsl:otherwise>
@@ -178,7 +178,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="abstract|highlights|para" mode="toc-abstract">
+  <xsl:template match="abstract|highlights|para|simpara" mode="toc-abstract">
     <xsl:param name="trim" select="0"/>
     <xsl:param name="teaser">
       <xsl:apply-templates/>
@@ -186,14 +186,13 @@
     <dd class="toc-abstract">
       <xsl:choose>
         <xsl:when test="$trim = 1
-                    and string-length(normalize-space($teaser)) &gt; 300">
+                    and string-length(normalize-space($teaser)) &gt; $teaser.length">
             <p>
-            <xsl:value-of select="substring(normalize-space($teaser),1,300)"/>
+            <xsl:value-of select="substring(normalize-space($teaser),1,$teaser.length)"/>
             <xsl:value-of select="'…'"/>
             </p>
         </xsl:when>
-        <xsl:when test="$trim = 1
-                    and string-length(normalize-space($teaser)) &lt;= 300">
+        <xsl:when test="$trim = 1">
             <p>
             <xsl:apply-templates/>
             </p>
