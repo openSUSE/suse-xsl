@@ -246,7 +246,7 @@ html, body {
 .toc-icon, .find-icon, .book-icon, .prev-icon, .next-icon, .overview-icon,
 .back-icon, #_find-button, .bubble-corner:before, .bubble-closer,
 .single-contents-icon, #_print-button:before, #_share-fb:before,
-#_share-gp:before, #_share-tw:before, #_share-mail:before,
+#_share-in:before, #_share-tw:before, #_share-mail:before,
 .arch-arrow-start:after, .arch-arrow-end, .ulink:after {
     background-image: url(../images/icons.png);
     background-repeat: no-repeat;
@@ -1055,7 +1055,7 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
     font-weight: 600;
 }
 
-#_share-fb:before, #_share-gp:before, #_share-tw:before, #_share-mail:before,
+#_share-fb:before, #_share-in:before, #_share-tw:before, #_share-mail:before,
 #_print-button:before {
     content: " ";
     line-height: 22px;
@@ -1077,8 +1077,8 @@ button:focus::-moz-focus-inner, button::-moz-focus-inner {
     background-position: -271px -88px;
 }
 
-#_share-gp:before {
-    background-color: #D54433;
+#_share-in:before {
+    background-color: #0073B1;
     background-position: -289px -88px;
 }
 
@@ -2957,7 +2957,7 @@ p.ds-message {
         clear: both;
     }
 
-    #_share-fb:before, #_share-gp:before, #_share-tw:before, #_share-mail:before {
+    #_share-fb:before, #_share-in:before, #_share-tw:before, #_share-mail:before {
         border-radius: 2px;
         border-width: 1px;
         margin-left: 0;
