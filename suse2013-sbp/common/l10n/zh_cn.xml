@@ -26,7 +26,7 @@
    <l:gentext key="navigation" text="导航"/>
    <l:gentext key="sharethispage" text="分享此页︰ "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="电子邮件"/>
    <l:gentext key="printthispage" text="打印此页"/>

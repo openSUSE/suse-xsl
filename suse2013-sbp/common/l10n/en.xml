@@ -28,7 +28,7 @@
    <l:gentext key="navigation" text="Navigation"/>
    <l:gentext key="sharethispage" text="Share this page: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-Mail"/>
    <l:gentext key="printthispage" text="Print this page"/>

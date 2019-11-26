@@ -95,7 +95,7 @@ $(function() {
   $('#_find-input-label').click(function(){$('#_find-input').focus();});
 
   $('#_share-fb').click(function(){share('fb');});
-  $('#_share-gp').click(function(){share('gp');});
+  $('#_share-in').click(function(){share('in');});
   $('#_share-tw').click(function(){share('tw');});
   $('#_share-mail').click(function(){share('mail');});
   $('#_print-button').click(function(){print();});
@@ -306,23 +306,25 @@ function deactivate() {
 }
 
 function share( service ) {
+  // helpful: https://github.com/bradvin/social-share-urls
   u = encodeURIComponent( document.URL );
   t = encodeURIComponent( document.title );
+  shareSettings = 'menubar=0,toolbar=1,status=0,width=600,height=650'
   if ( service == 'fb' ) {
     shareURL = 'https://www.facebook.com/sharer.php?u=' + u + '&amp;t=' + t;
-    window.open(shareURL,'sharer','toolbar=0,status=0,width=626,height=436');
+    window.open(shareURL,'sharer', shareSettings);
   }
     else if ( service == 'tw' ) {
-    shareURL = 'https://twitter.com/share?text=' + t + '&amp;url=' + u;
-    window.open(shareURL, 'sharer', 'toolbar=0,status=0,width=340,height=360');
+    shareURL = 'https://twitter.com/share?text=' + t + '&amp;url=' + u + '&amp;hashtags=suse,docs';
+    window.open(shareURL, 'sharer', shareSettings);
   }
-    else if ( service == 'gp' ) {
-    shareURL = 'https://plus.google.com/share?url=' + u;
-    window.open(shareURL, 'sharer', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    else if ( service == 'in' ) {
+    shareURL = 'https://www.linkedin.com/shareArticle?mini=true&' + u + '&amp;title=' + t;
+    window.open(shareURL, 'sharer', shareSettings);
   }
     else if ( service == 'mail' ) {
     shareURL = 'https://www.suse.com/company/contact/sendemail.php?url=' + u;
-    window.open(shareURL, 'sharer', 'toolbar=0,status=0,width=535,height=650');
+    window.open(shareURL, 'sharer', shareSettings);
   }
 }
 

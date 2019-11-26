@@ -34,7 +34,7 @@
    <l:gentext key="navigation" text="탐색"/>
    <l:gentext key="sharethispage" text="이 페이지 공유: "/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="shareviagoogleplus" text="Google+"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="전자 메일"/>
    <l:gentext key="printthispage" text="이 페이지 인쇄"/>

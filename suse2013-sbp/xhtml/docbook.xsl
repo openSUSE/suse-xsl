@@ -595,9 +595,9 @@
                 </xsl:call-template>
               </span>
               <span class="spacer"> &#x2022; </span>
-              <span id="_share-gp" class="bottom-button">
+              <span id="_share-in" class="bottom-button">
                 <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">shareviagoogleplus</xsl:with-param>
+                  <xsl:with-param name="key">sharevialinkedin</xsl:with-param>
                 </xsl:call-template>
               </span>
               <span class="spacer"> &#x2022; </span>
