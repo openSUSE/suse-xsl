@@ -773,28 +773,28 @@ hljs.configure({
       <xsl:if test="$generate.footer.links != 0">
         <ul>
           <li>
-            <a href="http://www.suse.com/company/careers/" target="_top">
+            <a href="https://www.suse.com/company/careers/" target="_top">
               <xsl:call-template name="gentext">
                 <xsl:with-param name="key">susecareers</xsl:with-param>
               </xsl:call-template>
             </a>
           </li>
           <li>
-            <a href="http://www.suse.com/company/legal/" target="_top">
+            <a href="https://www.suse.com/company/legal/" target="_top">
               <xsl:call-template name="gentext">
                 <xsl:with-param name="key">suselegal</xsl:with-param>
               </xsl:call-template>
             </a>
           </li>
           <li>
-            <a href="http://www.suse.com/company/" target="_top">
+            <a href="https://www.suse.com/company/about/" target="_top">
               <xsl:call-template name="gentext">
                 <xsl:with-param name="key">suseabout</xsl:with-param>
               </xsl:call-template>
             </a>
           </li>
           <li>
-            <a href="http://www.suse.com/ContactsOffices/contacts_offices.jsp"
+            <a href="https://www.suse.com/contact/"
               target="_top">
               <xsl:call-template name="gentext">
                 <xsl:with-param name="key">susecontact</xsl:with-param>
