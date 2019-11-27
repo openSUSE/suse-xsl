@@ -76,22 +76,29 @@
 
   <!-- ===================================================== -->
   <xsl:template name="formal.object.heading">
-  <xsl:param name="object" select="."/>
-  <xsl:param name="title">
-    <xsl:call-template name="create.formal.title">
-      <xsl:with-param name="node" select="$object"/>
-    </xsl:call-template>
-  </xsl:param>
+    <xsl:param name="object" select="."/>
+    <xsl:param name="title">
+      <xsl:call-template name="create.formal.title">
+        <xsl:with-param name="node" select="$object"/>
+      </xsl:call-template>
+    </xsl:param>
 
-    <div class="{concat(local-name(),'-title-wrap')}">
-      <h6 class="{concat(local-name(), '-title')}">
-        <!-- Do NOT create an id here; parent contains already one -->
-        <xsl:copy-of select="$title"/>
-        <xsl:call-template name="create.permalink">
-          <xsl:with-param name="object" select="$object"/>
-        </xsl:call-template>
-      </h6>
-    </div>
+    <!-- FIXME: The 'if' here avoids outputting the (ugly/obvious)
+         label "Abstract" before abstracts. This is probably the wrong solution.
+         It works, but it's ugly. -->
+    <xsl:if
+      test="not(local-name($object) = 'abstract' or local-name($object) = 'highlights')
+            or $object/title or $object/*[contains(local-name(.), 'info')]/title">
+      <div class="{concat(local-name(),'-title-wrap')}">
+        <h6 class="{concat(local-name(), '-title')}">
+          <!-- Do NOT create an id here; parent contains one already -->
+          <xsl:copy-of select="$title"/>
+          <xsl:call-template name="create.permalink">
+            <xsl:with-param name="object" select="$object"/>
+          </xsl:call-template>
+        </h6>
+      </div>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
