@@ -52,7 +52,7 @@
       </xsl:otherwise>
     </xsl:choose>
     <xsl:text> </xsl:text>
-    <xsl:call-template name="create.permalink.singlehtml">
+    <xsl:call-template name="create.permalink">
       <xsl:with-param name="object" select=".."/>
     </xsl:call-template>
     <xsl:call-template name="editlink"/>
