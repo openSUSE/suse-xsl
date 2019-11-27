@@ -15,12 +15,12 @@
    <!ENTITY ko SYSTEM "ko.xml">
    <!ENTITY lt_lt SYSTEM "lt_lt.xml">
    <!ENTITY nl SYSTEM "nl.xml">
-    <!ENTITY no SYSTEM "no.xml">
+   <!ENTITY no SYSTEM "no.xml">
    <!ENTITY pl SYSTEM "pl.xml">
    <!ENTITY pt SYSTEM "pt.xml">
    <!ENTITY pt_br SYSTEM "pt_br.xml">
    <!ENTITY ru SYSTEM "ru.xml">
-    <!ENTITY sv SYSTEM "sv.xml">
+   <!ENTITY sv SYSTEM "sv.xml">
    <!ENTITY zh_cn SYSTEM "zh_cn.xml">
    <!ENTITY zh_tw SYSTEM "zh_tw.xml">
 ]>
