@@ -17,18 +17,6 @@
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
     exclude-result-prefixes="exsl l t">
 
-  <xsl:template match="abstract">
-    <div class="myownabstract">
-      <xsl:call-template name="common.html.attributes"/>
-      <xsl:call-template name="id.attribute"/>
-      <xsl:call-template name="anchor"/>
-      <!-- We are only interested in a "normal" processing, but suppress
-           titles anyway -->
-      <!--<xsl:call-template name="sidebar.titlepage"/>-->
-      <xsl:apply-templates select="*[not(self::title)]"/>
-    </div>
-  </xsl:template>
-
   <xsl:template match="para[@arch]">
     <xsl:variable name="arch">
       <xsl:call-template name="readable.arch.string">
