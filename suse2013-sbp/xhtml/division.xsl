@@ -54,7 +54,7 @@
       <xsl:call-template name="create.division.title">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
-      <xsl:call-template name="create.permalink.singlehtml">
+      <xsl:call-template name="create.permalink">
         <xsl:with-param name="object" select="$node"/>
       </xsl:call-template>
       <xsl:call-template name="editlink"/>

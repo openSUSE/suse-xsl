@@ -22,27 +22,26 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns="http://www.w3.org/1999/xhtml">
 
-  <!-- The below template is replaced by a template of the same name in
-       chunk-common, if that file is included. -->
-  <xsl:template name="create.permalink.singlehtml">
-    <xsl:param name="object" select="."/>
-    <xsl:call-template name="create.permalink">
-      <xsl:with-param name="object" select="$object"/>
-    </xsl:call-template>
-  </xsl:template>
-
   <xsl:template name="create.permalink">
     <xsl:param name="object" select="."/>
-    
+    <xsl:variable name="target">
+      <xsl:call-template name="href.target">
+        <xsl:with-param name="object" select="$object"/>
+      </xsl:call-template>
+    </xsl:variable>
+
     <xsl:if test="$generate.permalinks != 0">
       <a title="Permalink" class="permalink">
         <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$object"/>
-          </xsl:call-template>
+          <xsl:choose>
+            <xsl:when test="$target != ''">
+              <xsl:value-of select="$target"/>
+            </xsl:when>
+            <xsl:otherwise>#</xsl:otherwise>
+          </xsl:choose>
         </xsl:attribute>
         <xsl:text>#</xsl:text>
       </a>
     </xsl:if>
-  </xsl:template>  
+  </xsl:template>
 </xsl:stylesheet>
