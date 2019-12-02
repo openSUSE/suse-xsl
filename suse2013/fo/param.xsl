@@ -349,9 +349,8 @@ are always just normal numbers). -->
 
 <!-- SUSE  -->
 <xsl:param name="company.address">SUSE LLC
-10 Canal Park Drive
-Suite 200
-Cambridge MA 02141
+1800 South Novell Place
+Provo, UT 84606
 USA</xsl:param>
 
 <xsl:param name="enable.secondary.branding" select="1"/>
