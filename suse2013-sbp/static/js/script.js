@@ -122,6 +122,7 @@ $(function() {
   $('#_bubble-toc ol ol').prepend('<li class="bubble-back"><a href="#"><span class="back-icon">&nbsp;</span></a></li>');
   $('.bubble-back').click(function(){exchClass('#_bubble-toc > ol > li', 'active', 'inactive'); return false;});
   $('#_pickers a.selected').append('<span class="tick">&nbsp;</span>');
+  $(".bubble").click(function(e) {e.stopPropagation();});
   $('.bubble h6').append('<span class="bubble-closer">&nbsp;</span>');
   $('.bubble-closer').click(function(){deactivate(); return false;});
   $('.question').click(function(){ $(this).parent('dl').toggleClass('active'); });
