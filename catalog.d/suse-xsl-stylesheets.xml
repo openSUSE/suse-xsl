@@ -31,6 +31,12 @@
      uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013"
      rewritePrefix="daps2013"/>
 
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020"
+     rewritePrefix="suse2020"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020"
+     rewritePrefix="suse2020"/>
 
    <!-- FIXME: All the -ns URLs here are complete hogwash because the -ns
    versions are generated and not part of the repository. -->
@@ -61,6 +67,13 @@
    <rewriteURI
      uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
      rewritePrefix="build/stylesheet/daps2013-ns"/>
+
+   <rewriteSystem
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
+     rewritePrefix="build/stylesheet/suse2020-ns"/>
+   <rewriteURI
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
+     rewritePrefix="build/stylesheet/suse2020-ns"/>
 
   </group>
 
