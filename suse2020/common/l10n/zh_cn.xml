@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+        language="zh_cn"
+        english-language-name="Chinese Simplified">
+
+   <l:gentext key="LocalisedLanguageName" text="&#20013;&#25991;(&#31616;&#20307;)"/>
+   <l:gentext key="admonseparator"  text="&#65306;"/>
+   <l:gentext key="ListofAuthors" text="&#20316;&#32773;&#21015;&#34920;"/>
+   <l:gentext key="Authors" text="&#20316;&#32773;"/>
+   <l:gentext key="Contributor"     text="贡献者"/>
+   <l:gentext key="Contributors"    text="贡献者"/>
+
+   <l:gentext key="admonseparator"  text="︰ "/>
+   <l:gentext key="selectlanguage" text="选择语言"/>
+   <l:gentext key="selectformat" text="选择格式"/>
+   <l:gentext key="formathtml" text="网页"/>
+   <l:gentext key="formatsinglehtml" text="单一网页"/>
+   <l:gentext key="formatpdf" text="PDF"/>
+   <l:gentext key="formatepub" text="E-book (EPUB)"/> <!-- According to Google Translate, this should be: 电子书（EPUB） -->
+   <l:gentext key="contentsoverview" text="内容"/>
+   <l:gentext key="showcontentsoverview" text="显示内容"/>
+   <l:gentext key="find" text="查找"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
+
+   <l:gentext key="navigation" text="导航"/>
+   <l:gentext key="sharethispage" text="分享此页︰ "/>
+   <l:gentext key="shareviafacebook" text="Facebook"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
+   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviaemail" text="电子邮件"/>
+   <l:gentext key="printthispage" text="打印此页"/>
+   <l:gentext key="susecareers" text="职业"/>
+   <l:gentext key="suselegal" text="法律"/>
+   <l:gentext key="suseabout" text="关于"/>
+   <l:gentext key="susecontact" text="联系我们"/>
+   <l:gentext key="version.info" text="适用于"/>
+   <l:gentext key="totopofpage" text="顶部"/>
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
+   <!-- Not quite sure why we need this: most of our other l10n files do not
+   override the authorgroup context, only the zh_*.xml files do. However, we do
+   remove the "and" (和) character. Maybe this was a translator request once. -->
+   <l:context name="authorgroup">
+       <l:template name="sep" text="、"/>
+       <l:template name="sep2" text="、"/>
+       <l:template name="seplast" text="、"/>
+   </l:context>
+
+   <l:context name="styles">
+      <l:template name="person-name" text="first-last"/>
+
+      <l:template name="example-label" text="&#20363; %n︰"/>
+      <l:template name="example-title" text="%t"/>
+      <l:template name="figure-label" text="&#22270; %n︰"/>
+      <l:template name="figure-title" text="%t"/>
+      <l:template name="glosslist-label" text=""/>
+      <l:template name="glosslist-title" text="%t"/>
+      <l:template name="procedure-label" text="&#36807;&#31243; %n︰"/>
+      <l:template name="procedure-title" text="%t"/>
+      <l:template name="table-label" text="&#34920; %n︰"/>
+      <l:template name="table-title" text="%t"/>
+      <l:template name="variablelist-label" text=""/>
+      <l:template name="variablelist-title" text="%t"/>
+      <l:template name="itemizedlist-label" text=""/>
+      <l:template name="itemizedlist-title" text="%t"/>
+      <l:template name="orderedlist-label" text=""/>
+      <l:template name="orderedlist-title" text="%t"/>
+   </l:context>
+
+   <l:context name="xep-bookmark-title">
+      <l:template name="article" text="%t"/>
+      <l:template name="appendix" text="%n. %t"/>
+      <l:template name="article/appendix" text="%n. %t"/>
+      <l:template name="bibliography" text="%t"/>
+      <l:template name="book" text="%t"/>
+      <l:template name="bridgehead" text="%n. %t"/>
+      <l:template name="chapter" text="%n. %t"/>
+      <l:template name="glossary" text="%t"/>
+      <l:template name="index" text="%t"/>
+      <l:template name="part" text="%n. %t"/>
+      <l:template name="preface" text="%t"/>
+      <l:template name="reference" text="%t"/>
+      <l:template name="refentry" text="%t"/>
+      <l:template name="refsect1" text="%t"/>
+      <l:template name="refsect2" text="%t"/>
+      <l:template name="refsect3" text="%t"/>
+      <l:template name="sect1" text="%n. %t"/>
+      <l:template name="sect2" text="%n. %t"/>
+      <l:template name="sect3" text="%n %t"/>
+      <l:template name="sect4" text="%n %t"/>
+      <l:template name="sect5" text="%n %t"/>
+      <l:template name="section" text="%n. %t"/>
+      <l:template name="set" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+      <l:template name="toc" text="%t"/>
+   </l:context>
+
+   <l:context name="msgset"><!-- FIXME: Chinese keyboard -->
+      <l:template name="alt" text="Alt"/>
+      <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->
+      <l:template name="command" text="&#x2318;"/>
+      <l:template name="control" text="Ctrl"/>
+      <l:template name="delete" text="Del"/>
+      <l:template name="down" text="&#x02193;"/><!-- darr -->
+      <l:template name="end" text="End"/>
+      <l:template name="enter" text="Enter"/>
+      <l:template name="escape" text="Esc"/>
+      <l:template name="home" text="Home"/>
+      <l:template name="insert" text="Ins"/>
+      <l:template name="left" text="&#x02190;"/><!-- larr -->
+      <l:template name="meta" text="Meta"/>
+      <!--       <l:template name="option" text="???"/> -->
+      <l:template name="other" text="???"/>
+      <l:template name="pagedown" text="Page &#x02193;"/>
+      <l:template name="pageup" text="Page &#x02191;"/>
+      <l:template name="right" text="&#x02192;"/><!-- rarr -->
+      <l:template name="shift" text="Shift"/>
+      <l:template name="space" text="Space"/>
+      <l:template name="tab" text="&#x02192;|"/>
+      <l:template name="up" text="&#x02191;"/><!-- uarr -->
+   </l:context>
+
+   <l:context name="parameters">
+     <l:template name="dot.after.section" text=""/>
+     <l:template name="dot.after.step" text=""/>
+   </l:context>
+
+   <l:context name="datetime-full">
+      <l:template name="January" text="1" lang="zh_cn"/>
+      <l:template name="February" text="2" lang="zh_cn"/>
+      <l:template name="March" text="3" lang="zh_cn"/>
+      <l:template name="April" text="4" lang="zh_cn"/>
+      <l:template name="May" text="5" lang="zh_cn"/>
+      <l:template name="June" text="6" lang="zh_cn"/>
+      <l:template name="July" text="7" lang="zh_cn"/>
+      <l:template name="August" text="8" lang="zh_cn"/>
+      <l:template name="September" text="9" lang="zh_cn"/>
+      <l:template name="October" text="10" lang="zh_cn"/>
+      <l:template name="November" text="11" lang="zh_cn"/>
+      <l:template name="December" text="12" lang="zh_cn"/>
+   </l:context>
+
+
+   <l:context name="xref">
+     <!-- Discussed these translations with Yan Gao:
+       + You can use the connector "中的" (rough translation:
+         "the former item belongs to the latter item") as a prefix for the
+         last item. To avoid the complication of having to add these connectors
+         specifically before the last item, we will leave them away for the
+         moment.
+       + Use 《double angle brackets》 for the book/article title only.
+       + Adding the word "book" (apparently "第") sounds awkward, so leaving it
+         away. "Article" is fine though.
+       + Use “normal typographic quotes” for section titles.
+       + Do not use 「corner brackets」, they are not used in Simplified Chinese.
+
+       + Would 〈single angle brackets〉 make sense for the article title?
+
+      See also:
+      https://en.wikipedia.org/wiki/Quotation_mark#Chinese.2C_Japanese_and_Korean_quotation_marks
+     -->
+     <l:template name="intra-separator" text=", "/>
+     <l:template name="intra-article" text="《%t》文章"/>
+     <l:template name="intra-book" text="《%t》"/>
+     <l:template name="intra-chapter" text="第&#160;%n 章 “%t”"/>
+     <l:template name="intra-sect1" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect2" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect3" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect4" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-sect5" text="第&#160;%n 节 “%t”"/>
+     <l:template name="intra-section" text="第&#160;%n 节 “%t”"/>
+
+     <l:template name="intra-example" text="例&#160;%n “%t”"/>
+     <l:template name="intra-figure" text="图&#160;%n “%t”"/>
+     <l:template name="intra-preface" text="前言 “%t”"/>
+     <l:template name="intra-procedure" text="过程&#160;%n “%t”"/>
+     <l:template name="intra-table" text="表&#160;%n “%t”"/>
+
+     <l:template name="intra-variablelist" text="“%t”"/>
+     <l:template name="intra-orderedlist" text="“%t”"/>
+     <l:template name="intra-itemizedlist" text="“%t”"/>
+   </l:context>
+
+   <l:context name="title-numbered">
+      <l:template name="chapter" text="&#31532;&#160;%n&#160;&#31456;%t"/>
+   </l:context>
+
+   <l:context name="title">
+      <l:template name="chapter" text="&#31532;&#160;%n&#160;&#31456;%t"/>
+   </l:context>
+
+  <l:context name="xref-number-and-title">
+    <l:template name="appendix" text="附录 %n “%t”"/>
+    <l:template name="chapter" text="第 %n 章 “%t”"/>
+    <l:template name="procedure" text="过程 %n “%t”"/>
+    <l:template name="productionset" text="产品 %n “%t”"/>
+    <l:template name="qandadiv" text="答问集 %n “%t”"/>
+  </l:context>
+
+   <l:context name="datetime">
+     <l:template name="titlepage.format" text="Y-m-d"/>
+   </l:context>
+</l:l10n>

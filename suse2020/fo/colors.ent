@@ -1,0 +1,67 @@
+<!--
+   Purpose:
+     Consistently define colors throughout the stylesheets.
+
+   Author(s):   Stefan Knorr <sknorr@suse.de>
+   Copyright:   2019, Stefan Knorr
+
+-->
+
+<!-- 2016 SUSE colors -->
+
+<!ENTITY black                "rgb(0,0,0)">
+<!ENTITY white                "rgb(255,255,255)">
+<!ENTITY suse-corporate-blue  "rgb(13,44,64)">
+<!ENTITY suse-light-green     "rgb(160,255,95)">
+<!ENTITY suse-dark-green      "rgb(0,192,129)">
+<!ENTITY suse-teal            "rgb(2,164,156)">
+<!ENTITY suse-light-blue      "rgb(113,214,224)">
+<!ENTITY suse-blue            "rgb(0,178,226)">
+<!ENTITY suse-dark-blue       "rgb(0,7,176)">
+<!ENTITY suse-dark-purple     "rgb(36,25,59)">
+<!ENTITY suse-purple          "rgb(132,23,129)">
+<!ENTITY suse-light-orange    "rgb(255,239,141)">
+<!ENTITY suse-orange          "rgb(253,154,43)">
+<!ENTITY suse-dark-orange     "rgb(237,105,36)">
+<!ENTITY suse-light-pink      "rgb(247,163,213)">
+<!ENTITY suse-dark-pink       "rgb(222,0,128)">
+<!ENTITY suse-black           "&black;">
+<!ENTITY suse-dark-gray       "rgb(95,95,95)">
+<!ENTITY suse-medium-gray     "rgb(167,169,172)">
+<!ENTITY suse-light-gray      "rgb(220,221,222)">
+<!ENTITY suse-lighter-gray    "rgb(237,237,237)">
+<!ENTITY suse-green           "rgb(2,211,95)">
+
+<!-- The original SUSE palette does not include red. Pink "Warning" boxes
+look terrible, however. -->
+
+<!ENTITY suse-dark-red        "rgb(221,19,59)">
+<!ENTITY suse-darker-green    "rgb(1,98,93)">
+
+
+<!-- Additional, darker color for commands, all other greens are just too flashy. -->
+
+<!ENTITY suse-darker-green    "rgb(1,98,93)">
+
+
+<!-- Additional colors for grayscale output -->
+
+<!ENTITY bw-extra-light-gray  "rgb(245,245,246)">
+<!ENTITY bw-lighter-gray      "rgb(237,237,237)"> <!-- #EDEDED -->
+<!ENTITY bw-light-gray        "rgb(168,168,168)">
+<!ENTITY bw-mid-gray          "rgb(95,95,95)"> <!-- #666 -->
+<!ENTITY bw-darker-gray       "rgb(51,51,51)">
+<!ENTITY bw-dark-gray         "rgb(32,32,32)"> <!-- #202020 -->
+
+
+<!-- Special gray to replace italics -->
+<!ENTITY italic-replacement   "rgb(120,120,120)">
+<!ENTITY bold-replacement     "rgb(240,240,240)">
+
+<!-- High visibility testing colors -->
+<!ENTITY test1                "#F0F">
+<!ENTITY test1border          "1px solid #F0F">
+<!ENTITY test2                "#F00">
+<!ENTITY test2border          "1px solid #0BF">
+<!ENTITY test3                "#0F0">
+<!ENTITY test3border          "1px solid #0F0">
