@@ -1,0 +1,88 @@
+#!/bin/bash
+# Bumps up the version of source files
+# Usage:
+#   versionbump                # Show current version
+#   versionbump xxxx.xx.x.x    # Set version number
+
+bumpedversion=$1
+config=.versionrc
+format=$(sed -r -n "s/^format: *(.+)\$/\1/ p" $config)
+formathuman=$(sed -r -n 's/^formathuman: (.*)$/\1/ p' $config)
+currentversion=$(sed -r -n "s/^version: *($format)\$/\1/ p" $config)
+files=$(sed -r -n 's/^files: *(([-_./a-zA-Z0-9]+ *)+)/\1/ p' $config)
+changes=$(sed -r -n 's/^changesfile: *(([-_./a-zA-Z0-9]+ *)+)/\1/ p' $config)
+tagprefix=$(sed -r -n 's/^tagprefix: *(([-_./a-zA-Z0-9]+ *)+)/\1/ p' $config)
+
+if [[ $1 == '' ]]; then
+  currentversion=$(sed -r -n 's/^version: *(.+)$/\1/ p' $config)
+  echo "Current version number is $currentversion"
+  echo "Format: $formathuman"
+  echo -n "Format policy: "
+  sed -r -n 's/^formatpolicy: (.*)$/\1/ p' $config | sed -r 's/(^|; *)/\n  * /g'
+  exit
+fi
+
+if [[ $currentversion == '' ]]; then
+  echo -n "(aem) Old version number does not adhere to format: $format. Continue anyway? y/[n] "
+  read DECISION
+  if [[ ! $DECISION == 'y' ]] && [[ ! $DECISION == 'yes' ]]; then
+    echo "(meh) Not setting new version number."
+    exit
+  else
+    currentversion=$(sed -r -n 's/^version: *(.+)$/\1/ p' $config)
+  fi
+fi
+
+if [[ "$1" == '--finalize' ]]; then
+  if [[ $(git tag | grep -o "$tagprefix$bumpedversion") ]]; then
+    echo "(meh) The tag $tagprefix$bumpedversion already exists. I am confused."
+    exit 1
+  else
+    bumpedversion="$currentversion"
+  fi
+else
+  if [[ ! $(echo $bumpedversion | grep -P "^$format\$") ]]; then
+    echo "(meh) New version does not adhere to format: $formathuman"
+    echo "Format as regular expression: $format"
+    exit
+  fi
+
+  echo "Current version number is $currentversion"
+  echo -n "Really set new version number $bumpedversion? y/[n] "
+  read DECISION
+  if [[ ! $DECISION == 'y' ]] && [[ ! $DECISION == 'yes' ]]; then
+    echo "(meh) Not setting new version number."
+    exit 1
+  fi
+
+  for versionfile in $config $files; do
+    sed -i -r "s/$currentversion/$bumpedversion/" $versionfile
+  done
+  echo "Set version number: $currentversion => $bumpedversion"
+fi
+
+if [[ $(grep -o "$bumpedversion" $changes) ]]; then
+  echo "(yay) Changes file appears to mention version $bumpedversion already."
+else
+  echo "(aem) Changes file does not appear to mention $bumpedversion yet."
+fi
+echo -n "Open changes file for editing? [y]/n "
+read DECISION
+if [[ ! $DECISION == 'n' ]] && [[ ! $DECISION == 'no' ]]; then
+  $EDITOR $changes
+else
+  echo "(kay) Using changes as-is."
+fi
+
+
+echo -n "Commit and tag version $bumpedversion? y/[n] "
+read DECISION
+if [[ ! $DECISION == 'y' ]] && [[ ! $DECISION == 'yes' ]]; then
+  echo "(meh) Not creating commit and tag."
+  echo "Rerun this script with --finalize to finish."
+  exit
+else
+  git commit -m "Set version to $bumpedversion" $files $changes $config
+  git tag "$tagprefix$bumpedversion"
+  echo -e "(hey) Do not forget:\n  git push && git push $(git remote | head -1) $tagprefix$bumpedversion"
+fi

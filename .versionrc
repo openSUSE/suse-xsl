@@ -1,0 +1,7 @@
+version: 2.0.15
+files: Makefile README.adoc
+changesfile: ChangeLog
+format: (0|[1-9][0-9]*)\.(0|[1-9][0-9]{0,1})\.(0|[1-9][0-9]{0,1})
+formathuman: [major].[minor].[bugfix]
+formatpolicy: [major] for major versions; [minor] for minor versions; [bugfix] for backward-compatible minor bug fixes; alpha versions: [previous-major].71 = alpha 1; beta versions: [previous-major].82 = beta 2; beta versions: [previous-major].94 = RC 4
+tagprefix:
