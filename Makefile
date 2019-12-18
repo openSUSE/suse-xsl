@@ -13,7 +13,6 @@ SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
 VERSION       := 2.0.15
 CDIR          := $(shell pwd)
-DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
 SUSE_STYLES_PATH := $(DB_XML_PATH)/stylesheet
@@ -136,15 +135,21 @@ $(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(BUILD_DIR):
 #-----------------------------
 # create tarball
 #
+# minor disadvantages of using Git here:
+# * you need to commit before things are packaged (combined with a reminder,
+#   may actually be positive)
+# * it does not work outside of a Git repo (should be inconsequential)
 
 .PHONY: dist
 dist: | $(BUILD_DIR)
-	@tar cfjhP $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2 \
-	  -C $(CDIR) --exclude-from=$(DIST_EXCLUDES) \
-	  --transform 's:^$(CDIR):suse-xsl-stylesheets-$(VERSION):' $(CDIR)
-	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2"
+	@if [[ -n $$(git status -s | sed -n '/^??/!p') ]]; then \
+	  echo "There appear to be uncommitted files in this repo. Commit or stash before building a package."; \
+	  exit 1; \
+	fi
+	git archive --format=tar.gz -o $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz --prefix=$(PACKAGE)-$(VERSION)/ HEAD
+	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz"
 
 PHONY: dist-clean
 dist-clean:
-	rm -f $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.bz2	
+	rm -f $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz
 	rmdir $(BUILD_DIR) 2>/dev/null || true
