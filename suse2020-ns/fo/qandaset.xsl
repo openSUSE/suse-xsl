@@ -19,11 +19,12 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
-<xsl:template match="question">
+<xsl:template match="d:question">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <xsl:variable name="entry.id">
@@ -38,7 +39,7 @@
 
   <xsl:variable name="label.content">
     <xsl:apply-templates select="." mode="label.markup"/>
-    <xsl:if test="contains($deflabel, 'number') and not(label)">
+    <xsl:if test="contains($deflabel, 'number') and not(d:label)">
       <xsl:apply-templates select="." mode="intralabel.punctuation"/>
     </xsl:if>
   </xsl:variable>
@@ -64,7 +65,7 @@
     </fo:list-item-label>
     <fo:list-item-body start-indent="body-start()">
       <xsl:choose>
-        <xsl:when test="$deflabel = 'none' and not(label)">
+        <xsl:when test="$deflabel = 'none' and not(d:label)">
           <fo:block>
             <xsl:apply-templates select="*[local-name(.)!='label']"/>
           </fo:block>
@@ -74,13 +75,13 @@
         </xsl:otherwise>
       </xsl:choose>
       <!-- Uncomment this line to get revhistory output in the question -->
-      <!-- <xsl:apply-templates select="preceding-sibling::revhistory"/> -->
+      <!-- <xsl:apply-templates select="preceding-sibling::d:revhistory"/> -->
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
 
 
-<xsl:template match="question/para">
+<xsl:template match="d:question/d:para">
  <fo:block xsl:use-attribute-sets="italicized"
            font-family="{$sans-stack}"
            font-size="{concat($sans-xheight-adjust, 'em')}">

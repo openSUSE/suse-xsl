@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
   <!-- Hopefully, a future version of the DocBook stylesheets will feature a
@@ -41,14 +43,14 @@
       </xsl:if>
       <fo:block>
         <!-- The equivalent of div.complex-example in HTML-->
-        <xsl:if test="self::example">
-          <xsl:if test="glosslist|bibliolist|itemizedlist|orderedlist|
-                        segmentedlist|simplelist|variablelist|programlistingco|
-                        screenco|screenshot|cmdsynopsis|funcsynopsis|
-                        classsynopsis|fieldsynopsis|constructorsynopsis|
-                        destructorsynopsis|methodsynopsis|formalpara|para|
-                        simpara|address|blockquote|graphicco|mediaobjectco|
-                        indexterm|beginpage">
+        <xsl:if test="self::d:example">
+          <xsl:if test="d:glosslist|d:bibliolist|d:itemizedlist|d:orderedlist|
+                        d:segmentedlist|d:simplelist|d:variablelist|d:programlistingco|
+                        d:screenco|d:screenshot|d:cmdsynopsis|d:funcsynopsis|
+                        d:classsynopsis|d:fieldsynopsis|d:constructorsynopsis|
+                        d:destructorsynopsis|d:methodsynopsis|d:formalpara|d:para|
+                        d:simpara|d:address|d:blockquote|d:graphicco|d:mediaobjectco|
+                        d:indexterm|d:beginpage">
             <xsl:attribute name="border-{$start-border}"
               ><xsl:value-of select="&mediumline;"/>mm solid &bw-light-gray;</xsl:attribute>
             <xsl:attribute name="margin-{$start-border}"
@@ -75,7 +77,7 @@
     <xsl:choose>
       <!-- tables have their own templates and
            are not handled by formal.object -->
-      <xsl:when test="self::figure">
+      <xsl:when test="self::d:figure">
         <fo:block id="{$id}"
                   xsl:use-attribute-sets="figure.properties">
           <xsl:if test="$keep.together != ''">
@@ -85,7 +87,7 @@
           <xsl:copy-of select="$content"/>
         </fo:block>
       </xsl:when>
-      <xsl:when test="self::example">
+      <xsl:when test="self::d:example">
         <fo:block id="{$id}"
                   xsl:use-attribute-sets="example.properties">
           <xsl:if test="$keep.together != ''">
@@ -95,7 +97,7 @@
           <xsl:copy-of select="$content"/>
         </fo:block>
       </xsl:when>
-      <xsl:when test="self::equation">
+      <xsl:when test="self::d:equation">
         <fo:block id="{$id}"
                   xsl:use-attribute-sets="equation.properties">
           <xsl:if test="$keep.together != ''">
@@ -105,7 +107,7 @@
           <xsl:copy-of select="$content"/>
         </fo:block>
       </xsl:when>
-      <xsl:when test="self::procedure">
+      <xsl:when test="self::d:procedure">
         <fo:block id="{$id}"
                   xsl:use-attribute-sets="procedure.properties">
           <xsl:if test="$keep.together != ''">
@@ -129,7 +131,7 @@
   </xsl:template>
 
   <xsl:template
-    match="procedure|example|table|figure|glosslist|variablelist|itemizedlist|orderedlist"
+    match="d:procedure|d:example|d:table|d:figure|d:glosslist|d:variablelist|d:itemizedlist|d:orderedlist"
     mode="object.label.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>
@@ -137,7 +139,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="procedure|example|table|figure|glosslist|variablelist|itemizedlist|orderedlist"
+  <xsl:template match="d:procedure|d:example|d:table|d:figure|d:glosslist|d:variablelist|d:itemizedlist|d:orderedlist"
     mode="object.title.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>

@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
   <!--  Book ====================================================== -->
@@ -99,17 +101,17 @@
                   <fo:table-cell>
                     <fo:block padding-after="&gutterfragment;mm">
                       <xsl:choose>
-                        <xsl:when test="bookinfo/title">
+                        <xsl:when test="d:bookinfo/d:title">
                           <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                            select="bookinfo/title"/>
+                            select="d:bookinfo/d:title"/>
                         </xsl:when>
-                        <xsl:when test="info/title">
+                        <xsl:when test="d:info/d:title">
                           <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                            select="info/title"/>
+                            select="d:info/d:title"/>
                         </xsl:when>
-                        <xsl:when test="title">
+                        <xsl:when test="d:title">
                           <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                            select="title"/>
+                            select="d:title"/>
                         </xsl:when>
                       </xsl:choose>
                       </fo:block>
@@ -125,7 +127,7 @@
                     <fo:block padding-before="&columnfragment;mm">
                       <!-- We use the full productname here: -->
                       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                        select="bookinfo/productname[not(@role='abbrev')]|info/productname[not(@role='abbrev')]"/>
+                        select="d:bookinfo/d:productname[not(@role='abbrev')]|d:info/d:productname[not(@role='abbrev')]"/>
                       </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
@@ -143,7 +145,7 @@
   <fo:block><fo:leader/></fo:block>
 </xsl:template>
 
-<xsl:template match="title" mode="book.titlepage.recto.auto.mode">
+<xsl:template match="d:title" mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" line-height="1.2" hyphenate="false"
     xsl:use-attribute-sets="title.font title.name.color sans.bold.noreplacement"
     font-weight="normal"
@@ -152,7 +154,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="book.titlepage.recto.auto.mode">
+<xsl:template match="d:subtitle" mode="book.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="title.font" font-size="{&super-large; * $sans-fontsize-adjust}pt"
     space-before="&gutterfragment;mm">
@@ -160,7 +162,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="productname[not(@role='abbrev')]"
+<xsl:template match="d:productname[not(@role='abbrev')]"
   mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" hyphenate="false"
     line-height="{$base-lineheight * 0.85}em"
@@ -169,12 +171,12 @@
     xsl:use-attribute-sets="title.font sans.bold.noreplacement corporate-blue">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
     <xsl:text> </xsl:text>
-    <xsl:apply-templates select="../productnumber[not(@role='abbrev')]"
+    <xsl:apply-templates select="../d:productnumber[not(@role='abbrev')]"
       mode="book.titlepage.recto.mode"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="title" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:title" mode="book.titlepage.verso.auto.mode">
   <fo:block
     xsl:use-attribute-sets="book.titlepage.verso.style sans.bold"
     font-size="{&x-large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
@@ -182,14 +184,14 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="legalnotice" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:legalnotice" mode="book.titlepage.verso.auto.mode">
   <fo:block
     xsl:use-attribute-sets="book.titlepage.verso.style" font-size="{&small; * $fontsize-adjust}pt">
     <xsl:apply-templates select="*" mode="book.titlepage.verso.mode"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="legalnotice/para" mode="book.titlepage.verso.mode">
+<xsl:template match="d:legalnotice/d:para" mode="book.titlepage.verso.mode">
   <fo:block space-after="0.25em" space-before="0em">
     <xsl:apply-templates/>
   </fo:block>
@@ -200,7 +202,7 @@
      actually outside of an xref that pretty much is the wrong thing
      to do. In languages where italic text is replaced by gray text,
      this issue is especially glaring. -->
-<xsl:template match="emphasis" mode="titlepage.mode">
+<xsl:template match="d:emphasis" mode="titlepage.mode">
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -251,21 +253,21 @@
       <fo:table-row>
         <fo:table-cell height="{0.4 * $table.height}{$unit}">
           <xsl:apply-templates
-            select="(bookinfo/title | info/title | title)[1]"
+            select="(d:bookinfo/d:title | d:info/d:title | d:title)[1]"
             mode="book.titlepage.verso.auto.mode"/>
           <xsl:apply-templates
-            select="(bookinfo/productname | info/productname)[not(@role='abbrev')]"
-            mode="book.titlepage.verso.auto.mode"/>
-
-          <xsl:apply-templates
-            select="(bookinfo/authorgroup | info/authorgroup)[1]"
-            mode="book.titlepage.verso.auto.mode"/>
-          <xsl:apply-templates
-            select="(bookinfo/author | info/author)[1]"
+            select="(d:bookinfo/d:productname | d:info/d:productname)[not(@role='abbrev')]"
             mode="book.titlepage.verso.auto.mode"/>
 
           <xsl:apply-templates
-            select="(bookinfo/abstract | info/abstract)[1]"
+            select="(d:bookinfo/d:authorgroup | d:info/d:authorgroup)[1]"
+            mode="book.titlepage.verso.auto.mode"/>
+          <xsl:apply-templates
+            select="(d:bookinfo/d:author | d:info/d:author)[1]"
+            mode="book.titlepage.verso.auto.mode"/>
+
+          <xsl:apply-templates
+            select="(d:bookinfo/d:abstract | d:info/d:abstract)[1]"
             mode="book.titlepage.verso.auto.mode"/>
           <!-- Empty fo:block to fix openSUSE/suse-xsl#97 -->
           <fo:block/>
@@ -279,23 +281,23 @@
           <xsl:call-template name="date.and.revision"/>
 
           <xsl:apply-templates
-            select="(bookinfo/corpauthor | info/corpauthor)[1]"
+            select="(d:bookinfo/d:corpauthor | d:info/d:corpauthor)[1]"
             mode="book.titlepage.verso.auto.mode"/>
           <xsl:apply-templates
-            select="(bookinfo/othercredit | info/othercredit)[1]"
+            select="(d:bookinfo/d:othercredit | d:info/d:othercredit)[1]"
             mode="book.titlepage.verso.auto.mode"/>
           <xsl:apply-templates
-            select="(bookinfo/editor | info/editor)[1]"
+            select="(d:bookinfo/d:editor | d:info/d:editor)[1]"
             mode="book.titlepage.verso.auto.mode"/>
 
           <xsl:call-template name="suse.imprint"/>
 
           <xsl:apply-templates
-            select="(bookinfo/copyright | info/copyright)[1]"
+            select="(d:bookinfo/d:copyright | d:info/d:copyright)[1]"
             mode="book.titlepage.verso.auto.mode"/>
 
           <xsl:apply-templates
-            select="(bookinfo/legalnotice | info/legalnotice)[1]"
+            select="(d:bookinfo/d:legalnotice | d:info/d:legalnotice)[1]"
             mode="book.titlepage.verso.auto.mode"/>
         </fo:table-cell>
       </fo:table-row>
@@ -303,44 +305,44 @@
   </fo:table>
 </xsl:template>
 
-<xsl:template match="title" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:title" mode="book.titlepage.verso.auto.mode">
     <fo:block font-size="{&x-large; * $sans-fontsize-adjust}pt"
       xsl:use-attribute-sets="book.titlepage.verso.style dark-green sans.bold.noreplacement title.font">
       <xsl:call-template name="book.verso.title"/>
     </fo:block>
 </xsl:template>
 
-<xsl:template match="productname[not(@role='abbrev')]" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:productname[not(@role='abbrev')]" mode="book.titlepage.verso.auto.mode">
   <fo:block xsl:use-attribute-sets="book.titlepage.verso.style"
     font-size="{&large; * $sans-fontsize-adjust}pt" font-family="{$title.fontset}">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
     <xsl:text> </xsl:text>
-    <xsl:if test="../productnumber">
+    <xsl:if test="../d:productnumber">
       <!-- Use productnumber without role first, but fallback to
         productnumber with role
       -->
       <xsl:apply-templates mode="book.titlepage.verso.mode"
-        select="(../productnumber[@role='abbrev'] |
-                 ../productnumber[not(@role='abbrev')])[last()]" />
+        select="(../d:productnumber[@role='abbrev'] |
+                 ../d:productnumber[not(@role='abbrev')])[last()]" />
     </xsl:if>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="authorgroup" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:authorgroup" mode="book.titlepage.verso.auto.mode">
   <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format"
     xsl:use-attribute-sets="book.titlepage.verso.style title.font">
     <xsl:call-template name="verso.authorgroup"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="author" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:author" mode="book.titlepage.verso.auto.mode">
   <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format"
     xsl:use-attribute-sets="book.titlepage.verso.style title.font">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="editor" mode="book.titlepage.verso.auto.mode">
+<xsl:template match="d:editor" mode="book.titlepage.verso.auto.mode">
   <fo:block font-size="{&normal; * $sans-fontsize-adjust}pt">
     <xsl:apply-templates select="." mode="book.titlepage.verso.mode"/>
   </fo:block>
@@ -390,7 +392,7 @@
   </fo:inline>
 </xsl:template>
 
-<xsl:template match="date/processing-instruction('dbtimestamp')" mode="book.titlepage.verso.mode">
+<xsl:template match="d:date/processing-instruction('dbtimestamp')" mode="book.titlepage.verso.mode">
   <xsl:call-template name="pi.dbtimestamp"/>
 </xsl:template>
 

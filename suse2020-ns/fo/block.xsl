@@ -19,8 +19,10 @@
   %metrics;
   <!ENTITY punctuation "!,,.::;?;־׀׃׆׳״؞؟‒–—―․‥…‼‽⁇⁈⁉⁏⁓⁕⁖⁘⁙⁚❓❔❕❗❢❣⸪⸫⸬⸺⸻。〜〰꓾꓿︐︑︒︓︔︕︖︙︱︲﹐﹑﹒﹔﹕﹖﹗﹘！，－．：；？｡､">
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
@@ -74,7 +76,7 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="formalpara/title|formalpara/info/title">
+<xsl:template match="d:formalpara/d:title|d:formalpara/d:info/d:title">
   <xsl:variable name="title-str">
     <xsl:apply-templates/>
   </xsl:variable>
@@ -109,7 +111,7 @@
 </xsl:template>
 
 <!-- Match only all last nodes inside titles which are not element nodes -->
-<xsl:template match="formalpara/title/node()[last()][not(self::*)]">
+<xsl:template match="d:formalpara/d:title/node()[last()][not(self::*)]">
    <xsl:call-template name="trim-verbatim-whitespace-end">
     <xsl:with-param name="input" select="."/>
    </xsl:call-template>
@@ -187,7 +189,7 @@
 
 
 <!-- Add special handling for arch attribute + colon as the final character. -->
-<xsl:template match="para">
+<xsl:template match="d:para">
   <xsl:variable name="keep.together">
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
@@ -222,7 +224,7 @@
   </fo:block>
 </xsl:template>
 
-<xsl:template match="formalpara/para">
+<xsl:template match="d:formalpara/d:para">
   <xsl:variable name="keep.together">
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
@@ -261,6 +263,6 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="para[normalize-space(.)='' and not(*)]"/>
+<xsl:template match="d:para[normalize-space(.)='' and not(*)]"/>
 
 </xsl:stylesheet>

@@ -7,10 +7,11 @@
   Copyright:  2017 Thomas Schraitle
 
 -->
-<xsl:stylesheet exclude-result-prefixes="exsl str" version="1.0"
+<xsl:stylesheet exclude-result-prefixes="exsl str d" version="1.0"
   xmlns:exsl="http://exslt.org/common"
   xmlns:str="http://exslt.org/strings"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook">
 
   <!-- Maximum preferred screen length of a string before line break -->
   <xsl:param name="screen.max.length" select="80"/>
@@ -61,7 +62,7 @@
     </xsl:variable>
 
     <!-- Apply it only to programlisting and screen -->
-    <xsl:if test="(self::programlisting or self::screen) and $result != 'goodlines'">
+    <xsl:if test="(self::d:programlisting or self::d:screen) and $result != 'goodlines'">
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
         <xsl:with-param name="source">

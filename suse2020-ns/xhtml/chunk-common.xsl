@@ -15,17 +15,18 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    exclude-result-prefixes="exsl l t d">
 
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk-common.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/chunk-common.xsl"/>
 
   <!-- ===================================================== -->
   <xsl:template
-    match="appendix|article|book|bibliography|chapter|part|preface|glossary|sect1|set|refentry|index"
+    match="d:appendix|d:article|d:book|d:bibliography|d:chapter|d:part|d:preface|d:glossary|d:sect1|d:set|d:refentry|d:index"
                 mode="breadcrumbs">
     <xsl:param name="class">crumb</xsl:param>
     <xsl:param name="context">header</xsl:param>
@@ -153,7 +154,7 @@
   <xsl:template name="create.header.buttons.nav">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
-    <xsl:if test="not(self::set|self::article)">
+    <xsl:if test="not(self::d:set|self::d:article)">
       <div class="button">
         <xsl:call-template name="header.navigation">
           <xsl:with-param name="next" select="$next"/>
@@ -177,7 +178,7 @@
     </xsl:variable>
     <xsl:variable name="title.candidate">
       <xsl:apply-templates mode="title.markup"
-        select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+        select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
     </xsl:variable>
     <xsl:variable name="title">
       <xsl:choose>
@@ -187,7 +188,7 @@
         <xsl:otherwise>
           <xsl:call-template name="gentext">
             <xsl:with-param name="key"
-              select="local-name((ancestor-or-self::book | ancestor-or-self::article)[last()])"/>
+              select="local-name((ancestor-or-self::d:book | ancestor-or-self::d:article)[last()])"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -225,8 +226,8 @@
   </xsl:template>
 
   <xsl:template name="create-find-area">
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:variable name="localisationfind">
       <xsl:call-template name="gentext">
         <xsl:with-param name="key">find</xsl:with-param>
@@ -276,7 +277,7 @@
     </xsl:variable>
     <xsl:variable name="title.candidate">
       <xsl:apply-templates mode="title.markup"
-        select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+        select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
     </xsl:variable>
     <xsl:variable name="title">
       <xsl:choose>
@@ -286,7 +287,7 @@
         <xsl:otherwise>
           <xsl:call-template name="gentext">
             <xsl:with-param name="key"
-              select="local-name((ancestor-or-self::book | ancestor-or-self::article)[last()])"/>
+              select="local-name((ancestor-or-self::d:book | ancestor-or-self::d:article)[last()])"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -341,7 +342,7 @@
           </xsl:choose>
 
           <xsl:choose>
-            <xsl:when test="self::set|self::article">
+            <xsl:when test="self::d:set|self::d:article">
               <div id="_nav-area" class="inactive"></div>
             </xsl:when>
             <xsl:otherwise>
@@ -380,8 +381,8 @@
 
   <!-- ===================================================== -->
   <xsl:template name="header.navigation">
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:param name="nav.context"/>
 
     <xsl:variable name="needs.navig">
@@ -470,8 +471,8 @@
 
   <!-- ===================================================== -->
   <xsl:template name="bottom.navigation">
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:param name="nav.context"/>
     <xsl:variable name="needs.navig">
       <xsl:call-template name="is.node.in.navig">
@@ -512,7 +513,7 @@
     <xsl:variable name="setdiff"
       select="ancestor::*[count(. | $ancestorrootnode)
                                 != count($ancestorrootnode)]"/>
-    <xsl:if test="$generate.bottom.navigation != 0 and $needs.navig = 'true' and not(self::set)">
+    <xsl:if test="$generate.bottom.navigation != 0 and $needs.navig = 'true' and not(self::d:set)">
       <div id="_bottom-navigation">
         <xsl:if test="count($next) > 0 and $isnext = 'true'">
           <a class="nav-link">
@@ -546,7 +547,7 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="chapter|appendix|part" mode="page-bottom.label">
+  <xsl:template match="d:chapter|d:appendix|d:part" mode="page-bottom.label">
     <xsl:variable name="template">
       <xsl:call-template name="gentext.template">
         <xsl:with-param name="context" select="'xref-number'"/>
@@ -693,7 +694,7 @@
   <xsl:template name="bubble-toc">
     <xsl:if test="$generate.bubbletoc != 0">
       <xsl:call-template name="bubble-toc.inner">
-        <xsl:with-param name="node" select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+        <xsl:with-param name="node" select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>

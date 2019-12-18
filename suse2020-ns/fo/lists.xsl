@@ -19,9 +19,10 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 <xsl:template name="itemizedlist.label.markup">
   <!-- We want nice large bullets like we get in the browser. None of the
@@ -37,25 +38,25 @@
 </xsl:template>
 
 
-<xsl:template match="varlistentry" mode="vl.as.blocks">
+<xsl:template match="d:varlistentry" mode="vl.as.blocks">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <fo:block id="{$id}"
     xsl:use-attribute-sets="variablelist.term.properties list.item.spacing"
     keep-together.within-column="always"
     keep-with-next.within-column="always">
-    <xsl:apply-templates select="term"/>
+    <xsl:apply-templates select="d:term"/>
   </fo:block>
 
   <fo:block>
     <xsl:attribute name="margin-{$direction.align.start}">&columnfragment;mm
     </xsl:attribute>
-    <xsl:apply-templates select="listitem"/>
+    <xsl:apply-templates select="d:listitem"/>
   </fo:block>
 </xsl:template>
 
 
-<xsl:template match="itemizedlist">
+<xsl:template match="d:itemizedlist">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -64,23 +65,23 @@
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
-  <xsl:if test="title">
-    <xsl:apply-templates select="title" mode="list.title.mode"/>
+  <xsl:if test="d:title">
+    <xsl:apply-templates select="d:title" mode="list.title.mode"/>
   </xsl:if>
 
   <!-- Preserve order of PIs and comments -->
   <xsl:apply-templates
-      select="*[not(self::listitem
-                or self::title
-                or self::titleabbrev)]
-              |comment()[not(preceding-sibling::listitem)]
-              |processing-instruction()[not(preceding-sibling::listitem)]"/>
+      select="*[not(self::d:listitem
+                or self::d:title
+                or self::d:titleabbrev)]
+              |comment()[not(preceding-sibling::d:listitem)]
+              |processing-instruction()[not(preceding-sibling::d:listitem)]"/>
 
   <xsl:variable name="content">
     <xsl:apply-templates
-          select="listitem
-                 |comment()[preceding-sibling::listitem]
-                 |processing-instruction()[preceding-sibling::listitem]"/>
+          select="d:listitem
+                 |comment()[preceding-sibling::d:listitem]
+                 |processing-instruction()[preceding-sibling::d:listitem]"/>
   </xsl:variable>
 
   <!-- nested lists don't add extra list-block spacing -->
@@ -95,7 +96,7 @@
 </xsl:template>
 
 
-<xsl:template match="orderedlist">
+<xsl:template match="d:orderedlist">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -104,28 +105,28 @@
     <xsl:call-template name="pi.dbfo_keep-together"/>
   </xsl:variable>
 
-  <xsl:if test="title">
-    <xsl:apply-templates select="title" mode="list.title.mode"/>
+  <xsl:if test="d:title">
+    <xsl:apply-templates select="d:title" mode="list.title.mode"/>
   </xsl:if>
 
   <!-- Preserve order of PIs and comments -->
   <xsl:apply-templates
-      select="*[not(self::listitem
-                or self::title
-                or self::titleabbrev)]
-              |comment()[not(preceding-sibling::listitem)]
-              |processing-instruction()[not(preceding-sibling::listitem)]"/>
+      select="*[not(self::d:listitem
+                or self::d:title
+                or self::d:titleabbrev)]
+              |comment()[not(preceding-sibling::d:listitem)]
+              |processing-instruction()[not(preceding-sibling::d:listitem)]"/>
 
   <xsl:variable name="content">
     <xsl:apply-templates
-          select="listitem
-                  |comment()[preceding-sibling::listitem]
-                  |processing-instruction()[preceding-sibling::listitem]"/>
+          select="d:listitem
+                  |comment()[preceding-sibling::d:listitem]
+                  |processing-instruction()[preceding-sibling::d:listitem]"/>
   </xsl:variable>
 
   <!-- nested lists don't add extra list-block spacing -->
   <xsl:choose>
-    <xsl:when test="ancestor::listitem">
+    <xsl:when test="ancestor::d:listitem">
       <fo:list-block id="{$id}" xsl:use-attribute-sets="list.block.properties">
         <xsl:if test="$keep.together != ''">
           <xsl:attribute name="keep-together.within-column"><xsl:value-of
@@ -153,7 +154,7 @@
   para as the first item within step, we handle this in the para template
   further down. For the much less common case of "anything else" (e.g. a list
   as first element), we handle this directly in the step template.-->
-<xsl:template match="procedure">
+<xsl:template match="d:procedure">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -176,26 +177,26 @@
 
   <!-- Preserve order of PIs and comments -->
   <xsl:variable name="preamble"
-        select="*[not(self::step
-                  or self::title
-                  or self::titleabbrev)]
-                |comment()[not(preceding-sibling::step)]
-                |processing-instruction()[not(preceding-sibling::step)]"/>
+        select="*[not(self::d:step
+                  or self::d:title
+                  or self::d:titleabbrev)]
+                |comment()[not(preceding-sibling::d:step)]
+                |processing-instruction()[not(preceding-sibling::d:step)]"/>
 
   <xsl:variable name="steps"
-                select="step
-                        |comment()[preceding-sibling::step]
-                        |processing-instruction()[preceding-sibling::step]"/>
+                select="d:step
+                        |comment()[preceding-sibling::d:step]
+                        |processing-instruction()[preceding-sibling::d:step]"/>
 
   <fo:block id="{$id}" xsl:use-attribute-sets="list.block.properties list.block.spacing">
-    <xsl:if test="./title and $placement = 'before'">
+    <xsl:if test="./d:title and $placement = 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
     <fo:block>
-      <xsl:if test="not(ancestor::procedure)">
+      <xsl:if test="not(ancestor::d:procedure)">
         <xsl:attribute name="border-{$start-border}">
           <xsl:text>&mediumline;mm solid </xsl:text>
           <xsl:choose>
@@ -226,7 +227,7 @@
       </fo:list-block>
     </fo:block>
 
-    <xsl:if test="./title and $placement != 'before'">
+    <xsl:if test="./d:title and $placement != 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
       <xsl:call-template name="formal.object.heading"/>
@@ -235,14 +236,14 @@
 </xsl:template>
 
 
-<xsl:template match="substeps">
+<xsl:template match="d:substeps">
   <fo:list-block xsl:use-attribute-sets="list.block.spacing list.block.properties">
     <xsl:apply-templates/>
   </fo:list-block>
 </xsl:template>
 
 
-<xsl:template match="procedure/step|substeps/step">
+<xsl:template match="d:procedure/d:step|d:substeps/d:step">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
   </xsl:variable>
@@ -261,7 +262,7 @@
       <fo:block id="{$id}">
         <!-- dwc: fix for one step procedures. Use a bullet if there's no step 2 -->
         <xsl:choose>
-          <xsl:when test="count(../step) = 1">
+          <xsl:when test="count(../d:step) = 1">
             <xsl:call-template name="itemizedlist.label.markup"/>
           </xsl:when>
           <xsl:otherwise>
@@ -289,16 +290,16 @@
 </xsl:template>
 
 <!-- Special handling for arch attributes + Don't break after colons. -->
-<xsl:template match="listitem/*[1][local-name()='para' or
+<xsl:template match="d:listitem/*[1][local-name()='para' or
                                    local-name()='simpara' or
                                    local-name()='formalpara']
-                     |glossdef/*[1][local-name()='para' or
+                     |d:glossdef/*[1][local-name()='para' or
                                    local-name()='simpara' or
                                    local-name()='formalpara']
-                     |step/*[1][local-name()='para' or
+                     |d:step/*[1][local-name()='para' or
                                    local-name()='simpara' or
                                    local-name()='formalpara']
-                     |callout/*[1][local-name()='para' or
+                     |d:callout/*[1][local-name()='para' or
                                    local-name()='simpara' or
                                    local-name()='formalpara']"
               priority="2">
@@ -312,7 +313,7 @@
         <xsl:with-param name="arch-value" select="@arch"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:if test="(self::para or self::simpara) and ../@performance='optional'">
+    <xsl:if test="(self::d:para or self::d:simpara) and ../@performance='optional'">
       <fo:inline color="&bw-mid-gray;" xsl:use-attribute-sets="italicized">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'step.optional'"/>
@@ -329,7 +330,7 @@
 </xsl:template>
 <!-- End template to remove -->
 
-<xsl:template match="varlistentry/term" mode="xref-to">
+<xsl:template match="d:varlistentry/d:term" mode="xref-to">
   <fo:inline>
     <xsl:call-template name="simple.xlink">
       <xsl:with-param name="content">
@@ -340,7 +341,7 @@
     </xsl:call-template>
   </fo:inline>
   <xsl:choose>
-    <xsl:when test="not(following-sibling::term)"/> <!-- do nothing -->
+    <xsl:when test="not(following-sibling::d:term)"/> <!-- do nothing -->
     <xsl:otherwise>
       <!-- * if we have multiple terms in the same varlistentry, generate -->
       <!-- * a separator (", " by default) and/or an additional line -->

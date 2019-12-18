@@ -4,7 +4,7 @@
      Make the anchor template dysfunctional.
 
    See Also:
-     * http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html
+     * http://docbook.sourceforge.net/release/xsl-ns/current/doc/html/index.html
 
    Author(s): Stefan Knorr <sknorr@suse.de>
    Copyright: 2012, Stefan Knorr
@@ -13,9 +13,10 @@
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 
   <xsl:template name="anchor">
@@ -31,12 +32,12 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="question" mode="xref-to">
+  <xsl:template match="d:question" mode="xref-to">
     <xsl:param name="referrer"/>
     <xsl:param name="xrefstyle"/>
     <xsl:param name="verbose" select="1"/>
     <xsl:variable name="teaser">
-      <xsl:apply-templates select="para[1]" mode="question"/>
+      <xsl:apply-templates select="d:para[1]" mode="question"/>
     </xsl:variable>
     <xsl:variable name="teaser-length">
       <xsl:value-of select="string-length(normalize-space($teaser))"/>
@@ -58,13 +59,13 @@
             <xsl:value-of select="$interpunction"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="para[1]" mode="question"/>
+          <xsl:apply-templates select="d:para[1]" mode="question"/>
         </xsl:otherwise>
       </xsl:choose>
     </em>
   </xsl:template>
 
-  <xsl:template match="question/para[1]" mode="question">
+  <xsl:template match="d:question/d:para[1]" mode="question">
     <!-- We don't want a block here: we just process the next
          child inside a para
     -->
@@ -76,7 +77,7 @@
     <xsl:apply-templates select="."/>
   </xsl:template>
 
-  <xsl:template match="ulink" name="ulink">
+  <xsl:template match="d:ulink" name="ulink">
     <xsl:param name="url" select="@url"/>
     <xsl:variable name="link-text">
       <xsl:apply-templates mode="no.anchor.mode"/>
@@ -123,12 +124,12 @@
   </xsl:template>
 
 
-<xsl:template match="xref" name="xref">
+<xsl:template match="d:xref" name="xref">
   <xsl:variable name="targets" select="key('id',@linkend)"/>
   <xsl:variable name="target" select="$targets[1]"/>
   <xsl:variable name="refelem" select="local-name($target)"/>
-  <xsl:variable name="target.book" select="($target/ancestor-or-self::article|$target/ancestor-or-self::book)[1]"/>
-  <xsl:variable name="this.book" select="(ancestor-or-self::article|ancestor-or-self::book)[1]"/>
+  <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
+  <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
   <xsl:variable name="lang" select="(ancestor-or-self::*/@lang|ancestor-or-self::*/@xml:lang)[1]"/>
   <xsl:variable name="xref.in.samebook">
     <xsl:call-template name="is.xref.in.samebook">
@@ -171,8 +172,8 @@
    </span>
   </xsl:when>
   <xsl:when test="$xref.in.samebook != 0 or
-                  /set/@id=$rootid or
-                  /article/@id=$rootid">
+                  /d:set/@id=$rootid or
+                  /d:article/@id=$rootid">
    <!-- An xref that stays inside the current book or when $rootid
          pointing to the root element, then use the defaults -->
    <xsl:apply-imports/>
@@ -180,10 +181,10 @@
   <xsl:otherwise>
    <!-- A reference into another book -->
    <xsl:variable name="target.chapandapp"
-    select="($target/ancestor-or-self::chapter[@lang!='']
-            | $target/ancestor-or-self::appendix[@lang!='']
-            | $target/ancestor-or-self::chapter[@xml:lang!='']
-            | $target/ancestor-or-self::appendix[@xml:lang!=''])[1]"/>
+    select="($target/ancestor-or-self::d:chapter[@lang!='']
+            | $target/ancestor-or-self::d:appendix[@lang!='']
+            | $target/ancestor-or-self::d:chapter[@xml:lang!='']
+            | $target/ancestor-or-self::d:appendix[@xml:lang!=''])[1]"/>
 
    <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
     $target.chapandapp/@lang != $this.book/@lang">

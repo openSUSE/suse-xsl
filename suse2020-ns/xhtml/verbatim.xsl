@@ -10,11 +10,12 @@
 -->
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
-    exclude-result-prefixes="exsl">
+    exclude-result-prefixes="exsl d">
 
-<xsl:template match="programlisting|screen|synopsis|computeroutput|userinput|literallayout">
+<xsl:template match="d:programlisting|d:screen|d:synopsis|d:computeroutput|d:userinput|d:literallayout">
   <xsl:variable name="supported" select="concat('|', $highlight.supported.languages, '|')"/>
   <xsl:variable name="language" select="translate(normalize-space(@language), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ|', 'abcdefghijklmnopqrstuvwxyz')"/>
 

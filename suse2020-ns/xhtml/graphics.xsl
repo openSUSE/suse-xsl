@@ -15,13 +15,14 @@
 
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
   xmlns:lxslt="http://xml.apache.org/xslt"
-  exclude-result-prefixes="xlink xtext lxslt"
+  exclude-result-prefixes="xlink xtext lxslt d"
   extension-element-prefixes="xtext" version="1.0">
 
-  <lxslt:component prefix="xtext" elements="insertfile"/>
+  <lxslt:component prefix="xtext" elements="d:insertfile"/>
 
   <xsl:template name="process.image">
     <xsl:param name="tag" select="'img'"/>
@@ -77,9 +78,9 @@
                   <xsl:when test="$alt != ''">
                     <xsl:copy-of select="$alt"/>
                   </xsl:when>
-                  <xsl:when test="ancestor::figure">
+                  <xsl:when test="ancestor::d:figure">
                     <xsl:variable name="fig.title">
-                      <xsl:apply-templates select="ancestor::figure/title/node()"/>
+                      <xsl:apply-templates select="ancestor::d:figure/d:title/node()"/>
                     </xsl:variable>
                     <xsl:value-of select="normalize-space($fig.title)"/>
                   </xsl:when>
@@ -93,7 +94,7 @@
         <!-- <inlinemediaobject/>s generally do not profit from being wrapped in
               a link, because usually they are icons. -->
         <xsl:when test="$wrap.img.with.a != 0 and
-                        (ancestor::figure or ancestor::informalfigure)">
+                        (ancestor::d:figure or ancestor::d:informalfigure)">
           <a href="{$src}">
             <xsl:copy-of select="$imgcontents"/>
           </a>

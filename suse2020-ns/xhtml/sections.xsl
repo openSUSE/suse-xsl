@@ -9,10 +9,11 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:dm="urn:x-suse:ns:docmanager"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
   <xsl:template name="create.header.title">
     <xsl:param name="node" select="."/>
@@ -39,9 +40,9 @@
   </xsl:template>
 
 
-<xsl:template match="sect1[@role='legal']|section[@role='legal']|
-                     part[@role='legal']|chapter[@role='legal']|
-                     appendix[@role='legal']">
+<xsl:template match="d:sect1[@role='legal']|d:section[@role='legal']|
+                     d:part[@role='legal']|d:chapter[@role='legal']|
+                     d:appendix[@role='legal']">
   <xsl:choose>
     <xsl:when test="ancestor::*[@role='legal'] or $is.chunk = 1">
       <xsl:apply-imports/>
@@ -65,17 +66,17 @@
 </xsl:template>
 
 
-<xsl:template match="bridgehead">
+<xsl:template match="d:bridgehead">
   <xsl:param name="allow-anchors" select="1"/>
   <xsl:variable name="container">
     <xsl:if test="not(@renderas)">
-      <xsl:value-of select="(ancestor::appendix|ancestor::article|ancestor::bibliography|
-                             ancestor::chapter|ancestor::glossary|ancestor::glossdiv|
-                             ancestor::index|ancestor::partintro|ancestor::preface|
-                             ancestor::refsect1|ancestor::refsect2|ancestor::refsect3|
-                             ancestor::sect1|ancestor::sect2|ancestor::sect3|ancestor::sect4|
-                             ancestor::sect5|ancestor::section|ancestor::setindex|
-                             ancestor::simplesect)[last()]"/>
+      <xsl:value-of select="(ancestor::d:appendix|ancestor::d:article|ancestor::d:bibliography|
+                             ancestor::d:chapter|ancestor::d:glossary|ancestor::d:glossdiv|
+                             ancestor::d:index|ancestor::d:partintro|ancestor::d:preface|
+                             ancestor::d:refsect1|ancestor::d:refsect2|ancestor::d:refsect3|
+                             ancestor::d:sect1|ancestor::d:sect2|ancestor::d:sect3|ancestor::d:sect4|
+                             ancestor::d:sect5|ancestor::d:section|ancestor::d:setindex|
+                             ancestor::d:simplesect)[last()]"/>
     </xsl:if>
   </xsl:variable>
 
@@ -92,7 +93,7 @@
                       local-name($container) = 'preface' or
                       local-name($container) = 'setindex'">1</xsl:when>
         <xsl:when test="local-name($container) = 'glossdiv'">
-          <xsl:value-of select="count(ancestor::glossdiv)+1"/>
+          <xsl:value-of select="count(ancestor::d:glossdiv)+1"/>
         </xsl:when>
         <xsl:when test="local-name($container) = 'sect1' or
                       local-name($container) = 'sect2' or
@@ -183,7 +184,7 @@
   <xsl:variable name="id">
     <xsl:choose>
       <!-- Make sure the subtitle doesn't get the same id as the title -->
-      <xsl:when test="self::subtitle">
+      <xsl:when test="self::d:subtitle">
         <xsl:call-template name="object.id">
           <xsl:with-param name="object" select="."/>
         </xsl:call-template>
@@ -241,7 +242,7 @@
 
 <!-- Fix up the output of section elements to look like the output of sectX
 elements, to fix their display. -->
-<xsl:template match="section" mode="common.html.attributes">
+<xsl:template match="d:section" mode="common.html.attributes">
   <xsl:variable name="section" select="."/>
 
   <xsl:variable name="renderas">

@@ -11,13 +11,14 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    exclude-result-prefixes="exsl l t d">
 
-  <xsl:template match="para[@arch]">
+  <xsl:template match="d:para[@arch]">
     <xsl:variable name="arch">
       <xsl:call-template name="readable.arch.string">
         <xsl:with-param name="input" select="@arch"/>
@@ -30,9 +31,9 @@
       </xsl:if>
     </xsl:with-param>
     <xsl:with-param name="content">
-      <xsl:if test="position() = 1 and parent::listitem">
+      <xsl:if test="position() = 1 and parent::d:listitem">
         <xsl:call-template name="anchor">
-          <xsl:with-param name="node" select="parent::listitem"/>
+          <xsl:with-param name="node" select="parent::d:listitem"/>
         </xsl:call-template>
       </xsl:if>
       <xsl:call-template name="anchor"/>
@@ -96,7 +97,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="formalpara/title|formalpara/info/title">
+  <xsl:template match="d:formalpara/d:title|d:formalpara/d:info/d:title">
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
@@ -117,12 +118,12 @@
   </span>
 </xsl:template>
 
-<xsl:template match="formalpara/title/node()[last()][self::text()]">
+<xsl:template match="d:formalpara/d:title/node()[last()][self::text()]">
  <xsl:call-template name="trim-verbatim-whitespace-end">
   <xsl:with-param name="input" select="."/>
  </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="para[normalize-space(.)='' and not(*)]"/>
+<xsl:template match="d:para[normalize-space(.)='' and not(*)]"/>
 
 </xsl:stylesheet>

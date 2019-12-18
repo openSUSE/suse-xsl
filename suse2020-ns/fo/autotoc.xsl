@@ -18,7 +18,9 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns:d="http://docbook.org/ns/docbook"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 version='1.0'>
 
@@ -32,16 +34,16 @@
   </xsl:variable>
 
   <xsl:variable name="nodes"
-                select="$toc-context/part
-                        |$toc-context/reference
-                        |$toc-context/preface
-                        |$toc-context/chapter
-                        |$toc-context/appendix
-                        |$toc-context/article
-                        |$toc-context/topic
-                        |$toc-context/bibliography
-                        |$toc-context/glossary
-                        |$toc-context/index"/>
+                select="$toc-context/d:part
+                        |$toc-context/d:reference
+                        |$toc-context/d:preface
+                        |$toc-context/d:chapter
+                        |$toc-context/d:appendix
+                        |$toc-context/d:article
+                        |$toc-context/d:topic
+                        |$toc-context/d:bibliography
+                        |$toc-context/d:glossary
+                        |$toc-context/d:index"/>
 
 
   <xsl:apply-templates select="$nodes" mode="part.toc">
@@ -49,7 +51,7 @@
   </xsl:apply-templates>
 </xsl:template>
 
-<xsl:template match="reference" mode="part.toc">
+<xsl:template match="d:reference" mode="part.toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:variable name="id">
@@ -68,7 +70,7 @@
 
 </xsl:template>
 
-<xsl:template match="preface|chapter|appendix|article" mode="part.toc">
+<xsl:template match="d:preface|d:chapter|d:appendix|d:article" mode="part.toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:variable name="id">
@@ -87,7 +89,7 @@
 </xsl:template>
 
 
-<xsl:template match="bibliography|glossary" mode="part.toc">
+<xsl:template match="d:bibliography|d:glossary" mode="part.toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:call-template name="toc.part.line">
@@ -96,7 +98,7 @@
 </xsl:template>
 
 
-<xsl:template match="index" mode="part.toc">
+<xsl:template match="d:index" mode="part.toc">
   <xsl:param name="toc-context" select="."/>
 
   <xsl:if test="* or $generate.index != 0">
@@ -203,7 +205,7 @@
     </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="part" mode="susetoc">
+<xsl:template match="d:part" mode="susetoc">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -239,7 +241,7 @@
       </fo:list-block>
 </xsl:template>
 
-<xsl:template match="preface|book/glossary|book/index" mode="susetoc">
+<xsl:template match="d:preface|d:book/d:glossary|d:book/d:index" mode="susetoc">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -250,14 +252,14 @@
     <fo:block start-indent="{&column; + &gutter;}mm"
       space-before="&columnfragment;mm"
       xsl:use-attribute-sets="toc.level2.properties corporate-blue">
-      <xsl:if test="not(following-sibling::part)">
+      <xsl:if test="not(following-sibling::d:part)">
         <xsl:attribute name="space-after">0.75em</xsl:attribute>
       </xsl:if>
         <xsl:copy-of select="$title"/>
     </fo:block>
 </xsl:template>
 
-<xsl:template match="chapter|appendix[ancestor::book]" mode="susetoc">
+<xsl:template match="d:chapter|d:appendix[ancestor::d:book]" mode="susetoc">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -274,8 +276,8 @@
        xsl:use-attribute-sets="toc.level2.properties corporate-blue sans.bold.noreplacement"
        provisional-distance-between-starts="{&column; + &gutter;}mm"
        provisional-label-separation="{&gutter;}mm">
-      <xsl:if test="preceding-sibling::chapter or
-                    preceding-sibling::appendix">
+      <xsl:if test="preceding-sibling::d:chapter or
+                    preceding-sibling::d:appendix">
         <xsl:attribute name="space-before">2* &gutterfragment;mm</xsl:attribute>
         <xsl:attribute name="space-after">&gutterfragment;mm</xsl:attribute>
       </xsl:if>
@@ -296,7 +298,7 @@
     </fo:list-block>
 </xsl:template>
 
-<xsl:template match="article/appendix|article/glossary|article/index" mode="susetoc">
+<xsl:template match="d:article/d:appendix|d:article/d:glossary|d:article/d:index" mode="susetoc">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -330,16 +332,16 @@
     </fo:list-block>
 </xsl:template>
 
-<xsl:template match="preface/sect1|appendix[@role='legal']/sect1/
-                     preface/section|appendix[@role='legal']/section|sect2|
-                     section/section"
+<xsl:template match="d:preface/d:sect1|d:appendix[@role='legal']/d:sect1/
+                     d:preface/d:section|d:appendix[@role='legal']/d:section|d:sect2|
+                     d:section/d:section"
   mode="susetoc"/>
 
-<xsl:template match="sect1|refentry|section" mode="susetoc">
+<xsl:template match="d:sect1|d:refentry|d:section" mode="susetoc">
   <!-- Excludes sect1s when it appears in the appendixes etc. of articles,
        as we only want a one-level ToC in articles, and sect1 there would
        already be a second level. -->
-  <xsl:if test="ancestor::book or parent::article">
+  <xsl:if test="ancestor::d:book or parent::d:article">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -352,7 +354,7 @@
     <fo:list-block role="TOC.{local-name()}" xsl:use-attribute-sets="toc.level3.properties"
        relative-align="baseline">
      <xsl:choose>
-        <xsl:when test="parent::article">
+        <xsl:when test="parent::d:article">
           <xsl:attribute name="provisional-distance-between-starts">
             <xsl:value-of select="concat(&columnfragment; + &gutter;, 'mm')"/>
           </xsl:attribute>
@@ -370,8 +372,8 @@
         </xsl:otherwise>
       </xsl:choose>
       <xsl:choose>
-        <xsl:when test="(child::sect2 or child::section)
-                        and not(ancestor::article or ancestor::*[@role='legal'])">
+        <xsl:when test="(child::d:sect2 or child::d:section)
+                        and not(ancestor::d:article or ancestor::*[@role='legal'])">
           <xsl:attribute name="space-after">0.1em</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
@@ -383,7 +385,7 @@
           text-align="end">
           <fo:block text-align-last="end">
           <xsl:choose>
-            <xsl:when test="self::sect1 or self::section">
+            <xsl:when test="self::d:sect1 or self::d:section">
               <fo:basic-link internal-destination="{$id}">
                 <xsl:value-of select="$label"/>
               </fo:basic-link>
@@ -403,18 +405,18 @@
   </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect2[1]|section[not(ancestor::section)]/section[1]" mode="susetoc">
-    <xsl:if test="not(ancestor::article) and not(ancestor::*[@role='legal'])">
+<xsl:template match="d:sect2[1]|d:section[not(ancestor::d:section)]/d:section[1]" mode="susetoc">
+    <xsl:if test="not(ancestor::d:article) and not(ancestor::*[@role='legal'])">
       <fo:block keep-with-previous.within-column="always" role="sect2"
         xsl:use-attribute-sets="toc.level4.properties"
         text-align="start" space-after="0.75em"
         start-indent="{&column; + &gutter;}mm">
-        <xsl:apply-templates select="../sect2|../section" mode="inline.susetoc"/>
+        <xsl:apply-templates select="../d:sect2|../d:section" mode="inline.susetoc"/>
       </fo:block>
     </xsl:if>
 </xsl:template>
 
-<xsl:template match="sect2|section" mode="inline.susetoc">
+<xsl:template match="d:sect2|d:section" mode="inline.susetoc">
     <xsl:variable name="id">
       <xsl:call-template name="object.id"/>
     </xsl:variable>
@@ -427,7 +429,7 @@
   <fo:inline>
     <fo:basic-link internal-destination="{$id}">
     <xsl:copy-of select="$title"/>
-    <xsl:if test="following-sibling::sect2|following-sibling::section">
+    <xsl:if test="following-sibling::d:sect2|following-sibling::d:section">
       <fo:leader keep-together.within-line="always"
         leader-pattern="space" leader-length="1.2 * &gutterfragment;mm"/>
       <fo:inline><xsl:text>&#x2022;</xsl:text></fo:inline>

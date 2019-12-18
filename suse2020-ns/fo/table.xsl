@@ -16,19 +16,21 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
-<xsl:template match="thead">
+<xsl:template match="d:thead">
   <xsl:variable name="tgroup" select="parent::*"/>
 
   <fo:table-header start-indent="0pt" end-indent="0pt" 
     background-color="&bw-lighter-gray;">
     <xsl:choose>
       <!-- Use recursion if @morerows is used -->
-      <xsl:when test="row/entry/@morerows|row/entrytbl/@morerows">
-        <xsl:apply-templates select="row[1]">
+      <xsl:when test="d:row/d:entry/@morerows|d:row/d:entrytbl/@morerows">
+        <xsl:apply-templates select="d:row[1]">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
               <xsl:with-param name="cols" select="../@cols"/>
@@ -38,7 +40,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="row">
+        <xsl:apply-templates select="d:row">
           <xsl:with-param name="spans">
             <xsl:call-template name="blank.spans">
               <xsl:with-param name="cols" select="../@cols"/>

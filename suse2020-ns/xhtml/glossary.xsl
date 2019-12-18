@@ -7,13 +7,14 @@
 ]>
 <xsl:stylesheet version="1.0"  
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    exclude-result-prefixes="exsl l t d">
   
-  <xsl:template match="glossary">
+  <xsl:template match="d:glossary">
     <xsl:variable name="language">
       <xsl:call-template name="l10n.language"/>
     </xsl:variable>
@@ -38,11 +39,11 @@
 
       <div class="line"></div>
       <xsl:choose>
-        <xsl:when test="glossdiv">
-          <xsl:apply-templates select="(glossdiv[1]/preceding-sibling::*)"/>
+        <xsl:when test="d:glossdiv">
+          <xsl:apply-templates select="(d:glossdiv[1]/preceding-sibling::*)"/>
         </xsl:when>
-        <xsl:when test="glossentry">
-          <xsl:apply-templates select="(glossentry[1]/preceding-sibling::*)"/>
+        <xsl:when test="d:glossentry">
+          <xsl:apply-templates select="(d:glossentry[1]/preceding-sibling::*)"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates/>
@@ -50,21 +51,21 @@
       </xsl:choose>
       
       <xsl:choose>
-        <xsl:when test="glossdiv">
-          <xsl:apply-templates select="glossdiv"/>
+        <xsl:when test="d:glossdiv">
+          <xsl:apply-templates select="d:glossdiv"/>
         </xsl:when>
-        <xsl:when test="glossentry">
+        <xsl:when test="d:glossentry">
           <dl>
             <xsl:choose>
               <xsl:when test="$glossary.sort != 0">
-                <xsl:apply-templates select="glossentry">
+                <xsl:apply-templates select="d:glossentry">
                   <xsl:sort lang="{$language}" select="normalize-space(translate(concat(@sortas,
-                       glossterm[not(parent::glossentry/@sortas) or
-                                 parent::glossentry/@sortas = '']), &transfrom;, &transto;))"/>
+                       d:glossterm[not(parent::d:glossentry/@sortas) or
+                                 parent::d:glossentry/@sortas = '']), &transfrom;, &transto;))"/>
                 </xsl:apply-templates>
               </xsl:when>
               <xsl:otherwise>
-                <xsl:apply-templates select="glossentry"/>
+                <xsl:apply-templates select="d:glossentry"/>
               </xsl:otherwise>
             </xsl:choose>
           </dl>
@@ -74,7 +75,7 @@
         </xsl:otherwise>
       </xsl:choose>
       
-      <xsl:if test="not(parent::article)">
+      <xsl:if test="not(parent::d:article)">
         <xsl:call-template name="process.footnotes"/>
       </xsl:if>
       
@@ -82,7 +83,7 @@
   </xsl:template>
  
 
-<xsl:template match="glossentry">
+<xsl:template match="d:glossentry">
  <xsl:variable name="permalink">
   <xsl:text> </xsl:text>
   <xsl:call-template name="create.permalink"/>
@@ -96,14 +97,14 @@
 
         <span>
          <xsl:choose>
-           <xsl:when test="acronym|abbrev">
-             <xsl:apply-templates select="acronym|abbrev"/>
+           <xsl:when test="d:acronym|d:abbrev">
+             <xsl:apply-templates select="d:acronym|d:abbrev"/>
              <xsl:text> (</xsl:text>
-             <xsl:apply-templates select="glossterm"/>
+             <xsl:apply-templates select="d:glossterm"/>
              <xsl:text>)</xsl:text>
            </xsl:when>
            <xsl:otherwise>
-             <xsl:apply-templates select="glossterm"/>
+             <xsl:apply-templates select="d:glossterm"/>
            </xsl:otherwise>
          </xsl:choose>
          <xsl:copy-of select="$permalink"/>
@@ -116,12 +117,12 @@
           <xsl:with-param name="force" select="1"/>
         </xsl:call-template>
         <span>
-         <xsl:apply-templates select="glossterm"/>
+         <xsl:apply-templates select="d:glossterm"/>
          <xsl:copy-of select="$permalink"/>
 
-         <xsl:if test="acronym|abbrev">
+         <xsl:if test="d:acronym|d:abbrev">
            <xsl:text> (</xsl:text>
-           <xsl:apply-templates select="acronym|abbrev"/>
+           <xsl:apply-templates select="d:acronym|d:abbrev"/>
            <xsl:text>)</xsl:text>
          </xsl:if>
         </span>
@@ -133,14 +134,14 @@
           <xsl:with-param name="force" select="1"/>
         </xsl:call-template>
         <span>
-          <xsl:apply-templates select="glossterm"/>
+          <xsl:apply-templates select="d:glossterm"/>
           <xsl:copy-of select="$permalink"/>
         </span>
       </dt>
     </xsl:otherwise>
   </xsl:choose>
 
-  <xsl:apply-templates select="indexterm|revhistory|glosssee|glossdef"/>
+  <xsl:apply-templates select="d:indexterm|d:revhistory|d:glosssee|d:glossdef"/>
 </xsl:template>
 
 </xsl:stylesheet>

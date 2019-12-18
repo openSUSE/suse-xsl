@@ -14,46 +14,47 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:dm="urn:x-suse:ns:docmanager"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="dm">
+  exclude-result-prefixes="dm d">
 
   <xsl:template name="product.name">
     <xsl:choose>
-      <xsl:when test="*/productname[not(@role='abbrev')]">
+      <xsl:when test="*/d:productname[not(@role='abbrev')]">
         <!-- One can use role="abbrev" to additionally store a short version
              of the productname. This is helpful to make the best of the space
              available in the living column titles of the FO version.
              In our case, we'd rather have the long version, though. Dito for
              the productnumber below. -->
-        <xsl:apply-templates select="(*/productname[not(@role='abbrev')])[last()]"/>
+        <xsl:apply-templates select="(*/d:productname[not(@role='abbrev')])[last()]"/>
       </xsl:when>
-      <xsl:when test="*/productname">
-        <xsl:apply-templates select="(*/productname)[last()]"/>
+      <xsl:when test="*/d:productname">
+        <xsl:apply-templates select="(*/d:productname)[last()]"/>
       </xsl:when>
-      <xsl:when test="ancestor-or-self::*/*/productname[not(@role='abbrev')]">
-        <xsl:apply-templates select="(ancestor-or-self::*/*/productname[not(@role='abbrev')])[last()]"/>
+      <xsl:when test="ancestor-or-self::*/*/d:productname[not(@role='abbrev')]">
+        <xsl:apply-templates select="(ancestor-or-self::*/*/d:productname[not(@role='abbrev')])[last()]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="(ancestor-or-self::*/*/productname)[last()]"/>
+        <xsl:apply-templates select="(ancestor-or-self::*/*/d:productname)[last()]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template name="product.number">
     <xsl:choose>
-      <xsl:when test="*/productnumber[not(@role='abbrev')]">
+      <xsl:when test="*/d:productnumber[not(@role='abbrev')]">
         <!-- See comment in product.name... -->
-        <xsl:apply-templates select="(*/productnumber[not(@role='abbrev')])[last()]"/>
+        <xsl:apply-templates select="(*/d:productnumber[not(@role='abbrev')])[last()]"/>
       </xsl:when>
-      <xsl:when test="*/productnumber">
-        <xsl:apply-templates select="(*/productnumber)[last()]"/>
+      <xsl:when test="*/d:productnumber">
+        <xsl:apply-templates select="(*/d:productnumber)[last()]"/>
       </xsl:when>
-      <xsl:when test="ancestor-or-self::*/*/productnumber[not(@role='abbrev')]">
-        <xsl:apply-templates select="(ancestor-or-self::*/*/productnumber[not(@role='abbrev')])[last()]"/>
+      <xsl:when test="ancestor-or-self::*/*/d:productnumber[not(@role='abbrev')]">
+        <xsl:apply-templates select="(ancestor-or-self::*/*/d:productnumber[not(@role='abbrev')])[last()]"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="(ancestor-or-self::*/*/productnumber)[last()]"/>
+        <xsl:apply-templates select="(ancestor-or-self::*/*/d:productnumber)[last()]"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -132,7 +133,7 @@
           <xsl:call-template name="gentext">
             <xsl:with-param name="key">
               <xsl:choose>
-                <xsl:when test="count(author|corpauthor) > 1">Authors</xsl:when>
+                <xsl:when test="count(d:author|d:corpauthor) > 1">Authors</xsl:when>
                 <xsl:otherwise>Author</xsl:otherwise>
               </xsl:choose>
             </xsl:with-param>
@@ -141,10 +142,10 @@
         </span>
         <xsl:call-template name="person.name.list">
           <xsl:with-param name="person.list"
-            select="author|corpauthor"/>
+            select="d:author|d:corpauthor"/>
         </xsl:call-template>
       </div>
-      <xsl:if test="othercredit|editor">
+      <xsl:if test="d:othercredit|d:editor">
         <xsl:call-template name="add.othercredit"/>
       </xsl:if>
     </div>
@@ -157,7 +158,7 @@
        <xsl:call-template name="gentext">
          <xsl:with-param name="key">
             <xsl:choose>
-              <xsl:when test="count((../othercredit)|(../editor)) > 1"
+              <xsl:when test="count((../d:othercredit)|(../d:editor)) > 1"
                 >Contributors</xsl:when>
               <xsl:otherwise>Contributor</xsl:otherwise>
             </xsl:choose>
@@ -167,7 +168,7 @@
     </span>
     <xsl:call-template name="person.name.list">
       <xsl:with-param name="person.list"
-        select="(../othercredit)|(../editor)"/>
+        select="(../d:othercredit)|(../d:editor)"/>
     </xsl:call-template>
   </div>
 </xsl:template>
@@ -199,17 +200,17 @@
 
   <!-- ===================================================== -->
   <!-- article titlepage templates -->
-  <xsl:template match="authorgroup" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:authorgroup" mode="article.titlepage.recto.auto.mode">
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>
 
-  <xsl:template match="othercredit|editor" mode="article.titlepage.recto.auto.mode">
-    <xsl:if test=". = ((../othercredit)|(../editor))[1]">
+  <xsl:template match="d:othercredit|d:editor" mode="article.titlepage.recto.auto.mode">
+    <xsl:if test=". = ((../d:othercredit)|(../d:editor))[1]">
       <xsl:call-template name="add.othercredit"/>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="author" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:author" mode="article.titlepage.recto.auto.mode">
     <div>
       <xsl:call-template name="generate.class.attribute"/>
       <span class="imprint-label">
@@ -222,7 +223,7 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="abstract" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:abstract" mode="article.titlepage.recto.auto.mode">
     <xsl:apply-templates select="."/>
   </xsl:template>
 
@@ -232,17 +233,17 @@
 
   <xsl:template name="article.titlepage.recto">
         <xsl:choose>
-            <xsl:when test="articleinfo/title">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/title"/>
+            <xsl:when test="d:articleinfo/d:title">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:title"/>
             </xsl:when>
-            <xsl:when test="artheader/title">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/title"/>
+            <xsl:when test="d:artheader/d:title">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:title"/>
             </xsl:when>
-            <xsl:when test="info/title">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/title"/>
+            <xsl:when test="d:info/d:title">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:title"/>
             </xsl:when>
-            <xsl:when test="title">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="title"/>
+            <xsl:when test="d:title">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:title"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="fallback.title"/>
@@ -250,46 +251,46 @@
         </xsl:choose>
 
         <xsl:choose>
-            <xsl:when test="articleinfo/subtitle">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/subtitle"/>
+            <xsl:when test="d:articleinfo/d:subtitle">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:subtitle"/>
             </xsl:when>
-            <xsl:when test="artheader/subtitle">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/subtitle"/>
+            <xsl:when test="d:artheader/d:subtitle">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:subtitle"/>
             </xsl:when>
-            <xsl:when test="info/subtitle">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/subtitle"/>
+            <xsl:when test="d:info/d:subtitle">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:subtitle"/>
             </xsl:when>
-            <xsl:when test="subtitle">
-                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="subtitle"/>
+            <xsl:when test="d:subtitle">
+                <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:subtitle"/>
             </xsl:when>
         </xsl:choose>
 
         <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/abstract"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/abstract"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/abstract"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:abstract"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:abstract"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
         <!-- Moved authors and authorgroups here: -->
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/corpauthor"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/corpauthor"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/corpauthor"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/authorgroup"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/authorgroup"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/authorgroup"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/author"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/author"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/author"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/othercredit"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/othercredit"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/othercredit"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/editor"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/editor"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:corpauthor"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:corpauthor"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:authorgroup"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:authorgroup"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:author"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:author"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:author"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:othercredit"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:othercredit"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:othercredit"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:editor"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:editor"/>
 
         <xsl:call-template name="date.and.revision"/>
         <xsl:call-template name="vcs.url"/>
 
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/copyright"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="artheader/copyright"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/copyright"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:copyright"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:copyright"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
   </xsl:template>
 
   <xsl:template name="article.titlepage.separator">
@@ -307,14 +308,14 @@
 
 <xsl:template name="set.titlepage.recto">
   <xsl:choose>
-    <xsl:when test="setinfo/title">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/title"/>
+    <xsl:when test="d:setinfo/d:title">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:title"/>
     </xsl:when>
-    <xsl:when test="info/title">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/title"/>
+    <xsl:when test="d:info/d:title">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:title"/>
     </xsl:when>
-    <xsl:when test="title">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="title"/>
+    <xsl:when test="d:title">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:title"/>
     </xsl:when>
     <xsl:otherwise>
       <xsl:call-template name="fallback.title"/>
@@ -322,39 +323,39 @@
   </xsl:choose>
 
   <xsl:choose>
-    <xsl:when test="setinfo/subtitle">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/subtitle"/>
+    <xsl:when test="d:setinfo/d:subtitle">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:subtitle"/>
     </xsl:when>
-    <xsl:when test="info/subtitle">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/subtitle"/>
+    <xsl:when test="d:info/d:subtitle">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:subtitle"/>
     </xsl:when>
-    <xsl:when test="subtitle">
-      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="subtitle"/>
+    <xsl:when test="d:subtitle">
+      <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:subtitle"/>
     </xsl:when>
   </xsl:choose>
 
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/corpauthor"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/corpauthor"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/authorgroup"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/authorgroup"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/author"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/author"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/othercredit"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/othercredit"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/releaseinfo"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/releaseinfo"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/copyright"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/copyright"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/legalnotice"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/legalnotice"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/pubdate"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/pubdate"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/revision"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/revision"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/revhistory"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/revhistory"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="setinfo/abstract"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="info/abstract"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:corpauthor"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:authorgroup"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:author"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:author"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:othercredit"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:othercredit"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:releaseinfo"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:releaseinfo"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:copyright"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:legalnotice"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:pubdate"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:pubdate"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:revision"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:revision"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:revhistory"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:abstract"/>
+  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
 </xsl:template>
   <!-- ===================================================== -->
   <!-- book titlepage templates -->
@@ -367,14 +368,14 @@
 
   <xsl:template name="book.titlepage.recto">
         <xsl:choose>
-            <xsl:when test="bookinfo/title">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/title"/>
+            <xsl:when test="d:bookinfo/d:title">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:title"/>
             </xsl:when>
-            <xsl:when test="info/title">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/title"/>
+            <xsl:when test="d:info/d:title">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:title"/>
             </xsl:when>
-            <xsl:when test="title">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="title"/>
+            <xsl:when test="d:title">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:title"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:call-template name="fallback.title"/>
@@ -382,52 +383,52 @@
         </xsl:choose>
 
         <xsl:choose>
-            <xsl:when test="bookinfo/subtitle">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/subtitle"/>
+            <xsl:when test="d:bookinfo/d:subtitle">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:subtitle"/>
             </xsl:when>
-            <xsl:when test="info/subtitle">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/subtitle"/>
+            <xsl:when test="d:info/d:subtitle">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:subtitle"/>
             </xsl:when>
-            <xsl:when test="subtitle">
-                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="subtitle"/>
+            <xsl:when test="d:subtitle">
+                <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:subtitle"/>
             </xsl:when>
         </xsl:choose>
         <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/abstract"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/abstract"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:abstract"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
 
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/corpauthor"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/corpauthor"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/authorgroup"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/authorgroup"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/author"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/author"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/othercredit"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/othercredit"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/editor"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/editor"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:corpauthor"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:authorgroup"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:author"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:author"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:othercredit"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:othercredit"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:editor"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:editor"/>
 
         <xsl:call-template name="date.and.revision"/>
         <xsl:call-template name="vcs.url"/>
 
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/bibliosource"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:bibliosource"/>
 
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/copyright"/>
-        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/copyright"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:copyright"/>
+        <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
   </xsl:template>
 
-  <xsl:template match="authorgroup" mode="book.titlepage.recto.auto.mode">
+  <xsl:template match="d:authorgroup" mode="book.titlepage.recto.auto.mode">
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>
 
 
-  <xsl:template match="othercredit|editor" mode="book.titlepage.recto.auto.mode">
-    <xsl:if test=". = ((../othercredit)|(../editor))[1]">
+  <xsl:template match="d:othercredit|d:editor" mode="book.titlepage.recto.auto.mode">
+    <xsl:if test=". = ((../d:othercredit)|(../d:editor))[1]">
       <xsl:call-template name="add.othercredit"/>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="author" mode="book.titlepage.recto.auto.mode">
+  <xsl:template match="d:author" mode="book.titlepage.recto.auto.mode">
     <div>
       <span class="imprint-label">
       <xsl:call-template name="gentext">
@@ -439,7 +440,7 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="abstract" mode="book.titlepage.recto.auto.mode">
+  <xsl:template match="d:abstract" mode="book.titlepage.recto.auto.mode">
     <xsl:apply-templates select="."/>
   </xsl:template>
 

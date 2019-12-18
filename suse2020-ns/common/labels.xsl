@@ -12,10 +12,11 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
-  <xsl:template match="refsect1/title|refnamediv" mode="label.markup"/>
+  <xsl:template match="d:refsect1/d:title|d:refnamediv" mode="label.markup"/>
 
 
 </xsl:stylesheet>

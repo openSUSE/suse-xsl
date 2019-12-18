@@ -9,14 +9,15 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
   <xsl:template name="bubble-toc">
     <xsl:call-template name="bubble-toc.inner">
-      <xsl:with-param name="node" select="((ancestor-or-self::set |
-        ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+      <xsl:with-param name="node" select="((ancestor-or-self::d:set |
+        ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -34,7 +35,7 @@
     <xsl:variable name="depth">
       <xsl:choose>
         <xsl:when test="local-name(.) = 'section'">
-          <xsl:value-of select="count(ancestor::section) + 1"/>
+          <xsl:value-of select="count(ancestor::d:section) + 1"/>
         </xsl:when>
         <xsl:when test="local-name(.) = 'sect1'">1</xsl:when>
         <xsl:when test="local-name(.) = 'sect2'">2</xsl:when>
@@ -49,7 +50,7 @@
           <!-- sigh... -->
           <xsl:choose>
             <xsl:when test="local-name(..) = 'section'">
-              <xsl:value-of select="count(ancestor::section)"/>
+              <xsl:value-of select="count(ancestor::d:section)"/>
             </xsl:when>
             <xsl:when test="local-name(..) = 'sect1'">2</xsl:when>
             <xsl:when test="local-name(..) = 'sect2'">3</xsl:when>
@@ -106,7 +107,7 @@
           </span>
         </a>
 
-      <xsl:if test="( (self::set or self::book or self::part) or
+      <xsl:if test="( (self::d:set or self::d:book or self::d:part) or
         $bubbletoc.section.depth &gt; $depth) and
         count($nodes) &gt; 0 and
         $bubbletoc.max.depth &gt; $depth.from.context and
@@ -123,104 +124,104 @@
       </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="set" mode="bubble-toc">
+    <xsl:template match="d:set" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="set|book|bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:set|d:book|d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="book" mode="bubble-toc">
+  <xsl:template match="d:book" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="part|reference|preface|chapter|appendix|article|topic|bibliography|
-        glossary|index|refentry|bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:part|d:reference|d:preface|d:chapter|d:appendix|d:article|d:topic|d:bibliography|
+        d:glossary|d:index|d:refentry|d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="part|reference" mode="bubble-toc">
+  <xsl:template match="d:part|d:reference" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="appendix|chapter|article|topic|index|glossary|bibliography|preface|
-        reference|refentry|bridgehead[$bridgehead.in.toc != 0]"
+        select="d:appendix|d:chapter|d:article|d:topic|d:index|d:glossary|d:bibliography|d:preface|
+        d:reference|d:refentry|d:bridgehead[$bridgehead.in.toc != 0]"
       />
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="preface|chapter|appendix|topic" mode="bubble-toc">
+  <xsl:template match="d:preface|d:chapter|d:appendix|d:topic" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="topic|refentry|glossary|bibliography|index|
-        bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:topic|d:refentry|d:glossary|d:bibliography|d:index|
+        d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="article" mode="bubble-toc">
+  <xsl:template match="d:article" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="section|sect1|simplesect[$simplesect.in.toc != 0]|
-        topic|refentry|glossary|bibliography|index|
-        bridgehead[$bridgehead.in.toc != 0]|appendix"/>
+        select="d:section|d:sect1|d:simplesect[$simplesect.in.toc != 0]|
+        d:topic|d:refentry|d:glossary|d:bibliography|d:index|
+        d:bridgehead[$bridgehead.in.toc != 0]|d:appendix"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="sect1" mode="bubble-toc">
+  <xsl:template match="d:sect1" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="sect2|bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:sect2|d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="sect2" mode="bubble-toc">
+  <xsl:template match="d:sect2" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="sect3|bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:sect3|d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="sect3" mode="bubble-toc">
+  <xsl:template match="d:sect3" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="sect4|bridgehead[$bridgehead.in.toc != 0]"
+        select="d:sect4|d:bridgehead[$bridgehead.in.toc != 0]"
       />
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="sect4" mode="bubble-toc">
+  <xsl:template match="d:sect4" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="sect5|bridgehead[$bridgehead.in.toc != 0]"
+        select="d:sect5|d:bridgehead[$bridgehead.in.toc != 0]"
       />
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="sect5" mode="bubble-toc">
+  <xsl:template match="d:sect5" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
@@ -228,7 +229,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="simplesect" mode="bubble-toc">
+  <xsl:template match="d:simplesect" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
@@ -236,18 +237,18 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="section" mode="bubble-toc">
+  <xsl:template match="d:section" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
       <xsl:with-param name="toc-context" select="$toc-context"/>
       <xsl:with-param name="nodes"
-        select="section|refentry|simplesect[$simplesect.in.toc != 0]|
-        bridgehead[$bridgehead.in.toc != 0]"/>
+        select="d:section|d:refentry|d:simplesect[$simplesect.in.toc != 0]|
+        d:bridgehead[$bridgehead.in.toc != 0]"/>
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="bibliography|glossary" mode="bubble-toc">
+  <xsl:template match="d:bibliography|d:glossary" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">
@@ -255,7 +256,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="title" mode="bubble-toc">
+  <xsl:template match="d:title" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <a>
@@ -269,7 +270,7 @@
     </a>
   </xsl:template>
 
-  <xsl:template match="index" mode="bubble-toc">
+  <xsl:template match="d:index" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <!-- If the index tag is not empty, it should be in the TOC -->

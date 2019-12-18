@@ -17,15 +17,17 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
   
   
-  <xsl:template match="refname"/>
+  <xsl:template match="d:refname"/>
   
   
-  <xsl:template match="refpurpose">
+  <xsl:template match="d:refpurpose">
     <xsl:if test="node()">
       <xsl:apply-templates/>
     </xsl:if>

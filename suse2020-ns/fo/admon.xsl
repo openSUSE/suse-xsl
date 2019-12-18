@@ -20,13 +20,14 @@
 ]>
 <xsl:stylesheet  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns:date="http://exslt.org/dates-and-times"
-  exclude-result-prefixes="date">
+  exclude-result-prefixes="date d">
 
 
-<xsl:template match="note|important|warning|caution|tip">
+<xsl:template match="d:note|d:important|d:warning|d:caution|d:tip">
   <xsl:call-template name="graphical.admonition"/>
 </xsl:template>
 
@@ -153,7 +154,7 @@
           <fo:list-item-body start-indent="body-start()">
             <fo:block padding-start="{(&gutter; - 0.75) div 2}mm"
               padding-before="{$padding}" padding-after="{$padding}">
-              <xsl:if test="((title or info/title) or ($admon.textlabel != 0 and not(@role='compact')))">
+              <xsl:if test="((d:title or d:info/d:title) or ($admon.textlabel != 0 and not(@role='compact')))">
                 <xsl:choose>
                  <xsl:when test="@role='compact'">
                   <fo:block

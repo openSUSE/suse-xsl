@@ -28,11 +28,12 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:dm="urn:x-suse:ns:docmanager"
     xmlns:exsl="http://exslt.org/common"
     xmlns:date="http://exslt.org/dates-and-times"
     xmlns="http://www.w3.org/1999/xhtml"
-    exclude-result-prefixes="exsl date dm">
+    exclude-result-prefixes="exsl date dm d">
 
 
   <xsl:template name="create.bugtracker.information">
@@ -48,7 +49,7 @@
     for release notes). -->
     <xsl:variable name="bugtracker-pi"
       select="(ancestor-or-self::*/*[contains(local-name(.), 'info')]/processing-instruction('dbsuse-bugtracker')|
-               ancestor-or-self::*/*[contains(local-name(.), 'info')]/bibliosource[@role='bugtracker']/processing-instruction('dbsuse-bugtracker'))[last()]"/>
+               ancestor-or-self::*/*[contains(local-name(.), 'info')]/d:bibliosource[@role='bugtracker']/processing-instruction('dbsuse-bugtracker'))[last()]"/>
 
     <xsl:choose>
       <xsl:when test="$bugtracker-docmanager != ''">

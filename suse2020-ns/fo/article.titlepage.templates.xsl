@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
   <!-- Article ==================================================== -->
@@ -63,24 +65,24 @@
       role="article.titlepage.recto">
       <fo:block space-after="{&gutterfragment;}mm">
         <xsl:choose>
-          <xsl:when test="articleinfo/title">
+          <xsl:when test="d:articleinfo/d:title">
             <xsl:apply-templates
               mode="article.titlepage.recto.auto.mode"
-              select="articleinfo/title"/>
+              select="d:articleinfo/d:title"/>
           </xsl:when>
-          <xsl:when test="artheader/title">
+          <xsl:when test="d:artheader/d:title">
             <xsl:apply-templates
               mode="article.titlepage.recto.auto.mode"
-              select="artheader/title"/>
+              select="d:artheader/d:title"/>
           </xsl:when>
-          <xsl:when test="info/title">
+          <xsl:when test="d:info/d:title">
             <xsl:apply-templates
               mode="article.titlepage.recto.auto.mode"
-              select="info/title"/>
+              select="d:info/d:title"/>
           </xsl:when>
-          <xsl:when test="title">
+          <xsl:when test="d:title">
             <xsl:apply-templates
-              mode="article.titlepage.recto.auto.mode" select="title"/>
+              mode="article.titlepage.recto.auto.mode" select="d:title"/>
           </xsl:when>
         </xsl:choose>
       </fo:block>
@@ -90,56 +92,56 @@
       <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$dark-green)"/></xsl:attribute>
 
       <xsl:choose>
-        <xsl:when test="articleinfo/subtitle">
+        <xsl:when test="d:articleinfo/d:subtitle">
           <xsl:apply-templates
             mode="article.titlepage.recto.auto.mode"
-            select="articleinfo/subtitle"/>
+            select="d:articleinfo/d:subtitle"/>
         </xsl:when>
-        <xsl:when test="artheader/subtitle">
+        <xsl:when test="d:artheader/d:subtitle">
           <xsl:apply-templates
             mode="article.titlepage.recto.auto.mode"
-            select="artheader/subtitle"/>
+            select="d:artheader/d:subtitle"/>
         </xsl:when>
-        <xsl:when test="info/subtitle">
+        <xsl:when test="d:info/d:subtitle">
           <xsl:apply-templates
             mode="article.titlepage.recto.auto.mode"
-            select="info/subtitle"/>
+            select="d:info/d:subtitle"/>
         </xsl:when>
-        <xsl:when test="subtitle">
+        <xsl:when test="d:subtitle">
           <xsl:apply-templates
             mode="article.titlepage.recto.auto.mode"
-            select="subtitle"/>
+            select="d:subtitle"/>
         </xsl:when>
       </xsl:choose>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="articleinfo/productname[not(@role='abbrev')]"/>
+            select="d:articleinfo/d:productname[not(@role='abbrev')]"/>
     </fo:block>
 
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/corpauthor"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/corpauthor"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/authorgroup"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/authorgroup"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/author"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/author"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:corpauthor"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:authorgroup"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:author"/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:author"/>
 
     <xsl:choose>
-      <xsl:when test="articleinfo/abstract or info/abstract">
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/abstract"/>
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/abstract"/>
+      <xsl:when test="d:articleinfo/d:abstract or d:info/d:abstract">
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:abstract"/>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
       </xsl:when>
-      <xsl:when test="abstract">
-        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="abstract"/>
+      <xsl:when test="d:abstract">
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:abstract"/>
       </xsl:when>
     </xsl:choose>
 
     <fo:block>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="articleinfo/othercredit"/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="info/othercredit"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="d:articleinfo/d:othercredit"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"  select="d:info/d:othercredit"/>
     </fo:block>
 
     <fo:block>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/editor"/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="info/editor"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:editor"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:editor"/>
     </fo:block>
 
     <fo:block>
@@ -147,19 +149,19 @@
     </fo:block>
 
     <fo:block>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="articleinfo/mediaobject"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:mediaobject"/>
     </fo:block>
     </fo:block>
   </xsl:template>
 
 
-  <xsl:template match="articleinfo/mediaobject" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:articleinfo/d:mediaobject" mode="article.titlepage.recto.auto.mode">
     <fo:block break-after="page">
       <xsl:call-template name="select.mediaobject"/>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="title" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:title" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="{&super-large; * $sans-fontsize-adjust}pt" line-height="{$base-lineheight * 0.85}em"
       xsl:use-attribute-sets="article.titlepage.recto.style dark-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
@@ -167,7 +169,7 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="subtitle" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:subtitle" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="{&xx-large; * $sans-fontsize-adjust}pt" line-height="{$base-lineheight * 0.75}em"
       xsl:use-attribute-sets="article.titlepage.recto.style mid-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
@@ -175,40 +177,40 @@
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="productname[1]" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:productname[1]" mode="article.titlepage.recto.auto.mode">
     <fo:block text-align="start" font-size="{&xx-large; * $sans-fontsize-adjust}pt"
       xsl:use-attribute-sets="mid-green">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
-      <xsl:if test="../productnumber">
+      <xsl:if test="../d:productnumber">
         <xsl:text> </xsl:text>
-        <xsl:apply-templates select="../productnumber[1]" mode="article.titlepage.recto.mode"/>
+        <xsl:apply-templates select="../d:productnumber[1]" mode="article.titlepage.recto.mode"/>
       </xsl:if>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="authorgroup" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:authorgroup" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="{&large; * $sans-fontsize-adjust}pt" space-before="1em" text-align="start">
       <xsl:call-template name="person.name.list">
-        <xsl:with-param name="person.list" select="author|corpauthor"/>
+        <xsl:with-param name="person.list" select="d:author|d:corpauthor"/>
       </xsl:call-template>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="author|corpauthor"
+  <xsl:template match="d:author|d:corpauthor"
     mode="article.titlepage.recto.auto.mode">
     <fo:block space-before="1em" font-size="{&large; * $sans-fontsize-adjust}pt" text-align="start">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="editor|othercredit"
+  <xsl:template match="d:editor|d:othercredit"
     mode="article.titlepage.recto.auto.mode">
-    <xsl:if test=". = ((../othercredit)|(../editor))[1]">
+    <xsl:if test=". = ((../d:othercredit)|(../d:editor))[1]">
       <fo:block font-size="{&normal; * $sans-fontsize-adjust}pt">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key">
             <xsl:choose>
-              <xsl:when test="count((../othercredit)|(../editor)) > 1"
+              <xsl:when test="count((../d:othercredit)|(../d:editor)) > 1"
                 >Contributors</xsl:when>
               <xsl:otherwise>Contributor</xsl:otherwise>
             </xsl:choose>
@@ -217,18 +219,18 @@
         <xsl:text>: </xsl:text>
         <xsl:call-template name="person.name.list">
           <xsl:with-param name="person.list"
-            select="(../othercredit)|(../editor)"/>
+            select="(../d:othercredit)|(../d:editor)"/>
         </xsl:call-template>
       </fo:block>
     </xsl:if>
   </xsl:template>
 
-  <xsl:template match="abstract" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:abstract" mode="article.titlepage.recto.auto.mode">
     <fo:block space-after="1.5em">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
 
-  <xsl:template match="article/abstract"/>
+  <xsl:template match="d:article/d:abstract"/>
 
 </xsl:stylesheet>

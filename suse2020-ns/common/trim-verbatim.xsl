@@ -8,10 +8,12 @@
     Copyright:  2015
 
 -->
-<xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook" >
 
-<xsl:template match="programlisting/text()|screen/text()|synopsis/text()">
+<xsl:template match="d:programlisting/text()|d:screen/text()|d:synopsis/text()">
   <xsl:variable name="trim.allowed">
     <xsl:choose>
       <xsl:when test="$trim.verbatim = 1 and

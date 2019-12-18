@@ -18,8 +18,10 @@
   %colors;
   %metrics;
 ]>
-<xsl:stylesheet  version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                  version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
   <xsl:include href="article.titlepage.templates.xsl"/>
@@ -32,30 +34,30 @@
 
 
 <!-- Set ==================================================== -->
-<xsl:template match="title" mode="set.titlepage.recto.auto.mode">
+<xsl:template match="d:title" mode="set.titlepage.recto.auto.mode">
   <fo:block xsl:use-attribute-sets="set.titlepage.recto.style"
     font-size="{&ultra-large; * $sans-fontsize-adjust}pt" space-before="&columnfragment;mm"
     font-family="{$title.fontset}">
     <xsl:call-template name="division.title">
-      <xsl:with-param name="node" select="ancestor-or-self::set[1]"/>
+      <xsl:with-param name="node" select="ancestor-or-self::d:set[1]"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
 
 
 <!-- Part ======================================================== -->
-<xsl:template match="title" mode="part.titlepage.recto.auto.mode">
+<xsl:template match="d:title" mode="part.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="part.titlepage.recto.style sans.bold.noreplacement"
     font-size="{&super-large; * $sans-fontsize-adjust}pt" space-before="&columnfragment;mm"
     font-family="{$title.fontset}">
     <xsl:call-template name="division.title">
-      <xsl:with-param name="node" select="ancestor-or-self::part[1]"/>
+      <xsl:with-param name="node" select="ancestor-or-self::d:part[1]"/>
     </xsl:call-template>
   </fo:block>
 </xsl:template>
 
-<xsl:template match="subtitle" mode="part.titlepage.recto.auto.mode">
+<xsl:template match="d:subtitle" mode="part.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="part.titlepage.recto.style sans.bold.noreplacement"
     font-size="{&xxx-large; * $sans-fontsize-adjust}pt" font-style="normal"
@@ -73,7 +75,7 @@
       font-weight="normal"
       font-family="{$title.fontset}">
       <xsl:choose>
-        <xsl:when test="self::article">
+        <xsl:when test="self::d:article">
           <xsl:attribute name="start-indent">
             <xsl:value-of select="concat(&columnfragment; + &gutter;, 'mm')"/>
           </xsl:attribute>
@@ -85,11 +87,11 @@
         </xsl:otherwise>
       </xsl:choose>
       <xsl:choose>
-        <xsl:when test="ancestor-or-self::article">
+        <xsl:when test="ancestor-or-self::d:article">
           <xsl:attribute name="space-after">&gutter;mm</xsl:attribute>
           <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
         </xsl:when>
-        <xsl:when test="ancestor-or-self::book">
+        <xsl:when test="ancestor-or-self::d:book">
           <xsl:attribute name="space-after">&column;mm</xsl:attribute>
           <xsl:attribute name="font-size"><xsl:value-of select="&super-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
         </xsl:when>

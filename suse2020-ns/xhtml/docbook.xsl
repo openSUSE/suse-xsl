@@ -5,7 +5,7 @@
 
    Parameters:
      Too many to list here, see:
-     http://docbook.sourceforge.net/release/xsl/current/doc/html/index.html
+     http://docbook.sourceforge.net/release/xsl-ns/current/doc/html/index.html
 
    Input:
      DocBook 4/5 document
@@ -25,12 +25,13 @@
 
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
     xmlns:date="http://exslt.org/dates-and-times"
     xmlns="http://www.w3.org/1999/xhtml"
-    exclude-result-prefixes="exsl date">
+    exclude-result-prefixes="exsl date d">
 
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/docbook.xsl"/>
 
   <xsl:include href="../VERSION.xsl"/>
 
@@ -98,12 +99,12 @@
   </xsl:param>
   <xsl:param name="structure.title.candidate">
     <xsl:choose>
-      <xsl:when test="self::book or self::article or self::set">
-        <xsl:apply-templates select="title | *[contains(local-name(), 'info')]/title[last()]" mode="title.markup.textonly"/>
+      <xsl:when test="self::d:book or self::d:article or self::d:set">
+        <xsl:apply-templates select="d:title | *[contains(local-name(), 'info')]/d:title[last()]" mode="title.markup.textonly"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:apply-templates select="((ancestor::book | ancestor::article)[last()]/title |
-                                      (ancestor::book | ancestor::article)[last()]/*[contains(local-name(), 'info')]/title)[last()]"
+        <xsl:apply-templates select="((ancestor::d:book | ancestor::d:article)[last()]/d:title |
+                                      (ancestor::d:book | ancestor::d:article)[last()]/*[contains(local-name(), 'info')]/d:title)[last()]"
            mode="title.markup.textonly"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -115,12 +116,12 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:choose>
-          <xsl:when test="self::book or self::article or self::set">
+          <xsl:when test="self::d:book or self::d:article or self::d:set">
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="local-name(.)"/>
             </xsl:call-template>
           </xsl:when>
-          <xsl:when test="ancestor::article">
+          <xsl:when test="ancestor::d:article">
             <xsl:call-template name="gentext">
               <xsl:with-param name="key" select="'article'"/>
             </xsl:call-template>
@@ -135,10 +136,10 @@
     </xsl:choose>
   </xsl:param>
   <xsl:param name="substructure.title.short">
-    <xsl:if test="not(self::book or self::article or self::set)">
+    <xsl:if test="not(self::d:book or self::d:article or self::d:set)">
       <xsl:choose>
-        <xsl:when test="*[contains(local-name(), 'info')]/title | title | refmeta/refentrytitle">
-          <xsl:apply-templates select="(*[contains(local-name(), 'info')]/title | title | refmeta/refentrytitle)[last()]" mode="title.markup.textonly"/>
+        <xsl:when test="*[contains(local-name(), 'info')]/d:title | d:title | d:refmeta/d:refentrytitle">
+          <xsl:apply-templates select="(*[contains(local-name(), 'info')]/d:title | d:title | d:refmeta/d:refentrytitle)[last()]" mode="title.markup.textonly"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="gentext">
@@ -149,7 +150,7 @@
     </xsl:if>
   </xsl:param>
   <xsl:param name="substructure.title.long">
-    <xsl:if test="not(self::book or self::article or self::set)">
+    <xsl:if test="not(self::d:book or self::d:article or self::d:set)">
        <xsl:apply-templates select="." mode="object.title.markup"/>
     </xsl:if>
   </xsl:param>
@@ -168,17 +169,17 @@
 
   <xsl:variable name="meta-og.description">
     <xsl:variable name="info"
-      select=" (articleinfo|bookinfo|prefaceinfo|chapterinfo|appendixinfo
-               |sectioninfo|sect1info|sect2info|sect3info|sect4info|sect5info
-               |referenceinfo
-               |refentryinfo
-               |partinfo
-               |info
-               |docinfo)[1]"/>
-    <xsl:variable name="first-para" select="(descendant::para|descendant::simpara)[1]"/>
+      select=" (d:articleinfo|d:bookinfo|d:prefaceinfo|d:chapterinfo|d:appendixinfo
+               |d:sectioninfo|d:sect1info|d:sect2info|d:sect3info|d:sect4info|d:sect5info
+               |d:referenceinfo
+               |d:refentryinfo
+               |d:partinfo
+               |d:info
+               |d:docinfo)[1]"/>
+    <xsl:variable name="first-para" select="(descendant::d:para|descendant::d:simpara)[1]"/>
     <xsl:choose>
-      <xsl:when test="$info and $info/abstract">
-        <xsl:for-each select="$info/abstract[1]/*">
+      <xsl:when test="$info and $info/d:abstract">
+        <xsl:for-each select="$info/d:abstract[1]/*">
           <xsl:value-of select="normalize-space(.)"/>
           <xsl:if test="position() &lt; last()">
             <xsl:text> </xsl:text>
@@ -304,12 +305,12 @@
         <!-- Ignoring stuff like inlinemediaobjects here, because those are
         likely very small anyway. Let's hope SVGs work too.-->
         <xsl:when
-          test="(descendant::figure/descendant::imagedata/@fileref
-                |descendant::informalfigure/descendant::imagedata/@fileref)[1]">
+          test="(descendant::d:figure/descendant::d:imagedata/@fileref
+                |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[1]">
           <xsl:value-of
             select="concat($canonical-url-base, '/', $img.src.path,
-                    (descendant::figure/descendant::imagedata/@fileref
-                    |descendant::informalfigure/descendant::imagedata/@fileref)[1])"/>
+                    (descendant::d:figure/descendant::d:imagedata/@fileref
+                    |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[1])"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="concat($canonical-url-base, '/', $daps.header.logo)"/>
@@ -341,11 +342,11 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="refentry" mode="titleabbrev.markup">
-    <xsl:value-of select="refmeta/refentrytitle[text()]"/>
+  <xsl:template match="d:refentry" mode="titleabbrev.markup">
+    <xsl:value-of select="d:refmeta/d:refentrytitle[text()]"/>
   </xsl:template>
 
-  <xsl:template match="appendix|article|book|bibliography|chapter|part|preface|glossary|sect1|set|refentry"
+  <xsl:template match="d:appendix|d:article|d:book|d:bibliography|d:chapter|d:part|d:preface|d:glossary|d:sect1|d:set|d:refentry"
                 mode="breadcrumbs">
     <xsl:param name="class">crumb</xsl:param>
     <xsl:param name="context">header</xsl:param>
@@ -555,7 +556,7 @@
     </xsl:variable>
     <xsl:variable name="title.candidate">
       <xsl:apply-templates mode="title.markup"
-        select="((ancestor-or-self::book | ancestor-or-self::article)|key('id', $rootid))[last()]"/>
+        select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
     </xsl:variable>
     <xsl:variable name="title">
       <xsl:choose>
@@ -565,7 +566,7 @@
         <xsl:otherwise>
           <xsl:call-template name="gentext">
             <xsl:with-param name="key"
-              select="local-name((ancestor-or-self::book | ancestor-or-self::article)[last()])"/>
+              select="local-name((ancestor-or-self::d:book | ancestor-or-self::d:article)[last()])"/>
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
@@ -601,8 +602,8 @@
   </xsl:template>
 
   <xsl:template name="share.and.print">
-    <xsl:param name="prev" select="/foo"/>
-    <xsl:param name="next" select="/foo"/>
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
     <xsl:param name="nav.context"/>
 
     <xsl:if test="$generate.share.and.print != 0">

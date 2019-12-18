@@ -10,7 +10,7 @@
 
   Parameters:
     Too many to list here, see:
-    http://docbook.sourceforge.net/release/xsl/current/doc/fo/index.html
+    http://docbook.sourceforge.net/release/xsl-ns/current/doc/fo/index.html
 
   Input:
     DocBook 4/5 document
@@ -25,11 +25,12 @@
 -->
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl/current/fo/docbook.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/fo/docbook.xsl"/>
 
   <xsl:include href="../VERSION.xsl"/>
   <xsl:include href="param.xsl"/>
@@ -80,15 +81,15 @@
   <!--
     This fragment is used to build a sect1 by using rootid parameter
   -->
-  <xsl:template match="sect1|section" mode="process.root">
+  <xsl:template match="d:sect1|d:section" mode="process.root">
       <xsl:variable name="document.element" select="self::*"/>
 
   <xsl:call-template name="root.messages"/>
 
   <xsl:variable name="title">
     <xsl:choose>
-      <xsl:when test="$document.element/title[1]">
-        <xsl:value-of select="$document.element/title[1]"/>
+      <xsl:when test="$document.element/d:title[1]">
+        <xsl:value-of select="$document.element/d:title[1]"/>
       </xsl:when>
       <xsl:otherwise>[could not find document title]</xsl:otherwise>
     </xsl:choose>

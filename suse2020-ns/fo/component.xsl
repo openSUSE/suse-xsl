@@ -20,9 +20,10 @@
 ]>
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns:exsl="http://exslt.org/common"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
-  exclude-result-prefixes="exsl">
+  exclude-result-prefixes="exsl d">
 
 <xsl:template name="component.title">
   <xsl:param name="node" select="."/>
@@ -36,14 +37,14 @@
 
   <xsl:variable name="level">
     <xsl:choose>
-      <xsl:when test="ancestor::section">
-        <xsl:value-of select="count(ancestor::section)+1"/>
+      <xsl:when test="ancestor::d:section">
+        <xsl:value-of select="count(ancestor::d:section)+1"/>
       </xsl:when>
-      <xsl:when test="ancestor::sect5">6</xsl:when>
-      <xsl:when test="ancestor::sect4">5</xsl:when>
-      <xsl:when test="ancestor::sect3">4</xsl:when>
-      <xsl:when test="ancestor::sect2">3</xsl:when>
-      <xsl:when test="ancestor::sect1">2</xsl:when>
+      <xsl:when test="ancestor::d:sect5">6</xsl:when>
+      <xsl:when test="ancestor::d:sect4">5</xsl:when>
+      <xsl:when test="ancestor::d:sect3">4</xsl:when>
+      <xsl:when test="ancestor::d:sect2">3</xsl:when>
+      <xsl:when test="ancestor::d:sect1">2</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -151,7 +152,7 @@
      below, so we get the correct headline style. Ideally, however,
      we would use the template below, though, and still get nice-looking
      headlines. -->
-<xsl:template match="article/appendix|article/appendix[@role='legal']"
+<xsl:template match="d:article/d:appendix|d:article/d:appendix[@role='legal']"
   priority="1">
   <xsl:variable name="id">
     <xsl:call-template name="object.id"/>
@@ -235,7 +236,7 @@
         #3    except for the part we want to wrap in a fo:block with the span
               attribute set.-->
 
-<xsl:template match="appendix[@role='legal']">
+<xsl:template match="d:appendix[@role='legal']">
   <xsl:variable name="rtf">
     <xsl:apply-imports/>
   </xsl:variable>

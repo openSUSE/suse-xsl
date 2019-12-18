@@ -7,12 +7,14 @@
    Copyright: 2012, Thomas Schraitle
 
 -->
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet exclude-result-prefixes="d"
+                 version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
   xmlns="http://www.w3.org/1999/xhtml">
 
 
-  <xsl:template match="part" mode="object.label.template">
+  <xsl:template match="d:part" mode="object.label.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'xref-number'"/>
       <xsl:with-param name="name" select="local-name()"/>
@@ -61,7 +63,7 @@
     </h1>
   </xsl:template>
 
-  <xsl:template match="book">
+  <xsl:template match="d:book">
     <xsl:call-template name="id.warning"/>
 
     <div>
@@ -72,8 +74,8 @@
 
       <xsl:call-template name="book.titlepage"/>
 
-      <xsl:apply-templates select="dedication" mode="dedication"/>
-      <xsl:apply-templates select="acknowledgements" mode="acknowledgements"/>
+      <xsl:apply-templates select="d:dedication" mode="dedication"/>
+      <xsl:apply-templates select="d:acknowledgements" mode="acknowledgements"/>
 
       <xsl:variable name="toc.params">
         <xsl:call-template name="find.path.params">
@@ -90,8 +92,8 @@
         </xsl:with-param>
       </xsl:call-template>
 
-      <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/legalnotice"/>
-      <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/legalnotice"/>
+      <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:legalnotice"/>
+      <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
 
       <xsl:apply-templates/>
     </div>
