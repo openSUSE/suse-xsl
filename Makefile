@@ -16,10 +16,8 @@ CDIR          := $(shell pwd)
 DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
-SUSE_SCHEMA_PATH := $(SUSE_XML_PATH)/schema
 SUSE_STYLES_PATH := $(DB_XML_PATH)/stylesheet
 XSL_INST_PATH := /usr/share/xml/docbook/stylesheet/
-URL           := https://raw.githubusercontent.com/openSUSE/suse-xsl/master
 
 #--------------------------------------------------------------
 # stylesheet directory names
@@ -28,8 +26,6 @@ DIR2005          := suse
 DIR2013_SUSE     := suse2013
 DIR2013_OPENSUSE := opensuse2013
 DIR2013_DAPS     := daps2013
-
-ALL_STYLEDIRS := $(DIR2005) $(DIR2013_SUSE) $(DIR2013_OPENSUSE) $(DIR2013_DAPS)
 
 #--------------------------------------------------------------
 # Directories and files that will be created
@@ -77,16 +73,13 @@ OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
 CATALOG_DIR   := $(DESTDIR)/etc/xml/catalog.d
-SGML_DIR      := $(DESTDIR)$(PREFIX)/sgml
-VAR_SGML_DIR  := $(DESTDIR)/var/lib/sgml
 
 INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) $(DAPSSTYLEDIR2013) \
    $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS)
 
-INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) $(DTDDIR_10) \
-   $(RNGDIR_09) $(RNGDIR_10) $(TTF_FONT_DIR) $(CATALOG_DIR) $(SGML_DIR) \
-   $(VAR_SGML_DIR)
+INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
+   $(TTF_FONT_DIR) $(CATALOG_DIR)
 
 #############################################################
 
@@ -133,19 +126,6 @@ generate_xslns: | $(LOCAL_STYLEDIRS)
 $(DEV_SUSEXSL_CATALOG): $(SUSEXSL_CATALOG) | $(DEV_CATALOG_DIR)
 	@echo "Creating XML catalog $@..."
 	@sed 's_xml:base=".."_xml:base="file://$(XSL_INST_PATH)"_g;s_"build/stylesheet/_"_g' $< > $@
-
-# Alternative creation
-#$(DEV_SUSEXSL_CATALOG): $(SUSEXSL_CATALOG) | $(DEV_CATALOG_DIR)
-#	xmlcatalog --noout --create $@
-#	for dir in suse suse2013 opensuse2013 daps2013 ; do \
-#	  xmlcatalog --noout --add "rewriteSystem" "$(URL)/$$dir-ns" "$$dir-ns" $@; \
-#	  xmlcatalog --noout --add "rewriteSystem" "$(URL)/$$dir" "$$dir" $@; \
-#	  xmlcatalog --noout --add "rewriteURI" "$(URL)/$$dir-ns" "$$dir-ns" $@; \
-#	  xmlcatalog --noout --add "rewriteURI" "$(URL)/$$dir" "$$dir" $@; \
-#	done
-#	sed -i '/^<!DOCTYPE .*>$$/d' $@
-#	sed -i '/<catalog/a\ <group id="$(PACKAGE)" xml:base="file://$(XSL_INST_PATH)">' $@
-#	sed -i '/<\/catalog/i\ </group>' $@
 
 
 # create needed directories
