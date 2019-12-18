@@ -32,13 +32,14 @@
      rewritePrefix="daps2013"/>
 
    <rewriteSystem
-     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020"
-     rewritePrefix="suse2020"/>
+     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
+     rewritePrefix="build/stylesheet/suse2020-ns"/>
    <rewriteURI
-     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020"
-     rewritePrefix="suse2020"/>
+     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
+     rewritePrefix="build/stylesheet/suse2020-ns"/>
 
-   <!-- FIXME: All the -ns URLs here are complete hogwash because the -ns
+
+   <!-- The -ns URLs below this point are hogwash because the -ns
    versions are generated and not part of the repository. -->
    <rewriteSystem
      systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse-ns"
@@ -67,13 +68,6 @@
    <rewriteURI
      uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/daps2013-ns"
      rewritePrefix="build/stylesheet/daps2013-ns"/>
-
-   <rewriteSystem
-     systemIdStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
-     rewritePrefix="build/stylesheet/suse2020-ns"/>
-   <rewriteURI
-     uriStartString="https://raw.githubusercontent.com/openSUSE/suse-xsl/master/suse2020-ns"
-     rewritePrefix="build/stylesheet/suse2020-ns"/>
 
   </group>
 
