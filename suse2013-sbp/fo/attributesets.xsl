@@ -37,10 +37,8 @@
   <xsl:attribute name="text-align">start</xsl:attribute>
 </xsl:attribute-set>
 
-<!-- FIXME: The font sizes here are a nice idea in theory. In practice, they
-are overridden somewhere. Probably because of the original stylesheets. -->
 <xsl:attribute-set name="admonition.normal.title.properties">
-  <xsl:attribute name="font-size"><xsl:value-of select="&xxx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
+  <xsl:attribute name="font-size"><xsl:value-of select="&xx-large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
 </xsl:attribute-set>
 <xsl:attribute-set name="admonition.compact.title.properties">
   <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $sans-fontsize-adjust"/>pt</xsl:attribute>
