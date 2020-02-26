@@ -12,12 +12,12 @@ License: GPL 2+
 var active = false;
 var deactivatePosition = -1;
 
-var trackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
-var trackerType = $( 'meta[name="tracker-type"]' ).attr('content');
+var bugtrackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
+var bugtrackerType = $( 'meta[name="tracker-type"]' ).attr('content');
 
 // we handle Github (= gh) and bugzilla.suse.com (= bsc), default to bsc
-if ((trackerType != 'gh') && (trackerType != 'bsc')) {
-  trackerType = 'bsc';
+if ((bugtrackerType != 'gh') && (bugtrackerType != 'bsc')) {
+  bugtrackerType = 'bsc';
 }
 
 // For Bugzilla
@@ -136,13 +136,13 @@ $(function() {
     $('#_toolbar').addClass('only-nav');
   }
 
-  tracker();
+  addBugLinks();
 });
 
 
-function tracker() {
+function addBugLinks() {
   // do not create links if there is no URL
-  if ( typeof(trackerUrl) == 'string') {
+  if ( typeof(bugtrackerUrl) == 'string') {
     $('.permalink:not([href^=#idm])').each(function () {
       var permalink = this.href;
       var sectionNumber = "";
@@ -155,7 +155,7 @@ function tracker() {
         sectionName = $(this).prevAll('span.name')[0].innerHTML;
       }
 
-      if (trackerType == 'bsc') {
+      if (bugtrackerType == 'bsc') {
         url = bugzillaUrl(sectionNumber, sectionName, permalink);
       }
       else {
@@ -175,7 +175,7 @@ function tracker() {
 
 function githubUrl(sectionNumber, sectionName, permalink) {
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var url = trackerUrl
+  var url = bugtrackerUrl
      + "?title=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
      + "&amp;body=" + encodeURIComponent(body);
   if (ghAssignee) {
@@ -192,7 +192,7 @@ function githubUrl(sectionNumber, sectionName, permalink) {
 
 function bugzillaUrl(sectionNumber, sectionName, permalink) {
   var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
-  var url = trackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
+  var url = bugtrackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
     + '&amp;component=' + encodeURIComponent(bscComponent)
     + "&amp;short_desc=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
     + "&amp;comment=" + encodeURIComponent(body);
