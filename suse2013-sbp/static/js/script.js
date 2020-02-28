@@ -137,6 +137,7 @@ $(function() {
   }
 
   addBugLinks();
+  addClipboardButtons();
 });
 
 
@@ -204,6 +205,77 @@ function bugzillaUrl(sectionNumber, sectionName, permalink) {
   }
   return url;
 }
+
+function addClipboardButtons() {
+  $( ".verbatim-wrap > pre" ).each(function () {
+      var clipButton = $('<button/>', {
+          class: 'clip-button',
+          text: 'Copy code',
+          click: function () {
+            var elm = this.previousSibling;
+            copyToClipboard(elm);
+            elm.parentElement.classList.add("copy-success");
+            setTimeout(function() {
+              elm.parentElement.classList.remove("copy-success");
+            }, 1000);
+          }
+        }
+      );
+      $(this).after(clipButton);
+      return true;
+    }
+  );
+}
+
+function copyToClipboard(elm) {
+  // use temporary hidden form element for selection and copy action
+  var targetId = "__hiddenCopyText__";
+  target = document.getElementById(targetId);
+  if (!target) {
+    var target = document.createElement("textarea");
+    target.style.position = "fixed";
+    target.style.left = "-9999px";
+    target.style.top = "0";
+    target.id = targetId;
+    document.body.appendChild(target);
+  } else {
+    // empty out old content
+    target.textContent = "";
+  };
+  $(elm).contents().each(function () {
+      try {
+        // we only want user-selectable elements, but not prompts.
+        // (notably, if we have deeper nesting of inline elements, this
+        // detection will fail but it should be good enough for common cases)
+        if (getComputedStyle(this)['user-select'] != 'none') {
+          target.textContent += this.textContent;
+        };
+      } catch(e) {
+        // it's not an element node but a text node, so we always want it
+        target.textContent += this.textContent;
+      };
+    }
+  );
+  // select the content
+  var currentFocus = document.activeElement;
+  target.focus();
+  target.setSelectionRange(0, target.value.length);
+
+  // copy the selection
+  var succeed;
+  try {
+    succeed = document.execCommand("copy");
+  } catch(e) {
+    succeed = false;
+  }
+  // restore original focus
+  if (currentFocus && typeof currentFocus.focus === "function") {
+    currentFocus.focus();
+  }
+
+  return succeed;
+}
+
 
 function activate( elm ) {
   var element = elm;
