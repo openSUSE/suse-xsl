@@ -1834,32 +1834,74 @@ code, .literal, .replaceable, .package {
     color: #900;
 }
 
- /* This elements exists solely to avoid the scrollbar overlaying the rounded
-    corners and the padding becoming inconsistent. */
 .verbatim-wrap {
-    padding: 10px;
-    background-color: #EFEFF0;
-    border-radius: 5px;
     margin: 5px 0;
-    border: 1px solid #999;
+    padding: 0;
+    background-color: #999;
+    border-radius: 5px;
+    text-align: right;
+    transition: background-color .3s linear;
 }
 
 .example .verbatim-wrap {
     margin: 10px 0 24px;
 }
 
-.screen, .programlisting, .computeroutput, .userinput, .synopsis {
-    font: normal 13px 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace;
+.verbatim-wrap > div, .verbatim-wrap > pre {
+    background-color: #EFEFF0;
+    border-radius: 5px;
+    border: 1px solid #999;
+    position: relative;
     color: #333;
+    display: block;
+    font: normal 13px 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace;
     line-height: 125%;
+    overflow-y: hidden;
+    overflow: auto;
+    padding: 10px;
+    text-align: left;
+    transition: border-color .3s linear, background-color .3s linear;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
 }
 
-.verbatim-wrap > div, .verbatim-wrap pre {
-    display: block;
-    width: 100%;
-    overflow: auto;
-    overflow-y: hidden;
+.verbatim-wrap > .clip-button {
+    display: inline-block;
+    background-color: transparent;
     text-align: left;
+    border: none;
+    height: 16px;
+    margin: 5px;
+    padding: 0 0 0 20px;
+    overflow: hidden;
+    color: #FFF;
+    outline: none;
+    font-family: 'Open Sans', Helvetica, FreeSans, sans-serif;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../images/clipboard.svg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    line-height: 16px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    font-size: 12px;
+
+}
+
+.verbatim-wrap > .clip-button:hover, .verbatim-wrap > .clip-button:focus {
+    text-decoration: underline;
+}
+
+.verbatim-wrap.copy-success > pre, .verbatim-wrap.copy-success > div {
+    border-color: #3465A4;
+    background-color: #F7FAF6;
+}
+
+.verbatim-wrap.copy-success {
+    background-color: #3465A4;
 }
 
 .verbatim-wrap code, .verbatim-wrap .replaceable, .verbatim-wrap .literal,
@@ -3044,6 +3086,12 @@ p.ds-message {
         border-right: none;
         border-radius: 0;
         margin-right: -10px;
+    }
+
+    .verbatim-wrap > pre, .verbatim-wrap > div {
+        border-left: none;
+        border-right: none;
+        border-radius: 0;
     }
 
     .example-contents > .verbatim-wrap, .admonition > .verbatim-wrap,
