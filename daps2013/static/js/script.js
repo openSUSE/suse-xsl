@@ -40,20 +40,6 @@ $(function() {
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
 
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-     || location.hostname == this.hostname) {
-      var target = $(this.hash.replace( /(:|\.|\[|\])/g, "\\$1" ));
-      var targethash = this.hash;
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, speed, function() { location.hash = targethash; });
-        return false;
-      }
-    }
-  });
   $('a.top-button[href=#]').click(function() {
     $('html,body').animate({ scrollTop: 0 }, speed,
       function() { location = location.pathname + '#'; });
@@ -75,7 +61,7 @@ $(function() {
   hashActivator();
   window.onhashchange = hashActivator;
 
-  $('#_share-print').show();
+  $('._share-print').show();
 
   if (location.protocol.match(/^(http|spdy)/)) {
     $('body').removeClass('offline');
@@ -96,11 +82,11 @@ $(function() {
   $('#_find-input').blur(function(){labelInputFind();});
   $('#_find-input-label').click(function(){$('#_find-input').focus();});
 
-  $('#_share-fb').click(function(){share('fb');});
-  $('#_share-in').click(function(){share('in');});
-  $('#_share-tw').click(function(){share('tw');});
-  $('#_share-mail').click(function(){share('mail');});
-  $('#_print-button').click(function(){print();});
+  $('._share-fb').click(function(){share('fb');});
+  $('._share-in').click(function(){share('in');});
+  $('._share-tw').click(function(){share('tw');});
+  $('._share-mail').click(function(){share('mail');});
+  $('._print-button').click(function(){print();});
 
   $('#_bubble-toc ol > li').filter(':has(ol)').children('a').unbind('click');
   $('#_bubble-toc ol > li').filter(':has(ol)').children('a').append('<span class="arrow">&nbsp;</span>');
