@@ -580,7 +580,7 @@
     <xsl:param name="nav.context"/>
 
     <xsl:if test="$generate.share.and.print != 0">
-      <div id="_share-print">
+      <div class="_share-print">
         <xsl:if test="$generate.sharelinks != 0">
           <div class="online-contents share">
             <strong><xsl:call-template name="gentext">
@@ -589,19 +589,19 @@
             </strong>
             <!-- &#x2022; = &bull; -->
             <span class="share-buttons">
-              <span id="_share-fb" class="bottom-button">
+              <span class="_share-fb bottom-button">
                 <xsl:call-template name="gentext">
                   <xsl:with-param name="key">shareviafacebook</xsl:with-param>
                 </xsl:call-template>
               </span>
               <span class="spacer"> &#x2022; </span>
-              <span id="_share-in" class="bottom-button">
+              <span class="_share-in bottom-button">
                 <xsl:call-template name="gentext">
                   <xsl:with-param name="key">sharevialinkedin</xsl:with-param>
                 </xsl:call-template>
               </span>
               <span class="spacer"> &#x2022; </span>
-              <span id="_share-tw" class="bottom-button">
+              <span class="_share-tw bottom-button">
                 <xsl:call-template name="gentext">
                   <xsl:with-param name="key">shareviatwitter</xsl:with-param>
                 </xsl:call-template>
@@ -609,7 +609,7 @@
               <!-- Our email form only works on suse.com pages, thus it is helpful
                    to be able to disable it separately. -->
               <span class="spacer"> &#x2022; </span>
-              <span id="_share-mail" class="bottom-button">
+              <span class="_share-mail bottom-button">
                 <xsl:call-template name="gentext">
                   <xsl:with-param name="key">shareviaemail</xsl:with-param>
                 </xsl:call-template>
@@ -617,7 +617,7 @@
             </span>
           </div>
         </xsl:if>
-        <div class="print"><span id="_print-button" class="bottom-button">
+        <div class="print"><span class="_print-button bottom-button">
           <xsl:call-template name="gentext">
             <xsl:with-param name="key">printthispage</xsl:with-param>
           </xsl:call-template></span></div>
