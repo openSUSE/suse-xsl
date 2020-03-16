@@ -44,7 +44,7 @@
   <xsl:template name="division.title">
     <xsl:param name="node" select="."/>
     <h1 class="title">
-      <!-- No calling of id.attribute template as ID is definied in 
+      <!-- No calling of id.attribute template as ID is defined in
         parent <div>
       -->
       <xsl:call-template name="anchor">
