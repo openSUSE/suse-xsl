@@ -382,7 +382,7 @@ function share( service ) {
   // helpful: https://github.com/bradvin/social-share-urls
   u = encodeURIComponent( document.URL );
   t = encodeURIComponent( document.title );
-  shareSettings = 'menubar=0,toolbar=1,status=0,width=600,height=650'
+  shareSettings = 'menubar=0,toolbar=1,status=0,width=600,height=650';
   if ( service == 'fb' ) {
     shareURL = 'https://www.facebook.com/sharer.php?u=' + u + '&amp;t=' + t;
     window.open(shareURL,'sharer', shareSettings);
@@ -398,7 +398,7 @@ function share( service ) {
     else if ( service == 'mail' ) {
     shareURL = 'mailto:?subject=Check%20out%20the%20SUSE%20Documentation%2C%20%22' + t + '%22&body=' + u;
     window.location.assign(shareURL);
-  }
+  };
 }
 
 function unlabelInputFind() {
