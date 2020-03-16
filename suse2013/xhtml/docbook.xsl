@@ -606,16 +606,14 @@
                   <xsl:with-param name="key">shareviatwitter</xsl:with-param>
                 </xsl:call-template>
               </span>
-              <xsl:if test="$allow.email.sharelink = 1">
               <!-- Our email form only works on suse.com pages, thus it is helpful
                    to be able to disable it separately. -->
-                <span class="spacer"> &#x2022; </span>
-                <span id="_share-mail" class="bottom-button">
-                  <xsl:call-template name="gentext">
-                    <xsl:with-param name="key">shareviaemail</xsl:with-param>
-                  </xsl:call-template>
-                </span>
-              </xsl:if>
+              <span class="spacer"> &#x2022; </span>
+              <span id="_share-mail" class="bottom-button">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key">shareviaemail</xsl:with-param>
+                </xsl:call-template>
+              </span>
             </span>
           </div>
         </xsl:if>
