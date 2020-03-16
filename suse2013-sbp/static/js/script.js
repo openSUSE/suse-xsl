@@ -396,8 +396,8 @@ function share( service ) {
     window.open(shareURL, 'sharer', shareSettings);
   }
     else if ( service == 'mail' ) {
-    shareURL = 'https://www.suse.com/company/contact/sendemail.php?url=' + u;
-    window.open(shareURL, 'sharer', shareSettings);
+    shareURL = 'mailto:?subject=Check%20out%20the%20SUSE%20Documentation%2C%20%22' + t + '%22&body=' + u;
+    window.location.assign(shareURL);
   }
 }
 

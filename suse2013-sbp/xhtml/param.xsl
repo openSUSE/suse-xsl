@@ -359,11 +359,8 @@ task before
     </xsl:choose>
   </xsl:param>
 
-  <!-- Create sharing links for Facebook, Google+, Twitter? -->
+  <!-- Create sharing links for Facebook, Twitter, LinkedIn? -->
   <xsl:param name="generate.sharelinks" select="1"/>
-
-  <!-- The email share link only works with suse.com content. -->
-  <xsl:param name="allow.email.sharelink" select="$suse.content"/>
 
   <!-- Separator between breadcrumbs links: -->
   <xsl:param name="daps.breadcrumbs.sep">&#xa0;›&#xa0;</xsl:param>
