@@ -34,6 +34,12 @@
       <a title="Permalink" class="permalink">
         <xsl:attribute name="href">
           <xsl:choose>
+            <!-- When we get just the file name here (article, book, chapter,
+            ... in multi-page HTML), add a #, so the browser won't reload. -->
+            <xsl:when test="$target = translate($target, '#', '')">
+              <xsl:value-of select="$target"/>
+              <xsl:text>#</xsl:text>
+            </xsl:when>
             <xsl:when test="$target != ''">
               <xsl:value-of select="$target"/>
             </xsl:when>
