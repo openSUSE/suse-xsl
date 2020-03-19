@@ -2035,9 +2035,11 @@ div.figure {
     display: block;
     color: #999;
     margin: 17px 0 24px;
-    padding: 1px;
-    border: 1px solid #EFEFF0;
+    padding: 12px 10px;
+    border: 1px solid #999;
+    background-color: #FFF;
     width: auto;
+    box-sizing: border-box;
 }
 
 .inlinemediaobject img {
