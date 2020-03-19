@@ -94,7 +94,7 @@
               a link, because usually they are icons. -->
         <xsl:when test="$wrap.img.with.a != 0 and
                         (ancestor::figure or ancestor::informalfigure)">
-          <a href="{$src}">
+          <a href="{$src}" target="_blank">
             <xsl:copy-of select="$imgcontents"/>
           </a>
         </xsl:when>
