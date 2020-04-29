@@ -81,6 +81,7 @@
       <xsl:with-param name="product-candidate" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
       <xsl:with-param name="version-candidate" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
       <xsl:with-param name="labels-candidate" select="($bugtracker/dm:labels[normalize-space(.) != ''])[last()]"/>
+      <xsl:with-param name="template-candidate" select="($bugtracker/dm:template[normalize-space(.) != ''])[last()]"/>
     </xsl:call-template>
   </xsl:template>
 
@@ -143,6 +144,7 @@
     <xsl:param name="product-candidate" select="''"/>
     <xsl:param name="version-candidate" select="''"/>
     <xsl:param name="labels-candidate" select="''"/>
+    <xsl:param name="template-candidate" select="''"/>
 
     <!-- normalize-space() is now only applied to some properties where
     extraneous spaces are exceedingly unlikely. Unfortunately, people use
@@ -159,6 +161,7 @@
     <xsl:variable name="product" select="$product-candidate"/>
     <xsl:variable name="version" select="$version-candidate"/>
     <xsl:variable name="labels" select="$labels-candidate"/>
+    <xsl:variable name="template" select="$template-candidate"/>
 
     <xsl:variable name="type">
       <xsl:choose>
@@ -180,6 +183,8 @@
       product   <xsl:value-of select="$product"/>
       version   <xsl:value-of select="$version"/>
       labels    <xsl:value-of select="$labels"/>
+      template
+                <xsl:value-of select="$template"/>
     </xsl:message>-->
 
     <xsl:choose>
@@ -189,6 +194,9 @@
 
         <xsl:if test="$assignee">
           <meta name="tracker-{$type}-assignee" content="{$assignee}"/>
+        </xsl:if>
+        <xsl:if test="$template">
+          <meta name="tracker-{$type}-template" content="{$template}"/>
         </xsl:if>
 
         <xsl:if test="$type = 'bsc'">
