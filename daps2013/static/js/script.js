@@ -28,10 +28,12 @@ if (!bscComponent) {
 var bscProduct = $( 'meta[name="tracker-bsc-product"]' ).attr('content');
 var bscAssignee = $( 'meta[name="tracker-bsc-assignee"]' ).attr('content');
 var bscVersion = $( 'meta[name="tracker-bsc-version"]' ).attr('content');
+var bscTemplate = $( 'meta[name="tracker-bsc-template"]' ).attr('content');
 // For GitHub
 var ghAssignee = $( 'meta[name="tracker-gh-assignee"]' ).attr('content');
 var ghLabels = $( 'meta[name="tracker-gh-labels"]' ).attr('content');
 var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
+var ghTemplate = $( 'meta[name="tracker-gh-template"]' ).attr('content');
 
 
 $(function() {
@@ -174,7 +176,14 @@ function addBugLinks() {
 }
 
 function githubUrl(sectionNumber, sectionName, permalink) {
-  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var body = sectionNumber + " " + sectionName + ":\n\n" + permalink;
+  if (ghTemplate) {
+    if (ghTemplate.indexOf('@@source@@') !== -1) {
+      body = ghTemplate.replace(/@@source@@/i, body);
+    } else {
+      body = body + '\n' + ghTemplate;
+    };
+  };
   var url = bugtrackerUrl
      + "?title=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
      + "&amp;body=" + encodeURIComponent(body);
@@ -191,7 +200,14 @@ function githubUrl(sectionNumber, sectionName, permalink) {
 }
 
 function bugzillaUrl(sectionNumber, sectionName, permalink) {
-  var body = sectionNumber + " " + sectionName + "\n\n" + permalink;
+  var body = sectionNumber + " " + sectionName + ":\n\n" + permalink;
+  if (bscTemplate) {
+    if (bscTemplate.indexOf('@@source@@') !== -1) {
+      body = bscTemplate.replace(/@@source@@/i, body);
+    } else {
+      body = body + '\n' + bscTemplate;
+    };
+  };
   var url = bugtrackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
     + '&amp;component=' + encodeURIComponent(bscComponent)
     + "&amp;short_desc=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
