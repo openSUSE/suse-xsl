@@ -813,6 +813,11 @@ hljs.configure({
         <xsl:with-param name="input" select="$external.js"/>
       </xsl:call-template>
     </xsl:if>
+    <xsl:if test="$external.js.onlineonly != ''">
+      <xsl:call-template name="make.multi.script.link.onlineonly">
+        <xsl:with-param name="input" select="$external.js.onlineonly"/>
+      </xsl:call-template>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="make.multi.script.link">
@@ -826,6 +831,28 @@ hljs.configure({
       </xsl:call-template>
       <xsl:call-template name="make.multi.script.link">
         <xsl:with-param name="input" select="$next"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="make.multi.script.link.onlineonly">
+    <xsl:param name="input" select="''"/>
+    <xsl:param name="count" select="1"/>
+    <xsl:variable name="input-sanitized" select="concat(normalize-space($input),' ')"/>
+    <xsl:if test="string-length($input) &gt; 1">
+      <xsl:variable name="this" select="substring-before($input-sanitized,' ')"/>
+      <xsl:variable name="next" select="substring-after($input-sanitized,' ')"/>
+      <xsl:variable name="varname" select="concat('externalScript', $count)"/>
+      <script type="text/javascript">
+if (window.location.protocol.toLowerCase() != 'file:') {
+  var <xsl:value-of select="$varname"/> = document.createElement("script");
+  <xsl:value-of select="$varname"/>.src = "<xsl:value-of select="$this"/>";
+  document.head.appendChild(<xsl:value-of select="$varname"/>);
+}
+      </script>
+      <xsl:call-template name="make.multi.script.link.onlineonly">
+        <xsl:with-param name="input" select="$next"/>
+        <xsl:with-param name="count" select="$count + 1"/>
       </xsl:call-template>
     </xsl:if>
   </xsl:template>

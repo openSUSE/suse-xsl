@@ -76,6 +76,12 @@
             -stringparam="external.js='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
     -->
 
+  <!-- Include external JS, can take multiple space-separated paths, only loaded when page is not loaded from file: URL. -->
+  <xsl:param name="external.js.onlineonly" select="''"/>
+    <!-- Override with:
+            -stringparam="external.js.onlineonly='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
+    -->
+
 
 <!-- 1. Admonitions  ============================================ -->
   <!-- Use graphics in admonitions?  0=no, 1=yes -->
