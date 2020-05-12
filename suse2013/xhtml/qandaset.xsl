@@ -110,11 +110,16 @@
   </dl>
 </xsl:template>
 
+
 <xsl:template match="question">
   <dt class="question">
     <xsl:call-template name="id.attribute">
       <xsl:with-param name="force" select="1"/>
     </xsl:call-template>
+    <xsl:variable name="label.content">
+      <xsl:apply-templates select="." mode="qanda.label"/>
+    </xsl:variable>
+    <strong><xsl:value-of select="$label.content"/></strong>
     <xsl:apply-templates select="*[local-name(.) != 'label']"/>
   </dt>
 </xsl:template>
