@@ -2109,7 +2109,7 @@ a:hover code, a:focus code, a:active code,
 a:hover .replaceable, a:focus .replaceable, a:active .replaceable,
 a:hover .literal, a:focus .literal, a:active .literal,
 a:hover .package, a:focus .package, a:active .package {
-    border-color: #439239;
+    border-color: #3465A4;
 }
 
 
