@@ -1,5 +1,5 @@
 -------------------------------------------------------------------
-Thu May 15 13:37:00 UTC 2020 - sknorr@suse.com
+Fri May 15 13:37:00 UTC 2020 - sknorr@suse.com
 
 Stable release of the SUSE XSL stylesheets for SBP 2.0.16:
 
@@ -32,7 +32,7 @@ https://github.com/openSUSE/suse-xsl/releases/tag/sbp-2.0.16
   - Open clicked images in new tab/window by default
   - Stop adding "Abstract" titles over abstracts
 
-PDF:
+- PDF:
   - Fix layout regressions that occurred after libxml bug fixes:
     admon titles, book titles, imprint text (#369)
   - Change imprint address to SUSE LLC Provo
