@@ -17,7 +17,7 @@
 
 
 Name:           suse-xsl-stylesheets-sbp
-Version:        2.0.14
+Version:        2.0.16
 Release:        0
 
 ###############################################################
