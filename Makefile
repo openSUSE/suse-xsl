@@ -12,7 +12,7 @@ endif
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets-sbp
 # HINT: Also raise version number in packaging/suse-xsl-stylesheets.spec
-VERSION       := 2.0.16
+VERSION       := 2.0.17
 CDIR          := $(shell pwd)
 DIST_EXCLUDES := packaging/exclude-files_for_susexsl_package.txt
 SUSE_XML_PATH := $(PREFIX)/xml/suse
