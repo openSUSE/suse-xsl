@@ -99,7 +99,9 @@ install: | $(INST_DIRECTORIES)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013-NS); tar xp)
 	for SDIR in $(INST_STYLEDIRS); do \
-	   sed -i "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl; \
+	   sed "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl > $$SDIR/VERSION.xsl.0; \
+	   mv $$SDIR/VERSION.xsl.0 $$SDIR/VERSION.xsl; \
+	   cp $$SDIR/VERSION.xsl $$SDIR/VERSION; \
 	done
 
 #-----------------------------
