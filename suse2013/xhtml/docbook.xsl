@@ -175,10 +175,9 @@
                |partinfo
                |info
                |docinfo)[1]"/>
-    <xsl:variable name="first-para" select="(descendant::para|descendant::simpara)[1]"/>
     <xsl:choose>
-      <xsl:when test="$info and $info/abstract">
-        <xsl:for-each select="$info/abstract[1]/*">
+      <xsl:when test="$info and ($info/abstract or $info/highlights)">
+        <xsl:for-each select="($info/abstract[1]/*|$info/highlights[1]/*)[1]">
           <xsl:value-of select="normalize-space(.)"/>
           <xsl:if test="position() &lt; last()">
             <xsl:text> </xsl:text>
@@ -188,7 +187,22 @@
       <xsl:otherwise>
         <!-- Except for the lack of markup here, this code is very similar to that in autotoc.xsl. Unify later if possible. -->
         <xsl:variable name="teaser">
-          <xsl:apply-templates/>
+          <xsl:choose>
+            <!-- For single-html books/articles, it is important that we skip
+            the legalnotice. "© SUSE 20XX" is not a good page description
+            usually. -->
+            <xsl:when test="self::book">
+              <xsl:apply-templates select="(*[self::preface or self::chapter or self::sect1 or self::section]/para |
+                                            *[self::preface or self::chapter or self::sect1 or self::section]/simpara)[1]"/>
+            </xsl:when>
+            <xsl:when test="self::article">
+              <xsl:apply-templates select="(*[self::sect1 or self::section]/para |
+                                            *[self::sect1 or self::section]/simpara)[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:apply-templates select="(descendant::para | descendant::simpara)[1]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:variable>
         <xsl:variable name="teaser-safe">
           <xsl:call-template name="string-replace">
@@ -207,7 +221,7 @@
             <xsl:value-of select="'…'"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="$teaser-safe"/>
+            <xsl:value-of select="normalize-space($teaser-safe)"/>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:otherwise>
