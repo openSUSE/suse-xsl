@@ -1,4 +1,20 @@
 -------------------------------------------------------------------
+Thu May 20 13:37:00 UTC 2020 - sknorr@suse.com
+
+Stable release of the SUSE XSL stylesheets 2.0.17:
+
+https://github.com/openSUSE/suse-xsl/releases/tag/2.0.17
+
+- HTML:
+  - Fix recursion issue that broke builds of certain long
+    documents because we evaluated far too much content for
+    teaser texts
+  - Get fonts CSS via HTTPS by default
+
+- Other:
+  - Fix release version insertion in Makefile
+
+-------------------------------------------------------------------
 Thu May 14 13:37:00 UTC 2020 - sknorr@suse.com
 
 Stable release of the SUSE XSL stylesheets 2.0.16:
@@ -28,7 +44,7 @@ https://github.com/openSUSE/suse-xsl/releases/tag/2.0.16
   - Open clicked images in new tab/window by default
   - Stop adding "Abstract" titles over abstracts
 
-PDF:
+- PDF:
   - Fix layout regressions that occurred after libxml bug fixes:
     admon titles, book titles, imprint text (#369)
   - Change imprint address to SUSE LLC Provo
