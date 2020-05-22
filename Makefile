@@ -22,14 +22,16 @@ XSL_INST_PATH := /usr/share/xml/docbook/stylesheet/
 # stylesheet directory names
 
 DIR2005          := suse
-DIR2013_SUSE     := suse2013
-DIR2013_OPENSUSE := opensuse2013
 DIR2013_DAPS     := daps2013
+DIR2013_OPENSUSE := opensuse2013
+DIR2013_SUSE     := suse2013
+# SUSE2020 is only available in a namespaced version
+DIR2020_SUSE     := suse2020-ns
 
 #--------------------------------------------------------------
 # Directories and files that will be created
 
-BUILD_DIR       := build
+BUILD_DIR       := $(CDIR)/build
 DEV_CATALOG_DIR := $(BUILD_DIR)/catalog.d
 DEV_STYLE_DIR   := $(BUILD_DIR)/stylesheet
 
@@ -47,35 +49,40 @@ DEV_DIR2013_OPENSUSE := $(DEV_STYLE_DIR)/$(DIR2013_OPENSUSE)-ns
 DEV_DIR2013_SUSE     := $(DEV_STYLE_DIR)/$(DIR2013_SUSE)-ns
 
 DEV_DIRECTORIES := $(DEV_CATALOG_DIR) \
-   $(DEV_DIR2005) $(DEV_DIR2013_DAPS) \
-   $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
+   $(DEV_DIR2005) \
+   $(DEV_DIR2013_DAPS) $(DEV_DIR2013_OPENSUSE) $(DEV_DIR2013_SUSE)
 
 LOCAL_STYLEDIRS := $(DIR2005) $(DEV_DIR2005) \
-   $(DIR2013_SUSE) $(DEV_DIR2013_SUSE) $(DIR2013_DAPS) $(DEV_DIR2013_DAPS) \
-   $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE)
+   $(DIR2013_DAPS) $(DEV_DIR2013_DAPS) \
+   $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE) \
+   $(DIR2013_SUSE) $(DEV_DIR2013_SUSE) \
+   $(DIR2020_SUSE)
 
 
 #-------------------------------------------------------
 # Directories for installation
 
-INST_STYLE_ROOT          := $(DESTDIR)$(SUSE_STYLES_PATH)
+INST_STYLE_ROOT         := $(DESTDIR)$(SUSE_STYLES_PATH)
 
 STYLEDIR2005            := $(INST_STYLE_ROOT)/$(DIR2005)
 STYLEDIR2005-NS         := $(INST_STYLE_ROOT)/$(DIR2005)-ns
-SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
-SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
 DAPSSTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)
 DAPSSTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_DAPS)-ns
 OPENSUSESTYLEDIR2013    := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)
 OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
+SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
+SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
+SUSESTYLEDIR2020-NS     := $(INST_STYLE_ROOT)/$(DIR2020_SUSE)
 
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
 CATALOG_DIR   := $(DESTDIR)/etc/xml/catalog.d
 
 INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
-   $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) $(DAPSSTYLEDIR2013) \
-   $(DAPSSTYLEDIR2013-NS) $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS)
+   $(DAPSSTYLEDIR2013) $(DAPSSTYLEDIR2013-NS) \
+   $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS) \
+   $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) \
+   $(SUSESTYLEDIR2020-NS)
 
 INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
    $(TTF_FONT_DIR) $(CATALOG_DIR)
@@ -90,18 +97,19 @@ install: | $(INST_DIRECTORIES)
 	install -m644 $(DEV_CATALOG_DIR)/*.xml $(CATALOG_DIR)
 	install -m644 COPYING* $(DOCDIR)
 	install -m644 fonts/*.ttf $(TTF_FONT_DIR)
-	tar c --mode=u+w,go+r-w,a-s -C $(DIR2005) . | (cd  $(STYLEDIR2005); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2005) . | (cd  $(STYLEDIR2005-NS); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_DAPS) . | (cd  $(DAPSSTYLEDIR2013); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_DAPS) . | (cd  $(DAPSSTYLEDIR2013-NS); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_OPENSUSE) . | (cd  $(OPENSUSESTYLEDIR2013); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_OPENSUSE) . | (cd  $(OPENSUSESTYLEDIR2013-NS); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013); tar xp)
-	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd  $(SUSESTYLEDIR2013-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2005) . | (cd $(STYLEDIR2005); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2005) . | (cd $(STYLEDIR2005-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_DAPS) . | (cd $(DAPSSTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_DAPS) . | (cd $(DAPSSTYLEDIR2013-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_OPENSUSE) . | (cd $(OPENSUSESTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_OPENSUSE) . | (cd $(OPENSUSESTYLEDIR2013-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd $(SUSESTYLEDIR2013); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd $(SUSESTYLEDIR2013-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2020_SUSE) . | (cd  $(SUSESTYLEDIR2020-NS); tar xp)
 	for SDIR in $(INST_STYLEDIRS); do \
-	   sed "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl > $$SDIR/VERSION.xsl.0; \
-	   mv $$SDIR/VERSION.xsl.0 $$SDIR/VERSION.xsl; \
-	   cp $$SDIR/VERSION.xsl $$SDIR/VERSION; \
+	  sed "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl > $$SDIR/VERSION.xsl.0; \
+	  mv $$SDIR/VERSION.xsl.0 $$SDIR/VERSION.xsl; \
+	  cp $$SDIR/VERSION.xsl $$SDIR/VERSION; \
 	done
 
 #-----------------------------
