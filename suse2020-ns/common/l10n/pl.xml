@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+   language="pl" english-language-name="Polish">
+
+   <l:gentext key="LocalisedLanguageName" text="Polski"/>
+   <l:gentext key="SeeAlso" text="Zobacz także"/>
+   <l:gentext key="Authors" text="Autorzy"/>
+   <l:gentext key="TableofContents" text="Spis treści"/>
+   <l:gentext key="ListofAuthors" text="Lista autorów"/>
+   <!-- The following two may need better translation. Google Translate does
+        the same though. -->
+   <l:gentext key="Contributor"     text="Autor"/>
+   <l:gentext key="Contributors"    text="Autorzy"/>
+
+   <l:gentext key="admonseparator"  text=": "/>
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
+   <l:gentext key="selectlanguage" text="Wybierz język"/>
+   <l:gentext key="selectformat" text="Wybierz format"/>
+   <l:gentext key="formathtml" text="Strony WWW"/>
+   <l:gentext key="formatsinglehtml" text="Pojedyncza strona WWW"/>
+   <l:gentext key="formatpdf" text="PDF"/>
+   <l:gentext key="formatepub" text="E-book (EPUB)"/>
+   <l:gentext key="contentsoverview" text="Spis treści"/>
+   <l:gentext key="showcontentsoverview" text="Pokaż spis treści"/>
+   <l:gentext key="find" text="Znajdź"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
+   <l:gentext key="navigation" text="Nawigacja"/>
+   <l:gentext key="sharethispage" text="Udostępnij tę stronę: "/>
+   <l:gentext key="shareviafacebook" text="Facebook"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
+   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviaemail" text="E-mail"/>
+   <l:gentext key="printthispage" text="Drukuj tę stronę"/>
+   <l:gentext key="susecareers" text="Kariera"/>
+   <l:gentext key="suselegal" text="Aspekty prawne"/>
+   <l:gentext key="suseabout" text="Informacje"/>
+   <l:gentext key="susecontact" text="Skontaktuj się z nami"/>
+   <l:gentext key="version.info" text="Drukuj tę stronę"/>
+   <l:gentext key="totopofpage" text="Do góry"/>
+
+   <!-- FIXME: Needs translation. -->
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Jump to content"/>
+     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+   </l:context>
+
+   <l:context name="styles">
+      <l:template name="person-name" text="first-last"/>
+
+      <l:template name="example-label" text="Przykład&#160;%n:"/>
+      <l:template name="example-title" text="%t"/>
+      <l:template name="figure-label" text="Rysunek&#160;%n:"/>
+      <l:template name="figure-title" text="%t"/>
+      <l:template name="glosslist-label" text=""/>
+      <l:template name="glosslist-title" text="%t"/>
+      <l:template name="procedure-label" text="Procedura&#160;%n:"/>
+      <l:template name="procedure-title" text="%t"/>
+      <l:template name="table-label" text="Tabela&#160;%n:"/>
+      <l:template name="table-title" text="%t"/>
+      <l:template name="variablelist-label" text=""/>
+      <l:template name="variablelist-title" text="%t"/>
+      <l:template name="itemizedlist-label" text=""/>
+      <l:template name="itemizedlist-title" text="%t"/>
+      <l:template name="orderedlist-label" text=""/>
+      <l:template name="orderedlist-title" text="%t"/>
+   </l:context>
+
+   <l:context name="xref">
+      <l:template name="sect1" text="Sekcja „%t”"/>
+      <l:template name="sect2" text="Sekcja „%t”"/>
+      <l:template name="sect3" text="Sekcja „%t”"/>
+      <l:template name="sect4" text="Sekcja „%t”"/>
+      <l:template name="sect5" text="Sekcja „%t”"/>
+      <l:template name="page.citation" text=" (page&#160;%p)"/>
+
+      <l:template name="intra-separator" text=", "/>
+      <l:template name="intra-article" text="Artykuł „%t”"/>
+      <l:template name="intra-book" text="Książka „%t”"/>
+      <l:template name="intra-chapter" text="Rozdział %n „%t”"/>
+      <l:template name="intra-sect1" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect2" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect3" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect4" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-sect5" text="Sekcja&#160;%n „%t”"/>
+      <l:template name="intra-section" text="Sekcja&#160;%n „%t”"/>
+
+      <l:template name="intra-example" text="Przykład&#160;%n „%t”"/>
+      <l:template name="intra-figure" text="Rysunek&#160;%n „%t”"/>
+      <l:template name="intra-preface" text="Przedmowa „%t”"/>
+      <l:template name="intra-procedure" text="Procedura&#160;%n „%t”"/>
+      <l:template name="intra-table" text="Tabela&#160;%n „%t”"/>
+
+      <l:template name="intra-variablelist" text="„%t”"/>
+      <l:template name="intra-orderedlist" text="„%t”"/>
+      <l:template name="intra-itemizedlist" text="„%t”"/>
+   </l:context>
+
+   <l:context name="xref-number-and-title">
+      <l:template name="appendix" style="nonumber"  text="Dodatek „%t”"/>
+      <l:template name="bridgehead" text="Sekcja „%t”"/>
+      <l:template name="chapter" style="nonumber"  text="Rozdzia&#x142; %t"/>
+      <l:template name="equation" style="nonumber"  text="R&#xf3;wnanie „%t”"/>
+      <l:template name="example" style="nonumber"  text="Przyk&#x142;ad „%t”"/>
+      <l:template name="figure" style="nonumber"  text="Rysunek „%t”"/>
+      <l:template name="part" style="nonumber"  text="Cz&#x119;&#x15b;&#x107; „%t”"/>
+      <l:template name="procedure" style="nonumber"  text="Procedura „%t”"/>
+      <l:template name="productionset" style="nonumber"  text="Produkcja „%t”"/>
+      <l:template name="qandadiv" style="nonumber"  text="Pyt i Odp „%t”"/>
+      <l:template name="refsect1" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsect2" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsect3" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="refsection" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="sect1" style="nonumber" text="Sekcja „%t”"/>
+      <l:template name="sect2" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect3" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect4" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="sect5" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="section" style="nonumber"  text="Sekcja „%t”"/>
+      <l:template name="simplesect" style="nonumber" text="sekcji „%t”"/>
+      <l:template name="table" style="nonumber"  text="Tabela „%t”"/>
+   </l:context>
+
+   <l:context name="xep-bookmark-title">
+      <l:template name="article" text="%t"/>
+      <l:template name="appendix" text="%n. %t"/>
+      <l:template name="article/appendix" text="%n. %t"/>
+      <l:template name="bibliography" text="%t"/>
+      <l:template name="book" text="%t"/>
+      <l:template name="bridgehead" text="%n. %t"/>
+      <l:template name="chapter" text="%n. %t"/>
+      <l:template name="glossary" text="%t"/>
+      <l:template name="index" text="%t"/>
+      <l:template name="part" text="%n. %t"/>
+      <l:template name="preface" text="%t"/>
+      <l:template name="reference" text="%t"/>
+      <l:template name="refentry" text="%t"/>
+      <l:template name="refsect1" text="%t"/>
+      <l:template name="refsect2" text="%t"/>
+      <l:template name="refsect3" text="%t"/>
+      <l:template name="sect1" text="%n. %t"/>
+      <l:template name="sect2" text="%n. %t"/>
+      <l:template name="sect3" text="%n %t"/>
+      <l:template name="sect4" text="%n %t"/>
+      <l:template name="sect5" text="%n %t"/>
+      <l:template name="section" text="%n. %t"/>
+      <l:template name="set" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+      <l:template name="toc" text="%t"/>
+   </l:context>
+
+   <l:context name="title">
+      <l:template name="part" text="Cz&#x119;&#x15b;&#x107;&#160;%n&#160;%t"/>
+   </l:context>
+
+   <l:context name="msgset">
+      <l:template name="alt" text="Alt"/>
+      <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->
+      <l:template name="command" text="&#x2318;"/>
+      <l:template name="control" text="Ctrl"/>
+      <l:template name="delete" text="Del"/>
+      <l:template name="down" text="&#x02193;"/><!-- darr -->
+      <l:template name="end" text="End"/>
+      <l:template name="enter" text="Enter"/>
+      <l:template name="escape" text="Esc"/>
+      <l:template name="home" text="Home"/>
+      <l:template name="insert" text="Ins"/>
+      <l:template name="left" text="&#x02190;"/><!-- larr -->
+      <l:template name="meta" text="Meta"/>
+<!--       <l:template name="option" text="???"/> -->
+      <l:template name="other" text="???"/>
+      <l:template name="pagedown" text="Page &#x02193;"/>
+      <l:template name="pageup" text="Page &#x02191;"/>
+      <l:template name="right" text="&#x02192;"/><!-- rarr -->
+      <l:template name="shift" text="Shift"/>
+      <l:template name="space" text="Spacja"/>
+      <l:template name="tab" text="&#x02192;|"/>
+      <l:template name="up" text="&#x02191;"/><!-- uarr -->
+   </l:context>
+
+   <l:context name="parameters">
+     <l:template name="dot.after.section" text=""/>
+     <l:template name="dot.after.step" text=""/>
+   </l:context>
+
+   <l:context name="datetime">
+     <l:template name="titlepage.format" text="m/d/Y"/>
+   </l:context>
+
+   <l:context name="datetime-full">
+     <l:template name="January" text="stycznia"/>
+     <l:template name="February" text="lutego"/>
+     <l:template name="March" text="marca"/>
+     <l:template name="April" text="kwietnia"/>
+     <l:template name="May" text="maja"/>
+     <l:template name="June" text="czerwca"/>
+     <l:template name="July" text="lipca"/>
+     <l:template name="August" text="sierpnia"/>
+     <l:template name="September" text="września"/>
+     <l:template name="October" text="października"/>
+     <l:template name="November" text="listopada"/>
+     <l:template name="December" text="grudnia"/>
+     <l:template name="Monday" text="poniedziałek"/>
+     <l:template name="Tuesday" text="wtorek"/>
+     <l:template name="Wednesday" text="środa"/>
+     <l:template name="Thursday" text="czwartek"/>
+     <l:template name="Friday" text="piątek"/>
+     <l:template name="Saturday" text="sobota"/>
+     <l:template name="Sunday" text="niedziela"/>
+   </l:context>
+</l:l10n>
