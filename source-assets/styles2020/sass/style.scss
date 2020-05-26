@@ -1,0 +1,253 @@
+/* new style for docs
+
+/* primary colors */
+
+$background-grey: #ECECED;
+$title-green: #439239;
+$link-green: #439239;
+$productinfo-green: #76AD2D;
+$code-block-grey: #EFEFF0;
+$code-block-border-grey: #B2B2B2;
+$important-orange: #BB7B03;
+$visited-link-purple: #5c3566;
+$report-bug-grey: #c1c1c1;
+$report-bug-background-grey: #fafafa;
+$report-bug-backgroud-hover-grey: #DDDDDD;
+$legal-notice-grey:#666666;
+$chapter-number-grey: #707070;
+
+/* fonts */
+$main-font:  'Open Sans', sans-serif;
+$legal-notice-font: 'Open Sans Regular', sans-serif;
+$code-block-font: 'DejaVu Sans Mono';
+
+/* links
+$link-tags: 'a, a:active, a:hover, a:visited'; */
+
+.documentation {
+  margin: 0 auto;
+  min-width: 150px;
+  max-width: 978px;
+  padding: 0 20px;
+}
+
+#_content {
+    background: transparent url(../images/dots-gray.png) repeat-x scroll 0px 0px;
+        background-color: white;
+        background-position-x: 0px;
+        background-position-y: 0px;
+        background-repeat: repeat-x;
+        background-attachment: scroll;
+        background-image: url("../images/dots-gray.png");
+        background-size: auto;
+        background-origin: padding-box;
+        background-clip: border-box;
+    min-height: 139px;
+    clear: both;
+    min-width: 150px;
+    z-index: 0;
+}
+
+$product-tag: '.productname, .productnumber';
+#{$product-tag} {
+  color: white;
+  background-color: $productinfo-green;
+  font-size: 24px;
+  line-height: 24px;
+  margin: 75px 0 0;
+  padding: 5px 7px;
+  border: 0;
+}
+
+h1 {
+  font-family: $main-font;
+  color: $title-green;
+  font-size: 36px;
+  line-height: 43.2px;
+  padding: 0 0 50px;
+}
+
+.imprint-label {
+  font-weight: bold;
+}
+
+.number {
+  color: $chapter-number-grey;
+
+}
+
+h2 {
+  font-family: $main-font;
+  color: $title-green;
+  font-size: 28px;
+  line-height: 33.6px;
+}
+
+h3 {
+  font-family: $main-font;
+  color: $title-green;
+  font-size: 22px;
+  line-height: 26.4px;
+}
+
+h6 {
+  font-color: black;
+  font-size: 16px;
+  line-height: 22.4px;
+  font-weight: 600;
+}
+
+.report-bug {
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 10px;
+  line-height: 120%;
+  color: $report-bug-grey;
+  background-color: $report-bug-background-grey;
+  transition: opacity 0.2s ease-in-out 0.1s;
+  float: right;
+  &:hover {
+    color: black;
+    background-color: $report-bug-backgroud-hover-grey;
+  }
+}
+
+.permalink {
+  font-size: 75%;
+  line-height: 100%;
+  color: $report-bug-grey;
+  opacity: 1;
+  position: relative;
+  transition: opacity 0.2s ease-in-out 0.1s;
+  text-align: left;
+  &:hover {
+    color: $link-green;
+  }
+}
+
+.legalnotice {
+  color: $legal-notice-grey;
+  font-family: $legal-notice-font;
+  font-size: 12px;
+  line-height: 140%;
+  margin: 5px 0 0 0;
+}
+
+a {
+  color: $link-green;
+  text-decoration: none;
+}
+
+ul.itemizedlist{
+  color: $title-green;
+  & p {
+    color: black;
+  }
+  & pre.screen {
+    color: black;
+  }
+}
+
+/* code blocks */
+.verbatim-wrap {
+    font-family: $code-block-font;
+    font-size: 16px;
+    line-height: 22.4px;
+    padding: 10px;
+    background-color: $code-block-grey;
+    border-radius: 5px;
+    margin: 5px 0;
+    border: 1px solid #999;
+}
+
+/* admonitions */
+
+.note.admonition.normal {
+  border-color: $legal-notice-grey;
+  background: white url(../images/dots-darkgray.png) repeat-x scroll top;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  padding: 10px;
+  margin: 17px 0 24px;
+}
+
+.admonition.tip.normal {
+  border-color: $legal-notice-grey;
+  background: white url(../images/dots-darkgray.png) repeat-x scroll top;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  padding: 10px;
+  margin: 17px 0 24px;
+}
+
+.important.admonition.normal {
+  border-color: #BB7B03;
+  background: white url(../images/dots-orange.png) repeat-x scroll top;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  padding: 10px;
+  margin: 17px 0 24px;
+}
+
+.warning.admonition.normal, .caution.admonition.normal {
+  border-color: #8C0000;
+  background: white url(../images/dots-red.png) repeat-x scroll top;
+  border-width: 1px;
+  border-radius: 3px;
+  border-style: solid;
+  padding: 10px;
+  margin: 17px 0 24px;
+}
+
+
+/* procedures */
+.procedure-contents {
+  border-left: 3px solid #9CC897;
+  font-weight: normal;
+  margin: 17px 0 17px;
+  padding: 3px 5px 6px 2px;
+  background-color: #F7FAF6;
+  display: block;
+}
+
+/* tables */
+.table table {
+  border: 1px solid #999;
+  max-width: 100%;
+  border-spacing: 0;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+
+.table th {
+  margin: 0;
+  padding: 3px 5px;
+  overflow: hidden;
+  vertical-align: middle;
+  border: 1px solid #999;
+  background-color: #D1D1D3;
+  font-weight: 600;
+}
+
+.table td {
+  margin: 0;
+  padding: 3px 5px;
+  overflow: hidden;
+  vertical-align: middle;
+  border-right: 1px solid #999;
+  hyphens: auto;
+}
+
+
+.table-title-wrap {
+  font-family: 'Open Sans Regular';
+  color: $title-green;
+  font-size: 14;
+  line-height:  120;
+  text-transform: uppercase;
+}
