@@ -1,0 +1,663 @@
+@media only screen and (max-width: 800px)
+
+  .share
+    float: right
+
+
+  .print
+    clear: both
+    margin-top: 20px
+
+
+
+@media only screen and (max-width: 700px)
+
+  .find-form
+    margin: 0 0 0 -72.5px
+    width: 125px
+
+
+  #_find-input
+    width: 80px
+
+
+
+@media only screen and (max-width: 640px)
+
+  // Turn the following on again, when we have re-enabled the Find area.
+  // #_toolbar
+  //   height: 98px
+
+  #_nav-area,
+  #_toc-area
+    width: 49.98%
+
+
+  #_find-area
+    background-color: #439239
+    height: 42px
+    overflow: hidden
+    padding: 0 !important
+    width: 100%
+
+
+  #_find-area form
+    margin: 0 !important
+
+
+  .find-form
+    display: block
+    margin: 0
+    padding: 10px
+    width: 100%
+
+
+  #_find-input
+    border-radius: 3px
+    border: 1px solid #CDE8A8
+    font-size: 13px
+    height: 20px
+    margin: 0 auto
+    padding: 0 20px 0 1px
+    // clean this mess out in ~2014 -- leave only the line with "calc" in there
+    width: 91%
+    width: calc(100% - 44px)
+    width: -moz-calc(100% - 44px)
+    width: -webkit-calc(100% - 44px)
+
+
+  #_find-input:focus
+    border: 1px solid #FFF
+
+
+  #_find-input:focus + #_find-button
+    background-position: -108px -72px !important
+
+
+  #_find-input:focus + #_find-button:hover
+    background-position: -126px -72px !important
+
+
+  #_find-input-label
+    clear: both
+    font-size: 13px
+    height: 20px
+    left: 3px
+    line-height: 20px
+    top: -21px
+
+
+
+@media only screen and (max-width: 600px)
+
+  ._share-print strong
+    display: block
+    float: right
+    padding: 0 0 5px
+
+
+  .share-buttons
+    clear: both
+    display: block
+    float: right
+
+
+
+// Mobile layout
+@media only screen and (max-width: 480px)
+
+  #_fixed-header,
+  #_toolbar,
+  #_white-bg
+    padding: 0
+
+
+  #_footer,
+  .documentation
+    padding: 0 10px
+
+
+  #_nav-area,
+  #_toc-area
+    width: 100%
+
+
+  #_toolbar
+    min-height: 113px
+
+
+  #_toolbar.only-nav,
+  #_toolbar.only-toc
+    min-height: 56px
+
+
+  .only-nav #_toc-area,
+  .only-toc #_nav-area
+    display: none
+
+
+  #_bubble-toc,
+  #_fixed-header-wrap > .bubble,
+  #_toc-bubble-wrap > .bubble
+    max-height: 300px
+
+
+  #_nav-area
+    border-top: 1px solid #7DC24D
+
+
+  .nav-inner > .tool-spacer
+    position: absolute
+
+
+  .nav-inner > .tool-spacer:nth-child(2)
+    left: 0
+
+
+  .nav-inner > .tool-spacer:nth-child(3)
+    right: 0
+
+
+  .nav-inner > .tool-label
+    float: left
+    margin: 0 56px
+    padding: 0 10px
+
+
+  .nav-inner
+    float: none
+    width: auto
+
+
+  .crumbs > * + *
+    display: none !important
+
+
+  #_header .single-crumb
+    padding-right: 0
+    position: relative
+    width: 36px !important
+    z-index: 12
+
+
+  #_header .active .single-crumb
+    background-color: #333
+    border-bottom: 1px solid #FFF
+    border-radius: 0
+    color: #FFF
+    left: -10px
+    min-height: 35px
+    padding: 0 10px
+    position: fixed
+    top: 0
+    width: 100% !important
+
+
+  #_header .active .single-contents-icon
+    background-position: -72px -87px
+    float: right
+    height: 24px
+    margin-right: 20px
+    margin-top: 5px
+    width: 24px
+
+
+  #_header > .crumbs
+    left: auto
+    right: 10px
+
+
+  #_logo
+    margin-left: 53px
+    margin-right: 10px
+
+
+  #_header .single-contents-icon:active,
+  #_header .single-contents-icon:focus,
+  #_header .single-contents-icon:hover
+    background-position: -36px -36px
+
+
+  #_toolbar .active .bubble-corner
+    display: none
+
+
+  #_toolbar .bubble
+    height: 100%
+    height: auto
+    position: fixed
+    top: 0
+    z-index: 7
+
+
+  #_bubble-toc
+    height: auto
+    max-height: 2000%
+    overflow: hidden
+    padding-bottom: 5px
+    position: relative
+    top: 45px
+
+
+  #_toc-bubble-wrap #_bubble-toc
+    top: 35px
+
+
+  #_toc-bubble-wrap .bubble
+    height: 100%
+    max-height: 100%
+
+
+  #_bubble-toc .active ol,
+  #_bubble-toc ol
+    background-color: #333
+    border: none
+    width: 100%
+
+
+  #_bubble-toc .active ol
+    right: -1px
+    z-index: 8
+
+
+  .bubble-container
+    height: 100%
+    overflow-y: auto
+    position: relative
+    width: auto
+    z-index: 7
+
+
+  .bubble-closer
+    background-color: transparent !important
+    background-position: -72px -87px
+    cursor: pointer
+    display: block
+    float: right
+    height: 24px
+    margin: 0
+    padding: 0
+    width: 24px
+
+
+  #_header .active .single-contents-icon:active,
+  #_header .active .single-contents-icon:focus,
+  #_header .active .single-contents-icon:hover,
+  .bubble-closer:active,
+  .bubble-closer:focus,
+  .bubble-closer:hover
+    background-position: -96px -87px
+
+
+  .bubble h6
+    min-height: 24px
+
+
+  #_bubble-toc .bubble-back
+    display: block
+    margin-top: 45px
+
+
+  #_bubble-toc .bubble-back a
+    padding-bottom: 4px
+    padding-top: 4px
+
+
+  #_bubble-toc ol ol li
+    margin-left: 10px
+    margin-right: 10px
+
+
+  #_bubble-toc ol ol li:last-child
+    margin-bottom: 5px
+
+
+  #_bubble-toc .active ol
+    height: 100%
+    left: 0
+    overflow-y: auto
+    position: fixed
+    top: 0
+    z-index: 8
+
+
+  .back-icon
+    background-position: -120px -87px
+    display: block
+    height: 24px
+    width: 24px
+
+
+  .bubble-back:active .back-icon,
+  .bubble-back:focus .back-icon,
+  .bubble-back:hover .back-icon
+    background-position: -144px -87px
+
+
+  #_toc-area .bubble h6
+    background-color: #333
+    left: 0
+    padding-left: 10px
+    padding-right: 10px
+    position: fixed
+    top: 0
+    width: -webkit-calc(100% - 20px)
+    width: -moz-calc(100% - 20px)
+    width: calc(100% - 20px)
+    z-index: 9
+
+
+  #_toc-bubble-wrap
+    background-color: #333
+    height: 100%
+    left: 0
+    position: fixed
+    top: 0
+    z-index: 6
+
+
+  #_white-bg
+    position: static
+
+
+  #_fixed-header-wrap,
+  .print
+    display: none
+
+
+  .share,
+  ._share-print
+    float: none
+
+
+  .share > strong
+    float: left
+
+
+  .share-buttons
+    float: none
+
+
+  .share-buttons > .spacer
+    display: none
+
+
+  .bottom-button
+    border-radius: 0
+    display: block
+    float: left
+    padding: 10px
+    width: 40%
+    width: -webkit-calc(50% - 22px)
+    width: -moz-calc(50% - 22px)
+    width: calc(50% - 22px)
+
+
+  ._share-fb,
+  ._share-tw
+    clear: both
+
+
+  ._share-fb:before,
+  ._share-in:before,
+  ._share-mail:before,
+  ._share-tw:before
+    border-radius: 2px
+    border-width: 1px
+    margin-left: 0
+
+
+  .offline ._share-print
+    // Ugly trick -- the JS would otherwise override my display: none
+    border: none
+    height: 0
+    margin: 0
+    padding: 0
+
+
+  .line > .toc
+    padding-left: 0
+    padding-right: 0
+
+
+  // The page probably is not wide enough anymore for inline-blocks to help
+  // avoid wrapping.
+  .literal,
+  .package,
+  .replaceable,
+  code
+    display: inline
+
+
+  #_footer
+    height: auto
+
+
+  #_footer > p,
+  #_footer > ul > li
+    float: none
+    line-height: 250%
+    margin: 0
+    width: 100%
+
+
+  #_footer > p
+    text-align: right
+
+
+  #_footer > ul
+    margin: 0
+
+
+  #_footer a
+    border-top: 1px solid #FFF
+    display: block
+
+
+  #_inward,
+  #_footer-wrap
+    height: 155px
+
+
+  #_outer-wrap
+    margin: 0 auto -155px
+
+
+  .nofooter > #_outer-wrap
+    margin: 0 auto
+
+
+  .documentation ol,
+  .documentation ul
+    padding-left: 10px
+
+
+  .glossary dd,
+  .indexdiv dd,
+  .list-of-equations dl,
+  .list-of-examples dl,
+  .list-of-figures dl,
+  .list-of-procedures dl,
+  .list-of-tables dl,
+  .toc dd,
+  .variablelist dd
+    padding-left: 10px
+
+
+  .admonition.normal > .symbol
+    float: none
+    padding-bottom: 10px
+    // Remove proprietary attributes later on
+    padding-left: -webkit-calc(50% - 18px)
+    padding-left: -moz-calc(50% - 18px)
+    padding-left: calc(50% - 18px)
+
+
+  .verbatim-wrap
+    border-left: none
+    border-radius: 0
+    border-right: none
+    margin-right: -10px
+
+
+  .verbatim-wrap > div,
+  .verbatim-wrap > pre
+    border-left: none
+    border-radius: 0
+    border-right: none
+
+
+  .admonition > .verbatim-wrap,
+  .article > .verbatim-wrap,
+  .chapter > .verbatim-wrap,
+  .complex-example .example-contents,
+  .example-contents > .verbatim-wrap,
+  .procedure-contents,
+  .procedure-title-wrap + .procedure-contents,
+  .sect > .verbatim-wrap,
+  .sect1 > .verbatim-wrap,
+  .sect2 > .verbatim-wrap,
+  .sect3 > .verbatim-wrap,
+  .sect4 > .verbatim-wrap,
+  .sect5 > .verbatim-wrap,
+  .sect6 > .verbatim-wrap,
+  div.figure
+    margin-left: -10px
+    margin-right: -10px
+
+
+  .complex-example .example-contents
+    padding: 3px 15px 6px 12px
+
+
+  div.figure
+    // Remove proprietary attributes later on
+    max-width: -webkit-calc(100% + 20px)
+    max-width: -moz-calc(100% + 20px)
+    max-width: calc(100% + 20px)
+
+  .documentation  ol.procedure
+    padding-left: 20px
+
+
+  .article .title,
+  .book .title,
+  .set .title
+    font-size: 36px
+
+
+  .appendix .title,
+  .bibliography .title,
+  .chapter .title,
+  .glossary .title,
+  .part .title,
+  .preface .title,
+  .reference .title,
+  .title
+    font-size: 30px
+
+
+  .appendix .qandaset .title,
+  .article .subtitle,
+  .bibliography .qandaset .title,
+  .book .subtitle,
+  .chapter .qandaset .title,
+  .glossary .qandaset .title,
+  .part .qandaset .title,
+  .preface .qandaset .title,
+  .reference .qandaset .title,
+  .sect1 .title,
+  .set .subtitle,
+  .single .sect1 .title
+    font-size: 22px
+
+
+  .sect2 .title,
+  .single .sect2 .title,
+  .sect1 .qandaset .title
+    font-size: 20px
+
+
+  .indexdiv h3,
+  .refentry h2,
+  .sect2 .qandaset .title,
+  .sect3 .title,
+  .single .sect3 .title,
+  h2
+    font-size: 18px
+
+
+
+@media only screen and (max-height: 490px) and (min-width: 451px)
+
+  #_bubble-toc,
+  #_fixed-header-wrap > .bubble,
+  #_toc-bubble-wrap > .bubble
+    max-height: 300px
+
+
+
+//  Optimize images for various screen heights.
+//    + Some sizes are bucketed.
+//    + We assume 110px of browser chrome:
+//      @media (max-height: $largest-screen-size-in-bucket – 110px)
+//    + We assume 190px are needed for context around the image:
+//      img { max-height: $smallest-screen-size-in-bucket – 110px – 190px
+//      (With some exceptions for small screen sizes.)
+
+
+// Everything over 1600px in height
+@media only screen
+
+  .mediaobject img
+    max-height: 70%
+
+
+
+// 1600px & 1440px
+@media only screen and (max-height: 1490px)
+
+  .mediaobject img
+    max-height: 1140px
+
+
+
+// 1200px
+@media only screen and (max-height: 1090px)
+
+  .mediaobject img
+    max-height: 900px
+
+
+
+// 1080px & 1024px
+@media only screen and (max-height: 970px)
+
+  .mediaobject img
+    max-height: 724px
+
+
+
+// 900px
+@media only screen and (max-height: 790px)
+
+  .mediaobject img
+    max-height: 600px
+
+
+
+// 800px & 768px
+@media only screen and (max-height: 690px)
+
+  // Make an exception here, so we don't get stamp-sized screenshots.
+  .mediaobject img
+    max-height: 518px
+
+
+
+// 600px and below
+@media only screen and (max-height: 490px)
+
+  // Make an exception here, so we don't get stamp-sized screenshots.
+  .mediaobject img
+    max-height: 390px

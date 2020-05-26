@@ -1,0 +1,87 @@
+@page
+  size: portrait
+  margin: 20mm 22.5mm 22.5mm 22.5mm
+
+
+
+@media print
+
+  #_header .book-icon
+    background-image: none
+    color: #202020
+    height: 36px !important
+    line-height: 34px
+    padding: 0
+    width: auto
+
+
+  .documentation
+    padding: 0
+
+
+  .callout
+    border: 1px solid #439239
+    color: #439239
+
+
+  #_fixed-header-wrap,
+  #_footer-wrap,
+  #_inward,
+  #_pickers,
+  #_toolbar-wrap,
+  ._bottom-navigation,
+  ._share-print
+    display: none
+
+
+  .permalink,
+  .report-bug
+    display: none
+
+
+  ._share-print
+    visibility: hidden
+
+
+  .admonition,
+  .figure,
+  .informalfigure,
+  p,
+  table
+    // Aumngh! Gecko does not interpret this. bmo#132035, 13 dupes, open
+    // since 2002. Webkit is cool, though.
+    page-break-inside: avoid
+
+
+  .title
+    break-after: avoid
+    page-break-after: avoid
+
+
+  .link:after,
+  .ulink:after
+    background-image: none
+    color: inherit
+    height: auto
+    width: auto
+
+
+  .link-url,
+  .ulink-url
+    display: inline
+    -webkit-hyphens: none
+    -moz-hyphens: none
+    -ms-hyphens: none
+    hyphens: none
+
+
+  .figure-title-wrap
+    border: 1px solid #202020 !important
+    width: -webkit-calc(100% - 2px) !important
+    width: -moz-calc(100% - 2px) !important
+    width: calc(100% - 2px) !important
+
+
+  .figure-contents > .mediaobject,
+  .figure-title-wrap
+    background-color: transparent !important

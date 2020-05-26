@@ -1,0 +1,564 @@
+// Toolbar
+
+#_toolbar-wrap
+  background-color: #0C322C
+  margin: 0 0 15px
+  min-width: 150px
+  position: relative
+  width: 100%
+  z-index: 4
+
+
+#_toolbar
+  height: 56px
+  min-width: 150px
+
+
+.tool
+  display: block
+  overflow: hidden
+  text-decoration: none
+  width: 100%
+
+
+
+#_toc-area
+  float: left
+  height: 56px
+
+
+#_find-area,
+#_nav-area
+  float: right
+  height: 56px
+
+
+.bubble,
+.nav-inner > a.tool-spacer,
+.tool
+  // Clean this up later when browser support is there
+  -webkit-transition: all 0.2s ease-in-out 0.1s
+  -moz-transition: all 0.2s ease-in-out 0.1s
+  transition: all 0.2s ease-in-out 0.1s
+
+
+.active .active-contents,
+.inactive .inactive-contents
+  display: block
+
+
+.active .inactive-contents,
+.inactive .active-contents
+  display: none
+
+
+.active-contents
+  position: relative
+  z-index: 6
+
+
+#_nav-area
+  width: 40%
+
+
+#_find-area,
+#_toc-area
+  width: 30%
+
+
+
+.pad-tools-50-out
+  float: left
+  left: 50%
+  position: relative
+
+
+.pad-tools-50-in
+  float: left
+  left: -50%
+  position: relative
+
+
+.tool-label
+  color: #FFF
+  display: block
+  float: left
+  font-weight: normal
+  line-height: 56px
+  vertical-align: middle
+
+
+#_toc-area-button > .tool-label,
+// Tool label for Find bar
+.pad-tools-50-in > .tool-label
+  padding: 0 0 0 10px
+
+
+.nav-inner > .tool-label
+  padding: 0 10px 0 0
+
+
+.nav-inner
+  float: right
+
+
+#_toolbar .tool-spacer
+  display: block
+  float: left
+  padding: 10px
+
+
+// Fixed Header
+.button > .tool-spacer
+  display: block
+  margin: 0
+  padding: 0
+
+
+.inactive #_find-area-button:active,
+.inactive #_find-area-button:focus,
+.inactive #_find-area-button:hover,
+.inactive #_toc-area-button:active,
+.inactive #_toc-area-button:focus,
+.inactive #_toc-area-button:hover,
+.nav-inner > a.tool-spacer:active,
+.nav-inner > a.tool-spacer:focus,
+.nav-inner > a.tool-spacer:hover
+  background-color: rgba(255,255,255,0.1)
+
+
+.active > .tool
+  background-color: rgba(255,255,255,0.3)
+
+
+.find-icon,
+.nav-inner .next-icon,
+.nav-inner .prev-icon,
+.toc-icon,
+.tools-icon
+  display: block
+  float: left
+
+
+.toc-icon
+  background-position: -144px 0px
+
+
+.active .toc-icon,
+a:active > .toc-icon,
+a:focus > .toc-icon,
+a:hover > .toc-icon
+  background-position: -144px -36px
+
+
+.find-icon
+  background-position: -180px 0px
+
+
+.active .find-icon,
+a:active > .find-icon,
+a:focus > .find-icon,
+a:hover > .find-icon
+  background-position: -180px -36px
+
+
+.nav-inner > a > .prev-icon
+  background-position: -252px 0px
+
+
+.nav-inner > span >.prev-icon
+  background-position: -324px 0px
+
+
+.nav-inner > a:active > .prev-icon,
+.nav-inner > a:focus > .prev-icon,
+.nav-inner > a:hover > .prev-icon
+  background-position: -252px -36px
+
+
+.nav-inner > a > .next-icon
+  background-position: -288px 0px
+
+
+.nav-inner > span > .next-icon
+  background-position: -324px -36px
+
+
+.nav-inner > a:active > .next-icon,
+.nav-inner > a:focus > .next-icon,
+.nav-inner > a:hover > .next-icon
+  background-position: -288px -36px
+
+
+.bubble-corner
+  border-color: transparent transparent #F2F2F2
+  border-style: solid
+  border-width: 0 15px 15px
+  height: 0
+  left: 50%
+  margin: 0 0 0 -15px
+  position: relative
+  width: 0
+  z-index: 7
+
+
+.bubble-corner:before
+  background-position: -324px -72px
+  border: none
+  height: 15px
+  margin: 0 0 0 -3px
+  width: 36px
+
+
+.bubble
+  background-color: #F2F2F2
+  z-index: 8
+
+
+#_header .bubble,
+#_toolbar .bubble
+  position: absolute
+
+
+#_find-area > .bubble,
+#_toc-area > .bubble,
+#_toc-bubble-wrap > .bubble,
+.pickers .bubble
+  box-shadow: 1px 1px 3px 0px #D7D7D7
+
+
+#_fixed-header-wrap .bubble
+  margin: 4px 0 -3px
+  position: relative
+
+
+#_find-area > .bubble-corner,
+#_toc-area > .bubble-corner
+  top: -3px
+
+
+#_find-area > .bubble,
+#_toc-area > .bubble
+  left: 0
+  padding: 0
+  top: 66px
+  width: 100%
+
+
+#_toc-bubble-wrap > .bubble
+  margin: 0 auto
+  max-width: 1004px
+  min-width: 150px
+  padding: 10px
+
+
+#_toc-bubble-wrap
+  display: none
+  height: auto
+  left: 0px
+  position:absolute
+  top: 82px
+  width: 100%
+
+
+#_toc-bubble-wrap.active
+  display: block
+
+
+#_toolbar .bubble-container
+  padding: 0 10px 10px
+
+
+#_fixed-header-wrap .bubble-container
+  padding: 10px
+
+
+// Fallback for TOC bubble when Javascript is off.
+.js-off .inactive:focus .active-contents,
+.js-off .inactive:hover .active-contents
+  display: block !important
+
+
+// We only need this to make sure the bubble does not close when the user is
+// hovering over the TOC button and then mouses over the gap between the button
+// and the bubble.
+.js-off .bubble:before
+  background-color: transparent
+  content: ''
+  height: 15px
+  position: absolute
+  top: -15px
+  width: 100%
+
+
+#_bubble-toc
+  height: 400px
+  overflow: hidden
+  position: relative
+
+
+#_bubble-toc ol
+  overflow: auto
+
+
+#_bubble-toc > ol
+  width: 50%
+  padding: 0
+  margin: 0
+  background-color: #F2F2F2
+  height: 100%
+  border-right: 1px solid #0C322C
+
+
+#_bubble-toc > ol.full-width
+  border-right: none
+  width: 100%
+
+
+#_find-area > bubble a,
+#_fixed-header-wrap > .bubble a,
+#_toc-area > .bubble a,
+#_toc-bubble-wrap > .bubble a
+  color: #0C322C
+  display: block
+  line-height: 22px
+  padding: 5px 25px 5px 5px
+  text-decoration: none
+
+
+#_bubble-toc .active ol
+  background-color: #F2F2F2
+  border-left: 1px solid #0C322C
+  display: block
+  height: 100%
+  margin: 0 1px 0 0
+  padding: 0
+  position: absolute
+  right: -2px
+  top: 0
+  width: 50%
+
+
+#_bubble-toc .inactive ol
+  display: none !important
+
+
+#_bubble-toc .inactive a:hover
+  background-color: #666
+  color: #FFF
+
+
+.leads-to-page > .name:active,
+.leads-to-page > .name:focus,
+.leads-to-page > .name:hover
+  text-decoration: underline
+
+
+.arrow
+  background-image: url(../images/arrow.png)
+  background-position: -30px 8.5px
+  background-repeat: no-repeat
+  display: block
+  height: 100%
+  margin: 0
+  position: absolute
+  right: 0
+  top: 0
+  width: 30px
+
+
+#_bubble-toc .active > a,
+#_bubble-toc .inactive > a
+  padding: 5px 30px 5px 5px
+
+
+#_bubble-toc .active > a
+  background-color: #30BA78
+  color: #FFF
+
+#_bubble-toc .active
+  background-color: #D7D7D7
+
+
+#_bubble-toc .inactive:hover
+  background-color: #D7D7D7
+
+
+#_bubble-toc a
+  display: block
+  position: relative
+
+
+#_bubble-toc li
+  clear: both
+  display: block
+
+
+.bubble a:active,
+.bubble a:focus,
+.bubble a:hover
+  background-color: #D7D7D7
+  text-decoration: underline
+
+
+#_bubble-toc .bubble-back
+  display: none
+
+
+#_find-area form
+  margin: 0 0 0 50% !important
+
+
+.find-form
+  display: block
+  margin: 0 0 0 -110px
+  padding: 10px
+  width: 200px
+
+
+#_find-input
+  background-color: #FFF
+  border: 1px solid #7AD4AA
+  display: block
+  float: left
+  font: 16px 'Open Sans', Helvetica, FreeSans, sans-serif
+  height: 34px
+  padding: 0 20px 0 5px
+  width: 155px
+  z-index: 0
+
+
+#_find-input:focus
+  background-color: #FFF
+  border: 1px solid #FFF
+
+
+#_find-input:focus + #_find-button
+  background-position: -180px 0px !important
+
+
+#_find-button
+  background-color: transparent
+  background-position: -180px 0px
+  border: 0
+  display: block
+  float: left
+  margin: 0 0 0 -18px
+  width: 36px
+
+
+#_find-button:active,
+#_find-input:focus + #_find-button:hover
+  background-position: -180px -36px !important
+
+
+button::-moz-focus-inner,
+button:focus::-moz-focus-inner
+  border: none
+
+
+#_find-input-label
+  color: #666
+  cursor: text
+  display: none
+  float: left
+  font-style: italic
+  height: 36px
+  left: 5px
+  line-height: 36px
+  position: relative
+  top: -36px
+  // Clear this out later.
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  z-index: 2
+
+
+
+// Smaller, fixed header
+
+#_fixed-header-wrap
+  background-color: #EFEFF0
+  border-bottom: 1px solid #CCC
+  box-shadow: 0 5px 5px #FFF
+  line-height: 100%
+  padding: 3px 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 3
+
+
+#_fixed-header
+  display: block
+  font-size: 12px
+  margin: 0 auto
+  max-width: 998px
+  min-width: 130px
+
+
+.buttons
+  display: block
+  float: right
+  margin: 0 10px 0 5px
+
+
+.button
+  margin-left: 10px
+
+
+.button > .tool-spacer
+  display: block
+  float: left
+
+
+.button
+  float: left
+
+
+.button .next-icon,
+.button .prev-icon
+  display: block
+  margin: 1px 0
+  width: 18px
+
+
+.top-button
+  color: #333
+
+
+.top-button:active,
+.top-button:focus,
+.top-button:hover
+  color: #439239
+  text-decoration: none
+
+
+.button > a > .prev-icon
+  background-position: -72px -72px
+
+
+.button > span > .prev-icon
+  background-position: -180px -72px
+
+
+.button > a:active > .prev-icon,
+.button > a:focus > .prev-icon,
+.button > a:hover > .prev-icon
+  background-position: -90px -72px
+
+
+.button > a > .next-icon
+  background-position: -144px -72px
+
+
+.button > span > .next-icon
+  background-position: -198px -72px
+
+
+.button > a:active > .next-icon,
+.button > a:focus > .next-icon,
+.button > a:hover > .next-icon
+  background-position: -162px -72px

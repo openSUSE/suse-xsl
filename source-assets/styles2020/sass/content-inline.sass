@@ -1,0 +1,1224 @@
+// Text styles
+
+.documentation a,
+.documentation em,
+.documentation p,
+.documentation span,
+.documentation strong
+  position: relative
+  z-index: 2
+
+
+.guimenu,
+.intraxref,
+em,
+i
+  font-style: italic
+
+
+// Don't use italics within italics.
+.question em,
+em .guimenu,
+i .guimenu
+  font-style: normal;
+
+
+sub,
+sup
+  font-size: 66.6%
+  line-height: 0
+
+
+sub
+  vertical-align: sub
+
+sup
+  vertical-align: super
+
+
+.formalpara-title,
+.imprint-label,
+.toc-title,
+.version-info .productname,
+.version-info .productnumber,
+b,
+strong
+  font-weight: 600
+
+
+.arch-arrow-start
+  background-color: #7DC24D
+  border-radius: 3px
+  border: 1px solid #439239
+  color: #FFF
+  display: inline-block
+  font-size: 14px
+  height: 20px
+  line-height: 20px
+  margin-right: 12px
+  padding: 0 2px 0 4px
+  position: relative
+  vertical-align:bottom
+
+
+.arch-arrow-end,
+.arch-arrow-start:after
+  display: inline-block
+  height: 22px
+  vertical-align:bottom
+
+
+.arch-arrow-start:after
+  background-position: -24px -88px
+  content: ''
+  position: absolute
+  right: -12px
+  top: -1px
+  width: 13px
+
+
+.arch-arrow-end
+  background-position: -47px -88px
+  width: 25px
+
+
+p,
+td
+  -webkit-hyphens: auto
+  -moz-hyphens: auto
+  -ms-hyphens: auto
+  hyphens: auto
+
+
+.email,
+.link,
+.phrase,
+.ulink
+  -webkit-hyphens: none
+  -moz-hyphens: none
+  -ms-hyphens: none
+  hyphens: none
+
+
+.simplelist td,
+p
+  color: #000
+  margin: 10px 0 0
+  text-align: left
+
+
+.abstract,
+.highlights
+  font-size: 18px
+  line-height: 140%
+  margin: 24px 0 0
+
+
+.abstract p,
+.highlights p,
+.toc-title
+  color: #333
+
+
+.abstract p:first-child,
+.highlights p:first-child
+  margin-top: 0
+
+
+.abstract .titlepage,
+.highlights .titlepage
+  display: none
+
+
+.abstract .titlepage + p,
+.highlights .titlepage + p
+  margin-top: 0
+
+
+.abstract li:first-child p:first-child,
+.highlights li:first-child p:first-child
+  margin-top: 0
+
+
+.abstract + .author,
+.abstract + .authorgroup,
+.abstract + .corpauthor,
+.abstract + .date,
+.abstract + .editor,
+.abstract + .othercredit,
+.highlights + .author,
+.highlights + .authorgroup,
+.highlights + .corpauthor,
+.highlights + .date,
+.highlights + .editor,
+.highlights + .othercredit
+  margin: 10px 0 0
+
+
+.authorgroup,
+.date,
+.editor,
+.othercredit
+  color: #333
+
+
+.email,
+.glosssee,
+.glossseealso,
+.indexterm,
+.link,
+.ulink,
+.xref
+  color: #439239
+  text-decoration: none
+
+
+.remark .link,
+.remark .ulink,
+.remark .xref
+  color: #FFFFFF
+
+
+.example-title .link,
+.example-title .ulink,
+.example-title .xref,
+.figure-title .link,
+.figure-title .ulink,
+.figure-title .xref,
+.itemizedlist-title .link,
+.itemizedlist-title .ulink,
+.itemizedlist-title .xref,
+.orderedlist-title .link,
+.orderedlist-title .ulink,
+.orderedlist-title .xref,
+.procedure-title .link,
+.procedure-title .ulink,
+.procedure-title .xref,
+.qandadiv-title .link,
+.qandadiv-title .ulink,
+.qandadiv-title .xref,
+.subtitle .link,
+.subtitle .ulink,
+.subtitle .xref,
+.table-title .link,
+.table-title .ulink,
+.table-title .xref,
+.title .link,
+.title .ulink,
+.title .xref,
+.variablelist-title .link,
+.variablelist-title .ulink,
+.variablelist-title .xref
+  text-decoration: underline
+
+
+.email:active,
+.email:focus,
+.email:hover,
+.email:visited:active,
+.email:visited:focus,
+.email:visited:hover,
+.glosssee:active,
+.glosssee:focus,
+.glosssee:hover,
+.glosssee:visited:active,
+.glosssee:visited:focus,
+.glosssee:visited:hover,
+.glossseealso:active,
+.glossseealso:focus,
+.glossseealso:hover,
+.glossseealso:visited:active,
+.glossseealso:visited:focus,
+.glossseealso:visited:hover,
+.indexterm:active,
+.indexterm:focus,
+.indexterm:hover,
+.indexterm:visited:active,
+.indexterm:visited:focus,
+.indexterm:visited:hover,
+.link:active,
+.link:focus,
+.link:hover,
+.link:visited:active,
+.link:visited:focus,
+.link:visited:hover,
+.ulink:active,
+.ulink:focus,
+.ulink:hover,
+.ulink:visited:active,
+.ulink:visited:focus,
+.ulink:visited:hover,
+.xref:active,
+.xref:focus,
+.xref:hover,
+.xref:visited:active,
+.xref:visited:focus,
+.xref:visited:hover
+  color: #439239
+  text-decoration: underline
+
+
+.email:visited,
+.glosssee:visited,
+.glossseealso:visited,
+.indexterm:visited,
+.link:visited,
+.ulink:visited,
+.xref:visited
+  color: #5C3566
+
+
+.example-title .xref:active,
+.example-title .xref:focus,
+.example-title .xref:hover,
+.figure-title .xref:active,
+.figure-title .xref:focus,
+.figure-title .xref:hover,
+.itemizedlist-title .xref:active,
+.itemizedlist-title .xref:focus,
+.itemizedlist-title .xref:hover,
+.orderedlist-title .xref:active,
+.orderedlist-title .xref:focus,
+.orderedlist-title .xref:hover,
+.procedure-title .xref:active,
+.procedure-title .xref:focus,
+.procedure-title .xref:hover,
+.qandadiv-title .xref:active,
+.qandadiv-title .xref:focus,
+.qandadiv-title .xref:hover,
+.subtitle .xref:active,
+.subtitle .xref:focus,
+.subtitle .xref:hover,
+.table-title .xref:active,
+.table-title .xref:focus,
+.table-title .xref:hover,
+.title .xref:active,
+.title .xref:focus,
+.title .xref:hover,
+.variablelist-title .xref:active,
+.variablelist-title .xref:focus,
+.variablelist-title .xref:hover
+  color: #439239
+  text-decoration: none
+
+
+p a:visited
+  color: #5C3566
+
+
+.command,
+.keycap,
+.package,
+.replaceable,
+code
+  border-bottom: 1px solid #C1C1C3
+  color: #333
+  display: inline-block
+  font-family: 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
+  font-weight: normal
+  line-height: 120%
+  padding: 0 4px
+  text-transform: none
+
+
+.verbatim-wrap .command,
+.verbatim-wrap .literal,
+.verbatim-wrap .package,
+.verbatim-wrap .replaceable,
+.verbatim-wrap code
+//  Avoid transforming this:
+//    <screen><prompt>prompt $ </prompt><command>very-long-\
+//    command</command></screen>
+//
+//  to output looking like this (bad!):
+//             very-long-\
+//    prompt $ command
+//
+//  instead of this (goood!):
+//    prompt $ very-long-\
+//    command
+  display: inline
+
+
+.command,
+.keycap,
+.literal,
+.package,
+code
+  font-style: normal
+
+
+// Not quite sure if that is the best way to make sure no text inside code
+// gets paddings/borders... In some rare case, there might e.g. be an image
+// inside a code/etc. element and then this might backfire.
+.keycap *,
+.literal *,
+.package *,
+.replaceable *,
+code *
+  border: none !important
+  display: inline
+  padding: 0 !important
+
+
+
+.admonition h6 .literal,
+.admonition h6 .package,
+.admonition h6 .replaceable,
+.admonition h6 code,
+.name .literal,
+.name .package,
+.name .replaceable,
+.name code,
+a .literal,
+a .package,
+a .replaceable,
+a code
+  color: inherit
+
+
+.admonition h6 .replaceable,
+.admonition h6 code
+  border-color: #D1D1D3
+
+
+.literal,
+.package,
+.replaceable,
+code
+  font-weight: normal
+
+
+.command
+  font-weight: 600
+
+
+.prompt
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+
+.prompt.user,
+.prompt.custom
+  color: #666
+
+
+.prompt.root
+  color: #900
+
+
+.verbatim-wrap
+  background-color: #999
+  border-radius: 5px
+  margin: 5px 0
+  padding: 0
+  text-align: right
+  transition: background-color .3s linear
+
+
+.example .verbatim-wrap
+  margin: 10px 0 24px
+
+
+.verbatim-wrap > div,
+.verbatim-wrap > pre
+  background-color: #EFEFF0
+  border-radius: 5px
+  border: 1px solid #999
+  box-sizing: border-box
+  color: #333
+  display: block
+  font: normal 13px 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
+  line-height: 125%
+  overflow-y: hidden
+  overflow: auto
+  padding: 10px
+  position: relative
+  text-align: left
+  text-align: left
+  transition: border-color .3s linear, background-color .3s linear
+  width: 100%
+
+
+.verbatim-wrap > .clip-button
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  background-color: transparent
+  background-image: url('../images/clipboard.svg')
+  background-position: left top
+  background-repeat: no-repeat
+  border: none
+  box-sizing: border-box
+  color: #FFF
+  display: inline-block
+  font-family: 'Open Sans', Helvetica, FreeSans, sans-serif
+  font-size: 12px
+  height: 16px
+  line-height: 16px
+  margin: 5px
+  outline: none
+  overflow: hidden
+  padding: 0 0 0 20px
+  text-align: left
+  text-transform: uppercase
+
+
+.verbatim-wrap > .clip-button:focus,
+.verbatim-wrap > .clip-button:hover
+  text-decoration: underline
+
+
+.verbatim-wrap.copy-success > div,
+.verbatim-wrap.copy-success > pre
+  border-color: #439239
+  background-color: #F7FAF6
+
+
+.verbatim-wrap.copy-success
+  background-color: #439239
+
+
+.verbatim-wrap .literal,
+.verbatim-wrap .package,
+.verbatim-wrap .replaceable,
+.verbatim-wrap code
+  background-color: transparent
+  border: none
+  font-size: 100%
+  padding: 0
+
+
+.verbatim-wrap code
+  color: #333
+
+
+
+.verbatim-wrap .command
+  color: #306928
+
+
+.complex-example .example-contents
+  background-color: #F9F9F9
+  border-left: 3px solid #999
+  margin: 5px 0
+  padding: 3px 15px 6px 12px
+
+
+.calloutlist
+  margin: 10px 0 24px
+
+
+.calloutlist td[width="5%"]
+  width: 45px
+
+
+.example + .calloutlist
+  margin: -14px 0 24px
+
+
+.calloutlist table
+  width: 100%
+
+
+.callout
+  background-color: #439239
+  border-radius: 10px
+  color: #FFF
+  display: inline-block
+  font-family: 'Open Sans', Helvetica, FreeSans, sans-serif
+  font-size: 13px
+  font-weight: 600
+  line-height: 13px
+  margin: 0 5px
+  padding: 1px 6px 1.5px 5px
+
+
+// highlight.js likes to recolor our text. ugh!
+.callout *
+  background-color: transparent !important
+  color: #FFF !important
+  font-weight: 600 !important
+
+
+.verbatim-wrap .callout
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+
+// xrefs in a calloutlist can contain .callout too, so make sure we don't
+// catch those.
+.calloutlist td:nth-child(1) .callout
+  position: relative
+  top: 2px
+  float: right
+
+
+div.variablelist,
+.toc
+  margin: 24px 0
+
+
+.line > .toc
+  margin: 0
+
+
+.glossary dt,
+.variablelist dt
+  color: #000
+  font-weight: 600
+  margin: 0
+  position: relative
+  z-index: 1
+
+
+.toc dt
+  margin-bottom: 5px
+
+
+#_bubble-toc li *,
+.toc dt *
+  border-bottom: none
+  display: inline
+  font-style: normal
+  font-weight: normal
+  padding: 0
+
+
+.indexdiv h3
+  font-weight: 600
+  padding-bottom: 10px
+
+
+
+.glossary dd,
+.indexdiv dd,
+.toc dd,
+.variablelist dd
+  margin: 0 0 17px 0
+  padding: 0 0 0 30px
+
+
+.list-of-equations dl,
+.list-of-examples dl,
+.list-of-figures dl,
+.list-of-procedures dl,
+.list-of-tables dl
+  margin: 5px 0 17px 0
+  padding: 0 0 0 30px
+
+
+.glossary dd > p,
+.toc dd > p,
+.variablelist dd > p
+  margin: 0
+
+
+div.figure
+  margin: 24px 0 0
+  max-width: 100%
+  min-height: 60px
+  overflow: hidden
+  padding-top: 0
+  position: relative
+  text-align: center
+
+
+.figure-contents > .mediaobject
+  background-color: #FFF
+  border: 1px solid #EFEFF0
+  color: #999
+  max-width: 100%
+  min-height: 60px
+  overflow: hidden
+  padding: 12px 10px
+  text-align: center
+
+
+.figure-contents img
+  // Inline images have some whitespace below them in Firefox => block
+  display: block
+  margin: 0 auto
+  // Clean this up when browser support is solid.
+  max-width: 100%
+  max-width: -webkit-calc(100% - 2px)
+  max-width: -moz-calc(100% - 2px)
+  max-width: calc(100% - 2px)
+  min-width: 50px
+  padding: 0
+  width: auto
+
+
+.figure-title
+  margin: 0
+  padding: 10px
+  width: auto
+
+
+.figure-title-wrap
+  background-color: #EFEFF0
+  overflow: hidden
+  width: 100%
+
+
+.informalfigure img
+  background-color: #FFF
+  border: 1px solid #999
+  box-sizing: border-box
+  color: #999
+  // Inline images have some whitespace below them in Firefox => block
+  display: block
+  margin: 17px 0 24px
+  max-width: 100%
+  min-width: 50px
+  padding: 12px 10px
+  width: auto
+
+
+.inlinemediaobject img
+  display: inline-block
+  max-height: 20px
+  padding: 0 3px
+  vertical-align: -15%
+
+
+.keycap
+  background-color: #EFEFF0
+  border-color: #999
+  border-radius: 3px
+  border-style: solid
+  border-width: 1px 2px 2px 1px
+  color: #333
+  font-size: 0.75em
+  font-weight: normal
+  padding: 0px 5px
+  vertical-align: 0.2em
+  white-space: nowrap
+
+
+a:active .keycap,
+a:active .literal,
+a:active .package,
+a:active .replaceable,
+a:active code,
+a:focus .keycap,
+a:focus .literal,
+a:focus .package,
+a:focus .replaceable,
+a:focus code,
+a:hover .keycap,
+a:hover .literal,
+a:hover .package,
+a:hover .replaceable,
+a:hover code
+  border-color: #439239
+
+
+
+// We put an ndash character between keycaps that are part of an accelerator
+.key-connector
+  color: #666
+  margin: 0 -1px
+
+
+.example-title,
+.figure-title,
+.itemizedlist-title,
+.orderedlist-title,
+.procedure-title,
+.qandadiv-title,
+.table-title,
+.variablelist-title
+  font-size: 14px
+  font-weight: normal
+  line-height: 120%
+  text-align: left
+  text-transform: uppercase
+
+
+.example-title,
+.itemizedlist-title,
+.procedure-title,
+.table-title,
+.variablelist-title
+  padding-top: 0
+  position: relative
+  z-index: 1
+
+
+.example-title,
+.orderedlist-title,
+.procedure-title
+  margin: 24px 0 0
+
+
+.qandadiv-title
+  margin: 33px 0 0
+
+
+.itemizedlist-title
+  margin: 24px 0 0
+
+
+.table-title
+  margin: 24px 0 10px
+
+
+.variablelist-title
+  margin: 24px 0 10px
+
+
+.qandaentry
+  margin: 15px 0 0
+  position: relative
+  z-index: 0
+
+
+.free-id
+  height: 0.01px
+  left: -1px
+  position: relative
+  width: 0.01px
+
+
+.example-title .keycap,
+.example-title .literal,
+.example-title .package,
+.example-title .replaceable,
+.example-title code,
+.figure-title .keycap,
+.figure-title .literal,
+.figure-title .package,
+.figure-title .replaceable,
+.figure-title code,
+.itemizedlist-title .keycap,
+.itemizedlist-title .literal,
+.itemizedlist-title .package,
+.itemizedlist-title .replaceable,
+.itemizedlist-title code,
+.orderedlist-title .keycap,
+.orderedlist-title .literal,
+.orderedlist-title .package,
+.orderedlist-title .replaceable,
+.orderedlist-title code,
+.procedure-title .keycap,
+.procedure-title .literal,
+.procedure-title .package,
+.procedure-title .replaceable,
+.procedure-title code,
+.table-title .keycap,
+.table-title .literal,
+.table-title .package,
+.table-title .replaceable,
+.table-title code,
+.variablelist-title .keycap,
+.variablelist-title .literal,
+.variablelist-title .package,
+.variablelist-title .replaceable,
+.variablelist-title code
+  text-transform: none
+
+
+.procedure-contents
+  background-color: #F7FAF6
+  border-left: 3px solid #9CC897
+  display: block
+  font-weight: normal
+  margin: 17px 0 17px
+  // Up top, 3px of padding look better than 5 would (with line-height
+  // interfering etc.). On the left, we use 5px-3px of border, so it sits
+  // right there with any other lists etc.
+  padding: 3px 5px 6px 2px
+
+
+.procedure-title-wrap + .procedure-contents
+  margin: 10px 0 24px
+
+
+.procedure-contents > ol:first-child > li:first-child > p:first-child,
+.procedure-contents > p:first-child
+  margin-top: 0
+
+
+.procedure-contents > .admonition
+  margin-top: 4px
+
+
+.procedure-contents > p,
+.procedure-contents > .informalfigure,
+.procedure-contents > .admonition
+  margin-left: 12px
+  margin-right: 17px
+
+
+ol.orderedlist,
+ol.procedure,
+ol.substeps
+  color: #439239
+  display: block
+  font-weight: 600
+
+
+ol.orderedlist,
+ol.procedure,
+ol.substeps
+  font-weight: normal
+
+
+ol.procedure
+  margin: 0 10px
+  padding: 0 0 0 30px
+
+
+ol.procedure .title
+  color: #333
+  font-size: 16px
+  font-weight: 600
+  padding: 0
+
+
+ol.orderedlist,
+ol.substeps
+  margin: 0 0 0 10px
+  padding: 0 0 0 35px
+
+
+.orderedlist-title-wrap + ol.orderedlist
+  margin-top: 40px
+
+
+ol.orderedlist,
+ol.procedure
+  list-style-type: decimal
+
+
+ol.substeps
+  list-style-type: lower-latin
+
+
+.informaltable,
+.table-contents
+  // Yup, let's make this scroll... While ugly, there seems to be no better
+  // way to avoid the table running off the page border...(?)
+  overflow: auto
+
+
+.table-contents
+  margin: 0 0 24px 0
+
+.informaltable
+  margin: 10px 0 24px 0
+
+
+.informaltable
+  margin: 10px 0 24px 0
+
+
+.example-contents > .informaltable
+  margin: 0px 0 0 0
+  padding: 0
+
+
+.example-contents > .informaltable > table
+  margin: 10px 0 0 0
+  padding: 0
+
+
+.informaltable table,
+.table table
+  border-spacing: 0
+  border: 1px solid #999
+  max-width: 100%
+  table-layout: fixed
+
+
+.informaltable table p,
+table p
+  margin: 0
+
+
+.informaltable th,
+.table th
+  font-weight: 600
+
+
+.informaltable th,
+.table th
+  background-color: #D1D1D3
+
+
+.informaltable td,
+.informaltable th,
+.table td,
+.table th
+  margin: 0
+  overflow: hidden
+  padding: 3px 5px
+  vertical-align: middle
+
+
+.informaltable td[colspan],
+.informaltable td[rowspan],
+.table td[colspan],
+.table td[rowspan]
+  background-color: #FFF
+
+
+.informaltable td[colspan],
+.informaltable td[rowspan],
+.informaltable th,
+.table td[colspan],
+.table td[rowspan],
+.table th
+  border: 1px solid #999
+
+
+.contains-rowspan
+  border-top: 1px solid #999
+
+
+.informaltable td[valign="top"],
+.informaltable th[valign="top"],
+.table td[valign="top"],
+.table th[valign="top"]
+  vertical-align: top
+
+
+.informaltable td[valign="bottom"],
+.informaltable th[valign="bottom"],
+.table td[valign="bottom"],
+.table th[valign="bottom"]
+  vertical-align: bottom
+
+
+.informaltable td[rowspan],
+.table td[rowspan]
+  background-color: #FFF
+
+
+.informaltable td,
+.table td
+  vertical-align: middle
+  border-right: 1px solid #999
+
+.informaltable tr:nth-child(even),
+.table tr:nth-child(even)
+  background-color: #EFEFF0
+
+
+ul
+  color: #439239
+  display: block
+  list-style-type: disc
+  margin: 0 10px
+  padding: 5px 0 0 35px
+
+
+.qandadiv
+  margin: 0 0 40px 0
+
+
+.answer .table-title,
+.answer .variablelist,
+.answer .verbatim-wrap
+  margin-top: 10px
+
+
+li > p
+  font-weight: normal
+
+
+.step-optional
+  color: #666
+  font-style: italic
+
+
+.step-optional + p
+  margin-top: 0
+
+
+.procedure > p
+  margin: 0 10px 5px
+
+
+div.itemizedlist
+  margin: 0 0 24px
+
+
+.question .keycap,
+.question .literal,
+.question .package,
+.question code,
+.question
+  color: #666
+
+
+.question
+  font-style: italic
+
+
+.js-on .question
+  cursor: pointer
+
+
+.js-on .active .question,
+.js-on .question:focus,
+.js-on .question:hover
+  color: #000
+
+
+.js-on .active .question .keycap,
+.js-on .active .question .literal,
+.js-on .active .question .package,
+.js-on .active .question .replaceable,
+.js-on .active .question code,
+.js-on .question:focus .keycap,
+.js-on .question:focus .literal,
+.js-on .question:focus .package,
+.js-on .question:focus .replaceable,
+.js-on .question:focus code,
+.js-on .question:hover .keycap,
+.js-on .question:hover .literal,
+.js-on .question:hover .package,
+.js-on .question:hover .replaceable,
+.js-on .question:hover code
+  color: #333
+
+
+.question
+  position: relative
+
+
+.question br
+  margin-top: 2px
+
+
+.answer
+  padding: 0 0 17px
+
+
+.js-on .question:before
+  background-image: url(../images/arrow.png)
+  background-position: -98px 0
+  background-repeat: no-repeat
+  content: ''
+  display: inline-block
+  height: 15px
+  margin: 4px 0 0
+  width: 17px
+
+
+.js-on .question:focus:before,
+.js-on .question:hover:before
+  background-position: -8px 0
+
+
+.js-on .active .question:before
+  background-position: -70px 0
+
+
+.js-on .answer
+  display: none
+
+
+.js-on .qandaentry.active .answer
+  display: block
+
+
+.blockquote p
+  color: #333
+  font-style: italic
+
+
+div.blockquote
+  margin: 17px 35px
+
+
+
+// Review features
+
+.doc-status,
+.remark
+  font-style: normal
+  font-weight: normal
+
+
+.remark
+  background-color: #8D7294
+  color: #FFF
+  padding: 1px 5px
+
+
+.remark .remark
+  background-color: transparent
+  border: none
+  padding: 0
+
+
+.doc-status
+  background-color: #E6E0E8
+  color: #000
+  padding: 10px
+
+
+#_content > .doc-status
+  margin: 0 auto
+  max-width: 978px
+  min-width: 380px
+
+
+.doc-status li
+  color: #000
+
+
+p.ds-message
+  font-style: italic
+  margin: 0 !important
+
+
+
+.ds-label
+  font-weight: 600
+
+
+.ds-head
+  font-size: 22px
+  font-style: normal
+
+
+.hidden
+  background-color: #E3C1C1
+  margin-left: -10px
+  margin-right: -10px
+  margin-top: 20px
+  padding-bottom: 10px
+  padding-left: 10px
+  padding-right: 10px
+  position: static
+
+
+.hidden:before
+  background-color: #8C0000
+  color: #FFF
+  content: 'Hidden'
+  display: block
+  float: left
+  margin-top: 10px
+  padding: 3px 5px
+
+
+.hidden .hidden
+  margin-top: 0
+  padding-bottom: 0
+
+
+.hidden .hidden:before
+  content: none
+
+
+.draft
+  background: #FFF url(../images/draft.png) no-repeat fixed left 50%
