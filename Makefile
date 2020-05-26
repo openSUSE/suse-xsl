@@ -87,6 +87,11 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
 INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
    $(TTF_FONT_DIR) $(CATALOG_DIR)
 
+#-------------------------------------------------------
+# Variables for SASS->CSS conversion and other web stuff
+
+styles2020_sass = $(sort $(wildcard source-assets/styles2020/sass/*.sass))
+
 #############################################################
 
 all: $(DEV_SUSEXSL_CATALOG) generate_xslns
@@ -158,6 +163,13 @@ dist: | $(BUILD_DIR)
 	fi
 	git archive --format=tar.gz -o $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz --prefix=$(PACKAGE)-$(VERSION)/ HEAD
 	@echo "Successfully created $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz"
+
+PHONY: sass-css
+sass-css: suse2020-ns/static/css/style.css
+
+# The main file is called 0-style.sass, so it will be listed here first.
+suse2020-ns/static/css/style.css: $(styles2020_sass)
+	sassc $< $@
 
 PHONY: dist-clean
 dist-clean:
