@@ -1,0 +1,198 @@
+@font-face {
+  font-family: 'work';
+  src: url('worksans-thin-w.eot');
+  src: url('worksans-thin-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-thin-w.woff2') format('woff2'),
+       url('worksans-thin-w.woff') format('woff'),
+       url('worksans-thin-w.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-thinitalic-w.eot');
+  src: url('worksans-thinitalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-thinitalic-w.woff2') format('woff2'),
+       url('worksans-thinitalic-w.woff') format('woff'),
+       url('worksans-thinitalic-w.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-extralight-w.eot');
+  src: url('worksans-extralight-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-extralight-w.woff2') format('woff2'),
+       url('worksans-extralight-w.woff') format('woff'),
+       url('worksans-extralight-w.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-extralightitalic-w.eot');
+  src: url('worksans-extralightitalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-extralightitalic-w.woff2') format('woff2'),
+       url('worksans-extralightitalic-w.woff') format('woff'),
+       url('worksans-extralightitalic-w.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-light-w.eot');
+  src: url('worksans-light-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-light-w.woff2') format('woff2'),
+       url('worksans-light-w.woff') format('woff'),
+       url('worksans-light-w.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-lightitalic-w.eot');
+  src: url('worksans-lightitalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-lightitalic-w.woff2') format('woff2'),
+       url('worksans-lightitalic-w.woff') format('woff'),
+       url('worksans-lightitalic-w.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-regular-w.eot');
+  src: url('worksans-regular-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-regular-w.woff2') format('woff2'),
+       url('worksans-regular-w.woff') format('woff'),
+       url('worksans-regular-w.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-italic-w.eot');
+  src: url('worksans-italic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-italic-w.woff2') format('woff2'),
+       url('worksans-italic-w.woff') format('woff'),
+       url('worksans-italic-w.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-medium-w.eot');
+  src: url('worksans-medium-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-medium-w.woff2') format('woff2'),
+       url('worksans-medium-w.woff') format('woff'),
+       url('worksans-medium-w.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-mediumitalic-w.eot');
+  src: url('worksans-mediumitalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-mediumitalic-w.woff2') format('woff2'),
+       url('worksans-mediumitalic-w.woff') format('woff'),
+       url('worksans-mediumitalic-w.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-semibold-w.eot');
+  src: url('worksans-semibold-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-semibold-w.woff2') format('woff2'),
+       url('worksans-semibold-w.woff') format('woff'),
+       url('worksans-semibold-w.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-semibolditalic-w.eot');
+  src: url('worksans-semibolditalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-semibolditalic-w.woff2') format('woff2'),
+       url('worksans-semibolditalic-w.woff') format('woff'),
+       url('worksans-semibolditalic-w.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-bold-w.eot');
+  src: url('worksans-bold-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-bold-w.woff2') format('woff2'),
+       url('worksans-bold-w.woff') format('woff'),
+       url('worksans-bold-w.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-bolditalic-w.eot');
+  src: url('worksans-bolditalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-bolditalic-w.woff2') format('woff2'),
+       url('worksans-bolditalic-w.woff') format('woff'),
+       url('worksans-bolditalic-w.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-extrabold-w.eot');
+  src: url('worksans-extrabold-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-extrabold-w.woff2') format('woff2'),
+       url('worksans-extrabold-w.woff') format('woff'),
+       url('worksans-extrabold-w.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-extrabolditalic-w.eot');
+  src: url('worksans-extrabolditalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-extrabolditalic-w.woff2') format('woff2'),
+       url('worksans-extrabolditalic-w.woff') format('woff'),
+       url('worksans-extrabolditalic-w.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-black-w.eot');
+  src: url('worksans-black-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-black-w.woff2') format('woff2'),
+       url('worksans-black-w.woff') format('woff'),
+       url('worksans-black-w.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'work';
+  src: url('worksans-blackitalic-w.eot');
+  src: url('worksans-blackitalic-w.eot?#iefix') format('embedded-opentype'),
+       url('worksans-blackitalic-w.woff2') format('woff2'),
+       url('worksans-blackitalic-w.woff') format('woff'),
+       url('worksans-blackitalic-w.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
