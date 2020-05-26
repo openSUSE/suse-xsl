@@ -8,7 +8,7 @@
 
 
 #_logo img
-  color: #FFF
+  color: $c_white
   display: block
   font-weight: 600
   height: 38px
@@ -57,23 +57,23 @@
 
 
 .crumbs > span
-  color: #0C322C
+  color: $c_pine
 
 
 .crumbs > a
-  color: #0C322C
+  color: $c_pine
   text-decoration: none
 
 
 .crumbs > a:active,
 .crumbs > a:focus,
 .crumbs > a:hover
-  color: #30BA78
+  color: $c_jungle
   text-decoration: none
 
 
 #_header .single-crumb
-  background-color: #EFEFF0
+  background-color: $c_fog
   border-radius: 18px
   display: inline-block
   height: 36px
@@ -90,8 +90,8 @@
 #_header .single-crumb:active,
 #_header .single-crumb:focus,
 #_header .single-crumb:hover
-  background-color: #D7D7D7
-  color: #FFF
+  background-color: $c_fog200
+  color: $c_pine
 
 
 #_header .single-contents-icon
@@ -275,7 +275,7 @@
 // Language and Format Pickers
 
 #_pickers
-  background-color: #FFF
+  background-color: $c_white
   float: right
   padding: 5px 0
 
@@ -286,9 +286,9 @@
 
 
 .picker
-  background-color: #F2F2F2
+  background-color: $c_fog
   border-radius: 3px
-  color: #FFF
+  color: $c_pine
   display: block
   float: left
   font-size: 13px
@@ -303,7 +303,7 @@
 .picker:active,
 .picker:focus,
 .picker:hover
-  background-color: #D7D7D7
+  background-color: $c_fog300
   text-decoration: underline
 
 
@@ -320,15 +320,15 @@
 
 
 .bubble h6
-  border-bottom: 1px solid #FFF
-  color: #FFF
+  border-bottom: 1px solid $c_pine
+  color: $c_pine
   display: block
   margin: 0 0 5px 0
   padding: 10px 0 5px
 
 
 #_pickers .bubble a
-  color: #FFF
+  color: $c_jungle
   display: block
   line-height: 22px
   padding: 5px 25px 5px 5px
@@ -338,12 +338,12 @@
 #_pickers .bubble a:active,
 #_pickers .bubble a:focus,
 #_pickers .bubble a:hover
-  background-color: #D7D7D7
+  background-color: $c_seafoam20
   text-decoration: underline
 
 
 #_pickers .bubble .selected
-  background-color: #7AD4AA
+  background-color: $c_seafoam60
   background-image: url(../images/tick.png)
   background-position: right top
   background-repeat: no-repeat
@@ -352,7 +352,7 @@
 #_pickers .bubble .selected:active,
 #_pickers .bubble .selected:focus,
 #_pickers .bubble .selected:hover
-  background-color: #30BA78
+  background-color: $c_seafoam60
   text-decoration: underline
 
 
