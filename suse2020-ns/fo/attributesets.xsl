@@ -33,7 +33,7 @@
 
 <xsl:attribute-set name="admonition.title.properties">
   <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
   <xsl:attribute name="text-align">start</xsl:attribute>
@@ -96,7 +96,7 @@
 <!-- part -->
 <xsl:attribute-set name="toc.level1.properties"
   use-attribute-sets="toc.common.properties title.name.color">
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
   <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="text-transform">uppercase</xsl:attribute>
 </xsl:attribute-set>
@@ -110,13 +110,13 @@
 <xsl:attribute-set name="toc.level3.properties"
   use-attribute-sets="toc.common.properties">
   <xsl:attribute name="font-size"><xsl:value-of select="&large; * $sans-fontsize-adjust"/>pt</xsl:attribute>
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
 </xsl:attribute-set>
 <!-- sect2 -->
 <xsl:attribute-set name="toc.level4.properties"
   use-attribute-sets="toc.common.properties">
   <xsl:attribute name="font-size"><xsl:value-of select="&normal; * $sans-fontsize-adjust"/>pt</xsl:attribute>
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
 </xsl:attribute-set>
 
 <!-- 4. Processor Extensions ==================================== -->
@@ -428,7 +428,7 @@
     <xsl:value-of select="$title.fontset"></xsl:value-of>
   </xsl:attribute>
   <xsl:attribute name="line-height">0.9 * <xsl:value-of select="$base-lineheight"/></xsl:attribute>
-  <xsl:attribute name="font-weight">normal</xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
   <xsl:attribute name="keep-with-next.within-column">always</xsl:attribute>
   <xsl:attribute name="space-before.minimum">2.8em</xsl:attribute>
   <xsl:attribute name="space-before.optimum">3.0em</xsl:attribute>
@@ -464,6 +464,7 @@
 <xsl:attribute-set name="formal.title.properties"
   use-attribute-sets="normal.para.spacing dark-green sans.bold.noreplacement">
   <xsl:attribute name="font-family"><xsl:value-of select="$sans.font.family"/></xsl:attribute>
+  <xsl:attribute name="font-weight">400</xsl:attribute>
   <xsl:attribute name="font-size"><xsl:value-of select="&small; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="text-transform">uppercase</xsl:attribute>
   <xsl:attribute name="hyphenate">false</xsl:attribute>

@@ -129,8 +129,8 @@
   </prop-types>
 
   <lang code="default">
-    <prop name="serif">'Charis SIL', CharisSIL, serif</prop>
-    <prop name="sans">'Open Sans', OpenSans, sans-serif</prop>
+    <prop name="serif">'Work Sans', WorkSans, 'Open Sans', OpenSans, sans-serif</prop>
+    <prop name="sans">'Work Sans', WorkSans, 'Open Sans', OpenSans, sans-serif</prop>
     <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
@@ -138,7 +138,7 @@
     <prop name="enable-mono-semibold">false</prop>
     <prop name="enable-italic">true</prop>
     <prop name="fontsize-adjust">1</prop>
-    <prop name="sans-xheight-adjust">0.916</prop>
+    <prop name="sans-xheight-adjust">1</prop>
     <prop name="mono-xheight-adjust">0.895</prop>
     <prop name="base-lineheight">1.6</prop>
     <prop name="sans-lineheight-adjust">1.125</prop>
