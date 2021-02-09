@@ -193,9 +193,10 @@
       <xsl:with-param name="level">WARNING</xsl:with-param>
       <xsl:with-param name="context-desc">toc</xsl:with-param>
       <xsl:with-param name="context-desc-field-length" select="4"/>
+      <xsl:with-param name="message-field-length" select="80"/>
       <xsl:with-param name="message">
         <xsl:text>Unknown TOC element </xsl:text>
-        <xsl:value-of select="local-name()"/>
+        <xsl:value-of select="local-name()"/> on <xsl:call-template name="xpath.location"/>
       </xsl:with-param>
     </xsl:call-template>
 </xsl:template>
@@ -327,9 +328,16 @@
     </fo:list-block>
 </xsl:template>
 
-<xsl:template match="preface/sect1|appendix[@role='legal']/sect1/
-                     preface/section|appendix[@role='legal']/section|sect2|
-                     section/section"
+<xsl:template match="chapter/sect1/sect2
+                     | chapter/section/section
+                     | preface/sect1/sect2
+                     | preface/section/section
+                     | article/sect1/sect2
+                     | article/section/section
+                     | appendix[@role='legal']/sect1
+                     | appendix[@role='legal']/sect1/sect2
+                     | appendix[@role='legal']/section
+                     | appendix[@role='legal']/section/section"
   mode="susetoc"/>
 
 <xsl:template match="sect1|refentry|section" mode="susetoc">
