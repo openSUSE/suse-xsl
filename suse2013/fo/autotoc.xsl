@@ -193,9 +193,10 @@
       <xsl:with-param name="level">WARNING</xsl:with-param>
       <xsl:with-param name="context-desc">toc</xsl:with-param>
       <xsl:with-param name="context-desc-field-length" select="4"/>
+      <xsl:with-param name="message-field-length" select="80"/>
       <xsl:with-param name="message">
         <xsl:text>Unknown TOC element </xsl:text>
-        <xsl:value-of select="local-name()"/>
+        <xsl:value-of select="local-name()"/> on <xsl:call-template name="xpath.location"/>
       </xsl:with-param>
     </xsl:call-template>
 </xsl:template>
