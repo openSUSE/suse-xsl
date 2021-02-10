@@ -1,0 +1,63 @@
+---
+name: suse-xsl CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+      - "!gh-pages"
+  pull_request:
+    branches:
+      - master
+      - main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+
+jobs:
+  test:
+    # env:
+    #  PATH: .:$PATH
+    #  LD_PRELOAD: /lib/x86_64-linux-gnu/libSegFault.so
+    #  DBXSL: http://docbook.sourceforge.net/release/xsl/current
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Output env variables
+        run: |
+          # Just for debugging purposes. Can be removed once it's stable
+          echo "Default branch=${default-branch}"
+          echo "GITHUB_WORKFLOW=${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTION=$GITHUB_ACTION"
+          echo "GITHUB_ACTIONS=$GITHUB_ACTIONS"
+          echo "GITHUB_ACTOR=$GITHUB_ACTOR"
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"
+          echo "GITHUB_EVENT_NAME=$GITHUB_EVENT_NAME"
+          echo "GITHUB_EVENT_PATH=$GITHUB_EVENT_PATH"
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+          echo "GITHUB_SHA=$GITHUB_SHA"
+          echo "GITHUB_REF=$GITHUB_REF"
+          echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
+          echo "GITHUB_BASE_REF=$GITHUB_BASE_REF"
+          echo "::debug::---Start content of file $GITHUB_EVENT_PATH"
+          cat $GITHUB_EVENT_PATH
+          echo "\n"
+          echo "::debug::---end"
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get install -y jing libbatik-java libavalon-framework-java \
+               xml-core libxml2-utils docbook docbook-xsl
+
+      - uses: actions/checkout@v2
+
+      - name: XML catalog
+        env:
+          DBXSL: http://docbook.sourceforge.net/release/xsl/current
+        run: |
+          xmlcatalog /etc/xml/catalog "$DBXSL/common/entities.ent"
+          xmlcatalog /etc/xml/catalog "$DBXSL/xhtml/docbook.xsl"
+
+      - name: Validate
+        run: ./tests/validate-xslt
