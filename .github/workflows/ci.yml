@@ -4,12 +4,10 @@ name: suse-xsl CI
 on:
   push:
     branches:
-      - master
       - main
       - "!gh-pages"
   pull_request:
     branches:
-      - master
       - main
 
   # Allows you to run this workflow manually from the Actions tab
