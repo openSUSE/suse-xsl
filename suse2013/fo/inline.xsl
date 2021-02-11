@@ -293,7 +293,7 @@
 </xsl:template>
 
 <xsl:template match="classname|exceptionname|interfacename|methodname
-                    |computeroutput|constant|envar|filename|function|literal
+                    |computeroutput|constant|envar|function|literal
                     |code|option|parameter|prompt|systemitem|varname|email|uri
                     |cmdsynopsis/command|package">
   <xsl:param name="purpose" select="'none'"/>
@@ -303,6 +303,25 @@
     <xsl:with-param name="purpose" select="$purpose"/>
     <xsl:with-param name="mode" select="$mode"/>
   </xsl:call-template>
+</xsl:template>
+
+<xsl:template match="filename">
+  <xsl:param name="purpose" select="'none'"/>
+  <xsl:param name="mode" select="'normal'"/>
+
+ <fo:inline xsl:use-attribute-sets="ulink.properties" color="inherit">
+  <xsl:call-template name="inline.monoseq">
+    <xsl:with-param name="purpose" select="$purpose"/>
+    <xsl:with-param name="mode" select="$mode"/>
+    <xsl:with-param name="content">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content">
+          <xsl:apply-templates select="." mode="hyphenate-url"/>
+        </xsl:with-param>
+      </xsl:call-template>
+  </xsl:with-param>
+  </xsl:call-template>
+ </fo:inline>
 </xsl:template>
 
 <xsl:template match="sgmltag|tag" name="sgmltag">
@@ -397,8 +416,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="replaceable|structfield"
-  mode="mono-ancestor">
+<xsl:template match="replaceable|structfield" mode="mono-ancestor">
   <xsl:param name="purpose" select="'none'"/>
 
   <xsl:call-template name="inline.italicmonoseq">
@@ -422,6 +440,7 @@
  </xsl:choose>
 </xsl:template>
 
+<!-- ##################################################################### -->
 <xsl:template match="keycap">
   <xsl:variable name="cap">
     <xsl:choose>
