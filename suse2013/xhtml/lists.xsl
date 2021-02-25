@@ -35,6 +35,7 @@
     <!-- Preserve order of PIs and comments -->
     <xsl:variable name="preamble"
         select="*[not(self::step
+                  or self::result
                   or self::title
                   or self::titleabbrev)]
                   |comment()[not(preceding-sibling::step)]
@@ -65,6 +66,7 @@
               select="step
                      |comment()[preceding-sibling::step]
                      |processing-instruction()[preceding-sibling::step]"/>
+            <xsl:apply-templates select="result"/>
           </ul>
         </xsl:when>
         <xsl:otherwise>
@@ -77,6 +79,7 @@
               select="step
                      |comment()[preceding-sibling::step]
                      |processing-instruction()[preceding-sibling::step]"/>
+            <xsl:apply-templates select="result"/>
           </ol>
         </xsl:otherwise>
       </xsl:choose>
@@ -132,6 +135,15 @@
        <xsl:apply-templates/>
      </xsl:with-param>
    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="result">
+    <div class="result">
+      <xsl:call-template name="common.html.attributes"/>
+      <xsl:call-template name="id.attribute"/>
+      <p class="result-title">Result</p>
+      <xsl:apply-templates/>
+    </div>
   </xsl:template>
 
 <xsl:template match="listitem/simpara" priority="10">

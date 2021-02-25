@@ -1,0 +1,5 @@
+MAIN="test.xml"
+ROOTID="cha.procedure"
+
+STYLEROOT="../../../build/stylesheet/suse2013-ns"
+DOCBOOK5_RNG_URI="file:///usr/share/xml/docbook/schema/rng/5.1/docbookxi.rnc"

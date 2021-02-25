@@ -2427,6 +2427,14 @@ li > p {
     margin: 0 10px 5px;
 }
 
+.result {
+  margin-left: -20px;
+}
+
+.result-title {
+  font-weight: bold;
+}
+
 div.itemizedlist {
     margin: 0 0 24px;
 }
