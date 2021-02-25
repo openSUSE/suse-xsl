@@ -36,6 +36,7 @@
     <!-- Preserve order of PIs and comments -->
     <xsl:variable name="preamble"
         select="*[not(self::d:step
+                  or self::d:result
                   or self::d:title
                   or self::d:titleabbrev)]
                   |comment()[not(preceding-sibling::d:step)]
@@ -66,6 +67,7 @@
               select="d:step
                      |comment()[preceding-sibling::d:step]
                      |processing-instruction()[preceding-sibling::d:step]"/>
+            <xsl:apply-templates select="d:result"/>
           </ul>
         </xsl:when>
         <xsl:otherwise>
@@ -78,6 +80,7 @@
               select="d:step
                      |comment()[preceding-sibling::d:step]
                      |processing-instruction()[preceding-sibling::d:step]"/>
+            <xsl:apply-templates select="d:result"/>
           </ol>
         </xsl:otherwise>
       </xsl:choose>
@@ -157,4 +160,14 @@
   </xsl:call-template>
 </xsl:template>
 
+
+  <xsl:template match="d:result">
+    <div class="result">
+      <xsl:call-template name="common.html.attributes"/>
+      <xsl:call-template name="id.attribute"/>
+      <div class="result-title"/>
+      <!--<p class="result-title">Result</p>-->
+      <xsl:apply-templates/>
+    </div>
+  </xsl:template>
 </xsl:stylesheet>

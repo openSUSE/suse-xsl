@@ -178,6 +178,7 @@
   <!-- Preserve order of PIs and comments -->
   <xsl:variable name="preamble"
         select="*[not(self::d:step
+                  or self::d:result
                   or self::d:title
                   or self::d:titleabbrev)]
                 |comment()[not(preceding-sibling::d:step)]
@@ -225,6 +226,7 @@
         xsl:use-attribute-sets="list.block.spacing list.block.properties">
         <xsl:apply-templates select="$steps"/>
       </fo:list-block>
+      <xsl:apply-templates select="d:result"/>
     </fo:block>
 
     <xsl:if test="./d:title and $placement != 'before'">
@@ -287,6 +289,26 @@
       </fo:block>
     </fo:list-item-body>
   </fo:list-item>
+</xsl:template>
+
+<xsl:template match="d:result"> <!-- d:result[d:para] -->
+    <fo:block xsl:use-attribute-sets="list.block.spacing">
+      <xsl:attribute name="margin-{$start-border}"><xsl:value-of
+        select="&mediumline; div 2"/>mm</xsl:attribute>
+      <!--      <fo:block font-weight="bold">Result</fo:block>-->
+      <!--<fo:instream-foreign-object content-height="0.4em"
+        alignment-baseline="alphabetic" alignment-adjust="0.175em">
+        <s:svg xmlns:s="http://www.w3.org/2000/svg" width="100" height="100">
+          <s:path d="m0 0 L100 50 L0 100 Z" color="gray"/>
+        </s:svg>
+      </fo:instream-foreign-object>-->
+      <!--
+      <fo:inline>❯ </fo:inline>
+      <xsl:apply-templates select="d:para[1]/node()"/>
+      <xsl:apply-templates select="*[not(self::d:para[1])]"/>
+      -->
+      <xsl:apply-templates/>
+    </fo:block>
 </xsl:template>
 
 <!-- Special handling for arch attributes + Don't break after colons. -->
