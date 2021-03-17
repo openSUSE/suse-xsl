@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# More safety, by turning some bugs into errors.
+# Without `errexit` you don’t need ! and can replace
+# PIPESTATUS with a simple $?, but I don’t do that.
+set -o errexit -o pipefail -o noclobber -o nounset
+
+
+AUTHORS="Tom Schraitle"
+
 # Find out where we are:
 SCRIPT=$(readlink -f "$BASH_SOURCE")
 MYPATH="${SCRIPT%/*}"
@@ -10,11 +18,41 @@ IGNOREFILE_CONFIG=$MYPATH/ignore-xslt.txt
 # Assign RELAX NG
 RNG="$MYPATH/xslt10.rnc"
 
-echo $RNG
-if [[ ! -e $RNG ]]; then
- echo "Couldn't find the RNG schema"
- exit 10
-fi
+# Should parallels be used? Only set JOBS if
+# -j/--jobs are passed
+JOBS=""
+
+# Format string used for Bash's time keyword
+TIMEFORMAT=$'Elapsed time: %3lR'
+
+
+function usage {
+    cat <<EOF_helptext
+${SCRIPT##*/} [OPTIONS]
+
+Validates XSLT files
+
+Options
+   -h, --help     Shows this help
+   -j[N], -j [N], --jobs[[= ]N]
+                  Run <N> jobs in parallel. If you use "-j" or "--jobs" alone
+                  (omit the integer), it will use *all* CPU cores on your machine
+   -r, --rng      File for compact XSLT RNG schema
+                  (default: '$RNG')
+
+Written by $AUTHORS
+EOF_helptext
+}
+
+function error() { echo "ERROR: $@" 1>&2; }
+function bad_usage() { usage 1>&2; [ $# -eq 0 ] || error "$@"; return 1; }
+
+
+function exit_on_error {
+    error "${1}"
+    exit 1;
+}
+
 
 function readfilecfg() {
     # Read lines from a file while avoiding lines with #
@@ -28,23 +66,143 @@ function readfilecfg() {
     echo $RESULT
 }
 
+
+function seq_validate() {
+    local result=0
+    local r
+    local xslt
+
+    time {
+        for xslt in $XSLTFILES; do
+            echo -n "> Validating $xslt..."
+            jing -c $RNG $xslt
+            r=$?
+            [[ $r -eq 0 ]] && echo "ok"
+            [[ $r -eq 0 ]] || result=1
+        done
+        echo
+    }
+    return $result
+}
+
+
+function parallel_validate() {
+    local logfile="/tmp/job.log"
+    local result
+
+    time {
+        # -j+0
+        parallel --verbose $JOBS \
+            --joblog $logfile \
+            --progress \
+            --eta \
+            --halt now,fail=1 \
+            "jing -c $RNG {}" ::: $XSLTFILES
+        result=$?
+        echo
+    }
+    return $result
+}
+
+
+function main() {
+    local short_opts="h,j:,r:"
+    local long_opts="help,jobs:,rng:"
+    local defaultjobs="-j+0"
+    local output=""
+    local cur="" next=""
+
+    while [ $# -ne 0 ]; do
+        current="$1"; next="${2:-}"
+        case "$current" in
+            -j|--jobs)
+                # check if next token is an integer:
+                if [[ ${next} =~ ^[0-9]+$ ]]; then
+                   JOBS="-j$next"
+                   shift
+                elif [[ ${next} =~ ^- || ${next} == "" ]]; then
+                  JOBS="$defaultjobs"
+                else
+                   error "The -j/--jobs option expects an optional integer. " \
+                         "Received $next"
+                   return 10
+                fi
+                ;;
+
+            -j?*|--jobs=?*)
+                # Check if we have -j<N>
+                if [[ ${current} =~ -j([0-9]+$) ]]; then
+                  # Same as ${current:2:2}
+                  JOBS="-j${BASH_REMATCH[1]}"
+                # check if we have --jobs=<N>
+                elif [[ ${current} =~ --jobs=?([0-9]+$) ]]; then
+                  # Same as ${current:7:2}:
+                  JOBS="-j${BASH_REMATCH[1]}"
+
+                else
+                  error "Unknown argument in -j/--jobs. Got $cur"
+                  return 10
+                fi
+                ;;
+
+            -r|--rng|--rng=?*)
+                if [[ ${next} == "" ]]; then
+                   error "Expected RNG schema file"
+                   return 20
+                elif [[ ${next} =~ ^- ]]; then
+                   error "Option -r/--rng expected RNC schema file"
+                   return 30
+                else
+                  RNG="$next"
+                fi
+                shift
+                ;;
+
+            -h|--help)
+                usage; exit 0 ;;
+
+            -*)
+                error "Unknown option $current"
+                return 2;
+                break;;
+        esac
+        shift
+    done
+
+    return 0
+}
+
+
+#################################################
+# MAIN
+#
+
+main "$@"
+
+
 # These are the directories to investigate:
 XSLTFILES=$(readfilecfg $XSLTFILES_CONFIG)
 
 # Fill the ignore list
 IGNORE="$(readfilecfg $IGNOREFILE_CONFIG)"
 
+# echo $RNG
+if [[ ! -e $RNG ]]; then
+ exit_on_error "Couldn't find the RNG schema $RNG"
+fi
+
 for ign in $IGNORE; do
     XSLTFILES=$(echo $XSLTFILES | sed -e "s#$ign##g")
 done
 
-result=0
-for xslt in $XSLTFILES; do
-  echo -n "> Validating $xslt..."
-  jing -c $RNG $xslt
-  r=$?
-  [[ $r -eq 0 ]] && echo "ok"
-  [[ $r -eq 0 ]] || result=1
-done
+if [[ "" != $JOBS ]]; then
+   parallel_validate
+   result=$?
+else
+   seq_validate
+   result=$?
+fi
 
 exit $result
+
+# vi: ts=4 noexpandtab

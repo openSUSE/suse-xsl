@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install -y jing libbatik-java libavalon-framework-java \
-               xml-core libxml2-utils docbook docbook-xsl
+               xml-core libxml2-utils docbook docbook-xsl parallel
 
       - uses: actions/checkout@v2
 
@@ -57,4 +57,4 @@ jobs:
           xmlcatalog /etc/xml/catalog "$DBXSL/xhtml/docbook.xsl"
 
       - name: Validate
-        run: ./tests/validate-xslt
+        run: ./tests/validate-xslt -j
