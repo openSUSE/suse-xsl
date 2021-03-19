@@ -816,6 +816,18 @@ hljs.configure({
 </xsl:text>
       </script>
     </xsl:if>
+    <xsl:if test="$enable.source.highlighting != 1">
+      <!-- Provide a fake highlight.js, because our script is waiting for
+      such an Object to appear before adding copy-code buttons into screens.
+      -->
+      <script>
+<xsl:text disable-output-escaping="yes">
+<![CDATA[
+var hljs = new Object;
+]]>
+</xsl:text>
+      </script>
+    </xsl:if>
     <xsl:if test="$external.js != ''">
       <xsl:call-template name="make.multi.script.link">
         <xsl:with-param name="input" select="$external.js"/>
