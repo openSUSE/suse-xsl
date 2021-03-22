@@ -1744,13 +1744,13 @@ p, .simplelist td {
 }
 
 .title .xref, .subtitle .xref, .table-title .xref, .example-title .xref,
-.figure-title .xref, .procedure-title .xref, .orderedlist-title .xref,
+.figure-title .xref, .glosslist-title .xref, .procedure-title .xref, .orderedlist-title .xref,
 .itemizedlist-title .xref, .variablelist-title .xref, .qandadiv-title .xref,
 .title .link, .subtitle .link, .table-title .link, .example-title .link,
-.figure-title .link, .procedure-title .link, .orderedlist-title .link,
+.figure-title .link, .glosslist-title .link, .procedure-title .link, .orderedlist-title .link,
 .itemizedlist-title .link, .variablelist-title .link, .qandadiv-title .link,
 .title .ulink, .subtitle .ulink, .table-title .ulink, .example-title .ulink,
-.figure-title .ulink, .procedure-title .ulink, .orderedlist-title .ulink,
+.figure-title .ulink, .glosslist-title .ulink, .procedure-title .ulink, .orderedlist-title .ulink,
 .itemizedlist-title .ulink, .variablelist-title .ulink, .qandadiv-title .ulink {
     text-decoration: underline;
 }
@@ -1784,6 +1784,7 @@ p, .simplelist td {
 .table-title .xref:hover, .table-title .xref:focus, .table-title .xref:active,
 .figure-title .xref:hover, .figure-title .xref:focus, .figure-title .xref:active,
 .example-title .xref:hover, .example-title .xref:focus, .example-title .xref:active,
+.glosslist-title .xref:hover, .glosslist-title .xref:focus, .glosslist-title .xref:active,
 .procedure-title .xref:hover, .procedure-title .xref:focus, .procedure-title .xref:active,
 .orderedlist-title .xref:hover, .orderedlist-title .xref:focus, .orderedlist-title .xref:active,
 .itemizedlist-title .xref:hover, .itemizedlist-title .xref:focus, .itemizedlist-title .xref:active,
@@ -2028,7 +2029,7 @@ div.variablelist, .toc {
     margin: 0;
 }
 
-.variablelist dt, .glossary dt {
+.variablelist dt, .glosslist dt, .glossary dt {
     font-weight: 600;
     color: #000;
     margin: 0;
@@ -2054,7 +2055,7 @@ div.variablelist, .toc {
 }
 
 
-.variablelist dd, .glossary dd, .toc dd, .indexdiv dd {
+.variablelist dd, .glosslist dd, .glossary dd, .toc dd, .indexdiv dd {
     margin: 0 0 17px 0;
     padding: 0 0 0 30px;
 }
@@ -2066,7 +2067,7 @@ div.variablelist, .toc {
     padding: 0 0 0 30px;
 }
 
-.variablelist dd > p, .glossary dd > p,
+.variablelist dd > p, .glosslist dd > p, .glossary dd > p,
 .toc dd > p {
     margin: 0;
 }
@@ -2169,7 +2170,7 @@ a:hover .package, a:focus .package, a:active .package {
 }
 
 .procedure-title, .table-title, .example-title,
-.figure-title, .orderedlist-title, .variablelist-title,
+.figure-title, .glosslist-title, .orderedlist-title, .variablelist-title,
 .itemizedlist-title, .qandadiv-title {
     font-size: 14px;
     font-weight: normal;
@@ -2178,7 +2179,7 @@ a:hover .package, a:focus .package, a:active .package {
     line-height: 120%;
 }
 
-.table-title, .example-title, .procedure-title,
+.glosslist-title, .table-title, .example-title, .procedure-title,
 .variablelist-title, .itemizedlist-title {
     position: relative;
     padding-top: 0;
@@ -2201,7 +2202,7 @@ a:hover .package, a:focus .package, a:active .package {
     margin: 24px 0 10px;
 }
 
-.variablelist-title {
+.glosslist-title, .variablelist-title {
     margin: 24px 0 10px;
 }
 
@@ -2226,6 +2227,8 @@ a:hover .package, a:focus .package, a:active .package {
 .example-title .literal, .example-title .package,
 .figure-title code, .figure-title .replaceable, .figure-title .keycap,
 .figure-title .literal, .figure-title .package,
+.glosslist-title code, .glosslist-title .replaceable, .glosslist-title .keycap,
+.glosslist-title .literal, .glosslist-title .package,
 .orderedlist-title code, .orderedlist-title .replaceable, .orderedlist-title .keycap,
 .orderedlist-title .literal, .orderedlist-title .package,
 .variablelist-title code, .variablelist-title .replaceable, .variablelist-title .keycap,
@@ -3122,7 +3125,7 @@ p.ds-message {
     }
 
     .list-of-figures dl, .list-of-tables dl, .list-of-examples dl,
-    .list-of-procedures dl, .list-of-equations dl, .variablelist dd, .glossary dd,
+    .list-of-procedures dl, .list-of-equations dl, .glosslist dl, .variablelist dd, .glossary dd,
     .toc dd, .indexdiv dd {
         padding-left: 10px;
     }
