@@ -196,6 +196,14 @@ for ign in $IGNORE; do
 done
 
 if [[ "" != $JOBS ]]; then
+   # Checking for parallel:
+   if ! [ -x "$(command -v parallel)" ]; then
+     error "Couldn't find parallel."
+     error "Install it with:"
+     error "  openSUSE: sudo zypper install parallel"
+     error "  Ubuntu/Debian: sudo apt-get install parallel"
+     exit_on_error "Aborting."
+   fi
    parallel_validate
    result=$?
 else
