@@ -57,4 +57,4 @@ jobs:
           xmlcatalog /etc/xml/catalog "$DBXSL/xhtml/docbook.xsl"
 
       - name: Validate
-        run: ./tests/validate-xslt 
+        run: ./tests/validate-xslt -j
