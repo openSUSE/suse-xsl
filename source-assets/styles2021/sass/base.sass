@@ -1,0 +1,132 @@
+// PAGE BOILERPLATE AND NAVIGATION
+
+// Common
+
+.clearme
+  clear: both
+  height: 0
+  width: 100%
+
+
+// Selection colour, the unprefixed Webkit version & the -moz-prefixed
+//  version must be on separate lines for it to work.
+::selection
+  background-color: #7AD4AA
+  color: #000
+
+
+::-moz-selection
+  background-color: #7AD4AA
+  color: #000
+
+
+body
+  background-color: #FFF
+  font-family: 'Open Sans', 'DejaVu Sans', 'Verdana', sans-serif
+  line-height: 140%
+
+
+html,
+body
+  font-size: 16px
+  height: 100%
+  min-width: 200px
+
+
+.bypass-block
+  left: 0
+  overflow: hidden
+  position: absolute
+  z-index: 9753
+
+
+.bypass-block > *
+  // clip is deprecated but works in IE and Edge. clip-path is newer and more
+  // flexible and also less compatible.
+  clip: rect(1px 1px 1px 1px)
+  clip: rect(1px,1px,1px,1px)
+  clip-path: rect(1px,1px,1px,1px)
+  height: 1px
+  overflow: hidden
+  position: absolute
+
+
+#_fixed-header-wrap #_bubble-toc,
+#_toolbar-bottom,
+.documentation,
+.page-bottom
+  margin: 0 auto
+  max-width: 978px
+  min-width: 150px
+
+
+#_header
+  margin: 0 auto
+  max-width: 998px
+  min-width: 150px
+
+
+.single div.appendix,
+.single div.bibliography,
+.single div.chapter,
+.single div.glossary,
+.single div.index,
+.single div.page-bottom,
+.single div.part,
+.single div.preface,
+.single div.refentry,
+.single div.reference
+  padding-top: 40px
+
+
+#_footer,
+#_toolbar-bottom,
+.documentation,
+.page-bottom
+  overflow: hidden
+
+
+#_toolbar
+  margin: 0 auto
+  max-width: 998px
+  min-width: 170px
+  padding: 0
+
+
+#_header a,
+#_toolbar a,
+#_toolbar button,
+#_toolbar input,
+.bubble a
+  outline: 0
+
+
+// to be able to position various elements and be able to use z-index
+#_content,
+#_footer,
+#_header,
+#_inward,
+#_toolbar,
+#_white-bg,
+.figure
+  position: relative
+
+
+#_fixed-header,
+#_toolbar,
+#_white-bg
+  padding: 0 10px
+
+
+#_content
+  background: transparent
+  clear: both
+  min-height: 139px
+  min-width: 150px
+  z-index: 0
+
+
+#_white-bg
+  background-color: #FFF
+  min-width: 190px
+  z-index: 5
