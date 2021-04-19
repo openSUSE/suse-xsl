@@ -3,3 +3,5 @@
 # List of files to ignore; relative filenames to repository root
 suse2013/fo/logo.xsl
 suse2013/xhtml5/html5-element-mods.xsl
+suse2021-ns/fo/logo.xsl
+suse2021-ns/xhtml5/html5-element-mods.xsl

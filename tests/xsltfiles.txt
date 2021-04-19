@@ -9,3 +9,5 @@ daps2013/*/*.xsl
 daps2013/*.xsl
 opensuse2013/*/*.xsl
 opensuse2013/*.xsl
+suse2021-ns/*/*.xsl
+suse2021-ns/*.xsl
