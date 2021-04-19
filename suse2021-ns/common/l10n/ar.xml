@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+   language="ar"
+   english-language-name="Arabic">
+
+<!-- FIXME: Check whether we need straight quotes everywhere, our Arabic SLE
+translators apparently want those. - sknorr, 2016-09-30 -->
+
+   <l:gentext key="SeeAlso"         text="طالع أيضًا"/>
+   <l:gentext key="Authors"         text="الكتاب"/>
+   <l:gentext key="TableofContents" text="المحتويات"/>
+   <l:gentext key="ListofAuthors"   text="قائمة المؤلفين"/>
+   <l:gentext key="Contributors"    text="المساهمون"/>
+
+   <l:gentext key="admonseparator"  text=": "/>
+
+   <l:gentext key="Question" text="السؤال:"/>
+   <l:gentext key="question" text="السؤال:"/>
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
+   <l:dingbat key="startquote" text='"'/>
+   <l:dingbat key="endquote" text='"'/>
+
+   <!-- FIXME: Needs translation. -->
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="Jump to content"/>
+     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+   </l:context>
+
+   <l:context name="styles">
+      <l:template name="person-name" text="الأول-الأخير"/>
+
+      <l:template name="example-label" text="المثال&#160;%n:"/>
+      <l:template name="example-title" text="%t"/>
+      <l:template name="figure-label" text="الرسم التوضيحي&#160;%n:"/>
+      <l:template name="figure-title" text="%t"/>
+      <l:template name="glosslist-label" text=""/>
+      <l:template name="glosslist-title" text="%t"/>
+      <l:template name="procedure-label" text="الإجراء&#160;%n:"/>
+      <l:template name="procedure-title" text="%t"/>
+      <l:template name="table-label" text="الجدول&#160;%n:"/>
+      <l:template name="table-title" text="%t"/>
+      <l:template name="variablelist-label" text=""/>
+      <l:template name="variablelist-title" text="%t"/>
+      <l:template name="itemizedlist-label" text=""/>
+      <l:template name="itemizedlist-title" text="%t"/>
+      <l:template name="orderedlist-label" text=""/>
+      <l:template name="orderedlist-title" text="%t"/>
+   </l:context>
+
+   <l:context name="xref">
+      <l:template name="sect1" text='القسم "%t"'/>
+      <l:template name="sect2" text='القسم "%t"'/>
+      <l:template name="sect3" text='القسم "%t"'/>
+      <l:template name="sect4" text='القسم "%t"'/>
+      <l:template name="sect5" text='القسم "%t"'/>
+      <l:template name="page.citation" text=" (الصفحة&#160;%p)"/>
+
+      <!-- Added the following items, some of them might be wrong...
+           It seems "ال" == "the", but I still was not sure whether to add this
+           everywhere. I just took the translations from the DocBook
+           stylesheets. Expect issues to crop up. -->
+      <l:template name="intra-separator" text="، "/>
+      <l:template name="intra-article" text='مقال "%t"'/>
+      <l:template name="intra-book" text='كتاب "%t"'/>
+      <l:template name="intra-chapter" text='فصل&#160;%n "%t"'/>
+      <l:template name="intra-sect1" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect2" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect3" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect4" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-sect5" text='القسم&#160;%n "%t"'/>
+      <l:template name="intra-section" text='القسم&#160;%n "%t"'/>
+
+      <l:template name="intra-example" text='مثال&#160;%n "%t"'/>
+      <l:template name="intra-figure" text='شكل&#160;%n "%t"'/>
+      <l:template name="intra-preface" text=' "%t"'/>
+      <l:template name="intra-procedure" text='إجراء&#160;%n "%t"'/>
+      <l:template name="intra-table" text='جدول&#160;%n "%t"'/>
+
+      <l:template name="intra-variablelist" text='"%t"'/>
+      <l:template name="intra-orderedlist" text='"%t"'/>
+      <l:template name="intra-itemizedlist" text='"%t"'/>
+   </l:context>
+
+   <l:context name="xref-number-and-title">
+      <l:template name="appendix" style="nonumber"  text='الملحق "%t"'/>
+      <l:template name="bridgehead" text='القسم "%t"'/>
+      <l:template name="chapter" style="nonumber"  text='الفصل "%t"'/>
+      <l:template name="equation" style="nonumber"  text='المعادلة "%t"'/>
+      <l:template name="example" style="nonumber"  text='المثال "%t"'/>
+      <l:template name="figure" style="nonumber"  text='الرسم التوضيحي "%t"'/>
+      <l:template name="part" style="nonumber"  text='الجزء "%t"'/>
+      <l:template name="procedure" style="nonumber"  text='الإجراء "%t"'/>
+      <l:template name="productionset" style="nonumber"  text='الإنتاج "%t"'/>
+      <!-- FIXME: "Q & A" is quite possibly wrong - this is the tranlsation for
+           qandadiv (i.e. not for qandaset) from the original stylesheets. -->
+      <l:template name="qandadiv" style="nonumber"  text='س و ج "%t"'/>
+      <l:template name="refsect1" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsect2" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsect3" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="refsection" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="sect1" style="nonumber" text='القسم "%t"'/>
+      <l:template name="sect2" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect3" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect4" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="sect5" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="section" style="nonumber"  text='القسم "%t"'/>
+      <l:template name="simplesect" style="nonumber"  text='اسم القسم "%t"'/>
+      <l:template name="table" style="nonumber"  text='الجدول "%t"'/>
+      <!-- Patrick Tinley: taking these from nwalsh5 file, trying to fix
+      quotes and comma in external xrefs -->
+      <l:template name="sect1" text='قسم %n، "%t"'/>
+      <l:template name="sect2" text='قسم %n، "%t"'/>
+      <l:template name="sect3" text='قسم %n، "%t"'/>
+      <l:template name="sect4" text='قسم %n، "%t"'/>
+      <l:template name="sect5" text='قسم %n، "%t"'/>
+      <l:template name="section" text='قسم %n، "%t"'/>
+   </l:context>
+
+<!-- fs 2013-05-29:
+###################### No translation Start ###########################
+-->
+   <l:context name="xep-bookmark-title">
+      <l:template name="article" text="%t"/>
+      <l:template name="appendix" text="%n. %t"/>
+      <l:template name="article/appendix" text="%n. %t"/>
+      <l:template name="bibliography" text="%t"/>
+      <l:template name="book" text="%t"/>
+      <l:template name="bridgehead" text="%n. %t"/>
+      <l:template name="chapter" text="%n. %t"/>
+      <l:template name="glossary" text="%t"/>
+      <l:template name="index" text="%t"/>
+      <l:template name="part" text="%n. %t"/>
+      <l:template name="preface" text="%t"/>
+      <l:template name="reference" text="%t"/>
+      <l:template name="refentry" text="%t"/>
+      <l:template name="refsect1" text="%t"/>
+      <l:template name="refsect2" text="%t"/>
+      <l:template name="refsect3" text="%t"/>
+      <l:template name="sect1" text="%n. %t"/>
+      <l:template name="sect2" text="%n. %t"/>
+      <l:template name="sect3" text="%n %t"/>
+      <l:template name="sect4" text="%n %t"/>
+      <l:template name="sect5" text="%n %t"/>
+      <l:template name="section" text="%n. %t"/>
+      <l:template name="set" text="%t"/>
+      <l:template name="simplesect" text="%t"/>
+      <l:template name="toc" text="%t"/>
+   </l:context>
+
+<!-- fs 2013-05-29:
+###################### No translation End ###########################
+-->
+
+   <l:context name="title">
+      <l:template name="part" text="الجزء&#160;%n&#160;%t"/>
+   </l:context>
+
+  <!--
+    HACK for keycap context
+    We need to keep this for some time
+    See Ticket#84 and https://sf.net/tracker/index.php?func=detail&aid=3540451&group_id=21935&atid=373750
+   -->
+   <l:context name="msgset">
+      <l:template name="alt" text="Alt"/>
+      <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->
+      <l:template name="command" text="&#x2318;"/>
+      <l:template name="control" text="Ctrl"/>
+      <l:template name="delete" text="Del"/>
+      <l:template name="down" text="&#x02193;"/><!-- darr -->
+      <l:template name="end" text="End"/>
+      <l:template name="enter" text="Enter"/>
+      <l:template name="escape" text="Esc"/>
+      <l:template name="home" text="Home"/>
+      <l:template name="insert" text="Ins"/>
+      <l:template name="left" text="&#x02190;"/><!-- larr -->
+      <l:template name="meta" text="Meta"/>
+<!--       <l:template name="option" text="???"/> -->
+      <l:template name="other" text="???"/>
+      <l:template name="pagedown" text="الصفحة &#x02193;"/>
+      <l:template name="pageup" text="الصفحة &#x02191;"/>
+      <l:template name="right" text="&#x02192;"/><!-- rarr -->
+      <l:template name="shift" text="Shift"/>
+      <l:template name="space" text="Space"/>
+      <l:template name="tab" text="&#x02192;|"/>
+      <l:template name="up" text="&#x02191;"/><!-- uarr -->
+   </l:context>
+
+   <l:context name="parameters">
+     <l:template name="dot.after.section" text=""/>
+     <l:template name="dot.after.step" text=""/>
+   </l:context>
+
+   <l:context name="datetime">
+     <l:template name="titlepage.format" text="d b Y"/>
+   </l:context>
+
+</l:l10n>
+
