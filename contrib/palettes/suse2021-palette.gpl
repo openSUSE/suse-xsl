@@ -1,0 +1,23 @@
+GIMP Palette
+Name: SUSE (2021)
+Columns: 3
+#
+  0   0   0 Black
+255 255 255 White
+239 239 239 Fog
+222 223 224 Fog 200%
+192 194 196 Fog 300%
+ 12  50  44 Pine Green
+ 48 186 120 Jungle Green
+ 25  32 114 Midnight Blue
+117 122 167 Midnight Blue 60%
+187 189 212 Midnight Blue 30%
+ 36  83 255 Waterhole Blue
+128 154 247 Waterhole Blue 60%
+191 203 251 Waterhole Blue 30%
+254 124  63 Persimmon
+243 178 146 Persimmon 60%
+249 218 200 Persimmon 30%
+144 235 205 Mint
+199 241 227 Mint 60%
+227 248 241 Mint 30%
