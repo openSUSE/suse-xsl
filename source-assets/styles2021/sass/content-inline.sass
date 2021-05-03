@@ -47,10 +47,10 @@ strong
 
 
 .arch-arrow-start
-  background-color: #7DC24D
+  background-color: $c_jungle
   border-radius: 3px
-  border: 1px solid #439239
-  color: #FFF
+  border: 1px solid $c_pine
+  color: $c_white
   display: inline-block
   font-size: 14px
   height: 20px
@@ -58,14 +58,14 @@ strong
   margin-right: 12px
   padding: 0 2px 0 4px
   position: relative
-  vertical-align:bottom
+  vertical-align: bottom
 
 
 .arch-arrow-end,
 .arch-arrow-start:after
   display: inline-block
   height: 22px
-  vertical-align:bottom
+  vertical-align: bottom
 
 
 .arch-arrow-start:after
@@ -102,7 +102,7 @@ td
 
 .simplelist td,
 p
-  color: #000
+  color: $c_pine
   margin: 10px 0 0
   text-align: left
 
@@ -117,7 +117,7 @@ p
 .abstract p,
 .highlights p,
 .toc-title
-  color: #333
+  color: $c_pine
 
 
 .abstract p:first-child,
@@ -169,7 +169,7 @@ p
 .link,
 .ulink,
 .xref
-  color: #439239
+  color: $c_jungle
   text-decoration: none
 
 
@@ -254,7 +254,7 @@ p
 .xref:visited:active,
 .xref:visited:focus,
 .xref:visited:hover
-  color: #439239
+  color: $c_jungle
   text-decoration: underline
 
 
@@ -265,7 +265,7 @@ p
 .link:visited,
 .ulink:visited,
 .xref:visited
-  color: #5C3566
+  color: $c_jungle
 
 
 .example-title .xref:active,
@@ -298,12 +298,12 @@ p
 .variablelist-title .xref:active,
 .variablelist-title .xref:focus,
 .variablelist-title .xref:hover
-  color: #439239
+  color: $c_jungle
   text-decoration: none
 
 
 p a:visited
-  color: #5C3566
+  color: $c_jungle
 
 
 .command,
@@ -311,14 +311,19 @@ p a:visited
 .package,
 .replaceable,
 code
-  border-bottom: 1px solid #C1C1C3
   color: #333
   display: inline-block
-  font-family: 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
   font-weight: normal
   line-height: 120%
   padding: 0 4px
   text-transform: none
+
+.command,
+.package,
+.replaceable,
+code
+  font-family: $f_mono
+  border-bottom: 1px solid $c_fog_300
 
 
 .verbatim-wrap .command,
@@ -402,20 +407,21 @@ code
 
 .prompt.user,
 .prompt.custom
-  color: #666
+  color: lighten($c_pine, 15%)
 
 
 .prompt.root
-  color: #900
+  color: darken($c_persimmon, 25%)
 
 
 .verbatim-wrap
-  background-color: #999
-  border-radius: 5px
+  // this background should never be visible and yet it is occasionally :/
+  background-color: lighten($c_mint_30, 2%)
   margin: 5px 0
   padding: 0
   text-align: right
   transition: background-color .3s linear
+  position: relative
 
 
 .example .verbatim-wrap
@@ -424,13 +430,11 @@ code
 
 .verbatim-wrap > div,
 .verbatim-wrap > pre
-  background-color: #EFEFF0
-  border-radius: 5px
-  border: 1px solid #999
+  background-color: $c_mint_30
   box-sizing: border-box
-  color: #333
+  color: $c_pine
   display: block
-  font: normal 13px 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
+  font: normal 13px $f_mono
   line-height: 125%
   overflow-y: hidden
   overflow: auto
@@ -442,43 +446,50 @@ code
   width: 100%
 
 
+.procedure .verbatim-wrap > div,
+.procedure .verbatim-wrap > pre
+  background-color: $c_mint
+
+
 .verbatim-wrap > .clip-button
   -webkit-appearance: none
   -moz-appearance: none
   appearance: none
-  background-color: transparent
+  background-color: $c_fog_200
   background-image: url('../images/clipboard.svg')
-  background-position: left top
+  background-position: 5px 5px
   background-repeat: no-repeat
   border: none
   box-sizing: border-box
-  color: #FFF
+  color: $c_pine
   display: inline-block
-  font-family: 'Open Sans', Helvetica, FreeSans, sans-serif
+  font-family: $f_sans
   font-size: 12px
-  height: 16px
-  line-height: 16px
+  height: 26px
+  line-height: 26px
   margin: 5px
   outline: none
   overflow: hidden
-  padding: 0 0 0 20px
+  padding: 0 5px 0 25px
   text-align: left
   text-transform: uppercase
+  position: absolute
+  top: 0
+  right: 0
+  opacity: 0
 
+.verbatim-wrap:hover > .clip-button,
+.verbatim-wrap:focus > .clip-button
+  opacity: 1
 
 .verbatim-wrap > .clip-button:focus,
 .verbatim-wrap > .clip-button:hover
-  text-decoration: underline
+  background-color: $c_fog
 
 
 .verbatim-wrap.copy-success > div,
 .verbatim-wrap.copy-success > pre
-  border-color: #439239
-  background-color: #F7FAF6
-
-
-.verbatim-wrap.copy-success
-  background-color: #439239
+  background-color: $c_mint_60
 
 
 .verbatim-wrap .literal,
@@ -492,17 +503,15 @@ code
 
 
 .verbatim-wrap code
-  color: #333
-
-
+  color: $c_pine
 
 .verbatim-wrap .command
-  color: #306928
+  color: $c_midnight
 
 
 .complex-example .example-contents
-  background-color: #F9F9F9
-  border-left: 3px solid #999
+  background-color: $c_fog
+  border-left: 3px solid $c_fog_300
   margin: 5px 0
   padding: 3px 15px 6px 12px
 
@@ -524,11 +533,11 @@ code
 
 
 .callout
-  background-color: #439239
+  background-color: $c_waterhole
   border-radius: 10px
-  color: #FFF
+  color: $c_white
   display: inline-block
-  font-family: 'Open Sans', Helvetica, FreeSans, sans-serif
+  font-family: $f_sans
   font-size: 13px
   font-weight: 600
   line-height: 13px
@@ -539,7 +548,7 @@ code
 // highlight.js likes to recolor our text. ugh!
 .callout *
   background-color: transparent !important
-  color: #FFF !important
+  color: $c_white !important
   font-weight: 600 !important
 
 
@@ -569,7 +578,7 @@ div.variablelist,
 
 .glossary dt,
 .variablelist dt
-  color: #000
+  color: $c_pine
   font-weight: 600
   margin: 0
   position: relative
@@ -630,7 +639,7 @@ div.figure
 
 .figure-contents > .mediaobject
   background-color: #FFF
-  border: 1px solid #EFEFF0
+  border: 1px solid $c_fog
   color: #999
   max-width: 100%
   min-height: 60px
@@ -660,7 +669,7 @@ div.figure
 
 
 .figure-title-wrap
-  background-color: #EFEFF0
+  background-color: $c_fog
   overflow: hidden
   width: 100%
 
@@ -687,13 +696,10 @@ div.figure
 
 
 .keycap
-  background-color: #EFEFF0
-  border-color: #999
-  border-radius: 3px
-  border-style: solid
-  border-width: 1px 2px 2px 1px
-  color: #333
-  font-size: 0.75em
+  background-color: $c_fog_300
+  border-width: 1px
+  color: $c_pine
+  font-size: 0.9em
   font-weight: normal
   padding: 0px 5px
   vertical-align: 0.2em
@@ -715,13 +721,14 @@ a:hover .literal,
 a:hover .package,
 a:hover .replaceable,
 a:hover code
-  border-color: #439239
+  border-color: $c_jungle
 
 
 
 // We put an ndash character between keycaps that are part of an accelerator
+// FIXME: This really should be solved using an ::after with content: '-'
 .key-connector
-  color: #666
+  color: darken($c_fog_300, 10%)
   margin: 0 -1px
 
 
@@ -824,8 +831,8 @@ a:hover code
 
 
 .procedure-contents
-  background-color: #F7FAF6
-  border-left: 3px solid #9CC897
+  background-color: $c_mint_30
+  border-left: 3px solid $c_mint
   display: block
   font-weight: normal
   margin: 17px 0 17px
@@ -858,7 +865,7 @@ a:hover code
 ol.orderedlist,
 ol.procedure,
 ol.substeps
-  color: #439239
+  color: $c_jungle
   display: block
   font-weight: 600
 
@@ -948,7 +955,7 @@ table p
 
 .informaltable th,
 .table th
-  background-color: #D1D1D3
+  background-color: $c_fog_300
 
 
 .informaltable td,
@@ -1007,11 +1014,11 @@ table p
 
 .informaltable tr:nth-child(even),
 .table tr:nth-child(even)
-  background-color: #EFEFF0
+  background-color: $c_fog
 
 
 ul
-  color: #439239
+  color: $c_jungle
   display: block
   list-style-type: disc
   margin: 0 10px
@@ -1102,7 +1109,7 @@ div.itemizedlist
 
 
 .js-on .question:before
-  background-image: url(../images/arrow.png)
+  background-image: url(../images/arrow.svg)
   background-position: -98px 0
   background-repeat: no-repeat
   content: ''

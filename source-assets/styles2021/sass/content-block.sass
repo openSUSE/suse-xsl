@@ -58,16 +58,14 @@
 
 
 div.version-info
-  background-color: rgba(255,255,255,0.7)
-  border-radius: 3px
-  color: #439239
+  background-color: $c_persimmon
+  color: $c_pine
   float: right
   font-size: 13px
   font-weight: normal
   line-height: 120%
   margin: 5px 0 10px
-  padding: 3px 5px
-
+  padding: 0.5rem 1rem
 
 .single div.version-info
   position: relative
@@ -75,8 +73,8 @@ div.version-info
 
 
 h6.version-info
-  background-color: #76AD2D
-  color: #FFF
+  background-color: $c_mint_60
+  color: $c_pine
   float: left
   font-size: 24px
   line-height: 100%
@@ -94,7 +92,7 @@ h6.version-info
 .book .title,
 .set .title
   clear: both
-  color: #439239
+  color: $c_jungle
   font-size: 48px
   font-weight: 600
   line-height: 120%
@@ -237,7 +235,7 @@ h2
 .refentry h2,
 .refentrytitle a,
 h2
-  color: #439239
+  color: $c_jungle
 
 
 .bubble a.leads-to-page:hover .name,
@@ -260,7 +258,7 @@ a:hover .name
 
 .number,
 .subtitle
-  color: #666
+  color: desaturate($c_jungle, 80%)
 
 
 .subtitle em,
@@ -271,15 +269,15 @@ a:hover .name
 .nav-link:active .number,
 .nav-link:focus .number,
 .nav-link:hover .number
-  color: #68C05E
+  color: $c_jungle
 
 
 #_bubble-toc .number
-  color: #CCC
+  color: $c_jungle
 
 
 #_bubble-toc .name
-  color: #FFF
+  color: $c_pine
 
 
 .permalink,
@@ -294,13 +292,13 @@ a:hover .name
 
 
 .permalink
-  color: #999
+  color: $c_fog_300
   font-size: 75%
   line-height: 100%
 
 
 .report-bug
-  background-color: #EEE
+  background-color: $c_fog_300
   border-bottom: 1px solid transparent
   color: #333
   display: inline-block
@@ -319,7 +317,7 @@ a:hover .name
 .report-bug:active,
 .report-bug:focus,
 .report-bug:hover
-  color: #439239
+  color: $c_jungle
   text-decoration: none !important
 
 
@@ -333,7 +331,7 @@ a:hover .name
 .report-bug:hover
   background-color: #DDD
   border-color: #333
-  color: #000
+  color: #c_pine
 
 
 .line > .toc
@@ -341,7 +339,7 @@ a:hover .name
 
 
 .line
-  border-bottom: 1px solid #439239
+  border-bottom: 1px solid $c_pine
   margin: 17px 0 36px 0
   width: 100%
 
@@ -369,20 +367,19 @@ a:hover .name
 
 
 .admonition.normal
-  border-radius: 3px
   border-style: solid
   border-width: 1px
   padding: 10px
 
 
 .tip.admonition.normal
-  background-color: #FFF
-  border-color: #439239
+  background-color: $c_white
+  border-color: $c_jungle
 
 
 .note.admonition.normal
-  background-color: #FFF
-  border-color: #666
+  background-color: $c_white
+  border-color: $c_midnight
 
 
 .note.admonition.normal .orderedlist,
@@ -393,19 +390,19 @@ a:hover .name
 
 
 .important.admonition.normal
-  border-color: #BB7B03
-  background-color: #FFF
+  background-color: $c_white
+  border-color: $c_waterhole
 
 
 .important .orderedlist,
 .important.admonition.normal ul
-  color: #BB7B03
+  color: $c_waterhole
 
 
 .caution.admonition.normal,
 .warning.admonition.normal
-  border-color: #8C0000
-  background-color: #FFF
+  border-color: $c_persimmon
+  background-color: $c_white
 
 
 .admonition > h6
@@ -425,20 +422,20 @@ a:hover .name
 
 
 .tip.admonition.normal > h6
-  color: #439239
+  color: $c_pine
 
 
 .note.admonition.normal > h6
-  color: #333
+  color: $c_pine
 
 
 .important.admonition.normal > h6
-  color: #BB7B03
+  color: $c_pine
 
 
 .caution.admonition.normal > h6,
 .warning.admonition.normal > h6
-  color: #8C0000
+  color: $c_pine
 
 
 .admonition > .symbol

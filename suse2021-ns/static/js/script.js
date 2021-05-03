@@ -218,7 +218,7 @@ function addClipboardButtons() {
   $( ".verbatim-wrap > pre" ).each(function () {
       var clipButton = $('<button/>', {
           class: 'clip-button',
-          text: 'Copy code',
+          text: 'Copy',
           click: function () {
             var elm = this.previousSibling;
             copyToClipboard(elm);

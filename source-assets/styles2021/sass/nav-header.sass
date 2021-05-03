@@ -2,18 +2,18 @@
 
 #_logo
   float: left
-  height: 38px
-  margin: 22px 22px 27px 0
-  width: 81px
+  height: 45px
+  margin: 28px 22px 27px 0
+  width: 135px
 
 
 #_logo img
-  color: #FFF
+  color: $c_white
   display: block
   font-weight: 600
-  height: 38px
+  height: 45px
   line-height: 55px
-  width: 81px
+  width: 135px
 
 
 #_header .crumbs
@@ -21,11 +21,11 @@
   height: 36px
   left: 0
   margin: 0
-  margin: 0 0 0 110px
+  margin: 0 0 0 150px
   max-width: 70%
-  max-width: calc(100% - 120px)
-  max-width: -moz-calc(100% - 120px)
-  max-width: -webkit-calc(100% - 120px)
+  max-width: calc(100% - 160px)
+  max-width: -moz-calc(100% - 160px)
+  max-width: -webkit-calc(100% - 160px)
   overflow: hidden
   position: absolute
   text-overflow: ellipsis
@@ -57,23 +57,24 @@
 
 
 .crumbs > span
-  color: #0C322C
+  color: $c_white
 
 
 .crumbs > a
-  color: #0C322C
+  color: $c_white
   text-decoration: none
 
 
 .crumbs > a:active,
 .crumbs > a:focus,
 .crumbs > a:hover
-  color: #30BA78
-  text-decoration: none
+  color: $c_white
+  text-decoration: underline
 
 
 #_header .single-crumb
-  background-color: #EFEFF0
+  background-color: $c_persimmon_60
+  color: $c_pine
   border-radius: 18px
   display: inline-block
   height: 36px
@@ -90,8 +91,8 @@
 #_header .single-crumb:active,
 #_header .single-crumb:focus,
 #_header .single-crumb:hover
-  background-color: #D7D7D7
-  color: #FFF
+  background-color: $c_persimmon_30
+  color: $c_pine
 
 
 #_header .single-contents-icon
@@ -132,7 +133,7 @@
 ._share-in:before,
 ._share-mail:before,
 ._share-tw:before
-  background-image: url(../images/icons.png)
+  background-image: url(../images/icons.svg)
   background-repeat: no-repeat
 
 
@@ -275,7 +276,7 @@
 // Language and Format Pickers
 
 #_pickers
-  background-color: #FFF
+  background-color: $c_white
   float: right
   padding: 5px 0
 
@@ -286,9 +287,9 @@
 
 
 .picker
-  background-color: #F2F2F2
+  background-color: $c_fog
   border-radius: 3px
-  color: #FFF
+  color: $c_pine
   display: block
   float: left
   font-size: 13px
@@ -303,7 +304,7 @@
 .picker:active,
 .picker:focus,
 .picker:hover
-  background-color: #D7D7D7
+  background-color: $c_fog_300
   text-decoration: underline
 
 
@@ -320,15 +321,15 @@
 
 
 .bubble h6
-  border-bottom: 1px solid #FFF
-  color: #FFF
+  border-bottom: 1px solid $c_pine
+  color: $c_pine
   display: block
   margin: 0 0 5px 0
   padding: 10px 0 5px
 
 
 #_pickers .bubble a
-  color: #FFF
+  color: $c_jungle
   display: block
   line-height: 22px
   padding: 5px 25px 5px 5px
@@ -338,12 +339,12 @@
 #_pickers .bubble a:active,
 #_pickers .bubble a:focus,
 #_pickers .bubble a:hover
-  background-color: #D7D7D7
+  background-color: $c_mint_30
   text-decoration: underline
 
 
 #_pickers .bubble .selected
-  background-color: #7AD4AA
+  background-color: $c_mint_60
   background-image: url(../images/tick.png)
   background-position: right top
   background-repeat: no-repeat
@@ -352,7 +353,7 @@
 #_pickers .bubble .selected:active,
 #_pickers .bubble .selected:focus,
 #_pickers .bubble .selected:hover
-  background-color: #30BA78
+  background-color: $c_mint_60
   text-decoration: underline
 
 

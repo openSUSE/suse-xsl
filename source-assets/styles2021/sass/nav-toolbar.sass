@@ -191,7 +191,7 @@ a:hover > .find-icon
 
 
 .bubble-corner
-  border-color: transparent transparent #F2F2F2
+  border-color: transparent transparent $c_fog_200
   border-style: solid
   border-width: 0 15px 15px
   height: 0
@@ -211,7 +211,7 @@ a:hover > .find-icon
 
 
 .bubble
-  background-color: #F2F2F2
+  background-color: $c_fog_200
   z-index: 8
 
 
@@ -305,9 +305,9 @@ a:hover > .find-icon
   width: 50%
   padding: 0
   margin: 0
-  background-color: #F2F2F2
+  background-color: $c_fog_200
   height: 100%
-  border-right: 1px solid #0C322C
+  border-right: 1px solid $c_jungle
 
 
 #_bubble-toc > ol.full-width
@@ -327,8 +327,8 @@ a:hover > .find-icon
 
 
 #_bubble-toc .active ol
-  background-color: #F2F2F2
-  border-left: 1px solid #0C322C
+  background-color: $c_fog_200
+  border-left: 1px solid $c_pine
   display: block
   height: 100%
   margin: 0 1px 0 0
@@ -344,8 +344,8 @@ a:hover > .find-icon
 
 
 #_bubble-toc .inactive a:hover
-  background-color: #666
-  color: #FFF
+  background-color: $c_mint_60
+  color: $c_pine
 
 
 .leads-to-page > .name:active,
@@ -355,7 +355,7 @@ a:hover > .find-icon
 
 
 .arrow
-  background-image: url(../images/arrow.png)
+  background-image: url(../images/arrow.svg)
   background-position: -30px 8.5px
   background-repeat: no-repeat
   display: block
@@ -373,15 +373,15 @@ a:hover > .find-icon
 
 
 #_bubble-toc .active > a
-  background-color: #30BA78
+  background-color: $c_mint
   color: #FFF
 
 #_bubble-toc .active
-  background-color: #D7D7D7
+  background-color: $c_fog_200
 
 
 #_bubble-toc .inactive:hover
-  background-color: #D7D7D7
+  background-color: $c_fog_200
 
 
 #_bubble-toc a
@@ -397,7 +397,7 @@ a:hover > .find-icon
 .bubble a:active,
 .bubble a:focus,
 .bubble a:hover
-  background-color: #D7D7D7
+  background-color: $c_fog_200
   text-decoration: underline
 
 
@@ -421,7 +421,7 @@ a:hover > .find-icon
   border: 1px solid #7AD4AA
   display: block
   float: left
-  font: 16px 'Open Sans', Helvetica, FreeSans, sans-serif
+  font: 16px $f_sans
   height: 34px
   padding: 0 20px 0 5px
   width: 155px
@@ -480,11 +480,11 @@ button:focus::-moz-focus-inner
 // Smaller, fixed header
 
 #_fixed-header-wrap
-  background-color: #EFEFF0
+  background-color: $c_pine
   border-bottom: 1px solid #CCC
   box-shadow: 0 5px 5px #FFF
   line-height: 100%
-  padding: 3px 0
+  padding: .7rem 0
   position: fixed
   top: 0
   width: 100%
@@ -526,13 +526,13 @@ button:focus::-moz-focus-inner
 
 
 .top-button
-  color: #333
+  color: $c_white
 
 
 .top-button:active,
 .top-button:focus,
 .top-button:hover
-  color: #439239
+  color: $c_white
   text-decoration: none
 
 

@@ -236,6 +236,7 @@ task before
   <xsl:param name="is.chunk" select="0"/>
 
   <xsl:param name="admon.graphics.prefix">icon-</xsl:param>
+  <xsl:param name="admon.graphics.extension">.svg</xsl:param>
 
   <!-- Create an image tag for the logo? -->
   <xsl:param name="generate.logo">
@@ -245,7 +246,7 @@ task before
     </xsl:choose>
   </xsl:param>
 
-  <xsl:param name="daps.header.logo">static/images/logo.png</xsl:param>
+  <xsl:param name="daps.header.logo">static/images/logo.svg</xsl:param>
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
   <xsl:param name="daps.header.js.library">static/js/jquery-1.10.2.min.js</xsl:param>
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
