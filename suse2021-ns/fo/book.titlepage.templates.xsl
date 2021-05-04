@@ -55,7 +55,7 @@
 
   <!-- Logo -->
   <fo:block-container top="{$page.margin.top}" absolute-position="fixed"
-    left="{$page.margin.start - $titlepage.logo.overhang}mm">
+    left="{$page.margin.start}mm">
     <xsl:choose>
       <xsl:when test="$writing.mode = 'lr'">
         <xsl:attribute name="right">
@@ -64,7 +64,7 @@
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="left">
-          <xsl:value-of select="$page.margin.start - $titlepage.logo.overhang"/>mm
+          <xsl:value-of select="$page.margin.start"/>mm
         </xsl:attribute>
       </xsl:otherwise>
     </xsl:choose>
@@ -76,7 +76,9 @@
     </fo:block>
   </fo:block-container>
 
- <!-- Title and product -->
+  <!-- Title and product -->
+  <!-- FIXME: this is written for the old case where we had a dividing line
+  between title/product name; the first column is no longer necessary -->
   <fo:block-container top="0" left="0" absolute-position="fixed"
     height="{$height * (2 - &goldenratio;)}{$unit}">
     <fo:block>
@@ -94,6 +96,18 @@
               <fo:table-column column-number="2"
                 column-width="{(&column; * 6) + (&gutter; * 5)}mm"/>
               <fo:table-body>
+                <fo:table-row>
+                  <fo:table-cell>
+                    <fo:block> </fo:block>
+                  </fo:table-cell>
+                  <fo:table-cell>
+                    <fo:block padding-before="&columnfragment;mm">
+                      <!-- We use the full productname here: -->
+                      <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
+                        select="d:bookinfo/d:productname[not(@role='abbrev')]|d:info/d:productname[not(@role='abbrev')]"/>
+                      </fo:block>
+                    </fo:table-cell>
+                </fo:table-row>
                 <fo:table-row>
                   <fo:table-cell>
                     <fo:block> </fo:block>
@@ -117,20 +131,6 @@
                       </fo:block>
                     </fo:table-cell>
                 </fo:table-row>
-                <fo:table-row>
-                  <fo:table-cell>
-                    <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$mid-green)"/></xsl:attribute>
-                    <fo:block> </fo:block>
-                  </fo:table-cell>
-                  <fo:table-cell>
-                    <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$mid-green)"/></xsl:attribute>
-                    <fo:block padding-before="&columnfragment;mm">
-                      <!-- We use the full productname here: -->
-                      <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-                        select="d:bookinfo/d:productname[not(@role='abbrev')]|d:info/d:productname[not(@role='abbrev')]"/>
-                      </fo:block>
-                    </fo:table-cell>
-                </fo:table-row>
               </fo:table-body>
             </fo:table>
           </fo:table-cell>
@@ -147,7 +147,7 @@
 
 <xsl:template match="d:title" mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" line-height="1.2" hyphenate="false"
-    xsl:use-attribute-sets="title.font title.name.color"
+    xsl:use-attribute-sets="title.font mid-green sans.bold.noreplacement"
     font-size="{&ultra-large;}pt">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
   </fo:block>
@@ -165,13 +165,19 @@
   mode="book.titlepage.recto.auto.mode">
   <fo:block text-align="start" hyphenate="false"
     line-height="{$base-lineheight * 0.85}em"
-    font-weight="normal" font-size="{&super-large; * $sans-fontsize-adjust}pt"
+    font-size="{&xxx-large; * $sans-fontsize-adjust}pt"
     space-after="&gutterfragment;mm"
-    xsl:use-attribute-sets="title.font mid-green">
+    xsl:use-attribute-sets="title.font dark-green sans.bold.noreplacement">
+    <!-- FIXME: fix grayscale mode for c_mint_60 -->
+    <!-- FIXME: apparently the line-height setting borks our padding somehow.
+    FOP makes the current setting look aight, but it feels off. -->
+    <fo:inline background-color="&c_mint_60;" padding="0.3em 0.3em 0.1em 0.3em"
+      margin-bottom=".3em">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
     <xsl:text> </xsl:text>
     <xsl:apply-templates select="../d:productnumber[not(@role='abbrev')]"
       mode="book.titlepage.recto.mode"/>
+    </fo:inline>
   </fo:block>
 </xsl:template>
 

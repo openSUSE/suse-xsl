@@ -83,7 +83,7 @@
         &mid-gray;
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$chamaeleon-green"/>
+        <xsl:value-of select="$mid-green"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -185,9 +185,9 @@
                    use-attribute-sets="title.font xref.basic.properties">
   <xsl:attribute name="color">
     <xsl:choose>
-     <xsl:when test="ancestor::d:remark">&white;</xsl:when>
+     <xsl:when test="ancestor::d:remark">&c_white;</xsl:when>
      <xsl:otherwise>
-      <xsl:value-of select="$dark-green"/>
+      <xsl:value-of select="$mid-green"/>
      </xsl:otherwise>
     </xsl:choose>
   </xsl:attribute>
@@ -312,8 +312,9 @@
 </xsl:variable>
 
 <xsl:attribute-set name="shade.verbatim.style">
-  <xsl:attribute name="background-color">&extra-light-gray-old;</xsl:attribute>
-  <xsl:attribute name="border">&thinline;mm solid &light-gray;</xsl:attribute>
+  <!-- FIXME: special-case procedurs (c_mint), grayscale output -->
+  <xsl:attribute name="background-color">&c_mint_30;</xsl:attribute>
+  <xsl:attribute name="border">none</xsl:attribute>
   <xsl:attribute name="padding">0.5em</xsl:attribute>
   <xsl:attribute name="start-indent">
     <xsl:value-of select="$verbatim-start-end-indent"/>
@@ -333,7 +334,7 @@
 
 <!-- 19. Pagination and General Styles ========================== -->
 
-<xsl:attribute-set name="footer.content.properties">
+<xsl:attribute-set name="footer.content.properties" use-attribute-sets="dark-green">
   <xsl:attribute name="font-family">
     <xsl:value-of select="$sans.font.family"/>
   </xsl:attribute>
@@ -345,7 +346,7 @@
   </xsl:attribute>
 </xsl:attribute-set>
 
-<xsl:attribute-set name="para.properties" use-attribute-sets="normal.para.spacing">
+<xsl:attribute-set name="para.properties" use-attribute-sets="normal.para.spacing dark-green">
     <xsl:attribute name="text-align">
       <xsl:choose>
         <!-- or ancestor::procedure or ancestor::orderedlist or
@@ -407,7 +408,7 @@
   <xsl:attribute name="widows">2</xsl:attribute>
 </xsl:attribute-set>
 
-<xsl:attribute-set name="monospace.verbatim.properties" use-attribute-sets="verbatim.properties monospace.properties">
+<xsl:attribute-set name="monospace.verbatim.properties" use-attribute-sets="verbatim.properties monospace.properties dark-green">
   <xsl:attribute name="text-align">start</xsl:attribute>
   <xsl:attribute name="wrap-option">wrap</xsl:attribute>
   <xsl:attribute name="hyphenation-character"><xsl:value-of select="$hook"/></xsl:attribute>
@@ -462,7 +463,7 @@
 </xsl:attribute-set>
 
 <xsl:attribute-set name="formal.title.properties"
-  use-attribute-sets="normal.para.spacing dark-green sans.bold.noreplacement">
+  use-attribute-sets="normal.para.spacing mid-green sans.bold.noreplacement">
   <xsl:attribute name="font-family"><xsl:value-of select="$sans.font.family"/></xsl:attribute>
   <xsl:attribute name="font-size"><xsl:value-of select="&small; * $sans-fontsize-adjust"/>pt</xsl:attribute>
   <xsl:attribute name="text-transform">uppercase</xsl:attribute>
@@ -586,7 +587,7 @@
 
 
 <!-- 26. Custom ================================================= -->
-<xsl:attribute-set name="title.name.color" use-attribute-sets="dark-green"/>
+<xsl:attribute-set name="title.name.color" use-attribute-sets="mid-green"/>
 
 <xsl:attribute-set name="title.number.color">
   <xsl:attribute name="color">&mid-gray;</xsl:attribute>
@@ -604,12 +605,6 @@
   </xsl:attribute>
 </xsl:attribute-set>
 
-<xsl:attribute-set name="chamaeleon-green">
-  <xsl:attribute name="color">
-    <xsl:value-of select="$chamaeleon-green"/>
-  </xsl:attribute>
-</xsl:attribute-set>
-
 <xsl:param name="dark-green">
   <!-- This naming solution is somewhat pathetic – but unfortunately, while we
        need the green color as a text color most of the time, sometimes we use
@@ -617,7 +612,7 @@
        function in the future. -->
   <xsl:choose>
     <xsl:when test="$format.print = 1">&darker-gray;</xsl:when>
-    <xsl:otherwise>&dark-green;</xsl:otherwise>
+    <xsl:otherwise>&c_pine;</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
 
@@ -625,15 +620,7 @@
   <!-- See above... -->
   <xsl:choose>
     <xsl:when test="$format.print = 1">&mid-gray;</xsl:when>
-    <xsl:otherwise>&mid-green;</xsl:otherwise>
-  </xsl:choose>
-</xsl:param>
-
-<xsl:param name="chamaeleon-green">
-  <!-- See above... -->
-  <xsl:choose>
-    <xsl:when test="$format.print = 1">&mid-gray;</xsl:when>
-    <xsl:otherwise>&chamaeleon-green;</xsl:otherwise>
+    <xsl:otherwise>&c_jungle;</xsl:otherwise>
   </xsl:choose>
 </xsl:param>
 

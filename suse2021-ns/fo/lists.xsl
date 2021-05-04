@@ -32,7 +32,7 @@
   <fo:instream-foreign-object content-height="0.4em"
     alignment-baseline="alphabetic" alignment-adjust="0.175em">
     <svg:svg xmlns:svg="http://www.w3.org/2000/svg" width="100" height="100">
-      <svg:circle cx="50" cy="50" r="50" stroke="none" fill="{$dark-green}"/>
+      <svg:circle cx="50" cy="50" r="50" stroke="none" fill="{$mid-green}"/>
     </svg:svg>
   </fo:instream-foreign-object>
 </xsl:template>
@@ -42,7 +42,7 @@
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
   <fo:block id="{$id}"
-    xsl:use-attribute-sets="variablelist.term.properties list.item.spacing"
+    xsl:use-attribute-sets="variablelist.term.properties list.item.spacing dark-green"
     keep-together.within-column="always"
     keep-with-next.within-column="always">
     <xsl:apply-templates select="d:term"/>
@@ -204,7 +204,7 @@
               <xsl:text>&dark-gray;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:text>&dark-green;</xsl:text>
+              <xsl:text>&c_jungle;</xsl:text>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:attribute>

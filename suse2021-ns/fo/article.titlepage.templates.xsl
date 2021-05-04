@@ -6,7 +6,7 @@
   Author(s):  Stefan Knorr <sknorr@suse.de>,
               Thomas Schraitle <toms@opensuse.org>
 
-  Copyright:  2013, Stefan Knorr, Thomas Schraitle
+  Copyright:  2013, 2021, Stefan Knorr, Thomas Schraitle
 
 -->
 <!DOCTYPE xsl:stylesheet
@@ -39,11 +39,6 @@
 
     <fo:block space-after="&gutter;mm" text-align="start">
       <xsl:choose>
-        <!-- Don't let Geeko overhang the right side of the page - it
-             is not mirrored, thus some letters would hang over the side
-             of hte page, instead of the tail. -->
-        <!-- FIXME: This is not the optimal implementation if we ever
-             want to be able to switch out images easily. -->
         <xsl:when test="$writing.mode ='rl'">
           <xsl:attribute name="margin-right">
             <xsl:value-of select="&columnfragment; + &gutter;"/>mm
@@ -51,11 +46,11 @@
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="margin-left">
-            <xsl:value-of select="&columnfragment; + &gutter; - $titlepage.logo.overhang"/>mm
+            <xsl:value-of select="&columnfragment; + &gutter;"/>mm
           </xsl:attribute>
         </xsl:otherwise>
       </xsl:choose>
-      <fo:instream-foreign-object content-width="{$titlepage.logo.width}"
+      <fo:instream-foreign-object content-width="{$titlepage.logo.width.article}"
         width="{$titlepage.logo.width}">
         <xsl:call-template name="logo-image"/>
       </fo:instream-foreign-object>
@@ -64,6 +59,8 @@
     <fo:block start-indent="{&columnfragment; + &gutter;}mm" text-align="start"
       role="article.titlepage.recto">
       <fo:block space-after="{&gutterfragment;}mm">
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
+              select="*[concat(local-name(.), 'info')]/d:productname[not(@role='abbrev')]"/>
         <xsl:choose>
           <xsl:when test="d:articleinfo/d:title">
             <xsl:apply-templates
@@ -89,7 +86,6 @@
 
     <fo:block padding-before="{2 * &gutterfragment;}mm"
       padding-start="{&column; + &columnfragment; + &gutter;}mm">
-      <xsl:attribute name="border-top"><xsl:value-of select="concat(&mediumline;,'mm solid ',$dark-green)"/></xsl:attribute>
 
       <xsl:choose>
         <xsl:when test="d:articleinfo/d:subtitle">
@@ -113,8 +109,6 @@
             select="d:subtitle"/>
         </xsl:when>
       </xsl:choose>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="d:articleinfo/d:productname[not(@role='abbrev')]"/>
     </fo:block>
 
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:corpauthor"/>
@@ -162,8 +156,8 @@
   </xsl:template>
 
   <xsl:template match="d:title" mode="article.titlepage.recto.auto.mode">
-    <fo:block font-size="{&super-large; * $sans-fontsize-adjust}pt" line-height="{$base-lineheight * 0.85}em"
-      xsl:use-attribute-sets="article.titlepage.recto.style dark-green"
+    <fo:block font-size="{&superplus-large; * $sans-fontsize-adjust}pt" line-height="{$base-lineheight * 0.85}em"
+      xsl:use-attribute-sets="article.titlepage.recto.style sans.bold.noreplacement mid-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
@@ -171,7 +165,7 @@
 
   <xsl:template match="d:subtitle" mode="article.titlepage.recto.auto.mode">
     <fo:block font-size="{&xx-large; * $sans-fontsize-adjust}pt" line-height="{$base-lineheight * 0.75}em"
-      xsl:use-attribute-sets="article.titlepage.recto.style mid-green"
+      xsl:use-attribute-sets="article.titlepage.recto.style dark-green"
       keep-with-next.within-column="always" space-after="{&gutterfragment;}mm">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
     </fo:block>
@@ -179,12 +173,18 @@
 
   <xsl:template match="d:productname[1]" mode="article.titlepage.recto.auto.mode">
     <fo:block text-align="start" font-size="{&xx-large; * $sans-fontsize-adjust}pt"
-      xsl:use-attribute-sets="mid-green">
+      xsl:use-attribute-sets="sans.bold.noreplacement">
+    <!-- FIXME: fix grayscale mode for c_mint_60 -->
+    <!-- FIXME: apparently the line-height setting borks our padding somehow.
+    FOP makes the current setting look aight, but it feels off. -->
+    <fo:inline background-color="&c_mint_60;" padding="0.3em 0.3em 0.1em 0.3em"
+      margin-bottom=".3em">
       <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
       <xsl:if test="../d:productnumber">
         <xsl:text> </xsl:text>
         <xsl:apply-templates select="../d:productnumber[1]" mode="article.titlepage.recto.mode"/>
       </xsl:if>
+      </fo:inline>
     </fo:block>
   </xsl:template>
 

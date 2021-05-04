@@ -74,7 +74,7 @@
 
 
 <xsl:template name="image-after-link">
-  <xsl:variable name="fill" select="$dark-green"/>
+  <xsl:variable name="fill" select="$mid-green"/>
 
   <fo:leader leader-pattern="space" leader-length="0.2em"/>
   <fo:instream-foreign-object content-height="0.65em">

@@ -39,7 +39,8 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <xsl:variable name="color" select="$dark-green"/>
+  <!-- Fix grayscale compatibility -->
+  <xsl:variable name="color" select="'&c_midnight;'"/>
 
   <fo:leader leader-pattern="space" leader-length="0.2em"/>
 
@@ -48,7 +49,7 @@
     <svg:svg xmlns:svg="http://www.w3.org/2000/svg" height="100px" width="{$width}">
       <svg:rect height="100" rx="50" ry="50" x="0" y="0"
         fill="{$color}" stroke="none" width="{$width}"/>
-      <svg:text y="{$instream-font-size - 1}" fill="&white;" font-family="{$callout-font-stack}"
+      <svg:text y="{$instream-font-size - 1}" fill="&c_white;" font-family="{$callout-font-stack}"
         font-size="{$instream-font-size}" text-anchor="middle"
         font-weight="{$callout-font-weight}">
         <xsl:attribute name="x">

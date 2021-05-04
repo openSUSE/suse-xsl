@@ -71,9 +71,10 @@ set       toc,title
 
 <!-- 10. Tables ================================================= -->
 <xsl:param name="default.table.width">100%</xsl:param>
-<xsl:param name="table.frame.border.color">&light-gray;</xsl:param>
+<!-- FIXME: check c_fog_200 for grayscale compatibility -->
+<xsl:param name="table.frame.border.color">&c_fog_200;</xsl:param>
 <xsl:param name="table.frame.border.thickness">&thinline;mm</xsl:param>
-<xsl:param name="table.cell.border.color">&light-gray;</xsl:param>
+<xsl:param name="table.cell.border.color">&c_fog_200;</xsl:param>
 <xsl:param name="table.cell.border.thickness">&thinline;mm</xsl:param>
 <xsl:attribute-set name="table.cell.padding">
   <xsl:attribute name="padding-start">1.5mm</xsl:attribute>
@@ -356,7 +357,7 @@ are always just normal numbers). -->
 Provo, UT 84606
 USA</xsl:param>
 
-<xsl:param name="enable.secondary.branding" select="1"/>
+<xsl:param name="enable.secondary.branding" select="0"/>
 
 <xsl:param name="styleroot" select="'WARNING: styleroot unset!'"/>
 
@@ -378,16 +379,10 @@ USA</xsl:param>
   </xsl:choose>
 </xsl:param>
 
-<!-- SUSE logo on book & article title page: display width and how
-     much of the logo should overhang the page border -->
+<!-- logo on book & article title page: display width -->
 
-<xsl:param name="titlepage.logo.width"
-  ><xsl:value-of select="(1 + (602 div 3395)) * &column;"/>mm</xsl:param>
-<xsl:param name="titlepage.logo.overhang" select="(602 div 3395) * &column;"/>
-  <!-- These above calculations are not complete voodoo - the SUSE logo SVG is
-       3395px wide, the first "S" of SUSE starts at 602px and the output width
-       of the logo is $titlepage.logo.width. Effectively, the Geeko tail ends
-       up on the page border. -->
+<xsl:param name="titlepage.logo.width"><xsl:value-of select="(2 * &column;) + (1 * &gutter;)"/>mm</xsl:param>
+<xsl:param name="titlepage.logo.width.article"><xsl:value-of select="&column; + &gutter;"/>mm</xsl:param>
 
 
 <!-- Background image for Book title page -->

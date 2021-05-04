@@ -6,7 +6,7 @@
   Author(s):  Stefan Knorr <sknorr@suse.de>,
               Thomas Schraitle <toms@opensuse.org>
 
-  Copyright:  2013, Stefan Knorr, Thomas Schraitle
+  Copyright:  2013, 2021, Stefan Knorr, Thomas Schraitle
 
 -->
 <!DOCTYPE xsl:stylesheet
@@ -32,7 +32,7 @@
 </xsl:template>
 
 <xsl:template name="admon.symbol">
-  <xsl:param name="color" select="'&dark-green;'"/>
+  <xsl:param name="color" select="'&c_jungle;'"/>
   <xsl:param name="node" select="."/>
 
   <!-- Hierarchy of admonition symbols:
@@ -80,17 +80,17 @@
         <xsl:when test="local-name($node)='warning' or
                         local-name($node)='caution'">
           <!-- The symbol for these two is currently the same -->
-          <xsl:text>&dark-blood;</xsl:text>
+          <xsl:text>&c_persimmon;</xsl:text>
         </xsl:when>
         <xsl:when test="local-name($node)='tip'">
-          <xsl:text>&dark-green;</xsl:text>
+          <xsl:text>&c_jungle;</xsl:text>
         </xsl:when>
         <xsl:when test="local-name($node)='important'">
-          <xsl:text>&mid-orange;</xsl:text>
+          <xsl:text>&c_waterhole;</xsl:text>
         </xsl:when>
         <xsl:otherwise>
           <!-- It's a note. (Or something undefined.) -->
-          <xsl:text>&darker-gray;</xsl:text>
+          <xsl:text>&c_midnight;</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:otherwise>
@@ -101,15 +101,7 @@
  <xsl:variable name="color">
   <xsl:call-template name="admon.symbol.color"/>
  </xsl:variable>
- <fo:block>
-  <xsl:attribute name="color">
-   <xsl:choose>
-    <xsl:when test="not(@role = 'compact')">
-     <xsl:value-of select="$color"/>
-    </xsl:when>
-    <xsl:otherwise>&darker-gray;</xsl:otherwise>
-   </xsl:choose>
-  </xsl:attribute>
+ <fo:block xsl:use-attribute-sets="dark-green">
   <xsl:value-of select="@role"/>
   <xsl:apply-templates select="." mode="object.title.markup">
    <xsl:with-param name="allow-anchors" select="1"/>

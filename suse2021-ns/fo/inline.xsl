@@ -72,7 +72,8 @@
 
   <fo:inline>
    <xsl:if test="$lighter-formatting != 1">
-    <xsl:attribute name="border-bottom">&thinline;mm solid &mid-gray;</xsl:attribute>
+    <!-- FIXME: fix grayscale -->
+    <xsl:attribute name="border-bottom">&thinline;mm solid &c_fog_300;</xsl:attribute>
     <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
    </xsl:if>
    <xsl:choose>
@@ -280,9 +281,7 @@
   <xsl:param name="mode" select="'normal'"/>
   <xsl:param name="commandcolor" >
    <xsl:choose>
-    <xsl:when test="self::d:command and ancestor::d:screen">
-     <xsl:value-of select="$dark-green"/>
-    </xsl:when>
+    <xsl:when test="self::d:command and ancestor::d:screen">&c_midnight;</xsl:when>
     <xsl:otherwise>inherit</xsl:otherwise>
    </xsl:choose>
   </xsl:param>
@@ -462,26 +461,11 @@
     alignment-adjust="-0.2em">
     <svg:svg xmlns:svg="http://www.w3.org/2000/svg" height="100"
       width="{$width + 60}">
-      <svg:defs>
-        <svg:linearGradient id="svg-gr-recessed" x1="0.05" y1="0.05" x2=".95" y2=".95">
-          <svg:stop stop-color="&light-gray;" stop-opacity="1" offset="0" />
-          <svg:stop stop-color="&light-gray;" stop-opacity="1" offset="0.4" />
-          <svg:stop stop-color="&mid-gray;" stop-opacity="1" offset="0.6" />
-          <svg:stop stop-color="&mid-gray;" stop-opacity="1" offset="1" />
-        </svg:linearGradient>
-      </svg:defs>
-      <svg:g>
-        <xsl:if test="$writing.mode = 'rl'">
-          <xsl:attribute name="transform">matrix(-1,0,0,1,<xsl:value-of select="$width + 60"/>,0)</xsl:attribute>
-        </xsl:if>
-        <svg:rect height="100" width="{$width + 60}" rx="10" ry="10" x="0" y="0"
-          fill="url(#svg-gr-recessed)" fill-opacity="1" stroke="none"/>
-      </svg:g>
-      <svg:rect height="85" width="{$width + 45}" rx="7.5" ry="7.5" x="5" y="5"
-        fill="&light-gray-old;" fill-opacity="1" stroke="none"/>
+      <svg:rect height="100" width="{$width + 60}" x="0" y="0"
+        fill="&c_waterhole;" fill-opacity="1" stroke="none"/>
       <svg:text font-family="{$mono-stack}" text-anchor="middle"
-        x="{($width div 2) + 25}" y="{$instream-font-size}" fill="&dark-gray;"
-        font-size="{$instream-font-size}"><xsl:value-of select="$cap"/></svg:text>
+        x="{($width div 2) + 25}" y="{$instream-font-size}" fill="&c_white;"
+        font-size="{$instream-font-size}" font-weight="bold"><xsl:value-of select="$cap"/></svg:text>
     </svg:svg>
   </fo:instream-foreign-object>
 
@@ -504,7 +488,7 @@
 
   <xsl:for-each select="*">
     <xsl:if test="position()>1">
-      <fo:inline space-start="-0.05em" space-end="0" color="#666">
+      <fo:inline space-start="-0.05em" space-end="0" color="&c_waterhole;">
         <xsl:value-of select="$joinchar"/>
       </fo:inline>
     </xsl:if>
@@ -536,7 +520,9 @@
 <xsl:template match="d:prompt">
   <xsl:variable name="color">
     <xsl:choose>
-      <xsl:when test="@role = 'rootprompt' and format.print = 0">&dark-blood;</xsl:when>
+      <!-- FIXME: currently not the same color as in HTML, where we use
+      darken($c_persimmon, 25%) instead. -->
+      <xsl:when test="(@role = 'rootprompt' or @role='root') and $format.print = 0">&dark-blood;</xsl:when>
       <xsl:otherwise>&mid-gray;</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -559,8 +545,8 @@
   <xsl:param name="color">
     <xsl:choose>
       <!-- FIXME: This has the side effect of looking wrong in TOCs. suse-xsl#297 -->
-      <xsl:when test="ancestor::d:title"><xsl:value-of select="$dark-green"/></xsl:when>
-      <xsl:otherwise>&black;</xsl:otherwise>
+      <xsl:when test="ancestor::d:title"><xsl:value-of select="$mid-green"/></xsl:when>
+      <xsl:otherwise>&c_black;</xsl:otherwise>
     </xsl:choose>
   </xsl:param>
   <xsl:param name="height">
@@ -622,7 +608,7 @@
       <xsl:choose>
         <xsl:when test="$format.print != 1">
           <xsl:attribute name="background-color">&tango-plum;</xsl:attribute>
-          <xsl:attribute name="color">&white;</xsl:attribute>
+          <xsl:attribute name="color">&c_white;</xsl:attribute>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="color">&mid-gray;</xsl:attribute>
