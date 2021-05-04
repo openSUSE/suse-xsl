@@ -1,4 +1,21 @@
 -------------------------------------------------------------------
+Thu May 4 13:37:00 UTC 2020 - sknorr@suse.com
+
+Beta release of the SUSE XSL stylesheets 2.81.0:
+
+https://github.com/openSUSE/suse-xsl/releases/tag/2.81.0
+
+- PDF/HTML
+  - Added first version of SUSE 2021 stylesheets
+
+- HTML:
+  - SUSE 2013: Avoid interference between "Copy code" buttons and
+    highlight.js
+
+- PDF:
+  - SUSE 2013: List sect1 within PDF ToCs
+
+-------------------------------------------------------------------
 Thu May 20 13:37:00 UTC 2020 - sknorr@suse.com
 
 Stable release of the SUSE XSL stylesheets 2.0.17:
