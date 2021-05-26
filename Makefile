@@ -87,6 +87,11 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
 INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
    $(TTF_FONT_DIR) $(CATALOG_DIR)
 
+#-------------------------------------------------------
+# Variables for SASS->CSS conversion and other web stuff
+
+styles2021_sass = $(sort $(wildcard source-assets/styles2021/sass/*.sass))
+
 #############################################################
 
 all: $(DEV_SUSEXSL_CATALOG) generate_xslns
@@ -163,3 +168,14 @@ PHONY: dist-clean
 dist-clean:
 	rm -f $(BUILD_DIR)/$(PACKAGE)-$(VERSION).tar.gz
 	rmdir $(BUILD_DIR) 2>/dev/null || true
+
+PHONY: sass-css
+sass-css: suse2021-ns/static/css/style.css
+
+# The main file is called 0-style.sass, so it will be listed here first.
+suse2021-ns/static/css/style.css: $(styles2021_sass)
+	sassc $< $@
+
+PHONY: sass-clean
+sass-clean:
+	rm suse2021-ns/static/css/style.css
