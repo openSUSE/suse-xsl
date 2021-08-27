@@ -17,13 +17,13 @@
       Returns boolean, if the previous, next, up and home link is inside
       the descendants of $rootid node
 
-    * is.xref.in.samebook(target=NODE)
+    * is.xref.within.rootid(target=NODE)
       Returns boolean, if the <xref/>'s target node is inside the
       current book (returns 1) or not (returns 0)
 
    Author:    Stefan Knorr <sknorr@suse.de>,
               Thomas Schraitle <toms@opensuse.org>
-   Copyright: 2012, 2013 Thomas Schraitle
+   Copyright: 2012-2021
 
 -->
 
@@ -109,16 +109,15 @@
   </xsl:template>
 
   <!-- ===================================================== -->
-  <xsl:template name="is.xref.in.samebook">
+  <xsl:template name="is.xref.within.rootid">
     <xsl:param name="target" select="NOT_A_NODE"/>
-
-    <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
-    <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
-
-    <xsl:choose>
-      <xsl:when test="(generate-id($target.book) = generate-id($this.book))">1</xsl:when>
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
+    <xsl:variable name="context" select="."/>
+    <xsl:variable name="this.ancestor" select="(ancestor-or-self::*[@xml:id=$rootid] | /*)[last()]"/>
+    <xsl:variable name="target.in.ancestor" select="$this.ancestor//*[@xml:id=$context/@linkend]"/>
+    <!-- Alternative, but not similar way:
+         $target/ancestor-or-self::*[@xml:id=$rootid] = $this.ancestor
+    -->
+    <xsl:value-of select="count($target.in.ancestor)"/>
   </xsl:template>
 
 </xsl:stylesheet>

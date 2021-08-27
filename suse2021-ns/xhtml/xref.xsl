@@ -125,81 +125,81 @@
 
 
 <xsl:template match="d:xref" name="xref">
-  <xsl:variable name="targets" select="key('id',@linkend)"/>
-  <xsl:variable name="target" select="$targets[1]"/>
-  <xsl:variable name="refelem" select="local-name($target)"/>
-  <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
-  <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
-  <xsl:variable name="lang" select="(ancestor-or-self::*/@lang|ancestor-or-self::*/@xml:lang)[1]"/>
+  <xsl:variable name="context" select="."/>
+  <xsl:variable name="target" select="key('id', @linkend)[1]"/>
   <xsl:variable name="xref.in.samebook">
-    <xsl:call-template name="is.xref.in.samebook">
+    <xsl:call-template name="is.xref.within.rootid">
       <xsl:with-param name="target" select="$target"/>
     </xsl:call-template>
   </xsl:variable>
-
-  <xsl:call-template name="check.id.unique">
-    <xsl:with-param name="linkend" select="@linkend"/>
-  </xsl:call-template>
 
  <!--
     The xref resolution is a bit tricky. We need to distinguish these cases:
 
     1. if $rootid = '' -> use original code
     2. if $rootid != '' and rootid points to the root node -> use original code
-    3. if (1) or (2) does not apply -> reference into another book
-    4. if we point to another book AND we have an @xrefstyle -> output the
+    3. if we point to another book AND we have an @xrefstyle -> output the
        same text content as the original xref template but remove the link
+    4. otherwise -> reference into another book
  -->
- <xsl:choose>
-  <xsl:when test="$rootid = ''">
-   <xsl:apply-imports/>
-  </xsl:when>
-  <xsl:when test="$rootid != '' and $xref.in.samebook != 0">
-   <xsl:apply-imports/>
-  </xsl:when>
-  <!-- If we point to another book AND we have an xrefstyle present,
-       skip creating intra-xrefs and use the default, but without
-       a clickable text.
-    -->
-  <xsl:when test="$xref.in.samebook = 0 and @xrefstyle">
-   <xsl:variable name="rtf">
-    <xsl:apply-imports/>
-   </xsl:variable>
-   <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
 
-   <span class="intraxref">
-    <xsl:copy-of select="$node/node()"/>
-   </span>
-  </xsl:when>
-  <xsl:when test="$xref.in.samebook != 0 or
-                  /d:set/@id=$rootid or
-                  /d:article/@id=$rootid">
-   <!-- An xref that stays inside the current book or when $rootid
-         pointing to the root element, then use the defaults -->
-   <xsl:apply-imports/>
-  </xsl:when>
-  <xsl:otherwise>
-   <!-- A reference into another book -->
-   <xsl:variable name="target.chapandapp"
-    select="($target/ancestor-or-self::d:chapter[@lang!='']
-            | $target/ancestor-or-self::d:appendix[@lang!='']
-            | $target/ancestor-or-self::d:chapter[@xml:lang!='']
-            | $target/ancestor-or-self::d:appendix[@xml:lang!=''])[1]"/>
+  <xsl:call-template name="check.id.unique">
+    <xsl:with-param name="linkend" select="@linkend"/>
+  </xsl:call-template>
 
-   <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
-    $target.chapandapp/@lang != $this.book/@lang">
-    <xsl:message>WARNING: The xref '<xsl:value-of
-     select="@linkend"/>' points to a chapter (id='<xsl:value-of
-      select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
-   </xsl:if>
+  <xsl:choose>
+    <xsl:when test="$xref.in.samebook != 0">
+      <!--
+        Normal xrefs
+        No need to do anything special.
+        Fall back to the usual template.
+      -->
+      <xsl:apply-imports/>
+    </xsl:when>
+    <xsl:when test="$xref.in.samebook = 0 and @xrefstyle">
+      <!--
+        Intra xrefs with @xrefstyle
+        We delegate it to the original stylesheet and just extract the content,
+        but without the surrounding <a> element
+      -->
+      <xsl:variable name="rtf">
+       <xsl:apply-imports/>
+      </xsl:variable>
+      <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
 
-   <span class="intraxref">
-    <xsl:call-template name="create.linkto.other.book">
-     <xsl:with-param name="target" select="$target"/>
-    </xsl:call-template>
-   </span>
-  </xsl:otherwise>
- </xsl:choose>
+      <span class="intraxref">
+        <xsl:copy-of select="$node/node()"/>
+      </span>
+    </xsl:when>
+
+   <xsl:otherwise>
+      <!--
+        Intra xrefs
+        Our XPath discovered that the node points to something outside
+        of our $rootid node.
+      -->
+      <!-- A reference into another book -->
+      <xsl:variable name="this.ancestor" select="ancestor-or-self::*[@xml:id=$rootid]"/>
+      <xsl:variable name="target.chapandapp" select="
+          ($target/ancestor-or-self::d:chapter[@xml:lang != '']
+          | $target/ancestor-or-self::d:appendix[@xml:lang != '']
+          )[1]"/>
+
+      <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
+                    $target.chapandapp/@xml:lang != $this.ancestor/@xml:lang">
+        <xsl:message>WARNING: The xref '<xsl:value-of select="@linkend"/>'
+          points to a chapter (xml:id='<xsl:value-of
+            select="$target.chapandapp/@xml:id"/>') with a different language than
+          the main document.</xsl:message>
+      </xsl:if>
+
+      <span class="intraxref">
+        <xsl:call-template name="create.linkto.other.book">
+          <xsl:with-param name="target" select="$target"/>
+        </xsl:call-template>
+      </span>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
