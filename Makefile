@@ -157,7 +157,7 @@ $(INST_DIRECTORIES) $(DEV_DIRECTORIES) $(BUILD_DIR):
 
 .PHONY: dist
 dist: | $(BUILD_DIR)
-	@if [[ -n $$(git status -s | sed -n '/^??/!p') ]]; then \
+	@if [[ -n $$(git status -s | sed -n '/^\?\?/!p') ]]; then \
 	  echo "There appear to be uncommitted files in this repo. Commit or stash before building a package."; \
 	  exit 1; \
 	fi
