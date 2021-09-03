@@ -395,7 +395,7 @@ task before
        architecture? -->
   <xsl:param name="para.use.arch" select="1"/>
 
-  <!-- Output a warning, if chapter/@lang is different from book/@lang ?
+  <!-- Output a warning, if chapter/@xml:lang is different from book/@xml:lang ?
        0=no, 1=yes
   -->
 <xsl:param name="warn.xrefs.into.diff.lang" select="1"/>

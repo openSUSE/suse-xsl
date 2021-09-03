@@ -108,8 +108,8 @@
           <xsl:when test="$rootelementname != 'article'">
             <xsl:for-each select="ancestor-or-self::*">
               <xsl:choose>
-                <xsl:when test="$rootid != '' and descendant::*[@id = string($rootid)]"/>
-                <xsl:when test="not(ancestor::*) or @id = string($rootid)">
+                <xsl:when test="$rootid != '' and descendant::*[@xml:id = string($rootid)]"/>
+                <xsl:when test="not(ancestor::*) or @xml:id = string($rootid)">
                   <xsl:apply-templates select="." mode="breadcrumbs">
                     <xsl:with-param name="class">book-link</xsl:with-param>
                   </xsl:apply-templates>
@@ -567,7 +567,7 @@
     <xsl:param name="content"/>
 
     <xsl:variable name="lang">
-      <xsl:apply-templates select="(ancestor-or-self::*/@lang)[last()]" mode="html.lang.attribute"/>
+      <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
