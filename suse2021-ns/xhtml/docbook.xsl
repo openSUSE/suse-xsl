@@ -691,7 +691,7 @@
   </xsl:param>
   <xsl:variable name="doc" select="self::*"/>
   <xsl:variable name="lang">
-    <xsl:apply-templates select="(ancestor-or-self::*/@lang)[last()]" mode="html.lang.attribute"/>
+    <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
   </xsl:variable>
   <xsl:call-template name="user.preroot"/>
   <xsl:call-template name="root.messages"/>

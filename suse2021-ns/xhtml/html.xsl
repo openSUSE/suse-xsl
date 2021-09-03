@@ -27,7 +27,7 @@
             <xsl:when test="$generate.id.attributes = 0 and $force != 1">
                 <!-- No id attributes when this param is zero -->
             </xsl:when>
-            <xsl:when test="($force = 1 or $conditional = 0 or $node/@id or $node/@xml:id)
+            <xsl:when test="($force = 1 or $conditional = 0 or $node/@xml:id)
                 and local-name($node) != 'figure'">
                 <xsl:attribute name="id">
                     <xsl:call-template name="object.id">

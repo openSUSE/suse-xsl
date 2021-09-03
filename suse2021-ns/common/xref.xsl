@@ -22,7 +22,7 @@
   <xsl:param name="linkend"/>
   <xsl:param name="first" select="0"/>
   <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.
-  - affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/>
+  - affected ID: <xsl:value-of select="@xml:id"/>
   - linkend: <xsl:value-of select="$linkend"/></xsl:message>
 </xsl:template>
 

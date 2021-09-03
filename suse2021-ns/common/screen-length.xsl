@@ -66,9 +66,9 @@
       <xsl:call-template name="log.message">
         <xsl:with-param name="level">Warn</xsl:with-param>
         <xsl:with-param name="source">
-          <xsl:if test="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)">
+          <xsl:if test="ancestor-or-self::*/@xml:id">
             <xsl:text>(in </xsl:text>
-            <xsl:value-of select="(./ancestor-or-self::*/@id|./ancestor-or-self::*/@xml:id)[last()]"/>
+            <xsl:value-of select="(ancestor-or-self::*/@xml:id)[last()]"/>
             <xsl:text>)</xsl:text>
           </xsl:if>
         </xsl:with-param>
