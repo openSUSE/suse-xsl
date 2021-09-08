@@ -158,58 +158,74 @@
   </fo:inline>
 </xsl:template>
 
+
+<xsl:template match="node()" mode="copy-fo">
+  <xsl:copy>
+    <xsl:apply-templates mode="copy-fo"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="@*" mode="copy-fo"/>
+
 <xsl:template match="d:xref" name="xref">
-  <xsl:variable name="targets" select="key('id',@linkend)"/>
-  <xsl:variable name="target" select="$targets[1]"/>
-  <xsl:variable name="refelem" select="local-name($target)"/>
-  <xsl:variable name="target.book" select="($target/ancestor-or-self::d:article|$target/ancestor-or-self::d:book)[1]"/>
-  <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
-  <xsl:variable name="lang" select="(ancestor-or-self::*/@lang|ancestor-or-self::*/@xml:lang)[1]"/>
+  <xsl:variable name="context" select="."/>
+  <xsl:variable name="target" select="key('id', @linkend)[1]"/>
   <xsl:variable name="xref.in.samebook">
-    <xsl:call-template name="is.xref.in.samebook">
+    <xsl:call-template name="is.xref.within.rootid">
       <xsl:with-param name="target" select="$target"/>
     </xsl:call-template>
   </xsl:variable>
+
+  <xsl:variable name="lang" select="(ancestor-or-self::*/@xml:lang)[1]"/>
 
   <xsl:call-template name="check.id.unique">
     <xsl:with-param name="linkend" select="@linkend"/>
   </xsl:call-template>
 
   <xsl:choose>
-    <!-- If we point to another book AND we have an xrefstyle present,
-         output the same text content as the original xref template but
-         remove the link.
-    -->
+    <xsl:when test="$xref.in.samebook != 0">
+      <!--
+          Normal xrefs
+          No need to do anything special.
+          Fall back to the usual template.
+      -->
+      <xsl:apply-imports/>
+    </xsl:when>
     <xsl:when test="$xref.in.samebook = 0 and @xrefstyle">
+      <!--
+          Intra xrefs with @xrefstyle
+          We delegate it to the original stylesheet and just extract the content,
+          but without the surrounding link element
+      -->
       <xsl:variable name="rtf">
         <xsl:apply-imports/>
       </xsl:variable>
       <xsl:variable name="node" select="exsl:node-set($rtf)/*"/>
 
       <fo:inline xsl:use-attribute-sets="xref.basic.properties">
-         <xsl:copy-of select="$node/node()"/>
+        <!--
+          Copy all FO elements, but not attributes to avoid having the
+          resolved text appear in green
+        -->
+        <xsl:apply-templates select="$node/node()" mode="copy-fo"/>
       </fo:inline>
     </xsl:when>
-    <xsl:when test="$xref.in.samebook != 0 or
-                    /d:set/@id=$rootid or
-                    /d:article/@id=$rootid">
-       <!-- An xref that stays inside the current book or when $rootid
-         pointing to the root element, then use the defaults -->
-       <xsl:apply-imports/>
-    </xsl:when>
     <xsl:otherwise>
-      <!-- A reference into another book -->
+      <!--
+          Intra xrefs
+          Our XPath discovered that the node points to something outside
+          of our $rootid node.
+      -->
       <xsl:variable name="target.chapandapp"
-                    select="($target/ancestor-or-self::d:chapter[@lang!='']
-                            | $target/ancestor-or-self::d:appendix[@lang!='']
-                            | $target/ancestor-or-self::d:chapter[@xml:lang!='']
-                            | $target/ancestor-or-self::d:appendix[@xml:lang!=''])[1]"/>
+        select="($target/ancestor-or-self::d:chapter[@xml:lang!='']
+                 | $target/ancestor-or-self::d:appendix[@xml:lang!=''])[1]"/>
+      <xsl:variable name="this.book" select="(ancestor-or-self::d:article|ancestor-or-self::d:book)[1]"/>
 
       <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
-                    $target.chapandapp/@lang != $this.book/@lang">
+                    $target.chapandapp/@xml:lang != $this.book/@xml:lang">
         <xsl:message>WARNING: The xref '<xsl:value-of
-        select="@linkend"/>' points to a chapter (id='<xsl:value-of
-          select="$target.chapandapp/@id"/>') with a different language than the main book.</xsl:message>
+          select="@linkend"/>' points to a chapter (id='<xsl:value-of
+            select="$target.chapandapp/@id"/>') with a different language than the main document.</xsl:message>
       </xsl:if>
 
       <fo:inline xsl:use-attribute-sets="xref.basic.properties">
