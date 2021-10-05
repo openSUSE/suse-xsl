@@ -311,7 +311,7 @@ elements, to fix their display. -->
   <xsl:variable name="editurl" select="ancestor-or-self::*/*[concat(local-name(.), 'info')]/dm:docmanager/dm:editurl[1]"/>
   <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
   <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
-    <a class="report-bug" target="_blank" href="{$editurl}{$xmlbase}"
+    <a class="report-bug" rel="nofollow" target="_blank" href="{$editurl}{$xmlbase}"
       title="Edit the source file for this section">Edit source</a>
   </xsl:if>
 </xsl:template>

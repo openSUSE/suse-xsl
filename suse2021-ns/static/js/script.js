@@ -157,7 +157,7 @@ function addBugLinks() {
         url = githubUrl(sectionNumber, sectionName, permalink);
       }
 
-      $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
+      $(this).before("<a class=\"report-bug\" rel=\"nofollow\" target=\"_blank\" href=\""
         + url
         + "\" title=\"Report a bug against this section of the documentation\">Report Documentation Bug</a> ");
       return true;
