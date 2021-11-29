@@ -326,11 +326,6 @@ code
   border-bottom: 1px solid $c_fog_300
 
 
-.verbatim-wrap .command,
-.verbatim-wrap .literal,
-.verbatim-wrap .package,
-.verbatim-wrap .replaceable,
-.verbatim-wrap code
 //  Avoid transforming this:
 //    <screen><prompt>prompt $ </prompt><command>very-long-\
 //    command</command></screen>
@@ -339,9 +334,14 @@ code
 //             very-long-\
 //    prompt $ command
 //
-//  instead of this (goood!):
+//  instead, transform to this (good!):
 //    prompt $ very-long-\
 //    command
+.verbatim-wrap .command,
+.verbatim-wrap .literal,
+.verbatim-wrap .package,
+.verbatim-wrap .replaceable,
+.verbatim-wrap code
   display: inline
 
 
