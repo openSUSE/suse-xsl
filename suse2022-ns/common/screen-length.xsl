@@ -17,6 +17,7 @@
   <xsl:param name="screen.max.length" select="80"/>
   <xsl:param name="screen.max.lines" select="250"/>
 
+
   <xsl:template name="splitscreen">
     <xsl:param name="text" select="string(.)"/>
     <xsl:param name="linecount" select="1"/>
@@ -53,9 +54,14 @@
          is longer or shorter than $screen.max.length
     -->
     <xsl:variable name="result">
-      <xsl:call-template name="splitscreen">
-        <xsl:with-param name="text" select="concat($text, '&#10;')"/>
-      </xsl:call-template>
+      <xsl:choose>
+        <xsl:when test="$optimize.performance = 0">
+          <xsl:call-template name="splitscreen">
+            <xsl:with-param name="text" select="concat($text, '&#10;')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>goodlines</xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
 
     <!-- Apply it only to programlisting and screen -->

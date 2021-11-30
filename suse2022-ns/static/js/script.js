@@ -6,11 +6,83 @@ Authors:
 
 License: GPL 2+
 
-(c) 2012-2019 SUSE LLC
+(c) 2012-2022 SUSE LLC
 */
 
-var active = false;
-var deactivatePosition = -1;
+
+// GLOBALS
+
+// Sticky headers
+// must be same value as 0-style.sass $i_head_offset!
+const cHeaderFixScrollStart = 65;
+
+// we want these globally, but the DOM isn't there yet; probably doing it wrong
+var eBody = null;
+var eHead = null;
+var eMain = null;
+var eFoot = null;
+var eSideTocAll = null;
+var eSideTocPage = null;
+
+var lastScrollPosition = 0;
+
+
+
+function stickies() {
+  // sticky header and nav https://stackoverflow.com/questions/23842100/
+  // scroll-up header https://stackoverflow.com/questions/31223341/
+  let scrollPosition = window.scrollY;
+  let footTop = eFoot.getBoundingClientRect().top;
+  let windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  if (scrollPosition > cHeaderFixScrollStart) {
+    eHead.classList.add("sticky");
+    eMain.classList.add("sticky");
+    if (scrollPosition < lastScrollPosition) {
+      eBody.classList.add("scroll-up");
+    } else {
+      eBody.classList.remove("scroll-up");
+    };
+    lastScrollPosition = scrollPosition <= 0 ? 0 : scrollPosition;
+  } else {
+    eHead.classList.remove("sticky");
+    eMain.classList.remove("sticky");
+    eBody.classList.remove("scroll-up");
+  };
+  if (footTop <= windowHeight) {
+    let fTocBottom = windowHeight - footTop;
+    eMain.classList.add("scroll-with-footer");
+  } else {
+    eMain.classList.remove("scroll-with-footer");
+  };
+}
+
+// Social sharing
+function share( service ) {
+  // helpful: https://github.com/bradvin/social-share-urls
+  u = encodeURIComponent( document.URL );
+  t = encodeURIComponent( document.title );
+  shareSettings = 'menubar=0,toolbar=1,status=0,width=600,height=650';
+  if ( service == 'fb' ) {
+    shareURL = 'https://www.facebook.com/sharer.php?u=' + u + '&amp;t=' + t;
+    window.open(shareURL,'sharer', shareSettings);
+  }
+    else if ( service == 'tw' ) {
+    shareURL = 'https://twitter.com/share?text=' + t + '&amp;url=' + u + '&amp;hashtags=suse,docs';
+    window.open(shareURL, 'sharer', shareSettings);
+  }
+    else if ( service == 'in' ) {
+    shareURL = 'https://www.linkedin.com/shareArticle?mini=true&' + u + '&amp;title=' + t;
+    window.open(shareURL, 'sharer', shareSettings);
+  }
+    else if ( service == 'mail' ) {
+    shareURL = 'mailto:?subject=Check%20out%20the%20SUSE%20Documentation%2C%20%22' + t + '%22&body=' + u;
+    window.location.assign(shareURL);
+  };
+}
+
+
+// --- line of legacy jquery-based stuff ---
+
 
 var bugtrackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
 var bugtrackerType = $( 'meta[name="tracker-type"]' ).attr('content');
@@ -36,140 +108,8 @@ var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
 var ghTemplate = $( 'meta[name="tracker-gh-template"]' ).attr('content');
 
 
-$(function() {
-  /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
-  var speed = 400;
-
-  $('a.top-button[href=#]').click(function() {
-    $('html,body').animate({ scrollTop: 0 }, speed,
-      function() { location = location.pathname + '#'; });
-    return false;
-  });
-
-
-  $('body').removeClass('js-off');
-  $('body').addClass('js-on');
-
-  $(document).keyup(function(e) {
-    if (e.keyCode == 27) { deactivate() }
-  });
-
-  if( window.addEventListener ) {
-    window.addEventListener('scroll', scrollDeactivator, false);
-  }
-
-  hashActivator();
-  window.onhashchange = hashActivator;
-
-  $('._share-print').show();
-
-  if (location.protocol.match(/^(http|spdy)/)) {
-    $('body').removeClass('offline');
-  }
-
-  labelInputFind();
-
-  $('#_toc-area-button').click(function(){activate('_toc-area'); return false;});
-  $('#_fixed-header .single-crumb').unbind('click');
-  $('#_fixed-header .single-crumb').click(function(){activate('_fixed-header-wrap'); return false;});
-  $('#_header .single-crumb').unbind('click');
-  $('#_header .single-crumb').click(function(){ moveToc('up'); return false;});
-  $('#_find-area-button').click(function(){activate('_toc-area'); return false;});
-  $('#_format-picker-button').click(function(){activate('_format-picker'); return false;});
-  $('#_language-picker-button').click(function(){activate('_language-picker'); return false;});
-  $('html').click(function(e){deactivate(); e.stopPropagation();});
-  $('#_find-input').focus(function(){unlabelInputFind();});
-  $('#_find-input').blur(function(){labelInputFind();});
-  $('#_find-input-label').click(function(){$('#_find-input').focus();});
-
-  $('._share-fb').click(function(){share('fb');});
-  $('._share-in').click(function(){share('in');});
-  $('._share-tw').click(function(){share('tw');});
-  $('._share-mail').click(function(){share('mail');});
-  $('._print-button').click(function(){print();});
-
-  $('#_bubble-toc ol > li').filter(':has(ol)').children('a').unbind('click');
-  $('#_bubble-toc ol > li').filter(':has(ol)').children('a').append('<span class="arrow">&nbsp;</span>');
-  $('#_bubble-toc ol > li').filter(':has(ol)').children('a').click(function(e) {
-    exchClass('#_bubble-toc > ol > li', 'active', 'inactive');
-    $(this).parent('li').removeClass('inactive');
-    $(this).parent('li').addClass('active');
-    e.stopPropagation();
-    e.preventDefault();
-    return false;
-  });
-  $('#_bubble-toc ol > li').not(':has(ol)').children('a').click(function(e) {
-    deactivate();
-  });
-  $('#_bubble-toc > ol').not(':has(li > ol)').addClass('full-width');
-  $('#_bubble-toc ol > li').not(':has(ol)').children('a').addClass('leads-to-page');
-  $('#_bubble-toc ol > li').not(':has(ol)').children('a').click(function(e) {
-    exchClass('#_bubble-toc > ol > li', 'active', 'inactive');
-  });
-  $('#_bubble-toc ol > li').has('ol').children('a').append('<span class="arrow">&nbsp;</span>');
-  $('#_bubble-toc ol ol').prepend('<li class="bubble-back"><a href="#"><span class="back-icon">&nbsp;</span></a></li>');
-  $('.bubble-back').click(function(){exchClass('#_bubble-toc > ol > li', 'active', 'inactive'); return false;});
-  $('#_pickers a.selected').append('<span class="tick">&nbsp;</span>');
-  $(".bubble").click(function(e) {e.stopPropagation();});
-  $('.bubble h6').append('<span class="bubble-closer">&nbsp;</span>');
-  $('.bubble-closer').click(function(){deactivate(); return false;});
-  $('.question').click(function(){ $(this).parent('dl').toggleClass('active'); });
-  $('.table tr').has('td[rowspan]').addClass('contains-rowspan');
-  $('.informaltable tr').has('td[rowspan]').addClass('contains-rowspan');
-
-  if ( !( $('#_nav-area div').length ) ) {
-    $('#_toolbar').addClass('only-toc');
-  }
-  else if ( !( $('#_toc-area div').length && $('#_nav-area div').length ) ) {
-    $('#_toolbar').addClass('only-nav');
-  }
-
-  addBugLinks();
-  // hljs likes to unset click handlers, so run after it
-  var hljsInterval = window.setInterval(function() {
-    if (typeof(hljs) !== 'undefined') {
-      addClipboardButtons();
-      window.clearInterval(hljsInterval);
-    };
-  }, 500);
-});
-
-
-function addBugLinks() {
-  // do not create links if there is no URL
-  if ( typeof(bugtrackerUrl) == 'string') {
-    $('.permalink:not([href^=#idm])').each(function () {
-      var permalink = this.href;
-      var sectionNumber = "";
-      var sectionName = "";
-      var url = "";
-      if ( $(this).prevAll('span.number')[0] ) {
-        sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
-      }
-      if ( $(this).prevAll('span.number')[0] ) {
-        sectionName = $(this).prevAll('span.name')[0].innerHTML;
-      }
-
-      if (bugtrackerType == 'bsc') {
-        url = bugzillaUrl(sectionNumber, sectionName, permalink);
-      }
-      else {
-        url = githubUrl(sectionNumber, sectionName, permalink);
-      }
-
-      $(this).before("<a class=\"report-bug\" rel=\"nofollow\" target=\"_blank\" href=\""
-        + url
-        + "\" title=\"Report a bug against this section of the documentation\">Report Documentation Bug</a> ");
-      return true;
-    });
-  }
-  else {
-    return false;
-  }
-}
-
-function githubUrl(sectionNumber, sectionName, permalink) {
-  var body = sectionNumber + " " + sectionName + ":\n\n" + permalink;
+function githubUrl(sectionName, permalink) {
+  var body = sectionName + ":\n\n" + permalink;
   if (ghTemplate) {
     if (ghTemplate.indexOf('@@source@@') !== -1) {
       body = ghTemplate.replace(/@@source@@/i, body);
@@ -178,7 +118,7 @@ function githubUrl(sectionNumber, sectionName, permalink) {
     };
   };
   var url = bugtrackerUrl
-     + "?title=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
+     + "?title=" + encodeURIComponent('[doc] Issue in "' + sectionName + '"')
      + "&amp;body=" + encodeURIComponent(body);
   if (ghAssignee) {
     url += "&amp;assignee=" + encodeURIComponent(ghAssignee);
@@ -192,8 +132,9 @@ function githubUrl(sectionNumber, sectionName, permalink) {
   return url;
 }
 
-function bugzillaUrl(sectionNumber, sectionName, permalink) {
-  var body = sectionNumber + " " + sectionName + ":\n\n" + permalink;
+
+function bugzillaUrl(sectionName, permalink) {
+  var body = sectionName + ":\n\n" + permalink;
   if (bscTemplate) {
     if (bscTemplate.indexOf('@@source@@') !== -1) {
       body = bscTemplate.replace(/@@source@@/i, body);
@@ -203,7 +144,7 @@ function bugzillaUrl(sectionNumber, sectionName, permalink) {
   };
   var url = bugtrackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
     + '&amp;component=' + encodeURIComponent(bscComponent)
-    + "&amp;short_desc=" + encodeURIComponent('[doc] ' + sectionNumber + ' ' + sectionName)
+    + "&amp;short_desc=" + encodeURIComponent('[doc] Issue in "' + sectionName + '"')
     + "&amp;comment=" + encodeURIComponent(body);
   if (bscAssignee) {
     url += "&amp;assigned_to=" + encodeURIComponent(bscAssignee);
@@ -213,6 +154,65 @@ function bugzillaUrl(sectionNumber, sectionName, permalink) {
   }
   return url;
 }
+
+
+// update the report bug url for the current section id as the user is scrolling
+// minor hitch: if there is a very short section at the end of the page, it may
+// not be picked up correctly by this.
+function bugReportScrollSpy() {
+  if (  typeof(bugtrackerUrl) == 'string' &&
+        document.getElementById('_feedback-reportbug') !== null ) {
+    var origin = window.location.origin;
+    if (origin === 'null') {
+      origin = '';
+    }
+    const plainBugUrl = origin + window.location.pathname;
+    // Title selection fails silently, it's probably better that way
+    var sectionName = '';
+    var sectionBugUrl;
+    if (bugtrackerType == 'bsc') {
+      sectionBugUrl = bugzillaUrl(sectionName, plainBugUrl);
+    }
+    else {
+      sectionBugUrl = githubUrl(sectionName, plainBugUrl);
+    };
+    document.querySelector('#_feedback-reportbug').href = sectionBugUrl;
+
+    const observer = new IntersectionObserver(entries => {
+      entries.every(entry => {
+        if (entry.intersectionRatio > 0) {
+          const id = entry.target.getAttribute('id');
+          var origin = window.location.origin;
+          if (origin === 'null') {
+            origin = '';
+          };
+          const plainBugUrl = origin + window.location.pathname + '#' + id;
+          var sectionName = '';
+          if ( entry.target.getAttribute('data-id-title') !== null ) {
+            sectionName = entry.target.getAttribute('data-id-title');
+          };
+          var sectionBugUrl;
+          if (bugtrackerType == 'bsc') {
+            sectionBugUrl = bugzillaUrl(sectionName, plainBugUrl);
+          }
+          else {
+            sectionBugUrl = githubUrl(sectionName, plainBugUrl);
+          };
+
+          document.querySelector('#_feedback-reportbug').href = sectionBugUrl;
+          return false;
+        };
+        return true;
+      });
+    });
+
+    // Track all sections that have an `id` applied
+    document.querySelectorAll('section[id]').forEach((section) => {
+      observer.observe(section);
+    });
+  };
+};
+
 
 function addClipboardButtons() {
   $( ".verbatim-wrap > pre" ).each(function () {
@@ -285,71 +285,6 @@ function copyToClipboard(elm) {
 }
 
 
-function activate( elm ) {
-  var element = elm;
-  if (element == '_toc-area' || element == '_find-area' ||
-    element == '_language-picker' || element == '_format-picker' ||
-    element == '_fixed-header-wrap') {
-    deactivate();
-    active = true;
-    exchClass( '#' + element , 'inactive', 'active' );
-    if (element == '_fixed-header-wrap') {
-      $('#_fixed-header .single-crumb').unbind('click');
-      $('#_fixed-header .single-crumb').click(function(){deactivate(); return false;});
-      exchClass( '#_find-area', 'active', 'inactive' );
-      deactivatePosition = $('html').scrollTop();
-    }
-    else {
-      if (element == '_find-area') {
-        $('#_find-input').focus();
-      }
-      else if ((element == '_toc-area')) {
-        exchClass( '#_find-area', 'active', 'inactive' );
-        deactivatePosition = $('html').scrollTop();
-        if ( $(window).width() < 450 ) {
-          $('body').css('overflow', 'hidden');
-          $('body').css('height', '100%');
-        }
-      }
-      $('#' + element + '-button').unbind('click');
-      $('#' + element + '-button').click(function(){deactivate(); return false;});
-    }
-  }
-}
-
-function moveToc ( direction ) {
-  if (direction == 'up') {
-    active = true;
-    $('#_fixed-header-wrap > .bubble').detach().appendTo('#_toc-bubble-wrap');
-    exchClass( '#_toc-bubble-wrap', 'inactive', 'active' );
-    exchClass( '#_header .crumbs', 'inactive', 'active' );
-    $('#_header .single-crumb').unbind('click');
-    $('#_header .single-crumb').click(function(){ moveToc('down'); return false;});
-    deactivatePosition = $('html').scrollTop();
-    if ( $(window).width() < 450 ) {
-      $('body').css('overflow', 'hidden');
-      $('body').css('height', '100%');
-    }
-  }
-  else if (direction == 'down') {
-    active = true;
-    $('#_toc-bubble-wrap > .bubble').detach().appendTo('#_fixed-header-wrap');
-    exchClass( '#_toc-bubble-wrap', 'active', 'inactive' );
-    exchClass( '#_header .crumbs', 'active', 'inactive' );
-    $('#_header .single-crumb').unbind('click');
-    $('#_header .single-crumb').click(function(){ moveToc('up'); return false;});
-  }
-}
-
-function scrollDeactivator() {
-  if (deactivatePosition != -1 && $(window).width() > 450 ) {
-    var diffPosition = $('html').scrollTop() - deactivatePosition;
-    if ((diffPosition < -300) || (diffPosition > 300)) {
-      deactivate();
-    }
-  }
-}
-
 function hashActivator() {
   if ( location.hash.length ) {
     var locationhash = location.hash.replace( /(:|\.|\[|\])/g, "\\$1" );
@@ -362,64 +297,132 @@ function hashActivator() {
   };
 }
 
-function deactivate() {
-  if (active == true) {
-    deactivatePosition = -1;
-    var changeClass = new Array('_toc-area','_language-picker','_format-picker');
-    for (var i = 0; i < changeClass.length; ++i) {
-      exchClass( '#' + changeClass[i] , 'active', 'inactive');
-      $('#' + changeClass[i] + '-button').unbind('click');
-    }
-    moveToc( 'down' );
-    $('#_fixed-header .single-crumb').unbind('click');
-    exchClass('#_fixed-header-wrap', 'active', 'inactive');
-    $('#_find-area-button').unbind('click');
-    $('#_toc-area-button').click(function(){activate('_toc-area'); return false;});
-    $('#_find-area-button').click(function(){activate('_find-area'); return false;});
-    $('#_language-picker-button').click(function(){activate('_language-picker'); return false;});
-    $('#_format-picker-button').click(function(){activate('_format-picker'); return false;});
-    $('#_fixed-header .single-crumb').click(function(){activate('_fixed-header-wrap'); return false;});
-    exchClass( '#_find-area', 'inactive', 'active' );
-    $('body').css('overflow', 'auto');
-    $('body').css('height', 'auto');
-    active = false;
-  }
-}
 
-function share( service ) {
-  // helpful: https://github.com/bradvin/social-share-urls
-  u = encodeURIComponent( document.URL );
-  t = encodeURIComponent( document.title );
-  shareSettings = 'menubar=0,toolbar=1,status=0,width=600,height=650';
-  if ( service == 'fb' ) {
-    shareURL = 'https://www.facebook.com/sharer.php?u=' + u + '&amp;t=' + t;
-    window.open(shareURL,'sharer', shareSettings);
+// INIT!
+
+$(function() {
+
+  eBody = document.body;
+  eHead = document.getElementById('_mainnav');
+  eMain = document.getElementById('_content');
+  eFoot = document.getElementById('_footer');
+  eSideTocAll = document.getElementById('_side-toc-overall');
+  eSideTocPage = document.getElementById('_side-toc-page');
+
+  eBody.classList.remove('js-off');
+  eBody.classList.add('js-on');
+  if (location.protocol.match(/^http/)) {
+    eBody.classList.remove('offline');
   }
-    else if ( service == 'tw' ) {
-    shareURL = 'https://twitter.com/share?text=' + t + '&amp;url=' + u + '&amp;hashtags=suse,docs';
-    window.open(shareURL, 'sharer', shareSettings);
-  }
-    else if ( service == 'in' ) {
-    shareURL = 'https://www.linkedin.com/shareArticle?mini=true&' + u + '&amp;title=' + t;
-    window.open(shareURL, 'sharer', shareSettings);
-  }
-    else if ( service == 'mail' ) {
-    shareURL = 'mailto:?subject=Check%20out%20the%20SUSE%20Documentation%2C%20%22' + t + '%22&body=' + u;
-    window.location.assign(shareURL);
+
+  hashActivator();
+  window.onhashchange = hashActivator;
+
+
+  lastScrollPosition = window.scrollY;
+  stickies();
+  window.addEventListener('scroll', function(){ stickies(); }, false);
+
+  if ( document.getElementById('_share-fb') !== null ) {
+    document.getElementById('_share-fb').addEventListener('click', function(e){share('fb'); e.preventDefault();}, false);
   };
-}
+  if ( document.getElementById('_share-in') !== null ) {
+    document.getElementById('_share-in').addEventListener('click', function(e){share('in'); e.preventDefault();}, false);
+  };
+  if ( document.getElementById('_share-tw') !== null ) {
+    document.getElementById('_share-tw').addEventListener('click', function(e){share('tw'); e.preventDefault();}, false);
+  };
+  if ( document.getElementById('_share-mail') !== null ) {
+    document.getElementById('_share-mail').addEventListener('click', function(e){share('mail'); e.preventDefault();}, false);
+  };
+  if ( document.getElementById('_print-button') !== null ) {
+    document.getElementById('_print-button').addEventListener('click', function(e){print(); e.preventDefault();}, false);
+  };
 
-function unlabelInputFind() {
-  $('#_find-input-label').hide();
-}
+  if (  document.getElementById('_utilitynav-search') !== null &&
+        document.getElementById('_searchbox') !== null &&
+        document.getElementById('_mainnav') !== null ) {
+    document.getElementById('_utilitynav-search').addEventListener('click', function(e){
+        document.getElementById('_mainnav').classList.add('show-search');
+        e.preventDefault();
+    }, false);
+    document.getElementById('_searchbox').addEventListener('click', function(e){ e.stopPropagation(); }, false);
+    document.getElementById('_utilitynav-search').addEventListener('click', function(e){ e.stopPropagation(); }, false);
+ };
 
-function labelInputFind() {
-  if ( !($('#_find-input').val()) ) {
-    $('#_find-input-label').show();
-  }
-}
+  if ( document.getElementById('_utilitynav-language') !== null &&
+       document.getElementById('_mainnav') !== null ) {
+    document.querySelector('#_utilitynav-language > .menu-item').addEventListener('click', function(e){
+        document.getElementById('_utilitynav-language').classList.toggle('visible');
+        e.preventDefault();
+        e.stopPropagation();
+    }, false);
+  };
 
-function exchClass(path, clsOld, clsNew) {
-  $(path).addClass(clsNew);
-  $(path).removeClass(clsOld);
-}
+  eBody.addEventListener('click', function(e){
+      document.getElementById('_mainnav').classList.remove('show-search');
+      document.getElementById('_utilitynav-language').classList.remove('visible');
+  }, false);
+
+  if (  eSideTocAll &&
+        document.getElementById('_open-side-toc-overall') !== null) {
+    document.getElementById('_open-side-toc-overall').addEventListener('click', function(e){
+        eSideTocAll.classList.toggle('mobile-visible');
+        e.preventDefault();
+    }, false);
+ };
+
+
+  if ( eSideTocAll !== null ) {
+    document.querySelectorAll('#_side-toc-overall li > a.has-children').forEach((elm) => {
+        elm.addEventListener('click', function(e){
+          this.parentElement.classList.toggle('active');
+          e.preventDefault();
+        }, false);
+      });
+  };
+
+  if (  eSideTocPage !== null &&
+        document.getElementById('_unfold-side-toc-page') !== null ) {
+    if ( document.querySelector('#_side-toc-page .toc li') === null ) {
+      document.getElementById('_unfold-side-toc-page').style.visibility = 'hidden';
+    } else {
+      document.getElementById('_unfold-side-toc-page').addEventListener('click', function(e){
+          document.getElementById('_side-toc-page').classList.toggle('mobile-visible');
+          e.preventDefault();
+      }, false);
+      document.getElementById('_side-toc-page').addEventListener('click', function(e){
+          this.classList.remove('mobile-visible');
+      }, false);
+    };
+  };
+
+
+  if (  eSideTocAll !== null &&
+        document.getElementById('_open-document-overview') !== null  ) {
+    document.getElementById('_open-document-overview').addEventListener('click', function(e){
+        eSideTocAll.classList.toggle('document-overview-visible');
+        e.preventDefault();
+    }, false);
+  };
+
+
+  document.querySelectorAll('.question').forEach((elm) => {
+      elm.addEventListener('click', function(){
+        this.parentElement.classList.toggle('active');
+        e.preventDefault();
+        }, false);
+ });
+
+  bugReportScrollSpy();
+
+  // hljs likes to unset click handlers, so run after it
+  // FIXME: this interval thing is a little crude
+  var hljsInterval = window.setInterval(function() {
+    if (typeof(hljs) !== 'undefined') {
+      addClipboardButtons();
+      window.clearInterval(hljsInterval);
+    };
+  }, 500);
+
+});

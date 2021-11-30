@@ -31,7 +31,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigation"/>
-   <l:gentext key="sharethispage" text="Partager cette page&#160;: "/>
+   <l:gentext key="sharethispage" text="Partager cette page"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

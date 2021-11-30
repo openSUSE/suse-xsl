@@ -1,0 +1,151 @@
+// Selection color, the unprefixed Webkit version & the -moz-prefixed
+// version must be on separate lines for it to work.
+::selection
+  background-color: $c_mint_60
+  color: $c_pine
+
+::-moz-selection
+  background-color: $c_mint_60
+  color: $c_pine
+
+
+// Bypass blocks for accessibility
+.bypass-block
+  left: 0
+  overflow: hidden
+  position: absolute
+  z-index: 9753
+
+  > *
+    clip-path: rect(1px,1px,1px,1px)
+    height: 1px
+    overflow: hidden
+    position: absolute
+
+
+// "PRODUCT 1.0" and "Applies to PRODUCT 1.0"
+
+// NB: div.big-version-info is the one we put on the book/set/article title
+// pages. div.version-info is the one we put on all pages. Only the latter is
+// sticky and orange and small.
+.big-version-info
+  background-color: $c_mint_60
+  color: $c_pine
+  float: left
+  font-size: 24px
+  line-height: 100%
+  margin: 75px 0 0
+  padding: 5px 7px
+
+  + div h1.title
+    padding-top: 0
+
+.version-info
+  background-color: $c_persimmon
+  color: $c_pine
+  font-size: $i_font_menu
+  float: right
+  font-weight: normal
+  padding: 0.5rem 1rem
+  max-width: 75%
+
+  @include m_mobile
+    position: static !important
+    margin-top: 1.5rem
+    width: 100%
+    max-width: unset
+
+// sticky the "Applies to PRODUCT 1.0" text, so it's always visible
+// FIXME suse22: This fails when the window is more than 2200px wide, needs a
+// .growth-inhibitor
+main.sticky article .version-info
+  position: fixed
+  top: $i_mini_head
+  // there is no .is-offset-right-2 :/
+  margin-right: 16.6667%
+  right: .75rem
+  margin-top: .2rem
+  z-index: 10
+
+body.scroll-up main.sticky article .version-info
+  top: $i_medium_head
+
+// <article> now has 4rem padding instead of .75rem on higher screen widths
+@include m_wide_up
+  main.sticky article .version-info
+    right: 4rem !important
+
+
+@include m_tablet
+  main.sticky article .version-info
+    right: .75rem !important
+    margin-right: 0 !important
+
+
+
+// side bar opener buttons for mobile sizes
+
+#_open-side-toc-overall
+  display: block
+  position: absolute
+  top: .75rem
+  left: -20px
+  height: $i_menu_button_size
+  width: $i_menu_button_size
+  border-radius: 50%
+  border: none
+  outline: none
+  background-color: $c_persimmon
+  background-repeat: no-repeat
+  background-position: 70% 50%
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#{$c_pine_url}" d="M 6,6.5 A 1.5,1.5 0 0 0 4.5,8 1.5,1.5 0 0 0 6,9.5 a 1.5,1.5 0 0 0 1.5,-1.5 1.5,1.5 0 0 0 -1.5,-1.5 z m 3,0.5 V 9 H 27 V 7 Z M 11,11 v 2 h 16 v -2 z m 0,4 V 17 H 27 V 15 Z M 6,18.5 A 1.5,1.5 0 0 0 4.5,20 a 1.5,1.5 0 0 0 1.5,1.5 1.5,1.5 0 0 0 1.5,-1.5 1.5,1.5 0 0 0 -1.5,-1.5 z m 3,0.5 v 2 H 27 V 19 Z M 11,23 v 2 h 16 v -2 z" /></svg>')
+  z-index: 8000
+  transition: left 0.2s ease-in
+
+  &:hover
+    background-color: $c_funky_persimmon_prelight
+
+  @include m_tablet_up
+    display: none
+
+#_side-toc-overall.mobile-visible + #_open-side-toc-overall
+  // button now needs to be fully exposed, a non-centered closer-X icon looks
+  // horrible
+  position: fixed
+  top: .75rem
+  left: calc(#{$i_side_toc_overall_mobile} + .75rem)
+  z-index: 9003
+  background-position: 50% 50%
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#{$c_pine_url}" d="M 7.4277344 6 L 6 7.4277344 L 14.572266 16 L 6 24.572266 L 7.4277344 26 L 16 17.427734 L 24.572266 26 L 26 24.572266 L 17.427734 16 L 26 7.4277344 L 24.572266 6 L 16 14.572266 L 7.4277344 6 z " /></svg>')
+  @media only screen and (max-width: #{$i_side_toc_overall_mobile + $i_menu_button_size + 10px})
+    right: .75rem
+    left: unset
+
+main.sticky #_open-side-toc-overall
+  top: $i_mini_head + 3px
+  position: fixed
+body.scroll-up main.sticky #_open-side-toc-overall
+  top: $i_medium_head + 3px
+
+#_unfold-side-toc-page
+  display: table-cell
+  height: $i_menu_button_size
+  vertical-align: middle
+  font-family: $f_sans
+  padding: 0 2rem
+  margin-left: calc(40px + .75rem)
+  color: $c_pine
+  background-color: $c_jungle
+  border: .2rem solid $c_pine
+  box-sizing: border-box
+  font-weight: 700
+
+  &:hover
+    background-color: $c_funky_jungle_prelight
+
+  @include m_tablet_up
+    display: none
+
+body.normal
+  #_unfold-side-toc-page
+    margin-left: 0

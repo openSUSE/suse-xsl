@@ -1,0 +1,217 @@
+// note: theming for highlight.js syntax highlighting comes from the
+// custom/highlight-js.sass file.
+
+.command,
+.keycap,
+.package,
+.replaceable,
+code
+  display: inline-block
+  font-weight: normal
+  line-height: 120%
+  padding: 0 4px
+  text-transform: none
+
+.command,
+.package,
+.replaceable,
+code
+  font-family: $f_mono
+  border-bottom: 1px solid $c_fog_300
+
+
+//  Avoid transforming this:
+//    <screen><prompt>prompt $ </prompt><command>very-long-\
+//    command</command></screen>
+//
+//  to output looking like this (bad!):
+//             very-long-\
+//    prompt $ command
+//
+//  instead, transform to this (good!):
+//    prompt $ very-long-\
+//    command
+.verbatim-wrap
+  .command,
+  .literal,
+  .package,
+  .replaceable,
+  code
+    display: inline
+
+
+.command,
+.keycap,
+.literal,
+.package,
+code
+  font-style: normal
+
+
+// Not quite sure if that is the best way to make sure no text inside code
+// gets paddings/borders... In some rare case, there might e.g. be an image
+// inside a code/etc. element and then this might backfire.
+.keycap,
+.literal,
+.package,
+.replaceable,
+code
+  *
+    border: none !important
+    display: inline
+    padding: 0 !important
+
+.admonition h6,
+.name,
+a
+  .literal,
+  .package,
+  .replaceable,
+  code
+    color: inherit
+
+
+.admonition h6
+  .replaceable,
+  code
+    border-color: $c_fog_200
+
+
+.literal,
+.package,
+.replaceable,
+code
+  font-weight: normal
+
+.command
+  font-weight: 600
+
+
+.prompt
+  user-select: none
+
+  &.user,
+  &.custom
+    color: $c_jungle
+
+  &.root
+    color: $c_persimmon
+
+
+$c_keycap: $c_fog_200
+.keycap
+  background-color: $c_keycap
+  border-width: 1px
+  color: $c_pine
+  font-size: 0.9em
+  font-weight: normal
+  padding: 0px 5px
+  vertical-align: 0.2em
+  white-space: nowrap
+
+article
+  a:active,
+  a:focus,
+  a:hover
+    .keycap,
+    .literal,
+    .package,
+    .replaceable,
+    code
+      border-color: $c_funky_darker_jungle
+
+// We put an ndash character between keycaps that are part of an key combo
+.key-connector
+  color: darken($c_keycap, 25%)
+  margin: 0 -1px
+
+
+// screens
+
+.verbatim-wrap
+  background-color: $c_pine
+  margin: 5px 0
+  padding: 0
+  text-align: right
+  transition: background-color .3s linear
+  position: relative
+
+
+.example .verbatim-wrap
+  margin: 10px 0 24px
+
+
+.verbatim-wrap
+  > div,
+  > pre
+    background-color: unset
+    box-sizing: border-box
+    //color: $c_pine
+    color: $c_mint_60
+    display: block
+    font: normal 13px $f_mono
+    line-height: 125%
+    overflow-y: hidden
+    overflow: auto
+    padding: 10px
+    position: relative
+    text-align: left
+    text-align: left
+    transition: border-color .3s linear, background-color .3s linear
+    width: 100%
+
+  .literal,
+  .package,
+  .replaceable,
+  code
+    background-color: unset
+    border: none
+    font-size: 100%
+    padding: 0
+
+  code
+    color: $c_pine
+
+  .command
+    color: $c_waterhole_30
+
+  > .clip-button
+    -webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    background-color: $c_fog_200
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="#{$c_pine_url}" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="#{$c_pine_url}" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>')
+    background-position: 5px 5px
+    background-repeat: no-repeat
+    border: none
+    box-sizing: border-box
+    color: $c_pine
+    display: inline-block
+    font-family: $f_sans
+    font-size: 12px
+    height: 26px
+    line-height: 26px
+    margin: 5px
+    outline: none
+    overflow: hidden
+    padding: 0 5px 0 25px
+    text-align: left
+    text-transform: uppercase
+    position: absolute
+    top: 0
+    right: 0
+    opacity: 0
+
+  &:hover,
+  &:focus
+    > .clip-button
+      opacity: 1
+
+  > .clip-button:hover,
+  > .clip-button:focus
+    background-color: $c_fog
+
+  &.copy-success
+    > div,
+    > pre
+      background-color: $c_funky_pine_prelight

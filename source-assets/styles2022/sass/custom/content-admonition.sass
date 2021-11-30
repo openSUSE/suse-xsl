@@ -1,0 +1,69 @@
+.admonition
+  margin: 17px 0 24px
+
+  > .symbol
+    float: left
+    height: 36px
+    margin: 0 10px 0 0
+    width: 36px
+
+  > h6
+    font-weight: 600
+    color: $c_pine
+
+  p
+    margin: 10px 0 0 !important
+
+
+  &.normal
+    border-style: solid
+    border-width: .2rem
+    padding: 10px
+
+    > h6
+      display: table-cell
+      height: 36px
+      vertical-align: middle
+
+    &.tip
+      background-color: $c_white
+      border-color: $c_jungle
+
+
+    &.note
+      background-color: $c_white
+      border-color: $c_midnight
+
+      .orderedlist,
+      ul
+        color: #666
+
+
+    &.important
+      background-color: $c_white
+      border-color: $c_waterhole
+
+      .orderedlist,
+      ul
+        color: $c_waterhole
+
+
+    &.caution,
+    &.warning
+      border-color: $c_persimmon
+      background-color: $c_white
+
+
+  &.compact
+    > .symbol
+      height: 24px
+      margin-left: 0
+      width: 24px
+
+    // FIXME: does not look correct with multi-line items.
+    > h6
+      color: #666
+      height: 24px
+
+    > p:nth-child(1)
+      margin-top: 0 !important

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
    Purpose:
-     Create circle-enclosed numbers in callouts.
+     Create callout spans with @id attributes on them.
 
-   Author:    Thomas Schraitle <toms@opensuse.org>
-   Copyright: 2012, Thomas Schraitle
+   Author:    Thomas Schraitle <toms@opensuse.org>, Stefan Knorr <sknorr@suse.de>
+   Copyright: 2012, 2022, Thomas Schraitle, Stefan Knorr
 
 -->
 <xsl:stylesheet version="1.0"
@@ -17,52 +17,62 @@
     exclude-result-prefixes="exsl l t d">
 
 
-  <xsl:template name="callout-bug">
-  <xsl:param name="conum" select="1"/>
+  <!-- Fixes behavior for HTML 5 where self-closing tags are bad.
+  Original: <span id="co-..."/><span class="callout">1</span>
+  Modified: <span id="co-..." class="callout">1</span> -->
+  <xsl:template match="d:co" name="co">
+    <!-- Support a single linkend in HTML -->
+    <xsl:variable name="targets" select="key('id', @linkends)"/>
+    <xsl:variable name="target" select="$targets[1]"/>
 
-  <xsl:choose>
-    <xsl:when test="$callout.graphics != 0 and $conum &lt;= $callout.graphics.number.limit">
-      <!-- Added span to make valid in XHTML 1 -->
-      <span><img src="{$callout.graphics.path}{$conum}{$callout.graphics.extension}" alt="{$conum}" border="0"/></span>
-    </xsl:when>
-    <xsl:when test="$callout.unicode != 0 and $conum &lt;= $callout.unicode.number.limit">
-      <xsl:choose>
-        <xsl:when test="$callout.unicode.start.character = 10102">
+    <xsl:choose>
+      <xsl:when test="$target">
+        <a>
+          <xsl:apply-templates select="." mode="common.html.attributes"/>
           <xsl:choose>
-            <xsl:when test="$conum = 1">&#10102;</xsl:when>
-            <xsl:when test="$conum = 2">&#10103;</xsl:when>
-            <xsl:when test="$conum = 3">&#10104;</xsl:when>
-            <xsl:when test="$conum = 4">&#10105;</xsl:when>
-            <xsl:when test="$conum = 5">&#10106;</xsl:when>
-            <xsl:when test="$conum = 6">&#10107;</xsl:when>
-            <xsl:when test="$conum = 7">&#10108;</xsl:when>
-            <xsl:when test="$conum = 8">&#10109;</xsl:when>
-            <xsl:when test="$conum = 9">&#10110;</xsl:when>
-            <xsl:when test="$conum = 10">&#10111;</xsl:when>
+            <xsl:when test="$generate.id.attributes = 0">
+              <!-- force an id attribute here -->
+              <xsl:if test="@xml:id">
+                <xsl:attribute name="id">
+                  <xsl:value-of select="(@xml:id)[1]"/>
+                </xsl:attribute>
+              </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="id.attribute"/>
+            </xsl:otherwise>
           </xsl:choose>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="log.message">
-             <xsl:with-param name="level" select="'error'"/>
-             <xsl:with-param name="context-desc" select="'callout'"/>
-             <xsl:with-param name="message">
-               <xsl:text>Don't know how to generate Unicode callouts </xsl:text>
-               <xsl:text>when $callout.unicode.start.character is </xsl:text>
-               <xsl:value-of select="$callout.unicode.start.character"/>
-             </xsl:with-param>
-          </xsl:call-template>
-          <xsl:text>(</xsl:text>
-          <xsl:value-of select="$conum"/>
-          <xsl:text>)</xsl:text>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:when>
-    <xsl:otherwise>
-      <span class="callout">
-        <xsl:value-of select="$conum"/>
-      </span>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
+          <xsl:attribute name="href">
+            <xsl:call-template name="href.target">
+              <xsl:with-param name="object" select="$target"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:call-template name="callout-bug"/>
+        </a>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="anchor"/>
+        <xsl:call-template name="callout-bug">
+          <xsl:with-param name="generate.id" select="@xml:id"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+
+  <!-- We just want a span. No fancy images or Unicode etc.
+  But we may want an ID as well (see below). -->
+  <xsl:template name="callout-bug">
+    <xsl:param name="generate.id" select="''"/>
+
+    <span class="callout">
+      <xsl:if test="string-length($generate.id) &gt; 0">
+        <xsl:attribute name="id">
+          <xsl:value-of select="$generate.id"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:number count="d:co" level="any" from="d:programlisting|d:screen|d:literallayout|d:synopsis" format="1"/>
+    </span>
+  </xsl:template>
 
 </xsl:stylesheet>

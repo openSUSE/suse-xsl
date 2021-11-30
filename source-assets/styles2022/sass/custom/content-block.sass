@@ -1,0 +1,29 @@
+// ...aka The Stuff That Fit Nowhere Else ...
+
+// browsers have intentionally restricted link styling to "fix" fingerprinting issues
+article
+  a.link::after
+    background-repeat: no-repeat
+    color: transparent
+    content: "\2197"
+    text-decoration: none
+    background-size: contain
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewBox="0 0 13 17"> <rect fill="#{$c_jungle_url}" fill-opacity="0.4" y="10" x="1" height="6" width="6" /><path fill="#{$c_funky_darker_jungle_url}" d="M 4,5 V 6.9658466 H 8.4687653 L 2.75,12.617749 4.1562488,14 10,8.2866892 v 4.5768078 h 2 V 5 Z" /></svg>')
+
+
+  .verbatim-wrap a[id]
+    display: none
+
+
+  .legalnotice
+    margin: 40px 0 0
+    padding: 10px 0 0
+
+
+  .legalnotice .simplelist td,
+  .legalnotice p,
+  .legalnotice td
+    color: #666
+    font-size: 12px
+    line-height: 140%
+    margin: 5px 0 0 0

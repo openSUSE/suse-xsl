@@ -1,0 +1,256 @@
+$c_side_toc_background: $c_fog
+
+html,
+body
+  font-size: 16px
+  height: 100%
+  scroll-behavior: smooth
+
+
+body
+  background-color: $c_white
+  font-family: $f_sans
+  line-height: 140%
+
+  main,
+  .growth-inhibitor
+    margin: 0 auto
+    position: relative
+
+  &.normal
+    main,
+    .growth-inhibitor
+      max-width: $i_page_width_normal
+
+  &.wide
+    main,
+    .growth-inhibitor
+      max-width: $i_page_width_wide
+
+  &.normal
+    #_side-toc-overall
+      display: none
+    main
+      @include m_wide
+        padding-left: .75rem
+    article
+      @extend .is-10
+      padding-left: 0 !important
+
+  &.scroll-up
+    header.sticky
+      height: $i_medium_head
+      .growth-inhibitor
+        height: $i_medium_head
+    main.sticky:not(.scroll-with-footer)
+      .side-toc
+        top: $i_medium_head
+        height: calc(100vh - #{$i_medium_head})
+
+  &.draft
+    article::before
+      content: 'DRAFT'
+      position: fixed
+      top: 0
+      left: 0
+      font-size: 10rem
+      font-weight: 700
+      transform: rotate(-30deg)
+      color: #DDD
+      z-index: -1
+      margin: 20rem auto 0
+      text-align: center
+      width: 100%
+
+
+header
+  display: block
+  height: $i_big_head
+  background-color: $c_pine
+  position: relative
+  z-index: 9001
+
+  &.sticky
+    box-sizing: border-box
+    height: $i_mini_head
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    min-height: unset
+
+    .growth-inhibitor
+      height: $i_mini_head
+
+
+  .growth-inhibitor
+    height: $i_big_head
+
+.crumbs
+  padding: .5rem 1.25rem
+  background-color: $c_fog_200
+  border-bottom: 1px solid $c_fog_300
+
+
+main
+  display: flex
+
+  article,
+  .side-toc
+    min-height: calc(100vh - #{$i_big_head})
+
+  article
+    @extend .column
+    @extend .is-8
+    @extend .container
+    position: relative
+    padding-bottom: 7rem
+
+    @include m_tablet
+      width: 100%
+
+    @include m_wide_up
+      // FIXME suse22: why do i need an !important?
+      // same thing in pizzazz.sass
+      padding-left: 4rem !important
+      padding-right: 4rem !important
+
+  .side-toc
+    @extend .column
+    @extend .is-2
+    @extend .container
+    overflow-y: auto
+    position: relative
+    scrollbar-width: thin
+    scrollbar-color: $c_pine $c_fog_200
+
+
+  #_side-toc-overall:not(.placebo)
+    background-color: $c_side_toc_background
+    margin-left: 0
+    padding-right: 0
+
+  #_side-toc-page
+    background-color: $c_white
+    margin-right: 0
+    padding-left: 0
+
+  &.sticky
+    article
+      position: relative
+      top: $i_big_head
+      margin-bottom: $i_big_head
+
+    .side-toc
+      height: calc(100vh - #{$i_mini_head})
+      position: sticky
+      top: $i_mini_head
+      min-height: unset
+
+    #_side-toc-overall
+      left: 0
+
+    #_side-toc-page
+      right: 0
+
+    &.scroll-with-footer
+
+      // Add main::before/main:after to account for the fact that sidebars
+      // now use position:absolute and are no longer part of the normal flow.
+      // HACK: To avoid a SASS syntax error, we do the @extends before adding
+      // the media query that adds the content to make the ::before/::after
+      // display.
+      &::before,
+      &::after
+        @extend .column
+        @extend .is-2
+        @extend .container
+        @include m_desktop_up
+          content: ''
+
+      .side-toc
+        @include m_desktop_up
+          min-height: calc(100vh - #{$i_mini_head})
+          max-height: unset
+          position: absolute
+          height: auto
+          top: unset
+          bottom: 0
+
+      #_side-toc-overall:not(.placebo)
+        @include m_desktop_up
+          background: linear-gradient(to top, #{$c_white}, #{$c_side_toc_background} 5rem)
+
+
+footer
+  background-color: $c_pine
+  position: relative
+
+
+
+@include m_tablet
+  main
+    .side-toc
+      &#_side-toc-overall
+        display: block
+        position: fixed
+        top: 0
+        left: -#{$i_side_toc_overall_mobile}
+        width: $i_side_toc_overall_mobile
+        max-width: 80%
+        height: 100vh
+        z-index: 9003
+        overflow: visible
+        transition: left 0.2s ease-in
+
+        &.mobile-visible
+          left: 0
+
+          &::before
+            content: ''
+            top: 0
+            left: 100%
+            width: 100vw
+            height: 100vh
+            display: block
+            position: absolute
+            background-color: #000C
+
+        // HACK: Make the <ol> scroll, as scrolling the entire <nav> does not
+        // work in this instance, as we are adding an ::before for the dark
+        // background and that ::before requires overflow-x:visible ... which is
+        // apparently incompatible with overflow-y:scroll.
+        > ol
+          overflow-y: scroll
+          height: 100vh
+
+        &:not(.mobile-visible)
+          > *
+            display: none
+
+      &#_side-toc-page
+        display: none
+        background-color: $c_white
+        z-index: 300
+        padding: 0
+
+        &.mobile-visible
+          display: block
+          position: absolute !important
+          left: calc(40px + 1.5rem)
+          top: calc(.75rem - .2rem + #{$i_menu_button_size})
+          width: 300px
+          height: auto
+          min-height: auto
+          right: unset
+
+        &:not(.mobile-visible)
+          > *
+            display: none
+
+  body.normal
+    main
+      .side-toc
+        &#_side-toc-page
+          &.mobile-visible
+            left: .75rem

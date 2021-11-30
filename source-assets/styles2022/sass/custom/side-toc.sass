@@ -1,0 +1,202 @@
+// our own bubble-toc thing generates an <ol>, DocBook's default make.lots
+// generates an <ul> because ... no reason, page contents obviously are not
+// ordered. Anyway, seems we're stuck with both.
+
+$you_are_here_weight: 600
+
+.side-toc
+
+  // some bottom margin to account for floating browser status bars etc.
+  > *:last-child::after
+    content: ''
+    height: 2rem
+    display: block
+
+
+  ol,
+  ul
+    margin: 0
+    padding: 0
+    display: block
+    font-size: $i_font_side_toc
+
+  li
+    display: block
+
+  a
+    color: $c_pine
+    display: block
+    line-height: 22px
+    padding: 0.25rem .5rem
+    position: relative
+    text-decoration: none
+
+    &.you-are-here
+      font-weight: $you_are_here_weight
+
+    &:focus,
+    &:hover,
+    &:active
+      background-color: $c_fog_200
+      text-decoration: underline
+
+  .side-title
+    color: $c_pine
+    font-size: $i_font_menu
+    font-weight: 800
+
+    // fix the display of the em.citetitle that is somehow included in every
+    // other guide name...
+    em
+      font-style: normal
+
+
+#_side-toc-page
+  @include m_tablet
+    background-color: $c_white
+    border: .2rem solid $c_pine
+
+  .toc:not(:last-child),
+  .share:not(:last-child),
+  .feedback:not(:last-child)
+    padding-bottom: 1.5rem
+    border-bottom: 1px solid $c_fog_300
+    margin-bottom: 1.5rem
+    @include m_tablet
+      padding: 0
+      margin: 0
+      border: none
+
+  .side-title
+    @include m_tablet
+      display: none
+
+#_side-toc-overall
+
+  ol
+
+    ol
+      background-color: $c_fog_200
+      margin-bottom: 0
+      max-height: 0
+      overflow: hidden
+      transition: max-height 0.3s ease-in-out, margin-bottom 0.2s ease-in-out
+
+    > li.active
+
+      > ol
+        max-height: 1000px
+        margin-bottom: .3rem
+
+    > li:not(.active)
+      > ol
+        > *
+          display: none
+
+  li
+
+    > a.has-children
+      padding-right: 1.75rem
+      position: relative
+
+      &.current
+        font-weight: $you_are_here_weight
+
+      &::after
+        content: ''
+        display: block
+        position: absolute
+        right: .4rem
+        top: .4rem
+        height: 1rem
+        text-align: center
+        width: 1rem
+        font-weight: 800
+        border: .2rem solid $c_white
+        border-radius: 50%
+        background-color: $c_white
+        background-repeat: no-repeat
+        background-position: 50% 50%
+        background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="#{$c_pine_url}" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>')
+        transform: rotate(-90deg)
+        transition: transform 0.2s linear
+
+
+    &.active > a.has-children::after
+      transform: rotate(0.01deg)
+
+  ol > li.active > a
+    background-color: $c_jungle
+    color: $c_white
+
+    ol li > a
+      padding-left: 1rem
+
+
+  #_open-document-overview
+    display: block
+    border: none
+    height: 2.5rem
+    width: 1.25rem
+    background-color: $c_fog
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 300
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="#{$c_pine_url}" d="M 98.523242,239.02924 292.86724,44.686239 c 9.373,-9.373 24.569,-9.373 33.941,0 l 22.667,22.667 c 9.357,9.357 9.375,24.522 0.04,33.901001 l -154.021,154.746 154.021,154.745 c 9.335,9.379 9.317,24.544 -0.04,33.901 l -22.667,22.667 c -9.373,9.373 -24.569,9.373 -33.941,0 L 98.523242,272.97124 c -9.372,-9.373 -9.372,-24.569 0,-33.942 z" /></svg>')
+    transition: position 0.1s linear
+
+    &:hover
+      background-color: $c_fog_300
+
+    + .side-title
+      // align this with the button next to it ... sometimes; this is fragile & bad
+      position: relative
+      top: -.2rem
+      margin-left: .5rem
+      margin-bottom: .6rem
+
+
+  #_document-overview
+    position: absolute
+    top: 0
+    left: 0
+    padding-top: 2.5rem
+    padding-left: .75rem
+    background-color: $c_jungle
+    z-index: 200
+    width: 100%
+    height: 100%
+    display: none
+    overflow-y: auto !important
+    scrollbar-width: thin
+    scrollbar-color: $c_pine $c_jungle
+
+    a
+      color: $c_black
+
+      &:hover
+        background-color: $c_funky_darker_jungle
+
+      em
+        font-style: normal
+
+  &.document-overview-visible
+    #_open-document-overview
+      background-color: $c_jungle
+      left: unset
+      right: 0
+      transform: rotate(180deg)
+      background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="#{$c_white_url}" d="M 98.523242,239.02924 292.86724,44.686239 c 9.373,-9.373 24.569,-9.373 33.941,0 l 22.667,22.667 c 9.357,9.357 9.375,24.522 0.04,33.901001 l -154.021,154.746 154.021,154.745 c 9.335,9.379 9.317,24.544 -0.04,33.901 l -22.667,22.667 c -9.373,9.373 -24.569,9.373 -33.941,0 L 98.523242,272.97124 c -9.372,-9.373 -9.372,-24.569 0,-33.942 z" /></svg>')
+
+      &:hover
+        background-color: $c_funky_darker_jungle
+
+    #_document-overview
+      display: block
+
+  &.disable-document-overview-button
+    #_open-document-overview
+      display: none

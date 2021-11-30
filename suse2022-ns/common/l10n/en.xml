@@ -26,7 +26,18 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigation"/>
-   <l:gentext key="sharethispage" text="Share this page: "/>
+   <l:gentext key="moredocuments" text="More documents"/>
+
+   <l:gentext key="onthispage" text="On this page"/>
+
+   <l:gentext key="givefeedback" text="Give feedback"/>
+   <l:gentext key="reportbug" text="Report an issue"/>
+   <l:gentext key="editsource" text="Edit source document"/>
+
+   <l:gentext key="previouspage" text="Previous"/>
+   <l:gentext key="nextpage" text="Next"/>
+
+   <l:gentext key="sharethispage" text="Share this page"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

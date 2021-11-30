@@ -77,52 +77,6 @@
     <xsl:apply-templates select="."/>
   </xsl:template>
 
-  <xsl:template match="d:ulink" name="ulink">
-    <xsl:param name="url" select="@url"/>
-    <xsl:variable name="link-text">
-      <xsl:apply-templates mode="no.anchor.mode"/>
-    </xsl:variable>
-    <xsl:variable name="flat-link-text">
-      <xsl:value-of select="$link-text"/>
-    </xsl:variable>
-
-    <a>
-      <xsl:apply-templates select="." mode="common.html.attributes"/>
-      <xsl:if test="@id or @xml:id">
-        <xsl:choose>
-          <xsl:when test="$generate.id.attributes = 0">
-            <xsl:attribute name="name">
-              <xsl:value-of select="(@id|@xml:id)[1]"/>
-            </xsl:attribute>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:attribute name="id">
-              <xsl:value-of select="(@id|@xml:id)[1]"/>
-            </xsl:attribute>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:if>
-      <xsl:attribute name="href"><xsl:value-of select="$url"/></xsl:attribute>
-      <xsl:if test="$ulink.target != ''">
-        <xsl:attribute name="target">
-          <xsl:value-of select="$ulink.target"/>
-        </xsl:attribute>
-      </xsl:if>
-      <xsl:choose>
-        <!-- Don't just test for the existence of child nodes: The author may
-             have added a space between start and end tag and it would throw us
-             off. -->
-        <xsl:when test="normalize-space($flat-link-text) = ''">
-          <xsl:value-of select="$url"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:copy-of select="$link-text"/>
-          <span class="ulink-url"> (<xsl:value-of select="$url"/>)</span>
-        </xsl:otherwise>
-      </xsl:choose>
-    </a>
-  </xsl:template>
-
 
 <xsl:template match="d:xref" name="xref">
   <xsl:variable name="context" select="."/>

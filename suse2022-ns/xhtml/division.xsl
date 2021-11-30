@@ -28,14 +28,14 @@
     </xsl:variable>
 
     <xsl:if test="$label.template != ''">
-      <span class="number">
+      <span class="title-number">
         <xsl:call-template name="substitute-markup">
           <xsl:with-param name="template" select="$label.template"/>
         </xsl:call-template>
         <xsl:text> </xsl:text>
       </span>
     </xsl:if>
-    <span class="name">
+    <span class="title-name">
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
@@ -59,14 +59,13 @@
       <xsl:call-template name="create.permalink">
         <xsl:with-param name="object" select="$node"/>
       </xsl:call-template>
-      <xsl:call-template name="editlink"/>
     </h1>
   </xsl:template>
 
   <xsl:template match="d:book">
     <xsl:call-template name="id.warning"/>
 
-    <div>
+    <section>
       <xsl:apply-templates select="." mode="common.html.attributes"/>
       <xsl:call-template name="id.attribute">
         <xsl:with-param name="conditional" select="0"/>
@@ -96,7 +95,7 @@
       <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
 
       <xsl:apply-templates/>
-    </div>
+    </section>
   </xsl:template>
 
 </xsl:stylesheet>

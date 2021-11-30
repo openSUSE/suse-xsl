@@ -22,7 +22,7 @@
   exclude-result-prefixes="saxon d"
   xmlns="http://www.w3.org/1999/xhtml">
 
-<!-- 0. Parameters for External Manipulation =================== -->
+<!-- x. Parameters for External Manipulation =================== -->
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>
     <!-- Override with:
@@ -83,6 +83,14 @@
             -stringparam="external.js.onlineonly='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
     -->
 
+  <!-- FIXME suse22: Keep this disabled? Re-enable? -->
+  <!-- Disable optional checks designed to give feedback to writers but which
+  are not necessary for builds as such. This only makes sense for people who
+  look at `daps -vv` output which no one seems to do. -->
+  <xsl:param name="optimize.performance" select="1"/>
+
+<!-- 0. DocBook XSL Parameter settings                              -->
+<xsl:param name="html.ext">.html</xsl:param>
 
 <!-- 1. Admonitions  ============================================ -->
   <!-- Use graphics in admonitions?  0=no, 1=yes -->
@@ -101,8 +109,7 @@
  </xsl:param>
 
 <!-- 2. Callouts ================================================ -->
-  <xsl:param name="callout.graphics.path">static/images/</xsl:param>
-  <xsl:param name="callout.graphics" select="0"/>
+<!-- These stylesheets don't allow using callout graphics/Unicode callouts. -->
 
 <!-- 3. EBNF ==================================================== -->
 
@@ -148,7 +155,6 @@ set       toc,title
   <xsl:param name="html.stylesheet">
 <xsl:if test="$build.for.web != 1">static/css/fonts-onlylocal.css</xsl:if><xsl:text>&#10;</xsl:text>
 <xsl:value-of select="$daps.header.css.standard"/><xsl:text>&#10;</xsl:text>
-<xsl:if test="$enable.source.highlighting = 1"><xsl:value-of select="$daps.header.css.highlight"/><xsl:text>&#10;</xsl:text></xsl:if>
 <xsl:value-of select="$extra.css"/>
 </xsl:param>
   <xsl:param name="make.clean.html" select="1"/>
@@ -185,7 +191,7 @@ set       toc,title
 <!-- 17. Glossary =============================================== -->
 
 <!-- 18. Miscellaneous ========================================== -->
-  <xsl:param name="menuchoice.separator" select="$daps.breadcrumbs.sep"/>
+  <xsl:param name="menuchoice.separator" select="'&#xa0;/&#xa0;'"/>
   <xsl:param name="formal.title.placement">
 figure after
 example before
@@ -197,13 +203,13 @@ task before
 
   <xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
-  <!-- From the DocBook XHMTL stylesheet's "formal.xsl" -->
+  <!-- From the DocBook XHTML stylesheet's "formal.xsl" -->
   <xsl:param name="formal.object.break.after">0</xsl:param>
 
 <!-- 19. Annotations ============================================ -->
 
 <!-- 20. Graphics =============================================== -->
-  <xsl:param name="img.src.path">images/</xsl:param><!-- DB XSL Version >=1.67.1 -->
+  <xsl:param name="img.src.path">images/</xsl:param>
   <xsl:param name="make.graphic.viewport" select="0"/> <!-- Do not create tables around graphics. -->
   <xsl:param name="link.to.self.for.mediaobject" select="1"/> <!-- Create links to the image itself around images. -->
 
@@ -252,7 +258,6 @@ task before
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
   <xsl:param name="daps.header.js.highlight">static/js/highlight.min.js</xsl:param>
   <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
-  <xsl:param name="daps.header.css.highlight">static/css/highlight.css</xsl:param>
 
   <!-- This list is intentionally quite strict (no aliases) to keep our documents
   consistent. -->
@@ -298,10 +303,10 @@ task before
   <xsl:param name="breadcrumbs.prev">&#9664;<!--&#9668;--></xsl:param>
   <xsl:param name="breadcrumbs.next">&#9654;<!--&#9658;--></xsl:param>
 
-  <!--  Bubble TOC options -->
+  <!--  Side TOC options -->
 
   <!-- Create bubbletoc?  -->
-  <xsl:param name="generate.bubbletoc">
+  <xsl:param name="generate.side.toc">
     <xsl:choose>
       <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
@@ -333,8 +338,13 @@ task before
     </xsl:choose>
   </xsl:param>
 
+
+  <!-- Include header/footer via Server-Side Includes (SSI)? -->
+  <xsl:param name="include.ssi.header" select="''"/>
+  <xsl:param name="include.ssi.footer" select="''"/>
+
   <!-- Generate a footer with SUSE-specific content? -->
-  <xsl:param name="add.suse.footer" select="$suse.content"/>
+  <xsl:param name="generate.footer" select="$suse.content"/>
 
   <!-- Generate links in said footer? -->
   <xsl:param name="generate.footer.links">
@@ -350,16 +360,7 @@ task before
   <!-- Create version information before title? -->
   <xsl:param name="generate.version.info" select="1"/>
 
-  <!-- Create the language and format areas in the header? -->
-  <xsl:param name="generate.pickers">
-    <xsl:choose>
-      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
-      <!-- These are only dummies currently, so we never want to gnerate them. -->
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-
-  <!-- Link at the bottom of the page as a shortcut for printing. -->
+  <!-- Add links to share page via social media and print via the sidebar. -->
   <xsl:param name="generate.share.and.print">
     <xsl:choose>
       <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
@@ -367,11 +368,21 @@ task before
     </xsl:choose>
   </xsl:param>
 
-  <!-- Create sharing links for Facebook, Twitter, LinkedIn? -->
-  <xsl:param name="generate.sharelinks" select="1"/>
+  <!-- Allow generating "Give Feedback" section in sidebar. -->
+  <xsl:param name="generate.give.feedback">
+    <xsl:choose>
+      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:param>
+  <!-- Force generation of "Give Feedback" section, even if it may be empty in
+  plain HTML -->
+  <xsl:param name="force.generate.give.feedback" select="0"/>
+
+  <xsl:param name="disable.language.switcher" select="0"/>
 
   <!-- Separator between breadcrumbs links: -->
-  <xsl:param name="daps.breadcrumbs.sep">&#xa0;›&#xa0;</xsl:param>
+  <xsl:param name="daps.breadcrumbs.sep">&#xa0;/&#xa0;</xsl:param>
 
   <!--  Create permalinks?-->
   <xsl:param name="generate.permalinks">
@@ -381,7 +392,7 @@ task before
     </xsl:choose>
   </xsl:param>
 
-  <!-- Should information from SVN properties be used? yes=1|no=0 -->
+  <!-- Should meta information be displayed below titles? yes=1|no=0 -->
   <xsl:param name="use.meta" select="0"/>
 
   <!-- Should the tracker meta information be processed? yes=1|no=0 -->

@@ -26,12 +26,12 @@
     </xsl:variable>
     <!-- NOTE: The gentext context is NOT considered -->
     <xsl:if test="$legal = 0">
-      <span class="number">
+      <span class="title-number">
         <xsl:copy-of select="$label"/>
         <xsl:text> </xsl:text>
       </span>
     </xsl:if>
-    <span class="name">
+    <span class="title-name">
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
@@ -162,7 +162,6 @@
       <xsl:call-template name="create.permalink">
          <xsl:with-param name="object" select="."/>
       </xsl:call-template>
-      <xsl:call-template name="editlink"/>
     </xsl:element>
   </div>
 </xsl:template>
@@ -226,10 +225,6 @@
     <xsl:call-template name="create.permalink">
        <xsl:with-param name="object" select="$section"/>
     </xsl:call-template>
-    <xsl:call-template name="editlink"/>
-    <xsl:call-template name="create.header.line">
-       <xsl:with-param name="object" select="$section"/>
-    </xsl:call-template>
   </xsl:element>
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
@@ -274,23 +269,25 @@ elements, to fix their display. -->
   </xsl:apply-templates>
 </xsl:template>
 
-<!-- Hook for additional customizations -->
-<xsl:template name="create.header.line">
-  <xsl:param name="object" select="."/>
-</xsl:template>
-
 <xsl:template name="debug.filename-id">
   <xsl:param name="node" select="."/>
   <xsl:variable name="xmlbase"
     select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
 
-  <xsl:if test="$draft.mode = 'yes' and $xmlbase != ''">
+  <xsl:if test="$use.meta = 1">
     <div class="doc-status">
       <ul>
-        <li>
-          <span class="ds-label">File Name: </span>
-          <xsl:value-of select="$xmlbase"/>
-        </li>
+          <li>
+            <span class="ds-label">File Name: </span>
+            <xsl:choose>
+              <xsl:when test="$xmlbase">
+                <xsl:value-of select="$xmlbase"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <span class="ds-message">xmlbase is not set</span>
+              </xsl:otherwise>
+            </xsl:choose>
+          </li>
         <li>
           <span class="ds-label">ID: </span>
           <xsl:choose>
@@ -304,15 +301,6 @@ elements, to fix their display. -->
         </li>
       </ul>
     </div>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="editlink">
-  <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
-  <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
-  <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
-    <a class="report-bug" rel="nofollow" target="_blank" href="{$editurl}{$xmlbase}"
-      title="Edit the source file for this section">Edit source</a>
   </xsl:if>
 </xsl:template>
 

@@ -147,7 +147,7 @@
     </xsl:variable>
 
     <xsl:if test="$generate.version.info != 0 and $info-text != ''">
-      <h6 class="version-info"><xsl:copy-of select="$info-text"/></h6>
+      <div class="big-version-info"><xsl:copy-of select="$info-text"/></div>
     </xsl:if>
   </xsl:template>
 

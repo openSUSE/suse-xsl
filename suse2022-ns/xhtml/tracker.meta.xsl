@@ -11,7 +11,7 @@
       None
 
    Input:
-      DocBook 4/5
+      DocBook 5
 
    Output:
       HTML <meta/> tags
@@ -38,16 +38,23 @@
 
   <xsl:template name="create.bugtracker.information">
     <xsl:param name="node" select="."/>
+    <!-- evaluate-only is only for finding out whether the feature _could_ be
+    used in the current document. -->
+    <xsl:param name="evaluate-only" select="0"/>
 
     <!-- Check for the proper DocBook 5/DocManager elements. Since this is
     XML, it should support profiling out of the box. -->
     <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/d:info/dm:docmanager/dm:bugtracker"/>
 
-    <xsl:if test="$bugtracker-docmanager != ''">
-      <xsl:call-template name="create.docmanager.bugtracker">
-        <xsl:with-param name="bugtracker" select="$bugtracker-docmanager"/>
-      </xsl:call-template>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="$use.tracker.meta = 1 and $bugtracker-docmanager != ''">
+        <xsl:call-template name="create.docmanager.bugtracker">
+          <xsl:with-param name="bugtracker" select="$bugtracker-docmanager"/>
+          <xsl:with-param name="evaluate-only" select="$evaluate-only"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="$evaluate-only = 1">0</xsl:when>
+    </xsl:choose>
 
     <!-- The suse2013 stylesheets also supported defining bug tracker links via
     processing instructions. This is no longer supported, let's at least show a
@@ -69,6 +76,8 @@
 
   <xsl:template name="create.docmanager.bugtracker">
     <xsl:param name="bugtracker" select="''"/>
+    <xsl:param name="evaluate-only" select="0"/>
+
     <xsl:variable name="url-candidate" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
     <xsl:variable name="assignee-candidate" select="($bugtracker/dm:assignee[normalize-space(.) != ''])[last()]"/>
     <xsl:variable name="component-candidate" select="($bugtracker/dm:component[normalize-space(.) != ''])[last()]"/>
@@ -97,7 +106,6 @@
     <xsl:variable name="type">
       <xsl:choose>
         <xsl:when test="contains($url, 'bugzilla.suse.com') or
-                        contains($url, 'bugzilla.novell.com') or
                         contains($url, 'bugzilla.opensuse.org')">bsc</xsl:when>
         <xsl:when test="contains($url, 'github.com')">gh</xsl:when>
         <xsl:otherwise>unknown</xsl:otherwise>
@@ -119,7 +127,10 @@
     </xsl:message>-->
 
     <xsl:choose>
-      <xsl:when test="$url">
+      <xsl:when test="$evaluate-only = 1 and string-length($url) &gt; 0">1</xsl:when>
+      <xsl:when test="$evaluate-only = 1 and string-length($url) = 0">0</xsl:when>
+
+      <xsl:when test="string-length($url) &gt; 0">
         <meta name="tracker-url" content="{$url}"/>
         <xsl:text>&#10;</xsl:text>
         <meta name="tracker-type" content="{$type}"/>

@@ -1,0 +1,64 @@
+@page
+  size: portrait
+  margin: 20mm 22.5mm 22.5mm 22.5mm
+
+
+@media print
+
+  nav,
+  header,
+  footer,
+  aside,
+  div.crumbs,
+  button
+    display: none !important
+
+  .version-info,
+  .big-version-info
+    position: static !important
+    text-align: left !important
+    max-width: unset !important
+
+  article
+    padding: 0 !important
+    margin: 0 !important
+    width: 100% !important
+
+    .callout
+      border: 1px solid $c_pine
+      color: $c_pine
+
+
+    .permalink,
+    .report-bug
+      display: none
+
+
+    .admonition,
+    .figure,
+    .informalfigure,
+    p,
+    table
+      // Aumngh! Gecko does not interpret this. bmo#132035, 16 dupes, open
+      // since 2002. Webkit is cool, though.
+      page-break-inside: avoid
+
+
+    .title
+      break-after: avoid
+      page-break-after: avoid
+
+
+    .figure-title-wrap
+      border: 1px solid #202020 !important
+      width: calc(100% - 2px) !important
+
+
+    .figure-contents > .mediaobject,
+    .figure-title-wrap
+      background-color: transparent !important
+
+    a.link::after
+      content: ' (' attr(href) ') \2197'
+      color: unset
+      background-image: none

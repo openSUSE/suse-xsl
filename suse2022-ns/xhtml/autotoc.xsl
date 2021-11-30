@@ -129,14 +129,14 @@
         <xsl:if test="not($autotoc.label.in.hyperlink = 0) and
                           number($label.in.toc) != 0">
           <xsl:variable name="label">
-            <span class="number">
+            <span class="title-number">
               <xsl:apply-templates select="." mode="label.markup"/>
               <xsl:text> </xsl:text>
             </span>
           </xsl:variable>
           <xsl:copy-of select="$label"/>
         </xsl:if>
-        <span class="name">
+        <span class="title-name">
           <xsl:apply-templates select="." mode="titleabbrev.markup"/>
         </span>
       </a>

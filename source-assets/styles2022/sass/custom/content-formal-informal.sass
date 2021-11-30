@@ -1,0 +1,351 @@
+.complex-example .example-contents,
+.procedure-contents
+  background-color: lighten($c_fog, 2%)
+  border-left: .2rem solid $c_fog_200
+
+.complex-example .example-contents
+  margin: 5px 0
+  padding: 3px 15px 6px 12px
+
+
+.calloutlist
+  margin: 10px 0 24px
+
+  td[width="5%"]
+    width: 45px
+
+
+.example + .calloutlist
+  margin: -14px 0 24px
+
+
+.calloutlist table
+  width: 100%
+
+
+.callout
+  background-color: $c_waterhole
+  border-radius: 50%
+  color: $c_white
+  display: inline-block
+  font-family: $f_sans
+  font-size: .7rem
+  font-weight: 600
+  line-height: 1rem
+  margin: 0 .3rem
+  box-sizing: border-box
+  height: 1rem
+  min-width: 1rem
+  text-align: center
+
+
+// highlight.js likes to recolor our text. ugh!
+.callout *
+  background-color: transparent !important
+  color: $c_white !important
+  font-weight: 600 !important
+
+
+.verbatim-wrap .callout
+  user-select: none
+
+
+// xrefs in a calloutlist can contain .callout too, so make sure we don't
+// catch those.
+.calloutlist td:nth-child(1) .callout
+  position: relative
+  top: 2px
+  float: right
+
+
+div.variablelist
+  margin: 24px 0
+
+
+.glossary,
+.variablelist
+  dt
+    color: $c_pine
+    font-weight: 600
+    margin: 0
+    position: relative
+    z-index: 1
+
+
+.toc dt
+  margin-bottom: 5px
+
+
+.toc dt *
+  border-bottom: none
+  display: inline
+  font-style: normal
+  font-weight: normal
+  padding: 0
+
+
+.indexdiv h3
+  font-weight: 600
+  padding-bottom: 10px
+
+
+
+.glossary,
+.indexdiv,
+.toc,
+.variablelist
+  dd
+    margin: 0 0 17px 0
+    padding: 0 0 0 30px
+
+
+.list-of-equations,
+.list-of-examples,
+.list-of-figures,
+.list-of-procedures,
+.list-of-tables
+  dl
+    margin: 5px 0 17px 0
+    padding: 0 0 0 30px
+
+
+.glossary,
+.toc,
+.variablelist
+  dd > p
+    margin: 0
+
+
+div.figure
+  margin: 24px 0 0
+  max-width: 100%
+  min-height: 60px
+  overflow: hidden
+  padding-top: 0
+  position: relative
+  text-align: center
+
+
+.figure-contents
+  > .mediaobject
+    background-color: #FFF
+    border-width: 1px 1px 0 1px
+    border-style: solid
+    border-color: $c_fog_300
+    color: #999
+    max-width: 100%
+    min-height: 60px
+    overflow: hidden
+    padding: 12px 10px
+    text-align: center
+
+
+  img
+    // Inline images have some whitespace below them in Firefox => block
+    display: block
+    margin: 0 auto
+    max-width: calc(100% - 2px)
+    max-height: 80vh
+    padding: 0
+    width: auto
+
+
+.figure-title
+  margin: 0
+  padding: 10px
+  width: auto
+
+
+.figure-title-wrap
+  background-color: $c_fog
+  border-width: 0 1px 1px 1px
+  border-style: solid
+  border-color: $c_fog_300
+  overflow: hidden
+  width: 100%
+
+
+.informalfigure img
+  background-color: #FFF
+  border: 1px solid $c_fog_300
+  box-sizing: border-box
+  color: #999
+  // Inline images have some whitespace below them in Firefox => block
+  display: block
+  margin: 17px 0 24px
+  max-width: 100%
+  min-width: 50px
+  padding: 12px 10px
+  width: auto
+
+
+.inlinemediaobject img
+  display: inline-block
+  max-height: 20px
+  padding: 0 3px
+  vertical-align: -15%
+
+
+.example-title,
+.figure-title,
+.itemizedlist-title,
+.orderedlist-title,
+.procedure-title,
+.qandadiv-title,
+.table-title,
+.variablelist-title
+  font-size: 14px
+  font-weight: normal
+  line-height: 120%
+  text-align: left
+  text-transform: uppercase
+
+
+.example-title,
+.itemizedlist-title,
+.procedure-title,
+.table-title,
+.variablelist-title
+  padding-top: 0
+  position: relative
+  z-index: 1
+
+
+.example-title,
+.orderedlist-title,
+.procedure-title
+  margin: 24px 0 0
+
+
+.qandadiv-title
+  margin: 33px 0 0
+
+
+.itemizedlist-title
+  margin: 24px 0 0
+
+
+.table-title
+  margin: 24px 0 10px
+
+
+.variablelist-title
+  margin: 24px 0 10px
+
+
+.qandaentry
+  margin: 15px 0 0
+  position: relative
+  z-index: 0
+
+
+.example-title,
+.figure-title,
+.itemizedlist-title,
+.orderedlist-title,
+.procedure-title,
+.table-title,
+.variablelist-title
+  .keycap,
+  .literal,
+  .package,
+  .replaceable,
+  code
+    text-transform: none
+
+
+.procedure-contents
+  display: block
+  font-weight: normal
+  margin: 17px 0 17px
+  // Up top, 3px of padding look better than 5 would (with line-height
+  // interfering etc.). On the left, we use 5px-3px of border, so it sits
+  // right there with any other lists etc.
+  padding: 3px 5px 6px 2px
+
+
+.procedure-title-wrap + .procedure-contents
+  margin: 10px 0 24px
+
+
+.procedure-contents > ol:first-child > li:first-child > p:first-child,
+.procedure-contents > p:first-child
+  margin-top: 0
+
+
+.procedure-contents > .admonition
+  margin-top: 4px
+
+
+.procedure-contents
+  > p,
+  > .informalfigure,
+  > .admonition
+    margin-left: 12px
+    margin-right: 17px
+
+
+ol
+  &.orderedlist,
+  &.procedure,
+  &.substeps
+    color: $c_funky_darker_jungle
+    display: block
+    font-weight: normal
+
+  &.procedure
+    margin: 0 10px
+    padding: 0 0 0 30px
+
+    .title
+      color: #333
+      font-size: 16px
+      font-weight: 600
+      padding: 0
+
+  &.orderedlist,
+  &.substeps
+    margin: 0 0 0 10px
+    padding: 0 0 0 35px
+
+  &.orderedlist,
+  &.procedure
+    list-style-type: decimal
+
+  &.substeps
+    list-style-type: lower-latin
+
+.orderedlist-title-wrap + ol.orderedlist
+  margin-top: 40px
+
+
+ul
+  color: $c_funky_darker_jungle
+  display: block
+  list-style-type: disc
+  margin: 0 10px
+  padding: 5px 0 0 35px
+
+.step-optional
+  color: $c_funky_darker_jungle
+  font-style: italic
+
+  + p
+    margin-top: 0
+
+  > p
+    margin: 0 10px 5px
+
+div.itemizedlist
+  margin: 0 0 24px
+
+li > p
+  font-weight: normal
+
+
+.blockquote p
+  color: #333
+  font-style: italic
+
+div.blockquote
+  margin: 17px 35px

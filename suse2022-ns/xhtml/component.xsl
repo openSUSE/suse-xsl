@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Purpose:
-     Splitting chapter-wise titles into number and title
+     Split chapter titles into number and title
 
    Author(s):    Thomas Schraitle <toms@opensuse.org>
                  Stefan Knorr <sknorr@suse.de>
@@ -23,10 +23,12 @@
   <!-- This handles the case where a component (bibliography, for example)
        occurs inside a section; will we need parameters for this? -->
 
-  <!-- This "level" is a section level.  To compute <h> level, add 1. -->
+  <!-- This "level" is a section level. To compute <h> level, add 1. -->
   <xsl:variable name="level">
     <xsl:choose>
-      <!-- chapters and other book children should get <h1> -->
+      <!-- FIXME suse22: For SEO reasons, each page should have _one_ <h1> tag,
+      this code (taken from the original DocBook stylesheets) hurts our chunked
+      documents' SEO. -->
       <xsl:when test="$node/parent::d:book">0</xsl:when>
       <xsl:when test="ancestor::d:section">
         <xsl:value-of select="count(ancestor::d:section)+1"/>
@@ -50,7 +52,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="{$wrapperplus}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{$wrapperplus}">
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:call-template name="create.header.title">
       <xsl:with-param name="node" select="$node"/>
@@ -59,7 +61,6 @@
     <xsl:call-template name="create.permalink">
       <xsl:with-param name="object" select="$node"/>
     </xsl:call-template>
-    <xsl:call-template name="editlink"/>
   </xsl:element>
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
@@ -79,22 +80,6 @@
 
       <xsl:call-template name="article.titlepage"/>
 
-      <div class="line">
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:call-template name="make.lots">
-        <xsl:with-param name="toc.params" select="$toc.params"/>
-        <xsl:with-param name="toc">
-          <xsl:call-template name="component.toc">
-            <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-          </xsl:call-template>
-        </xsl:with-param>
-      </xsl:call-template>
-      </div>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:legalnotice"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:legalnotice"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
@@ -142,21 +127,6 @@
         </xsl:otherwise>
       </xsl:choose>
 
-
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <div class="line">
-      <xsl:if test="contains($toc.params, 'toc')">
-
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
-      </div>
       <xsl:apply-templates/>
       <xsl:call-template name="process.footnotes"/>
     </xsl:element>

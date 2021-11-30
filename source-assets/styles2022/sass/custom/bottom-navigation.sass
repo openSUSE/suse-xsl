@@ -1,0 +1,60 @@
+article
+  .bottom-pagination
+    margin: 4rem 0 0
+    display: flex
+    @include m_tiny
+      display: block
+
+    > div
+      display: flex
+      flex: 1 1 50%
+      max-width: 50%
+      @include m_tiny
+        display: block
+        max-width: unset
+        width: 100%
+
+      + div
+        margin-left: 1rem
+        @include m_tiny
+          margin-left: 0
+          margin-top: .75rem
+
+    .pagination-relation,
+    .pagination-label
+      display: block
+
+    .pagination-relation
+      font-size: $i_font_menu
+
+    .pagination-label
+      clear: both
+
+    a.pagination-link
+      display: block
+      border: .2rem solid $c_fog_200
+      padding: 1.5rem
+      text-decoration: none
+      color: $c_pine
+      width: 100%
+
+      &:hover,
+      &:focus
+        color: $c_pine
+        border-color: $c_fog_300
+
+      &.prev
+        text-align: left
+
+        .pagination-label,
+        .pagination-relation
+          float: left
+
+      &.next
+        text-align: right
+
+        .pagination-label,
+        .pagination-relation
+          float: right
+
+      @include clearfix

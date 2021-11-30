@@ -60,14 +60,14 @@
     </xsl:variable>
 
     <xsl:if test="$label.template != ''">
-      <span class="number">
+      <span class="title-number">
         <xsl:call-template name="substitute-markup">
           <xsl:with-param name="template" select="$label.template"/>
         </xsl:call-template>
         <xsl:text> </xsl:text>
       </span>
     </xsl:if>
-    <span class="name">
+    <span class="title-name">
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
@@ -84,12 +84,10 @@
       </xsl:call-template>
     </xsl:param>
 
-    <!-- FIXME: The 'if' here avoids outputting the (ugly/obvious)
-         label "Abstract" before abstracts. This is probably the wrong solution.
-         It works, but it's ugly. -->
-    <xsl:if
-      test="not(d:abstract or d:highlights)
-            or $object/d:title or $object/d:info/d:title">
+    <!-- The 'if' here avoids outputting the (ugly/obvious) label "Abstract"
+    before abstracts.-->
+    <xsl:if test="not($object/ancestor-or-self::d:abstract or
+                      $object/ancestor-or-self::d:highlights)">
       <div class="{concat(local-name(),'-title-wrap')}">
         <h6 class="{concat(local-name(), '-title')}">
           <!-- Do NOT create an id here; parent contains one already -->

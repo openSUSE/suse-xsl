@@ -104,6 +104,7 @@
     <xsl:call-template name="id.attribute">
       <xsl:with-param name="force" select="1"/>
     </xsl:call-template>
+    <xsl:text> </xsl:text>
   </div>
   <dl class="qandaentry">
 

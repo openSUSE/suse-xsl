@@ -1,0 +1,144 @@
+// Text styles
+
+.documentation a,
+.documentation em,
+.documentation p,
+.documentation span,
+.documentation strong
+  position: relative
+  z-index: 2
+
+
+.guimenu,
+.intraxref,
+em,
+i
+  font-style: italic
+
+
+// Don't use italics within italics.
+.question em,
+em .guimenu,
+i .guimenu
+  font-style: normal;
+
+
+sub,
+sup
+  font-size: 66.6%
+  line-height: 0
+
+
+sub
+  vertical-align: sub
+
+sup
+  vertical-align: super
+
+
+.formalpara-title,
+.imprint-label,
+.toc-title,
+.version-info .productname,
+.version-info .productnumber,
+b,
+strong
+  font-weight: 600
+
+
+.arch-arrow-start,
+.arch-arrow-end
+  background-color: $c_jungle
+  border-radius: 3px
+  color: $c_white
+  display: inline-block
+  font-size: 14px
+  height: 20px
+  line-height: 20px
+  padding: 0 2px 0 4px
+  position: relative
+  vertical-align: bottom
+
+.arch-arrow-start::after
+    content: ' >'
+
+.arch-arrow-end::after
+  content: '<'
+
+p,
+td
+  hyphens: auto
+
+
+.email,
+.link,
+.phrase
+  hyphens: none
+
+
+.simplelist td,
+p
+  color: $c_pine
+  margin: 10px 0 0
+  text-align: left
+
+
+.abstract,
+.highlights
+  font-size: 18px
+  line-height: 140%
+  margin: 24px 0 0
+
+  p
+    color: $c_pine
+
+  p:first-child
+    margin-top: 0
+
+  .titlepage
+    display: none
+
+  .titlepage + p,
+  .titlepage + p
+    margin-top: 0
+
+  li:first-child p:first-child
+    margin-top: 0
+
+  + .author,
+  + .authorgroup,
+  + .corpauthor,
+  + .date,
+  + .editor,
+  + .othercredit
+    margin: 10px 0 0
+
+
+.authorgroup,
+.date,
+.editor,
+.othercredit
+  color: #333
+
+article
+  a
+    color: $c_funky_darker_jungle
+    text-decoration: none
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited:active,
+    &:visited:focus,
+    &:visited:hover
+      color: $c_funky_darker_jungle
+      text-decoration: underline
+
+    &:visited
+      color: $c_funky_darker_jungle
+
+.free-id
+  height: 0.01px
+  left: -1px
+  position: relative
+  width: 0.01px

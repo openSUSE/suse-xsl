@@ -1,0 +1,124 @@
+// don't bother with a sticky footer -- our <article> uses min-height:100vh
+
+#_footer
+  color: $c_white
+  font-weight: 800
+  padding-bottom: 3rem
+
+  a
+    color: $c_white
+    text-decoration: none
+
+    &:active,
+    &:focus,
+    &:hover
+      color: $c_white
+      text-decoration: underline
+
+  .footer-topper
+    display: flex
+    position: relative
+    border-bottom: 1px dotted $c_white
+    padding: 2rem 0
+    margin: 0rem 1.5rem 1.5rem
+
+    @include m_desktop
+      display: block
+
+    .footer-links
+      @extend .column
+      @extend .is-10
+      @extend .container
+
+      @include clearfix
+
+      @include m_tablet
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+
+      li
+        display: block
+        float: left
+        margin-right: 2rem
+
+        @include m_tablet
+          float: none
+          margin: 0 .25rem
+
+      a
+        line-height: 50px
+
+      .footer-logo
+        @include m_tablet
+          display: none
+
+      .logo
+        width: 153px
+        height: 50px
+
+    .social
+      @extend .column
+      @extend .is-2
+      @extend .container
+
+
+    a
+      font-size: $i_font_menu
+
+  .copy
+    font-size: $i_font_menu_mini
+    float: right
+    margin: 0rem 1.5rem
+
+    a
+      font-size: $i_font_menu_mini
+      margin-left: 2rem
+
+
+// FIXME suse22: social-media icons still missing
+#_footer .social *
+  display: none
+
+
+// FOR THE WIN! suse.com uses an image here, but we use two divs & (ugly) magic.
+.footer-start-line,
+.footer-start-line-inner
+  display: block
+  width: 100%
+
+  &::before,
+  &::after
+    display: block
+    content: ''
+    width: 100%
+    position: absolute
+
+.footer-start-line
+  background-color: #055540
+  height: 35px
+  position: relative
+  &::before
+    top: 0
+    height: 2px
+    background-color: #35bc8c
+  &::after
+    top: 7px
+    height: 8px
+    background-color: #20a66c
+
+.footer-start-line-inner
+  top: 30px
+  height: 5px
+  background-color: #064c39
+  position: absolute
+  &::before
+    top: -4px
+    height: 4px
+    background-color: #008167
+  &::after
+    top: -15px
+    height: 3px
+    z-index: 1
+    background-color: #007157

@@ -19,43 +19,61 @@
   xmlns="http://www.w3.org/1999/xhtml">
 
 
-    <xsl:template name="id.attribute">
-        <xsl:param name="node" select="."/>
-        <xsl:param name="conditional" select="1"/>
-        <xsl:param name="force" select="0"/>
-        <xsl:choose>
-            <xsl:when test="$generate.id.attributes = 0 and $force != 1">
-                <!-- No id attributes when this param is zero -->
-            </xsl:when>
-            <xsl:when test="($force = 1 or $conditional = 0 or $node/@xml:id)
-                and local-name($node) != 'figure'">
-                <xsl:attribute name="id">
-                    <xsl:call-template name="object.id">
-                        <xsl:with-param name="object" select="$node"/>
-                    </xsl:call-template>
-                </xsl:attribute>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:template>
+  <xsl:template name="id.attribute">
+    <xsl:param name="node" select="."/>
+    <xsl:param name="conditional" select="1"/>
+    <xsl:param name="force" select="0"/>
+
+    <xsl:choose>
+      <!-- No id attributes when this param is zero -->
+      <xsl:when test="$generate.id.attributes = 0 and $force != 1"/>
+      <xsl:when test="($force = 1 or $conditional = 0 or $node/@xml:id)
+          and not($node/self::d:figure)">
+        <xsl:attribute name="id">
+          <xsl:call-template name="object.id">
+            <xsl:with-param name="object" select="$node"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:if test="./d:title or ./d:info/d:title">
+          <xsl:variable name="trouble">&quot;&apos;&amp;&lt;&gt;</xsl:variable>
+          <xsl:variable name="title-candidate"
+            select='normalize-space(translate((./d:title|./d:info/d:title)[1], $trouble, ""))'/>
+          <!-- we use @data-id-title for updating the report bug link via
+          Javascript later -->
+          <xsl:attribute name="data-id-title">
+            <xsl:value-of select="$title-candidate"/>
+          </xsl:attribute>
+        </xsl:if>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 
 
-    <!--  Adapted to support hidden value of OS  - currently this value
-          is only used in the SUSE Manager documentation. -->
-    <xsl:template name="common.html.attributes">
-        <xsl:param name="inherit" select="0"/>
-        <xsl:param name="class">
-            <xsl:value-of select="local-name(.)"/>
-            <xsl:text> </xsl:text>
-            <xsl:if test="($draft.mode = 'yes' or $draft.mode = 'maybe')
-                           and normalize-space(@os) = 'hidden'">
-                <xsl:value-of select="@os"/>
-            </xsl:if>
-        </xsl:param>
+<!-- Add a space in between <script> </script>, HTML parsers hate
+self-closing <script/> tags! -->
+<xsl:template name="make.script.link">
+  <xsl:param name="script.filename" select="''"/>
 
-        <xsl:apply-templates select="." mode="common.html.attributes">
-            <xsl:with-param name="class" select="$class"/>
-            <xsl:with-param name="inherit" select="$inherit"/>
-        </xsl:apply-templates>
-    </xsl:template>
+  <xsl:variable name="src">
+    <xsl:call-template name="relative.path.link">
+      <xsl:with-param name="target.pathname" select="$script.filename"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="string-length($script.filename) != 0">
+    <script>
+      <xsl:attribute name="src">
+        <xsl:value-of select="$src"/>
+      </xsl:attribute>
+      <xsl:attribute name="type">
+        <xsl:value-of select="$html.script.type"/>
+      </xsl:attribute>
+      <xsl:call-template name="other.script.attributes">
+        <xsl:with-param name="script.filename" select="$script.filename"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+    </script>
+  </xsl:if>
+</xsl:template>
 
 </xsl:stylesheet>

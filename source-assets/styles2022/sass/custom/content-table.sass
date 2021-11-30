@@ -1,0 +1,71 @@
+.informaltable,
+.table-contents
+  // Yup, let's make this scroll... While ugly, there seems to be no better
+  // way to avoid the table running off the page border...(?)
+  overflow: auto
+
+
+.table-contents
+  margin: 0 0 24px 0
+
+.informaltable
+  margin: 10px 0 24px 0
+
+
+.example-contents > .informaltable
+  margin: 0px 0 0 0
+  padding: 0
+
+  > table
+    margin: 10px 0 0 0
+    padding: 0
+
+.informaltable,
+.table
+
+  p
+    margin: 0
+
+  table
+    border-spacing: 0
+    max-width: 100%
+    table-layout: fixed
+
+  table,
+  th,
+  td,
+  tr
+    // "!important" because the upstream DocBook stylesheets add
+    // style="border: 1px solid ;" [sic!!, no color] to half the table elements
+    border: 1px solid $c_fog_300 !important
+
+  th
+    font-weight: 600
+    background-color: $c_fog_200
+
+  td,
+  th
+    margin: 0
+    overflow: hidden
+    padding: 3px 5px
+    vertical-align: middle
+
+  td[colspan],
+  td[rowspan]
+    background-color: $c_white
+
+  td[colspan],
+  td[rowspan],
+  th
+    border: 1px solid $c_fog_300
+
+  td[valign="top"],
+  th[valign="top"]
+    vertical-align: top
+
+  td[valign="bottom"],
+  th[valign="bottom"]
+    vertical-align: bottom
+
+  tr:nth-child(even)
+    background-color: $c_fog

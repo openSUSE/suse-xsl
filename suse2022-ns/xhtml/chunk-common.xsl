@@ -24,12 +24,11 @@
 
   <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/chunk-common.xsl"/>
 
-  <!-- ===================================================== -->
+
   <xsl:template
-    match="d:appendix|d:article|d:book|d:bibliography|d:chapter|d:part|d:preface|d:glossary|d:sect1|d:set|d:refentry|d:index"
-                mode="breadcrumbs">
-    <xsl:param name="class">crumb</xsl:param>
-    <xsl:param name="context">header</xsl:param>
+    match="d:appendix|d:article|d:book|d:bibliography|d:chapter|d:part|d:preface|d:glossary|d:sect1|d:section|d:set|d:refentry|d:index"
+    mode="breadcrumbs">
+    <xsl:param name="class" select="''"/>
 
     <xsl:variable name="title.candidate">
       <xsl:apply-templates select="." mode="titleabbrev.markup"/>
@@ -47,29 +46,12 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
-      <xsl:call-template name="generate.class.attribute">
-        <xsl:with-param name="class" select="$class"/>
-      </xsl:call-template>
+    <a class="crumb">
       <xsl:choose>
         <xsl:when test="$class='book-link'">
           <xsl:attribute name="href">
             <xsl:value-of select="concat($root.filename, $html.ext)"/>
           </xsl:attribute>
-          <xsl:attribute name="title">
-            <xsl:value-of select="string($title)"/>
-          </xsl:attribute>
-          <span class="book-icon">
-            <xsl:choose>
-              <xsl:when test="$overview-page = ''">
-                <xsl:attribute name="class">book-icon</xsl:attribute>
-              </xsl:when>
-              <xsl:otherwise>
-                <xsl:attribute name="class">book-icon lower-level</xsl:attribute>
-              </xsl:otherwise>
-            </xsl:choose>
-            <xsl:value-of select="string($title)"/>
-          </span>
         </xsl:when>
         <xsl:otherwise>
           <xsl:attribute name="href">
@@ -78,372 +60,38 @@
               <xsl:with-param name="context" select="."/>
             </xsl:call-template>
           </xsl:attribute>
-          <xsl:if test="$class = 'single-crumb'">
-            <span class="single-contents-icon"> </span>
-          </xsl:if>
-          <xsl:if test="$context = 'fixed-header'">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">showcontentsoverview</xsl:with-param>
-            </xsl:call-template>
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key">admonseparator</xsl:with-param>
-            </xsl:call-template>
-          </xsl:if>
-          <xsl:value-of select="string($title)"/>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:element>
+      <xsl:value-of select="string($title)"/>
+    </a>
   </xsl:template>
+
 
   <xsl:template name="breadcrumbs.navigation">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="context">header</xsl:param>
-    <xsl:param name="debug"/>
-
     <xsl:if test="$generate.breadcrumbs != 0">
       <div class="crumbs">
-        <xsl:call-template name="generate.breadcrumbs.back"/>
-        <xsl:choose>
-          <xsl:when test="$rootelementname != 'article'">
-            <xsl:for-each select="ancestor-or-self::*">
-              <xsl:choose>
-                <xsl:when test="$rootid != '' and descendant::*[@xml:id = string($rootid)]"/>
-                <xsl:when test="not(ancestor::*) or @xml:id = string($rootid)">
-                  <xsl:apply-templates select="." mode="breadcrumbs">
-                    <xsl:with-param name="class">book-link</xsl:with-param>
-                  </xsl:apply-templates>
-                </xsl:when>
-                <xsl:otherwise>
-                  <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>
-                  <xsl:apply-templates select="." mode="breadcrumbs"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:for-each>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="." mode="breadcrumbs">
-              <xsl:with-param name="class">single-crumb</xsl:with-param>
-              <xsl:with-param name="context" select="$context"/>
-            </xsl:apply-templates>
-            <xsl:if test="$context = 'header'">
-              <div class="bubble-corner active-contents"> </div>
-            </xsl:if>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
-    </xsl:if>
-  </xsl:template>
-
-  <!-- ===================================================== -->
-  <xsl:template name="picker.selection">
-    <a class="selected" href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formathtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
-    <a href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formatsinglehtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
-  </xsl:template>
-
-  <!-- ===================================================== -->
-
-  <xsl:template name="create.header.buttons.nav">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:if test="not(self::d:set|self::d:article)">
-      <div class="button">
-        <xsl:call-template name="header.navigation">
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="prev" select="$prev"/>
-          <!--<xsl:with-param name="nav.context" select="$nav.context"/>-->
-        </xsl:call-template>
-      </div>
-    </xsl:if>
-</xsl:template>
-
-  <!-- ===================================================== -->
-  <xsl:template name="fixed-header-wrap">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="nav.context"/>
-
-    <xsl:if test="$generate.fixed.header != 0">
-      <div id="_fixed-header-wrap" class="inactive">
-        <div id="_fixed-header">
-          <xsl:call-template name="breadcrumbs.navigation">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="context">fixed-header</xsl:with-param>
-          </xsl:call-template>
-          <xsl:call-template name="create.header.buttons">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-          </xsl:call-template>
-          <xsl:call-template name="clearme"/>
-        </div>
-        <xsl:if test="$generate.bubbletoc != 0 and $rootelementname = 'article'">
-          <div class="active-contents bubble">
-            <div class="bubble-container">
-              <div id="_bubble-toc">
-                <xsl:call-template name="bubble-toc"/>
-              </div>
-              <xsl:call-template name="clearme"/>
-            </div>
-          </div>
-        </xsl:if>
-      </div>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template name="create-find-area">
-    <xsl:param name="prev" select="/d:foo"/>
-    <xsl:param name="next" select="/d:foo"/>
-    <xsl:variable name="localisationfind">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">find</xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <div id="_find-area" class="active">
-      <div class="inactive-contents">
-        <a href="#" id="_find-area-button" class="tool" title="{$localisationfind}">
-          <span class="pad-tools-50-out">
-            <span class="pad-tools-50-in">
-              <span class="tool-spacer">
-                <span class="find-icon"><xsl:value-of select="$localisationfind"/></span>
-              </span>
-              <span class="tool-label"><xsl:value-of select="$localisationfind"/></span>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="active-contents">
-        <form action="post">
-          <div class="find-form">
-            <input type="text" id="_find-input" value="{$localisationfind}"/>
-            <button id="_find-button" alt="{$localisationfind}" title="{$localisationfind}">
-              <xsl:value-of select="$localisationfind"/>
-            </button>
-            <label id="_find-input-label">
-              <xsl:value-of select="$localisationfind"/>
-            </label>
-            <xsl:call-template name="clearme"/>
-          </div>
-        </form>
-      </div>
-    </div>
-  </xsl:template>
-
-  <!-- ===================================================== -->
-  <xsl:template name="toolbar-wrap">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="nav.context"/>
-    <xsl:variable name="rootnode"  select="generate-id(/*) = generate-id(.)"/>
-        <xsl:variable name="localisationcontents">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">contentsoverview</xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="title.candidate">
-      <xsl:apply-templates mode="title.markup"
-        select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
-    </xsl:variable>
-    <xsl:variable name="title">
-      <xsl:choose>
-        <xsl:when test="$title.candidate != ''">
-          <xsl:value-of select="$title.candidate"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key"
-              select="local-name((ancestor-or-self::d:book | ancestor-or-self::d:article)[last()])"/>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:if test="$generate.toolbar != 0 and $rootelementname != 'article'">
-      <div id="_toolbar-wrap">
-        <div id="_toolbar">
-          <xsl:choose>
-            <!-- We don't need a bubble-toc in the page for set. -->
-            <!-- FIXME: Haven't looked any further, but just testing for
-                 rootnode seems wrong. One might go so far as to say that
-                 $rootnode does not have to be a set. -->
-            <xsl:when test="$generate.bubbletoc = 0 or $rootnode">
-              <div id="_toc-area" class="inactive"> </div>
-            </xsl:when>
-            <xsl:otherwise>
-              <div id="_toc-area" class="inactive">
-                <a id="_toc-area-button" class="tool" title="{$localisationcontents}"
-                 accesskey="c">
-                  <xsl:attribute name="href">
-                    <xsl:call-template name="href.target">
-                      <xsl:with-param name="object" select="/*"/>
-                    </xsl:call-template>
-                  </xsl:attribute>
-                  <span class="tool-spacer">
-                    <span class="toc-icon">
-                      <xsl:value-of select="$localisationcontents"/>
-                    </span>
-                    <xsl:call-template name="clearme">
-                      <xsl:with-param name="wrapper">span</xsl:with-param>
-                    </xsl:call-template>
-                  </span>
-                  <span class="tool-label">
-                    <xsl:value-of select="$localisationcontents"/>
-                  </span>
-                </a>
-                <div class="active-contents bubble-corner"> </div>
-                <div class="active-contents bubble">
-                  <div class="bubble-container">
-                    <h6>
-                      <xsl:value-of select="$title"/>
-                    </h6>
-                    <div id="_bubble-toc">
-                      <xsl:call-template name="bubble-toc"/>
-                    </div>
-                    <xsl:call-template name="clearme"/>
-                  </div>
-                </div>
-              </div>
-            </xsl:otherwise>
-          </xsl:choose>
-
-          <xsl:choose>
-            <xsl:when test="self::d:set|self::d:article">
-              <div id="_nav-area" class="inactive"></div>
-            </xsl:when>
-            <xsl:otherwise>
-              <div id="_nav-area" class="inactive">
-                <div class="tool">
-                  <span class="nav-inner">
-                    <span class="tool-label">
-                      <xsl:call-template name="gentext">
-                        <xsl:with-param name="key">navigation</xsl:with-param>
-                      </xsl:call-template>
-                    </span>
-                    <!-- Add navigation -->
-                    <xsl:call-template name="header.navigation">
-                      <xsl:with-param name="next" select="$next"/>
-                      <xsl:with-param name="prev" select="$prev"/>
-                      <xsl:with-param name="nav.context" select="$nav.context"/>
-                    </xsl:call-template>
-                  </span>
-                </div>
-              </div>
-            </xsl:otherwise>
-          </xsl:choose>
-
-          <!-- Do not create a Find area for now, instead of focus on remaining
-               missing essentials. Make Find functional later. -->
-          <!-- <xsl:call-template name="create-find-area">
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="nav.context" select="$nav.context"/>
-          </xsl:call-template> -->
-
+        <div class="growth-inhibitor">
+          <xsl:call-template name="generate.breadcrumbs.back"/>
+          <xsl:for-each select="ancestor-or-self::*">
+            <xsl:choose>
+              <xsl:when test="$rootid != '' and descendant::*[@xml:id = string($rootid)]"/>
+              <xsl:when test="not(ancestor::*) or @xml:id = string($rootid)">
+                <xsl:apply-templates select="." mode="breadcrumbs">
+                  <xsl:with-param name="class">book-link</xsl:with-param>
+                </xsl:apply-templates>
+              </xsl:when>
+              <xsl:otherwise>
+                <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>
+                <xsl:apply-templates select="." mode="breadcrumbs"/>
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
         </div>
       </div>
     </xsl:if>
   </xsl:template>
 
-  <!-- ===================================================== -->
-  <xsl:template name="header.navigation">
-    <xsl:param name="prev" select="/d:foo"/>
-    <xsl:param name="next" select="/d:foo"/>
-    <xsl:param name="nav.context"/>
 
-    <xsl:variable name="needs.navig">
-      <xsl:call-template name="is.node.in.navig">
-        <xsl:with-param name="next" select="$next"/>
-        <xsl:with-param name="prev" select="$prev"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="isnext">
-      <xsl:call-template name="is.next.node.in.navig">
-        <xsl:with-param name="next" select="$next"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="isprev">
-      <xsl:call-template name="is.prev.node.in.navig">
-        <xsl:with-param name="prev" select="$prev"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-  <!--
-     We use two node sets and calculate the set difference
-     with the following, general XPath expression:
-
-      setdiff = $node-set1[count(.|$node-set2) != count($node-set2)]
-
-     $node-set1 contains the ancestors of all nodes, starting with the
-     current node (but the current node is NOT included in the set)
-
-     $node-set2 contains the ancestors of all nodes starting from the
-     node which points to the $rootid parameter
-
-     For example:
-     node-set1: {/, set, book, chapter}
-     node-set2: {/, set, }
-     setdiff:   {        book, chapter}
-  -->
-  <xsl:variable name="ancestorrootnode" select="key('id', $rootid)/ancestor::*"/>
-  <xsl:variable name="setdiff" select="ancestor::*[count(. | $ancestorrootnode)
-                                != count($ancestorrootnode)]"/>
-  <xsl:if test="$needs.navig">
-       <xsl:choose>
-         <xsl:when test="count($prev) > 0 and $isprev = 'true'">
-           <a accesskey="p" class="tool-spacer">
-             <xsl:attribute name="title">
-               <xsl:apply-templates select="$prev"
-                 mode="object.title.markup"/>
-             </xsl:attribute>
-             <xsl:attribute name="href">
-               <xsl:call-template name="href.target">
-                 <xsl:with-param name="object" select="$prev"/>
-               </xsl:call-template>
-             </xsl:attribute>
-             <span class="prev-icon">←</span>
-           </a>
-         </xsl:when>
-         <xsl:otherwise>
-           <span class="tool-spacer">
-             <span class="prev-icon">←</span>
-           </span>
-         </xsl:otherwise>
-       </xsl:choose>
-       <xsl:choose>
-         <xsl:when test="count($next) > 0 and $isnext = 'true'">
-           <a accesskey="n" class="tool-spacer">
-             <xsl:attribute name="title">
-               <xsl:apply-templates select="$next"
-                 mode="object.title.markup"/>
-             </xsl:attribute>
-             <xsl:attribute name="href">
-               <xsl:call-template name="href.target">
-                 <xsl:with-param name="object" select="$next"/>
-               </xsl:call-template>
-             </xsl:attribute>
-             <span class="next-icon">→</span>
-           </a>
-         </xsl:when>
-         <xsl:otherwise>
-           <span class="tool-spacer">
-             <span class="next-icon">→</span>
-           </span>
-         </xsl:otherwise>
-       </xsl:choose>
-    </xsl:if>
-  </xsl:template>
-
-
-  <!-- ===================================================== -->
   <xsl:template name="bottom.navigation">
     <xsl:param name="prev" select="/d:foo"/>
     <xsl:param name="next" select="/d:foo"/>
@@ -488,38 +136,53 @@
       select="ancestor::*[count(. | $ancestorrootnode)
                                 != count($ancestorrootnode)]"/>
     <xsl:if test="$generate.bottom.navigation != 0 and $needs.navig = 'true' and not(self::d:set)">
-      <div id="_bottom-navigation">
-        <xsl:if test="count($next) > 0 and $isnext = 'true'">
-          <a class="nav-link">
-            <xsl:attribute name="href">
-              <xsl:call-template name="href.target">
-                <xsl:with-param name="object" select="$next"/>
-              </xsl:call-template>
-            </xsl:attribute>
-            <span class="next-icon">→</span>
-            <span class="nav-label">
-              <xsl:apply-templates select="$next" mode="page-bottom.label"/>
-              <xsl:apply-templates select="$next" mode="titleabbrev.markup"/>
-            </span>
-          </a>
-        </xsl:if>
-        <xsl:if test="count($prev) > 0 and $isprev = 'true'">
-          <a class="nav-link">
-            <xsl:attribute name="href">
-              <xsl:call-template name="href.target">
-                <xsl:with-param name="object" select="$prev"/>
-              </xsl:call-template>
-            </xsl:attribute>
-            <span class="prev-icon">←</span>
-            <span class="nav-label">
-              <xsl:apply-templates select="$prev" mode="page-bottom.label"/>
-              <xsl:apply-templates select="$prev" mode="titleabbrev.markup"/>
-            </span>
-          </a>
-      </xsl:if>
-      </div>
+      <nav class="bottom-pagination">
+        <div>
+          <xsl:if test="count($prev) > 0 and $isprev = 'true'">
+            <a class="pagination-link prev">
+              <xsl:attribute name="href">
+                <xsl:call-template name="href.target">
+                  <xsl:with-param name="object" select="$prev"/>
+                </xsl:call-template>
+              </xsl:attribute>
+              <span class="pagination-relation">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key" select="'previouspage'"/>
+                </xsl:call-template>
+              </span>
+              <span class="pagination-label">
+                <xsl:apply-templates select="$prev" mode="page-bottom.label"/>
+                <xsl:apply-templates select="$prev" mode="titleabbrev.markup"/>
+              </span>
+            </a>
+          </xsl:if>
+          <xsl:text> </xsl:text>
+        </div>
+        <div>
+          <xsl:if test="count($next) > 0 and $isnext = 'true'">
+            <a class="pagination-link next">
+              <xsl:attribute name="href">
+                <xsl:call-template name="href.target">
+                  <xsl:with-param name="object" select="$next"/>
+                </xsl:call-template>
+              </xsl:attribute>
+              <span class="pagination-relation">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key" select="'nextpage'"/>
+                </xsl:call-template>
+              </span>
+              <span class="pagination-label">
+                <xsl:apply-templates select="$next" mode="page-bottom.label"/>
+                <xsl:apply-templates select="$next" mode="titleabbrev.markup"/>
+              </span>
+            </a>
+          </xsl:if>
+          <xsl:text> </xsl:text>
+        </div>
+      </nav>
     </xsl:if>
   </xsl:template>
+
 
   <xsl:template match="d:chapter|d:appendix|d:part" mode="page-bottom.label">
     <xsl:variable name="template">
@@ -529,7 +192,7 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <span class="number">
+    <span class="title-number">
       <xsl:call-template name="substitute-markup">
         <xsl:with-param name="template" select="$template"/>
       </xsl:call-template>
@@ -539,7 +202,7 @@
 
   <xsl:template match="*" mode="page-bottom.label"/>
 
-  <!-- ===================================================== -->
+
   <xsl:template name="chunk-element-content">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
@@ -556,10 +219,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <!--
-     Needed to allow customization by drupal/xhtml/chunk.xsl
-     (circumvent import issues with <xsl:apply-imports/>)
-  -->
+
   <xsl:template name="chunk-element-content-html">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
@@ -572,7 +232,7 @@
 
     <xsl:call-template name="user.preroot"/>
 
-    <html lang="{$lang}" xml:lang="{$lang}">
+    <html lang="{$lang}">
       <xsl:call-template name="root.attributes"/>
       <xsl:call-template name="html.head">
         <xsl:with-param name="prev" select="$prev"/>
@@ -585,94 +245,102 @@
         <xsl:call-template name="bypass">
           <xsl:with-param name="format" select="'chunk'"/>
         </xsl:call-template>
-        <div id="_outer-wrap">
-          <xsl:if test="$generate.header != 0">
-            <div id="_white-bg">
-              <div id="_header">
-                <xsl:call-template name="create.header.logo"/>
-                <xsl:call-template name="pickers"/>
-                <xsl:call-template name="breadcrumbs.navigation">
-                  <xsl:with-param name="prev" select="$prev"/>
-                  <xsl:with-param name="next" select="$next"/>
-                </xsl:call-template>
 
-                <xsl:call-template name="clearme"/>
-              </div>
-            </div>
-          </xsl:if>
+        <xsl:call-template name="user.header.content"/>
 
-          <xsl:call-template name="toolbar-wrap">
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="prev" select="$prev"/>
-          </xsl:call-template>
+        <xsl:call-template name="breadcrumbs.navigation"/>
 
-          <xsl:call-template name="fixed-header-wrap">
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="prev" select="$prev"/>
-          </xsl:call-template>
+        <main id="_content">
 
-          <xsl:call-template name="user.header.navigation">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="nav.context" select="$nav.context"/>
-          </xsl:call-template>
+          <xsl:call-template name="side.toc.overall"/>
+          <button id="_open-side-toc-overall">
+            <xsl:attribute name="title">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'TableofContents'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:text> </xsl:text>
+          </button>
 
-          <xsl:call-template name="user.header.content"/>
-          <xsl:if test="$rootelementname = 'article'">
-            <div id="_toc-bubble-wrap"></div>
-          </xsl:if>
-          <div id="_content">
-            <xsl:call-template name="outerelement.class.attribute">
-              <xsl:with-param name="node" select="'id-content'"/>
-            </xsl:call-template>
-            <div class="documentation">
+          <article class="documentation">
 
+            <button id="_unfold-side-toc-page">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'onthispage'"/>
+              </xsl:call-template>
+            </button>
             <xsl:copy-of select="$content"/>
 
-            </div>
-            <div class="page-bottom">
-              <xsl:call-template name="bottom.navigation">
-                <xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-                <xsl:with-param name="nav.context" select="$nav.context"/>
-              </xsl:call-template>
-              <xsl:call-template name="share.and.print">
-                <xsl:with-param name="prev" select="$prev"/>
-                <xsl:with-param name="next" select="$next"/>
-                <xsl:with-param name="nav.context" select="$nav.context"/>
-              </xsl:call-template>
-            </div>
-          </div>
+            <xsl:call-template name="bottom.navigation">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+            </xsl:call-template>
 
-          <xsl:if test="$add.suse.footer = 1">
-            <div id="_inward"></div>
+          </article>
+
+          <xsl:call-template name="side.toc.page"/>
+
+        </main>
+
+        <xsl:call-template name="user.footer.content"/>
+
+      </body>
+    </html>
+  </xsl:template>
+
+
+  <xsl:template name="side.toc.overall">
+    <xsl:if test="$generate.side.toc != 0">
+      <xsl:variable name="needs-document-overview">
+        <!-- FIXME suse22: rethink this idea of checking for an xml:id ...
+        We only care about identity, so generate-id() should be better maybe -->
+        <xsl:if test="( ancestor-or-self::d:set[@xml:id] |
+                        ancestor-or-self::d:book[@xml:id] |
+                        ancestor-or-self::d:article[@xml:id])[last()]/@xml:id != $rootid">1</xsl:if>
+      </xsl:variable>
+
+      <nav id="_side-toc-overall">
+        <xsl:attribute name="class">
+          <xsl:text>side-toc</xsl:text>
+          <xsl:if test="self::d:toc">
+            <xsl:text> document-overview-visible disable-document-overview-button</xsl:text>
           </xsl:if>
+        </xsl:attribute>
+        <xsl:if test="$needs-document-overview = 1">
+          <button id="_open-document-overview">
+            <xsl:attribute name="title">
+              <xsl:call-template name="gentext">
+                <xsl:with-param name="key" select="'moredocuments'"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:text> </xsl:text>
+          </button>
+        </xsl:if>
+        <div class="side-title">
+          <xsl:apply-templates select="(ancestor-or-self::d:set|ancestor-or-self::d:book | ancestor-or-self::d:article)[last()]" mode="titleabbrev.markup"/>
         </div>
-
-      <xsl:if test="$add.suse.footer = 1">
-        <div id="_footer-wrap">
-          <xsl:call-template name="user.footer.content"/>
-          <xsl:call-template name="user.footer.navigation">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="nav.context" select="$nav.context"/>
+        <!-- For articles, the content here would the same as the "on this
+        page" content, so skip that, even though that (also) looks horrible. -->
+        <xsl:if test="not(self::d:article)">
+          <xsl:call-template name="side.toc.overall.inner">
+            <xsl:with-param name="node" select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
+            <xsl:with-param name="page-context" select="."/>
           </xsl:call-template>
-        </div>
-      </xsl:if>
-    </body>
-  </html>
-</xsl:template>
+        </xsl:if>
+        <!-- Generate an overview of all books/articles in the current set/book -->
+        <xsl:if test="$needs-document-overview = 1">
+          <div id="_document-overview">
+            <xsl:call-template name="side.toc.overall.doc-overview.inner">
+              <xsl:with-param name="node" select="(/*|key('id', $rootid))[last()]"/>
+            </xsl:call-template>
+          </div>
+        </xsl:if>
 
-<!-- ======================================================================= -->
-
-  <xsl:template name="bubble-toc">
-    <xsl:if test="$generate.bubbletoc != 0">
-      <xsl:call-template name="bubble-toc.inner">
-        <xsl:with-param name="node" select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
-      </xsl:call-template>
+        <xsl:text> </xsl:text>
+      </nav>
     </xsl:if>
   </xsl:template>
 
-<!-- ======================================================================= -->
 
 </xsl:stylesheet>
