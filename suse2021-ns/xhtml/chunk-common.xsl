@@ -126,27 +126,10 @@
               <xsl:with-param name="class">single-crumb</xsl:with-param>
               <xsl:with-param name="context" select="$context"/>
             </xsl:apply-templates>
-            <xsl:if test="$context = 'header'">
-              <div class="bubble-corner active-contents"> </div>
-            </xsl:if>
           </xsl:otherwise>
         </xsl:choose>
       </div>
     </xsl:if>
-  </xsl:template>
-
-  <!-- ===================================================== -->
-  <xsl:template name="picker.selection">
-    <a class="selected" href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formathtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
-    <a href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formatsinglehtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
   </xsl:template>
 
   <!-- ===================================================== -->
@@ -159,84 +142,10 @@
         <xsl:call-template name="header.navigation">
           <xsl:with-param name="next" select="$next"/>
           <xsl:with-param name="prev" select="$prev"/>
-          <!--<xsl:with-param name="nav.context" select="$nav.context"/>-->
         </xsl:call-template>
       </div>
     </xsl:if>
 </xsl:template>
-
-  <!-- ===================================================== -->
-  <xsl:template name="fixed-header-wrap">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="nav.context"/>
-
-    <xsl:if test="$generate.fixed.header != 0">
-      <div id="_fixed-header-wrap" class="inactive">
-        <div id="_fixed-header">
-          <xsl:call-template name="breadcrumbs.navigation">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="context">fixed-header</xsl:with-param>
-          </xsl:call-template>
-          <xsl:call-template name="create.header.buttons">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-          </xsl:call-template>
-          <xsl:call-template name="clearme"/>
-        </div>
-        <xsl:if test="$generate.bubbletoc != 0 and $rootelementname = 'article'">
-          <div class="active-contents bubble">
-            <div class="bubble-container">
-              <div id="_bubble-toc">
-                <xsl:call-template name="bubble-toc"/>
-              </div>
-              <xsl:call-template name="clearme"/>
-            </div>
-          </div>
-        </xsl:if>
-      </div>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template name="create-find-area">
-    <xsl:param name="prev" select="/d:foo"/>
-    <xsl:param name="next" select="/d:foo"/>
-    <xsl:variable name="localisationfind">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">find</xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <div id="_find-area" class="active">
-      <div class="inactive-contents">
-        <a href="#" id="_find-area-button" class="tool" title="{$localisationfind}">
-          <span class="pad-tools-50-out">
-            <span class="pad-tools-50-in">
-              <span class="tool-spacer">
-                <span class="find-icon"><xsl:value-of select="$localisationfind"/></span>
-              </span>
-              <span class="tool-label"><xsl:value-of select="$localisationfind"/></span>
-            </span>
-          </span>
-        </a>
-      </div>
-      <div class="active-contents">
-        <form action="post">
-          <div class="find-form">
-            <input type="text" id="_find-input" value="{$localisationfind}"/>
-            <button id="_find-button" alt="{$localisationfind}" title="{$localisationfind}">
-              <xsl:value-of select="$localisationfind"/>
-            </button>
-            <label id="_find-input-label">
-              <xsl:value-of select="$localisationfind"/>
-            </label>
-            <xsl:call-template name="clearme"/>
-          </div>
-        </form>
-      </div>
-    </div>
-  </xsl:template>
 
   <!-- ===================================================== -->
   <xsl:template name="toolbar-wrap">
@@ -570,9 +479,8 @@
       <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
     </xsl:variable>
 
-    <xsl:call-template name="user.preroot"/>
-
-    <html lang="{$lang}" xml:lang="{$lang}">
+    <xsl:text>&lt;!DOCTYPE html&gt;</xsl:text>
+    <html lang="{$lang}">
       <xsl:call-template name="root.attributes"/>
       <xsl:call-template name="html.head">
         <xsl:with-param name="prev" select="$prev"/>
@@ -590,7 +498,6 @@
             <div id="_white-bg">
               <div id="_header">
                 <xsl:call-template name="create.header.logo"/>
-                <xsl:call-template name="pickers"/>
                 <xsl:call-template name="breadcrumbs.navigation">
                   <xsl:with-param name="prev" select="$prev"/>
                   <xsl:with-param name="next" select="$next"/>
@@ -606,11 +513,6 @@
             <xsl:with-param name="prev" select="$prev"/>
           </xsl:call-template>
 
-          <xsl:call-template name="fixed-header-wrap">
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="prev" select="$prev"/>
-          </xsl:call-template>
-
           <xsl:call-template name="user.header.navigation">
             <xsl:with-param name="prev" select="$prev"/>
             <xsl:with-param name="next" select="$next"/>
@@ -618,9 +520,6 @@
           </xsl:call-template>
 
           <xsl:call-template name="user.header.content"/>
-          <xsl:if test="$rootelementname = 'article'">
-            <div id="_toc-bubble-wrap"></div>
-          </xsl:if>
           <div id="_content">
             <xsl:call-template name="outerelement.class.attribute">
               <xsl:with-param name="node" select="'id-content'"/>

@@ -350,15 +350,6 @@ task before
   <!-- Create version information before title? -->
   <xsl:param name="generate.version.info" select="1"/>
 
-  <!-- Create the language and format areas in the header? -->
-  <xsl:param name="generate.pickers">
-    <xsl:choose>
-      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
-      <!-- These are only dummies currently, so we never want to gnerate them. -->
-      <xsl:otherwise>0</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-
   <!-- Link at the bottom of the page as a shortcut for printing. -->
   <xsl:param name="generate.share.and.print">
     <xsl:choose>

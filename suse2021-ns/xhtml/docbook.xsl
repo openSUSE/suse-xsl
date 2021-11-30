@@ -501,73 +501,6 @@
     </xsl:if>
   </xsl:template>
 
-  <!-- ===================================================== -->
-  <xsl:template name="pickers">
-    <xsl:if test="$generate.pickers != 0">
-      <div id="_pickers">
-        <div id="_language-picker" class="inactive">
-          <a id="_language-picker-button" href="#">
-            <span class="picker">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
-              </xsl:call-template>
-            </span>
-          </a>
-          <div class="bubble-corner active-contents"> </div>
-          <div class="bubble active-contents">
-            <h6>
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">selectlanguage</xsl:with-param>
-              </xsl:call-template>
-            </h6>
-            <a class="selected" href="#">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">LocalisedLanguageName</xsl:with-param>
-              </xsl:call-template>
-            </a>
-          </div>
-        </div>
-        <div id="_format-picker" class="inactive">
-          <a id="_format-picker-button" href="#">
-            <span class="picker">Web Page</span>
-          </a>
-          <div class="bubble-corner active-contents"> </div>
-          <div class="bubble active-contents">
-            <h6>
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">selectformat</xsl:with-param>
-              </xsl:call-template>
-            </h6>
-            <xsl:call-template name="picker.selection"/>
-            <a href="#">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">formatpdf</xsl:with-param>
-              </xsl:call-template>
-            </a>
-            <a href="#">
-              <xsl:call-template name="gentext">
-                <xsl:with-param name="key">formatepub</xsl:with-param>
-              </xsl:call-template>
-            </a>
-          </div>
-        </div>
-      </div>
-    </xsl:if>
-  </xsl:template>
-
-  <xsl:template name="picker.selection">
-    <a href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formathtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
-    <a class="selected" href="#">
-      <xsl:call-template name="gentext">
-        <xsl:with-param name="key">formatsinglehtml</xsl:with-param>
-      </xsl:call-template>
-    </a>
-  </xsl:template>
-
   <xsl:template name="create.header.logo">
     <xsl:if test="$generate.logo != 0">
       <div id="_logo">
@@ -608,37 +541,6 @@
     <xsl:param name="next"/>
     <!-- This is a stub, intentionally.
          The version in chunk-common does something, though. -->
-  </xsl:template>
-
-  <xsl:template name="fixed-header-wrap">
-    <xsl:param name="prev"/>
-    <xsl:param name="next"/>
-    <xsl:param name="nav.context"/>
-
-    <div id="_fixed-header-wrap" class="inactive">
-      <div id="_fixed-header">
-        <xsl:call-template name="breadcrumbs.navigation">
-          <xsl:with-param name="prev" select="$prev"/>
-          <xsl:with-param name="next" select="$next"/>
-          <xsl:with-param name="context">fixed-header</xsl:with-param>
-        </xsl:call-template>
-        <xsl:call-template name="create.header.buttons">
-          <xsl:with-param name="prev" select="$prev"/>
-          <xsl:with-param name="next" select="$next"/>
-        </xsl:call-template>
-        <xsl:call-template name="clearme"/>
-      </div>
-      <xsl:if test="$generate.bubbletoc != 0">
-        <div class="active-contents bubble">
-          <div class="bubble-container">
-            <div id="_bubble-toc">
-              <xsl:call-template name="bubble-toc"/>
-            </div>
-            <xsl:call-template name="clearme"/>
-          </div>
-        </div>
-      </xsl:if>
-    </div>
   </xsl:template>
 
   <xsl:template name="share.and.print">
@@ -745,10 +647,9 @@
   <xsl:variable name="lang">
     <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
   </xsl:variable>
-  <xsl:call-template name="user.preroot"/>
-  <xsl:call-template name="root.messages"/>
 
-  <html lang="{$lang}" xml:lang="{$lang}">
+  <xsl:text>&lt;!DOCTYPE html&gt;</xsl:text>
+  <html lang="{$lang}">
     <xsl:call-template name="root.attributes"/>
     <head>
       <xsl:call-template name="system.head.content">
@@ -769,7 +670,6 @@
         <div id="_white-bg">
           <div id="_header">
             <xsl:call-template name="create.header.logo"/>
-            <xsl:call-template name="pickers"/>
             <xsl:call-template name="breadcrumbs.navigation">
               <xsl:with-param name="prev" select="$prev"/>
               <xsl:with-param name="next" select="$next"/>
@@ -777,13 +677,6 @@
             <xsl:call-template name="clearme"/>
           </div>
         </div>
-
-        <xsl:if test="$generate.fixed.header != 0">
-          <xsl:call-template name="fixed-header-wrap">
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="prev" select="$prev"/>
-          </xsl:call-template>
-        </xsl:if>
 
         <xsl:call-template name="user.header.content"/>
         <div id="_toc-bubble-wrap"></div>
