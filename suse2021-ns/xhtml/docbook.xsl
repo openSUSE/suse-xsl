@@ -72,6 +72,14 @@
   <xsl:include href="tracker.meta.xsl"/>
 
 
+  <!-- This variable is not used, it just acts as a container for the xsl:message. -->
+  <xsl:variable name="db4-compatibility-message">
+    <xsl:if test="not(/d:*)">
+      <xsl:message terminate="yes">This document uses DocBook 4 features which are not supported in these stylesheets.</xsl:message>
+    </xsl:if>
+  </xsl:variable>
+
+
 <!-- Actual templates start here -->
 
   <xsl:template name="clearme">
