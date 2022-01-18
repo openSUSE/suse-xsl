@@ -28,14 +28,14 @@
     </xsl:variable>
 
     <xsl:if test="$label.template != ''">
-      <span class="number">
+      <span class="title-number">
         <xsl:call-template name="substitute-markup">
           <xsl:with-param name="template" select="$label.template"/>
         </xsl:call-template>
         <xsl:text> </xsl:text>
       </span>
     </xsl:if>
-    <span class="name">
+    <span class="title-name">
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>

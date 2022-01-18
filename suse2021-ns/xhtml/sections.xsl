@@ -26,12 +26,12 @@
     </xsl:variable>
     <!-- NOTE: The gentext context is NOT considered -->
     <xsl:if test="$legal = 0">
-      <span class="number">
+      <span class="title-number">
         <xsl:copy-of select="$label"/>
         <xsl:text> </xsl:text>
       </span>
     </xsl:if>
-    <span class="name">
+    <span class="title-name">
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
@@ -310,10 +310,10 @@ elements, to fix their display. -->
 <xsl:template name="editlink">
   <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
   <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
-  <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
+  <!--<xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
     <a class="report-bug" rel="nofollow" target="_blank" href="{$editurl}{$xmlbase}"
       title="Edit the source file for this section">Edit source</a>
-  </xsl:if>
+  </xsl:if>-->
 </xsl:template>
 
 </xsl:stylesheet>

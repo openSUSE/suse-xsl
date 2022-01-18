@@ -22,7 +22,7 @@
   exclude-result-prefixes="saxon d"
   xmlns="http://www.w3.org/1999/xhtml">
 
-<!-- 0. Parameters for External Manipulation =================== -->
+<!-- x. Parameters for External Manipulation =================== -->
   <!-- Add a link to a product/company homepage to the logo -->
   <xsl:param name="homepage" select="''"/>
     <!-- Override with:
@@ -83,6 +83,8 @@
             -stringparam="external.js.onlineonly='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
     -->
 
+<!-- 0. DocBook XSL Parameter settings                              -->
+<xsl:param name="html.ext">.html</xsl:param>
 
 <!-- 1. Admonitions  ============================================ -->
   <!-- Use graphics in admonitions?  0=no, 1=yes -->
@@ -298,10 +300,10 @@ task before
   <xsl:param name="breadcrumbs.prev">&#9664;<!--&#9668;--></xsl:param>
   <xsl:param name="breadcrumbs.next">&#9654;<!--&#9658;--></xsl:param>
 
-  <!--  Bubble TOC options -->
+  <!--  Side TOC options -->
 
   <!-- Create bubbletoc?  -->
-  <xsl:param name="generate.bubbletoc">
+  <xsl:param name="generate.side.toc">
     <xsl:choose>
       <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
       <xsl:otherwise>1</xsl:otherwise>
@@ -333,8 +335,13 @@ task before
     </xsl:choose>
   </xsl:param>
 
+
+  <!-- Include header/footer via Server-Side Includes (SSI)? -->
+  <xsl:param name="include.ssi.header" select="''"/>
+  <xsl:param name="include.ssi.footer" select="''"/>
+
   <!-- Generate a footer with SUSE-specific content? -->
-  <xsl:param name="add.suse.footer" select="$suse.content"/>
+  <xsl:param name="generate.footer" select="$suse.content"/>
 
   <!-- Generate links in said footer? -->
   <xsl:param name="generate.footer.links">

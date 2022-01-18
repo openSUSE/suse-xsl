@@ -21,7 +21,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template name="bubble-toc.inner">
+  <xsl:template name="side.toc.overall.inner">
   <xsl:param name="node"/>
     <ol>
       <xsl:apply-templates select="$node" mode="bubble-toc"/>
@@ -97,12 +97,12 @@
             <xsl:variable name="label">
               <xsl:apply-templates select="." mode="label.markup"/>
             </xsl:variable>
-            <span class="number">
+            <span class="title-number">
               <xsl:copy-of select="$label"/>
               <xsl:text> </xsl:text>
             </span>
           </xsl:if>
-          <span class="name">
+          <span class="title-name">
             <xsl:apply-templates select="." mode="titleabbrev.markup"/>
           </span>
         </a>

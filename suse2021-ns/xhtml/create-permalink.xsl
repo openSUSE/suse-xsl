@@ -32,12 +32,12 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="$generate.permalinks != 0">
+    <!--<xsl:if test="$generate.permalinks != 0">
       <a title="Permalink" class="permalink">
         <xsl:attribute name="href">
           <xsl:choose>
-            <!-- When we get just the file name here (article, book, chapter,
-            ... in multi-page HTML), add a #, so the browser won't reload. -->
+            <!-/- When we get just the file name here (article, book, chapter,
+            ... in multi-page HTML), add a #, so the browser won't reload. -/->
             <xsl:when test="$target = translate($target, '#', '')">
               <xsl:value-of select="$target"/>
               <xsl:text>#</xsl:text>
@@ -50,6 +50,6 @@
         </xsl:attribute>
         <xsl:text>#</xsl:text>
       </a>
-    </xsl:if>
+    </xsl:if>-->
   </xsl:template>
 </xsl:stylesheet>

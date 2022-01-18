@@ -31,7 +31,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     exclude-result-prefixes="exsl date d">
 
-  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/docbook.xsl"/>
+  <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml5/docbook.xsl"/>
 
   <xsl:include href="../VERSION.xsl"/>
 
@@ -604,7 +604,7 @@
                     ancestor-or-self::*[@status][1]/@status = 'draft'))
                     and $draft.watermark.image != ''"
         >draft </xsl:if><xsl:if test="$node = 'body'"><xsl:if test="$is.chunk = 0"
-        >single </xsl:if><xsl:if test="$add.suse.footer = 0">nofooter </xsl:if
+        >single </xsl:if><xsl:if test="$generate.footer = 0">nofooter </xsl:if
         >offline js-off</xsl:if></xsl:attribute>
   </xsl:template>
 
@@ -648,7 +648,9 @@
     <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
   </xsl:variable>
 
-  <xsl:text>&lt;!DOCTYPE html&gt;</xsl:text>
+  <xsl:call-template name="user.preroot"/>
+  <xsl:call-template name="root.messages"/>
+
   <html lang="{$lang}">
     <xsl:call-template name="root.attributes"/>
     <head>
@@ -702,7 +704,7 @@
         </xsl:if>
       </div>
 
-      <xsl:if test="$add.suse.footer = 1">
+      <xsl:if test="$generate.footer = 1">
         <div id="_footer-wrap">
           <xsl:call-template name="user.footer.content"/>
         </div>
