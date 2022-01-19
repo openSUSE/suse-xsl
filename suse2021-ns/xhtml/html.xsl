@@ -58,4 +58,46 @@
         </xsl:apply-templates>
     </xsl:template>
 
+<xsl:template name="make.css.link">
+  <xsl:param name="css.filename" select="''"/>
+
+  <xsl:variable name="href">
+    <xsl:call-template name="relative.path.link">
+      <xsl:with-param name="target.pathname" select="$css.filename"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="string-length($css.filename) != 0">
+    <link rel="stylesheet" type="text/css" href="{$href}">
+      <xsl:text> </xsl:text>
+    </link>
+  </xsl:if>
+</xsl:template>
+
+<!-- And the same applies to script links -->
+<xsl:template name="make.script.link">
+  <xsl:param name="script.filename" select="''"/>
+
+  <xsl:variable name="src">
+    <xsl:call-template name="relative.path.link">
+      <xsl:with-param name="target.pathname" select="$script.filename"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:if test="string-length($script.filename) != 0">
+    <script>
+      <xsl:attribute name="src">
+        <xsl:value-of select="$src"/>
+      </xsl:attribute>
+      <xsl:attribute name="type">
+        <xsl:value-of select="$html.script.type"/>
+      </xsl:attribute>
+      <xsl:call-template name="other.script.attributes">
+        <xsl:with-param name="script.filename" select="$script.filename"/>
+      </xsl:call-template>
+      <xsl:text> </xsl:text>
+    </script>
+  </xsl:if>
+</xsl:template>
+
 </xsl:stylesheet>

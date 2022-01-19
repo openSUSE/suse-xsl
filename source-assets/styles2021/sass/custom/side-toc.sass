@@ -1,69 +1,55 @@
 #_side-toc-overall
-  overflow: auto
-  position: relative
   min-height: 100vh
-
-
-#_side-toc-overall ol
   overflow: auto
-
-
-#_side-toc-overall > ol
-  padding: 0
-  margin: 0
-
-#_side-toc-overall ol ol
-  background-color: $c_mint_30
-
-#_side-toc-overall a
-  color: #0C322C
-  display: block
-  line-height: 22px
-  padding: 0.25rem .5rem
-  text-decoration: none
-
-#_side-toc-overall > ol ol a
-  padding-left: 1rem
-
-#_side-toc-overall > ol ol
-  display: none
-
-#_side-toc-overall > ol > li.active ol
-  display: block
-
-
-#_side-toc-overall .active > a
-  background-color: $c_mint
-  color: #FFF
-
-#_side-toc-overall .active
-  background-color: $c_fog_200
-
-#_side-toc-overall a
-  display: block
   position: relative
 
-#_side-toc-overall li
-  clear: both
-  display: block
 
-#_side-toc-overall a:active,
-#_side-toc-overall a:focus,
-#_side-toc-overall a:hover
-  background-color: $c_fog_200
-  text-decoration: underline
-
-#_side-toc-overall li > a.has-children
-
-  &::after
-    content: '>'
+  ol
+    margin: 0
+    padding: 0
     display: block
-    float: right
-    width: 1rem
-    height: 1rem
-    background-color: $c_pine
-    color: $c_persimmon
 
-  &.active::after
-    content: 'v'
+  ol ol
+    background-color: scale-color($c_fog, $lightness: +25%)
+    display: none
 
+  ol > li.active > ol
+    display: block
+
+  li
+    display: block
+
+  a
+    color: $c_pine
+    display: block
+    line-height: 22px
+    padding: 0.25rem .5rem
+    position: relative
+    text-decoration: none
+
+  a:focus,
+  a:hover,
+  a:active
+    background-color: $c_fog_200
+    text-decoration: underline
+
+  li
+    > a.has-children::after
+      background-color: $c_pine
+      color: $c_white
+      content: '>'
+      display: block
+      float: right
+      height: 1rem
+      text-align: center
+      width: 1rem
+
+    &.active > a.has-children::after
+      content: 'v'
+
+  ol > li.active > a
+    background-color: $c_mint
+    color: #FFF
+
+  ol ol li > a
+    padding-left: 1rem
