@@ -1,9 +1,11 @@
 @charset "utf-8.sass"
 
+// SUSE STYLE
+
 // Fonts
 
 $f_sans: Poppins, Roboto, sans-serif
-$f_mono: 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
+$f_mono: 'Roboto Mono', 'RobotoMono', 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
 
 
 // Colors
@@ -35,29 +37,39 @@ $c_mint_60:      rgb(199, 241, 227)
 $c_mint_30:      rgb(227, 248, 241)
 
 
+// IMPORTS
 
-@import "reset.sass"
+// Custom imports
 
-@import "bulma-0.9.3/bulma/bulma.sass"
+@import "custom/major-elements.sass"
 
-@import "base-bulmaized.sass"
+@import "custom/side-toc.sass"
 
-//@import "base.sass"
+@import "custom/pizzazz.sass"
 
-//@import "nav-header.sass"
+//@import "old/base"
 
-//@import "nav-toolbar.sass"
+//@import "old/nav-header"
 
-//@import "nav-toc.sass"
+//@import "old/nav-toolbar"
 
-//@import "bottom-share-print.sass"
+//@import "old/nav-toc"
 
-//@import "footer.sass"
+//@import "old/bottom-share-print"
 
-//@import "content-block.sass"
+//@import "old/footer"
 
-//@import "content-inline.sass"
+@import "old/content-block"
 
-//@import "print.sass"
+@import "old/content-inline"
 
-//@import "responsive.sass"
+//@import "old/print"
+
+//@import "old/responsive"
+
+
+// Upstream imports (must be last!)
+
+//@import "bulma-0.9.3/bulma/bulma.sass"
+@import "bulma-0.9.3/bulma/sass/base/minireset.sass"
+@import "bulma-0.9.3/bulma/sass/grid/_all.sass"

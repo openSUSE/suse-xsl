@@ -34,43 +34,35 @@ var ghTemplate = $( 'meta[name="tracker-gh-template"]' ).attr('content');
 
 
 $(function() {
+
+  $('body').removeClass('js-off');
+  $('body').addClass('js-on');
+
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
-
   $('a.top-button[href=#]').click(function() {
     $('html,body').animate({ scrollTop: 0 }, speed,
       function() { location = location.pathname + '#'; });
     return false;
   });
 
-
-  $('body').removeClass('js-off');
-  $('body').addClass('js-on');
-
-  $(document).keyup(function(e) {
-    if (e.keyCode == 27) { deactivate() }
-  });
-
-  if( window.addEventListener ) {
-    window.addEventListener('scroll', scrollDeactivator, false);
-  }
-
   hashActivator();
   window.onhashchange = hashActivator;
 
   $('._share-print').show();
 
-  if (location.protocol.match(/^(http|spdy)/)) {
+  if (location.protocol.match(/^http/)) {
     $('body').removeClass('offline');
   }
-
-  labelInputFind();
 
   $('._share-fb').click(function(){share('fb');});
   $('._share-in').click(function(){share('in');});
   $('._share-tw').click(function(){share('tw');});
   $('._share-mail').click(function(){share('mail');});
   $('._print-button').click(function(){print();});
+
+
+  $('#_side-toc-overall li > a.has-children').click(function(e){ $(this).parent('li').toggleClass('active'); e.preventDefault(); e.preventDefault(); return false; });
 
   $('.question').click(function(){ $(this).parent('dl').toggleClass('active'); });
   $('.table tr').has('td[rowspan]').addClass('contains-rowspan');
@@ -244,39 +236,6 @@ function copyToClipboard(elm) {
 }
 
 
-function activate( elm ) {
-  var element = elm;
-  if (element == '_toc-area' || element == '_find-area' ||
-    element == '_language-picker' || element == '_format-picker' ||
-    element == '_fixed-header-wrap') {
-    deactivate();
-    active = true;
-    exchClass( '#' + element , 'inactive', 'active' );
-    if (element == '_fixed-header-wrap') {
-      $('#_fixed-header .single-crumb').unbind('click');
-      $('#_fixed-header .single-crumb').click(function(){deactivate(); return false;});
-      exchClass( '#_find-area', 'active', 'inactive' );
-      deactivatePosition = $('html').scrollTop();
-    }
-    else {
-      if (element == '_find-area') {
-        $('#_find-input').focus();
-      }
-      else if ((element == '_toc-area')) {
-        exchClass( '#_find-area', 'active', 'inactive' );
-        deactivatePosition = $('html').scrollTop();
-        if ( $(window).width() < 450 ) {
-          $('body').css('overflow', 'hidden');
-          $('body').css('height', '100%');
-        }
-      }
-      $('#' + element + '-button').unbind('click');
-      $('#' + element + '-button').click(function(){deactivate(); return false;});
-    }
-  }
-}
-
-
 function hashActivator() {
   if ( location.hash.length ) {
     var locationhash = location.hash.replace( /(:|\.|\[|\])/g, "\\$1" );
@@ -310,9 +269,4 @@ function share( service ) {
     shareURL = 'mailto:?subject=Check%20out%20the%20SUSE%20Documentation%2C%20%22' + t + '%22&body=' + u;
     window.location.assign(shareURL);
   };
-}
-
-function exchClass(path, clsOld, clsNew) {
-  $(path).addClass(clsNew);
-  $(path).removeClass(clsOld);
 }

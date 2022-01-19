@@ -1,0 +1,376 @@
+// side ToC (overall document)
+.side-toc-overall
+  @extends: .is-3
+
+// Toolbar
+.bubble
+  transition: all 0.2s ease-in-out 0.1s
+  background-color: $c_fog_200
+  z-index: 8
+
+
+#_header .bubble,
+#_toolbar .bubble
+  position: absolute
+
+
+#_find-area > .bubble,
+#_toc-area > .bubble,
+#_toc-bubble-wrap > .bubble,
+.pickers .bubble
+  box-shadow: 1px 1px 3px 0px #D7D7D7
+
+
+#_fixed-header-wrap .bubble
+  margin: 4px 0 -3px
+  position: relative
+
+
+#_find-area > .bubble-corner,
+#_toc-area > .bubble-corner
+  top: -3px
+
+
+#_find-area > .bubble,
+#_toc-area > .bubble
+  left: 0
+  padding: 0
+  top: 66px
+  width: 100%
+
+
+#_toc-bubble-wrap > .bubble
+  margin: 0 auto
+  max-width: 1004px
+  min-width: 150px
+  padding: 10px
+
+
+#_toc-bubble-wrap
+  display: none
+  height: auto
+  left: 0px
+  position:absolute
+  top: 82px
+  width: 100%
+
+
+#_toc-bubble-wrap.active
+  display: block
+
+
+#_toolbar .bubble-container
+  padding: 0 10px 10px
+
+
+#_fixed-header-wrap .bubble-container
+  padding: 10px
+
+
+// Fallback for TOC bubble when Javascript is off.
+.js-off .inactive:focus .active-contents,
+.js-off .inactive:hover .active-contents
+  display: block !important
+
+
+// We only need this to make sure the bubble does not close when the user is
+// hovering over the TOC button and then mouses over the gap between the button
+// and the bubble.
+.js-off .bubble:before
+  background-color: transparent
+  content: ''
+  height: 15px
+  position: absolute
+  top: -15px
+  width: 100%
+
+
+#_bubble-toc
+  height: 400px
+  overflow: hidden
+  position: relative
+
+
+#_bubble-toc ol
+  overflow: auto
+
+
+#_bubble-toc > ol
+  width: 50%
+  padding: 0
+  margin: 0
+  background-color: $c_fog_200
+  height: 100%
+  border-right: 1px solid $c_jungle
+
+
+#_bubble-toc > ol.full-width
+  border-right: none
+  width: 100%
+
+
+#_find-area > bubble a,
+#_fixed-header-wrap > .bubble a,
+#_toc-area > .bubble a,
+#_toc-bubble-wrap > .bubble a
+  color: #0C322C
+  display: block
+  line-height: 22px
+  padding: 5px 25px 5px 5px
+  text-decoration: none
+
+
+#_bubble-toc .active ol
+  background-color: $c_fog_200
+  border-left: 1px solid $c_pine
+  display: block
+  height: 100%
+  margin: 0 1px 0 0
+  padding: 0
+  position: absolute
+  right: -2px
+  top: 0
+  width: 50%
+
+
+#_bubble-toc .inactive ol
+  display: none !important
+
+
+#_bubble-toc .inactive a:hover
+  background-color: $c_mint_60
+  color: $c_pine
+
+
+.leads-to-page > .name:active,
+.leads-to-page > .name:focus,
+.leads-to-page > .name:hover
+  text-decoration: underline
+
+
+.arrow
+  background-image: url(../images/arrow.svg)
+  background-position: -30px 8.5px
+  background-repeat: no-repeat
+  display: block
+  height: 100%
+  margin: 0
+  position: absolute
+  right: 0
+  top: 0
+  width: 30px
+
+
+#_bubble-toc .active > a,
+#_bubble-toc .inactive > a
+  padding: 5px 30px 5px 5px
+
+
+#_bubble-toc .active > a
+  background-color: $c_mint
+  color: #FFF
+
+#_bubble-toc .active
+  background-color: $c_fog_200
+
+
+#_bubble-toc .inactive:hover
+  background-color: $c_fog_200
+
+
+#_bubble-toc a
+  display: block
+  position: relative
+
+
+#_bubble-toc li
+  clear: both
+  display: block
+
+
+.bubble a:active,
+.bubble a:focus,
+.bubble a:hover
+  background-color: $c_fog_200
+  text-decoration: underline
+
+
+#_bubble-toc .bubble-back
+  display: none
+
+
+#_find-area form
+  margin: 0 0 0 50% !important
+
+
+.find-form
+  display: block
+  margin: 0 0 0 -110px
+  padding: 10px
+  width: 200px
+
+
+#_find-input
+  background-color: #FFF
+  border: 1px solid #7AD4AA
+  display: block
+  float: left
+  font: 16px $f_sans
+  height: 34px
+  padding: 0 20px 0 5px
+  width: 155px
+  z-index: 0
+
+
+#_find-input:focus
+  background-color: #FFF
+  border: 1px solid #FFF
+
+
+#_find-input:focus + #_find-button
+  background-position: -180px 0px !important
+
+
+#_find-button
+  background-color: transparent
+  background-position: -180px 0px
+  border: 0
+  display: block
+  float: left
+  margin: 0 0 0 -18px
+  width: 36px
+
+
+#_find-button:active,
+#_find-input:focus + #_find-button:hover
+  background-position: -180px -36px !important
+
+
+button::-moz-focus-inner,
+button:focus::-moz-focus-inner
+  border: none
+
+
+#_find-input-label
+  color: #666
+  cursor: text
+  display: none
+  float: left
+  font-style: italic
+  height: 36px
+  left: 5px
+  line-height: 36px
+  position: relative
+  top: -36px
+  // Clear this out later.
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  z-index: 2
+
+
+
+// Smaller, fixed header
+
+#_fixed-header-wrap
+  background-color: $c_pine
+  border-bottom: 1px solid #CCC
+  box-shadow: 0 5px 5px #FFF
+  line-height: 100%
+  padding: .7rem 0
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 3
+
+
+#_fixed-header
+  display: block
+  font-size: 12px
+  margin: 0 auto
+  max-width: 998px
+  min-width: 130px
+
+
+.buttons
+  display: block
+  float: right
+  margin: 0 10px 0 5px
+
+
+.button
+  margin-left: 10px
+
+
+.button > .tool-spacer
+  display: block
+  float: left
+
+
+.button
+  float: left
+
+
+.button .next-icon,
+.button .prev-icon
+  display: block
+  margin: 1px 0
+  width: 18px
+
+
+.top-button
+  color: $c_white
+
+
+.top-button:active,
+.top-button:focus,
+.top-button:hover
+  color: $c_white
+  text-decoration: none
+
+
+.button > a > .prev-icon
+  background-position: -72px -72px
+
+
+.button > span > .prev-icon
+  background-position: -180px -72px
+
+
+.button > a:active > .prev-icon,
+.button > a:focus > .prev-icon,
+.button > a:hover > .prev-icon
+  background-position: -90px -72px
+
+
+.button > a > .next-icon
+  background-position: -144px -72px
+
+
+.button > span > .next-icon
+  background-position: -198px -72px
+
+
+.button > a:active > .next-icon,
+.button > a:focus > .next-icon,
+.button > a:hover > .next-icon
+  background-position: -162px -72px
+
+
+// overrides
+
+.active-contents.bubble
+  display: block;
+  position: fixed !important;
+  left: 10px !important;
+  top: 170px !important;
+  width: 300px !important;
+
+.active-contents.bubble ol
+  width: 100% !important;
+
+
+.active-contents.bubble ol ol
+  position: static !important;
+

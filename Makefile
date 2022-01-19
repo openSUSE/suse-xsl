@@ -90,7 +90,7 @@ INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
 #-------------------------------------------------------
 # Variables for SASS->CSS conversion and other web stuff
 
-styles2021_sass = $(sort $(wildcard source-assets/styles2021/sass/*.sass))
+styles2021_sass = $(sort $(wildcard source-assets/styles2021/sass/*.sass) $(wildcard source-assets/styles2021/sass/*/*.sass))
 
 #############################################################
 

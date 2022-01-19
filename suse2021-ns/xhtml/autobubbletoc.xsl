@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Purpose:
-     Create bubble help table of content structures
+     Create (left) sidebar table of contents
 
-   Author:    Thomas Schraitle <toms@opensuse.org>
-   Copyright: 2012, Thomas Schraitle
+   Author:    Thomas Schraitle <toms@opensuse.org>, Stefan Knorr <sknorr@suse.de>
+   Copyright: 2012-2022, Thomas Schraitle, Stefan Knorr
 
 -->
 <xsl:stylesheet version="1.0"
@@ -76,55 +76,59 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-      <!--<xsl:call-template name="toc.line">
-        <xsl:with-param name="toc-context" select="$toc-context"/>
-      </xsl:call-template>-->
-      <xsl:if test="$autotoc.label.in.hyperlink = 0">
-        <xsl:variable name="label">
-          <xsl:apply-templates select="." mode="label.markup"/>
+        <xsl:variable name="needs.subtoc">
+          <xsl:if test="( (self::d:set or self::d:book or self::d:part) or
+             $bubbletoc.section.depth &gt; $depth) and
+             count($nodes) &gt; 0 and
+             $bubbletoc.max.depth &gt; $depth.from.context and
+             ($bubbletoc.max.depth.shallow = '0' or
+             $bubbletoc.max.depth.shallow &gt; $depth.from.context)">1</xsl:if>
         </xsl:variable>
-        <xsl:copy-of select="$label"/>
-      </xsl:if>
-      <li class="inactive">
-        <a>
-          <xsl:attribute name="href">
-            <xsl:call-template name="href.target">
-              <xsl:with-param name="context" select="$toc-context"/>
-              <xsl:with-param name="toc-context" select="$toc-context"/>
-            </xsl:call-template>
-          </xsl:attribute>
-          <xsl:if test="not($autotoc.label.in.hyperlink = 0)">
-            <xsl:variable name="label">
-              <xsl:apply-templates select="." mode="label.markup"/>
-            </xsl:variable>
-            <span class="title-number">
-              <xsl:copy-of select="$label"/>
-              <xsl:text> </xsl:text>
+
+        <xsl:if test="$autotoc.label.in.hyperlink = 0">
+          <xsl:variable name="label">
+            <xsl:apply-templates select="." mode="label.markup"/>
+          </xsl:variable>
+          <xsl:copy-of select="$label"/>
+        </xsl:if>
+        <li>
+          <a>
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="context" select="$toc-context"/>
+                <xsl:with-param name="toc-context" select="$toc-context"/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:if test="$needs.subtoc = 1">
+              <xsl:attribute name="class">has-children</xsl:attribute>
+            </xsl:if>
+            <xsl:if test="not($autotoc.label.in.hyperlink = 0)">
+              <xsl:variable name="label">
+                <xsl:apply-templates select="." mode="label.markup"/>
+              </xsl:variable>
+              <span class="title-number">
+                <xsl:copy-of select="$label"/>
+                <xsl:text> </xsl:text>
+              </span>
+            </xsl:if>
+            <span class="title-name">
+              <xsl:apply-templates select="." mode="titleabbrev.markup"/>
             </span>
+          </a>
+
+          <xsl:if test="$needs.subtoc = 1">
+            <ol>
+              <xsl:apply-templates mode="bubble-toc" select="$nodes">
+                <xsl:with-param name="toc-context" select="$toc-context"/>
+              </xsl:apply-templates>
+            </ol>
           </xsl:if>
-          <span class="title-name">
-            <xsl:apply-templates select="." mode="titleabbrev.markup"/>
-          </span>
-        </a>
+        </li>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
-      <xsl:if test="( (self::d:set or self::d:book or self::d:part) or
-        $bubbletoc.section.depth &gt; $depth) and
-        count($nodes) &gt; 0 and
-        $bubbletoc.max.depth &gt; $depth.from.context and
-        ($bubbletoc.max.depth.shallow = '0' or
-        $bubbletoc.max.depth.shallow &gt; $depth.from.context)">
-        <ol>
-          <xsl:apply-templates mode="bubble-toc" select="$nodes">
-            <xsl:with-param name="toc-context" select="$toc-context"/>
-          </xsl:apply-templates>
-        </ol>
-      </xsl:if>
-      </li>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="d:set" mode="bubble-toc">
+  <xsl:template match="d:set" mode="bubble-toc">
     <xsl:param name="toc-context" select="."/>
 
     <xsl:call-template name="bubble-subtoc">

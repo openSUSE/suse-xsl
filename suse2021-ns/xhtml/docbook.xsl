@@ -268,10 +268,12 @@
     </xsl:choose>
   </xsl:variable>
 
-  <title><xsl:value-of select="$title"/></title>
+  <meta charset="UTF-8"/>
 
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+
+  <title><xsl:value-of select="$title"/></title>
 
   <xsl:if test="$html.base != ''">
     <base href="{$html.base}"/>
