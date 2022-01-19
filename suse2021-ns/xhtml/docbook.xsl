@@ -790,7 +790,7 @@ if ( window.location.protocol.toLowerCase() != 'file:' ) {
 </xsl:text>
       </script>
       <noscript>
-        <link rel="stylesheet" type="text/css" href="https://static.opensuse.org/fonts/fonts.css"></link>
+        <link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>
       </noscript>
     </xsl:if>
     <xsl:if test="$daps.header.js.library != ''">
