@@ -45,6 +45,7 @@
   <xsl:include href="../common/trim-verbatim.xsl"/>
   <xsl:include href="../common/converter-string.xsl"/>
   <xsl:include href="../common/screen-length.xsl"/>
+  <xsl:include href="../common/utility.xsl"/>
 
   <xsl:include href="param.xsl"/>
   <xsl:include href="create-permalink.xsl"/>

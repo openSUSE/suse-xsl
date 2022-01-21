@@ -47,6 +47,7 @@
   <xsl:include href="../common/xref.xsl"/>
   <xsl:include href="../common/converter-string.xsl"/>
   <xsl:include href="../common/screen-length.xsl"/>
+  <xsl:include href="../common/utility.xsl"/>
 
   <xsl:include href="autotoc.xsl"/>
   <xsl:include href="callout.xsl"/>
