@@ -42,7 +42,7 @@
     <xsl:variable name="teaser-length">
       <xsl:value-of select="string-length(normalize-space($teaser))"/>
     </xsl:variable>
-    <xsl:variable name="interpunction">
+    <xsl:variable name="punctuation">
       <xsl:if test="$teaser-length &gt; 100">
         <xsl:choose>
           <xsl:when test="substring-before(substring($teaser,99,$teaser-length),'?')
@@ -56,7 +56,7 @@
       <xsl:choose>
         <xsl:when test="$teaser-length &gt; 100">
             <xsl:value-of select="substring(normalize-space($teaser),1,100)"/>
-            <xsl:value-of select="$interpunction"/>
+            <xsl:value-of select="$punctuation"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:apply-templates select="d:para[1]" mode="question"/>
