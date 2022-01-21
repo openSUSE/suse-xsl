@@ -162,11 +162,11 @@
                       self::d:article|self::d:preface|self::d:refentry|self::d:reference
                   and local-name($toc-context) = 'part'">
         <xsl:choose>
-          <xsl:when test="*[contains(local-name(), 'info')]/d:abstract|
-                          *[contains(local-name(), 'info')]/d:highlights|
+          <xsl:when test="d:info/d:abstract|
+                          d:info/d:highlights|
                           d:abstract|d:highlights">
-            <xsl:apply-templates select="(*[contains(local-name(), 'info')]/d:abstract|
-                                          *[contains(local-name(), 'info')]/d:highlights|
+            <xsl:apply-templates select="(d:info/d:abstract|
+                                          d:info/d:highlights|
                                           d:abstract|d:highlights)[1]" mode="toc-abstract"/>
           </xsl:when>
           <xsl:otherwise>

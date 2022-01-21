@@ -109,11 +109,11 @@
   <xsl:param name="structure.title.candidate">
     <xsl:choose>
       <xsl:when test="self::d:book or self::d:article or self::d:set">
-        <xsl:apply-templates select="d:title | *[contains(local-name(), 'info')]/d:title[last()]" mode="title.markup.textonly"/>
+        <xsl:apply-templates select="d:title | d:info/d:title[last()]" mode="title.markup.textonly"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="((ancestor::d:book | ancestor::d:article)[last()]/d:title |
-                                      (ancestor::d:book | ancestor::d:article)[last()]/*[contains(local-name(), 'info')]/d:title)[last()]"
+                                      (ancestor::d:book | ancestor::d:article)[last()]/d:info/d:title)[last()]"
            mode="title.markup.textonly"/>
       </xsl:otherwise>
     </xsl:choose>
@@ -147,8 +147,8 @@
   <xsl:param name="substructure.title.short">
     <xsl:if test="not(self::d:book or self::d:article or self::d:set)">
       <xsl:choose>
-        <xsl:when test="*[contains(local-name(), 'info')]/d:title | d:title | d:refmeta/d:refentrytitle">
-          <xsl:apply-templates select="(*[contains(local-name(), 'info')]/d:title | d:title | d:refmeta/d:refentrytitle)[last()]" mode="title.markup.textonly"/>
+        <xsl:when test="d:info/d:title | d:title | d:refmeta/d:refentrytitle">
+          <xsl:apply-templates select="(d:info/d:title | d:title | d:refmeta/d:refentrytitle)[last()]" mode="title.markup.textonly"/>
         </xsl:when>
         <xsl:otherwise>
           <xsl:call-template name="gentext">

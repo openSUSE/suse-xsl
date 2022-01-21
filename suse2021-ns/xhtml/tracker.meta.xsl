@@ -41,111 +41,41 @@
 
     <!-- Check for the proper DocBook 5/DocManager elements. Since this is
     XML, it should support profiling out of the box. -->
-    <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/*[contains(local-name(.), 'info')]/dm:docmanager/dm:bugtracker"/>
-    <!-- Check for fallback version via processing instruction. We allow this
-    PI both (1) in [book|set|article]info elements, and (2) in
-    [book|set|article]info/bibliosource[@bugtracker]. (1) is the original
-    version. (2) allows for profiling (which is a somewhat important use case
-    for release notes). -->
-    <xsl:variable name="bugtracker-pi"
-      select="(ancestor-or-self::*/*[contains(local-name(.), 'info')]/processing-instruction('dbsuse-bugtracker')|
-               ancestor-or-self::*/*[contains(local-name(.), 'info')]/d:bibliosource[@role='bugtracker']/processing-instruction('dbsuse-bugtracker'))[last()]"/>
+    <xsl:variable name="bugtracker-docmanager" select="ancestor-or-self::*/d:info/dm:docmanager/dm:bugtracker"/>
 
-    <xsl:choose>
-      <xsl:when test="$bugtracker-docmanager != ''">
-        <xsl:call-template name="create.docmanager.bugtracker">
-          <xsl:with-param name="bugtracker" select="$bugtracker-docmanager"/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:when test="$bugtracker-pi != ''">
-        <xsl:call-template name="create.pi.bugtracker">
-          <!-- Unfortunately, this behaviour is inconsistent with the DocManager
-               version: Whereas the DocManager version always searches through
-               all relevant dm:bugtracker/dm:xy elements to find one that
-               has content, with the PI version, you always need to have all
-               necessary attributes within a PI, because traversing the tree
-               for PIs is less simple. -->
-          <xsl:with-param name="bugtracker" select="$bugtracker-pi[last()]"/>
-        </xsl:call-template>
-      </xsl:when>
-    </xsl:choose>
+    <xsl:if test="$bugtracker-docmanager != ''">
+      <xsl:call-template name="create.docmanager.bugtracker">
+        <xsl:with-param name="bugtracker" select="$bugtracker-docmanager"/>
+      </xsl:call-template>
+    </xsl:if>
+
+    <!-- The suse2013 stylesheets also supported defining bug tracker links via
+    processing instructions. This is no longer supported, let's at least show a
+    message. Feel free to remove ca. 2024. -->
+    <xsl:if test="//processing-instruction('dbsuse-bugtracker')">
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">warn</xsl:with-param>
+        <xsl:with-param name="context-desc">bugtracker link</xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>Found &lt;?dbsuse-bugtracker?&gt; processing instruction. </xsl:text>
+          <xsl:text>This PI is not handled anymore by these stylesheets. </xsl:text>
+          <xsl:text>Use the dm:bugtracker tag set instead.</xsl:text>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
+
   </xsl:template>
 
 
   <xsl:template name="create.docmanager.bugtracker">
     <xsl:param name="bugtracker" select="''"/>
-
-    <xsl:call-template name="create.bugtracker.meta">
-      <xsl:with-param name="url-candidate" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="assignee-candidate" select="($bugtracker/dm:assignee[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="component-candidate" select="($bugtracker/dm:component[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="product-candidate" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="version-candidate" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="labels-candidate" select="($bugtracker/dm:labels[normalize-space(.) != ''])[last()]"/>
-      <xsl:with-param name="template-candidate" select="($bugtracker/dm:template[normalize-space(.) != ''])[last()]"/>
-    </xsl:call-template>
-  </xsl:template>
-
-
-  <xsl:template name="create.pi.bugtracker">
-    <xsl:param name="bugtracker" select="''"/>
-
-    <xsl:variable name="url">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'url'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="assignee">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'assignee'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="component">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'component'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="product">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'product'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="version">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'version'"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:variable name="labels">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis" select="$bugtracker"/>
-        <xsl:with-param name="attribute" select="'labels'"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:call-template name="create.bugtracker.meta">
-      <xsl:with-param name="url-candidate" select="$url"/>
-      <xsl:with-param name="assignee-candidate" select="$assignee"/>
-      <xsl:with-param name="component-candidate" select="$component"/>
-      <xsl:with-param name="product-candidate" select="$product"/>
-      <xsl:with-param name="version-candidate" select="$version"/>
-      <xsl:with-param name="labels-candidate" select="$labels"/>
-    </xsl:call-template>
-  </xsl:template>
-
-
-  <xsl:template name="create.bugtracker.meta">
-    <xsl:param name="url-candidate" select="''"/>
-    <xsl:param name="assignee-candidate" select="''"/>
-    <xsl:param name="component-candidate" select="''"/>
-    <xsl:param name="product-candidate" select="''"/>
-    <xsl:param name="version-candidate" select="''"/>
-    <xsl:param name="labels-candidate" select="''"/>
-    <xsl:param name="template-candidate" select="''"/>
+    <xsl:variable name="url-candidate" select="($bugtracker/dm:url[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="assignee-candidate" select="($bugtracker/dm:assignee[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="component-candidate" select="($bugtracker/dm:component[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="product-candidate" select="($bugtracker/dm:product[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="version-candidate" select="($bugtracker/dm:version[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="labels-candidate" select="($bugtracker/dm:labels[normalize-space(.) != ''])[last()]"/>
+    <xsl:variable name="template-candidate" select="($bugtracker/dm:template[normalize-space(.) != ''])[last()]"/>
 
     <!-- normalize-space() is now only applied to some properties where
     extraneous spaces are exceedingly unlikely. Unfortunately, people use
@@ -191,43 +121,53 @@
     <xsl:choose>
       <xsl:when test="$url">
         <meta name="tracker-url" content="{$url}"/>
+        <xsl:text>&#10;</xsl:text>
         <meta name="tracker-type" content="{$type}"/>
+        <xsl:text>&#10;</xsl:text>
 
         <xsl:if test="$assignee">
           <meta name="tracker-{$type}-assignee" content="{$assignee}"/>
+          <xsl:text>&#10;</xsl:text>
         </xsl:if>
         <xsl:if test="$template">
           <meta name="tracker-{$type}-template" content="{$template}"/>
+          <xsl:text>&#10;</xsl:text>
         </xsl:if>
 
         <xsl:if test="$type = 'bsc'">
           <xsl:if test="$component">
             <meta name="tracker-{$type}-component" content="{$component}"/>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
           <xsl:if test="$product">
             <meta name="tracker-{$type}-product" content="{$product}"/>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
           <xsl:if test="$version">
             <meta name="tracker-{$type}-version" content="{$version}"/>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
         </xsl:if>
 
         <xsl:if test="$type = 'gh'">
           <xsl:if test="$labels">
             <meta name="tracker-{$type}-labels" content="{$labels}"/>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
           <xsl:if test="$version">
             <meta name="tracker-{$type}-milestone" content="{$version}"/>
+            <xsl:text>&#10;</xsl:text>
           </xsl:if>
         </xsl:if>
 
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
-          <xsl:with-param name="level">WARNING</xsl:with-param>
-          <xsl:with-param name="context-desc">tracker</xsl:with-param>
+          <xsl:with-param name="level">warn</xsl:with-param>
+          <xsl:with-param name="context-desc">bugtracker link</xsl:with-param>
           <xsl:with-param name="message">
-            <xsl:text>Tracker URL in dm:docmanager/dm:bugtracker/dm:url not found. </xsl:text>
+            <xsl:text>No tracker URL within dm:docmanager/dm:bugtracker/dm:url found. </xsl:text>
+            <xsl:text>Could not create Report Bug links. </xsl:text>
             <xsl:text>Check if there is a dm:url available inside set.</xsl:text>
           </xsl:with-param>
         </xsl:call-template>

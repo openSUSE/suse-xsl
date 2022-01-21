@@ -190,7 +190,7 @@
         </xsl:call-template>
       </xsl:when>
       <!-- if title is in an *info wrapper, get the grandparent -->
-      <xsl:when test="contains(local-name(..), 'info')">
+      <xsl:when test="parent::d:info">
         <xsl:call-template name="object.id">
           <xsl:with-param name="object" select="../.."/>
         </xsl:call-template>
@@ -308,7 +308,7 @@ elements, to fix their display. -->
 </xsl:template>
 
 <xsl:template name="editlink">
-  <xsl:variable name="editurl" select="ancestor-or-self::*/*[concat(local-name(.), 'info')]/dm:docmanager/dm:editurl[1]"/>
+  <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
   <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
   <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
     <a class="report-bug" rel="nofollow" target="_blank" href="{$editurl}{$xmlbase}"

@@ -88,8 +88,8 @@
          label "Abstract" before abstracts. This is probably the wrong solution.
          It works, but it's ugly. -->
     <xsl:if
-      test="not(local-name($object) = 'abstract' or local-name($object) = 'highlights')
-            or $object/d:title or $object/*[contains(local-name(.), 'info')]/d:title">
+      test="not(d:abstract or d:highlights)
+            or $object/d:title or $object/d:info/d:title">
       <div class="{concat(local-name(),'-title-wrap')}">
         <h6 class="{concat(local-name(), '-title')}">
           <!-- Do NOT create an id here; parent contains one already -->
