@@ -409,8 +409,27 @@ task before
   <!-- Trim away empty lines from the beginning and end of screens -->
   <xsl:param name="trim.verbatim" select="1"/>
 
-  <!-- The amount of characters allowed for teasers on part pages and within
-       og:description/meta description tags.-->
-  <xsl:param name="teaser.length" select="300"/>
+  <!-- The amount of characters allowed for descriptions on part pages.-->
+  <xsl:param name="onpage.teaser.length" select="300"/>
+  <!-- <meta> description tags used for search results pages, roughly as
+  recommended by the Contentking -->
+  <xsl:param name="search.title.length" select="55"/>
+  <xsl:param name="search.description.length" select="160"/>
+  <!-- Open Graph (og:)/Twitter Cards tags used for social-media preview -->
+  <xsl:param name="socialmedia.title.length" select="55"/>
+  <xsl:param name="socialmedia.description.length" select="55"/>
+  <!-- Type of content to display in og:type tag, https://ogp.me/#types -->
+  <xsl:param name="opengraph.type" select="'article'"/>
+  <!-- How Twitter Cards should be displayed, as "summary" (uses smaller square
+       image) or "summary_large_image" (uses full-width 2:1 image) -->
+  <xsl:param name="twittercards.type" select="'summary'"/>
+  <!-- Twitter account name to associate with the content via Twitter Card
+       property twitter:site, e.g. '@SUSE'.
+       There is no default here, someone might randomly use these
+       stylesheets, having all result documents created with them associated
+       with SUSE is suboptimal. -->
+  <xsl:param name="twittercards.twitter.account" select="''"/>
+  <!-- Default social media preview image, if no other image is available on the page -->
+  <xsl:param name="socialmedia.preview.default">static/images/social-media-preview-default.png</xsl:param>
 
 </xsl:stylesheet>

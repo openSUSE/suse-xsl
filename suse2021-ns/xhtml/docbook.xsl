@@ -98,6 +98,11 @@
   <xsl:param name="product">
     <xsl:call-template name="version.info"/>
   </xsl:param>
+  <xsl:param name="product-short">
+    <xsl:call-template name="version.info">
+      <xsl:with-param name="prefer-abbreviation" select="1"/>
+    </xsl:call-template>
+  </xsl:param>
   <xsl:param name="structure.title.candidate">
     <xsl:choose>
       <xsl:when test="self::d:book or self::d:article or self::d:set">
@@ -168,18 +173,10 @@
     </xsl:if>
   </xsl:param>
 
-  <xsl:variable name="meta-og.description">
-    <xsl:variable name="info"
-      select=" (d:articleinfo|d:bookinfo|d:prefaceinfo|d:chapterinfo|d:appendixinfo
-               |d:sectioninfo|d:sect1info|d:sect2info|d:sect3info|d:sect4info|d:sect5info
-               |d:referenceinfo
-               |d:refentryinfo
-               |d:partinfo
-               |d:info
-               |d:docinfo)[1]"/>
+  <xsl:variable name="meta.description.base">
     <xsl:choose>
-      <xsl:when test="$info and ($info/d:abstract or $info/d:highlights)">
-        <xsl:for-each select="($info/d:abstract[1]/*|$info/d:highlights[1]/*)[1]">
+      <xsl:when test="d:info/d:abstract or d:info/d:highlights">
+        <xsl:for-each select="(d:info[1]/d:abstract[1]|d:info[1]/d:highlights[1])[1]/*">
           <xsl:value-of select="normalize-space(.)"/>
           <xsl:if test="position() &lt; last()">
             <xsl:text> </xsl:text>
@@ -187,45 +184,86 @@
         </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
-        <!-- Except for the lack of markup here, this code is very similar to that in autotoc.xsl. Unify later if possible. -->
-        <xsl:variable name="teaser">
-          <xsl:choose>
-            <!-- For single-html books/articles, it is important that we skip
-            the legalnotice. "© SUSE 20XX" is not a good page description
-            usually. -->
-            <xsl:when test="self::d:book">
-              <xsl:apply-templates select="(*[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:para |
-                                            *[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:simpara)[1]"/>
-            </xsl:when>
-            <xsl:when test="self::d:article">
-              <xsl:apply-templates select="(*[self::d:sect1 or self::d:section]/d:para |
-                                            *[self::d:sect1 or self::d:section]/d:simpara)[1]"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:apply-templates select="(descendant::d:para | descendant::d:simpara)[1]"/>
-            </xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
-        <xsl:variable name="teaser-safe">
-          <xsl:call-template name="string-replace">
-            <xsl:with-param name="input" select="$teaser"/>
-            <xsl:with-param name="search-string" select="'&quot;'"/>
-            <!-- The xslns-build script we use to transform the stylesheets to
-            their namespaced version is unsafe for the string &amp;quot; as the
-            value here, so we just replace double quotes with a space and hope
-            for the best. -->
-            <xsl:with-param name="replace-string" select="' '"/>
-          </xsl:call-template>
-        </xsl:variable>
+        <!-- Except for the lack of markup here, this code is very similar to
+        that in autotoc.xsl. Unify later if possible. -->
         <xsl:choose>
-          <xsl:when test="string-length(normalize-space($teaser-safe)) &gt; $teaser.length">
-            <xsl:value-of select="substring(normalize-space($teaser-safe),1,$teaser.length)"/>
-            <xsl:value-of select="'…'"/>
+          <!-- For single-html books/articles, it is important that we skip
+          the legalnotice. "© SUSE 20XX" is not a good page description
+          usually. -->
+          <xsl:when test="self::d:book">
+            <xsl:apply-templates select="(*[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:para |
+                                          *[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:simpara)[1]"/>
+          </xsl:when>
+          <xsl:when test="self::d:article">
+            <xsl:apply-templates select="(*[self::d:sect1 or self::d:section]/d:para |
+                                          *[self::d:sect1 or self::d:section]/d:simpara)[1]"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:value-of select="normalize-space($teaser-safe)"/>
+            <xsl:apply-templates select="(descendant::d:para | descendant::d:simpara)[1]"/>
           </xsl:otherwise>
         </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <xsl:variable name="search.description">
+    <xsl:call-template name="ellipsize.text">
+      <xsl:with-param name="input" select="$meta.description.base"/>
+      <xsl:with-param name="ellipsize.after" select="$search.description.length"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="socialmedia.description">
+    <xsl:call-template name="ellipsize.text">
+      <xsl:with-param name="input" select="$meta.description.base"/>
+      <xsl:with-param name="ellipsize.after" select="$socialmedia.description.length"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="meta.title.base">
+    <!-- FIXME: localize punctuation -->
+    <xsl:choose>
+      <xsl:when test="$substructure.title.short != ''">
+        <xsl:value-of select="$substructure.title.short"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$structure.title"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:if test="$product-short != ''">
+      <xsl:text> | </xsl:text>
+      <xsl:value-of select="$product-short"/>
+    </xsl:if>
+  </xsl:variable>
+  <xsl:variable name="search.title">
+    <xsl:call-template name="ellipsize.text">
+      <xsl:with-param name="input" select="$meta.title.base"/>
+      <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="socialmedia.title">
+    <xsl:call-template name="ellipsize.text">
+      <xsl:with-param name="input" select="$meta.title.base"/>
+      <xsl:with-param name="ellipsize.after" select="$socialmedia.title.length"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="socialmedia.preview">
+    <xsl:choose>
+      <!-- We ignore:
+           * inlinemediaobjects, because they are likely very small
+           * SVGs, because they don't work (according to the Contentking) -->
+      <!-- We reimplement ends-with() https://stackoverflow.com/questions/40934644 -->
+      <xsl:when
+        test="(descendant::d:figure/descendant::d:imagedata/@fileref
+              |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[not(
+               substring(translate(., 'SVG', 'svg'), string-length(.) - 5) = '.svg')][1]">
+        <xsl:value-of
+          select="concat($canonical-url-base, '/', $img.src.path,
+                  (descendant::d:figure/descendant::d:imagedata/@fileref
+                  |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[not(
+                    substring(translate(., 'SVG', 'svg'), string-length(.) - 5) = '.svg')][1])"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -246,33 +284,41 @@
     <xsl:call-template name="output.html.stylesheets">
       <xsl:with-param name="stylesheets" select="normalize-space($html.stylesheet)"/>
     </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
   <xsl:if test="$html.script != ''">
     <xsl:call-template name="output.html.scripts">
       <xsl:with-param name="scripts" select="normalize-space($html.script)"/>
     </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
   <xsl:if test="$link.mailto.url != ''">
     <link rev="made" href="{$link.mailto.url}"/>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
-  <xsl:call-template name="meta-generator"/>
+  <meta name="title" content="{$search.title}"/>
+  <xsl:text>&#10;</xsl:text>
+  <meta name="description" content="{$search.description}"/>
+  <xsl:text>&#10;</xsl:text>
 
   <xsl:if test="$product-name != ''">
     <meta name="product-name" content="{$product-name}"/>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
   <xsl:if test="$product-number != ''">
     <meta name="product-number" content="{$product-number}"/>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
   <meta name="book-title" content="{$structure.title}"/>
+  <xsl:text>&#10;</xsl:text>
   <xsl:if test="$substructure.title.long != ''">
     <meta name="chapter-title" content="{$substructure.title.long}"/>
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
-
-  <meta name="description" content="{$meta-og.description}"/>
 
   <xsl:if test="$use.tracker.meta != 0">
     <xsl:call-template name="create.bugtracker.information"/>
@@ -297,53 +343,57 @@
     <xsl:variable name="canonical.url">
       <xsl:value-of select="concat($canonical-url-base,'/',$filename)"/>
     </xsl:variable>
-    <xsl:variable name="og.title">
-      <!-- localize punctuation -->
-      <xsl:if test="$product != ''">
-        <xsl:value-of select="$product"/>
-        <xsl:text>: </xsl:text>
-      </xsl:if>
-      <xsl:choose>
-        <xsl:when test="$substructure.title.long != ''">
-          <xsl:value-of select="$substructure.title.long"/>
-          <xsl:text> (</xsl:text>
-          <xsl:value-of select="$structure.title"/>
-          <xsl:text>)</xsl:text>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$structure.title"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="og.image">
-      <xsl:choose>
-        <!-- Ignoring stuff like inlinemediaobjects here, because those are
-        likely very small anyway. Let's hope SVGs work too.-->
-        <xsl:when
-          test="(descendant::d:figure/descendant::d:imagedata/@fileref
-                |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[1]">
-          <xsl:value-of
-            select="concat($canonical-url-base, '/', $img.src.path,
-                    (descendant::d:figure/descendant::d:imagedata/@fileref
-                    |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[1])"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="concat($canonical-url-base, '/', $daps.header.logo)"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
+
     <link rel="canonical" href="{$canonical.url}"/>
     <xsl:text>&#10;</xsl:text>
-    <meta property="og:title" content="{$og.title}"/>
-    <xsl:text>&#10;</xsl:text>
-    <meta property="og:image" content="{$og.image}"/>
-    <xsl:text>&#10;</xsl:text>
-    <meta property="og:description" content="{$meta-og.description}"/>
-    <xsl:text>&#10;</xsl:text>
+    <!-- These Open Graph and Twitter Cards properties need a canonical URL -->
     <meta property="og:url" content="{$canonical.url}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="og:image" content="{$socialmedia.preview}"/>
+    <xsl:text>&#10;</xsl:text>
+    <meta property="twitter:image" content="{$socialmedia.preview}"/>
+    <xsl:text>&#10;</xsl:text>
+
+    <xsl:call-template name="meta-generator"/>
   </xsl:if>
 
+  <!-- The following properties "work" without a canonical URL being defined
+  (but both the Open Graph and Twitter Cards implementations are incomplete
+  without the above tags, better than nothing though). -->
+  <meta property="og:title" content="{$socialmedia.title}"/>
+  <xsl:text>&#10;</xsl:text>
+  <meta property="og:description" content="{$socialmedia.description}"/>
+  <xsl:text>&#10;</xsl:text>
+  <meta property="og:type" content="{$opengraph.type}"/>
+  <xsl:text>&#10;</xsl:text>
+
+  <meta property="twitter:card" content="{$twittercards.type}"/>
+  <xsl:text>&#10;</xsl:text>
+  <meta property="twitter:title" content="{$socialmedia.title}"/>
+  <xsl:text>&#10;</xsl:text>
+  <meta property="twitter:description" content="{$socialmedia.description}"/>
+  <xsl:text>&#10;</xsl:text>
+  <xsl:if test="string-length($twittercards.twitter.account) &gt; 0">
+    <meta property="twitter:site" content="{$twittercards.twitter.account}"/>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
+
+
+  <xsl:template name="ellipsize.text">
+    <xsl:param name="input" select="''"/>
+    <xsl:param name="ellipsize.after" select="150"/>
+    <xsl:choose>
+      <xsl:when test="string-length(normalize-space($input)) &gt; $ellipsize.after">
+        <xsl:value-of select="substring(normalize-space($input),1,$ellipsize.after - 1)"/>
+        <xsl:value-of select="'…'"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="normalize-space($input)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
   <xsl:template name="meta-generator">
     <xsl:element name="meta">
@@ -355,6 +405,7 @@
         </xsl:if>
       </xsl:attribute>
     </xsl:element>
+    <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template match="d:refentry" mode="titleabbrev.markup">

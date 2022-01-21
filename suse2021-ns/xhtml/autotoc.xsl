@@ -187,9 +187,9 @@
     <dd class="toc-abstract">
       <xsl:choose>
         <xsl:when test="$trim = 1
-                    and string-length(normalize-space($teaser)) &gt; $teaser.length">
+                    and string-length(normalize-space($teaser)) &gt; $onpage.teaser.length">
             <p>
-            <xsl:value-of select="substring(normalize-space($teaser),1,$teaser.length)"/>
+            <xsl:value-of select="substring(normalize-space($teaser),1,$onpage.teaser.length)"/>
             <xsl:value-of select="'…'"/>
             </p>
         </xsl:when>
