@@ -21,29 +21,26 @@
     <xsl:param name="text" select="string(.)"/>
     <xsl:param name="linecount" select="1"/>
 
-    <xsl:choose>
-      <xsl:when test="contains($text, '&#10;')">
-        <xsl:variable name="text-before-first-break">
-          <xsl:value-of select="substring-before($text, '&#10;')"/>
-        </xsl:variable>
-        <xsl:variable name="text-after-first-break">
-          <xsl:value-of select="substring-after($text, '&#10;')"/>
-        </xsl:variable>
+    <xsl:if test="contains($text, '&#10;')">
+      <xsl:variable name="text-before-first-break">
+        <xsl:value-of select="substring-before($text, '&#10;')"/>
+      </xsl:variable>
+      <xsl:variable name="text-after-first-break">
+        <xsl:value-of select="substring-after($text, '&#10;')"/>
+      </xsl:variable>
 
-        <xsl:choose>
-          <xsl:when test="string-length($text-before-first-break) &gt;
-                          $screen.max.length">longlines</xsl:when>
-          <xsl:when test="$linecount &gt; $screen.max.lines">manylines</xsl:when>
-          <xsl:when test="not($text-after-first-break = '')">
-            <xsl:call-template name="splitscreen">
-              <xsl:with-param name="text" select="$text-after-first-break"/>
-              <xsl:with-param name="linecount" select="$linecount + 1"/>
-            </xsl:call-template>
-          </xsl:when>
-        </xsl:choose>
-      </xsl:when>
-      <xsl:otherwise>goodlines</xsl:otherwise>
-    </xsl:choose>
+      <xsl:choose>
+        <xsl:when test="string-length($text-before-first-break) &gt;
+                        $screen.max.length">longlines</xsl:when>
+        <xsl:when test="$linecount &gt; $screen.max.lines">manylines</xsl:when>
+        <xsl:when test="not($text-after-first-break = '')">
+          <xsl:call-template name="splitscreen">
+            <xsl:with-param name="text" select="$text-after-first-break"/>
+            <xsl:with-param name="linecount" select="$linecount + 1"/>
+          </xsl:call-template>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
 
@@ -57,7 +54,7 @@
     -->
     <xsl:variable name="result">
       <xsl:call-template name="splitscreen">
-        <xsl:with-param name="text" select="$text"/>
+        <xsl:with-param name="text" select="concat($text, '&#10;')"/>
       </xsl:call-template>
     </xsl:variable>
 
