@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
    Purpose:
-     Create callout "bugs"
+     Create circle-enclosed numbers in callouts.
 
    Author:    Thomas Schraitle <toms@opensuse.org>
    Copyright: 2012, Thomas Schraitle
@@ -42,11 +42,15 @@
           </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>
-            <xsl:text>Don't know how to generate Unicode callouts </xsl:text>
-            <xsl:text>when $callout.unicode.start.character is </xsl:text>
-            <xsl:value-of select="$callout.unicode.start.character"/>
-          </xsl:message>
+          <xsl:call-template name="log.message">
+             <xsl:with-param name="level" select="'error'"/>
+             <xsl:with-param name="context-desc" select="'callout'"/>
+             <xsl:with-param name="message">
+               <xsl:text>Don't know how to generate Unicode callouts </xsl:text>
+               <xsl:text>when $callout.unicode.start.character is </xsl:text>
+               <xsl:value-of select="$callout.unicode.start.character"/>
+             </xsl:with-param>
+          </xsl:call-template>
           <xsl:text>(</xsl:text>
           <xsl:value-of select="$conum"/>
           <xsl:text>)</xsl:text>

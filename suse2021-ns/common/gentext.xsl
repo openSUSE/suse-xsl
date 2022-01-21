@@ -153,7 +153,13 @@
                   </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:message>Attempt to use %d in gentext with no referrer!</xsl:message>
+                  <xsl:call-template name="log.message">
+                     <xsl:with-param name="level" select="'error'"/>
+                     <xsl:with-param name="context-desc" select="'gentext'"/>
+                     <xsl:with-param name="message">
+                       <xsl:text>Attempt to use %d in gentext with no referer.</xsl:text>
+                     </xsl:with-param>
+                  </xsl:call-template>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:with-param>

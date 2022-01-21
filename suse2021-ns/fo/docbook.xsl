@@ -80,14 +80,6 @@
   <xsl:include href="xep.xsl"/>
 
 
-  <!-- This variable is not used, it just acts as a container for the xsl:message. -->
-  <xsl:variable name="db4-compatibility-message">
-    <xsl:if test="not(/d:*)">
-      <xsl:message terminate="yes">This document uses DocBook 4 features which are not supported in these stylesheets.</xsl:message>
-    </xsl:if>
-  </xsl:variable>
-
-
   <!--
     This fragment is used to build a sect1 by using rootid parameter
   -->

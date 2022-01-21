@@ -7,7 +7,26 @@
 -->
 
 <xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:d="http://docbook.org/ns/docbook"
+  exclude-result-prefixes="d">
+
+  <!-- This variable is not used, it just allows us to check whether we are in a
+  DocBook 4 document. -->
+  <xsl:variable name="db4-compatibility-message">
+    <xsl:if test="not(/d:*)">
+      <xsl:call-template name="log.message">
+         <xsl:with-param name="level" select="'fatal'"/>
+         <xsl:with-param name="context-desc" select="'general'"/>
+         <xsl:with-param name="message">
+           <xsl:text>This document uses DocBook 4 features which are not supported in these stylesheets. </xsl:text>
+           <xsl:text>Convert the document to namespaced DocBook 5+ instead.</xsl:text>
+         </xsl:with-param>
+         <xsl:with-param name="source" select="0"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:variable>
+
 
   <!-- Replaces the upstream log message implementation with something that at
   least makes sure log levels are consistent and does not randomly cut off

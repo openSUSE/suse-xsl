@@ -64,14 +64,7 @@
     <!-- Apply it only to programlisting and screen -->
     <xsl:if test="(self::d:programlisting or self::d:screen) and $result != 'goodlines'">
       <xsl:call-template name="log.message">
-        <xsl:with-param name="level">Warn</xsl:with-param>
-        <xsl:with-param name="source">
-          <xsl:if test="ancestor-or-self::*/@xml:id">
-            <xsl:text>(in </xsl:text>
-            <xsl:value-of select="(ancestor-or-self::*/@xml:id)[last()]"/>
-            <xsl:text>)</xsl:text>
-          </xsl:if>
-        </xsl:with-param>
+        <xsl:with-param name="level">warn</xsl:with-param>
         <xsl:with-param name="context-desc" select="local-name(.)"/>
         <xsl:with-param name="message">
           <xsl:choose>

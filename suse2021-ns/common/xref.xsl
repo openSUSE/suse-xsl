@@ -21,9 +21,20 @@
 <xsl:template match="*" mode="intra.title.markup">
   <xsl:param name="linkend"/>
   <xsl:param name="first" select="0"/>
-  <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> cannot be used for intra xref linking.
-  - affected ID: <xsl:value-of select="@xml:id"/>
-  - linkend: <xsl:value-of select="$linkend"/></xsl:message>
+
+  <xsl:call-template name="log.message">
+     <xsl:with-param name="level" select="'warn'"/>
+     <xsl:with-param name="context-desc" select="'intra-xref'"/>
+     <xsl:with-param name="message">
+       <xsl:text>Element </xsl:text>
+       <xsl:value-of select="local-name(.)"/>
+       <xsl:text> cannot be used for intra xref linking.</xsl:text>
+     </xsl:with-param>
+     <xsl:with-param name="source">
+       <xsl:text>at xml:id=</xsl:text><xsl:value-of select="@xml:id"/>
+       <xsl:text>, linkend=</xsl:text><xsl:value-of select="$linkend"/>
+     </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -227,8 +238,18 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>WARNING: Element <xsl:value-of select="local-name(.)"/> without title used for intra xref linking.</xsl:message>
-        <xsl:message>- affected ID: <xsl:value-of select="(./@id|./@xml:id)[last()]"/></xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'warn'"/>
+           <xsl:with-param name="context-desc" select="'value/unit'"/>
+           <xsl:with-param name="message">
+             <xsl:text>Element </xsl:text>
+             <xsl:value-of select="local-name(.)"/>
+             <xsl:text> without title used for intra xref linking.</xsl:text>
+           </xsl:with-param>
+           <xsl:with-param name="source">
+             <xsl:value-of select="./@xml:id"/>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

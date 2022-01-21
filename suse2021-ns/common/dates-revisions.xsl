@@ -89,7 +89,14 @@
           <xsl:with-param name="padding" select="1"/>
         </xsl:call-template>
       </xsl:when>
-      <xsl:otherwise>??<xsl:message>Need EXSLT date support.</xsl:message>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'error'"/>
+           <xsl:with-param name="context-desc" select="'date/revision'"/>
+           <xsl:with-param name="message">
+             <xsl:text>Need EXSLT date support.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
     <xsl:if test="$version != ''">

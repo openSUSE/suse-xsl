@@ -223,9 +223,17 @@
 
       <xsl:if test="$warn.xrefs.into.diff.lang != 0 and
                     $target.chapandapp/@xml:lang != $this.book/@xml:lang">
-        <xsl:message>WARNING: The xref '<xsl:value-of
-          select="@linkend"/>' points to a chapter (id='<xsl:value-of
-            select="$target.chapandapp/@id"/>') with a different language than the main document.</xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'warn'"/>
+           <xsl:with-param name="context-desc" select="'intra-xref'"/>
+           <xsl:with-param name="message">
+             <xsl:text>The xref with linkend=</xsl:text>
+             <xsl:value-of select="@linkend"/>
+             <xsl:text> points at a target with a different language than the main document, xml:id=</xsl:text>
+             <xsl:value-of select="$target.chapandapp/@xml:id"/>
+             <xsl:text>.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:if>
 
       <fo:inline xsl:use-attribute-sets="xref.basic.properties">

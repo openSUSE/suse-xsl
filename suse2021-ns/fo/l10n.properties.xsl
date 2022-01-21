@@ -39,7 +39,16 @@
           <xsl:value-of select="$properties/prop-types/prop-type[@name = $property]"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message terminate="yes">(!!) The requested property <xsl:value-of select="$property"/> has no registered property type.</xsl:message>
+          <xsl:call-template name="log.message">
+             <xsl:with-param name="level" select="'fatal'"/>
+             <xsl:with-param name="context-desc" select="'l10n property'"/>
+             <xsl:with-param name="message">
+               <xsl:text>The requested property </xsl:text>
+               <xsl:value-of select="$string"/>
+               <xsl:value-of select="$property"/>
+               <xsl:text> has no registered property type.</xsl:text>
+             </xsl:with-param>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
@@ -87,8 +96,17 @@
 
       </xsl:when>
       <xsl:when test="$properties/lang[@code = 'default']/prop[@name = $property]">
-        <xsl:message>(!) The requested property <xsl:value-of select="$property"/> does not exist in the target language. Expected a <xsl:value-of select="'property-type'"/>. Using property of the default language.
-        </xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'error'"/>
+           <xsl:with-param name="context-desc" select="'l10n property'"/>
+           <xsl:with-param name="message">
+             <xsl:text>The requested property </xsl:text>
+             <xsl:value-of select="$property"/>
+             <xsl:text> does not exist in the target language. Expected a </xsl:text>
+             <xsl:value-of select="'property-type'"/>
+             <xsl:text>. Using property of the default language.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
 
         <xsl:call-template name="get.l10n.property">
           <xsl:with-param name="property" select="$property"/>
@@ -96,8 +114,17 @@
         </xsl:call-template>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message terminate="yes">(!) The requested property <xsl:value-of select="$property"/> does not exist. Expected a <xsl:value-of select="'property-type'"/>.
-        </xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'fatal'"/>
+           <xsl:with-param name="context-desc" select="'l10n property'"/>
+           <xsl:with-param name="message">
+             <xsl:text>The requested property </xsl:text>
+             <xsl:value-of select="$property"/>
+             <xsl:text> does not exist. Expected a </xsl:text>
+             <xsl:value-of select="'property-type'"/>
+             <xsl:text>.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

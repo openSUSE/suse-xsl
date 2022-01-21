@@ -221,7 +221,13 @@
     </xsl:otherwise>
   </xsl:choose>
   <xsl:if test="$realtitle=''">
-    <xsl:message>Did not receive a title to create a section marker with.</xsl:message>
+    <xsl:call-template name="log.message">
+       <xsl:with-param name="level" select="'error'"/>
+       <xsl:with-param name="context-desc" select="'section title'"/>
+       <xsl:with-param name="message">
+         <xsl:text>Did not receive a title to create a section marker with.</xsl:text>
+       </xsl:with-param>
+    </xsl:call-template>
   </xsl:if>
 </xsl:template>
 

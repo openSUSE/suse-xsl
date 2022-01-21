@@ -61,18 +61,28 @@
   </xsl:variable>
 
   <xsl:if test="$matching-formatter = 1 and $matching-style = 1">
-      <xsl:message>Creating a manual page break.</xsl:message>
-      <xsl:if test="$pi-style = ''">
-        <xsl:message>(!) Use style="<xsl:value-of select="$STYLE.ID"/>" to limit this page break to these stylesheets.</xsl:message>
-      </xsl:if>
-      <xsl:if test="$pi-formatter = ''">
-        <xsl:message>(!) Use formatter="<xsl:choose>
+    <xsl:call-template name="log.message">
+      <xsl:with-param name="level" select="'info'"/>
+      <xsl:with-param name="context-desc" select="'page break'"/>
+      <xsl:with-param name="message">
+        <xsl:text>Creating a manual page break. </xsl:text>
+        <xsl:if test="$pi-style = ''">
+          <xsl:text>If possible, limit this page break to these stylesheets by adding style="</xsl:text>
+          <xsl:value-of select="$STYLE.ID"/>
+          <xsl:text>". </xsl:text>
+        </xsl:if>
+        <xsl:if test="$pi-formatter = ''">
+          <xsl:text>If possible, limit this page break to this formatter by adding formatter="</xsl:text>
+          <xsl:choose>
             <xsl:when test="$fop1.extensions = 1">fop</xsl:when>
             <xsl:when test="$xep.extensions = 1">xep</xsl:when>
             <xsl:otherwise>???</xsl:otherwise>
-          </xsl:choose>" to limit this page break to this formatter.</xsl:message>
-      </xsl:if>
-      <fo:block page-break-after="always"/>
+          </xsl:choose>
+          <xsl:text>".</xsl:text>
+        </xsl:if>
+      </xsl:with-param>
+    </xsl:call-template>
+    <fo:block page-break-after="always"/>
   </xsl:if>
 </xsl:template>
 

@@ -130,7 +130,15 @@
           <xsl:call-template name="preface.titlepage"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:message>Don't know how to call titlepage for <xsl:value-of select="local-name()"/></xsl:message>
+          <xsl:call-template name="log.message">
+             <xsl:with-param name="level" select="'error'"/>
+             <xsl:with-param name="context-desc" select="'title page'"/>
+             <xsl:with-param name="message">
+               <xsl:text>Don't know how to create "titlepage" for </xsl:text>
+               <xsl:value-of select="local-name()"/>
+               <xsl:text> element.</xsl:text>
+             </xsl:with-param>
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
 

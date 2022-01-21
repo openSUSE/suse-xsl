@@ -30,8 +30,17 @@
             <xsl:text> highlight </xsl:text><xsl:value-of select="@language"/>
           </xsl:when>
           <xsl:otherwise>
-            <xsl:message>Unsupported language for highlighting detected: "<xsl:value-of select="@language"/>".</xsl:message>
-            <xsl:message>Supported values are: <xsl:value-of select="$highlight.supported.languages"/></xsl:message>
+            <xsl:call-template name="log.message">
+               <xsl:with-param name="level" select="'warn'"/>
+               <xsl:with-param name="context-desc" select="'syntax highlite'"/>
+               <xsl:with-param name="message">
+                 <xsl:text>Unsupported language for syntax highlighting detected, </xsl:text>
+                 <xsl:value-of select="@language"/>
+                 <xsl:text>. Will not enable highlighing. Supported values are: </xsl:text>
+                 <xsl:value-of select="$highlight.supported.languages"/>
+                 <xsl:text>.</xsl:text>
+               </xsl:with-param>
+            </xsl:call-template>
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>

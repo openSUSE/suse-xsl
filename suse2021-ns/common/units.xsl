@@ -50,7 +50,15 @@
         <xsl:value-of select="substring-before($string, '%')"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>Unknown unit in <xsl:value-of select="$string"/></xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'warn'"/>
+           <xsl:with-param name="context-desc" select="'value/unit'"/>
+           <xsl:with-param name="message">
+             <xsl:text>Unknown unit in </xsl:text>
+             <xsl:value-of select="$string"/>
+             <xsl:text>.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -71,7 +79,15 @@
         <xsl:value-of select="$lasttwo"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:message>Unknown unit in <xsl:value-of select="$string"/></xsl:message>
+        <xsl:call-template name="log.message">
+           <xsl:with-param name="level" select="'warn'"/>
+           <xsl:with-param name="context-desc" select="'value/unit'"/>
+           <xsl:with-param name="message">
+             <xsl:text>Unknown unit in </xsl:text>
+             <xsl:value-of select="$string"/>
+             <xsl:text>.</xsl:text>
+           </xsl:with-param>
+        </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
