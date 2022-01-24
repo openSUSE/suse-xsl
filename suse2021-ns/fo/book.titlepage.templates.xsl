@@ -248,7 +248,7 @@
     <fo:table-column column-number="1" column-width="100%"/>
     <fo:table-body>
       <fo:table-row>
-        <fo:table-cell height="{0.4 * $table.height}{$unit}">
+        <fo:table-cell height="{0.75 * $table.height}{$unit}">
           <xsl:apply-templates
             select="(d:bookinfo/d:title | d:info/d:title | d:title)[1]"
             mode="book.titlepage.verso.auto.mode"/>
@@ -273,7 +273,7 @@
 
       <!-- Everything else is in a second block of text at the bottom -->
       <fo:table-row>
-        <fo:table-cell display-align="after" height="{0.6 * $table.height}{$unit}">
+        <fo:table-cell display-align="after" height="{0.25 * $table.height}{$unit}">
 
           <xsl:call-template name="date.and.revision"/>
 
