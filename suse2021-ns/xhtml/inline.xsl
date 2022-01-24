@@ -128,4 +128,10 @@
     <!-- We don't want to process @class attribute here -->
   </xsl:template>
 
+
+  <!-- Support for AsciiDoc's [%hardbreaks] option -->
+  <xsl:template match="processing-instruction('asciidoc-br')">
+    <br/>
+  </xsl:template>
+
 </xsl:stylesheet>

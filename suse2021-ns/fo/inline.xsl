@@ -619,4 +619,11 @@
   </xsl:if>
   </xsl:template>
 
+
+  <!-- Support for AsciiDoc's [%hardbreaks] option -->
+  <xsl:template match="processing-instruction('asciidoc-br')">
+    <fo:block/>
+  </xsl:template>
+
+
 </xsl:stylesheet>
