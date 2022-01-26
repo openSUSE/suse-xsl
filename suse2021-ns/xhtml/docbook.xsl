@@ -351,7 +351,7 @@
     <xsl:text>&#10;</xsl:text>
     <meta property="og:image" content="{$socialmedia.preview}"/>
     <xsl:text>&#10;</xsl:text>
-    <meta property="twitter:image" content="{$socialmedia.preview}"/>
+    <meta name="twitter:image" content="{$socialmedia.preview}"/>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:call-template name="meta-generator"/>
@@ -367,14 +367,14 @@
   <meta property="og:type" content="{$opengraph.type}"/>
   <xsl:text>&#10;</xsl:text>
 
-  <meta property="twitter:card" content="{$twittercards.type}"/>
+  <meta name="twitter:card" content="{$twittercards.type}"/>
   <xsl:text>&#10;</xsl:text>
-  <meta property="twitter:title" content="{$socialmedia.title}"/>
+  <meta name="twitter:title" content="{$socialmedia.title}"/>
   <xsl:text>&#10;</xsl:text>
-  <meta property="twitter:description" content="{$socialmedia.description}"/>
+  <meta name="twitter:description" content="{$socialmedia.description}"/>
   <xsl:text>&#10;</xsl:text>
   <xsl:if test="string-length($twittercards.twitter.account) &gt; 0">
-    <meta property="twitter:site" content="{$twittercards.twitter.account}"/>
+    <meta name="twitter:site" content="{$twittercards.twitter.account}"/>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
 </xsl:template>
