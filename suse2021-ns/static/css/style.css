@@ -14,7 +14,7 @@ body {
   background-color: #dedfe0; }
 
 #_side-toc-page {
-  background-color: #dedfe0; }
+  background-color: white; }
 
 #_side-toc-overall {
   min-height: 100vh;
@@ -70,9 +70,6 @@ body {
 
 .draft {
   background: #FFF url(../images/draft.png) no-repeat fixed left 50%; }
-
-.documentation {
-  padding: 0 20px; }
 
 *:target::before {
   content: '';
@@ -1061,7 +1058,7 @@ div.figure {
   vertical-align: -15%; }
 
 .keycap {
-  background-color: #c0c2c4;
+  background-color: #dedfe0;
   border-width: 1px;
   color: #0c322c;
   font-size: 0.9em;
@@ -1088,7 +1085,7 @@ a:hover code {
   border-color: #30ba78; }
 
 .key-connector {
-  color: #a6a9ab;
+  color: #9c9fa2;
   margin: 0 -1px; }
 
 .example-title,
@@ -1501,9 +1498,6 @@ p.ds-message {
 .hidden .hidden:before {
   content: none; }
 
-.draft {
-  background: #FFF url(../images/draft.png) no-repeat fixed left 50%; }
-
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 html,
 body,
@@ -1574,30 +1568,30 @@ th {
   th:not([align]) {
     text-align: inherit; }
 
-.container, article {
+.container, #_side-toc-overall, article, #_side-toc-page {
   flex-grow: 1;
   margin: 0 auto;
   position: relative;
   width: auto; }
-  .container.is-fluid, article.is-fluid {
+  .container.is-fluid, .is-fluid#_side-toc-overall, article.is-fluid, .is-fluid#_side-toc-page {
     max-width: none !important;
     padding-left: 32px;
     padding-right: 32px;
     width: 100%; }
   @media screen and (min-width: 1024px) {
-    .container, article {
+    .container, #_side-toc-overall, article, #_side-toc-page {
       max-width: 960px; } }
   @media screen and (max-width: 1215px) {
-    .container.is-widescreen:not(.is-max-desktop), article.is-widescreen:not(.is-max-desktop) {
+    .container.is-widescreen:not(.is-max-desktop), .is-widescreen#_side-toc-overall:not(.is-max-desktop), article.is-widescreen:not(.is-max-desktop), .is-widescreen#_side-toc-page:not(.is-max-desktop) {
       max-width: 1152px; } }
   @media screen and (max-width: 1407px) {
-    .container.is-fullhd:not(.is-max-desktop):not(.is-max-widescreen), article.is-fullhd:not(.is-max-desktop):not(.is-max-widescreen) {
+    .container.is-fullhd:not(.is-max-desktop):not(.is-max-widescreen), .is-fullhd#_side-toc-overall:not(.is-max-desktop):not(.is-max-widescreen), article.is-fullhd:not(.is-max-desktop):not(.is-max-widescreen), .is-fullhd#_side-toc-page:not(.is-max-desktop):not(.is-max-widescreen) {
       max-width: 1344px; } }
   @media screen and (min-width: 1216px) {
-    .container:not(.is-max-desktop), article:not(.is-max-desktop) {
+    .container:not(.is-max-desktop), #_side-toc-overall:not(.is-max-desktop), article:not(.is-max-desktop), #_side-toc-page:not(.is-max-desktop) {
       max-width: 1152px; } }
   @media screen and (min-width: 1408px) {
-    .container:not(.is-max-desktop):not(.is-max-widescreen), article:not(.is-max-desktop):not(.is-max-widescreen) {
+    .container:not(.is-max-desktop):not(.is-max-widescreen), #_side-toc-overall:not(.is-max-desktop):not(.is-max-widescreen), article:not(.is-max-desktop):not(.is-max-widescreen), #_side-toc-page:not(.is-max-desktop):not(.is-max-widescreen) {
       max-width: 1344px; } }
 
 /* Bulma Grid */

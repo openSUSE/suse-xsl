@@ -90,7 +90,8 @@ INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
 #-------------------------------------------------------
 # Variables for SASS->CSS conversion and other web stuff
 
-styles2021_sass = $(sort $(wildcard source-assets/styles2021/sass/*.sass) $(wildcard source-assets/styles2021/sass/*/*.sass))
+styles2021_sass = $(wildcard source-assets/styles2021/sass/*.sass)
+styles2021_sass_custom = $(wildcard source-assets/styles2021/sass/*/*.sass)
 
 #############################################################
 
@@ -173,7 +174,7 @@ PHONY: sass-css
 sass-css: suse2021-ns/static/css/style.css
 
 # The main file is called 0-style.sass, so it will be listed here first.
-suse2021-ns/static/css/style.css: $(styles2021_sass)
+suse2021-ns/static/css/style.css: $(styles2021_sass) $(styles2021_sass_custom)
 	sassc $< $@
 
 PHONY: sass-clean

@@ -79,22 +79,6 @@
 
       <xsl:call-template name="article.titlepage"/>
 
-      <div class="line">
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:call-template name="make.lots">
-        <xsl:with-param name="toc.params" select="$toc.params"/>
-        <xsl:with-param name="toc">
-          <xsl:call-template name="component.toc">
-            <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-          </xsl:call-template>
-        </xsl:with-param>
-      </xsl:call-template>
-      </div>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:legalnotice"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:legalnotice"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:legalnotice"/>
@@ -142,21 +126,6 @@
         </xsl:otherwise>
       </xsl:choose>
 
-
-      <xsl:variable name="toc.params">
-        <xsl:call-template name="find.path.params">
-          <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-        </xsl:call-template>
-      </xsl:variable>
-      <div class="line">
-      <xsl:if test="contains($toc.params, 'toc')">
-
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-        <xsl:call-template name="component.toc.separator"/>
-      </xsl:if>
-      </div>
       <xsl:apply-templates/>
       <xsl:call-template name="process.footnotes"/>
     </xsl:element>

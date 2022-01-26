@@ -227,9 +227,6 @@
        <xsl:with-param name="object" select="$section"/>
     </xsl:call-template>
     <xsl:call-template name="editlink"/>
-    <xsl:call-template name="create.header.line">
-       <xsl:with-param name="object" select="$section"/>
-    </xsl:call-template>
   </xsl:element>
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
@@ -272,11 +269,6 @@ elements, to fix their display. -->
   <xsl:apply-templates select="." mode="class.attribute">
     <xsl:with-param name="class" select="$class"/>
   </xsl:apply-templates>
-</xsl:template>
-
-<!-- Hook for additional customizations -->
-<xsl:template name="create.header.line">
-  <xsl:param name="object" select="."/>
 </xsl:template>
 
 <xsl:template name="debug.filename-id">

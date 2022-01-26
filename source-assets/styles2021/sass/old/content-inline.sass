@@ -694,9 +694,9 @@ div.figure
   padding: 0 3px
   vertical-align: -15%
 
-
+$c_keycap: $c_fog_200
 .keycap
-  background-color: $c_fog_300
+  background-color: $c_keycap
   border-width: 1px
   color: $c_pine
   font-size: 0.9em
@@ -728,7 +728,7 @@ a:hover code
 // We put an ndash character between keycaps that are part of an accelerator
 // FIXME: This really should be solved using an ::after with content: '-'
 .key-connector
-  color: darken($c_fog_300, 10%)
+  color: darken($c_keycap, 25%)
   margin: 0 -1px
 
 
@@ -1225,7 +1225,3 @@ p.ds-message
 
 .hidden .hidden:before
   content: none
-
-
-.draft
-  background: #FFF url(../images/draft.png) no-repeat fixed left 50%

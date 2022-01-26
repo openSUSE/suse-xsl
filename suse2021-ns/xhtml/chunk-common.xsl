@@ -399,10 +399,44 @@
           </article>
 
           <nav id="_side-toc-page">
-            <div class="mini-toc-title">On this page</div>
-            <ol>
-              <li>Ceci n'est pas un content</li>
-            </ol>
+            <xsl:if test="not(self::d:part or self::d:book or self::d:set)">
+              <div class="mini-toc-title">On this page</div> <!--FIXME needs gentext -->
+              <xsl:choose>
+                <xsl:when test="self::d:article">
+                  <xsl:variable name="toc.params">
+                    <xsl:call-template name="find.path.params">
+                      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+
+                  <xsl:call-template name="make.lots">
+                    <xsl:with-param name="toc.params" select="$toc.params"/>
+                    <xsl:with-param name="toc">
+                      <xsl:call-template name="component.toc">
+                        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+                      </xsl:call-template>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:variable name="toc.params">
+                    <xsl:call-template name="find.path.params">
+                      <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+                    </xsl:call-template>
+                  </xsl:variable>
+
+                  <xsl:call-template name="make.lots">
+                    <xsl:with-param name="toc.params" select="$toc.params"/>
+                    <xsl:with-param name="toc">
+                      <xsl:call-template name="component.toc">
+                        <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
+                      </xsl:call-template>
+                    </xsl:with-param>
+                  </xsl:call-template>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:if>
+            <xsl:text> </xsl:text>
           </nav>
 
         </main>
@@ -446,7 +480,7 @@
      <xsl:when test="$include.ssi.footer != ''">
        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
      </xsl:when>
-     <xsl:if test="$generate.footer = 1">
+     <xsl:when test="$generate.footer = 1">
        <footer>
          <xsl:call-template name="user.footer.content"/>
          <xsl:call-template name="user.footer.navigation">
@@ -455,7 +489,7 @@
            <xsl:with-param name="nav.context" select="$nav.context"/>
          </xsl:call-template>
        </footer>
-     </xsl:if>
+     </xsl:when>
      <xsl:otherwise/>
    </xsl:choose>
   </xsl:template>

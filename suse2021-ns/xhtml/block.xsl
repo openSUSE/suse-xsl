@@ -79,8 +79,7 @@
         <xsl:copy-of select="$content"/>
 
         <xsl:if test="$arch != ''">
-          <strong class="arch-arrow-end">
-          </strong>
+          <strong class="arch-arrow-end"><xsl:text> </xsl:text></strong>
         </xsl:if>
       </p>
     </xsl:variable>
