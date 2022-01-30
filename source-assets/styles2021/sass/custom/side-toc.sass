@@ -1,23 +1,19 @@
-#_side-toc-overall
-  min-height: 100vh
-  overflow: auto
-  position: relative
+// our own bubble-toc thing generates an <ol>, DocBook's default make.lots
+// generates an <ul> because ... no reason, page contents obviously are not
+// ordered. Anyway, seems we're stuck with both.
 
+.side-toc
 
-  ol
+  > ol,
+  > ul
+    // some bottom margin to account for floating browser status bars etc.
+    padding: 0 0 2rem 0
+
+  ol,
+  ul
     margin: 0
-    padding: 0
     display: block
-
-  ol ol
-    background-color: scale-color($c_fog, $lightness: +25%)
-    display: none
-
-  ol > li.active > ol
-    display: block
-
-  li
-    display: block
+    font-size: $i_font_side_toc
 
   a
     color: $c_pine
@@ -33,23 +29,57 @@
     background-color: $c_fog_200
     text-decoration: underline
 
+  .mini-toc-title
+    color: $c_pine
+    font-size: $i_font_menu
+    font-weight: 800
+
+
+#_side-toc-page
+  .toc
+    padding-bottom: .3rem
+    border-bottom: 1px solid $c_fog_300
+
+
+#_side-toc-overall
+
+  ol
+
+    ol
+      background-color: scale-color($c_fog, $lightness: +25%)
+      display: none
+
+    > li.active
+      padding-bottom: .3rem
+
+      > ol
+        display: block
+
   li
+    display: block
+
     > a.has-children::after
-      background-color: $c_pine
-      color: $c_white
-      content: '>'
+      content: ''
       display: block
       float: right
       height: 1rem
       text-align: center
       width: 1rem
+      font-weight: 800
+      background-color: $c_white
+      border: 3px solid $c_white
+      border-radius: 50%
+      background-repeat: no-repeat
+      // FIXME: base64'd SVG chevron from fontawesome
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIiBjbGFzcz0id2VpZ2h0ZWQgcmlnaHQiPjwhLS0gRm9udCBBd2Vzb21lIEZyZWUgNS4xNS4zIGJ5IEBmb250YXdlc29tZSwgaHR0cHM6Ly9mb250YXdlc29tZS5jb20gLSBDQyBCWSA0LjAgLS0+PHBhdGggZD0iTTIwNy4wMjkgMzgxLjQ3NkwxMi42ODYgMTg3LjEzMmMtOS4zNzMtOS4zNzMtOS4zNzMtMjQuNTY5IDAtMzMuOTQxbDIyLjY2Ny0yMi42NjdjOS4zNTctOS4zNTcgMjQuNTIyLTkuMzc1IDMzLjkwMS0uMDRMMjI0IDI4NC41MDVsMTU0Ljc0NS0xNTQuMDIxYzkuMzc5LTkuMzM1IDI0LjU0NC05LjMxNyAzMy45MDEuMDRsMjIuNjY3IDIyLjY2N2M5LjM3MyA5LjM3MyA5LjM3MyAyNC41NjkgMCAzMy45NDFMMjQwLjk3MSAzODEuNDc2Yy05LjM3MyA5LjM3Mi0yNC41NjkgOS4zNzItMzMuOTQyIDB6Ii8+PC9zdmc+Cg==')
+      rotate: -90deg
 
     &.active > a.has-children::after
-      content: 'v'
+      rotate: 0.01deg
 
   ol > li.active > a
-    background-color: $c_mint
-    color: #FFF
+    background-color: $c_jungle
+    color: $c_white
 
-  ol ol li > a
-    padding-left: 1rem
+    ol li > a
+      padding-left: 1rem

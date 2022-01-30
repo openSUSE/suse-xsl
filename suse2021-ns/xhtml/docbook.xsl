@@ -505,18 +505,16 @@
 
   <xsl:template name="create.header.logo">
     <xsl:if test="$generate.logo != 0">
-      <div id="_logo">
-        <xsl:choose>
-          <xsl:when test="$homepage != ''">
-            <a href="{$homepage}">
-              <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
-            </a>
-          </xsl:when>
-          <xsl:otherwise>
-            <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </div>
+      <xsl:choose>
+        <xsl:when test="$homepage != ''">
+          <a href="{$homepage}">
+            <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}" class="logo"/>
+          </a>
+        </xsl:when>
+        <xsl:otherwise>
+          <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}" class="logo"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:if>
   </xsl:template>
 
@@ -610,9 +608,10 @@
         >offline js-off</xsl:if></xsl:attribute>
   </xsl:template>
 
-  <xsl:template name="bypass">
-    <!-- Bypass blocks help disabled, e.g. blind users navigate more quickly.
-    Hard-to-parse W3C spec: https://www.w3.org/TR/WCAG20/#navigation-mechanisms-skip -->
+  <xsl:template name="bypass"/> <!-- fixme later -->
+  <!--<xsl:template name="bypass">
+    <!-/- Bypass blocks help disabled, e.g. blind users navigate more quickly.
+    Hard-to-parse W3C spec: https://www.w3.org/TR/WCAG20/#navigation-mechanisms-skip -/->
     <xsl:param name="format" select="'single'"/>
     <xsl:if test="not($optimize.plain.text = 1)">
       <div class="bypass-block">
@@ -623,9 +622,9 @@
           </xsl:call-template>
         </a>
         <xsl:if test="$format = 'chunk'">
-          <!-- Going to #_bottom-navigation is an admittedly quirky choice but
+          <!-/- Going to #_bottom-navigation is an admittedly quirky choice but
           the other two places in which we have this kind of page nav
-          (regular header and fixed header) do not assign an ID to it. -->
+          (regular header and fixed header) do not assign an ID to it. -/->
           <a href="#_bottom-navigation">
             <xsl:call-template name="gentext.template">
               <xsl:with-param name="context" select="'bypass-block'"/>
@@ -635,7 +634,7 @@
         </xsl:if>
       </div>
     </xsl:if>
-  </xsl:template>
+  </xsl:template>-->
 
 
 <xsl:template match="*" mode="process.root">

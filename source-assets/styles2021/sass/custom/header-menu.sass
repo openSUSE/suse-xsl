@@ -1,0 +1,134 @@
+header
+
+  img.logo
+    position: absolute
+    // FIXME yuck px, but it's an image
+    width: 270px
+    height: 90px
+    top: 20px
+    left: 0
+    padding: 0
+    z-index: 12
+
+
+  #utilitynav
+    height: 50px
+    background-color: $c_pine
+    position: absolute
+    top: 1.25rem
+    right: .75rem
+    width: 100%
+    z-index: 11
+    color: $c_fog_300
+    margin-left: 270px
+
+    .utilitynav-container
+      display: block
+      float: right
+      text-align: right
+      width: calc(100% - 150px)
+      max-width: 700px
+      padding-bottom: .5rem
+      border-bottom: 1px dotted $c_white
+
+      > div
+        font-size: $i_font_menu_mini
+        display: inline-block
+        background-repeat: no-repeat
+        vertical-align: top
+
+        &::before
+          content: ''
+          display: inline-block
+          height: 1.5rem
+          vertical-align: middle
+          border-left: 1px solid lighten($c_black, 40%)
+          margin: 0 .75rem
+
+        &:first-child::before
+          content: none
+
+      a,
+      span,
+      div.menu-item
+        display: inline-block
+        text-decoration: none
+        color: #FFF
+
+  #menu
+    text-align: right
+    position: absolute
+    bottom: calc(.35rem + 8px)
+    right: .75rem
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: row
+
+    > div
+      display: block
+      font-weight: 700
+      font-size: $i_font_menu
+      height: auto
+      padding: .75rem 0
+
+    a
+      color: $c_white
+      text-decoration: none
+      padding: .75rem 2rem
+
+    // square is the new round (some older designs of the thing were round though)
+    .c-btn--round
+      background-color: $c_persimmon
+      color: $c_pine
+
+  .header-end-line
+    width: 100%
+    height: 8px
+    line-height: 8px
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+
+    > div
+      height: 8px
+      float: left
+
+    > .header-end-line-persimmon
+      background-color: $c_persimmon
+      width: 25%
+    > .header-end-line-green
+      background-color: $c_jungle
+      width: 45%
+    > .header-end-line-waterhole-blue
+      background-color: $c_waterhole
+      width: 10%
+    > .header-end-line-mint
+      background-color: $c_mint
+      width: 20%
+
+// --
+
+.utilitynav-container svg
+  height: 1.3em
+  display: inline-block
+  fill: #FE7C3F
+  vertical-align: -10%
+  margin-right: .3rem
+
+//FIXME: make this pop open later
+#searchbox
+  display: none
+
+header
+
+  &.sticky
+
+    #utilitynav
+      display: none
+
+    img.logo
+      width: 171px
+      height: 57px
+      top: 0
+      left: 0

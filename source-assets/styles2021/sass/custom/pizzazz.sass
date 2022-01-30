@@ -13,3 +13,19 @@
 // Draft background for body
 .draft
   background: #FFF url(../images/draft.png) no-repeat fixed left 50%
+
+// sticky the "Applies to PRODUCT 1.0" text, so it's always visible
+main.sticky article .version-info
+  position: fixed
+  top: $i_head_offset
+  // FIXME: dedupe/get margin from "old/ ... .sass"
+  //margin-top: -.74rem
+  // there is no .is-offset-right-2 :/
+  margin-right: 16.6667%
+  right: .75rem
+  z-index: 10;
+
+// <article> now has 3rem instead of .75rem on higher screen widths
+@media only screen and (min-width: 1400px)
+  main.sticky article .version-info
+    right: 3rem !important

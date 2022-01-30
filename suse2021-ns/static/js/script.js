@@ -9,6 +9,40 @@ License: GPL 2+
 (c) 2012-2019 SUSE LLC
 */
 
+
+//sticky header/nav https://stackoverflow.com/questions/23842100/
+//                  https://www.w3schools.com/howto/howto_js_sticky_header.asp
+function init22() {
+  // uh double-check this value against high-dpi compat stuff
+  // must be same value as 0-style.sass $i_head_offset!
+  const cHeaderFixScrollStart = 65;
+  const eHead = document.getElementById('_mainnav');
+  const eMain = document.getElementById('_content');
+
+  let getScrollposition = window.scrollY;
+  if (getScrollposition > cHeaderFixScrollStart) {
+    eHead.classList.add("sticky");
+    eMain.classList.add("sticky");
+  }
+  window.addEventListener('scroll', function () {
+      let getScrollposition = window.scrollY;
+      if (getScrollposition > cHeaderFixScrollStart) {
+        eHead.classList.add("sticky");
+        eMain.classList.add("sticky");
+      } else {
+        eHead.classList.remove("sticky");
+        eMain.classList.remove("sticky");
+      }
+  });
+};
+
+// FIXME: I think this the wrong event listener -- it kicks in too late
+window.addEventListener("load", init22, false);
+
+
+// -- new stuf ^ 2022 ---
+
+
 var bugtrackerUrl = $( 'meta[name="tracker-url"]' ).attr('content');
 var bugtrackerType = $( 'meta[name="tracker-type"]' ).attr('content');
 

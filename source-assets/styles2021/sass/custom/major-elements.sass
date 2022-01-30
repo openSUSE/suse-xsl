@@ -2,34 +2,92 @@ html,
 body
   font-size: 16px
   height: 100%
-  min-width: 200px
+
 
 body
-  margin: 0.75rem !important
   background-color: $c_white
   font-family: $f_sans
   line-height: 140%
 
 
+header
+  display: block
+  height: auto
+  background-color: $c_pine
+  position: relative
+  // take header-end-line=8px into account
+  padding: .75rem .75rem .75rem calc(.75rem + 8rem) .75rem
+  z-index: 9001
+  min-height: $i_big_head
+
+  &.sticky
+    box-sizing: border-box
+    height: $i_head_offset
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    min-height: unset
+
+
 main
-  @extend .columns
+  display: flex
 
 
-#_side-toc-overall
-  @extend .column
-  @extend .is-2
-  @extend .container
-  background-color: $c_fog_200
+  article
+    @extend .column
+    @extend .is-8
+    @extend .container
+    position: relative
+    min-height: calc(100vh - #{$i_big_head})
+
+  .side-toc
+    @extend .column
+    @extend .is-2
+    @extend .container
+    min-height: calc(100vh - #{$i_big_head})
+    overflow-y: auto
+    position: relative
 
 
-article
-  @extend .column
-  @extend .is-8
-  @extend .container
+  #_side-toc-overall
+    background-color: $c_fog_200
+    margin-left: 0
 
+  #_side-toc-page
+    @extend .side-toc
+    background-color: $c_white
+    margin-right: 0
 
-#_side-toc-page
-  @extend .column
-  @extend .is-2
-  @extend .container
-  background-color: $c_white
+  &.sticky
+    article
+      @extend .is-offset-2
+      position: relative
+      top: $i_big_head
+      margin-bottom: $i_big_head
+
+    .side-toc
+      height: calc(100vh - #{$i_head_offset})
+      position: fixed
+      top: $i_head_offset
+      min-height: unset
+
+    #_side-toc-overall
+      left: 0
+
+    #_side-toc-page
+      right: 0
+
+footer
+  // FIXME
+  height: 300px
+  background-color: $c_pine
+  position: relative
+  z-index: 9000
+
+@media only screen and (min-width: 1400px)
+  main article
+    // FIXME: why do i need an !important? is min-width a good option?
+    // same thing in pizzazz.sass
+    padding-left: 3rem !important
+    padding-right: 3rem !important

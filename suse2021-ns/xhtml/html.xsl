@@ -68,9 +68,9 @@
   </xsl:variable>
 
   <xsl:if test="string-length($css.filename) != 0">
-    <link rel="stylesheet" type="text/css" href="{$href}">
-      <xsl:text> </xsl:text>
-    </link>
+    <!-- Confusingly, for <link/>, using a <self-closing tag/> is apparently
+    allowed/expected but not for <script>. -->
+    <link rel="stylesheet" type="text/css" href="{$href}"/>
   </xsl:if>
 </xsl:template>
 
