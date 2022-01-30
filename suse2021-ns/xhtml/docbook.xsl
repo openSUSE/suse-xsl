@@ -349,9 +349,9 @@
     <!-- These Open Graph and Twitter Cards properties need a canonical URL -->
     <meta property="og:url" content="{$canonical.url}"/>
     <xsl:text>&#10;</xsl:text>
-    <meta property="og:image" content="{$socialmedia.preview}"/>
+    <meta property="og:image" content="{concat($canonical-url-base,'/',$socialmedia.preview)}"/>
     <xsl:text>&#10;</xsl:text>
-    <meta name="twitter:image" content="{$socialmedia.preview}"/>
+    <meta name="twitter:image" content="{concat($canonical-url-base,'/',$socialmedia.preview)}"/>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:call-template name="meta-generator"/>
