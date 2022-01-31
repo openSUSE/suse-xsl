@@ -10,34 +10,98 @@ License: GPL 2+
 */
 
 
-//sticky header/nav https://stackoverflow.com/questions/23842100/
-//                  https://www.w3schools.com/howto/howto_js_sticky_header.asp
 function init22() {
+
+  //sticky header/nav https://stackoverflow.com/questions/23842100/
+  //                  https://www.w3schools.com/howto/howto_js_sticky_header.asp
   // uh double-check this value against high-dpi compat stuff
   // must be same value as 0-style.sass $i_head_offset!
   const cHeaderFixScrollStart = 65;
   const eHead = document.getElementById('_mainnav');
   const eMain = document.getElementById('_content');
+  const eFoot = document.getElementById('_footer');
+  const eSideTocAll = document.getElementById('_side-toc-overall');
+  const eSideTocPage = document.getElementById('_side-toc-page');
 
-  let getScrollposition = window.scrollY;
-  if (getScrollposition > cHeaderFixScrollStart) {
+  let scrollPosition = window.scrollY;
+  let footTop = eFoot.getBoundingClientRect().top;
+  let windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+  // find out whether the footer is in view, we need to unstick the nav if it is
+  // FIXME suse22: this is still not good enough -- we actually want the nav
+  // bottom to stick to the top of the footer [also, it does not work properly]
+  if (scrollPosition > cHeaderFixScrollStart) {
     eHead.classList.add("sticky");
     eMain.classList.add("sticky");
-  }
+  };
+  if (footTop <= windowHeight) {
+    let fTocBottom = windowHeight - footTop;
+    eMain.classList.add("scroll-with-footer");
+    eSideTocAll.style['bottom'] = fTocBottom + 'px';
+    eSideTocPage.style['bottom'] = fTocBottom + 'px';
+  };
+
   window.addEventListener('scroll', function () {
-      let getScrollposition = window.scrollY;
-      if (getScrollposition > cHeaderFixScrollStart) {
+      let scrollPosition = window.scrollY;
+      let footTop = eFoot.getBoundingClientRect().top;
+      let windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+      if (scrollPosition > cHeaderFixScrollStart) {
         eHead.classList.add("sticky");
         eMain.classList.add("sticky");
       } else {
         eHead.classList.remove("sticky");
         eMain.classList.remove("sticky");
-      }
+      };
+      if (footTop <= windowHeight) {
+        let fTocBottom = windowHeight - footTop;
+        eMain.classList.add("scroll-with-footer");
+        eSideTocAll.style['bottom'] = fTocBottom + 'px';
+        eSideTocPage.style['bottom'] = fTocBottom + 'px';
+      } else {
+        eMain.classList.remove("scroll-with-footer");
+        eSideTocAll.style['bottom'] = 'unset';
+        eSideTocPage.style['bottom'] = 'unset';
+      };
   });
+
+  // open side toc list at position of "you are here"
+  const here = document.getElementById('_side-toc-overall').getElementsByClassName('you-are-here')[0];
+  if (typeof(here) === 'object') {
+    // FIXME suse22 Does this break in non-obvious ways when all those parents don't exist/are the wrong ones..?
+    // yes, it does!
+    here.parentElement.parentElement.parentElement.classList.add('active');
+    here.parentElement.parentElement.parentElement.getElementsByTagName('a')[0].classList.add('current');
+  };
+
+
+  // update page toc to show current section in bold
+  //https://css-tricks.com/sticky-table-of-contents-with-scrolling-active-states/
+/*  window.addEventListener('DOMContentLoaded', () => {
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        if (entry.intersectionRatio > 0) {
+          document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.add('active');
+        } else {
+          document.querySelector(`nav li a[href="#${id}"]`).parentElement.classList.remove('active');
+        }
+      });
+    });
+
+    // Track all sections that have an `id` applied
+    document.querySelectorAll('section[id]').forEach((section) => {
+      observer.observe(section);
+    });
+
+});*/
+
+
+
+
 };
 
-// FIXME: I think this the wrong event listener -- it kicks in too late
-window.addEventListener("load", init22, false);
+// FIXME: I think this the wrong event listener -- it kicks in too late, no?
+window.addEventListener("DOMContentLoaded", init22, false);
 
 
 // -- new stuf ^ 2022 ---

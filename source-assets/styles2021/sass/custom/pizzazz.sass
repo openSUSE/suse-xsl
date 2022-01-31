@@ -14,16 +14,29 @@
 .draft
   background: #FFF url(../images/draft.png) no-repeat fixed left 50%
 
+div.version-info
+  background-color: $c_persimmon
+  color: $c_pine
+  font-size: $i_font_menu
+  float: right
+  font-weight: normal
+  padding: 0.5rem 1rem
+
+.single div.version-info
+  position: relative
+  top: 70px
+
 // sticky the "Applies to PRODUCT 1.0" text, so it's always visible
-main.sticky article .version-info
+main.sticky article div.version-info
   position: fixed
   top: $i_head_offset
-  // FIXME: dedupe/get margin from "old/ ... .sass"
-  //margin-top: -.74rem
   // there is no .is-offset-right-2 :/
   margin-right: 16.6667%
   right: .75rem
-  z-index: 10;
+  margin-top: .2rem
+  z-index: 10
+
+
 
 // <article> now has 3rem instead of .75rem on higher screen widths
 @media only screen and (min-width: 1400px)

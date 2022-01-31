@@ -78,8 +78,17 @@ main
     #_side-toc-page
       right: 0
 
+    &.scroll-with-footer .side-toc
+      min-height: unset
+      max-height: unset
+      height: auto
+      top: unset
+      // to be overridden via JS
+      bottom: 0
+
+
 footer
-  // FIXME
+  // FIXME suse22
   height: 300px
   background-color: $c_pine
   position: relative
@@ -87,7 +96,7 @@ footer
 
 @media only screen and (min-width: 1400px)
   main article
-    // FIXME: why do i need an !important? is min-width a good option?
+    // FIXME suse22: why do i need an !important? is min-width a good option?
     // same thing in pizzazz.sass
     padding-left: 3rem !important
     padding-right: 3rem !important

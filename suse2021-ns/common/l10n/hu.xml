@@ -35,7 +35,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigáció"/>
-   <l:gentext key="sharethispage" text="Az oldal megosztása: "/>
+   <l:gentext key="sharethispage" text="Az oldal megosztása"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

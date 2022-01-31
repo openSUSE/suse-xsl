@@ -53,6 +53,12 @@ main {
     left: 0; }
   main.sticky #_side-toc-page {
     right: 0; }
+  main.sticky.scroll-with-footer .side-toc, main.sticky.scroll-with-footer #_side-toc-page {
+    min-height: unset;
+    max-height: unset;
+    height: auto;
+    top: unset;
+    bottom: 0; }
 
 footer {
   height: 300px;
@@ -84,6 +90,8 @@ main #_side-toc-page ul {
   padding: 0.25rem .5rem;
   position: relative;
   text-decoration: none; }
+  .side-toc a.you-are-here, main #_side-toc-page a.you-are-here {
+    font-weight: 700; }
 
 .side-toc a:focus, main #_side-toc-page a:focus,
 .side-toc a:hover,
@@ -93,7 +101,7 @@ main #_side-toc-page a:active {
   background-color: #dedfe0;
   text-decoration: underline; }
 
-.side-toc .mini-toc-title, main #_side-toc-page .mini-toc-title {
+.side-toc .side-title, main #_side-toc-page .side-title {
   color: #0c322c;
   font-size: 0.8rem;
   font-weight: 800; }
@@ -113,6 +121,8 @@ main #_side-toc-page a:active {
 
 #_side-toc-overall li {
   display: block; }
+  #_side-toc-overall li > a.has-children.current {
+    font-weight: 700; }
   #_side-toc-overall li > a.has-children::after {
     content: '';
     display: block;
@@ -260,11 +270,24 @@ header.sticky img.logo {
 .draft {
   background: #FFF url(../images/draft.png) no-repeat fixed left 50%; }
 
-main.sticky article .version-info {
+div.version-info {
+  background-color: #fe7c3f;
+  color: #0c322c;
+  font-size: 0.8rem;
+  float: right;
+  font-weight: normal;
+  padding: 0.5rem 1rem; }
+
+.single div.version-info {
+  position: relative;
+  top: 70px; }
+
+main.sticky article div.version-info {
   position: fixed;
   top: 65px;
   margin-right: 16.6667%;
   right: .75rem;
+  margin-top: .2rem;
   z-index: 10; }
 
 @media only screen and (min-width: 1400px) {
@@ -315,20 +338,6 @@ main.sticky article .version-info {
 
 .verbatim-wrap a[id] {
   display: none; }
-
-div.version-info {
-  background-color: #fe7c3f;
-  color: #0c322c;
-  float: right;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 120%;
-  margin: 5px 0 10px;
-  padding: 0.5rem 1rem; }
-
-.single div.version-info {
-  position: relative;
-  top: 70px; }
 
 h6.version-info {
   background-color: #c7f1e3;

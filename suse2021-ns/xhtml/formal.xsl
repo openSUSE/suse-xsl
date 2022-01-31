@@ -84,9 +84,9 @@
       </xsl:call-template>
     </xsl:param>
 
-    <!-- FIXME: The 'if' here avoids outputting the (ugly/obvious)
+    <!-- FIXME suse22: The 'if' here avoids outputting the (ugly/obvious)
          label "Abstract" before abstracts. This is probably the wrong solution.
-         It works, but it's ugly. -->
+         It does not work and it's ugly. -->
     <xsl:if
       test="not(d:abstract or d:highlights)
             or $object/d:title or $object/d:info/d:title">

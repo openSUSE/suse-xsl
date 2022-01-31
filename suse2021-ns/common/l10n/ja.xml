@@ -28,7 +28,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
 
    <l:gentext key="navigation" text="ナビゲーション"/>
-   <l:gentext key="sharethispage" text="このページを共有: "/>
+   <l:gentext key="sharethispage" text="このページを共有"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

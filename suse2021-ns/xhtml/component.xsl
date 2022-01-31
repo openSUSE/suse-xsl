@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Purpose:
-     Splitting chapter-wise titles into number and title
+     Split chapter titles into number and title
 
    Author(s):    Thomas Schraitle <toms@opensuse.org>
                  Stefan Knorr <sknorr@suse.de>
@@ -23,10 +23,12 @@
   <!-- This handles the case where a component (bibliography, for example)
        occurs inside a section; will we need parameters for this? -->
 
-  <!-- This "level" is a section level.  To compute <h> level, add 1. -->
+  <!-- This "level" is a section level. To compute <h> level, add 1. -->
   <xsl:variable name="level">
     <xsl:choose>
-      <!-- chapters and other book children should get <h1> -->
+      <!-- If we do single-page HTML, give the <h1> to the book page -->
+      <!-- Chunked HTML is different, as we need an <h1> on every page for SEO 
+      FIXME suse22 not yet implemented -->
       <xsl:when test="$node/parent::d:book">0</xsl:when>
       <xsl:when test="ancestor::d:section">
         <xsl:value-of select="count(ancestor::d:section)+1"/>
@@ -50,17 +52,21 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="{$wrapperplus}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{$wrapperplus}">
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:call-template name="create.header.title">
       <xsl:with-param name="node" select="$node"/>
       <xsl:with-param name="level" select="$level"/>
     </xsl:call-template>
-    <xsl:call-template name="create.permalink">
-      <xsl:with-param name="object" select="$node"/>
-    </xsl:call-template>
-    <xsl:call-template name="editlink"/>
   </xsl:element>
+  <!-- FIXME suse22 reenable! -->
+  <!-- for SEO, keep the permalink, report bug, and edit links out of the title -->
+  <!-- <div class="title-extras">
+  <xsl:call-template name="create.permalink">
+    <xsl:with-param name="object" select="$node"/>
+  </xsl:call-template>
+  <xsl:call-template name="editlink"/>
+  </div>-->
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
 

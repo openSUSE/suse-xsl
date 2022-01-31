@@ -375,7 +375,6 @@
           <xsl:with-param name="format" select="'chunk'"/>
         </xsl:call-template>
 
-        <!-- FIXME support all params supported in xhtml/docbook.xsl -->
         <xsl:call-template name="user.header.content"/>
 
         <main id="_content">
@@ -398,11 +397,17 @@
 
           </article>
 
-          <nav id="_side-toc-page" class="side-toc">
+          <aside id="_side-toc-page" class="side-toc">
             <xsl:if test="not(self::d:part or self::d:book or self::d:set)
-                          and not(*/section or */sect1 or */sect2 or */sect3 or
-                                  */sect4 or */sect5)">
-              <div class="mini-toc-title">On this page</div> <!--FIXME needs gentext -->
+                          and (./d:section or ./d:sect1 or ./d:sect2 or ./d:sect3 or
+                               ./d:sect4 or ./d:sect5 or
+                               ./d:refsect1 or ./d:refsect2 or ./d:refsect3 or
+                               ./d:topic or ./d:simplesect)">
+              <div class="side-title">
+                <xsl:call-template name="gentext">
+                  <xsl:with-param name="key" select="'onthispage'"/>
+                </xsl:call-template>
+              </div>
               <xsl:variable name="toc.params">
                 <xsl:call-template name="find.path.params">
                   <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
@@ -412,26 +417,22 @@
               <xsl:call-template name="make.lots">
                 <xsl:with-param name="toc.params" select="$toc.params"/>
                 <xsl:with-param name="toc">
-                  <xsl:call-template name="component.toc">
-                    <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-                  </xsl:call-template>
+                  <xsl:call-template name="component.toc"/>
                 </xsl:with-param>
               </xsl:call-template>
             </xsl:if>
+
+            <xsl:call-template name="share.and.print">
+              <xsl:with-param name="prev" select="$prev"/>
+              <xsl:with-param name="next" select="$next"/>
+              <xsl:with-param name="nav.context" select="$nav.context"/>
+            </xsl:call-template>
+
             <xsl:text> </xsl:text>
-          </nav>
+          </aside>
 
         </main>
 
-        <nav class="sidebar-secondary">
-          <xsl:call-template name="share.and.print">
-            <xsl:with-param name="prev" select="$prev"/>
-            <xsl:with-param name="next" select="$next"/>
-            <xsl:with-param name="nav.context" select="$nav.context"/>
-          </xsl:call-template>
-        </nav>
-
-        <!-- FIXME support all params supported in xhtml/docbook.xsl -->
         <xsl:call-template name="user.footer.content"/>
 
       </body>
@@ -445,6 +446,7 @@
        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.header"/>"</xsl:comment>
      </xsl:when>
      <xsl:when test="$generate.header != 0">
+      <!-- FIXME suse22: this is too much (real) header code, should be ssi'd -->
        <header id="_mainnav">
          <xsl:call-template name="create.header.logo"/>
          <div id="utilitynav">
@@ -525,7 +527,8 @@
        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
      </xsl:when>
      <xsl:when test="$generate.footer = 1">
-       <footer>
+       <!-- FIXME suse22 real footer! -->
+       <footer id="_footer">
          © me 2022
          <!--<xsl:call-template name="user.footer.content"/>-->
          <!--<xsl:call-template name="user.footer.navigation">
@@ -548,7 +551,7 @@
       <nav id="_side-toc-overall" class="side-toc">
         <xsl:call-template name="side.toc.overall.inner">
           <xsl:with-param name="node" select="((ancestor-or-self::d:book | ancestor-or-self::d:article)|key('id', $rootid))[last()]"/>
-          <xsl:with-param name="current-context" select="."/>
+          <xsl:with-param name="page-context" select="."/>
         </xsl:call-template>
       </nav>
     </xsl:if>

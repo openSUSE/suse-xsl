@@ -29,7 +29,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Siirtyminen"/>
-   <l:gentext key="sharethispage" text="Jaa tämä sivu: "/>
+   <l:gentext key="sharethispage" text="Jaa tämä sivu"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

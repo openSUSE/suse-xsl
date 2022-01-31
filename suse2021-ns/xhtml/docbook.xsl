@@ -549,46 +549,41 @@
     <xsl:param name="nav.context"/>
 
     <xsl:if test="$generate.share.and.print != 0">
-      <div class="_share-print">
-        <xsl:if test="$generate.sharelinks != 0">
-          <div class="online-contents share">
-            <strong><xsl:call-template name="gentext">
-                <xsl:with-param name="key">sharethispage</xsl:with-param>
-              </xsl:call-template>
-            </strong>
-            <!-- &#x2022; = &bull; -->
-            <span class="share-buttons">
-              <span class="_share-fb bottom-button">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">shareviafacebook</xsl:with-param>
-                </xsl:call-template>
-              </span>
-              <span class="spacer"> &#x2022; </span>
-              <span class="_share-in bottom-button">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">sharevialinkedin</xsl:with-param>
-                </xsl:call-template>
-              </span>
-              <span class="spacer"> &#x2022; </span>
-              <span class="_share-tw bottom-button">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">shareviatwitter</xsl:with-param>
-                </xsl:call-template>
-              </span>
-              <span class="spacer"> &#x2022; </span>
-              <span class="_share-mail bottom-button">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key">shareviaemail</xsl:with-param>
-                </xsl:call-template>
-              </span>
-            </span>
-          </div>
-        </xsl:if>
-        <div class="print"><span class="_print-button bottom-button">
+      <xsl:if test="$generate.sharelinks != 0">
+        <div class="side-title">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">sharethispage</xsl:with-param>
+          </xsl:call-template>
+        </div>
+        <ul class="share">
+          <li class="_share-fb bottom-button">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">shareviafacebook</xsl:with-param>
+            </xsl:call-template>
+          </li>
+          <li class="_share-in bottom-button">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">sharevialinkedin</xsl:with-param>
+            </xsl:call-template>
+          </li>
+          <li class="_share-tw bottom-button">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">shareviatwitter</xsl:with-param>
+            </xsl:call-template>
+          </li>
+          <li class="_share-mail bottom-button">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key">shareviaemail</xsl:with-param>
+            </xsl:call-template>
+          </li>
+        </ul>
+      </xsl:if>
+      <div class="print">
+        <span class="_print-button bottom-button">
           <xsl:call-template name="gentext">
             <xsl:with-param name="key">printthispage</xsl:with-param>
-          </xsl:call-template></span></div>
-        <xsl:call-template name="clearme"/>
+          </xsl:call-template>
+        </span>
       </div>
     </xsl:if>
   </xsl:template>

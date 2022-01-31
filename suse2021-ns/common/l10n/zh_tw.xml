@@ -41,7 +41,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
 
    <l:gentext key="navigation" text="導覽"/>
-   <l:gentext key="sharethispage" text="共享此頁面︰ "/>
+   <l:gentext key="sharethispage" text="共享此頁面"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>

@@ -40,7 +40,7 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigatie"/>
-   <l:gentext key="sharethispage" text="Deze pagina delen: "/>
+   <l:gentext key="sharethispage" text="Deze pagina delen"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
