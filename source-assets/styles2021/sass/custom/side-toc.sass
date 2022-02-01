@@ -52,13 +52,18 @@ $you-are-here-weight: 700
 
     ol
       background-color: scale-color($c_fog, $lightness: +25%)
-      display: none
+      margin-bottom: 0
+      // FIXME suse22: the max-height:0 overflow:hidden thing allows animating this,
+      // but is it ok to use it? or do we need display:none actually?
+      max-height: 0
+      overflow: hidden
+      transition: max-height 0.3s ease-in-out, margin-bottom 0.2s ease-in-out
 
     > li.active
-      padding-bottom: .3rem
 
       > ol
-        display: block
+        max-height: 1000px
+        margin-bottom: .3rem
 
   li
     display: block

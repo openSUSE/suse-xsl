@@ -24,7 +24,7 @@
 
   <xsl:import href="http://docbook.sourceforge.net/release/xsl-ns/current/xhtml/chunk-common.xsl"/>
 
-  <!-- ===================================================== -->
+
   <xsl:template
     match="d:appendix|d:article|d:book|d:bibliography|d:chapter|d:part|d:preface|d:glossary|d:sect1|d:set|d:refentry|d:index"
                 mode="breadcrumbs">
@@ -236,7 +236,6 @@
   </xsl:template>
 
 
-  <!-- ===================================================== -->
   <xsl:template name="bottom.navigation">
     <xsl:param name="prev" select="/d:foo"/>
     <xsl:param name="next" select="/d:foo"/>
@@ -314,6 +313,7 @@
     </xsl:if>
   </xsl:template>
 
+
   <xsl:template match="d:chapter|d:appendix|d:part" mode="page-bottom.label">
     <xsl:variable name="template">
       <xsl:call-template name="gentext.template">
@@ -332,7 +332,7 @@
 
   <xsl:template match="*" mode="page-bottom.label"/>
 
-  <!-- ===================================================== -->
+
   <xsl:template name="chunk-element-content">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
@@ -348,6 +348,7 @@
       <xsl:with-param name="nav.context" select="$nav.context"/>
     </xsl:call-template>
   </xsl:template>
+
 
   <xsl:template name="chunk-element-content-html">
     <xsl:param name="prev"/>
@@ -397,39 +398,7 @@
 
           </article>
 
-          <aside id="_side-toc-page" class="side-toc">
-            <xsl:if test="not(self::d:part or self::d:book or self::d:set)
-                          and (./d:section or ./d:sect1 or ./d:sect2 or ./d:sect3 or
-                               ./d:sect4 or ./d:sect5 or
-                               ./d:refsect1 or ./d:refsect2 or ./d:refsect3 or
-                               ./d:topic or ./d:simplesect)">
-              <div class="side-title">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key" select="'onthispage'"/>
-                </xsl:call-template>
-              </div>
-              <xsl:variable name="toc.params">
-                <xsl:call-template name="find.path.params">
-                  <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-                </xsl:call-template>
-              </xsl:variable>
-
-              <xsl:call-template name="make.lots">
-                <xsl:with-param name="toc.params" select="$toc.params"/>
-                <xsl:with-param name="toc">
-                  <xsl:call-template name="component.toc"/>
-                </xsl:with-param>
-              </xsl:call-template>
-            </xsl:if>
-
-            <xsl:call-template name="share.and.print">
-              <xsl:with-param name="prev" select="$prev"/>
-              <xsl:with-param name="next" select="$next"/>
-              <xsl:with-param name="nav.context" select="$nav.context"/>
-            </xsl:call-template>
-
-            <xsl:text> </xsl:text>
-          </aside>
+          <xsl:call-template name="side.toc.page"/>
 
         </main>
 
@@ -438,131 +407,6 @@
       </body>
     </html>
   </xsl:template>
-
-
-  <xsl:template name="user.header.content">
-    <xsl:choose>
-     <xsl:when test="$include.ssi.header != ''">
-       <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.header"/>"</xsl:comment>
-     </xsl:when>
-     <xsl:when test="$generate.header != 0">
-      <!-- FIXME suse22: this is too much (real) header code, should all be ssi'd -->
-       <header id="_mainnav">
-         <xsl:call-template name="create.header.logo"/>
-         <div id="utilitynav">
-           <div id="searchbox">
-             <form id="searchform" accept-charset="utf-8" action="/search.html" method="get">
-               <input class="search-text" autocomplete="off" type="text" size="10" name="q" title="Search" placeholder="Search term" dir="ltr" spellcheck="false" />
-               <button type="submit" class="search-submit">Search</button>
-             </form>
-           </div>
-           <div class="utilitynav-container">
-             <div id="utilitynav-customer">
-               <a href="https://scc.suse.com/">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                   <xsl:comment>Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0</xsl:comment>
-                   <path d="M358.182 179.361c-19.493-24.768-52.679-31.945-79.872-19.098-15.127-15.687-36.182-22.487-56.595-19.629V67c0-36.944-29.736-67-66.286-67S89.143 30.056 89.143 67v161.129c-19.909-7.41-43.272-5.094-62.083 8.872-29.355 21.795-35.793 63.333-14.55 93.152l109.699 154.001C134.632 501.59 154.741 512 176 512h178.286c30.802 0 57.574-21.5 64.557-51.797l27.429-118.999A67.873 67.873 0 0 0 448 326v-84c0-46.844-46.625-79.273-89.818-62.639zM80.985 279.697l27.126 38.079c8.995 12.626 29.031 6.287 29.031-9.283V67c0-25.12 36.571-25.16 36.571 0v175c0 8.836 7.163 16 16 16h6.857c8.837 0 16-7.164 16-16v-35c0-25.12 36.571-25.16 36.571 0v35c0 8.836 7.163 16 16 16H272c8.837 0 16-7.164 16-16v-21c0-25.12 36.571-25.16 36.571 0v21c0 8.836 7.163 16 16 16h6.857c8.837 0 16-7.164 16-16 0-25.121 36.571-25.16 36.571 0v84c0 1.488-.169 2.977-.502 4.423l-27.43 119.001c-1.978 8.582-9.29 14.576-17.782 14.576H176c-5.769 0-11.263-2.878-14.697-7.697l-109.712-154c-14.406-20.223 14.994-42.818 29.394-22.606zM176.143 400v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.733 0-14-7.163-14-16zm75.428 0v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.732 0-14-7.163-14-16zM327 400v-96c0-8.837 6.268-16 14-16h6c7.732 0 14 7.163 14 16v96c0 8.837-6.268 16-14 16h-6c-7.732 0-14-7.163-14-16z"/>
-                 </svg>
-                 Customer Center
-               </a>
-             </div>
-             <div id="utilitynav-contact">
-               <a href="https://www.suse.com/contact/">
-                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="weighted">
-                   <xsl:comment>Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0</xsl:comment>
-                   <path d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z"/>
-                 </svg>
-                 Contact
-               </a>
-             </div>
-             <div id="utilitynav-language">
-               <div class="menu-item">
-                 <span id="language-name">
-                   English
-                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="weighted right">
-                     <xsl:comment>Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0</xsl:comment>
-                     <path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/>
-                   </svg>
-                 </span>
-               </div>
-             </div>
-             <div id="utilitynav-search">
-               <div class="menu-item" style="cursor: pointer;">
-                 <span>
-                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <xsl:comment>Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0</xsl:comment>
-                     <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/>
-                     </svg>
-                     Search
-                   </span>
-                 </div>
-               </div>
-             </div>
-         </div>
-         <div id="menu">
-           <div class="category enabled"><a href="/">Supported documentation</a></div>
-           <div class="category enabled hidden-xs"><a href="https://www.suse.com/releasenotes/">Release notes</a></div>
-           <div class="category enabled hidden-xs"><a href="https://www.suse.com/support/kb/">Knowledgebase</a></div>
-           <div class="category enabled"><a class="c-btn--round" href="https://www.suse.com/">SUSE homepage</a></div>
-         </div>
-         <div class="header-end-line">
-           <div class="header-end-line-persimmon"><xsl:text> </xsl:text></div>
-           <div class="header-end-line-green"><xsl:text> </xsl:text></div>
-           <div class="header-end-line-waterhole-blue"><xsl:text> </xsl:text></div>
-           <div class="header-end-line-mint"><xsl:text> </xsl:text></div>
-         </div>
-       </header>
-       <!-- <xsl:call-template name="breadcrumbs.navigation">
-         <!-/-<xsl:with-param name="prev" select="$prev"/>
-         <xsl:with-param name="next" select="$next"/>-/->
-       </xsl:call-template> -->
-     </xsl:when>
-     <xsl:otherwise/>
-   </xsl:choose>
-  </xsl:template>
-
-  <xsl:template name="user.footer.content">
-    <xsl:choose>
-      <xsl:when test="$include.ssi.footer != ''">
-        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
-      </xsl:when>
-      <xsl:when test="$generate.footer = 1">
-        <!-- FIXME suse22 real footer! -->
-        <footer id="_footer">
-          <div class="footer-start-line"></div>
-          <div class="l-flex l-flex--justify-start u-margin-bottom-medium">
-            <img class="logo" src="/docserv/res/lightheaded/suse-white-logo-green.svg" alt="" />
-            <div class="foot-nav">
-              <ul class="l-flex l-flex--justify-start">
-                <li><a href="https://www.suse.com/company/careers/">Careers</a></li>
-                <li><a href="https://www.suse.com/company/legal/">Legal</a></li>
-                <li class="en-us-only"><a href="https://www.suse.com/media/agreement/suse_anti_slavery_statement.pdf">Anti-slavery statement</a></li>
-                <li><a href="https://www.suse.com/company/about/">About</a></li>
-                <li><a href="https://www.suse.com/company/subscribe/">Communication preferences</a></li>
-                <li><a href="https://www.suse.com/contact/">Contact</a></li>
-              </ul>
-            </div>
-            <div class="social">
-              <ul class="l-flex l-flex--justify-start">
-                <li><a href="https://www.facebook.com/SUSEWorldwide"><img src="/docserv/res/lightheaded/fn-fbook-ico-white.png" alt="footer-social-facebook"/></a></li>
-                <li><a href="https://www.twitter.com/SUSE"><img src="/docserv/res/lightheaded/fn-twitter-ico-white.png" width="30" alt="footer-social-twitter"/></a></li>
-                <li><a href="https://www.linkedin.com/company/suse"><img src="/docserv/res/lightheaded/fn-link-ico-white.png" alt="footer-social-linkedin"/></a></li>
-              </ul>
-            </div>
-            </div>
-            <div class="divider"></div>
-            <div class="copy">
-              <span class="copy__rights">© SUSE 2022</span>
-              <a href="https://www.suse.com/company/policies/privacy/">Privacy</a>
-            </div>
-        </footer>
-      </xsl:when>
-      <xsl:otherwise/>
-    </xsl:choose>
-  </xsl:template>
-
-
-
 
 
   <xsl:template name="side.toc.overall">
@@ -574,6 +418,39 @@
         </xsl:call-template>
       </nav>
     </xsl:if>
+  </xsl:template>
+
+
+  <xsl:template name="side.toc.page">
+    <aside id="_side-toc-page" class="side-toc">
+      <xsl:if test="not(self::d:part or self::d:book or self::d:set)
+                    and (./d:section or ./d:sect1 or ./d:sect2 or ./d:sect3 or
+                         ./d:sect4 or ./d:sect5 or
+                         ./d:refsect1 or ./d:refsect2 or ./d:refsect3 or
+                         ./d:topic or ./d:simplesect)">
+        <xsl:variable name="toc.params">
+          <xsl:call-template name="find.path.params">
+            <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+          </xsl:call-template>
+        </xsl:variable>
+        <div class="side-title">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key" select="'onthispage'"/>
+          </xsl:call-template>
+        </div>
+
+        <xsl:call-template name="make.lots">
+          <xsl:with-param name="toc.params" select="$toc.params"/>
+          <xsl:with-param name="toc">
+            <xsl:call-template name="component.toc"/>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
+
+      <xsl:call-template name="share.and.print"/>
+
+      <xsl:text> </xsl:text>
+    </aside>
   </xsl:template>
 
 </xsl:stylesheet>

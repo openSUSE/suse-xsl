@@ -33,6 +33,7 @@ header
 main
   display: flex
   position: relative
+  margin-bottom: 2rem
 
 
   article
@@ -81,21 +82,21 @@ main
     #_side-toc-page
       right: 0
 
-    &.scroll-with-footer .side-toc
-      min-height: calc(100vh - #{$i_head_offset})
-      max-height: unset
-      position: absolute
-      height: auto
-      top: unset
-      bottom: 0
+    &.scroll-with-footer
+      .side-toc
+        min-height: calc(100vh - #{$i_head_offset})
+        max-height: unset
+        position: absolute
+        height: auto
+        top: unset
+        bottom: 0
+      #_side-toc-overall
+        background: linear-gradient(to top, #{$c_white}, #{$c_fog_200} 5rem)
 
 
 footer
-  // FIXME suse22
-  height: 300px
   background-color: $c_pine
   position: relative
-  z-index: 9000
 
 @media only screen and (min-width: 1400px)
   main article
