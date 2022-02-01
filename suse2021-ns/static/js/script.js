@@ -36,8 +36,8 @@ function init22() {
   if (footTop <= windowHeight) {
     let fTocBottom = windowHeight - footTop;
     eMain.classList.add("scroll-with-footer");
-    eSideTocAll.style['bottom'] = fTocBottom + 'px';
-    eSideTocPage.style['bottom'] = fTocBottom + 'px';
+    //eSideTocAll.style['bottom'] = fTocBottom + 'px';
+    //eSideTocPage.style['bottom'] = fTocBottom + 'px';
   };
 
   window.addEventListener('scroll', function () {
@@ -54,23 +54,14 @@ function init22() {
       if (footTop <= windowHeight) {
         let fTocBottom = windowHeight - footTop;
         eMain.classList.add("scroll-with-footer");
-        eSideTocAll.style['bottom'] = fTocBottom + 'px';
-        eSideTocPage.style['bottom'] = fTocBottom + 'px';
+        //eSideTocAll.style['bottom'] = fTocBottom + 'px';
+        //eSideTocPage.style['bottom'] = fTocBottom + 'px';
       } else {
         eMain.classList.remove("scroll-with-footer");
-        eSideTocAll.style['bottom'] = 'unset';
-        eSideTocPage.style['bottom'] = 'unset';
+        //eSideTocAll.style['bottom'] = 'unset';
+        //eSideTocPage.style['bottom'] = 'unset';
       };
   });
-
-  // open side toc list at position of "you are here"
-  const here = document.getElementById('_side-toc-overall').getElementsByClassName('you-are-here')[0];
-  if (typeof(here) === 'object') {
-    // FIXME suse22 Does this break in non-obvious ways when all those parents don't exist/are the wrong ones..?
-    // yes, it does!
-    here.parentElement.parentElement.parentElement.classList.add('active');
-    here.parentElement.parentElement.parentElement.getElementsByTagName('a')[0].classList.add('current');
-  };
 
 
   // update page toc to show current section in bold

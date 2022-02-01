@@ -32,6 +32,7 @@ header
 
 main
   display: flex
+  position: relative
 
 
   article
@@ -53,11 +54,13 @@ main
   #_side-toc-overall
     background-color: $c_fog_200
     margin-left: 0
+    padding-right: 0
 
   #_side-toc-page
     @extend .side-toc
     background-color: $c_white
     margin-right: 0
+    padding-left: 0
 
   &.sticky
     article
@@ -79,11 +82,11 @@ main
       right: 0
 
     &.scroll-with-footer .side-toc
-      min-height: unset
+      min-height: calc(100vh - #{$i_head_offset})
       max-height: unset
+      position: absolute
       height: auto
       top: unset
-      // to be overridden via JS
       bottom: 0
 
 

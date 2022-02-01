@@ -446,7 +446,7 @@
        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.header"/>"</xsl:comment>
      </xsl:when>
      <xsl:when test="$generate.header != 0">
-      <!-- FIXME suse22: this is too much (real) header code, should be ssi'd -->
+      <!-- FIXME suse22: this is too much (real) header code, should all be ssi'd -->
        <header id="_mainnav">
          <xsl:call-template name="create.header.logo"/>
          <div id="utilitynav">
@@ -523,23 +523,42 @@
 
   <xsl:template name="user.footer.content">
     <xsl:choose>
-     <xsl:when test="$include.ssi.footer != ''">
-       <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
-     </xsl:when>
-     <xsl:when test="$generate.footer = 1">
-       <!-- FIXME suse22 real footer! -->
-       <footer id="_footer">
-         © me 2022
-         <!--<xsl:call-template name="user.footer.content"/>-->
-         <!--<xsl:call-template name="user.footer.navigation">
-           <!-/-<xsl:with-param name="prev" select="$prev"/>-/->
-           <!-/-<xsl:with-param name="next" select="$next"/>-/->
-           <xsl:with-param name="nav.context" select="$nav.context"/>
-         </xsl:call-template>-->
-       </footer>
-     </xsl:when>
-     <xsl:otherwise/>
-   </xsl:choose>
+      <xsl:when test="$include.ssi.footer != ''">
+        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
+      </xsl:when>
+      <xsl:when test="$generate.footer = 1">
+        <!-- FIXME suse22 real footer! -->
+        <footer id="_footer">
+          <div class="footer-start-line"></div>
+          <div class="l-flex l-flex--justify-start u-margin-bottom-medium">
+            <img class="logo" src="/docserv/res/lightheaded/suse-white-logo-green.svg" alt="" />
+            <div class="foot-nav">
+              <ul class="l-flex l-flex--justify-start">
+                <li><a href="https://www.suse.com/company/careers/">Careers</a></li>
+                <li><a href="https://www.suse.com/company/legal/">Legal</a></li>
+                <li class="en-us-only"><a href="https://www.suse.com/media/agreement/suse_anti_slavery_statement.pdf">Anti-slavery statement</a></li>
+                <li><a href="https://www.suse.com/company/about/">About</a></li>
+                <li><a href="https://www.suse.com/company/subscribe/">Communication preferences</a></li>
+                <li><a href="https://www.suse.com/contact/">Contact</a></li>
+              </ul>
+            </div>
+            <div class="social">
+              <ul class="l-flex l-flex--justify-start">
+                <li><a href="https://www.facebook.com/SUSEWorldwide"><img src="/docserv/res/lightheaded/fn-fbook-ico-white.png" alt="footer-social-facebook"/></a></li>
+                <li><a href="https://www.twitter.com/SUSE"><img src="/docserv/res/lightheaded/fn-twitter-ico-white.png" width="30" alt="footer-social-twitter"/></a></li>
+                <li><a href="https://www.linkedin.com/company/suse"><img src="/docserv/res/lightheaded/fn-link-ico-white.png" alt="footer-social-linkedin"/></a></li>
+              </ul>
+            </div>
+            </div>
+            <div class="divider"></div>
+            <div class="copy">
+              <span class="copy__rights">© SUSE 2022</span>
+              <a href="https://www.suse.com/company/policies/privacy/">Privacy</a>
+            </div>
+        </footer>
+      </xsl:when>
+      <xsl:otherwise/>
+    </xsl:choose>
   </xsl:template>
 
 

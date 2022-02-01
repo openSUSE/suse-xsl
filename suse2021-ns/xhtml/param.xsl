@@ -83,6 +83,10 @@
             -stringparam="external.js.onlineonly='https://www.suse.com/path/to/file1.js /path/to/file2.js'"
     -->
 
+  <!-- FIXME suse22: Keep this disabled? Re-enable? -->
+  <!-- Disable optional checks designed to give feedback to writers but not necessary for builds as such. -->
+  <xsl:param name="optimize.performance" select="1"/>
+
 <!-- 0. DocBook XSL Parameter settings                              -->
 <xsl:param name="html.ext">.html</xsl:param>
 

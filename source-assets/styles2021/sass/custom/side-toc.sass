@@ -64,28 +64,36 @@ $you-are-here-weight: 700
     display: block
 
     > a.has-children
+      padding-right: 1.75rem
+      position: relative
+
       &.current
         font-weight: $you-are-here-weight
 
       &::after
         content: ''
         display: block
-        float: right
+        position: absolute
+        right: .4rem
+        top: .4rem
         height: 1rem
         text-align: center
         width: 1rem
         font-weight: 800
-        background-color: $c_white
-        border: 3px solid $c_white
+        border: .2rem solid $c_white
         border-radius: 50%
+        background-color: $c_white
         background-repeat: no-repeat
         // FIXME suse22: base64'd SVG chevron from fontawesome https://css-tricks.com/probably-dont-base64-svg/
         background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIiBjbGFzcz0id2VpZ2h0ZWQgcmlnaHQiPjwhLS0gRm9udCBBd2Vzb21lIEZyZWUgNS4xNS4zIGJ5IEBmb250YXdlc29tZSwgaHR0cHM6Ly9mb250YXdlc29tZS5jb20gLSBDQyBCWSA0LjAgLS0+PHBhdGggZD0iTTIwNy4wMjkgMzgxLjQ3NkwxMi42ODYgMTg3LjEzMmMtOS4zNzMtOS4zNzMtOS4zNzMtMjQuNTY5IDAtMzMuOTQxbDIyLjY2Ny0yMi42NjdjOS4zNTctOS4zNTcgMjQuNTIyLTkuMzc1IDMzLjkwMS0uMDRMMjI0IDI4NC41MDVsMTU0Ljc0NS0xNTQuMDIxYzkuMzc5LTkuMzM1IDI0LjU0NC05LjMxNyAzMy45MDEuMDRsMjIuNjY3IDIyLjY2N2M5LjM3MyA5LjM3MyA5LjM3MyAyNC41NjkgMCAzMy45NDFMMjQwLjk3MSAzODEuNDc2Yy05LjM3MyA5LjM3Mi0yNC41NjkgOS4zNzItMzMuOTQyIDB6Ii8+PC9zdmc+Cg==')
+        background-position: .05rem .04rem
         rotate: -90deg
+        transition: rotate 0.2s linear
 
 
     &.active > a.has-children::after
       rotate: 0.01deg
+      background-position: .04rem .05rem
 
   ol > li.active > a
     background-color: $c_jungle
