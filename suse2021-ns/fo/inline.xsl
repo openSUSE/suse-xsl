@@ -462,9 +462,9 @@
     <svg:svg xmlns:svg="http://www.w3.org/2000/svg" height="100"
       width="{$width + 60}">
       <svg:rect height="100" width="{$width + 60}" x="0" y="0"
-        fill="&c_waterhole;" fill-opacity="1" stroke="none"/>
+        fill="&c_fog_200;" fill-opacity="1" stroke="none"/>
       <svg:text font-family="{$mono-stack}" text-anchor="middle"
-        x="{($width div 2) + 25}" y="{$instream-font-size}" fill="&c_white;"
+        x="{($width div 2) + 25}" y="{$instream-font-size}" fill="&c_pine;"
         font-size="{$instream-font-size}" font-weight="bold"><xsl:value-of select="$cap"/></svg:text>
     </svg:svg>
   </fo:instream-foreign-object>
