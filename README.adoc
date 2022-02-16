@@ -1,15 +1,21 @@
-SUSE XSL Stylesheets 2.81.0
-============================
-
+= SUSE XSL Stylesheets
 :numbered:
 :website: https://github.com/openSUSE/suse-xsl
-image:https://travis-ci.org/openSUSE/suse-xsl.svg?branch=develop["Build Status", link="https://travis-ci.org/openSUSE/suse-xsl"]
 
 This project contains customization layers for the DocBook XSL stylesheets.
 
 
-Requirements for Building
--------------------------
+== Requirements for use
+
+* DAPS from https://github.com/openSUSE/daps
+* DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
+* XSLT processor like `xsltproc` or Saxon 6 (needs to have support for exslt)
+* Python 3
+
+
+== Building
+
+=== Requirements
 
 These stylesheets can be used as-is for DocBook 4 content.
 To use them with DocBook 5 content, build them with `make`.
@@ -21,38 +27,41 @@ For a successful build, you will need:
 * `xmlcatalog`
 * `aspell`
 
-Requirements for Use
---------------------
+For the `sass-css` target:
 
-* DAPS from https://github.com/openSUSE/daps
-* DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
-* XSLT processor like `xsltproc` or Saxon 6 (needs to have support for exslt)
-* Python 3
+* `sassc` (openSUSE's RPM-packaged version is good enough)
 
-Requirements for Testing
-------------------------
+
+=== Creating a build
+
+* After changes to the SASS code: regenerate the suse2021 and suse2022 CSS: `make sass-css`
+
+* Create namespaced suse and suse2013 stylesheets: `make`
+
+
+== Requirements for testing
 
 * `dapscompare` from Documentation:Tools
 
-Running the Tests
------------------
 
-The current tests are not run automatically and need some manual intervention
-for use. They are based upon creating reference images of test documents,
-making a code change and then creating updated images of the test documents.
+== Running tests
+
+NOTE: The `dapscompare` test utility never left the beta state and does not have a maintainer currently.
+
+The current tests are not run automatically and need some manual intervention for use.
+They are based upon creating reference images of test documents, making a code change and then creating updated images of the test documents.
 Then, you can compare the updated images to the reference images.
 
-On the command line, this works out to the following:
+On the command line, do the following:
 
-1. In the first invocation, run `./run_dapscompare.sh reference` (from the
-   `tests/` directory). This will create reference images, that is the baseline
-   from which you can judge if what you did was correct or not).
-2. Do the stylesheet changes.
-3. Now run `./run_dapscompare.sh` (without any arguments) again. This will
-   create the comparison images. If there are changes between reference and
-   comparison images, those will be shown to you in a GUI.
+. In the first invocation, run `./run_dapscompare.sh reference` (from the `tests/` directory).
+This will create reference images, that is the baseline from which you can judge if what you did was correct or not).
 
-The reference images are currently not stored centrally: They differ
-somewhat depending on, for example, font rendering settings between different
-computers.
+. Perform the stylesheet changes.
 
+. Now run `./run_dapscompare.sh` (without any arguments) again.
+This will create the comparison images.
+If there are changes between reference and comparison images, those will be shown to you in a GUI.
+
+The reference images are currently not stored centrally:
+They differ somewhat, depending on, for example, font rendering settings between different computers.
