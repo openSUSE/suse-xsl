@@ -879,30 +879,32 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       <!-- FIXME suse22: Does not work correctly for single-page sets & books
       (but does work for articles). So just disable it in that case for now and
       focus on chunked HTML ... -->
-      <xsl:if test="(not(self::d:part or self::d:book or self::d:set) or $is.chunk = 0)
-                    and (./d:section or ./d:sect1 or ./d:sect2 or ./d:sect3 or
-                         ./d:sect4 or ./d:sect5 or
-                         ./d:refsect1 or ./d:refsect2 or ./d:refsect3 or
-                         ./d:topic or ./d:simplesect or
-                         ./d:book or ./d:article or ./d:chapter or ./d:preface or
-                         ./d:appendix or ./d:part)">
-        <xsl:variable name="toc.params">
-          <xsl:call-template name="find.path.params">
-            <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <div class="side-title">
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'onthispage'"/>
-          </xsl:call-template>
-        </div>
+      <xsl:if test="$is.chunk != 0 or self::d:article">
+        <xsl:if test="(not(self::d:part or self::d:book or self::d:set) or $is.chunk = 0)
+                      and (./d:section or ./d:sect1 or ./d:sect2 or ./d:sect3 or
+                           ./d:sect4 or ./d:sect5 or
+                           ./d:refsect1 or ./d:refsect2 or ./d:refsect3 or
+                           ./d:topic or ./d:simplesect or
+                           ./d:book or ./d:article or ./d:chapter or ./d:preface or
+                           ./d:appendix or ./d:part)">
+          <xsl:variable name="toc.params">
+            <xsl:call-template name="find.path.params">
+              <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
+            </xsl:call-template>
+          </xsl:variable>
+          <div class="side-title">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'onthispage'"/>
+            </xsl:call-template>
+          </div>
 
-        <xsl:call-template name="make.lots">
-          <xsl:with-param name="toc.params" select="$toc.params"/>
-          <xsl:with-param name="toc">
-            <xsl:call-template name="component.toc"/>
-          </xsl:with-param>
-        </xsl:call-template>
+          <xsl:call-template name="make.lots">
+            <xsl:with-param name="toc.params" select="$toc.params"/>
+            <xsl:with-param name="toc">
+              <xsl:call-template name="component.toc"/>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
       </xsl:if>
 
       <xsl:call-template name="give.feedback"/>
