@@ -1,0 +1,72 @@
+<!--
+   Purpose:
+     Consistently define colors throughout the stylesheets.
+
+   Author(s):   Stefan Knorr <sknorr@suse.de>
+   Copyright:   2013, Stefan Knorr
+
+-->
+
+
+<!-- SUSE 2021 colors (color names match SASS variable names) -->
+
+<!ENTITY c_white         "rgb(255, 255, 255)">
+<!ENTITY c_black         "rgb(  0,   0,   0)">
+
+<!ENTITY c_fog           "rgb(239, 239, 239)">
+<!ENTITY c_fog_200       "rgb(222, 223, 224)">
+<!ENTITY c_fog_300       "rgb(192, 194, 196)">
+
+<!ENTITY c_pine          "rgb( 12,  50,  44)">
+<!ENTITY c_jungle        "rgb( 48, 186, 120)">
+
+<!ENTITY c_midnight      "rgb( 25,  32, 114)">
+<!ENTITY c_midnight_60   "rgb(117, 122, 167)">
+<!ENTITY c_midnight_30   "rgb(187, 189, 212)">
+
+<!ENTITY c_waterhole     "rgb( 36,  83, 255)">
+<!ENTITY c_waterhole_60  "rgb(128, 154, 247)">
+<!ENTITY c_waterhole_30  "rgb(191, 203, 251)">
+
+<!ENTITY c_persimmon     "rgb(254, 124,  63)">
+<!ENTITY c_persimmon_60  "rgb(243, 178, 146)">
+<!ENTITY c_persimmon_30  "rgb(249, 218, 200)">
+
+<!ENTITY c_mint          "rgb(144, 235, 205)">
+<!ENTITY c_mint_60       "rgb(199, 241, 227)">
+<!ENTITY c_mint_30       "rgb(227, 248, 241)">
+
+
+<!-- Colors from 2012 SUSE homepage (not an official palette, reduced to the colors we still use) -->
+
+<!ENTITY light-gray           "rgb(153,153,153)">
+<!ENTITY mid-gray             "rgb(102,102,102)"> <!-- #666 -->
+<!ENTITY darker-gray          "rgb(51,51,51)">
+<!ENTITY dark-gray            "rgb(32,32,32)"> <!-- #202020 -->
+
+
+<!-- SUSE 2012 color palette (reduced to the colors we still use) -->
+
+<!ENTITY light-gray-old       "rgb(239,239,240)"> <!-- #EFEFF0 -->
+<!ENTITY extra-light-gray-old "rgb(245,245,246)">
+
+
+<!-- openSUSE 2012 colors (reduced to the colors we still use) -->
+
+<!ENTITY dark-blood           "rgb(140,0,0)">
+
+
+<!-- Purple from the Tango set for remarks (matches the HTML version) -->
+<!ENTITY tango-plum           "rgb(117,80,123)">
+
+<!-- Special gray to replace italics -->
+<!ENTITY italic-replacement         "rgb(120,120,120)">
+<!ENTITY bold-replacement           "rgb(240,240,240)">
+
+<!-- High visibility testing colors -->
+<!ENTITY test1                "#F0F">
+<!ENTITY test1border          "1px solid #F0F">
+<!ENTITY test2                "#F00">
+<!ENTITY test2border          "1px solid #0BF">
+<!ENTITY test3                "#0F0">
+<!ENTITY test3border          "1px solid #0F0">

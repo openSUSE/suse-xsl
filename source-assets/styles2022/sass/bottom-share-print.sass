@@ -1,0 +1,160 @@
+// Page bottom
+
+.page-bottom
+  margin-bottom: 80px
+  margin-top: 30px
+  padding: 10px 20px 0
+
+
+._bottom-navigation
+  border-top: 1px solid #999
+
+
+.nav-link
+  clear: both
+  display: block
+  height: 36px
+  margin: 20px 0 0 0
+  overflow: hidden
+
+
+.nav-link > .next-icon,
+.nav-link > .prev-icon
+  display: block
+  float: left
+  height: 36px
+  margin: 0 10px 0 0
+  width: 36px
+
+
+.nav-link > .prev-icon
+  background-position: -360px 0
+
+
+.nav-link:hover > .prev-icon
+  background-position: -360px -36px
+
+
+
+.nav-link > .next-icon
+  background-position: -396px 0
+
+
+.nav-link:hover > .next-icon
+  background-position: -396px -36px
+
+
+
+.nav-label
+  color: $c_pine
+  display: block
+  height: 36px
+  line-height: 36px
+  text-decoration: none
+  text-overflow: ellipsis
+
+
+.nav-link:hover > .nav-label,
+.nav-link:focus > .nav-label,
+.nav-link:active > .nav-label
+  color: $c_jungle
+
+
+.bottom-button
+  background-color: $c_fog
+  border: 1px solid rgba(20,20,20,0.2)
+  color: #333
+  cursor: pointer
+  display: inline-block
+  font-size: 14px
+  height: 22px
+  padding: 0 7px
+
+
+#_print-button
+  font-weight: 600
+
+
+._print-button:before,
+._share-fb:before,
+._share-in:before,
+._share-mail:before,
+._share-tw:before,
+  border: 1px solid rgba(20,20,20,0.2)
+  content: " "
+  display: block
+  float: left
+  font-size: 14px
+  font-weight: 600
+  height: 22px
+  line-height: 22px
+  margin: -1px 6px -2px -8px
+  overflow: hidden
+  text-align: center
+  width: 16px
+
+
+._share-fb:before
+  background-color: #3B5998
+  background-position: -271px -88px
+
+
+._share-in:before
+  background-color: #0073B1
+  background-position: -289px -88px
+
+
+._share-tw:before
+  background-color: #00BBF5
+  background-position: -307px -88px
+
+
+._share-mail:before
+  background-color: #666
+  background-position: -235px -88px
+
+
+._print-button:before
+  background-color: #666
+  background-position: -253px -88px
+
+
+.bottom-button:active,
+.bottom-button:focus,
+.bottom-button:hover
+  background-color: #DEDEDE
+  border: 1px solid rgba(20,20,20,0.5)
+
+
+.bottom-button:active:before,
+.bottom-button:focus:before,
+.bottom-button:hover:before
+  border-bottom: 1px solid rgba(20,20,20,0.5)
+  border-left: 1px solid rgba(20,20,20,0.5)
+  border-top: 1px solid rgba(20,20,20,0.5)
+
+
+._share-print
+  border-top: 1px solid #999
+  clear: both
+  color: #666
+  display: none
+  margin: 20px 0 0 0
+  padding: 20px 0 0 0
+
+
+.offline .online-contents
+  visibility: hidden
+
+
+.print,
+.share
+  display: block
+
+
+.share
+  float: left
+
+
+.print
+  float: right

@@ -1,6 +1,6 @@
 # Makefile for suse-xsl-stylesheets
 #
-# Copyright (C) 2011-2021 SUSE Linux GmbH
+# Copyright (C) 2011-2022 SUSE Linux GmbH
 #
 # Author:
 # Frank Sundermeyer <fsundermeyer at opensuse dot org>
@@ -11,7 +11,7 @@ endif
 
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
-VERSION       := 2.81.0
+VERSION       := 2.82.0
 CDIR          := $(shell pwd)
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
@@ -25,8 +25,9 @@ DIR2005          := suse
 DIR2013_DAPS     := daps2013
 DIR2013_OPENSUSE := opensuse2013
 DIR2013_SUSE     := suse2013
-# SUSE2021 is only available in a namespaced version
+# SUSE2021 and beyond are only available in a namespaced version
 DIR2021_SUSE     := suse2021-ns
+DIR2022_SUSE     := suse2022-ns
 
 #--------------------------------------------------------------
 # Directories and files that will be created
@@ -56,7 +57,7 @@ LOCAL_STYLEDIRS := $(DIR2005) $(DEV_DIR2005) \
    $(DIR2013_DAPS) $(DEV_DIR2013_DAPS) \
    $(DIR2013_OPENSUSE) $(DEV_DIR2013_OPENSUSE) \
    $(DIR2013_SUSE) $(DEV_DIR2013_SUSE) \
-   $(DIR2021_SUSE)
+   $(DIR2021_SUSE) $(DIR2022_SUSE)
 
 
 #-------------------------------------------------------
@@ -73,6 +74,7 @@ OPENSUSESTYLEDIR2013-NS := $(INST_STYLE_ROOT)/$(DIR2013_OPENSUSE)-ns
 SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
 SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
 SUSESTYLEDIR2021-NS     := $(INST_STYLE_ROOT)/$(DIR2021_SUSE)
+SUSESTYLEDIR2022-NS     := $(INST_STYLE_ROOT)/$(DIR2022_SUSE)
 
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
@@ -82,7 +84,7 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(DAPSSTYLEDIR2013) $(DAPSSTYLEDIR2013-NS) \
    $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) \
-   $(SUSESTYLEDIR2021-NS)
+   $(SUSESTYLEDIR2021-NS) $(SUSESTYLEDIR2022-NS)
 
 INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
    $(TTF_FONT_DIR) $(CATALOG_DIR)
@@ -91,6 +93,11 @@ INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
 # Variables for SASS->CSS conversion and other web stuff
 
 styles2021_sass = $(sort $(wildcard source-assets/styles2021/sass/*.sass))
+
+styles2022_sass_main = source-assets/styles2022/sass/style.sass
+styles2022_sass_custom = $(wildcard source-assets/styles2022/sass/custom/*.sass)
+styles2022_sass_bulma = $(wildcard source-assets/styles2022/sass/bulma-0.9.3/bulma/sass/*/*.sass)
+
 
 #############################################################
 
@@ -170,12 +177,15 @@ dist-clean:
 	rmdir $(BUILD_DIR) 2>/dev/null || true
 
 PHONY: sass-css
-sass-css: suse2021-ns/static/css/style.css
+sass-css: suse2021-ns/static/css/style.css suse2022-ns/static/css/style.css
 
-# The main file is called 0-style.sass, so it will be listed here first.
 suse2021-ns/static/css/style.css: $(styles2021_sass)
+	sassc $< $@
+
+suse2022-ns/static/css/style.css: $(styles2021_sass_main) $(styles2021_sass_custom) $(styles2021_sass_bulma)
 	sassc $< $@
 
 PHONY: sass-clean
 sass-clean:
 	rm suse2021-ns/static/css/style.css
+	rm suse2022-ns/static/css/style.css
