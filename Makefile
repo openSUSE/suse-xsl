@@ -101,7 +101,7 @@ styles2022_sass_bulma = $(wildcard source-assets/styles2022/sass/bulma-0.9.3/bul
 
 #############################################################
 
-all: $(DEV_SUSEXSL_CATALOG) generate_xslns
+all: $(DEV_SUSEXSL_CATALOG) generate_xslns sass-css
 	@echo "Ready to install..."
 
 #-----------------------------
@@ -182,7 +182,7 @@ sass-css: suse2021-ns/static/css/style.css suse2022-ns/static/css/style.css
 suse2021-ns/static/css/style.css: $(styles2021_sass)
 	sassc $< $@
 
-suse2022-ns/static/css/style.css: $(styles2021_sass_main) $(styles2021_sass_custom) $(styles2021_sass_bulma)
+suse2022-ns/static/css/style.css: $(styles2022_sass_main) $(styles2022_sass_custom) $(styles2022_sass_bulma)
 	sassc $< $@
 
 PHONY: sass-clean
