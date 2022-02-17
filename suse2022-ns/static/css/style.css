@@ -1402,7 +1402,8 @@ main {
     right: 0; }
   @media screen and (min-width: 1215px) {
     main.sticky.scroll-with-footer::before, main.sticky.scroll-with-footer::after {
-      content: ''; } }
+      content: '';
+      z-index: -1; } }
   @media screen and (min-width: 1215px) {
     main.sticky.scroll-with-footer .side-toc {
       min-height: calc(100vh - 65px);
