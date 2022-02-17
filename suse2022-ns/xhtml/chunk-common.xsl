@@ -303,7 +303,7 @@
       <nav id="_side-toc-overall">
         <xsl:attribute name="class">
           <xsl:text>side-toc</xsl:text>
-          <xsl:if test="self::d:toc">
+          <xsl:if test="self::d:set">
             <xsl:text> document-overview-visible disable-document-overview-button</xsl:text>
           </xsl:if>
         </xsl:attribute>
