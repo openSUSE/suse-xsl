@@ -118,6 +118,7 @@ install: | $(INST_DIRECTORIES)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2013_SUSE) . | (cd $(SUSESTYLEDIR2013); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd $(SUSESTYLEDIR2013-NS); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2021_SUSE) . | (cd  $(SUSESTYLEDIR2021-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIR2022_SUSE) . | (cd  $(SUSESTYLEDIR2022-NS); tar xp)
 	for SDIR in $(INST_STYLEDIRS); do \
 	  sed "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl > $$SDIR/VERSION.xsl.0; \
 	  mv $$SDIR/VERSION.xsl.0 $$SDIR/VERSION.xsl; \
