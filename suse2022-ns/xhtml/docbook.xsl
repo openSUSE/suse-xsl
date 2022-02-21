@@ -865,8 +865,12 @@ if (window.location.protocol.toLowerCase() != 'file:') {
         <footer id="_footer">
           <div class="growth-inhibitor">
             <div class="copy">
-              <span class="copy__rights">© SUSE 2022</span>
-              <a href="https://www.suse.com/company/policies/privacy/">Privacy</a>
+              <span class="copy__rights">© SUSE
+                <xsl:if test="function-available('date:year')">
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="date:year()"/>
+                </xsl:if>
+              </span>
             </div>
           </div>
         </footer>
