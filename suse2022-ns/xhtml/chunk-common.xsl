@@ -293,11 +293,8 @@
   <xsl:template name="side.toc.overall">
     <xsl:if test="$generate.side.toc != 0">
       <xsl:variable name="needs-document-overview">
-        <!-- FIXME suse22: rethink this idea of checking for an xml:id ...
-        We only care about identity, so generate-id() should be better maybe -->
-        <xsl:if test="( ancestor-or-self::d:set[@xml:id] |
-                        ancestor-or-self::d:book[@xml:id] |
-                        ancestor-or-self::d:article[@xml:id])[last()]/@xml:id != $rootid">1</xsl:if>
+        <xsl:if test="(/d:set or /d:book[d:article]) and not($rootid) or
+                      //*[@xml:id = $rootid][self::d:set or self::d:book[d:article]]">1</xsl:if>
       </xsl:variable>
 
       <nav id="_side-toc-overall">
