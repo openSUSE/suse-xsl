@@ -29,6 +29,13 @@
   xmlns:d="http://docbook.org/ns/docbook"
   xmlns:fo="http://www.w3.org/1999/XSL/Format">
 
+  <!-- FIXME suse22: Keep this disabled? Re-enable? -->
+  <!-- Disable optional checks designed to give feedback to writers but which
+  are not necessary for builds as such. This only makes sense for people who
+  look at `daps -vv` output which no one seems to do. -->
+  <xsl:param name="optimize.performance" select="1"/>
+
+
 <!-- 1. Admonitions  ============================================ -->
 
 
