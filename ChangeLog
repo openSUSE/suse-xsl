@@ -1,9 +1,20 @@
 -------------------------------------------------------------------
+Thu Feb 21 13:37:00 UTC 2020 - sknorr@suse.com
+
+Beta release of the SUSE XSL stylesheets 2.83.0:
+
+https://github.com/openSUSE/suse-xsl/releases/tag/2.83.0
+
+- PDF/HTML
+  - A variety of small, but important bug fixes for SUSE 2022
+    stylesheets, including a PDF build breaker
+
+-------------------------------------------------------------------
 Thu Feb 17 13:37:00 UTC 2020 - sknorr@suse.com
 
 Beta release of the SUSE XSL stylesheets 2.82.0:
 
-https://github.com/openSUSE/suse-xsl/releases/tag/2.81.0
+https://github.com/openSUSE/suse-xsl/releases/tag/2.82.0
 
 - PDF/HTML
   - Added first version of SUSE 2022 stylesheets (three-column,
