@@ -841,7 +841,8 @@ if (window.location.protocol.toLowerCase() != 'file:') {
   <xsl:template name="user.header.content">
     <xsl:choose>
       <xsl:when test="$include.ssi.header != ''">
-        <xsl:comment> #include virtual="<xsl:value-of select="$include.ssi.header"/>" </xsl:comment>
+        <!-- There must _not_ be a space between comment start ('<!-\-') and hash ('#') here! -->
+        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.header"/>" </xsl:comment>
       </xsl:when>
       <xsl:when test="$generate.header != 0">
         <header id="_mainnav">
@@ -857,7 +858,8 @@ if (window.location.protocol.toLowerCase() != 'file:') {
   <xsl:template name="user.footer.content">
     <xsl:choose>
       <xsl:when test="$include.ssi.footer != ''">
-        <xsl:comment> #include virtual="<xsl:value-of select="$include.ssi.footer"/>" </xsl:comment>
+        <!-- There must _not_ be a space between comment start ('<!-\-') and hash ('#') here! -->
+        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
       </xsl:when>
       <xsl:when test="$generate.footer = 1">
         <footer id="_footer">
