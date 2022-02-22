@@ -360,8 +360,12 @@ $(function() {
   };
 
   eBody.addEventListener('click', function(e){
-      document.getElementById('_mainnav').classList.remove('show-search');
-      document.getElementById('_utilitynav-language').classList.remove('visible');
+      if ( document.getElementById('_mainnav') !== null ) {
+        document.getElementById('_mainnav').classList.remove('show-search');
+      };
+      if ( document.getElementById('_utilitynav-language') !== null ) {
+        document.getElementById('_utilitynav-language').classList.remove('visible');
+      };
   }, false);
 
   if (  eSideTocAll &&
