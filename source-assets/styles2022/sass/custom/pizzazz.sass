@@ -49,7 +49,7 @@
   padding: 0.5rem 1rem
   max-width: 75%
 
-  @include m_mobile
+  @include m_tablet
     position: static !important
     margin-top: 1.5rem
     width: 100%
@@ -83,13 +83,13 @@ body.scroll-up main.sticky article .version-info
 
 
 
-// side bar opener buttons for mobile sizes
+// sidebar opener buttons for mobile sizes
 
 #_open-side-toc-overall
   display: block
   position: absolute
   top: .75rem
-  left: -20px
+  right: -20px
   height: $i_menu_button_size
   width: $i_menu_button_size
   border-radius: 50%
@@ -97,16 +97,16 @@ body.scroll-up main.sticky article .version-info
   outline: none
   background-color: $c_persimmon
   background-repeat: no-repeat
-  background-position: 70% 50%
+  background-position: 30% 50%
   background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#{$c_pine_url}" d="M 6,6.5 A 1.5,1.5 0 0 0 4.5,8 1.5,1.5 0 0 0 6,9.5 a 1.5,1.5 0 0 0 1.5,-1.5 1.5,1.5 0 0 0 -1.5,-1.5 z m 3,0.5 V 9 H 27 V 7 Z M 11,11 v 2 h 16 v -2 z m 0,4 V 17 H 27 V 15 Z M 6,18.5 A 1.5,1.5 0 0 0 4.5,20 a 1.5,1.5 0 0 0 1.5,1.5 1.5,1.5 0 0 0 1.5,-1.5 1.5,1.5 0 0 0 -1.5,-1.5 z m 3,0.5 v 2 H 27 V 19 Z M 11,23 v 2 h 16 v -2 z" /></svg>')
   z-index: 8000
-  transition: left 0.2s ease-in
 
   &:hover
     background-color: $c_funky_persimmon_prelight
 
   @include m_tablet_up
     display: none
+
 
 #_side-toc-overall.mobile-visible + #_open-side-toc-overall
   // button now needs to be fully exposed, a non-centered closer-X icon looks
@@ -133,7 +133,6 @@ body.scroll-up main.sticky #_open-side-toc-overall
   vertical-align: middle
   font-family: $f_sans
   padding: 0 2rem
-  margin-left: calc(40px + .75rem)
   color: $c_pine
   background-color: $c_jungle
   border: .2rem solid $c_pine
