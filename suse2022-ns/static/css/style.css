@@ -2507,8 +2507,8 @@ h2 {
     margin-left: 0;
     width: 24px; }
   .admonition.compact > h6 {
-    color: #666;
-    height: 24px; }
+    height: unset;
+    color: #0c322c; }
   .admonition.compact > p:nth-child(1) {
     margin-top: 0 !important; }
 
