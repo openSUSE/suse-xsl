@@ -191,7 +191,7 @@ set       toc,title
 <!-- 17. Glossary =============================================== -->
 
 <!-- 18. Miscellaneous ========================================== -->
-  <xsl:param name="menuchoice.separator" select="'&#xa0;/&#xa0;'"/>
+  <xsl:param name="menuchoice.separator" select="'&#xa0;›&#xa0;'"/>
   <xsl:param name="formal.title.placement">
 figure after
 example before
