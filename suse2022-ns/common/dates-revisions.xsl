@@ -68,7 +68,7 @@
         <xsl:variable name="format">
           <xsl:call-template name="gentext.template">
             <xsl:with-param name="context" select="'datetime'"/>
-            <xsl:with-param name="name" select="'format'"/>
+            <xsl:with-param name="name" select="'titlepage.format'"/>
           </xsl:call-template>
         </xsl:variable>
         <xsl:variable name="date-exslt">
