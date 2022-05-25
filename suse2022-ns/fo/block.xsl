@@ -208,13 +208,26 @@
     <xsl:value-of select="normalize-space(.)"/>
   </xsl:variable>
   <xsl:variable name="text-color">
-    <xsl:if test="processing-instruction('dbsuse')">
-      <xsl:call-template name="pi-attribute">
-        <xsl:with-param name="pis"
-          select="processing-instruction('dbsuse')" />
-        <xsl:with-param name="attribute">color</xsl:with-param>
-      </xsl:call-template>
-    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbsuse')">
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value">
+            <xsl:call-template name="pi-attribute">
+              <xsl:with-param name="pis"
+                select="processing-instruction('dbsuse')" />
+              <xsl:with-param name="attribute">color</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="starts-with(@role, 'color:')">
+	<!-- <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>-->
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>inherit</xsl:otherwise>
+    </xsl:choose>
   </xsl:variable>
   <!-- We need only one final character, but there may be
        something in the way, like a space that wasn't removed or so. -->

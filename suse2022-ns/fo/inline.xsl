@@ -520,22 +520,28 @@
 </xsl:template>
 
 <xsl:template match="d:phrase">
-    <xsl:variable name="text-color">
-      <xsl:choose>
-        <xsl:when test="processing-instruction('dbsuse')">
-          <xsl:call-template name="get-suse-color">
-            <xsl:with-param name="value">
-              <xsl:call-template name="pi-attribute">
-                <xsl:with-param name="pis"
-                  select="processing-instruction('dbsuse')" />
-                <xsl:with-param name="attribute">color</xsl:with-param>
-              </xsl:call-template>
-            </xsl:with-param>
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>inherit</xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
+  <xsl:variable name="text-color">
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbsuse')">
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value">
+            <xsl:call-template name="pi-attribute">
+              <xsl:with-param name="pis"
+                select="processing-instruction('dbsuse')" />
+              <xsl:with-param name="attribute">color</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="starts-with(@role, 'color:')">
+        <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>inherit</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
 
   <fo:inline color="{$text-color}">
     <xsl:apply-imports/>

@@ -128,33 +128,30 @@
       <xsl:when test="starts-with($value, '#') and string-length($value) &lt;= 7">
         <xsl:value-of select="$value"/>
       </xsl:when>
-      <xsl:when test="$value = 'aqua' or
-                      $value = 'black' or
-                      $value = 'blue' or
-                      $value = 'darkgray' or $value = 'darkgrey' or
-                      $value = 'fuchsia' or
-                      $value = 'gray' or $value = 'grey' or
-                      $value = 'green' or
-                      $value = 'lime' or
-                      $value = 'maroon' or
-                      $value = 'navy' or
-                      $value = 'olive' or
-                      $value = 'orange' or
-                      $value = 'purple' or
-                      $value = 'red' or
-                      $value = 'teal' or
-                      $value = 'white' or
-                      $value = 'yellow'">
-        <xsl:value-of select="$value"/>
-      </xsl:when>
-      <!-- SUSE colors -->
+      <!-- SUSE colors primary colors don't have 60% and 30% -->
       <xsl:when test="$value = 'suse-pine-green'">#0C322C</xsl:when>
       <xsl:when test="$value = 'suse-jungle-green'">#30BA78</xsl:when>
+      <xsl:when test="$value = 'suse-white'">#FFFFFF</xsl:when>
+      <!--  -->
       <xsl:when test="$value = 'suse-midnight-blue'">#192072</xsl:when>
+      <xsl:when test="$value = 'suse-midnight-blue-60'">#757AA7</xsl:when>
+      <xsl:when test="$value = 'suse-midnight-blue-30'">#BBBDD4</xsl:when>
+      <!--  -->
       <xsl:when test="$value = 'suse-waterhole-blue'">#2453FF</xsl:when>
+      <xsl:when test="$value = 'suse-waterhole-blue-60'">#809AF7</xsl:when>
+      <xsl:when test="$value = 'suse-waterhole-blue-30'">#BFCBFB</xsl:when>
+      <!--  -->
       <xsl:when test="$value = 'suse-mint'">#90EBCD</xsl:when>
+      <xsl:when test="$value = 'suse-mint-60'">#C7F1E3</xsl:when>
+      <xsl:when test="$value = 'suse-mint-30'">#E3F8F1</xsl:when>
+      <!--  -->
       <xsl:when test="$value = 'suse-persimmon'">#FE7C3F</xsl:when>
+      <xsl:when test="$value = 'suse-persimmon-60'">#F3B292</xsl:when>
+      <xsl:when test="$value = 'suse-persimmon-30'">#F9DAC8</xsl:when>
+      <!--  -->
       <xsl:when test="$value = 'suse-fog'">#EFEFEF</xsl:when>
+      <xsl:when test="$value = 'suse-fog-200'">#DEDFE0</xsl:when>
+      <xsl:when test="$value = 'suse-fog-300'">#C0C2C4</xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">info</xsl:with-param>
