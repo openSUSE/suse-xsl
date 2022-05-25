@@ -11,9 +11,10 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:d="http://docbook.org/ns/docbook"
+  xmlns:la="urn:x-suse:xslt:layout"
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
-  exclude-result-prefixes="exsl d">
+  exclude-result-prefixes="exsl d la">
 
 
   <xsl:template name="inline.sansseq">
@@ -121,6 +122,34 @@
 
   <xsl:template match="d:command">
     <xsl:call-template name="inline.monoseq"/>
+  </xsl:template>
+
+  <xsl:template match="d:phrase">
+    <xsl:variable name="text-color">
+      <xsl:choose>
+        <xsl:when test="processing-instruction('dbsuse')">
+          <xsl:call-template name="get-suse-color">
+            <xsl:with-param name="value">
+              <xsl:call-template name="pi-attribute">
+                <xsl:with-param name="pis"
+                  select="processing-instruction('dbsuse')" />
+                <xsl:with-param name="attribute">color</xsl:with-param>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:variable>
+
+    <span>
+      <xsl:if test="$text-color != ''">
+        <xsl:attribute name="style">
+          <xsl:value-of select="concat('color:', $text-color, ';')" />
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-imports />
+    </span>
   </xsl:template>
 
   <xsl:template match="d:productname">
