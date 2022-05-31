@@ -63,7 +63,7 @@
 
       <l:template name="example-label" text="Exemple %nt&#160;:"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="Figure %nt&#160;:"/>
+      <l:template name="figure-label" text="Figure %n&#160;:"/>
       <l:template name="figure-title" text="%t"/>
       <l:template name="glosslist-label" text=""/>
       <l:template name="glosslist-title" text="%t"/>
