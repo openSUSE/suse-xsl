@@ -19,7 +19,7 @@ jobs:
     #  PATH: .:$PATH
     #  LD_PRELOAD: /lib/x86_64-linux-gnu/libSegFault.so
     #  DBXSL: http://docbook.sourceforge.net/release/xsl/current
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Output env variables
         run: |
@@ -42,9 +42,12 @@ jobs:
           echo "\n"
           echo "::debug::---end"
 
+      - name: Run update
+        run: sudo apt-get update --yes
+
       - name: Install dependencies
         run: |
-          sudo apt-get install -y jing libbatik-java libavalon-framework-java \
+          sudo apt-get install --fix-missing -y jing libbatik-java libavalon-framework-java \
                xml-core libxml2-utils docbook docbook-xsl parallel
 
       - uses: actions/checkout@v2
