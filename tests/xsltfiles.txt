@@ -11,3 +11,5 @@ opensuse2013/*/*.xsl
 opensuse2013/*.xsl
 suse2021-ns/*/*.xsl
 suse2021-ns/*.xsl
+suse2022-ns/*/*.xsl
+suse2022-ns/*.xsl
