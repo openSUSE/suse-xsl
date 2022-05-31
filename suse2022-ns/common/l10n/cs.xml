@@ -10,9 +10,6 @@
    <l:gentext key="Contributors"    text="Přispěvatelé"/>
 
    <l:gentext key="admonseparator"  text=": "/>
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
 
    <l:gentext key="selectlanguage" text="Vybrat jazyk"/>
    <l:gentext key="selectformat" text="Vybrat formát"/>
@@ -27,22 +24,94 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigace"/>
+   <l:gentext key="moredocuments" text="Více dokumentů"/>
+
+   <l:gentext key="onthispage" text="Na této straně"/>
+
+   <l:gentext key="givefeedback" text="Připomínkovat"/>
+   <l:gentext key="reportbug" text="Nahlásit problém"/>
+   <l:gentext key="editsource" text="Upravit zdrojový dokument"/>
+
+<!--   <l:gentext key="previouspage" text="Previous"/>-->
+<!--   <l:gentext key="nextpage" text="Next"/>-->
+
    <l:gentext key="sharethispage" text="Sdílet tuto stránku"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-mail"/>
    <l:gentext key="printthispage" text="Vytisknout tuto stránku"/>
-   <l:gentext key="susecareers" text="Careers"/>
-   <l:gentext key="suselegal" text="Legal"/>
-   <l:gentext key="suseabout" text="About"/>
-   <l:gentext key="susecontact" text="Contact Us"/>
+   <l:gentext key="susecareers" text="Zaměstnání"/>
+   <l:gentext key="suselegal" text="Právní informace"/>
+   <l:gentext key="suseabout" text="O programu"/>
+   <l:gentext key="susecontact" text="Kontaktujte nás"/>
    <l:gentext key="version.info" text="Platí pro "/>
    <l:gentext key="totopofpage" text="Nahoru"/>
 
+   <l:gentext key="version" text="Verze"/>
+   <l:gentext key="Version" text="Verze"/>
+
+   <l:gentext key="step.optional" text="(Volitelné)"/>
+   <l:gentext key="GlossSeeAlso" text="Viz také"/>
+   <l:gentext key="glossseealso" text="Viz také"/>
+   <l:gentext key="SeeAlso"         text="Viz také" />
+   <l:gentext key="Authors"         text="Autoři" />
+   <l:gentext key="TableofContents" text="Obsah" />
+   <l:gentext key="ListofAuthors"   text="Seznam autorů" />
+   <l:gentext key="Contributor"     text="Přispěvatel" />
+   <l:gentext key="Contributors"    text="Přispěvatelé" />
+
+   <l:gentext key="selectlanguage" text="Vybrat jazyk" />
+   <l:gentext key="selectformat" text="Vybrat formát" />
+   <l:gentext key="formathtml" text="Webové stránky" />
+   <l:gentext key="formatsinglehtml" text="Jedna webová stránka" />
+   <l:gentext key="formatpdf" text="PDF" />
+   <l:gentext key="formatepub" text="E-kniha (EPUB)" />
+   <l:gentext key="contentsoverview" text="Obsah" />
+   <l:gentext key="showcontentsoverview" text="Zobrazit obsah" />
+   <l:gentext key="find" text="Hledání" />
+
+   <l:gentext key="runinhead.default.title.end.punct" text="." />
+
+   <l:gentext key="navigation" text="Navigace" />
+   <l:gentext key="moredocuments" text="Více dokumentů" />
+
+   <l:gentext key="onthispage" text="Na této straně" />
+
+   <l:gentext key="givefeedback" text="Připomínkovat" />
+   <l:gentext key="reportbug" text="Nahlásit problém" />
+   <l:gentext key="editsource" text="Upravit zdrojový dokument" />
+
+   <l:gentext key="previouspage" text="Předchozí" />
+   <l:gentext key="nextpage" text="Následující" />
+
+   <l:gentext key="sharethispage" text="Sdílet tuto stránku" />
+   <l:gentext key="shareviafacebook" text="Facebook" />
+   <l:gentext key="sharevialinkedin" text="LinkedIn" />
+   <l:gentext key="shareviatwitter" text="Twitter" />
+   <l:gentext key="shareviaemail" text="E-mail" />
+   <l:gentext key="printthispage" text="Vytisknout tuto stránku" />
+   <l:gentext key="susecareers" text="Zaměstnání" />
+   <l:gentext key="suselegal" text="Právní informace" />
+   <l:gentext key="suseabout" text="O programu" />
+   <l:gentext key="susecontact" text="Kontaktujte nás" />
+   <l:gentext key="version.info" text="Platí pro " />
+   <l:gentext key="totopofpage" text="Začátek" />
+
+   <l:gentext key="version" text="Verze" />
+   <l:gentext key="Version" text="Verze" />
+
+   <l:gentext key="step.optional" text="(Volitelné)" />
+   <l:gentext key="GlossSeeAlso" text="Viz také" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jdi na obsah"/>
-     <l:template name="bypass-to-nav" text="Jdi na navigaci: předchozí stránka [klávesa p]/další stránka [klávesa n]"/>
+     <l:template name="bypass-to-content" text="Přeskočit na obsah" />
+     <l:template name="bypass-to-nav" text="Přeskočit na stránkovou navigaci: předchozí stránka [přístup klávesou p] / následující stránka [přístup klávesou n]" />
    </l:context>
 
    <l:context name="styles">
@@ -72,7 +141,7 @@
       <l:template name="sect3" text="&#268;&#225;st &#8222;%t&#8220;"/>
       <l:template name="sect4" text="&#268;&#225;st &#8222;%t&#8220;"/>
       <l:template name="sect5" text="&#268;&#225;st &#8222;%t&#8220;"/>
-      <l:template name="page.citation" text=" (strana&#160;%p)"/>
+      <l:template name="page.citation" text=" (str.&#160;%p)" />
 
       <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Článek „%t”"/>
@@ -103,7 +172,7 @@
       <l:template name="equation" style="nonumber"  text="Rovnice&#160;&#8222;%t&#8220;"/>
       <l:template name="example" style="nonumber"  text="P&#345;&#237;klad&#160;&#8222;%t&#8220;"/>
       <l:template name="figure" style="nonumber"  text="Obr&#225;zek&#160;&#8222;%t&#8220;"/>
-      <l:template name="part" style="nonumber"  text="Part&#160;&#8222;%t&#8220;"/>
+      <l:template name="part" style="nonumber"  text="Díl&#160;&#8222;%t&#8220;"/>
       <l:template name="procedure" style="nonumber"  text="Postup&#160;&#8222;%t&#8220;"/>
       <l:template name="productionset" style="nonumber"  text="V&#253;roba&#160;&#8222;%t&#8220;"/>
       <l:template name="qandadiv" style="nonumber"  text="Ot&#225;zky a odpov&#283;di&#160;&#8222;%t&#8220;"/>
@@ -150,7 +219,7 @@
    </l:context>
 
    <l:context name="title">
-      <l:template name="part" text="Part&#160;%n&#160;%t"/>
+      <l:template name="part" text="Díl&#160;%n „%t“" />
    </l:context>
 
 
@@ -174,7 +243,7 @@
       <l:template name="pageup" text="Page &#x02191;"/>
       <l:template name="right" text="&#x02192;"/><!-- rarr -->
       <l:template name="shift" text="Shift"/>
-      <l:template name="space" text="Mezern&#237;k"/>
+      <l:template name="space" text="Space"/>
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
@@ -185,7 +254,7 @@
    </l:context>
 
    <l:context name="datetime">
-     <l:template name="titlepage.format" text="d. B Y"/>
+     <l:template name="titlepage.format" text="d b Y"/>
    </l:context>
 
 </l:l10n>

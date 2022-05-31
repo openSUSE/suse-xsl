@@ -4,30 +4,39 @@
         english-language-name="Japanese">
 
    <l:gentext key="LocalisedLanguageName" text="&#26085;&#26412;&#35486;"/>
-   <l:gentext key="Authors" text="著者"/>
-   <l:gentext key="ListofAuthors" text="&#33879;&#32773;"/>
-   <l:gentext key="TableofContents" text="&#30446;&#27425;"/>
-   <l:gentext key="Contributor"     text="コントリビュータ"/>
-   <l:gentext key="Contributors"    text="コントリビュータ"/>
+   <l:gentext key="SeeAlso"         text="関連項目" />
+   <l:gentext key="Authors"         text="著者" />
+   <l:gentext key="TableofContents" text="目次" />
+   <l:gentext key="ListofAuthors"   text="著者のリスト" />
+   <l:gentext key="Contributor"     text="寄稿者" />
+   <l:gentext key="Contributors"    text="寄稿者" />
 
    <l:gentext key="admonseparator"  text=": "/>
-
-   <l:dingbat key="guimenustartquote" text="&#65339;"/>
-   <l:dingbat key="guimenuendquote" text="&#65341;"/>
 
    <l:gentext key="selectlanguage" text="言語の選択"/>
    <l:gentext key="selectformat" text="フォーマットの選択"/>
    <l:gentext key="formathtml" text="Webページ"/>
    <l:gentext key="formatsinglehtml" text="単一のWebページ"/>
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="電子書籍(EPUB)"/>
-   <l:gentext key="contentsoverview" text="コンテンツ"/>
-   <l:gentext key="showcontentsoverview" text="コンテンツの表示"/>
+   <l:gentext key="formatepub" text="Eブック(EPUB)" />
+   <l:gentext key="contentsoverview" text="目次" />
+   <l:gentext key="showcontentsoverview" text="目次を表示" />
    <l:gentext key="find" text="検索"/>
 
-   <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
+   <l:gentext key="runinhead.default.title.end.punct" text="." />
 
    <l:gentext key="navigation" text="ナビゲーション"/>
+   <l:gentext key="moredocuments" text="その他のドキュメント" />
+
+   <l:gentext key="onthispage" text="このページで" />
+
+   <l:gentext key="givefeedback" text="フィードバック" />
+   <l:gentext key="reportbug" text="問題の報告" />
+   <l:gentext key="editsource" text="ソースドキュメントの編集" />
+
+   <l:gentext key="previouspage" text="前へ" />
+   <l:gentext key="nextpage" text="次へ" />
+
    <l:gentext key="sharethispage" text="このページを共有"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -36,15 +45,30 @@
    <l:gentext key="printthispage" text="このページを印刷"/>
    <l:gentext key="susecareers" text="採用情報"/>
    <l:gentext key="suselegal" text="利用条件"/>
-   <l:gentext key="suseabout" text="会社情報"/>
+   <l:gentext key="suseabout" text="バージョン情報" />
    <l:gentext key="susecontact" text="お問い合わせ先"/>
-   <l:gentext key="version.info" text="適用先"/>
+   <l:gentext key="version.info" text="適用項目 " />
    <l:gentext key="totopofpage" text="トップへ"/>
 
-   <!-- FIXME: Needs translation. -->
+   <l:gentext key="version" text="バージョン" />
+   <l:gentext key="Version" text="バージョン" />
+
+   <l:gentext key="step.optional" text="(オプション)" />
+   <l:gentext key="GlossSeeAlso" text="関連項目" />
+   <l:gentext key="glossseealso" text="関連項目" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="目次にジャンプ" />
+     <l:template name="bypass-to-nav" text="ページナビゲーションにジャンプ: 前のページ[アクセスキーp]/次のページ[アクセスキーn]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="%tも参照してください。" />
    </l:context>
 
    <l:context name="styles">

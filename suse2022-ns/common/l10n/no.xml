@@ -12,10 +12,6 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Velg språk"/>
    <l:gentext key="selectformat" text="Velg format"/>
    <l:gentext key="formathtml" text="Websider"/>
@@ -29,6 +25,17 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigasjon"/>
+   <l:gentext key="moredocuments" text="More documents"/>
+
+   <l:gentext key="onthispage" text="On this page"/>
+
+   <l:gentext key="givefeedback" text="Give feedback"/>
+   <l:gentext key="reportbug" text="Report an issue"/>
+   <l:gentext key="editsource" text="Edit source document"/>
+
+   <l:gentext key="previouspage" text="Previous"/>
+   <l:gentext key="nextpage" text="Next"/>
+
    <l:gentext key="sharethispage" text="Del denne siden"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -41,6 +48,15 @@
    <l:gentext key="susecontact" text="Contact Us"/>
    <l:gentext key="version.info" text="Gjelder "/>
    <l:gentext key="totopofpage" text="Øverst"/>
+
+   <l:gentext key="version" text="Version"/>
+   <l:gentext key="Version" text="Version"/>
+
+   <l:gentext key="step.optional" text="(Optional)"/>
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
 
    <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">

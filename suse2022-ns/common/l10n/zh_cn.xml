@@ -4,43 +4,112 @@
   english-language-name="Chinese Simplified">
 
   <l:gentext key="LocalisedLanguageName" text="&#20013;&#25991;(&#31616;&#20307;)"/>
-  <l:gentext key="admonseparator"  text="&#65306;"/>
-  <l:gentext key="ListofAuthors" text="&#20316;&#32773;&#21015;&#34920;"/>
-  <l:gentext key="Authors" text="&#20316;&#32773;"/>
-  <l:gentext key="Contributor"     text="贡献者"/>
-  <l:gentext key="Contributors"    text="贡献者"/>
+  <l:gentext key="SeeAlso"         text="另请参见" />
+  <l:gentext key="Authors"         text="作者" />
+  <l:gentext key="TableofContents" text="目录" />
+  <l:gentext key="ListofAuthors"   text="作者列表" />
+  <l:gentext key="Contributor"     text="投稿者" />
+  <l:gentext key="Contributors"    text="投稿者" />
 
-  <l:gentext key="admonseparator"  text="︰ "/>
-  <l:gentext key="selectlanguage" text="选择语言"/>
-  <l:gentext key="selectformat" text="选择格式"/>
-  <l:gentext key="formathtml" text="网页"/>
-  <l:gentext key="formatsinglehtml" text="单一网页"/>
-  <l:gentext key="formatpdf" text="PDF"/>
-  <l:gentext key="formatepub" text="E-book (EPUB)"/> <!-- According to Google Translate, this should be: 电子书（EPUB） -->
-  <l:gentext key="contentsoverview" text="内容"/>
-  <l:gentext key="showcontentsoverview" text="显示内容"/>
-  <l:gentext key="find" text="查找"/>
+  <l:gentext key="admonseparator"  text="：" />
 
-  <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
+  <l:gentext key="selectlanguage" text="选择语言" />
+  <l:gentext key="selectformat" text="选择格式" />
+  <l:gentext key="formathtml" text="网页" />
+  <l:gentext key="formatsinglehtml" text="单页网页" />
+  <l:gentext key="formatpdf" text="PDF" />
+  <l:gentext key="formatepub" text="电子书 (EPUB)" />
+  <l:gentext key="contentsoverview" text="目录" />
+  <l:gentext key="showcontentsoverview" text="显示目录" />
+  <l:gentext key="find" text="查找" />
 
-  <l:gentext key="navigation" text="导航"/>
-  <l:gentext key="sharethispage" text="分享此页"/>
-  <l:gentext key="shareviafacebook" text="Facebook"/>
-  <l:gentext key="sharevialinkedin" text="LinkedIn"/>
-  <l:gentext key="shareviatwitter" text="Twitter"/>
-  <l:gentext key="shareviaemail" text="电子邮件"/>
-  <l:gentext key="printthispage" text="打印此页"/>
-  <l:gentext key="susecareers" text="职业"/>
-  <l:gentext key="suselegal" text="法律"/>
-  <l:gentext key="suseabout" text="关于"/>
-  <l:gentext key="susecontact" text="联系我们"/>
-  <l:gentext key="version.info" text="适用于"/>
-  <l:gentext key="totopofpage" text="顶部"/>
+  <l:gentext key="runinhead.default.title.end.punct" text="." />
 
+  <l:gentext key="navigation" text="导航" />
+  <l:gentext key="moredocuments" text="更多文档" />
 
-  <!-- In most cases, this has to be empty -->
-  <l:dingbat key="guimenustartquote" text=""/>
-  <l:dingbat key="guimenuendquote" text=""/>
+  <l:gentext key="onthispage" text="在此页上" />
+
+  <l:gentext key="givefeedback" text="提供反馈" />
+  <l:gentext key="reportbug" text="报告问题" />
+  <l:gentext key="editsource" text="编辑源文档" />
+
+  <l:gentext key="previouspage" text="上一页" />
+  <l:gentext key="nextpage" text="下一页" />
+
+  <l:gentext key="sharethispage" text="分享此页" />
+  <l:gentext key="shareviafacebook" text="Facebook" />
+  <l:gentext key="sharevialinkedin" text="LinkedIn" />
+  <l:gentext key="shareviatwitter" text="Twitter" />
+  <l:gentext key="shareviaemail" text="电子邮件" />
+  <l:gentext key="printthispage" text="打印此页" />
+  <l:gentext key="susecareers" text="招贤纳士" /><l:gentext key="admonseparator"  text="：" />
+
+  <l:gentext key="selectlanguage" text="选择语言" />
+  <l:gentext key="selectformat" text="选择格式" />
+  <l:gentext key="formathtml" text="网页" />
+  <l:gentext key="formatsinglehtml" text="单页网页" />
+  <l:gentext key="formatpdf" text="PDF" />
+  <l:gentext key="formatepub" text="电子书 (EPUB)" />
+  <l:gentext key="contentsoverview" text="目录" />
+  <l:gentext key="showcontentsoverview" text="显示目录" />
+  <l:gentext key="find" text="查找" />
+
+  <l:gentext key="runinhead.default.title.end.punct" text="." />
+
+  <l:gentext key="navigation" text="导航" />
+  <l:gentext key="moredocuments" text="更多文档" />
+
+  <l:gentext key="onthispage" text="在此页上" />
+
+  <l:gentext key="givefeedback" text="提供反馈" />
+  <l:gentext key="reportbug" text="报告问题" />
+  <l:gentext key="editsource" text="编辑源文档" />
+
+  <l:gentext key="previouspage" text="上一页" />
+  <l:gentext key="nextpage" text="下一页" />
+
+  <l:gentext key="sharethispage" text="分享此页" />
+  <l:gentext key="shareviafacebook" text="Facebook" />
+  <l:gentext key="sharevialinkedin" text="LinkedIn" />
+  <l:gentext key="shareviatwitter" text="Twitter" />
+  <l:gentext key="shareviaemail" text="电子邮件" />
+  <l:gentext key="printthispage" text="打印此页" />
+  <l:gentext key="susecareers" text="招贤纳士" />
+  <l:gentext key="suselegal" text="法律" />
+  <l:gentext key="suseabout" text="关于" />
+  <l:gentext key="susecontact" text="联系我们" />
+  <l:gentext key="version.info" text="适用范围 " />
+  <l:gentext key="totopofpage" text="返回页首" />
+
+  <l:gentext key="version" text="版本" />
+  <l:gentext key="Version" text="版本" />
+
+  <l:gentext key="step.optional" text="(可选)" />
+  <l:gentext key="GlossSeeAlso" text="另请参见" />
+  <l:gentext key="glossseealso" text="另请参见" />
+  <l:gentext key="suselegal" text="法律" />
+  <l:gentext key="suseabout" text="关于" />
+  <l:gentext key="susecontact" text="联系我们" />
+  <l:gentext key="version.info" text="适用范围 " />
+  <l:gentext key="totopofpage" text="返回页首" />
+
+  <l:gentext key="version" text="版本" />
+  <l:gentext key="Version" text="版本" />
+  
+  <l:gentext key="step.optional" text="(可选)" />
+  <l:gentext key="GlossSeeAlso" text="另请参见" />
+  <l:gentext key="glossseealso" text="另请参见" />
+
+   <l:context name="bypass-block">
+    <l:template name="bypass-to-content" text="跳到内容" />
+    <l:template name="bypass-to-nav" text="跳到页面导航：上一页 [access key p]/下一页 [access key n]" />
+  </l:context>
+
+  <l:context name="glossary">
+    <l:template name="seealso" text="另请参见 %t。" />
+  </l:context>
+
 
   <!-- Not quite sure why we need this: most of our other l10n files do not
   override the authorgroup context, only the zh_*.xml files do. However, we do
@@ -144,7 +213,6 @@
     <l:template name="November" text="11" lang="zh_cn"/>
     <l:template name="December" text="12" lang="zh_cn"/>
   </l:context>
-
 
   <l:context name="xref">
     <!-- Discussed these translations with Yan Gao:

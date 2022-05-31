@@ -4,21 +4,18 @@
         english-language-name="Korean">
 
    <l:gentext key="LocalisedLanguageName" text="&#54620;&#44397;&#50612;"/>
-   <l:gentext key="SeeAlso"         text="&#52280;&#51312;"/>
-   <l:gentext key="Authors"         text="&#51089;&#49457;&#51088;"/>
+   <l:gentext key="SeeAlso"         text="추가 보기" />
+   <l:gentext key="Authors"         text="원저자" />
    <l:gentext key="TableofContents" text="&#47785;&#52264;"/>
-   <l:gentext key="ListofAuthors" text="&#51200;&#51088; &#47785;&#47197;"/>
+   <l:gentext key="ListofAuthors"   text="원저자 목록" />
    <l:gentext key="Contributor"     text="기여자"/>
    <l:gentext key="Contributors"    text="기여자"/>
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="PubDate" text="게시일"/>
    <l:gentext key="pubdate" text="게시일"/>
+
    <l:gentext key="selectlanguage" text="언어 선택"/>
    <l:gentext key="selectformat" text="형식 선택"/>
    <l:gentext key="formathtml" text="웹 페이지"/>
@@ -32,26 +29,49 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="탐색"/>
+   <l:gentext key="moredocuments" text="문서 더 보기" />
+
+   <l:gentext key="onthispage" text="이 페이지에서" />
+
+   <l:gentext key="givefeedback" text="피드백 제공" />
+   <l:gentext key="reportbug" text="문제 신고" />
+   <l:gentext key="editsource" text="소스 문서 편집" />
+
+   <l:gentext key="previouspage" text="이전" />
+   <l:gentext key="nextpage" text="다음" />
+
    <l:gentext key="sharethispage" text="이 페이지 공유"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="전자 메일"/>
    <l:gentext key="printthispage" text="이 페이지 인쇄"/>
-   <l:gentext key="susecareers" text="Careers"/>
-   <l:gentext key="suselegal" text="Legal"/>
-   <l:gentext key="suseabout" text="About"/>
-   <l:gentext key="susecontact" text="Contact Us"/>
-   <l:gentext key="version.info" text="적용 대상 "/>
-   <l:gentext key="totopofpage" text="맨 위로"/>
+   <l:gentext key="susecareers" text="커리어" />
+   <l:gentext key="suselegal" text="법률" />
+   <l:gentext key="suseabout" text="정보" />
+   <l:gentext key="susecontact" text="문의하기" />
+   <l:gentext key="version.info" text="다음에 적용 " />
+   <l:gentext key="totopofpage" text="상위" />
 
-<!-- edited from docbook version-->
-   <l:gentext key="TIP" text="[&#52628;&#44032;&#32;&#51221;&#48372;]"/><l:gentext key="WARNING" text="&#51452;&#51032;"/>
+   <l:gentext key="version" text="버전" />
+   <l:gentext key="Version" text="버전" />
 
-   <!-- FIXME: Needs translation. -->
+   <l:gentext key="step.optional" text="(선택 사항)" />
+   <l:gentext key="GlossSeeAlso" text="추가 보기" />
+   <l:gentext key="glossseealso" text="추가 보기" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="목차로 이동" />
+     <l:template name="bypass-to-nav" text="페이지 탐색으로 이동: 이전 페이지 [액세스 키 p]/다음 페이지 [액세스 키 n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="%t 추가 보기" />
    </l:context>
 
    <l:context name="styles">
@@ -182,7 +202,7 @@
       <l:template name="toc" text="%t"/>
    </l:context>
 
-   <l:context name="msgset"><!-- FIXME: What are the Japanese keycaps? -->
+   <l:context name="msgset">
       <l:template name="alt" text="Alt"/>
       <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->
       <l:template name="command" text="&#x2318;"/>
@@ -228,7 +248,7 @@
    </l:context>
 
    <l:context name="datetime">
-     <l:template name="titlepage.format" text="m/d/Y"/>
+     <l:template name="titlepage.format" text="d b Y"/>
    </l:context>
 
 </l:l10n>

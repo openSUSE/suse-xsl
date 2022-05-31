@@ -3,51 +3,71 @@
    language="pl" english-language-name="Polish">
 
    <l:gentext key="LocalisedLanguageName" text="Polski"/>
-   <l:gentext key="SeeAlso" text="Zobacz także"/>
+   <l:gentext key="SeeAlso" text="Patrz również" />
    <l:gentext key="Authors" text="Autorzy"/>
-   <l:gentext key="TableofContents" text="Spis treści"/>
+   <l:gentext key="TableofContents" text="Treść" />
    <l:gentext key="ListofAuthors" text="Lista autorów"/>
-   <!-- The following two may need better translation. Google Translate does
-        the same though. -->
-   <l:gentext key="Contributor"     text="Autor"/>
-   <l:gentext key="Contributors"    text="Autorzy"/>
+   <l:gentext key="Contributor"     text="Współautor" />
+   <l:gentext key="Contributors"    text="Współautorzy" />
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Wybierz język"/>
    <l:gentext key="selectformat" text="Wybierz format"/>
-   <l:gentext key="formathtml" text="Strony WWW"/>
-   <l:gentext key="formatsinglehtml" text="Pojedyncza strona WWW"/>
+   <l:gentext key="formathtml" text="Strony sieci Web" />
+   <l:gentext key="formatsinglehtml" text="Pojedyncza strona sieci Web" />
    <l:gentext key="formatpdf" text="PDF"/>
    <l:gentext key="formatepub" text="E-book (EPUB)"/>
-   <l:gentext key="contentsoverview" text="Spis treści"/>
-   <l:gentext key="showcontentsoverview" text="Pokaż spis treści"/>
+   <l:gentext key="contentsoverview" text="Treść" />
+   <l:gentext key="showcontentsoverview" text="Pokaż treść" />
    <l:gentext key="find" text="Znajdź"/>
 
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Nawigacja"/>
+   <l:gentext key="moredocuments" text="Więcej dokumentów" />
+
+   <l:gentext key="onthispage" text="Na tej stronie" />
+
+   <l:gentext key="givefeedback" text="Przekaż opinię" />
+   <l:gentext key="reportbug" text="Zgłoś problem" />
+   <l:gentext key="editsource" text="Edytuj dokument źródłowy" />
+
+   <l:gentext key="previouspage" text="Poprzednia" />
+   <l:gentext key="nextpage" text="Następna" />
+
    <l:gentext key="sharethispage" text="Udostępnij tę stronę"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
-   <l:gentext key="shareviaemail" text="E-mail"/>
+   <l:gentext key="shareviaemail" text="Wiadomość e-mail" />
    <l:gentext key="printthispage" text="Drukuj tę stronę"/>
-   <l:gentext key="susecareers" text="Kariera"/>
-   <l:gentext key="suselegal" text="Aspekty prawne"/>
+   <l:gentext key="susecareers" text="Praca" />
+   <l:gentext key="suselegal" text="Informacje prawne" />
    <l:gentext key="suseabout" text="Informacje"/>
    <l:gentext key="susecontact" text="Skontaktuj się z nami"/>
-   <l:gentext key="version.info" text="Drukuj tę stronę"/>
-   <l:gentext key="totopofpage" text="Do góry"/>
+   <l:gentext key="version.info" text="Dotyczy " />
+   <l:gentext key="totopofpage" text="Góra" />
 
-   <!-- FIXME: Needs translation. -->
+   <l:gentext key="version" text="Wersja" />
+   <l:gentext key="Version" text="Wersja" />
+
+   <l:gentext key="step.optional" text="(Opcjonalnie)" />
+   <l:gentext key="GlossSeeAlso" text="Patrz również" />
+   <l:gentext key="glossseealso" text="Patrz również" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Przejdź do treści" />
+     <l:template name="bypass-to-nav" text="Przejdź do nawigacji na stronie: poprzednia strona [access key p] / następna strona [access key n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Patrz również %t." />
    </l:context>
 
    <l:context name="styles">
@@ -178,7 +198,7 @@
       <l:template name="pageup" text="Page &#x02191;"/>
       <l:template name="right" text="&#x02192;"/><!-- rarr -->
       <l:template name="shift" text="Shift"/>
-      <l:template name="space" text="Spacja"/>
+      <l:template name="space" text="Space"/>
       <l:template name="tab" text="&#x02192;|"/>
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>

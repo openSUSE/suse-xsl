@@ -6,19 +6,107 @@
 <!-- FIXME: Check whether we need straight quotes everywhere, our Arabic SLE
 translators apparently want those. - sknorr, 2016-09-30 -->
 
+   <!--   <l:gentext key="LocalisedLanguageName" text="عربي"/>-->
    <l:gentext key="SeeAlso"         text="طالع أيضًا"/>
    <l:gentext key="Authors"         text="الكتاب"/>
    <l:gentext key="TableofContents" text="المحتويات"/>
    <l:gentext key="ListofAuthors"   text="قائمة المؤلفين"/>
+   <l:gentext key="Contributor"     text="&#1605;&#1587;&#1575;&#1607;&#1605;"/>
    <l:gentext key="Contributors"    text="المساهمون"/>
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <l:gentext key="Question" text="السؤال:"/>
-   <l:gentext key="question" text="السؤال:"/>
+   <l:gentext key="selectlanguage" text="ﺖﺣﺪﻳﺩ ﺎﻠﻠﻏﺓ"/>
+   <l:gentext key="selectformat" text="ﺖﺣﺪﻳﺩ ﺎﻠﺘﻨﺴﻴﻗ"/>
+   <l:gentext key="formathtml" text="ﺺﻔﺣﺎﺗ ﺎﻟﻮﻴﺑ" />
+   <l:gentext key="formatsinglehtml" text="ﺺﻔﺣﺓ ﻮﻴﺑ ﻢﻓﺭﺩﺓ" />
+   <l:gentext key="formatpdf" text="PDF" />
+   <l:gentext key="formatepub" text="ﻚﺗﺎﺑ ﺈﻠﻜﺗﺭﻮﻨﻳ (EPUB)" />
+   <l:gentext key="contentsoverview" text="ﺎﻠﻤﺤﺗﻮﻳﺎﺗ" />
+   <l:gentext key="showcontentsoverview" text="ﻉﺮﺿ ﺎﻠﻤﺤﺗﻮﻳﺎﺗ" />
+   <l:gentext key="find" text="ﺐﺤﺛ" />
 
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
+   <l:gentext key="navigation" text="التنقل"/>
+   <l:gentext key="moredocuments" text="المزيد من المستندات"/>
+
+   <l:gentext key="onthispage" text="ﻒﻳ ﻩﺬﻫ ﺎﻠﺼﻔﺣﺓ" />
+
+   <l:gentext key="givefeedback" text="ﺈﺑﺩﺍﺀ ﻡﻼﺤﻇﺎﺗ" />
+   <l:gentext key="reportbug" text="ﺍﻺﺑﻼﻏ ﻊﻧ ﻢﺸﻜﻟﺓ" />
+   <l:gentext key="editsource" text="ﺖﺣﺮﻳﺭ ﺎﻠﻤﺴﺘﻧﺩ ﺎﻠﻤﺻﺩﺭ" />
+
+   <l:gentext key="previouspage" text="ﺎﻠﺳﺎﺒﻗ" />
+   <l:gentext key="nextpage" text="ﺎﻠﺗﺎﻠﻳ" />
+
+   <l:gentext key="sharethispage" text="ﻢﺷﺍﺮﻛﺓ ﻩﺬﻫ ﺎﻠﺼﻔﺣﺓ" />
+   <l:gentext key="shareviafacebook" text="Facebook" />
+   <l:gentext key="sharevialinkedin" text="LinkedIn" />
+   <l:gentext key="shareviatwitter" text="Twitter" />
+   <l:gentext key="shareviaemail" text="ﺎﻠﺑﺮﻳﺩ ﺍﻺﻠﻜﺗﺭﻮﻨﻳ" />
+   <l:gentext key="printthispage" text="ﻂﺑﺎﻋﺓ ﻩﺬﻫ ﺎﻠﺼﻔﺣﺓ" />
+   <l:gentext key="susecareers" text="ﺎﻟﻮﻇﺎﺌﻓ" />
+   <l:gentext key="suselegal" text="ﺎﻠﺷﺅﻮﻧ ﺎﻠﻗﺎﻧﻮﻨﻳﺓ" />
+   <l:gentext key="suseabout" text="ﺡﻮﻟ" />
+   <l:gentext key="susecontact" text="ﺎﺘﺼﻟ ﺐﻧﺍ" />
+   <l:gentext key="version.info" text="ﺖﻨﻄﺒﻗ ﻊﻟﻯ " />
+   <l:gentext key="totopofpage" text="ﺄﻌﻟﻯ" />
+
+   <l:gentext key="version" text="ﺍﻺﺻﺩﺍﺭ" />
+   <l:gentext key="Version" text="ﺍﻺﺻﺩﺍﺭ" />
+
+   <l:gentext key="Question" text="السؤال:"/>
+   <l:gentext key="question" text="السؤال:"/>
+   <l:gentext key="LocalisedLanguageName" text="الإنجليزية" />
+   <l:gentext key="SeeAlso"         text="انظر أيضًا" />
+   <l:gentext key="Authors"         text="المؤلفون" />
+   <l:gentext key="TableofContents" text="المحتويات" />
+   <l:gentext key="ListofAuthors"   text="قائمة المؤلفين" />
+   <l:gentext key="Contributor"     text="المشارك في التحرير" />
+   <l:gentext key="Contributors"    text="المشاركون في التحرير" />
+
+   <l:gentext key="selectlanguage" text="تحديد اللغة" />
+   <l:gentext key="selectformat" text="تحديد التنسيق" />
+   <l:gentext key="formathtml" text="صفحات الويب" />
+   <l:gentext key="formatsinglehtml" text="صفحة ويب مفردة" />
+   <l:gentext key="formatpdf" text="PDF" />
+   <l:gentext key="formatepub" text="كتاب إلكتروني (EPUB)" />
+   <l:gentext key="contentsoverview" text="المحتويات" />
+   <l:gentext key="showcontentsoverview" text="عرض المحتويات" />
+   <l:gentext key="find" text="بحث" />
+
+   <l:gentext key="navigation" text="التنقل" />
+   <l:gentext key="moredocuments" text="المزيد من المستندات" />
+
+   <l:gentext key="onthispage" text="في هذه الصفحة" />
+
+   <l:gentext key="givefeedback" text="إبداء ملاحظات" />
+   <l:gentext key="reportbug" text="الإبلاغ عن مشكلة" />
+   <l:gentext key="editsource" text="تحرير المستند المصدر" />
+
+   <l:gentext key="previouspage" text="السابق" />
+   <l:gentext key="nextpage" text="التالي" />
+
+   <l:gentext key="sharethispage" text="مشاركة هذه الصفحة" />
+   <l:gentext key="shareviafacebook" text="Facebook" />
+   <l:gentext key="sharevialinkedin" text="LinkedIn" />
+   <l:gentext key="shareviatwitter" text="Twitter" />
+   <l:gentext key="shareviaemail" text="البريد الإلكتروني" />
+   <l:gentext key="printthispage" text="طباعة هذه الصفحة" />
+   <l:gentext key="susecareers" text="الوظائف" />
+   <l:gentext key="suselegal" text="الشؤون القانونية" />
+   <l:gentext key="suseabout" text="حول" />
+   <l:gentext key="susecontact" text="اتصل بنا" />
+   <l:gentext key="version.info" text="تنطبق على " />
+   <l:gentext key="totopofpage" text="أعلى" />
+
+   <l:gentext key="version" text="الإصدار" />
+   <l:gentext key="Version" text="الإصدار" />
+
+   <l:gentext key="step.optional" text="(اختياري)" />
+   <l:gentext key="GlossSeeAlso" text="انظر أيضًا" />
+   <l:gentext key="glossseealso" text="انظر أيضًا" />
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
@@ -26,14 +114,16 @@ translators apparently want those. - sknorr, 2016-09-30 -->
    <l:dingbat key="startquote" text='"'/>
    <l:dingbat key="endquote" text='"'/>
 
-   <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="الانتقال إلى المحتوى" />
+     <l:template name="bypass-to-nav" text="الانتقال إلى صفحة التنقل: الصفحة السابقة [زر الوصول p]/الصفحة التالية [زر الوصول n]" />
    </l:context>
 
+   <l:context name="glossary">
+     <l:template name="seealso" text="شاهد أيضًا %t." />
+   </l:context>
    <l:context name="styles">
-      <l:template name="person-name" text="الأول-الأخير"/>
+      <l:template name="person-name" text="first-last"/>
 
       <l:template name="example-label" text="المثال&#160;%n:"/>
       <l:template name="example-title" text="%t"/>
