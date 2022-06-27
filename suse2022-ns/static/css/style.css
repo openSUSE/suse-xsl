@@ -3153,7 +3153,7 @@ article a:hover code {
   padding: 0; }
 
 .verbatim-wrap code {
-  color: #0c322c; }
+  color: inherit; }
 
 .verbatim-wrap .command {
   color: #bfcbfb; }
