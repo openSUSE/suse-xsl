@@ -516,16 +516,30 @@
   </xsl:template>
 
   <xsl:template name="create.header.logo">
+    <xsl:variable name="logo">
+      <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}">
+        <xsl:if test="$daps.header.logo.width">
+          <xsl:attribute name="width">
+            <xsl:value-of select="$daps.header.logo.width"/>
+          </xsl:attribute>
+        </xsl:if>
+        <xsl:if test="$daps.header.logo.height">
+          <xsl:attribute name="height">
+            <xsl:value-of select="$daps.header.logo.height"/>
+          </xsl:attribute>
+        </xsl:if>
+      </img>
+    </xsl:variable>
     <xsl:if test="$generate.logo != 0">
       <div id="_logo">
         <xsl:choose>
           <xsl:when test="$homepage != ''">
             <a href="{$homepage}">
-              <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
+              <xsl:copy-of select="$logo"/>
             </a>
           </xsl:when>
           <xsl:otherwise>
-            <img src="{$daps.header.logo}" alt="{$daps.header.logo.alt}"/>
+            <xsl:copy-of select="$logo"/>
           </xsl:otherwise>
         </xsl:choose>
       </div>

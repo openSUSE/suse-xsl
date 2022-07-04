@@ -16,10 +16,10 @@
 <!ENTITY darker-gray          "rgb(51,51,51)">
 <!ENTITY dark-gray            "rgb(32,32,32)"> <!-- #202020 -->
 <!ENTITY hint-green           "rgb(247,250,246)">
-<!ENTITY chamaeleon-green     "rgb(125,194,77)">
-<!ENTITY mid-green            "rgb(118,173,45)">
+<!ENTITY chamaeleon-green     "rgb(48,186,120)">
+<!ENTITY mid-green            "rgb(48,186,120)"> <!-- #30BA78 -->
 <!ENTITY darker-green         "rgb(94,150,50)"> <!-- #5E9632 -->
-<!ENTITY dark-green           "rgb(67,146,57)"> <!-- #439539 -->
+<!ENTITY dark-green           "rgb(12,50,44)"> <!-- #0C332C -->
 
 
 <!-- Official SUSE color palette. Second of order. Don't use any greens from
