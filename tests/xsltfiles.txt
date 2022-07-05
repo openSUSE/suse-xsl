@@ -1,8 +1,8 @@
 # Stylesheets to validate:
-suse/*/*.xsl
-suse/*.xsl
-suse/flyer/fo/*.xsl
-suse/pocket/fo/*.xsl
+# suse/*/*.xsl
+# suse/*.xsl
+# suse/flyer/fo/*.xsl
+# suse/pocket/fo/*.xsl
 suse2013/*/*.xsl
 suse2013/*.xsl
 daps2013/*/*.xsl
