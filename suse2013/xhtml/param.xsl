@@ -245,6 +245,8 @@ task before
   </xsl:param>
 
   <xsl:param name="daps.header.logo">static/images/logo.png</xsl:param>
+  <xsl:param name="daps.header.logo.width">100%</xsl:param><!-- 123px -->
+  <xsl:param name="daps.header.logo.height">100%</xsl:param><!-- 107px -->
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
   <xsl:param name="daps.header.js.library">static/js/jquery-1.10.2.min.js</xsl:param>
   <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>

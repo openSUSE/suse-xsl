@@ -142,13 +142,11 @@ html, body {
 #_logo {
     float: left;
     margin: 22px 22px 27px 0;
-    width: 81px;
-    height: 38px;
+    width: 62px;
+    height: 54px;
 }
 
 #_logo img {
-    width: 81px;
-    height: 38px;
     color: #439239;
     line-height: 55px;
     font-weight: 600;
