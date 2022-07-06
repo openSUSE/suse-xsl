@@ -345,6 +345,10 @@
   </fo:block>
 </xsl:template>
 
+<xsl:template match="d:info/d:address" mode="book.titlepage.verso.auto.mode">
+  <xsl:apply-templates />
+</xsl:template>
+
 <xsl:template name="suse.imprint">
   <xsl:variable name="ulink.url">
     <xsl:call-template name="fo-external-image">
@@ -358,8 +362,24 @@
       wrap-option="no-wrap"
       linefeed-treatment="preserve"
       white-space-collapse="false">
-      <xsl:copy-of select="$company.address"/>
+
+      <xsl:choose>
+        <xsl:when test="d:info/d:address">
+          <xsl:apply-templates select="d:info/d:address" mode="book.titlepage.verso.auto.mode"/>
+        </xsl:when>
+        <xsl:when test="$company.address">
+          <!-- Replace any "&#10;" in newlines -->
+          <xsl:call-template name="string.subst">
+            <xsl:with-param name="string" select="$company.address"/>
+            <xsl:with-param name="target">&amp;#10;</xsl:with-param>
+            <xsl:with-param name="replacement">
+            <xsl:text>
+</xsl:text></xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+      </xsl:choose>
     </fo:block>
+
     <fo:block>
       <fo:basic-link external-destination="{$ulink.url}"
         xsl:use-attribute-sets="dark-green title.font">
