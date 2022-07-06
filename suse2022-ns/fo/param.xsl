@@ -359,10 +359,7 @@ are always just normal numbers). -->
 <xsl:param name="suse.doc.url">https://documentation.suse.com</xsl:param>
 
 <!-- SUSE  -->
-<xsl:param name="company.address">SUSE LLC
-1800 South Novell Place
-Provo, UT 84606
-USA</xsl:param>
+<xsl:param name="company.address"/>
 
 <xsl:param name="enable.secondary.branding" select="0"/>
 
