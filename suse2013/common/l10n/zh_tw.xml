@@ -256,6 +256,7 @@
    </l:context>
 
    <l:context name="datetime">
-     <l:template name="titlepage.format" text="m/d/Y"/>
+     <l:template name="titlepage.format" text="Y-m-d"/>
+     <l:template name="format" text="Y-m-d"/>
    </l:context>
 </l:l10n>
