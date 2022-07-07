@@ -13,7 +13,7 @@
   xmlns:exsl="http://exslt.org/common"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:dm="urn:x-suse:ns:docmanager"
-  exclude-result-prefixes="exsl d">
+  exclude-result-prefixes="exsl dm">
 
   <xsl:template name="create.header.title">
     <xsl:param name="node" select="."/>

@@ -3290,10 +3290,36 @@ article a:hover code {
   text-decoration: none !important; }
   .permalink:hover, .permalink:focus {
     color: #26915e !important; }
+  .permalink .report-bug {
+    opacity: 0.3;
+    font-weight: normal;
+    text-decoration: none;
+    -webkit-transition: opacity 0.2s ease-in-out 0.1s;
+    -moz-transition: opacity 0.2s ease-in-out 0.1s;
+    transition: opacity 0.2s ease-in-out 0.1s; }
 
 *:hover > .permalink,
 *:focus > .permalink {
   display: inline-block; }
+
+.report-bug {
+  color: #333;
+  font-size: 10px;
+  height: 15px;
+  line-height: 15px;
+  overflow: hidden;
+  padding: 0 3px;
+  border-bottom: 1px solid transparent;
+  background-color: #EEE;
+  text-transform: uppercase;
+  display: inline-block;
+  float: right; }
+  .report-bug:hover, .report-bug:focus, .report-bug:active {
+    color: #439239;
+    text-decoration: none !important; }
+
+*:hover > .report-bug {
+  opacity: 1; }
 
 @page {
   size: portrait;

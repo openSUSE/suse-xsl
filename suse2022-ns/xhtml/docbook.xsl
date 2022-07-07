@@ -567,13 +567,8 @@
       <xsl:variable name="valid-for-editurl">
         <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">1</xsl:if>
       </xsl:variable>
-      <xsl:variable name="valid-for-reportbug">
-        <xsl:call-template name="create.bugtracker.information">
-          <xsl:with-param name="evaluate-only" select="1"/>
-        </xsl:call-template>
-      </xsl:variable>
 
-      <xsl:if test="$valid-for-editurl = 1 or $valid-for-reportbug = 1 or $force.generate.give.feedback = 1">
+      <xsl:if test="$valid-for-editurl = 1 or $force.generate.give.feedback = 1">
         <div class="side-title">
           <xsl:call-template name="gentext">
             <xsl:with-param name="key" select="'givefeedback'"/>
@@ -586,15 +581,7 @@
               <xsl:text> </xsl:text>
             </li>
           </xsl:if>
-          <xsl:if test="$valid-for-reportbug = 1">
-            <li>
-              <a id="_feedback-reportbug" href="#" rel="nofollow" target="_blank">
-                <xsl:call-template name="gentext">
-                  <xsl:with-param name="key" select="'reportbug'"/>
-                </xsl:call-template>
-              </a>
-            </li>
-          </xsl:if>
+          <!-- add here a "global" report bug -->
           <xsl:if test="$valid-for-editurl = 1">
             <li>
               <a id="_feedback-editurl" href="{$editurl}{$xmlbase}" rel="nofollow" target="_blank">
