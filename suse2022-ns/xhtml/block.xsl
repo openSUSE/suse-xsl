@@ -13,10 +13,11 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:d="http://docbook.org/ns/docbook"
     xmlns:exsl="http://exslt.org/common"
+    xmlns:la="urn:x-suse:xslt:layout"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t d">
+    exclude-result-prefixes="exsl l t d la">
 
   <xsl:template match="d:para[@arch]">
     <xsl:variable name="arch">
@@ -50,13 +51,41 @@
 <!-- Same as upstream version, but can also handle paragraphs with an
      architecture assigned to them. -->
   <xsl:template name="paragraph">
+    <xsl:param name="node" select="."/>
     <xsl:param name="class" select="''"/>
     <xsl:param name="content"/>
     <xsl:param name="arch"/>
 
+    <xsl:variable name="text-color">
+      <xsl:choose>
+        <xsl:when test="processing-instruction('dbsuse')">
+          <xsl:call-template name="get-suse-color">
+            <xsl:with-param name="value">
+              <xsl:call-template name="pi-attribute">
+                <xsl:with-param name="pis"
+                  select="processing-instruction('dbsuse')" />
+                <xsl:with-param name="attribute">color</xsl:with-param>
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:when test="starts-with(@role, 'color:')">
+          <!-- <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>-->
+          <xsl:call-template name="get-suse-color">
+            <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise />
+      </xsl:choose>
+    </xsl:variable>
     <xsl:variable name="p">
       <p>
         <xsl:call-template name="id.attribute"/>
+        <xsl:if test="$text-color != ''">
+          <xsl:attribute name="style">
+            <xsl:value-of select="concat('color:', $text-color, ';')"/>
+          </xsl:attribute>
+        </xsl:if>
         <xsl:choose>
           <xsl:when test="$class != ''">
             <xsl:call-template name="common.html.attributes">
@@ -83,6 +112,7 @@
         </xsl:if>
       </p>
     </xsl:variable>
+    
 
     <xsl:choose>
       <xsl:when test="$html.cleanup != 0">

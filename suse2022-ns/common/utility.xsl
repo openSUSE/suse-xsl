@@ -119,4 +119,54 @@
     </xsl:choose>
   </xsl:template>
 
+
+  <!--  -->
+  <xsl:template name="get-suse-color">
+    <xsl:param name="value"/>
+    <xsl:choose>
+      <!-- When it's starting with a hash-mark, assume we have a color -->
+      <xsl:when test="starts-with($value, '#') and string-length($value) &lt;= 7">
+        <xsl:value-of select="$value"/>
+      </xsl:when>
+      <!-- SUSE colors primary colors don't have 60% and 30% -->
+      <xsl:when test="$value = 'suse-pine-green'">#0C322C</xsl:when>
+      <xsl:when test="$value = 'suse-jungle-green'">#30BA78</xsl:when>
+      <xsl:when test="$value = 'suse-white'">#FFFFFF</xsl:when>
+      <!--  -->
+      <xsl:when test="$value = 'suse-midnight-blue'">#192072</xsl:when>
+      <xsl:when test="$value = 'suse-midnight-blue-60'">#757AA7</xsl:when>
+      <xsl:when test="$value = 'suse-midnight-blue-30'">#BBBDD4</xsl:when>
+      <!--  -->
+      <xsl:when test="$value = 'suse-waterhole-blue'">#2453FF</xsl:when>
+      <xsl:when test="$value = 'suse-waterhole-blue-60'">#809AF7</xsl:when>
+      <xsl:when test="$value = 'suse-waterhole-blue-30'">#BFCBFB</xsl:when>
+      <!--  -->
+      <xsl:when test="$value = 'suse-mint'">#90EBCD</xsl:when>
+      <xsl:when test="$value = 'suse-mint-60'">#C7F1E3</xsl:when>
+      <xsl:when test="$value = 'suse-mint-30'">#E3F8F1</xsl:when>
+      <!--  -->
+      <xsl:when test="$value = 'suse-persimmon'">#FE7C3F</xsl:when>
+      <xsl:when test="$value = 'suse-persimmon-60'">#F3B292</xsl:when>
+      <xsl:when test="$value = 'suse-persimmon-30'">#F9DAC8</xsl:when>
+      <!--  -->
+      <xsl:when test="$value = 'suse-fog'">#EFEFEF</xsl:when>
+      <xsl:when test="$value = 'suse-fog-200'">#DEDFE0</xsl:when>
+      <xsl:when test="$value = 'suse-fog-300'">#C0C2C4</xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">info</xsl:with-param>
+          <xsl:with-param name="context-desc">layout</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>The value '</xsl:text>
+            <xsl:value-of select="$value"/>
+            <xsl:text>' seems to be an invalid color. </xsl:text>
+            <xsl:text>Use either #RRGGBB or one of the names: suse-pine-green, </xsl:text>
+            <xsl:text>suse-jungle-green, suse-midnight-blue, suse-waterhole-blue, </xsl:text>
+            <xsl:text>suse-mint, suse-persimmon, or suse-fog.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+        <xsl:text>inherit</xsl:text><!-- the default -->
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 </xsl:stylesheet>

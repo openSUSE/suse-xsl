@@ -19,10 +19,11 @@
   %metrics;
   <!ENTITY punctuation "!,,.::;?;־׀׃׆׳״؞؟‒–—―․‥…‼‽⁇⁈⁉⁏⁓⁕⁖⁘⁙⁚❓❔❕❗❢❣⸪⸫⸬⸺⸻。〜〰꓾꓿︐︑︒︓︔︕︖︙︱︲﹐﹑﹒﹔﹕﹖﹗﹘！，－．：；？｡､">
 ]>
-<xsl:stylesheet exclude-result-prefixes="d"
-                 version="1.0"
+<xsl:stylesheet version="1.0"
+  exclude-result-prefixes="d la"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:d="http://docbook.org/ns/docbook"
+  xmlns:la="urn:x-suse:xslt:layout"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
@@ -206,6 +207,28 @@
   <xsl:variable name="content">
     <xsl:value-of select="normalize-space(.)"/>
   </xsl:variable>
+  <xsl:variable name="text-color">
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbsuse')">
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value">
+            <xsl:call-template name="pi-attribute">
+              <xsl:with-param name="pis"
+                select="processing-instruction('dbsuse')" />
+              <xsl:with-param name="attribute">color</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="starts-with(@role, 'color:')">
+	<!-- <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>-->
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>inherit</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
   <!-- We need only one final character, but there may be
        something in the way, like a space that wasn't removed or so. -->
   <xsl:variable name="final-characters"
@@ -215,6 +238,11 @@
     <xsl:if test="$keep.together != ''">
       <xsl:attribute name="keep-together.within-column"><xsl:value-of
                       select="$keep.together"/></xsl:attribute>
+    </xsl:if>
+    <xsl:if test="$text-color">
+      <xsl:attribute name="color">
+        <xsl:value-of select="$text-color"/>
+      </xsl:attribute>
     </xsl:if>
     <xsl:call-template name="no-break-after-colon"/>
 

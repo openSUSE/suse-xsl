@@ -41,10 +41,11 @@
                                 parent::d:simplesect|parent::d:taskprerequisites|parent::d:taskrelated|
                                 parent::d:tasksummary|parent::d:warning|parent::d:topic">
 ]>
-<xsl:stylesheet exclude-result-prefixes="d"
-                 version="1.0"
+<xsl:stylesheet version="1.0"
+  exclude-result-prefixes="d la"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:d="http://docbook.org/ns/docbook"
+  xmlns:la="urn:x-suse:xslt:layout"
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
@@ -516,6 +517,35 @@
 
 <xsl:template match="d:package">
   <xsl:call-template name="inline.monoseq"/>
+</xsl:template>
+
+<xsl:template match="d:phrase">
+  <xsl:variable name="text-color">
+    <xsl:choose>
+      <xsl:when test="processing-instruction('dbsuse')">
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value">
+            <xsl:call-template name="pi-attribute">
+              <xsl:with-param name="pis"
+                select="processing-instruction('dbsuse')" />
+              <xsl:with-param name="attribute">color</xsl:with-param>
+            </xsl:call-template>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:when test="starts-with(@role, 'color:')">
+        <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>
+        <xsl:call-template name="get-suse-color">
+          <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>inherit</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
+  <fo:inline color="{$text-color}">
+    <xsl:apply-imports/>
+  </fo:inline>
 </xsl:template>
 
 <xsl:template match="d:prompt">
