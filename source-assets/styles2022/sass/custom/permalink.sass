@@ -10,7 +10,41 @@
   &:focus
     color: $c_funky_darker_jungle !important
 
+  .report-bug
+    opacity: 0.3
+    font-weight: normal
+    text-decoration: none
+    // Clean the below up in Q3 2013 or so...
+    -webkit-transition: opacity 0.2s ease-in-out 0.1s
+    -moz-transition: opacity 0.2s ease-in-out 0.1s
+    transition: opacity 0.2s ease-in-out 0.1s
+
+
 *:hover,
 *:focus
   > .permalink
     display: inline-block
+
+
+.report-bug
+    color: #333
+    font-size: 10px
+    height: 15px
+    line-height: 15px
+    overflow: hidden
+    padding: 0 3px
+    border-bottom: 1px solid transparent
+    background-color: #EEE
+    text-transform: uppercase
+    display: inline-block
+    float: right
+
+    &:hover,
+    &:focus,
+    &:active
+      color: #439239
+      text-decoration: none !important
+
+
+*:hover > .report-bug
+    opacity: 1
