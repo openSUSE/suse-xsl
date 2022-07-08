@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Jul 08 11:50:00 UTC 2020 - tomschr@users.noreply.github.com
+
+- Update to 2.84.1
+  - Fix #454: Implement color for phrase/para
+  - Fix #470: Make "Report bug" links attached to titles
+
+-------------------------------------------------------------------
 Fri Jul 08 09:05:00 UTC 2020 - tomschr@users.noreply.github.com
 
 - Update to 2.84.0:
