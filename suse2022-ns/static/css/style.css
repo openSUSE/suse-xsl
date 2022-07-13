@@ -3291,12 +3291,10 @@ article a:hover code {
   .permalink:hover, .permalink:focus {
     color: #26915e !important; }
   .permalink .report-bug {
-    opacity: 0.3;
     font-weight: normal;
     text-decoration: none;
     -webkit-transition: opacity 0.2s ease-in-out 0.1s;
-    -moz-transition: opacity 0.2s ease-in-out 0.1s;
-    transition: opacity 0.2s ease-in-out 0.1s; }
+    -moz-transition: opacity 0.2s ease-in-out 0.1s; }
 
 *:hover > .permalink,
 *:focus > .permalink {
@@ -3313,7 +3311,8 @@ article a:hover code {
   background-color: #EEE;
   text-transform: uppercase;
   display: inline-block;
-  float: right; }
+  float: right;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 4.233333 4.233333"><path fill="%23fff" d="M 2.1161296,4.2333333 H 1.3229166 V 2.1166667 H 0.79375 v -0.79375 H 1.3229166 V 0.94898097 C 1.3229166,0.3538802 1.5568427,0 2.257843,0 H 2.9104167 V 0.7295885 H 2.4766852 c -0.2729309,0 -0.3594814,0.10194397 -0.3594814,0.2922323 l -0.00106,0.3010959 H 2.9104151 L 2.8,2.1166667 H 2.1161454 Z" /></svg>'); }
   .report-bug:hover, .report-bug:focus, .report-bug:active {
     color: #439239;
     text-decoration: none !important; }
