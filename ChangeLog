@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Mon Jun 18 16:45:00 UTC 2020 - sknorr@suse.com
+
+Stable release of the SUSE XSL stylesheets for SBP 2.0.18:
+
+https://github.com/openSUSE/suse-xsl/releases/tag/sbp-2.0.18
+
+- HTML:
+  - Use new logo from 2022 branding
+
+-------------------------------------------------------------------
 Thu May 20 13:37:00 UTC 2020 - sknorr@suse.com
 
 Stable release of the SUSE XSL stylesheets for SBP 2.0.17:
