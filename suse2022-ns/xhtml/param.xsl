@@ -176,7 +176,7 @@ set       toc,title
 
 <!-- 12. QAndASet =============================================== -->
 <xsl:param name="qanda.inherit.numeration" select="0"/>
-<xsl:param name="qanda.defaultlabel">qnumber</xsl:param>
+<xsl:param name="qanda.defaultlabel">number</xsl:param>
 
 <!-- 13. Linking ================================================ -->
 <xsl:param name="ulink.target">_blank</xsl:param>
