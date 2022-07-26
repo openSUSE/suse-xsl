@@ -69,6 +69,7 @@ fi
 echo -n "Open changes file for editing? [y]/n "
 read DECISION
 if [[ ! $DECISION == 'n' ]] && [[ ! $DECISION == 'no' ]]; then
+  EDITOR=${EDITOR:-vi}
   $EDITOR $changes
 else
   echo "(kay) Using changes as-is."
