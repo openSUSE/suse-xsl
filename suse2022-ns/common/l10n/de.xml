@@ -4,16 +4,17 @@
         english-language-name="German">
 
    <l:gentext key="LocalisedLanguageName" text="Deutsch"/>
-   <l:gentext key="ListofAuthors" text="Autorenliste"/>
-   <l:gentext key="Authors"       text="Autoren"/>
-   <l:gentext key="Index"         text="Index"/>
-   <l:gentext key="index"         text="Index"/>
-   <l:gentext key="Contributor"     text="Mitwirkender"/>
-   <l:gentext key="Contributors"    text="Mitwirkende"/>
+   <l:gentext key="SeeAlso"         text="Siehe auch" />
+   <l:gentext key="Authors"         text="Autoren" />
+   <l:gentext key="TableofContents" text="Inhalt" />
+   <l:gentext key="ListofAuthors"   text="Autorenliste" />
+   <l:gentext key="Contributor"     text="Mitwirkender" />
+   <l:gentext key="Contributors"    text="Mitwirkende" />
+
    <l:gentext key="admonseparator"  text=": "/>
 
-   <l:gentext key="selectlanguage" text="Sprache wählen"/>
-   <l:gentext key="selectformat" text="Format wählen"/>
+   <l:gentext key="selectlanguage" text="Sprache auswählen"/>
+   <l:gentext key="selectformat" text="Format auswählen"/>
    <l:gentext key="formathtml" text="Webseiten"/>
    <l:gentext key="formatsinglehtml" text="Einzelne Webseite"/>
    <l:gentext key="formatpdf" text="PDF"/>
@@ -24,27 +25,37 @@
 
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
-   <l:gentext key="navigation" text="Navigation"/>
+   <l:gentext key="navigation" text="Navigation" />
+   <l:gentext key="moredocuments" text="Weitere Dokumente" />
 
-   <l:gentext key="onthispage" text="Auf dieser Seite"/>
+   <l:gentext key="onthispage" text="Auf dieser Seite" />
+
+   <l:gentext key="givefeedback" text="Feedback geben" />
+   <l:gentext key="reportbug" text="Problem melden" />
+   <l:gentext key="editsource" text="Quelldokument bearbeiten" />
+
+   <l:gentext key="previouspage" text="Zurück" />
+   <l:gentext key="nextpage" text="Weiter" />
 
    <l:gentext key="sharethispage" text="Diese Seite teilen"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-Mail"/>
-   <l:gentext key="printthispage" text="Diese Seite drucken"/>
+   <l:gentext key="printthispage" text="Diese Seite ausdrucken"/>
    <l:gentext key="susecareers" text="Jobs"/>
-   <l:gentext key="suselegal" text="Rechtliche Hinweise/Impressum"/>
+   <l:gentext key="suselegal" text="Rechtliche Hinweise"/><!-- /Impressum -->
    <l:gentext key="suseabout" text="Über"/>
    <l:gentext key="susecontact" text="Kontakt"/>
-   <l:gentext key="version.info" text="Bezieht sich auf "/>
-   <l:gentext key="totopofpage" text="Seitenanfang"/>
+   <l:gentext key="version.info" text="Gilt für "/>
+   <l:gentext key="totopofpage" text="Oben"/>
 
    <l:gentext key="version" text="Version"/>
    <l:gentext key="Version" text="Version"/>
 
    <l:gentext key="step.optional" text="(Optional)"/>
+   <l:gentext key="GlossSeeAlso" text="Siehe auch" />
+   <l:gentext key="glossseealso" text="Siehe auch" />
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
@@ -55,6 +66,10 @@
    <l:context name="bypass-block">
      <l:template name="bypass-to-content" text="Zum Inhalt springen"/>
      <l:template name="bypass-to-nav" text="Zur Seitennavigation springen: vorherige Seite [Zugriffstaste p]/nächste Seite [Zugriffstaste n]"/>
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Siehe auch %t." />
    </l:context>
 
    <l:context name="styles">

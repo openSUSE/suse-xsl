@@ -14,14 +14,6 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <l:dingbat key="startquote" text="&#34;"/>
-   <l:dingbat key="endquote" text="&#34;"/>
-   <l:dingbat key="nestedstartquote" text="&#34;"/>
-   <l:dingbat key="nestedendquote" text="&#34;"/>
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Vælg sprog"/>
    <l:gentext key="selectformat" text="Vælg format"/>
    <l:gentext key="formathtml" text="Websider"/>
@@ -35,20 +27,44 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigation"/>
+   <l:gentext key="moredocuments" text="Flere dokumenter"/>
+
+   <l:gentext key="onthispage" text="På denne side"/>
+
+   <l:gentext key="givefeedback" text="Giv feedback"/>
+   <l:gentext key="reportbug" text="Rapportere et problem"/>
+   <l:gentext key="editsource" text="Rediger kildedokument"/>
+
+<!--   <l:gentext key="previouspage" text="Previous"/>-->
+<!--   <l:gentext key="nextpage" text="Next"/>-->
+
    <l:gentext key="sharethispage" text="Del denne side"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-mail"/>
    <l:gentext key="printthispage" text="Udskriv denne side"/>
-   <l:gentext key="susecareers" text="Careers"/>
-   <l:gentext key="suselegal" text="Legal"/>
-   <l:gentext key="suseabout" text="About"/>
-   <l:gentext key="susecontact" text="Contact Us"/>
+   <l:gentext key="susecareers" text="Job"/>
+   <l:gentext key="suselegal" text="Juridisk"/>
+   <l:gentext key="suseabout" text="Om"/>
+   <l:gentext key="susecontact" text="Kontakt os"/>
    <l:gentext key="version.info" text="Gælder for "/>
    <l:gentext key="totopofpage" text="Top"/>
 
+   <l:gentext key="version" text="Version"/>
+   <l:gentext key="Version" text="Version"/>
+
    <l:gentext key="step.optional" text="(Valgfit)"/>
+<!--   <l:gentext key="GlossSeeAlso" text="See also"/>-->
+<!--   <l:gentext key="glossseealso" text="See also"/>-->
+
+   <l:dingbat key="startquote" text="&#34;"/>
+   <l:dingbat key="endquote" text="&#34;"/>
+   <l:dingbat key="nestedstartquote" text="&#34;"/>
+   <l:dingbat key="nestedendquote" text="&#34;"/>
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
 
    <l:context name="bypass-block">
      <l:template name="bypass-to-content" text="Naviger til begyndelsen"/>

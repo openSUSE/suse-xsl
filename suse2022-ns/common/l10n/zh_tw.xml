@@ -4,58 +4,72 @@
         english-language-name="Chinese (Traditional)">
 
    <l:gentext key="LocalisedLanguageName" text="&#20013;&#25991;(&#32321;&#20307;)"/>
-   <l:gentext key="ListofAuthors" text="&#x539f;&#x8457;&#x8005;&#x540d;&#x55ae;"/>
-   <l:gentext key="Authors" text="&#x539f;&#x8457;"/>
-   <l:gentext key="admonseparator"  text="&#65306;"/>
-   <l:gentext key="Contributor"     text="貢獻者"/>
-   <l:gentext key="Contributors"    text="貢獻者"/>
+  <l:gentext key="SeeAlso"         text="另請參閱" />
+  <l:gentext key="Authors"         text="原著者" />
+  <l:gentext key="TableofContents" text="目錄" />
+  <l:gentext key="ListofAuthors"   text="原著者清單" />
+  <l:gentext key="Contributor"     text="投稿者" />
+  <l:gentext key="Contributors"    text="投稿者" />
 
-   <l:gentext key="TableofContents" text="&#30446;&#37636;"/>
-   <l:gentext key="tableofcontents" text="&#30446;&#37636;"/>
-   <l:gentext key="index symbols" text="&#31526;&#34399;"/>
+  <l:gentext key="admonseparator"  text="：" />
 
-   <l:gentext key="admonseparator"  text="︰ "/>
-
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-   <l:dingbat key="startquote" text="&#x300c;"/>
-   <l:dingbat key="endquote" text="&#x300d;"/>
-
-   <l:gentext key="selectlanguage" text="選取語言"/>
-   <l:gentext key="selectformat" text="選取格式"/>
-   <l:gentext key="formathtml" text="網頁"/>
-   <l:gentext key="formatsinglehtml" text="單一網頁"/>
-   <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-book (EPUB)"/> <!-- According to Google Translate, this should be: 電子書（EPUB） -->
-   <l:gentext key="contentsoverview" text="內容"/>
-   <l:gentext key="showcontentsoverview" text="顯示內容"/>
-   <l:gentext key="find" text="尋找"/>
-
-   <!-- Submitted upstream with: https://github.com/docbook/xslt10-stylesheets/pull/23 (Jan 2017) -->
-   <gentext key="Procedure" text="程序"/>
-   <gentext key="procedure" text="程序"/>
-   <gentext key="ListofProcedures" text="程序清單"/>
-   <gentext key="listofprocedures" text="程序清單"/>
-   <!-- End of stuff submitted via PR -->
+  <l:gentext key="selectlanguage" text="選取語言" />
+  <l:gentext key="selectformat" text="選取格式" />
+  <l:gentext key="formathtml" text="網頁" />
+  <l:gentext key="formatsinglehtml" text="單頁網頁" />
+  <l:gentext key="formatpdf" text="PDF" />
+  <l:gentext key="formatepub" text="電子書 (EPUB)" />
+  <l:gentext key="contentsoverview" text="目錄" />
+  <l:gentext key="showcontentsoverview" text="顯示目錄" />
+  <l:gentext key="find" text="尋找" />
 
    <l:gentext key="runinhead.default.title.end.punct" text="&#xff1a;"/>
 
    <l:gentext key="navigation" text="導覽"/>
-   <l:gentext key="sharethispage" text="共享此頁面"/>
+   <l:gentext key="moredocuments" text="更多文件" />
+
+   <l:gentext key="onthispage" text="在此頁上" />
+
+   <l:gentext key="givefeedback" text="提供意見" />
+   <l:gentext key="reportbug" text="報告問題" />
+   <l:gentext key="editsource" text="編輯來源文件" />
+
+   <l:gentext key="previouspage" text="上一頁" />
+   <l:gentext key="nextpage" text="下一頁" />
+
+   <l:gentext key="sharethispage" text="分享此頁" />
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="電子郵件"/>
-   <l:gentext key="printthispage" text="列印此頁面"/>
-   <l:gentext key="susecareers" text="Careers"/>
-   <l:gentext key="suselegal" text="Legal"/>
-   <l:gentext key="suseabout" text="About"/>
-   <l:gentext key="susecontact" text="Contact Us"/>
-   <l:gentext key="version.info" text="套用至"/>
-   <l:gentext key="totopofpage" text="頂端"/>
+   <l:gentext key="printthispage" text="列印此頁" />
+   <l:gentext key="susecareers" text="工作機會" />
+   <l:gentext key="suselegal" text="法律" />
+   <l:gentext key="suseabout" text="關於" />
+   <l:gentext key="susecontact" text="與我們聯絡" />
+   <l:gentext key="version.info" text="適用範圍 " />
+   <l:gentext key="totopofpage" text="返回頁首" />
 
-   <l:gentext key="Part" text=""/>
-   <l:gentext key="part" text=""/>
+   <l:gentext key="version" text="版本" />
+   <l:gentext key="Version" text="版本" />
+
+   <l:gentext key="step.optional" text="(選填)" />
+   <l:gentext key="GlossSeeAlso" text="另請參閱" />
+   <l:gentext key="glossseealso" text="另請參閱" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
+   <l:context name="bypass-block">
+     <l:template name="bypass-to-content" text="跳至內容" />
+     <l:template name="bypass-to-nav" text="跳至頁面導覽：上一頁 [access key p]/下一頁 [access key n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="另請參閱 %t。" />
+   </l:context>
 
    <!-- Not quite sure why we need this: most of our other l10n files do not
    override the authorgroup context, only the zh_*.xml files do. However, we do

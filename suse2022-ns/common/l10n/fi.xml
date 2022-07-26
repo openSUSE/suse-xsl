@@ -12,10 +12,6 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Valitse kieli"/>
    <l:gentext key="selectformat" text="Valitse muoto"/>
    <l:gentext key="formathtml" text="Web-sivut"/>
@@ -29,6 +25,17 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Siirtyminen"/>
+   <l:gentext key="moredocuments" text="Lisää asiakirjoja"/>
+
+   <l:gentext key="onthispage" text="Tällä sivulla"/>
+
+   <l:gentext key="givefeedback" text="Anna palautetta"/>
+   <l:gentext key="reportbug" text="Ilmoita asiasta"/>
+   <l:gentext key="editsource" text="Muokkaa lähdeasiakirjaa"/>
+
+<!--   <l:gentext key="previouspage" text="Previous"/>-->
+<!--   <l:gentext key="nextpage" text="Next"/>-->
+
    <l:gentext key="sharethispage" text="Jaa tämä sivu"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -44,8 +51,8 @@
 
    <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Siirry sisältöön"/>
+     <l:template name="bypass-to-nav" text="Siirry sivun navigointiin: edellinen sivu [näppäin p]/seuraava sivu [näppäin n]"/>
    </l:context>
 
    <l:context name="styles">
@@ -162,6 +169,10 @@
       <l:template name="toc" text="%t"/>
    </l:context>
 
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:dingbat key="startquote" text="&#8221;"/>
    <l:dingbat key="endquote" text="&#8221;"/>
    <l:dingbat key="nestedstartquote" text="&#8221;"/>
@@ -172,7 +183,6 @@
    <l:context name="title">
       <l:template name="part" text="Osa&#160;%n&#160;%t"/>
    </l:context>
-
 
    <l:context name="msgset">
       <l:template name="alt" text="Alt"/>

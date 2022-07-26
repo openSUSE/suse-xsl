@@ -3,53 +3,71 @@
 
 
    <l:gentext key="LocalisedLanguageName" text="Русский"/>
-   <l:gentext key="SeeAlso"         text="Смотрите также"/>
+   <l:gentext key="SeeAlso"         text="См. также" />
    <l:gentext key="Authors"         text="Авторы"/>
    <l:gentext key="TableofContents" text="Содержание"/>
    <l:gentext key="ListofAuthors"   text="Список авторов"/>
    <l:gentext key="Contributor"     text="Участник"/>
    <l:gentext key="Contributors"    text="Участники"/>
 
-   <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="admonseparator"  text="! " />
+
+   <l:gentext key="selectlanguage" text="Выбрать язык" />
+   <l:gentext key="selectformat" text="Выбрать формат" />
+   <l:gentext key="formathtml" text="Веб-страницы"/>
+   <l:gentext key="formatsinglehtml" text="Одна веб-страница" />
+   <l:gentext key="formatpdf" text="PDF"/>
+   <l:gentext key="formatepub" text="Эл. книга (EPUB)" />
+   <l:gentext key="contentsoverview" text="Содержание"/>
+   <l:gentext key="showcontentsoverview" text="Показать содержание"/>
+   <l:gentext key="find" text="Поиск" />
+
+   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+
+   <l:gentext key="navigation" text="Навигация"/>
+   <l:gentext key="moredocuments" text="Еще документы" />
+
+   <l:gentext key="onthispage" text="На странице" />
+
+   <l:gentext key="givefeedback" text="Оставить отзыв" />
+   <l:gentext key="reportbug" text="Сообщить о проблеме" />
+   <l:gentext key="editsource" text="Редактировать исходный документ" />
+
+   <l:gentext key="previouspage" text="Назад" />
+   <l:gentext key="nextpage" text="Далее" />
+
+   <l:gentext key="sharethispage" text="Поделиться страницей" />
+   <l:gentext key="shareviafacebook" text="Facebook"/>
+   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
+   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviaemail" text="Электронная почта"/>
+   <l:gentext key="printthispage" text="Печать страницы" />
+   <l:gentext key="susecareers" text="Вакансии" />
+   <l:gentext key="suselegal" text="Юридическая информация" />
+   <l:gentext key="suseabout" text="О нас" />
+   <l:gentext key="susecontact" text="Свяжитесь с нами" />
+   <l:gentext key="version.info" text="Действительно для " />
+   <l:gentext key="totopofpage" text="Наверх"/>
+
+   <l:gentext key="version" text="Версия" />
+   <l:gentext key="Version" text="Версия" />
+
+   <l:gentext key="step.optional" text="(Необязательно)"/>
+   <l:gentext key="GlossSeeAlso" text="См. также" />
+   <l:gentext key="glossseealso" text="См. также" />
+
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
 
-   <l:gentext key="selectlanguage" text="Выбор языка"/>
-   <l:gentext key="selectformat" text="Выбор формата"/>
-   <l:gentext key="formathtml" text="Веб-страницы"/>
-   <l:gentext key="formatsinglehtml" text="Отдельная веб-страница"/>
-   <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="Электронная книга (EPUB)"/>
-   <l:gentext key="contentsoverview" text="Содержание"/>
-   <l:gentext key="showcontentsoverview" text="Показать содержание"/>
-   <l:gentext key="find" text="Найти"/>
-
-   <l:gentext key="runinhead.default.title.end.punct" text="."/>
-
-   <l:gentext key="navigation" text="Навигация"/>
-   <l:gentext key="sharethispage" text="Рассказать об этой странице"/>
-   <l:gentext key="shareviafacebook" text="Facebook"/>
-   <l:gentext key="sharevialinkedin" text="LinkedIn"/>
-   <l:gentext key="shareviatwitter" text="Twitter"/>
-   <l:gentext key="shareviaemail" text="Электронная почта"/>
-   <l:gentext key="printthispage" text="Распечатать эту страницу"/>
-   <l:gentext key="susecareers" text="Careers"/>
-   <l:gentext key="suselegal" text="Legal"/>
-   <l:gentext key="suseabout" text="About"/>
-   <l:gentext key="susecontact" text="Contact Us"/>
-   <l:gentext key="version.info" text="Относится к "/>
-   <l:gentext key="totopofpage" text="Наверх"/>
-
-   <l:gentext key="version" text="Ве́рсия"/>
-   <l:gentext key="Version" text="Ве́рсия"/>
-
-   <l:gentext key="step.optional" text="(Необязательно)"/>
-
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Перейти к началу текста"/>
-     <l:template name="bypass-to-nav" text="Перейти к навигации по странице: предыдущая страница [клавиша доступа p]/следующая страница [клавиша доступа n]"/>
+     <l:template name="bypass-to-content" text="Перейти к содержимому" />
+     <l:template name="bypass-to-nav" text="Навигация по страницам: предыдущая страница [access key p]/следующая страница [access key n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="См. также %t." />
    </l:context>
 
    <l:context name="styles">

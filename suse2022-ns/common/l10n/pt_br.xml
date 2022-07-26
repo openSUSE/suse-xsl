@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id: pt_br.xml 43757 2009-08-24 08:14:29Z toms $ -->
-<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0" language="pt_br" english-language-name="Portuguese (Brazil)">
-
+<l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+   language="pt_br" english-language-name="Portuguese (Brazil)">
 
    <l:gentext key="LocalisedLanguageName" text="Portugu&#234;s (Brasil)"/>
-   <l:gentext key="SeeAlso" text="Veja tamb&#233;m"/>
-   <l:gentext key="TableofContents" text="Sum&#225;rio"/>
+   <l:gentext key="SeeAlso" text="Consulte também" />
+   <l:gentext key="Authors"         text="Autores" />
+   <l:gentext key="TableofContents" text="Conteúdo" />
    <l:gentext key="ListofAuthors" text="Lista de Autores"/>
    <l:gentext key="Contributor"     text="Colaborador"/>
    <l:gentext key="Contributors"    text="Colaboradores"/>
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Selecionar Idioma"/>
    <l:gentext key="selectformat" text="Selecionar Formato"/>
    <l:gentext key="formathtml" text="Páginas da Web"/>
    <l:gentext key="formatsinglehtml" text="Página da Web Única"/>
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-book (EPUB)"/>
+   <l:gentext key="formatepub" text="E-Book (EPUB)" />
    <l:gentext key="contentsoverview" text="Conteúdo"/>
    <l:gentext key="showcontentsoverview" text="Mostrar Conteúdo"/>
-   <l:gentext key="find" text="Localizar"/>
+   <l:gentext key="find" text="Encontrar" />
 
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navegação"/>
+   <l:gentext key="moredocuments" text="Mais documentos" />
+
+   <l:gentext key="onthispage" text="Nesta página" />
+
+   <l:gentext key="givefeedback" text="Enviar comentários" />
+   <l:gentext key="reportbug" text="Relatar um problema" />
+   <l:gentext key="editsource" text="Editar documento de origem" />
+
+   <l:gentext key="previouspage" text="Anterior" />
+   <l:gentext key="nextpage" text="Próximo" />
+
    <l:gentext key="sharethispage" text="Compartilhar esta página"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -38,20 +46,29 @@
    <l:gentext key="susecareers" text="Carreiras"/>
    <l:gentext key="suselegal" text="Jurídico"/>
    <l:gentext key="suseabout" text="Sobre"/>
-   <l:gentext key="susecontact" text="Entre em contato conosco"/>
+   <l:gentext key="susecontact" text="Contacte-nos" />
    <l:gentext key="version.info" text="Aplica-se a "/>
    <l:gentext key="totopofpage" text="Topo"/>
 
    <l:gentext key="version" text="Versão"/>
    <l:gentext key="Version" text="Versão"/>
 
-   <l:gentext key="step" text="etapa"/>
-   <l:gentext key="Step" text="Etapa"/>
+   <l:gentext key="step.optional" text="(Opcional)" />
+   <l:gentext key="GlossSeeAlso" text="Consulte também" />
+   <l:gentext key="glossseealso" text="Consulte também" />
 
-   <!-- FIXME: Needs translation. -->
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Ir para o conteúdo" />
+     <l:template name="bypass-to-nav" text="Ir para navegação de página: página anterior [tecla de acesso p]/próxima página [tecla de acesso n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Consulte também %t." />
    </l:context>
 
    <l:context name="styles">

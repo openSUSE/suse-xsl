@@ -5,8 +5,10 @@
         english-language-name="Spanish">
 
    <l:gentext key="LocalisedLanguageName" text="Espa&#241;ol"/>
-   <l:gentext key="ListofAuthors" text="Autores"/>
-   <l:gentext key="Authors"       text="Autores"/>
+   <l:gentext key="SeeAlso"         text="Consulte también" />
+   <l:gentext key="Authors"         text="Autores"/>
+   <l:gentext key="TableofContents" text="Contenido"/>
+   <l:gentext key="ListofAuthors"   text="Autores"/>
    <l:gentext key="Contributor"     text="Colaborador"/>
    <l:gentext key="Contributors"    text="Colaboradores"/>
 
@@ -15,16 +17,12 @@
    <l:gentext key="hyphenation-push-character-count" text="5"/>
    <l:gentext key="hyphenation-remain-character-count" text="5"/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
    <l:gentext key="selectlanguage" text="Seleccionar idioma"/>
    <l:gentext key="selectformat" text="Seleccionar formato"/>
    <l:gentext key="formathtml" text="Páginas Web"/>
-   <l:gentext key="formatsinglehtml" text="Una página Web"/>
+   <l:gentext key="formatsinglehtml" text="Página Web única" />
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-Book (EPUB)"/>
+   <l:gentext key="formatepub" text="Libro electrónico (ePUB)" />
    <l:gentext key="contentsoverview" text="Contenido"/>
    <l:gentext key="showcontentsoverview" text="Mostrar contenido"/>
    <l:gentext key="find" text="Buscar"/>
@@ -32,6 +30,17 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navegación"/>
+   <l:gentext key="moredocuments" text="Más documentos"/>
+
+   <l:gentext key="onthispage" text="En esta página"/>
+
+   <l:gentext key="givefeedback" text="Aportar comentarios" />
+   <l:gentext key="reportbug" text="Informar de un problema"/>
+   <l:gentext key="editsource" text="Editar documento de origen" />
+
+   <l:gentext key="previouspage" text="Anterior" />
+   <l:gentext key="nextpage" text="Siguiente" />
+
    <l:gentext key="sharethispage" text="Compartir esta página"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -49,12 +58,20 @@
    <l:gentext key="Version" text="Versión"/>
 
    <l:gentext key="step.optional" text="(Opcional)"/>
+   <l:gentext key="GlossSeeAlso" text="Consulte también" />
+   <l:gentext key="glossseealso" text="Consulte también" />
 
-   <l:gentext key="part" text="Parte"/>
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
 
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Saltar a contenido"/>
-     <l:template name="bypass-to-nav" text="Saltar a navegación de páginas: página anterior [tecla acceso p]/página siguiente [tecla acceso n]"/>
+     <l:template name="bypass-to-content" text="Ir al contenido" />
+     <l:template name="bypass-to-nav" text="Ir a la navegación de la página: página anterior [tecla de acceso p]/página siguiente [tecla de acceso n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Consulte también %t." />
    </l:context>
 
    <l:context name="styles">
@@ -202,7 +219,6 @@
       <l:template name="up" text="&#x02191;"/><!-- uarr -->
    </l:context>
 
-
    <l:context name="datetime-full">
      <l:template name="January" text="enero" lang="es" />
       <l:template name="February" text="febrero" lang="es" />
@@ -224,6 +240,6 @@
    </l:context>
 
    <l:context name="datetime">
-     <l:template name="titlepage.format" text="d/m/Y"/>
+     <l:template name="titlepage.format" text="d b Y"/>
    </l:context>
 </l:l10n>

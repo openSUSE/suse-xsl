@@ -7,10 +7,10 @@
    <l:gentext key="LocalisedLanguageName" text="Magyar"/>
    <l:gentext key="SeeAlso"         text="L&#225;sd m&#233;g"/>
    <l:gentext key="Authors"         text="Szerz&#337;k"/>
-   <l:gentext key="TableofContents" text="Tartalomjegyz&#233;k"/>
-   <l:gentext key="ListofAuthors"   text="Szerz&#337;lista"/>
-   <l:gentext key="Contributor"     text="Szerző"/>
-   <l:gentext key="Contributors"    text="Szerzők"/>
+   <l:gentext key="TableofContents" text="Tartalom" />
+   <l:gentext key="ListofAuthors"   text="Szerzők listája" />
+   <l:gentext key="Contributor"     text="Közreműködő" />
+   <l:gentext key="Contributors"    text="Közreműködők" />
 
    <!-- Workaround for a bug in the original stylesheets -->
    <l:gentext key="PubDate" text="Kiadás dátuma"/>
@@ -18,40 +18,62 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
-   <l:gentext key="selectlanguage" text="Nyelv választása"/>
-   <l:gentext key="selectformat" text="Formátum beállítása"/>
-   <l:gentext key="formathtml" text="Weboldalak"/>
-   <l:gentext key="formatsinglehtml" text="Egyetlen weboldal"/>
+   <l:gentext key="selectlanguage" text="Nyelv kiválasztása" />
+   <l:gentext key="selectformat" text="Formátum megadása" />
+   <l:gentext key="formathtml" text="Weblapok" />
+   <l:gentext key="formatsinglehtml" text="Egy weblap" />
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-könyv (EPUB)"/>
+   <l:gentext key="formatepub" text="E-book (EPUB)" />
    <l:gentext key="contentsoverview" text="Tartalom"/>
    <l:gentext key="showcontentsoverview" text="Tartalom megjelenítése"/>
    <l:gentext key="find" text="Keresés"/>
 
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
-   <l:gentext key="navigation" text="Navigáció"/>
-   <l:gentext key="sharethispage" text="Az oldal megosztása"/>
+   <l:gentext key="navigation" text="Navigáció" />
+   <l:gentext key="moredocuments" text="Több dokumentum" />
+
+   <l:gentext key="onthispage" text="Ezen az oldalon" />
+
+   <l:gentext key="givefeedback" text="Visszajelzés küldése" />
+   <l:gentext key="reportbug" text="Probléma bejelentése" />
+   <l:gentext key="editsource" text="Forrásdokumentum szerkesztése" />
+
+   <l:gentext key="previouspage" text="Előző" />
+   <l:gentext key="nextpage" text="Következő" />
+
+   <l:gentext key="sharethispage" text="Oldal megosztása" />
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-mail"/>
-   <l:gentext key="printthispage" text="Az oldal nyomtatása"/>
+   <l:gentext key="printthispage" text="Oldal nyomtatása" />
    <l:gentext key="susecareers" text="Állások"/>
    <l:gentext key="suselegal" text="Jogi"/>
    <l:gentext key="suseabout" text="Névjegy"/>
    <l:gentext key="susecontact" text="Lépjen velünk kapcsolatba"/>
-   <l:gentext key="version.info" text="Dokumentum tárgya: "/>
-   <l:gentext key="totopofpage" text="A tetejére"/>
+   <l:gentext key="version.info" text="Mire vonatkozik " />
+   <l:gentext key="totopofpage" text="Az oldal tetejére" />
 
-   <!-- FIXME: Needs translation. -->
+   <l:gentext key="version" text="Verzió" />
+   <l:gentext key="Version" text="Verzió" />
+
+   <l:gentext key="step.optional" text="(Opcionális)" />
+   <l:gentext key="GlossSeeAlso" text="Lásd még" />
+   <l:gentext key="glossseealso" text="Lásd még" />
+
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Jump to content"/>
-     <l:template name="bypass-to-nav" text="Jump to page navigation: previous page [access key p]/next page [access key n]"/>
+     <l:template name="bypass-to-content" text="Ugrás a tartalomra" />
+     <l:template name="bypass-to-nav" text="Ugrás az oldalnavigációra: előző oldal [p billentyű]/következő oldal [n billentyű]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Lásd még: %t." />
    </l:context>
 
    <l:context name="styles">
@@ -222,7 +244,7 @@
    </l:context>
 
   <l:context name="datetime">
-     <l:template name="titlepage.format" text="d/m/Y"/>
+     <l:template name="titlepage.format" text="d b Y"/>
   </l:context>
 
 </l:l10n>

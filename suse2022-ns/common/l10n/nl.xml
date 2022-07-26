@@ -16,17 +16,6 @@
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
-   <l:dingbat key="startquote" text="&#34;"/>
-   <l:dingbat key="endquote" text="&#34;"/>
-   <l:dingbat key="nestedstartquote" text="&#34;"/>
-   <l:dingbat key="nestedendquote" text="&#34;"/>
-   <l:dingbat key="singlestartquote" text="&#34;" lang="nl"/>
-   <l:dingbat key="singleendquote" text="&#34;" lang="nl"/>
-
    <l:gentext key="selectlanguage" text="Taal selecteren"/>
    <l:gentext key="selectformat" text="Indeling selecteren"/>
    <l:gentext key="formathtml" text="Webpagina's"/>
@@ -40,6 +29,17 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigatie"/>
+   <l:gentext key="moredocuments" text="More documents"/>
+
+   <l:gentext key="onthispage" text="On this page"/>
+
+   <l:gentext key="givefeedback" text="Give feedback"/>
+   <l:gentext key="reportbug" text="Report an issue"/>
+   <l:gentext key="editsource" text="Edit source document"/>
+
+   <l:gentext key="previouspage" text="Previous"/>
+   <l:gentext key="nextpage" text="Next"/>
+
    <l:gentext key="sharethispage" text="Deze pagina delen"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
@@ -52,6 +52,17 @@
    <l:gentext key="susecontact" text="Contact met ons opnemen"/>
    <l:gentext key="version.info" text="Van toepassing op "/>
    <l:gentext key="totopofpage" text="Boven"/>
+
+  <!-- In most cases, this has to be empty -->
+  <l:dingbat key="guimenustartquote" text=""/>
+  <l:dingbat key="guimenuendquote" text=""/>
+
+  <l:dingbat key="startquote" text="&#34;"/>
+  <l:dingbat key="endquote" text="&#34;"/>
+  <l:dingbat key="nestedstartquote" text="&#34;"/>
+  <l:dingbat key="nestedendquote" text="&#34;"/>
+  <l:dingbat key="singlestartquote" text="&#34;" lang="nl"/>
+  <l:dingbat key="singleendquote" text="&#34;" lang="nl"/>
 
    <!-- FIXME: Needs translation. -->
    <l:context name="bypass-block">

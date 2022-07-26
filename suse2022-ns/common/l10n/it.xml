@@ -5,26 +5,21 @@
         english-language-name="Italian">
 
    <l:gentext key="LocalisedLanguageName" text="Italiano"/>
-   <l:gentext key="ListofAuthors" text="Autori"/>
-   <l:gentext key="Authors"       text="Autori"/>
-   <l:gentext key="Contributor"   text="Collaboratore"/>
-   <l:gentext key="Contributors"  text="Collaboratori"/>
-   <l:gentext key="Warning" text="Avviso"/>
-   <l:gentext key="warning" text="avviso"/>
-   <l:gentext key="WARNING" text="AVVISO"/>
+   <l:gentext key="SeeAlso"         text="Vedi anche" />
+   <l:gentext key="Authors"         text="Autori" />
+   <l:gentext key="TableofContents" text="Contenuto" />
+   <l:gentext key="ListofAuthors"   text="Elenco degli autori" />
+   <l:gentext key="Contributor"     text="Collaboratore" />
+   <l:gentext key="Contributors"    text="Collaboratori" />
 
    <l:gentext key="admonseparator"  text=": "/>
 
-   <!-- In most cases, this has to be empty -->
-   <l:dingbat key="guimenustartquote" text=""/>
-   <l:dingbat key="guimenuendquote" text=""/>
-
-   <l:gentext key="selectlanguage" text="Selezione della lingua"/>
-   <l:gentext key="selectformat" text="Selezione del formato"/>
+   <l:gentext key="selectlanguage" text="Seleziona lingua" />
+   <l:gentext key="selectformat" text="Seleziona formato" />
    <l:gentext key="formathtml" text="Pagine Web"/>
-   <l:gentext key="formatsinglehtml" text="Pagina Web singola"/>
+   <l:gentext key="formatsinglehtml" text="Singola pagina Web" />
    <l:gentext key="formatpdf" text="PDF"/>
-   <l:gentext key="formatepub" text="E-Book (EPUB)"/>
+   <l:gentext key="formatepub" text="E-book (EPUB)" />
    <l:gentext key="contentsoverview" text="Contenuto"/>
    <l:gentext key="showcontentsoverview" text="Mostra contenuto"/>
    <l:gentext key="find" text="Trova"/>
@@ -32,28 +27,49 @@
    <l:gentext key="runinhead.default.title.end.punct" text="."/>
 
    <l:gentext key="navigation" text="Navigazione"/>
-   <l:gentext key="sharethispage" text="Condividi pagina"/>
+   <l:gentext key="moredocuments" text="Altri documenti" />
+
+   <l:gentext key="onthispage" text="In questa pagina" />
+
+   <l:gentext key="givefeedback" text="Esprimi la tua opinione" />
+   <l:gentext key="reportbug" text="Segnala un problema" />
+   <l:gentext key="editsource" text="Modifica il documento sorgente" />
+
+   <l:gentext key="previouspage" text="Indietro" />
+   <l:gentext key="nextpage" text="Avanti" />
+
+   <l:gentext key="sharethispage" text="Condividi questa pagina" />
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
    <l:gentext key="shareviatwitter" text="Twitter"/>
    <l:gentext key="shareviaemail" text="E-mail"/>
-   <l:gentext key="printthispage" text="Stampa pagina"/>
+   <l:gentext key="printthispage" text="Stampa questa pagina" />
    <l:gentext key="susecareers" text="Opportunità di lavoro"/>
-   <l:gentext key="suselegal" text="Informazioni legali"/>
+   <l:gentext key="suselegal" text="Note legali" />
    <l:gentext key="suseabout" text="Informazioni"/>
-   <l:gentext key="susecontact" text="Contattateci"/>
+   <l:gentext key="susecontact" text="Contattaci" />
    <l:gentext key="version.info" text="Si applica a "/>
-   <l:gentext key="totopofpage" text="Su"/>
+   <l:gentext key="totopofpage" text="Inizio pagina" />
 
    <l:gentext key="version" text="Versione"/>
    <l:gentext key="Version" text="Versione"/>
 
    <l:gentext key="step.optional" text="(Opzionale)"/>
+   <l:gentext key="GlossSeeAlso" text="Vedi anche" />
+   <l:gentext key="glossseealso" text="Vedi anche" />
 
-   <!-- FIXME: Needs translation. -->
+
+   <!-- In most cases, this has to be empty -->
+   <l:dingbat key="guimenustartquote" text=""/>
+   <l:dingbat key="guimenuendquote" text=""/>
+
    <l:context name="bypass-block">
-     <l:template name="bypass-to-content" text="Saltar al contenuto"/>
-     <l:template name="bypass-to-nav" text="Saltar alla navigazione delle pagine: pagina precedente [chiave d’accesso p]/pagina successiva [chiave d’accesso n]"/>
+     <l:template name="bypass-to-content" text="Vai al contenuto" />
+     <l:template name="bypass-to-nav" text="Naviga tra le pagine: pagina precedente [tasto di scelta p]/pagina successiva [tasto di scelta n]" />
+   </l:context>
+
+   <l:context name="glossary">
+     <l:template name="seealso" text="Vedi anche %t." />
    </l:context>
 
    <l:context name="styles">
@@ -217,6 +233,7 @@
    </l:context>
 
    <l:context name="datetime">
-     <l:template name="titlepage.format" text="d/m/Y"/>
+     <l:template name="titlepage.format" text="d b Y"/>
    </l:context>
+
 </l:l10n>
