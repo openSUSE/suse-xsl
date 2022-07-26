@@ -1,12 +1,24 @@
 -------------------------------------------------------------------
-Fri Jul 08 11:50:00 UTC 2020 - tomschr@users.noreply.github.com
+Tue Jul 26 15:08:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update to 2.85.0
+  - Fix #479: Typo fix in parameter qnumber -> number
+  - Fix #478: reduce length count for socialmedia and search description
+    to 150
+  - Fix #474: Support alt/title attributes in images
+  - Fix #455: Add missing strings for HTML output
+  - Fix #286: Rudimentary style <result> element
+
+
+-------------------------------------------------------------------
+Fri Jul 08 11:50:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update to 2.84.1
   - Fix #454: Implement color for phrase/para
   - Fix #470: Make "Report bug" links attached to titles
 
 -------------------------------------------------------------------
-Fri Jul 08 09:05:00 UTC 2020 - tomschr@users.noreply.github.com
+Fri Jul 08 09:05:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update to 2.84.0:
   - Fix #96: Remove SUSE address
@@ -17,13 +29,13 @@ Fri Jul 08 09:05:00 UTC 2020 - tomschr@users.noreply.github.com
   - Add README for SUSE's SASS customization
 
 -------------------------------------------------------------------
-Wed Mar 30 17:02:00 UTC 2020 - tomschr@users.noreply.github.com
+Wed Mar 30 17:02:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update to 2.83.1:
   Fix publication date on title page
 
 -------------------------------------------------------------------
-Thu Feb 21 13:37:00 UTC 2020 - sknorr@suse.com
+Thu Feb 21 13:37:00 UTC 2022 - sknorr@suse.com
 
 Beta release of the SUSE XSL stylesheets 2.83.0:
 
