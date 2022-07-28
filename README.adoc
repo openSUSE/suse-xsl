@@ -13,6 +13,32 @@ This project contains customization layers for the DocBook XSL stylesheets.
 * Python 3
 
 
+== Using the stylesheets with daps
+
+In case you want to use the latest stylesheet from the main branch (and not the
+one that are installed on your system), proceed as follows:
+
+. Clone this repo if you haven't done yet.
+. Memorize the path to your repo. In this procedure, we use the
+   placeholder `SUSEXSL_REPO`.
+. Copy the following lines into your `~/.bashrc` file.
+  Don't forget to replace `<SUSEXSL_REPO>` with the path to your
+  cloned repo from the previous step.
++
+[source,bash]
+---
+dapsxsl ()
+{
+    local styleroot="<SUSEXSL_REPO>/suse2022-ns/";
+    daps --styleroot=$styleroot $*
+}
+----
+
+. Open a new shell.
+. Use the `dapsxsl` command instead of `daps` to use the stylesheets from
+  this repo.
+
+
 == Building
 
 === Requirements
