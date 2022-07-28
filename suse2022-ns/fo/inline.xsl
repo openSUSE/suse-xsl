@@ -534,7 +534,7 @@
         </xsl:call-template>
       </xsl:when>
       <xsl:when test="starts-with(@role, 'color:')">
-        <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message>
+	<!-- <xsl:message>d:phrase color="<xsl:value-of select="substring-after(., 'color:')"/>"</xsl:message> -->
         <xsl:call-template name="get-suse-color">
           <xsl:with-param name="value" select="substring-after(@role, 'color:')"/>
         </xsl:call-template>
