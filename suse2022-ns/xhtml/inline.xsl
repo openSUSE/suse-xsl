@@ -124,7 +124,7 @@
     <xsl:call-template name="inline.monoseq"/>
   </xsl:template>
 
-  <xsl:template match="d:phrase">
+  <xsl:template match="d:phrase[contains(@role, 'color:')]">
     <xsl:variable name="text-color">
       <xsl:choose>
         <xsl:when test="processing-instruction('dbsuse')">
@@ -154,9 +154,10 @@
           <xsl:value-of select="concat('color:', $text-color, ';')" />
         </xsl:attribute>
       </xsl:if>
-      <xsl:apply-imports />
+      <xsl:apply-templates/>
     </span>
   </xsl:template>
+
 
   <xsl:template match="d:productname">
     <xsl:call-template name="inline.charseq"/>

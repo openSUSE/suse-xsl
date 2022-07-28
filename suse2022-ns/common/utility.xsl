@@ -124,10 +124,6 @@
   <xsl:template name="get-suse-color">
     <xsl:param name="value"/>
     <xsl:choose>
-      <!-- When it's starting with a hash-mark, assume we have a color -->
-      <xsl:when test="starts-with($value, '#') and string-length($value) &lt;= 7">
-        <xsl:value-of select="$value"/>
-      </xsl:when>
       <!-- SUSE colors primary colors don't have 60% and 30% -->
       <xsl:when test="$value = 'suse-pine-green'">#0C322C</xsl:when>
       <xsl:when test="$value = 'suse-jungle-green'">#30BA78</xsl:when>
@@ -152,6 +148,12 @@
       <xsl:when test="$value = 'suse-fog'">#EFEFEF</xsl:when>
       <xsl:when test="$value = 'suse-fog-200'">#DEDFE0</xsl:when>
       <xsl:when test="$value = 'suse-fog-300'">#C0C2C4</xsl:when>
+      <!-- When it's starting with a hash-mark in the format of #RRGGBB
+           (=7 characters), we assume we have a color hex code.
+      -->
+      <xsl:when test="starts-with($value, '#') and string-length($value) &lt;= 7">
+        <xsl:value-of select="$value"/>
+      </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">info</xsl:with-param>

@@ -519,7 +519,7 @@
   <xsl:call-template name="inline.monoseq"/>
 </xsl:template>
 
-<xsl:template match="d:phrase">
+<xsl:template match="d:phrase[contains(@role, 'color:')]">
   <xsl:variable name="text-color">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbsuse')">
