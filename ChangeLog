@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Jul 29 09:10:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.85.1
+  - Fix #453: colors in <phrase role="color:..."> works now
+  - update README
+
+-------------------------------------------------------------------
 Tue Jul 26 15:08:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update to 2.85.0
