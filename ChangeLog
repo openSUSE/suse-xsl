@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Mon Aug 01 17:07:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.85.2
+  Fix single h1 issue in HTML
+
+  Make to cause chapter titles to use a single <h1>
+  element in HTML output.
+
+-------------------------------------------------------------------
 Fri Jul 29 09:10:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.85.1
