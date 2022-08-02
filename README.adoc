@@ -8,7 +8,7 @@ This project contains customization layers for the DocBook XSL stylesheets.
 == Requirements for use
 
 * DAPS from https://github.com/openSUSE/daps
-* DocBook XSL stylesheets from https://sourceforge.net/projects/docbook/
+* DocBook XSL stylesheets from https://github.com/docbook/xsl10-stylesheets
 * XSLT processor like `xsltproc` or Saxon 6 (needs to have support for exslt)
 * Python 3
 
@@ -91,3 +91,23 @@ If there are changes between reference and comparison images, those will be show
 
 The reference images are currently not stored centrally:
 They differ somewhat, depending on, for example, font rendering settings between different computers.
+
+== Creating a new release
+
+To create a new release, do the following steps:
+
+1. Make sure everything you want to include is in the `main` branch.
+
+1. Run the `versionbump` command with your next version:
+
+    ./versionbump <NEXT_VERSION>
+
+1. Answer the questions from the script. Confirm with typing `y`
+   or type `n` to skip this question.
+
+   a. Set your version number.
+   a. Add a change log entry. You should always create one for
+      each new version.
+   a. Accept to let the script create a commit and a tag.
+
+1. Switch to https://github.com/openSUSE/suse-xsl/releases[suse-xsl release] and make a release.
