@@ -148,6 +148,8 @@
       <xsl:when test="$value = 'suse-fog'">#EFEFEF</xsl:when>
       <xsl:when test="$value = 'suse-fog-200'">#DEDFE0</xsl:when>
       <xsl:when test="$value = 'suse-fog-300'">#C0C2C4</xsl:when>
+      <!-- Special case for red -->
+      <xsl:when test="$value = 'red'">red</xsl:when>
       <!-- When it's starting with a hash-mark in the format of #RRGGBB
            (=7 characters), we assume we have a color hex code.
       -->
@@ -167,7 +169,7 @@
             <xsl:text>suse-mint, suse-persimmon, or suse-fog.</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
-        <xsl:text>inherit</xsl:text><!-- the default -->
+        <xsl:text></xsl:text><!-- the default -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

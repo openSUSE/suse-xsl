@@ -16,10 +16,13 @@
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
- xmlns:d="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:d="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xtext="xalan://com.nwalsh.xalan.Text"
   xmlns:lxslt="http://xml.apache.org/xslt"
-  exclude-result-prefixes="xlink xtext lxslt d"
+  xmlns:simg="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.ImageIntrinsics"
+  xmlns:ximg="xalan://com.nwalsh.xalan.ImageIntrinsics"
+  exclude-result-prefixes="xlink xtext lxslt d simg ximg xtext"
   extension-element-prefixes="xtext" version="1.0">
 
   <lxslt:component prefix="xtext" elements="d:insertfile"/>
