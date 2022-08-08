@@ -34,6 +34,9 @@
         <xsl:value-of select="count(ancestor::d:section)+1"/>
       </xsl:when>
       <xsl:when test="ancestor::d:chapter">0</xsl:when>
+      <xsl:when test="ancestor::d:appendix">0</xsl:when>
+      <xsl:when test="ancestor::d:glossary">0</xsl:when>
+      <xsl:when test="ancestor::d:reference">0</xsl:when>
       <xsl:when test="ancestor::d:sect5">6</xsl:when>
       <xsl:when test="ancestor::d:sect4">5</xsl:when>
       <xsl:when test="ancestor::d:sect3">4</xsl:when>
