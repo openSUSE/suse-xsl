@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Tue Sep 07 13:50:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.86.1
+  - Use new jQuery syntax (report bug links) (#493)
+  - Add missing elements to h1-fix (#484)
+
+-------------------------------------------------------------------
 Tue Aug 02 13:42:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.86.0
