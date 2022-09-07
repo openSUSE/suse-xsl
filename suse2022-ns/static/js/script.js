@@ -419,7 +419,7 @@ $(function() {
  });
 
  //  bugReportScrollSpy();
-  console.log("Calling addBugLinks...")
+
   addBugLinks();
 
   // hljs likes to unset click handlers, so run after it
@@ -436,7 +436,7 @@ $(function() {
 function addBugLinks() {
   // do not create links if there is no URL
   if ( typeof(bugtrackerUrl) == 'string') {
-    $('.permalink:not([href^=#idm])').each(function () {
+    $('.permalink:not([href^=\\#idm])').each(function () {
       var permalink = this.href;
       var sectionNumber = "";
       var sectionName = "";
