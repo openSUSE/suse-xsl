@@ -441,15 +441,22 @@ function addBugLinks() {
       var sectionNumber = "";
       var sectionName = "";
       var url = "";
-      console.log("this:", this.text,
-                  $(this).prevAll('span.title-number')[0].innerHTML,
-                  $(this).prevAll('span.title-name')[0].innerHTML
+
+      function prev(x) { return $(this).prevAll(x)[0]; };
+
+      if (prev('span.title-number') != undefined) {
+        // Some quickstarts return an undefined object and make the script to fail
+        // this if-clause takes care of this case.
+        console.log("this:", this.text,
+                  prev('span.title-number').innerHTML,
+                  prev('span.title-name').innerHTML
                   );
-      if ( $(this).prevAll('span.title-number')[0] ) {
-        sectionNumber = $(this).prevAll('span.title-number')[0].innerHTML;
       }
-      if ( $(this).prevAll('span.title-number')[0] ) {
-        sectionName = $(this).prevAll('span.title-name')[0].innerHTML;
+      if ( prev('span.title-number') ) {
+        sectionNumber = prev('span.title-number').innerHTML;
+      }
+      if ( prev('span.title-number') ) {
+        sectionName = prev('span.title-name').innerHTML;
       }
 
       if (bugtrackerType == 'bsc') {
