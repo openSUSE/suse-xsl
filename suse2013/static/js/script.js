@@ -40,7 +40,7 @@ $(function() {
   /* http://css-tricks.com/snippets/jquery/smooth-scrolling/ */
   var speed = 400;
 
-  $('a.top-button[href=#]').click(function() {
+  $('a.top-button[href=\\#]').click(function() {
     $('html,body').animate({ scrollTop: 0 }, speed,
       function() { location = location.pathname + '#'; });
     return false;
