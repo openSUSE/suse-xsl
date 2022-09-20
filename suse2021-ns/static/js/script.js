@@ -138,16 +138,27 @@ $(function() {
 function addBugLinks() {
   // do not create links if there is no URL
   if ( typeof(bugtrackerUrl) == 'string') {
-    $('.permalink:not([href^=#idm])').each(function () {
+    $('.permalink:not([href^=\\#idm])').each(function () {
       var permalink = this.href;
       var sectionNumber = "";
       var sectionName = "";
       var url = "";
-      if ( $(this).prevAll('span.number')[0] ) {
-        sectionNumber = $(this).prevAll('span.number')[0].innerHTML;
+      function prev(x) { return $(this).prevAll(x)[0]; };
+
+      if (prev('span.title-number') != undefined) {
+        // Some quickstarts return an undefined object and make the script to fail
+        // this if-clause takes care of this case.
+        console.log("this:", this.text,
+                  prev('span.title-number').innerHTML,
+                  prev('span.title-name').innerHTML
+                   );
       }
-      if ( $(this).prevAll('span.number')[0] ) {
-        sectionName = $(this).prevAll('span.name')[0].innerHTML;
+
+      if ( prev('span.number') ) {
+        sectionNumber = prev('span.number').innerHTML;
+      }
+      if ( prev('span.number') ) {
+        sectionName = prev('span.name').innerHTML;
       }
 
       if (bugtrackerType == 'bsc') {
