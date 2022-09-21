@@ -61,6 +61,8 @@
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
+   <l:dingbat key="startquote" text="&#x300c;"/>
+   <l:dingbat key="endquote" text="&#x300d;"/>
 
    <l:context name="bypass-block">
      <l:template name="bypass-to-content" text="跳至內容" />
