@@ -27,6 +27,7 @@
       <xsl:apply-templates select="$node" mode="object.label.template"/>
     </xsl:variable>
 
+    <span class="title-number-name">
     <xsl:if test="$label.template != ''">
       <span class="title-number">
         <xsl:call-template name="substitute-markup">
@@ -41,10 +42,13 @@
       </xsl:apply-templates>
       <xsl:text> </xsl:text>
     </span>
+    </span>
   </xsl:template>
 
   <xsl:template name="division.title">
     <xsl:param name="node" select="."/>
+
+    <div class="title-container">
     <h1 class="title">
       <!-- No calling of id.attribute template as ID is defined in
         parent <div>
@@ -60,6 +64,8 @@
         <xsl:with-param name="object" select="$node"/>
       </xsl:call-template>
     </h1>
+    <xsl:call-template name="generate.title.icons"/>
+    </div>
   </xsl:template>
 
   <xsl:template match="d:book">
