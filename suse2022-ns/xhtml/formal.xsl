@@ -89,13 +89,13 @@
     <xsl:if test="not($object/ancestor-or-self::d:abstract or
                       $object/ancestor-or-self::d:highlights)">
       <div class="{concat(local-name(),'-title-wrap')}">
-        <h6 class="{concat(local-name(), '-title')}">
+        <div class="{concat(local-name(), '-title')}">
           <!-- Do NOT create an id here; parent contains one already -->
           <xsl:copy-of select="$title"/>
           <xsl:call-template name="create.permalink">
             <xsl:with-param name="object" select="$object"/>
           </xsl:call-template>
-        </h6>
+        </div>
       </div>
     </xsl:if>
   </xsl:template>
