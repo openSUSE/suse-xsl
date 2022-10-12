@@ -57,9 +57,9 @@
       <!-- compact admons can have no title unless explicitly set, otherwise,
       we always generate at least the text Note/Tip/... -->
       <xsl:if test="((d:title or d:info/d:title) or ($admon.textlabel != 0 and not(@role='compact')))">
-        <h6>
+	<div class="admon-title">
           <xsl:apply-templates select="." mode="object.title.markup"/>
-        </h6>
+        </div>
       </xsl:if>
       <xsl:apply-templates/>
     </div>

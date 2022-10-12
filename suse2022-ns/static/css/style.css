@@ -2228,7 +2228,7 @@ article .legalnotice td {
   margin-top: -33px;
   width: 1px; }
 
-.admonition:target > h6,
+.admonition:target > .admon-title,
 *:target > .titlepage:nth-child(1) h1 > span,
 *:target > .titlepage:nth-child(1) h2 > span,
 *:target > .titlepage:nth-child(1) h3 > span,
@@ -2469,7 +2469,7 @@ h2 {
     height: 36px;
     margin: 0 10px 0 0;
     width: 36px; }
-  .admonition > h6 {
+  .admonition > .admon-title {
     font-weight: 600;
     color: #0c322c; }
   .admonition p {
@@ -2478,7 +2478,7 @@ h2 {
     border-style: solid;
     border-width: .2rem;
     padding: 10px; }
-    .admonition.normal > h6 {
+    .admonition.normal > .admon-title {
       display: table-cell;
       height: 36px;
       vertical-align: middle; }
@@ -2504,7 +2504,7 @@ h2 {
     height: 24px;
     margin-left: 0;
     width: 24px; }
-  .admonition.compact > h6 {
+  .admonition.compact > .admon-title {
     height: unset;
     color: #0c322c; }
   .admonition.compact > p:nth-child(1) {
@@ -3050,10 +3050,10 @@ code * {
   display: inline;
   padding: 0 !important; }
 
-.admonition h6 .literal,
-.admonition h6 .package,
-.admonition h6 .replaceable,
-.admonition h6 code,
+.admonition .admon-title .literal,
+.admonition .admon-title .package,
+.admonition .admon-title .replaceable,
+.admonition .admon-title code,
 .name .literal,
 .name .package,
 .name .replaceable,
@@ -3064,8 +3064,8 @@ a .replaceable,
 a code {
   color: inherit; }
 
-.admonition h6 .replaceable,
-.admonition h6 code {
+.admonition .admon-title .replaceable,
+.admonition .admon-title code {
   border-color: #dedfe0; }
 
 .literal,
