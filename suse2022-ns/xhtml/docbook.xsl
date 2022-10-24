@@ -163,14 +163,16 @@
   </xsl:param>
 
   <xsl:param name="title">
-    <xsl:if test="$substructure.title.short != ''">
-      <xsl:value-of select="concat($substructure.title.short, $head.content.title.separator)"/>
+    <xsl:if test="$product-short != ''">
+      <xsl:value-of select="concat($product-short,
+                                   $head.content.title.separator)"/>
     </xsl:if>
 
     <xsl:value-of select="$structure.title"/>
 
-    <xsl:if test="$product != ''">
-      <xsl:value-of select="concat($head.content.title.separator, $product)"/>
+    <xsl:if test="$substructure.title.short != ''">
+      <xsl:value-of select="concat($head.content.title.separator,
+                                   $substructure.title.short)"/>
     </xsl:if>
   </xsl:param>
 
@@ -387,7 +389,7 @@
     <xsl:choose>
       <xsl:when test="string-length(normalize-space($input)) &gt; $ellipsize.after">
         <xsl:value-of select="substring(normalize-space($input),1,$ellipsize.after - 1)"/>
-        <xsl:value-of select="'…'"/>
+        <xsl:text>…</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="normalize-space($input)"/>
