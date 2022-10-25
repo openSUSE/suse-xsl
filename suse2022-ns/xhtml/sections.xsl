@@ -24,6 +24,8 @@
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
     </xsl:variable>
+
+    <span class="title-number-name">
     <!-- NOTE: The gentext context is NOT considered -->
     <xsl:if test="$legal = 0">
       <span class="title-number">
@@ -35,6 +37,7 @@
       <xsl:apply-templates select="$node" mode="title.markup">
         <xsl:with-param name="allow-anchors" select="1"/>
       </xsl:apply-templates>
+    </span>
     </span>
     <xsl:text> </xsl:text>
   </xsl:template>
@@ -214,6 +217,7 @@
     </xsl:choose>
   </xsl:variable>
 
+  <div class="title-container">
   <xsl:element name="h{$hlevel}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
 
@@ -226,6 +230,8 @@
        <xsl:with-param name="object" select="$section"/>
     </xsl:call-template>
   </xsl:element>
+  <xsl:call-template name="generate.title.icons"/>
+  </div>
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
 

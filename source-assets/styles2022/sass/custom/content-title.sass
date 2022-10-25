@@ -7,6 +7,9 @@ h6
   color: $c_pine
 
 
+h1:has(.title-container)
+  padding: 80px 0 80px
+
 // FIXME: almost everything below needs a thorough cleanup!
 
 .article,
@@ -17,7 +20,6 @@ h6
     font-size: 48px
     font-weight: 600
     line-height: 120%
-    padding: 70px 0 50px
     width: auto
 
     .citetitle
@@ -158,3 +160,54 @@ h2
 .subtitle em,
 .title em
   font-style: normal
+
+.title-container
+  display: flex
+  flex-flow: row wrap
+  clear: both
+
+.title-container .title,
+.title-container .table-title-wrap,
+.title-container .figure-title-wrap,
+.title-container .procedure-title-wrap,
+.title-container .itemizedlist-title-wrap,
+.title-container .orderedlist-title-wrap
+  flex: 8
+
+.title-container .icons
+  flex: 1
+  margin-top: auto
+  text-align: right
+
+.icon-reportbug
+  margin-right: 1rem 
+
+  // @include m_mobile
+  // margin-right: 0.1rem
+
+// .icon-reportbug img,
+// .icon-editsource img
+//   border: 2pt solid $c_white
+//   // &:hover,
+//   // &:focus
+//   //   border: 2pt solid $c_jungle
+//   //   overflow: hidden
+
+.icon-editsource,
+.icon-reportbug
+  width: 23.07px
+  height: 26.21px
+  display: inline-block
+
+
+.icon-editsource
+  background: url($title_icons_path + 'edit-source-green.svg') no-repeat
+
+  &:hover
+    background: url($title_icons_path + 'edit-source-dark.svg') no-repeat
+
+.icon-reportbug
+  background: url($title_icons_path + 'report-bug-green.svg') no-repeat
+
+  &:hover
+    background: url($title_icons_path + 'report-bug-dark.svg') no-repeat

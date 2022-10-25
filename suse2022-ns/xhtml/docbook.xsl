@@ -599,14 +599,29 @@
   </xsl:template>
 
 
-  <xsl:template name="generate.reportbug">
-      <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
-    <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
+  <xsl:template name="generate.sourcelink">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="editurl" select="$node/ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
+    <xsl:variable name="xmlbase" select="$node/ancestor-or-self::*[@xml:base][1]/@xml:base"/>
+
     <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
-      <meta name="edit-url" content="{$editurl}{$xmlbase}"/>
+      <xsl:value-of select="concat($editurl, $xmlbase)"/>
     </xsl:if>
   </xsl:template>
 
+
+  <xsl:template name="generate.meta.reportbug">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="url">
+      <xsl:call-template name="generate.sourcelink">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <xsl:if test="$url != ''">
+      <meta name="edit-url" content="{$url}"/>
+    </xsl:if>
+  </xsl:template>
 
   <xsl:template name="outerelement.class.attribute">
     <xsl:param name="node" select="'body'"/>
@@ -651,6 +666,42 @@
     </xsl:if>
   </xsl:template>
 
+
+  <xsl:template name="generate.title.icons">
+    <!--<xsl:message>generate.title.icons</xsl:message>-->
+    <xsl:variable name="source-link">
+      <xsl:call-template name="generate.sourcelink"/>
+    </xsl:variable>
+    <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
+
+    <xsl:if test="$title.icons != 0">
+    <div class="icons">
+      <a target="_blank" class="icon-reportbug">
+        <xsl:attribute name="title">
+           <xsl:call-template name="gentext">
+             <xsl:with-param name="key">reportbug</xsl:with-param>
+           </xsl:call-template>
+        </xsl:attribute>
+        <xsl:text>&#xa0;</xsl:text>
+      </a>
+
+     <!--
+       We only want to build the source link for English, not for
+       other languages.
+     -->
+     <xsl:if test="$source-link != ''">
+      <a target="_blank" class="icon-editsource" href="{$source-link}">
+        <xsl:attribute name="title">
+           <xsl:call-template name="gentext">
+            <xsl:with-param name="key">editsource</xsl:with-param>
+           </xsl:call-template>
+        </xsl:attribute>
+        <xsl:text>&#xa0;</xsl:text>
+      </a>
+     </xsl:if>
+    </div>
+    </xsl:if>
+  </xsl:template>
 
   <xsl:template match="*" mode="process.root">
     <xsl:param name="prev"/>
@@ -787,6 +838,7 @@ var hljs = new Object;
         <xsl:with-param name="input" select="$external.js.onlineonly"/>
       </xsl:call-template>
     </xsl:if>
+    <xsl:call-template name="generate.meta.reportbug"/>
   </xsl:template>
 
   <xsl:template name="make.multi.script.link">

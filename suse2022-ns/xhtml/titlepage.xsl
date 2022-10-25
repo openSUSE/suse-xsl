@@ -34,6 +34,7 @@
     </xsl:choose>
   </xsl:variable>
 
+  <div class="title-container">
   <h1>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:choose>
@@ -58,6 +59,8 @@
       <xsl:with-param name="object" select=".."/>
     </xsl:call-template>
   </h1>
+  <xsl:call-template name="generate.title.icons"/>
+  </div>
 </xsl:template>
 
 </xsl:stylesheet>

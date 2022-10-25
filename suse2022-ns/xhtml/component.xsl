@@ -56,6 +56,7 @@
     </xsl:choose>
   </xsl:variable>
 
+  <div class="title-container">
   <xsl:element name="{$wrapperplus}">
     <xsl:attribute name="class">title</xsl:attribute>
     <xsl:call-template name="create.header.title">
@@ -66,6 +67,8 @@
       <xsl:with-param name="object" select="$node"/>
     </xsl:call-template>
   </xsl:element>
+  <xsl:call-template name="generate.title.icons"/>
+  </div>
   <xsl:call-template name="debug.filename-id"/>
 </xsl:template>
 

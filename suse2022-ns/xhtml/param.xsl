@@ -369,12 +369,7 @@ task before
   </xsl:param>
 
   <!-- Allow generating "Give Feedback" section in sidebar. -->
-  <xsl:param name="generate.give.feedback">
-    <xsl:choose>
-      <xsl:when test="$optimize.plain.text = 1">0</xsl:when>
-      <xsl:otherwise>1</xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
+  <xsl:param name="generate.give.feedback">0</xsl:param>
   <!-- Force generation of "Give Feedback" section, even if it may be empty in
   plain HTML -->
   <xsl:param name="force.generate.give.feedback" select="0"/>
@@ -443,4 +438,9 @@ task before
   <!-- Default social media preview image, if no other image is available on the page -->
   <xsl:param name="socialmedia.preview.default">static/images/social-media-preview-default.png</xsl:param>
 
+  <!-- The path for the report bug link and edit source icons -->
+  <xsl:param name="title.icons.path">static/images/</xsl:param>
+
+  <!-- Should the report bug link and edit source icons be included? 0=no, 1=yes-->
+  <xsl:param name="title.icons" select="1"/>
 </xsl:stylesheet>

@@ -16,6 +16,10 @@ License: GPL 2+
 // must be same value as 0-style.sass $i_head_offset!
 const cHeaderFixScrollStart = 65;
 
+// From https://github.com/openSUSE/suse-xsl/issues/472#issuecomment-1185401962
+const source_svg = '<svg class="source_svg" xmlns="http://www.w3.org/2000/svg" width="23.067348" height="26.213722" viewBox="0 0 6.1032359 6.9357145" version="1.1"><path fill="none" stroke="#c0c2c4" stroke-width="0.264583px" d="m 0.1327732,0.13229144 5.8381716,1.076e-5 -3.6e-6,4.7625 -3.7041668,1.21e-5 -1.0583335,1.6009044 -1.07e-5,-1.6009045 -1.05833339,5.9e-6 z M 3.9857659,1.7577095 4.8046844,2.5766279 3.985766,3.3955459 M 2.2976362,1.7577096 1.4787181,2.5766278 2.297636,3.3955459 M 3.6535249,1.5529801 2.6298773,3.6002755" /></svg>';
+const bug_svg = '<svg class="bug_svg" xmlns="http://www.w3.org/2000/svg" width="23.07" height="26.21" viewBox="0 0 6.1 6.94" version="1.1"><path fill="none" stroke="#c0c2c4" stroke-width="0.264581" d="m 3.04305,3.18412 5e-4,0.25999 M 3.04101,2.12253 3.04255,2.92414 M 3.03946,1.32091 4.64727,3.70101 1.46248,3.70713 Z M 0.155698,0.134866 5.98364,0.123661 5.99281,4.89001 2.26639,4.89718 1.18621,6.50249 1.18313,4.89926 0.164862,4.90122 Z" /></svg>';
+
 // we want these globally, but the DOM isn't there yet; probably doing it wrong
 var eBody = null;
 var eHead = null;
@@ -108,8 +112,34 @@ var ghMilestone = $( 'meta[name="tracker-gh-milestone"]' ).attr('content');
 var ghTemplate = $( 'meta[name="tracker-gh-template"]' ).attr('content');
 
 
+function show_meta() {
+  console.groupCollapsed("Global variables");
+  console.log("bugtrackerUrl: %s", bugtrackerUrl);
+  console.log("bugtrackerType: ", bugtrackerType);
+
+  console.log("----");
+  console.log("bscComponent: %s", bscComponent);
+  console.log("bscProduct: %s", bscProduct);
+  console.log("bscAssignee: %s", bscAssignee);
+  console.log("bscVersion: %s", bscVersion);
+  console.log("bscTemplate: %s", bscTemplate);
+  console.log("----");
+  console.log("ghAssignee: %s", ghAssignee);
+  console.log("ghLabels: %s", ghLabels);
+  console.log("ghMilestone: %s", ghMilestone);
+  console.log("ghTemplate: %s", ghTemplate);
+  console.log("report bug SVG: %s", bug_svg);
+  console.groupEnd();
+}
+
+
 function githubUrl(sectionName, permalink) {
   var body = sectionName + ":\n\n" + permalink;
+
+  console.groupCollapsed("githubUrl");
+  console.log("sectionName '%s'", sectionName);
+  console.log("permalink: '%s'", permalink);
+
   if (ghTemplate) {
     if (ghTemplate.indexOf('@@source@@') !== -1) {
       body = ghTemplate.replace(/@@source@@/i, body);
@@ -129,11 +159,19 @@ function githubUrl(sectionName, permalink) {
   if (ghLabels) {
     url += "&amp;labels=" + encodeURIComponent(ghLabels);
   }
+
+  console.log("url=", url);
+  console.groupEnd();
   return url;
 };
 
 
 function bugzillaUrl(sectionName, permalink) {
+
+  console.groupCollapsed("bugzillaUrl");
+  console.log("sectionName '%s'", sectionName);
+  console.log("permalink: '%s'", permalink);
+
   var body = sectionName + ":\n\n" + permalink;
   if (bscTemplate) {
     if (bscTemplate.indexOf('@@source@@') !== -1) {
@@ -142,7 +180,8 @@ function bugzillaUrl(sectionName, permalink) {
       body = body + '\n' + bscTemplate;
     };
   };
-  var url = bugtrackerUrl + "?&amp;product=" + encodeURIComponent(bscProduct)
+  var url = bugtrackerUrl
+    + "?&amp;product=" + encodeURIComponent(bscProduct)
     + '&amp;component=' + encodeURIComponent(bscComponent)
     + "&amp;short_desc=" + encodeURIComponent('[doc] Issue in "' + sectionName + '"')
     + "&amp;comment=" + encodeURIComponent(body);
@@ -152,6 +191,9 @@ function bugzillaUrl(sectionName, permalink) {
   if (bscVersion) {
     url += "&amp;version=" + encodeURIComponent(bscVersion);
   }
+
+  console.log("url=", url);
+  console.groupEnd();
   return url;
 };
 
@@ -160,6 +202,8 @@ function bugzillaUrl(sectionName, permalink) {
 // minor hitch: if there is a very short section at the end of the page, it may
 // not be picked up correctly by this.
 function bugReportScrollSpy() {
+  console.group("bugReportScrollSpy");
+
   if (  typeof(bugtrackerUrl) == 'string' &&
         document.getElementById('_feedback-reportbug') !== null ) {
     var origin = window.location.origin;
@@ -167,6 +211,8 @@ function bugReportScrollSpy() {
       origin = '';
     }
     const plainBugUrl = origin + window.location.pathname;
+    console.log("plainBugUrl '%s'", plainBugUrl);
+
     // Title selection fails silently, it's probably better that way
     var sectionName = '';
     var sectionBugUrl;
@@ -211,6 +257,8 @@ function bugReportScrollSpy() {
       observer.observe(section);
     });
   };
+
+  console.groupEnd();
 };
 
 
@@ -302,6 +350,8 @@ function hashActivator() {
 
 $(function() {
 
+  console.group("Start SUSE script.js");
+
   eBody = document.body;
   eHead = document.getElementById('_mainnav');
   eMain = document.getElementById('_content');
@@ -322,6 +372,7 @@ $(function() {
   lastScrollPosition = window.scrollY;
   stickies();
   window.addEventListener('scroll', function(){ stickies(); }, false);
+
 
   if ( document.getElementById('_share-fb') !== null ) {
     document.getElementById('_share-fb').addEventListener('click', function(e){share('fb'); e.preventDefault();}, false);
@@ -431,48 +482,84 @@ $(function() {
     };
   }, 500);
 
+
 });
 
+
 function addBugLinks() {
-  // do not create links if there is no URL
-  if ( typeof(bugtrackerUrl) == 'string') {
-    $('.permalink:not([href^=\\#idm])').each(function () {
-      var permalink = this.href;
-      var sectionNumber = "";
-      var sectionName = "";
+  show_meta();
+
+  if ( typeof(bugtrackerUrl) != 'string') {
+    return false;
+  }
+  $('.title-container').each(function(index) {
+    /* This function is applied to the following structure:
+       <div class="title-container">
+         <hX class="title">
+           <span class="title-number-name">
+             <span class="title-number">...</span>
+             <span class="title-name">...</span>
+           </span>
+           <a class="permalink title="Permalink" href="...">#</a>
+         </hX>
+       </div>
+       <div class="icons">
+          <a class="icon-reportbug"><img src="..."/></a>
+          <a class="icon-editsource" href="..."><img src="..."/></a>
+       </div>
+
+     Sometimes we have this structure (for example, in a title):
+
+     <div class="title-container">
+       <div class="table-title-wrap">
+         <h6 class="table-title">
+           <span class="title-number-name">
+             <span class="title-number">...</span>
+             <span class="title-name">...</span>
+           </span>
+         </h6>
+       </div>
+     </div
+    */
+      console.groupCollapsed(`addBugLinks ${index}`);
       var url = "";
+      var icons = this.getElementsByClassName("icons")[0];
+      var icon_reportbug = icons.getElementsByClassName("icon-reportbug")[0];
+      var permalink = this.getElementsByClassName("permalink")[0];
+      var title_number_name = this.getElementsByClassName("title-number-name")[0];
 
-      function prev(x) { return $(this).prevAll(x)[0]; };
+      console.log("title-number-name:",
+                  title_number_name,
+                  "\npermalink:",
+                  permalink,
+                  "\ntitle-number:",
+                  // We need to check first as titles can have no div
+                  // with "title-number-name" class
+                  title_number_name != undefined ? title_number_name.getElementsByClassName("title-number")[0] : "n/a",
+      );
 
-      if (prev('span.title-number') != undefined) {
-        // Some quickstarts return an undefined object and make the script to fail
-        // this if-clause takes care of this case.
-        console.log("this:", this.text,
-                  prev('span.title-number').innerHTML,
-                  prev('span.title-name').innerHTML
-                  );
-      }
-      if ( prev('span.title-number') ) {
-        sectionNumber = prev('span.title-number').innerHTML;
-      }
-      if ( prev('span.title-number') ) {
-        sectionName = prev('span.title-name').innerHTML;
+      // Create empty <span> elements
+      var sectionName = document.createElement("span");
+      var sectionNumber = document.createElement("span");
+
+      if (title_number_name != undefined) {
+        sectionNumber = title_number_name.getElementsByClassName("title-number")[0];
+        sectionName = title_number_name.getElementsByClassName("title-name")[0];
       }
 
       if (bugtrackerType == 'bsc') {
-        url = bugzillaUrl(sectionName, permalink);
+        url = bugzillaUrl(sectionName.textContent, permalink);
       }
       else {
-        url = githubUrl(sectionName, permalink);
+        url = githubUrl(sectionName.textContent, permalink);
       }
 
-      $(this).before("<a class=\"report-bug\" target=\"_blank\" href=\""
-        + url
-        + "\" title=\"Report a bug against this section of the documentation\">Report Documentation Bug</a> ");
-      return true;
-    });
-  }
-  else {
-    return false;
-  }
+      if (icon_reportbug != undefined) {
+        icon_reportbug.setAttribute("href", url);
+      }
+
+      console.groupEnd();
+    return true;
+  });
+
 }
