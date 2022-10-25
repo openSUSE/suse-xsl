@@ -55,7 +55,7 @@ For a successful build, you will need:
 
 For the `sass-css` target:
 
-* `sassc` (openSUSE's RPM-packaged version is good enough)
+* `sassc` (openSUSE's RPM-packaged version is good enough). For details, see https://github.com/openSUSE/suse-xsl/tree/main/source-assets/styles2022/sass[sass README]
 
 
 === Creating a build
