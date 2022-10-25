@@ -27,20 +27,19 @@
     productnumber below. -->
     <xsl:param name="prefer-abbreviation" select="0"/>
 
-    <!-- FIXME: This choose is a little wonky around inheritance and
-    abbreviation preference. May need a bit more think. -->
+    <!--
+      First we search for all productname[@role='abbrev'], starting in the nearest node followed
+      by its ancestors.
+    -->
     <xsl:choose>
       <xsl:when test="*/d:productname[@role='abbrev'] and $prefer-abbreviation = 1">
         <xsl:apply-templates select="(*/d:productname[@role='abbrev'])[last()]"/>
       </xsl:when>
-      <xsl:when test="*/d:productname[not(@role='abbrev')]">
-        <xsl:apply-templates select="(*/d:productname[not(@role='abbrev')])[last()]"/>
-      </xsl:when>
-      <xsl:when test="*/d:productname">
-        <xsl:apply-templates select="(*/d:productname)[last()]"/>
-      </xsl:when>
       <xsl:when test="ancestor-or-self::*/*/d:productname[@role='abbrev'] and $prefer-abbreviation = 1">
         <xsl:apply-templates select="(ancestor-or-self::*/*/d:productname[@role='abbrev'])[last()]"/>
+      </xsl:when>
+      <xsl:when test="*/d:productname[not(@role='abbrev')]">
+        <xsl:apply-templates select="(*/d:productname[not(@role='abbrev')])[last()]"/>
       </xsl:when>
       <xsl:when test="ancestor-or-self::*/*/d:productname[not(@role='abbrev')]">
         <xsl:apply-templates select="(ancestor-or-self::*/*/d:productname[not(@role='abbrev')])[last()]"/>
