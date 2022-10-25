@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Tue Oct 25 13:45:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.86.4
+  - Fix #472: Include SVG icons for "Report doc bug" and "Edit source"
+  - Fix #499: Use abbreviated productname in `<title>` tag (DOCTEAM-781)
+  - Fix #493, #490: "Report bug" links are gone from all doc HTML pages
+    (DOCTEAM-732)
+  - Fix #413: issues in l10n for French
+
+-------------------------------------------------------------------
 Wed Oct 12 12:10:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.86.3
