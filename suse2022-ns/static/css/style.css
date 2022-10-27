@@ -2270,7 +2270,8 @@ h1:has(.title-container) {
   font-size: 28px;
   font-weight: normal;
   line-height: 120%;
-  margin: -40px 0 50px;
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
   width: 100%; }
 
 .appendix .title,
