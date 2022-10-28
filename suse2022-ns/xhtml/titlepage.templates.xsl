@@ -442,6 +442,13 @@
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
   </xsl:template>
 
+  <xsl:template match="d:title" mode="book.titlepage.recto.auto.mode">
+    <div class="title-container" xsl:use-attribute-sets="book.titlepage.recto.style">
+      <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
+      <xsl:call-template name="generate.title.icons"/>
+    </div>
+  </xsl:template>
+
   <xsl:template match="d:authorgroup" mode="book.titlepage.recto.auto.mode">
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>

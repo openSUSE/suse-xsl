@@ -169,10 +169,8 @@ function githubUrl(sectionName, permalink) {
 function bugzillaUrl(sectionName, permalink) {
 
   console.groupCollapsed("bugzillaUrl");
-  console.log("sectionName '%s'", sectionName);
-  console.log("permalink: '%s'", permalink);
 
-  var body = sectionName + ":\n\n" + permalink;
+  var body = sectionName + ":\n\n" + (permalink || "");
   if (bscTemplate) {
     if (bscTemplate.indexOf('@@source@@') !== -1) {
       body = bscTemplate.replace(/@@source@@/i, body);
@@ -185,7 +183,12 @@ function bugzillaUrl(sectionName, permalink) {
     + '&amp;component=' + encodeURIComponent(bscComponent)
     + "&amp;short_desc=" + encodeURIComponent('[doc] Issue in "' + sectionName + '"')
     + "&amp;comment=" + encodeURIComponent(body);
-  if (bscAssignee) {
+
+    console.log("sectionName '%s'", sectionName);
+    console.log("permalink: '%s'", permalink || "");
+    console.log("body: '%s'", body || "");
+
+    if (bscAssignee) {
     url += "&amp;assigned_to=" + encodeURIComponent(bscAssignee);
   }
   if (bscVersion) {
@@ -520,6 +523,16 @@ function addBugLinks() {
          </h6>
        </div>
      </div
+
+     or even this
+
+     <div class="title-container">
+        <h1 class="title">
+          ...
+          <a class="permalink title="Permalink" href="...">#</a>
+        </h1>
+        <div class="icons">...</div>
+     </div>
     */
       console.groupCollapsed(`addBugLinks ${index}`);
       var url = "";
@@ -527,31 +540,38 @@ function addBugLinks() {
       var icon_reportbug = icons.getElementsByClassName("icon-reportbug")[0];
       var permalink = this.getElementsByClassName("permalink")[0];
       var title_number_name = this.getElementsByClassName("title-number-name")[0];
+      var firsttitle = this.getElementsByClassName("title")[0];
 
-      console.log("title-number-name:",
-                  title_number_name,
-                  "\npermalink:",
-                  permalink,
+      if (permalink == undefined) {
+        // If permalink is not available, use the global URL
+        permalink = document.createElement("span");
+        permalink.setAttribute("href", window.location.href)
+        permalink.textContent = "#";
+      }
+
+      console.log("title-number-name:", title_number_name,
+                  "\npermalink:",  permalink.href,
                   "\ntitle-number:",
                   // We need to check first as titles can have no div
                   // with "title-number-name" class
                   title_number_name != undefined ? title_number_name.getElementsByClassName("title-number")[0] : "n/a",
       );
 
-      // Create empty <span> elements
+      // Create empty <span> element
       var sectionName = document.createElement("span");
-      var sectionNumber = document.createElement("span");
 
       if (title_number_name != undefined) {
-        sectionNumber = title_number_name.getElementsByClassName("title-number")[0];
         sectionName = title_number_name.getElementsByClassName("title-name")[0];
+      }
+      else if (firsttitle != undefined) {
+        sectionName = firsttitle;
       }
 
       if (bugtrackerType == 'bsc') {
-        url = bugzillaUrl(sectionName.textContent, permalink);
+        url = bugzillaUrl(sectionName.innerText, permalink.href);
       }
       else {
-        url = githubUrl(sectionName.textContent, permalink);
+        url = githubUrl(sectionName.innerText, permalink.href);
       }
 
       if (icon_reportbug != undefined) {
