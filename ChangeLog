@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Fri Oct 28 08:11:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.86.5
+  - Related to #493/DOCTEAM-732: Fixed several layout issues
+    - subtitle overlaps with title
+    - book title misses report bug/edit source icons
+    - article titles: report bug link leads to empty title ""
+      in Bugzilla
+
+-------------------------------------------------------------------
 Tue Oct 25 13:45:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.86.4
