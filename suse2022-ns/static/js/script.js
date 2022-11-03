@@ -493,8 +493,10 @@ function addBugLinks() {
   show_meta();
 
   if ( typeof(bugtrackerUrl) != 'string') {
+    console.warn("Didn't find meta[tracker-url]. Couldn't create report links. :-(")
     return false;
   }
+
   $('.title-container').each(function(index) {
     /* This function is applied to the following structure:
        <div class="title-container">
