@@ -493,7 +493,7 @@ function addBugLinks() {
   show_meta();
 
   if ( typeof(bugtrackerUrl) != 'string') {
-    console.warn("Didn't find meta[tracker-url]. Couldn't create report links. :-(")
+    console.warn("Didn't find meta[tracker-url]. Couldn't create report links. :-(");
     return false;
   }
 
