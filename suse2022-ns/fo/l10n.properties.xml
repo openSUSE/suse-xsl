@@ -181,15 +181,15 @@
          + the Western font is usually awkwardly sized
          + the Western font usually does not fit the line weight of the CJK font
     -->
-    <prop name="serif">IPAPMincho, serif</prop>
-    <prop name="sans">IPAPGothic, sans-serif</prop>
-    <prop name="mono">'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
+    <prop name="serif" ref-name="sans"/>
+    <prop name="sans">NotoSansJP, sans-serif</prop>
+    <prop name="mono">NotoSansJP, monospace</prop>
     <!-- We could theoretically enable this for Japanese, but the
          existing bold version of IPA P Mincho is a machine-emboldened mess
          of black ink with bad meta data that leads to it not being
          recognized as the bold version of its original. IPA P Mincho
          does not have a bold version (apparently very unusual). -->
-    <prop name="enable-bold">false</prop>
+    <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
     <prop name="enable-mono-semibold">false</prop>
@@ -206,9 +206,9 @@
     <prop name="writing-mode" ref-lang="default"/>
   </lang>
   <lang code="ko">
-    <prop name="serif">UnBatang, serif</prop>
-    <prop name="sans">UnDotum, sans-serif</prop>
-    <prop name="mono">'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
+    <prop name="serif" ref-name="sans"/>
+    <prop name="sans">NotoSansKO, sans-serif</prop>
+    <prop name="mono">monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
@@ -230,10 +230,10 @@
     <!-- Simplified Chinese is most often printed as sans-serif, so use
          that. -->
     <prop name="serif" ref-name="sans"/>
-    <prop name="sans">'WenQuanYi Micro Hei', WenQuanYiMicroHei, sans-serif</prop>
-    <prop name="mono">'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
+    <prop name="sans">NotoSansZH_CN, sans-serif</prop>
+    <prop name="mono">NotoSansZH_CN, monospace</prop>
     <!-- We could enable this with some font support. -->
-    <prop name="enable-bold">false</prop>
+    <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
     <prop name="enable-mono-semibold">false</prop>
@@ -265,12 +265,12 @@
          + the Western font is usually awkwardly sized
          + the Western font usually does not fit the line weight of the CJK font
     -->
-    <prop name="serif">'AR PL UMing TW', ARPLUMingTW, serif</prop>
-    <prop name="sans" ref-name="serif"/>
-    <prop name="mono">'WenQuanYi Micro Hei Mono', WenQuanYiMicroHeiMono, monospace</prop>
+    <prop name="serif" ref-name="sans"/>
+    <prop name="sans">NotoSansZH_TW, sans-serif</prop>
+    <prop name="mono">NotoSansZH_TW, monospace</prop>
     <!-- We will probably never enable this - that text would just
          become messy blotches of ink. -->
-    <prop name="enable-bold">false</prop>
+    <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
     <prop name="enable-mono-semibold">false</prop>
