@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="39.66" viewBox="0 0 210 10.49">
+    <g transform="translate(-5.66 -61) scale(.86996)">
+        <path fill="#fe7c3f" stroke="#30ba78" stroke-width=".38" d="M6.5 76.73h156.71m7.68 0h77.14"/>
+        <path fill="#0c322c" stroke="#0c322c" stroke-width=".64" d="M6.5 79.38h153.71"/>
+        <g stroke="#0c322c" data-name="Group 15" transform="translate(162.56 72.16) scale(.63607)">
+            <path fill="none" stroke-miterlimit="10" d="M19.27 3.02h115.09" data-name="Path 73"/>
+            <g transform="translate(-4.48 -5.69) scale(.0957)">
+                <path fill="none" stroke-miterlimit="10" stroke-width="10.5" d="m145.4 124.1 18.2-18.2c14.5 6.6 32.1 4.1 43.9-7.7 9.6-9.6 13.1-23 10.5-35.5L198.1 81l-29.2.1.1-29.2L187.3 32a38.9 38.9 0 0 0-35.5 10.5 38.93 38.93 0 0 0-7.7 43.9l-15.9 15.9m-36 36-57 57c-5.4 5.4-5.4 14.1 0 19.5s14.1 5.4 19.5 0l56.4-56.4"/>
+                <path fill="none" stroke="#30ba78" stroke-miterlimit="10" stroke-width="10.5" d="m134.1 159.6-4.5 3.9 43.3 48.9a14.5 14.5 0 0 0 20.7 1.1c5.9-5.4 6.4-14.5 1.1-20.5l-43.1-48.3-4.2 3.5-56.3-66.1-.5-14-22.9-17.5-17 14.4 13.6 25.4 13.4 3z"/>
+            </g>
+        </g>
+    </g>
+</svg>
+
