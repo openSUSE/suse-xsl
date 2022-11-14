@@ -81,7 +81,7 @@
       <l:template name="figure-title" text="%t"/>
       <l:template name="glosslist-label" text=""/>
       <l:template name="glosslist-title" text="%t"/>
-      <l:template name="procedure-label" text="Prozedur %n:"/>
+      <l:template name="procedure-label" text="Vorgehen %n:"/>
       <l:template name="procedure-title" text="%t"/>
       <l:template name="table-label" text="Tabelle %n:"/>
       <l:template name="table-title" text="%t"/>
@@ -111,7 +111,7 @@
       <l:template name="intra-example" text="Beispiel %n „%t“"/>
       <l:template name="intra-figure" text="Abbildung %n „%t“"/>
       <l:template name="intra-preface" text="Vorwort „%t“"/>
-      <l:template name="intra-procedure" text="Prozedur %n „%t“"/>
+      <l:template name="intra-procedure" text="Vorgehen %n „%t“"/>
       <l:template name="intra-table" text="Tabelle %n „%t“"/>
 
       <l:template name="intra-variablelist" text="„%t“"/>
@@ -127,7 +127,7 @@
       <l:template name="example" style="nonumber" text="Beispiel&#160;&#8222;%t&#8220;"/>
       <l:template name="figure" style="nonumber" text="Abbildung&#160;&#8222;%t&#8220;"/>
       <l:template name="part" style="nonumber" text="Teil&#160;&#8222;%t&#8220;"/>
-      <l:template name="procedure" style="nonumber" text="Prozedur&#160;&#8222;%t&#8220;"/>
+      <l:template name="procedure" style="nonumber" text="Vorgehen&#160;&#8222;%t&#8220;"/>
       <l:template name="productionset" style="nonumber" text="Produktion&#160;&#8222;%t&#8220;"/>
       <l:template name="qandadiv" style="nonumber" text="F &amp; A&#160;&#8222;%t&#8220;"/>
       <l:template name="refsect1" style="nonumber" text="der Abschnitt namens &#8222;%t&#8220;"/>
