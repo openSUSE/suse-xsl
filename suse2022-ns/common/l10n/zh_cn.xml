@@ -88,18 +88,11 @@
   <l:gentext key="step.optional" text="(可选)" />
   <l:gentext key="GlossSeeAlso" text="另请参见" />
   <l:gentext key="glossseealso" text="另请参见" />
-  <l:gentext key="suselegal" text="法律" />
-  <l:gentext key="suseabout" text="关于" />
-  <l:gentext key="susecontact" text="联系我们" />
-  <l:gentext key="version.info" text="适用范围 " />
-  <l:gentext key="totopofpage" text="返回页首" />
 
-  <l:gentext key="version" text="版本" />
-  <l:gentext key="Version" text="版本" />
-  
-  <l:gentext key="step.optional" text="(可选)" />
-  <l:gentext key="GlossSeeAlso" text="另请参见" />
-  <l:gentext key="glossseealso" text="另请参见" />
+  <l:dingbat key="guimenustartquote" text=""/>
+  <l:dingbat key="guimenuendquote" text=""/>
+  <l:dingbat key="startquote" text="&#x300c;"/>
+  <l:dingbat key="endquote" text="&#x300d;"/>
 
    <l:context name="bypass-block">
     <l:template name="bypass-to-content" text="跳到内容" />
