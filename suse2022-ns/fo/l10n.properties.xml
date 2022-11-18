@@ -208,7 +208,7 @@
   <lang code="ko">
     <prop name="serif" ref-name="sans"/>
     <prop name="sans">NotoSansKO, sans-serif</prop>
-    <prop name="mono">monospace</prop>
+    <prop name="mono">NotoSansKO, monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
