@@ -8,7 +8,7 @@
      http://docbook.sourceforge.net/release/xsl-ns/current/doc/html/index.html
 
    Input:
-     DocBook 4/5 document
+     DocBook 5 document
 
    Output:
      Single XHTML file
@@ -19,7 +19,7 @@
 
    Authors:    Thomas Schraitle <toms@opensuse.org>,
                Stefan Knorr <sknorr@suse.de>
-   Copyright:  2012-2018 Thomas Schraitle, Stefan Knorr
+   Copyright:  2012-2022 Thomas Schraitle, Stefan Knorr
 
 -->
 
