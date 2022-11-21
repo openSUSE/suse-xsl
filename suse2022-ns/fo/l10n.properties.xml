@@ -183,7 +183,7 @@
     -->
     <prop name="serif" ref-name="sans"/>
     <prop name="sans">NotoSansJP, sans-serif</prop>
-    <prop name="mono">NotoSansJP, monospace</prop>
+    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, NotoSansJP, monospace</prop>
     <!-- We could theoretically enable this for Japanese, but the
          existing bold version of IPA P Mincho is a machine-emboldened mess
          of black ink with bad meta data that leads to it not being
@@ -208,7 +208,7 @@
   <lang code="ko">
     <prop name="serif" ref-name="sans"/>
     <prop name="sans">NotoSansKO, sans-serif</prop>
-    <prop name="mono">NotoSansKO, monospace</prop>
+    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, NotoSansKO, monospace</prop>
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
     <prop name="enable-sans-semibold">false</prop>
@@ -231,7 +231,7 @@
          that. -->
     <prop name="serif" ref-name="sans"/>
     <prop name="sans">NotoSansZH_CN, sans-serif</prop>
-    <prop name="mono">NotoSansZH_CN, monospace</prop>
+    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, NotoSansZH_CN, monospace</prop>
     <!-- We could enable this with some font support. -->
     <prop name="enable-bold">true</prop>
     <prop name="enable-serif-semibold">false</prop>
@@ -267,7 +267,7 @@
     -->
     <prop name="serif" ref-name="sans"/>
     <prop name="sans">NotoSansZH_TW, sans-serif</prop>
-    <prop name="mono">NotoSansZH_TW, monospace</prop>
+    <prop name="mono">'DejaVu Sans Mono', DejaVuSansMono, NotoSansZH_TW, monospace</prop>
     <!-- We will probably never enable this - that text would just
          become messy blotches of ink. -->
     <prop name="enable-bold">true</prop>
@@ -279,8 +279,8 @@
          apparently. -->
     <prop name="enable-italic">false</prop>
     <prop name="fontsize-adjust">1.1</prop>
-    <prop name="sans-xheight-adjust">1</prop>
-    <prop name="mono-xheight-adjust">0.781</prop>
+    <prop name="sans-xheight-adjust">1.15</prop>
+    <prop name="mono-xheight-adjust">1.0</prop>
     <prop name="base-lineheight">1.5</prop>
     <!-- dummy values -->
     <prop name="sans-lineheight-adjust">1</prop>
