@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Mon Nov 21 13:45:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.87.0
+  - Fix #505: Add CJK fonts NotoSans
+  - Fix #507: Create SBP stylesheets
+  - Fix #508: For de, change "Prozedur" -> "Vorgehen"
+
+-------------------------------------------------------------------
 Fri Oct 28 08:11:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.86.5
