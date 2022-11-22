@@ -28,6 +28,7 @@ DIR2013_SUSE     := suse2013
 # SUSE2021 and beyond are only available in a namespaced version
 DIR2021_SUSE     := suse2021-ns
 DIR2022_SUSE     := suse2022-ns
+DIRSBP           := sbp
 
 #--------------------------------------------------------------
 # Directories and files that will be created
@@ -75,6 +76,7 @@ SUSESTYLEDIR2013        := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)
 SUSESTYLEDIR2013-NS     := $(INST_STYLE_ROOT)/$(DIR2013_SUSE)-ns
 SUSESTYLEDIR2021-NS     := $(INST_STYLE_ROOT)/$(DIR2021_SUSE)
 SUSESTYLEDIR2022-NS     := $(INST_STYLE_ROOT)/$(DIR2022_SUSE)
+SBPDIR                  := $(INST_STYLE_ROOT)/$(DIRSBP)
 
 DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
@@ -84,7 +86,7 @@ INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(DAPSSTYLEDIR2013) $(DAPSSTYLEDIR2013-NS) \
    $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS) \
    $(SUSESTYLEDIR2013) $(SUSESTYLEDIR2013-NS) \
-   $(SUSESTYLEDIR2021-NS) $(SUSESTYLEDIR2022-NS)
+   $(SUSESTYLEDIR2021-NS) $(SUSESTYLEDIR2022-NS) $(SBPDIR)
 
 INST_DIRECTORIES := $(INST_STYLEDIRS) $(DOCDIR) \
    $(TTF_FONT_DIR) $(CATALOG_DIR)
@@ -119,6 +121,7 @@ install: | $(INST_DIRECTORIES)
 	tar c --mode=u+w,go+r-w,a-s -C $(DEV_DIR2013_SUSE) . | (cd $(SUSESTYLEDIR2013-NS); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2021_SUSE) . | (cd  $(SUSESTYLEDIR2021-NS); tar xp)
 	tar c --mode=u+w,go+r-w,a-s -C $(DIR2022_SUSE) . | (cd  $(SUSESTYLEDIR2022-NS); tar xp)
+	tar c --mode=u+w,go+r-w,a-s -C $(DIRSBP) . | (cd  $(SBPDIR); tar xp)
 	for SDIR in $(INST_STYLEDIRS); do \
 	  sed "s/@@#version@@/$(VERSION)/" $$SDIR/VERSION.xsl > $$SDIR/VERSION.xsl.0; \
 	  mv $$SDIR/VERSION.xsl.0 $$SDIR/VERSION.xsl; \
