@@ -32,6 +32,7 @@
 
   <xsl:import href="../../suse2022-ns/xhtml/docbook.xsl"/>
 
+  <xsl:include href="../VERSION.xsl"/>
   <xsl:include href="titlepage.templates.xsl"/>
 
 </xsl:stylesheet>
