@@ -13,6 +13,8 @@
    <l:gentext key="Contributors"    text="Bidragydere"/>
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Dato"/>
+   <l:gentext key="date" text="dato"/>
 
    <l:gentext key="selectlanguage" text="Vælg sprog"/>
    <l:gentext key="selectformat" text="Vælg format"/>

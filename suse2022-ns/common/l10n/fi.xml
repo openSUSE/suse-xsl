@@ -11,6 +11,8 @@
    <l:gentext key="Contributors"    text="Kirjoittajat"/>
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Päivämäärä"/>
+   <l:gentext key="date" text="päivämäärä"/>
 
    <l:gentext key="selectlanguage" text="Valitse kieli"/>
    <l:gentext key="selectformat" text="Valitse muoto"/>

@@ -2421,7 +2421,8 @@ h2 {
     background: url("../images/report-bug-dark.svg") no-repeat; }
 
 .titlepage .authorgroup:nth-child(1) {
-  margin-top: 3rem; }
+  margin-top: 3rem;
+  text-align: left; }
 
 .titlepage .series-category {
   text-align: right;

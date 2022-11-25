@@ -16,7 +16,9 @@
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:d="http://docbook.org/ns/docbook"
-  xmlns:fo="http://www.w3.org/1999/XSL/Format">
+  xmlns:fo="http://www.w3.org/1999/XSL/Format"
+  xmlns:exsl="http://exslt.org/common"
+  exclude-result-prefixes="d exsl">
 
 
   <!-- Recto page -->
@@ -91,22 +93,16 @@
     <!-- Authors -->
     <fo:block space-before="4em" font-size="&normal;pt">
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-        select="d:articleinfo/d:corpauthor" />
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-        select="d:info/d:corpauthor" />
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-        select="d:articleinfo/d:authorgroup" />
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
         select="d:info/d:authorgroup" />
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-        select="d:articleinfo/d:author" />
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-        select="d:info/d:author" />
+        select="d:info/d:author[1]" />
     </fo:block>
 
     <fo:block-container absolute-position="absolute" top="{$page.height.portrait} * 0.78">
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-      select="d:info/d:cover[d:mediaobject]" />
+      <fo:block>
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
+          select="d:info/d:cover[d:mediaobject]" />
+      </fo:block>
     </fo:block-container>
   </xsl:template>
 
@@ -188,8 +184,7 @@
     <fo:block text-align="outside">
       <xsl:for-each select="d:author">
         <fo:block>
-          <xsl:apply-templates select="."
-            mode="article.titlepage.recto.auto.mode">
+          <xsl:apply-templates select="." mode="authorgroup">
             <xsl:with-param name="withlabel" select="0" />
           </xsl:apply-templates>
         </fo:block>
@@ -197,8 +192,7 @@
 
       <xsl:for-each select="d:editor|d:othercredit">
         <fo:block>
-          <xsl:apply-templates select="."
-            mode="article.titlepage.recto.auto.mode">
+          <xsl:apply-templates select="." mode="authorgroup">
             <xsl:with-param name="withlabel" select="0" />
           </xsl:apply-templates>
         </fo:block>
@@ -209,7 +203,7 @@
 
 
   <xsl:template match="d:author[d:personname]|d:editor[d:personname]|d:othercredit[d:personname]"
-    mode="article.titlepage.recto.auto.mode">
+    mode="authorgroup">
     <xsl:call-template name="person.name">
       <xsl:with-param name="node" select="." />
     </xsl:call-template>
@@ -223,7 +217,7 @@
   </xsl:template>
 
 
-  <xsl:template match="d:author[d:orgname]|d:editor[d:orgname]|d:othercredit[d:orgname]" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:author[d:orgname]|d:editor[d:orgname]|d:othercredit[d:orgname]" mode="authorgroup">
     <xsl:param name="withlabel" select="1"/>
     <fo:block>
       <xsl:apply-templates select="d:orgname"/>
@@ -247,6 +241,31 @@
     <xsl:text>)</xsl:text>
   </xsl:template>
 
+  <xsl:template match="d:author[1]" mode="article.titlepage.recto.auto.mode">
+    <xsl:variable name="rtf.authorgroup">
+      <d:authorgroup>
+        <xsl:copy-of select=". | following-sibling::d:author"/>
+        <xsl:copy-of select="preceding-sibling::d:editor"/>
+        <xsl:copy-of select="following-sibling::d:editor"/>
+        <xsl:copy-of select="preceding-sibling::d:othercredit"/>
+        <xsl:copy-of select="following-sibling::d:othercredit"/>
+      </d:authorgroup>
+    </xsl:variable>
+    <xsl:variable name="authorgroup" select="exsl:node-set($rtf.authorgroup)"/>
+
+    <!--<xsl:message>author[1] mode="article.titlepage.recto.auto.mode"
+      content of authorgroup = <xsl:value-of select="count($authorgroup/*/*)"/>
+      following-sibling::d:author=<xsl:value-of select="count(following-sibling::d:author)"/>
+
+      following-sibling::d:editor=<xsl:value-of select="count(following-sibling::d:editor)"/>
+      preceding-sibling::d:editor=<xsl:value-of select="count(preceding-sibling::d:editor)"/>
+      following-sibling::d:othercredit=<xsl:value-of select="count(following-sibling::d:othercredit)"/>
+      preceding-sibling::d:othercredit=<xsl:value-of select="count(preceding-sibling::d:othercredit)"/>
+    </xsl:message>-->
+
+    <!-- Delegate all collected nodes to the authorgroup template -->
+    <xsl:apply-templates select="$authorgroup" mode="article.titlepage.recto.auto.mode"/>
+  </xsl:template>
 
   <!-- Verso page -->
   <xsl:template name="article.titlepage.verso">
@@ -284,6 +303,10 @@
       </fo:block>
     </fo:block>
 
+    <fo:block>
+      <xsl:apply-templates mode="article.titlepage.verso.mode" select="d:info/d:date"/>
+    </fo:block>
+
     <xsl:apply-templates mode="article.titlepage.verso.mode" select="d:info/d:abstract"/>
   </xsl:template>
 
@@ -297,6 +320,16 @@
     <fo:block font-size="&normal;" role="subtitle-article.titlepage.verso.mode">
       <xsl:apply-templates/>
     </fo:block>
+  </xsl:template>
+
+  <xsl:template match="d:date" mode="article.titlepage.verso.mode">
+    <fo:inline font-weight="bold">
+      <xsl:call-template name="gentext">
+        <xsl:with-param name="key">Date</xsl:with-param>
+      </xsl:call-template>
+    </fo:inline>
+    <xsl:text>: </xsl:text>
+    <xsl:apply-templates/>
   </xsl:template>
 
 </xsl:stylesheet>

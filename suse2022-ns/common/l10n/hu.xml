@@ -17,6 +17,8 @@
    <l:gentext key="pubdate" text="kiadás dátuma"/>
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Dátum"/>
+   <l:gentext key="date" text="dátum"/>
 
    <l:gentext key="selectlanguage" text="Nyelv kiválasztása" />
    <l:gentext key="selectformat" text="Formátum megadása" />

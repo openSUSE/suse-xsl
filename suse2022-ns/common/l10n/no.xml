@@ -11,6 +11,8 @@
    <l:gentext key="Contributors"    text="Bidragsytere"/>
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Dato"/>
+   <l:gentext key="date" text="Dato"/>
 
    <l:gentext key="selectlanguage" text="Velg språk"/>
    <l:gentext key="selectformat" text="Velg format"/>
