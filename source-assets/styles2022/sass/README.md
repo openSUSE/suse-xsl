@@ -46,7 +46,7 @@ Before you can use the result CSS, execute the following steps to compile SASS i
 2. Compile the SASS files to CSS with a SASS preprocessor using the following command
    from this directory:
 
-       sassc --precicion 5 --sass style.sass ../../../suse2022-ns/static/css/style.css
+       sassc --precision 5 --sass style.sass ../../../suse2022-ns/static/css/style.css
 
 3. Manually copy the CSS file from the previous step into your target directory.
 
