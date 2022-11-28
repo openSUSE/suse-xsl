@@ -15,6 +15,8 @@
    <l:gentext key="pubdate" text="publiceringsdatum"/>
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Datum"/>
+   <l:gentext key="date" text="datum"/>
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>

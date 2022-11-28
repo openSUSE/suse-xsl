@@ -11,6 +11,8 @@
    <l:gentext key="Contributors"    text="Współautorzy" />
 
    <l:gentext key="admonseparator"  text=": "/>
+   <l:gentext key="Date" text="Data"/>
+   <l:gentext key="date" text="data"/>
 
    <l:gentext key="selectlanguage" text="Wybierz język"/>
    <l:gentext key="selectformat" text="Wybierz format"/>

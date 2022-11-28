@@ -31,7 +31,7 @@
           </xsl:call-template>
         </span>
         <xsl:for-each select="d:author">
-          <xsl:apply-templates select="." mode="article.titlepage.recto.auto.mode">
+          <xsl:apply-templates select="." mode="authorgroup">
             <xsl:with-param name="withlabel" select="0"/>
           </xsl:apply-templates>
         </xsl:for-each>
@@ -57,15 +57,17 @@
         </xsl:call-template>
       </span>
       <xsl:for-each select="d:editor|d:othercredit">
-        <xsl:apply-templates select="." mode="article.titlepage.recto.auto.mode">
+        <xsl:apply-templates select="." mode="authorgroup">
           <xsl:with-param name="withlabel" select="0"/>
         </xsl:apply-templates>
       </xsl:for-each>
     </div>
   </xsl:template>
 
-  <xsl:template match="d:author[d:personname]|d:editor[d:personname]|d:othercredit[d:personname]" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:author[d:personname]|d:editor[d:personname]|d:othercredit[d:personname]"  mode="authorgroup">
     <xsl:param name="withlabel" select="1"/>
+<!--<xsl:message>d:<xsl:value-of select="local-name(.)"/>[d:personname]</xsl:message>  -->
+
     <div>
       <xsl:call-template name="generate.class.attribute"/>
       <xsl:if test="$withlabel != 0">
@@ -74,6 +76,7 @@
             <xsl:with-param name="key">Author</xsl:with-param>
           </xsl:call-template>
         </span>
+        <xsl:text>: </xsl:text>
       </xsl:if>
 
       <xsl:call-template name="person.name">
@@ -89,8 +92,10 @@
   </xsl:template>
 
 
-  <xsl:template match="d:author[d:orgname]|d:editor[d:orgname]|d:othercredit[d:orgname]" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:author[d:orgname]|d:editor[d:orgname]|d:othercredit[d:orgname]" mode="authorgroup">
     <xsl:param name="withlabel" select="1"/>
+<!--    <xsl:message>d:<xsl:value-of select="local-name(.)"/>[d:orgname]</xsl:message>-->
+
     <div>
       <xsl:call-template name="generate.class.attribute"/>
       <xsl:apply-templates select="d:orgname"/>
@@ -120,13 +125,80 @@
     </div>
   </xsl:template>
 
-  <xsl:template name="_article.titlepage.before.recto">
 
-<!--    <xsl:call-template name="version.info.page-top"/>-->
-    <xsl:call-template name="version.info.headline"/>
+  <xsl:template match="d:info/d:date" mode="article.titlepage.recto.auto.mode">
+    <div class="date">
+      <span class="imprint-label">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">Date</xsl:with-param>
+        </xsl:call-template>
+      </span>
+      <xsl:text>: </xsl:text>
+      <xsl:apply-templates select="." mode="titlepage.mode"/>
+    </div>
   </xsl:template>
 
 
+  <xsl:template match="d:info/d:author[1]" mode="article.titlepage.recto.auto.mode">
+    <xsl:variable name="rtf.authorgroup">
+      <d:authorgroup>
+        <xsl:copy-of select=". | following-sibling::d:author"/>
+        <xsl:copy-of select="preceding-sibling::d:editor"/>
+        <xsl:copy-of select="following-sibling::d:editor"/>
+        <xsl:copy-of select="preceding-sibling::d:othercredit"/>
+        <xsl:copy-of select="following-sibling::d:othercredit"/>
+      </d:authorgroup>
+    </xsl:variable>
+    <xsl:variable name="authorgroup" select="exsl:node-set($rtf.authorgroup)"/>
+
+    <!--<xsl:message>author[1] mode="article.titlepage.recto.auto.mode"
+      content of authorgroup = <xsl:value-of select="count($authorgroup/*/*)"/>
+      following-sibling::d:author=<xsl:value-of select="count(following-sibling::d:author)"/>
+
+      following-sibling::d:editor=<xsl:value-of select="count(following-sibling::d:editor)"/>
+      preceding-sibling::d:editor=<xsl:value-of select="count(preceding-sibling::d:editor)"/>
+      following-sibling::d:othercredit=<xsl:value-of select="count(following-sibling::d:othercredit)"/>
+      preceding-sibling::d:othercredit=<xsl:value-of select="count(preceding-sibling::d:othercredit)"/>
+    </xsl:message>-->
+
+    <!-- Delegate all collected nodes to the authorgroup template -->
+    <xsl:apply-templates select="$authorgroup" mode="article.titlepage.recto.auto.mode"/>
+  </xsl:template>
+
+
+  <xsl:template match="d:meta" name="meta">
+    <xsl:param name="class" select="@name"/><!-- default -->
+    <xsl:param name="element">div</xsl:param>
+    <xsl:element name="{$element}">
+      <xsl:call-template name="generate.class.attribute">
+        <xsl:with-param name="class" select="$class"/>
+      </xsl:call-template>
+      <xsl:apply-templates/>
+    </xsl:element>
+  </xsl:template>
+
+
+  <xsl:template match="d:meta[@name='series']" mode="article.titlepage.recto.auto.mode">
+    <xsl:apply-templates select="."/>
+  </xsl:template>
+
+
+  <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
+    <xsl:apply-templates select="."/>
+  </xsl:template>
+
+
+  <xsl:template match="d:meta[@name='platform']" mode="article.titlepage.recto.auto.mode">
+    <div>
+      <xsl:call-template name="generate.class.attribute">
+        <xsl:with-param name="class" select="@name"/>
+      </xsl:call-template>
+      <xsl:apply-templates mode="titlepage.mode"/>
+    </div>
+  </xsl:template>
+
+
+  <!-- XHTML titlepage -->
   <xsl:template name="article.titlepage.recto">
     <xsl:choose>
       <xsl:when test="d:articleinfo/d:title">
@@ -162,64 +234,31 @@
     </xsl:choose>
 
     <div class="series-category">
+      <xsl:comment/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='series']"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category']"/>
     </div>
 
     <!-- Moved authors and authorgroups here: -->
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:corpauthor"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:authorgroup"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:author"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:author"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:othercredit"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:othercredit"/>
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:editor"/>
+    <!-- We match only the first author and group every author, editor, and othercredit -->
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:author[1]"/>
 
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:cover"/>
 
     <div class="platforms">
+      <xsl:comment/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='platform']"/>
     </div>
+
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:date"/>
 
     <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:abstract"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
 
-    <xsl:call-template name="date.and.revision"/>
-    <xsl:call-template name="vcs.url"/>
-
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:copyright"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
-  </xsl:template>
-
-  <xsl:template match="d:meta" name="meta">
-    <xsl:param name="class" select="@name"/><!-- default -->
-    <xsl:param name="element">div</xsl:param>
-    <xsl:element name="{$element}">
-      <xsl:call-template name="generate.class.attribute">
-        <xsl:with-param name="class" select="$class"/>
-      </xsl:call-template>
-      <xsl:apply-templates/>
-    </xsl:element>
-  </xsl:template>
-
-  <xsl:template match="d:meta[@name='series']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates select="."/>
-  </xsl:template>
-
-  <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates select="."/>
-  </xsl:template>
-
-  <xsl:template match="d:meta[@name='platform']" mode="article.titlepage.recto.auto.mode">
-    <div>
-      <xsl:call-template name="generate.class.attribute">
-        <xsl:with-param name="class" select="@name"/>
-      </xsl:call-template>
-      <xsl:apply-templates/>
-    </div>
   </xsl:template>
 
 </xsl:stylesheet>

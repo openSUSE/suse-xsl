@@ -12,6 +12,8 @@
    <l:gentext key="Contributors"    text="Contributeurs"/>
 
    <l:gentext key="admonseparator"  text="&#160;: "/>
+   <l:gentext key="Date" text="Date"/>
+   <l:gentext key="date" text="Date"/>
 
    <l:gentext key="hyphenation-push-character-count" text="4"/>
    <l:gentext key="hyphenation-remain-character-count" text="4"/>
