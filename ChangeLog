@@ -1,4 +1,21 @@
 -------------------------------------------------------------------
+Mon Nov 28 16:21:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.87.1
+  - SBP: Add missing VERSION/VERSION.xsl
+  - Add missing sbp directory in Makefile
+  - Fix typo of --precision option
+  - Fix #513: Correct SBP stylesheets
+    - Fix broken PDF generation in `fo:block-container`
+    - Add date and localized date key to FO/XHTML
+    - Fix author alignment in XHTML
+    - SBP(FO,XHTML): Group author elements
+      - Group author, editor, and othercredit into an authorgroup
+        and apply the authorgroup template (use exsl:node-set() function)
+      - Make article.titlepage.recto the last template
+
+
+-------------------------------------------------------------------
 Mon Nov 21 13:45:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.87.0
