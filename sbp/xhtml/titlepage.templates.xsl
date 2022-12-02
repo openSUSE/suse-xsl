@@ -64,6 +64,20 @@
     </div>
   </xsl:template>
 
+  <xsl:template match="d:info/d:abstract" mode="article.titlepage.recto.auto.mode">
+    <xsl:message>d:info/d:abstract</xsl:message>
+    <div class="abstract">
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode"/>
+    </div>
+  </xsl:template>
+  <xsl:template match="d:info/d:abstract/d:title" mode="article.titlepage.recto.auto.mode">
+    <xsl:message>d:info/d:abstract/d:title</xsl:message>
+    <div class="title">
+      <xsl:apply-templates/>
+    </div>
+  </xsl:template>
+
+
   <xsl:template match="d:author[d:personname]|d:editor[d:personname]|d:othercredit[d:personname]"  mode="authorgroup">
     <xsl:param name="withlabel" select="1"/>
 <!--<xsl:message>d:<xsl:value-of select="local-name(.)"/>[d:personname]</xsl:message>  -->
@@ -183,7 +197,7 @@
   </xsl:template>
 
 
-  <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:meta[@name='category' or @name='type']" mode="article.titlepage.recto.auto.mode">
     <xsl:apply-templates select="."/>
   </xsl:template>
 
@@ -200,6 +214,7 @@
 
   <!-- XHTML titlepage -->
   <xsl:template name="article.titlepage.recto">
+    <!-- TITLE -->
     <xsl:choose>
       <xsl:when test="d:articleinfo/d:title">
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:title"/>
@@ -218,6 +233,7 @@
       </xsl:otherwise>
     </xsl:choose>
 
+    <!-- SUBTITLE -->
     <xsl:choose>
       <xsl:when test="d:articleinfo/d:subtitle">
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:subtitle"/>
@@ -236,7 +252,7 @@
     <div class="series-category">
       <xsl:comment/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='series']"/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category']"/>
+      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category' or @name='type']"/>
     </div>
 
     <!-- Moved authors and authorgroups here: -->
