@@ -4,7 +4,7 @@
      Transform DocBook document into XSL-FO file
 
    Target:
-     SUSE Best Practices
+     Technical Reference Documentation
 
    Changes from the standard SUSE stylesheets:
      * Titlepage
@@ -31,5 +31,7 @@
 
   <xsl:include href="../VERSION.xsl"/>
   <xsl:include href="param.xsl"/>
-  <xsl:include href="../../suse2022-ns/fo/article.titlepage.templates.xsl"/>
+<!--  <xsl:include href="../../sbp/fo/titlepage.templates.xsl"/>-->
+  <xsl:include href="article.titlepage.templates.xsl"/>
+
 </xsl:stylesheet>

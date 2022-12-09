@@ -2644,6 +2644,10 @@ p {
   margin: 10px 0 0;
   text-align: left; }
 
+.abstract .title {
+  font-weight: bold;
+  font-size: 12pt; }
+
 .abstract,
 .highlights {
   font-size: 18px;

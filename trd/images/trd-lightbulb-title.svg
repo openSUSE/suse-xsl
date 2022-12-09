@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="794.08" height="41.04" viewBox="0 0 210.1 10.86">
+    <g transform="translate(-5.67 -60.61) scale(.86996)">
+        <path fill="#fe7c3f" stroke="#0c322c" stroke-width=".38" d="M6.5 76.73h157.32m7.67 0h76.54"/>
+        <path fill="none" stroke="#30ba78" stroke-width=".64" d="M6.7 79.37h162.26c.26 0 .6-.32.61-.57v-1.6c0-.31.17-.59.44-.75a2.6 2.6 0 0 0 1.22-2.13"/>
+        <g stroke="#0c322c" stroke-width=".64" data-name="Group 14" transform="translate(29.2)">
+            <path fill="none" stroke="#30ba78" stroke-linecap="square" d="M142.04 72.7a2.59 2.59 0 0 0-2.64-2.53h-1.76A2.59 2.59 0 0 0 135 72.7v1.64c.03.87.5 1.66 1.23 2.12a.9.9 0 0 1 .44.75v1.05" data-name="Path 70"/>
+            <path fill="none" stroke="#30ba78" stroke-linecap="round" d="M136.98 80.4h3.08v.93a.32.32 0 0 1-.32.32h-2.44a.32.32 0 0 1-.31-.32z" data-name="Path 72" paint-order="stroke fill markers"/>
+        </g>
+        <g data-name="Group 15" transform="translate(191.76 72.16) scale(.63607)">
+            <path fill="none" stroke="#30ba78" stroke-miterlimit="10" d="M-38.7 11.62s-.07-7.09-.07-8.29c0-1.9 1.15-2.66 2.02-2.66.87 0 .82.15.82.15l-.02 2.56c-.02 1.47-1.19 1.7-2.65 1.7h-2.52V4c0-.63.28-.98 1.17-.98l10.2.02 118.07-.02" data-name="Path 73"/>
+        </g>
+    </g>
+</svg>
+

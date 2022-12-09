@@ -23,9 +23,12 @@
 
   <!-- Recto page -->
   <xsl:template name="article.titlepage.recto">
-    <fo:table>
+    <fo:table table-layout="fixed">
+      <fo:table-column column-number="1" column-width="20%"/>
+      <fo:table-column column-number="2" /><!-- column-width="75%" -->
+
       <fo:table-body>
-        <fo:table-cell text-align="start">
+        <fo:table-cell  text-align="start">
           <fo:block>
             <fo:instream-foreign-object
               content-width="{$titlepage.logo.width.article}"
@@ -35,17 +38,26 @@
           </fo:block>
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
-          <fo:block font-size="&xxx-large;pt">
+          <fo:block font-size="&x-large;pt" hyphenate="false">
             <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="article.titlepage.recto.auto.mode"/>
           </fo:block>
           <fo:block font-size="&large;pt">
-            <xsl:apply-templates select="d:info/d:meta[@name='category'][1]" mode="article.titlepage.recto.auto.mode"/>
+            <xsl:apply-templates select="d:info/d:meta[@name='type'][1]" mode="article.titlepage.recto.auto.mode"/>
           </fo:block>
         </fo:table-cell>
       </fo:table-body>
     </fo:table>
-    <!-- Title -->
+    
+    <!-- product -->
     <fo:block space-before="3cm">
+      <xsl:if test="d:info/d:productname">
+        <fo:block role="productname">
+          <xsl:apply-templates select="d:info/d:productname[1]" mode="article.titlepage.recto.auto.mode"/>
+        </fo:block>
+      </xsl:if>
+
+    <!-- Title -->
+    <fo:block hyphenate="false">
       <xsl:choose>
         <xsl:when test="d:artheader/d:title">
           <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
@@ -78,6 +90,7 @@
         </xsl:when>
       </xsl:choose>
     </fo:block>
+    </fo:block>
 
     <!-- Tools -->
     <fo:block>
@@ -109,6 +122,16 @@
     <fo:block break-after="page"/>
   </xsl:template>
 
+
+  <xsl:template match="d:info/d:productname" mode="article.titlepage.recto.auto.mode">
+    <fo:block text-align="start" font-size="{&xx-large; * $sans-fontsize-adjust}pt" space-after="0.5em">
+      <fo:inline background-color="&c_jungle;" color="white"
+        padding="0.3em 0.3em 0.1em 0.3em">
+        <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+      </fo:inline>
+    </fo:block>
+  </xsl:template>
+
   <xsl:template match="d:meta">
     <xsl:apply-templates/>
   </xsl:template>
@@ -117,7 +140,7 @@
     <xsl:apply-templates/>
   </xsl:template>
 
-  <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:meta[@name='category' or @name='type']" mode="article.titlepage.recto.auto.mode">
     <xsl:apply-templates/>
   </xsl:template>
 
@@ -135,6 +158,11 @@
     </xsl:if>
 
     <fo:table role="cover">
+      <fo:table-column column-number="1" column-width="20%"/>
+      <fo:table-column column-number="2" column-width="20%"/>
+      <fo:table-column column-number="3" column-width="20%"/>
+      <fo:table-column column-number="4" column-width="20%"/>
+      <fo:table-column column-number="5" column-width="20%"/>
       <fo:table-body>
         <!-- Cell no. 1 -->
         <fo:table-cell>
@@ -163,7 +191,6 @@
   </xsl:template>
 
   <xsl:template match="d:cover/d:mediaobject" mode="article.titlepage.recto.auto.mode">
-    <xsl:param name="pos"/>
       <fo:block>
         <xsl:apply-templates select="."/>
       </fo:block>
@@ -269,7 +296,7 @@
   <!-- Verso page -->
   <xsl:template name="article.titlepage.verso">
     <fo:block break-after="page"/>
-    <fo:block space-after="2em">
+    <fo:block space-after="2em" hyphenate="false" text-align="left">
       <xsl:choose>
           <xsl:when test="d:artheader/d:title">
             <xsl:apply-templates mode="article.titlepage.verso.mode"
@@ -307,6 +334,18 @@
     </fo:block>
 
     <xsl:apply-templates mode="article.titlepage.verso.mode" select="d:info/d:abstract"/>
+  </xsl:template>
+
+  <xsl:template match="d:info/d:abstract" mode="article.titlepage.verso.mode">
+    <fo:block space-before="2em">
+      <xsl:apply-templates mode="article.titlepage.verso.mode"/>
+    </fo:block>
+  </xsl:template>
+
+  <xsl:template match="d:info/d:abstract/d:title" mode="article.titlepage.verso.mode">
+    <fo:block font-weight="bold">
+      <xsl:apply-templates/>
+    </fo:block>
   </xsl:template>
 
   <xsl:template match="d:title" mode="article.titlepage.verso.mode">
