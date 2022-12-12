@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Mon Dec 12 22:28:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.88.2
+  - Fix #521: SBP(FO): don't hyphenate title & subtitle
+  - #522: SBP(FO): Small cleanup
+
+-------------------------------------------------------------------
 Mon Dec 12 16:10:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.88.1
