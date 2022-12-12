@@ -45,7 +45,7 @@
       </fo:table-body>
     </fo:table>
     <!-- Title -->
-    <fo:block space-before="3cm">
+    <fo:block space-before="3cm" hyphenate="false" text-align="left">
       <xsl:choose>
         <xsl:when test="d:artheader/d:title">
           <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
@@ -62,7 +62,7 @@
       </xsl:choose>
     </fo:block>
     <!-- Subtitle -->
-    <fo:block space-before="0.75em">
+    <fo:block space-before="0.75em" hyphenate="false" text-align="left">
       <xsl:choose>
         <xsl:when test="d:artheader/d:subtitle">
           <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
@@ -269,7 +269,7 @@
   <!-- Verso page -->
   <xsl:template name="article.titlepage.verso">
     <fo:block break-after="page"/>
-    <fo:block space-after="2em">
+    <fo:block space-after="2em"  hyphenate="false" text-align="left">
       <xsl:choose>
           <xsl:when test="d:artheader/d:title">
             <xsl:apply-templates mode="article.titlepage.verso.mode"
@@ -284,7 +284,7 @@
               select="d:title" />
           </xsl:when>
         </xsl:choose>
-      <fo:block space-before="0.75em">
+      <fo:block space-before="0.75em" hyphenate="false" text-align="left">
         <xsl:choose>
           <xsl:when test="d:artheader/d:subtitle">
             <xsl:apply-templates mode="article.titlepage.recto.mode"
