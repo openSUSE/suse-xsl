@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Mon Dec 12 16:10:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.88.1
+  Only a bugfix release. In the SBP stylesheets for FO, the
+  article titlepage wasn't really imported.
+
+-------------------------------------------------------------------
 Fri Dec 09 14:10:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.88.0
