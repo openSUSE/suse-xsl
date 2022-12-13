@@ -8,7 +8,7 @@ This project contains customization layers for the DocBook XSL stylesheets.
 == Requirements for use
 
 * DAPS from https://github.com/openSUSE/daps
-* DocBook XSL stylesheets from https://github.com/docbook/xsl10-stylesheets
+* DocBook XSL stylesheets from https://github.com/docbook/xslt10-stylesheets
 * XSLT processor like `xsltproc` or Saxon 6 (needs to have support for exslt)
 * Python 3
 
