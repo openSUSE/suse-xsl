@@ -33,5 +33,6 @@
   <xsl:include href="../VERSION.xsl"/>
   <xsl:include href="param.xsl"/>
   <xsl:include href="../../sbp/xhtml/titlepage.templates.xsl"/>
+  <xsl:include href="book.titlepage.templates.xsl"/>
 
 </xsl:stylesheet>

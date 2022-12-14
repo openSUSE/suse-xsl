@@ -47,10 +47,6 @@
     <!-- Title -->
     <fo:block space-before="3cm" hyphenate="false" text-align="left">
       <xsl:choose>
-        <xsl:when test="d:artheader/d:title">
-          <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="d:artheader/d:title" />
-        </xsl:when>
         <xsl:when test="d:info/d:title">
           <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
             select="d:info/d:title" />
@@ -64,10 +60,6 @@
     <!-- Subtitle -->
     <fo:block space-before="0.75em" hyphenate="false" text-align="left">
       <xsl:choose>
-        <xsl:when test="d:artheader/d:subtitle">
-          <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
-            select="d:artheader/d:subtitle" />
-        </xsl:when>
         <xsl:when test="d:info/d:subtitle">
           <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
             select="d:info/d:subtitle" />

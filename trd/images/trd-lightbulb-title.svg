@@ -1,14 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="794.08" height="41.04" viewBox="0 0 210.1 10.86">
-    <g transform="translate(-5.67 -60.61) scale(.86996)">
-        <path fill="#fe7c3f" stroke="#0c322c" stroke-width=".38" d="M6.5 76.73h157.32m7.67 0h76.54"/>
-        <path fill="none" stroke="#30ba78" stroke-width=".64" d="M6.7 79.37h162.26c.26 0 .6-.32.61-.57v-1.6c0-.31.17-.59.44-.75a2.6 2.6 0 0 0 1.22-2.13"/>
-        <g stroke="#0c322c" stroke-width=".64" data-name="Group 14" transform="translate(29.2)">
-            <path fill="none" stroke="#30ba78" stroke-linecap="square" d="M142.04 72.7a2.59 2.59 0 0 0-2.64-2.53h-1.76A2.59 2.59 0 0 0 135 72.7v1.64c.03.87.5 1.66 1.23 2.12a.9.9 0 0 1 .44.75v1.05" data-name="Path 70"/>
-            <path fill="none" stroke="#30ba78" stroke-linecap="round" d="M136.98 80.4h3.08v.93a.32.32 0 0 1-.32.32h-2.44a.32.32 0 0 1-.31-.32z" data-name="Path 72" paint-order="stroke fill markers"/>
-        </g>
-        <g data-name="Group 15" transform="translate(191.76 72.16) scale(.63607)">
-            <path fill="none" stroke="#30ba78" stroke-miterlimit="10" d="M-38.7 11.62s-.07-7.09-.07-8.29c0-1.9 1.15-2.66 2.02-2.66.87 0 .82.15.82.15l-.02 2.56c-.02 1.47-1.19 1.7-2.65 1.7h-2.52V4c0-.63.28-.98 1.17-.98l10.2.02 118.07-.02" data-name="Path 73"/>
-        </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="10.8585mm"
+   viewBox="0 0 209.99966 10.860001"
+   version="1.1"
+   id="svg18"
+   sodipodi:docname="trd-lightbulb-title.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata24">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs22" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2175"
+     inkscape:window-height="833"
+     id="namedview20"
+     showgrid="false"
+     units="mm"
+     inkscape:zoom="1.606891"
+     inkscape:cx="397.04001"
+     inkscape:cy="20.52"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg18" />
+  <g
+     transform="matrix(0.86996,0,0,0.86996,-5.67,-60.61)"
+     id="g16">
+    <path
+       fill="#fe7c3f"
+       stroke="#0c322c"
+       stroke-width="0.38"
+       d="m 6.5,76.73 h 157.32 m 7.67,0 h 76.54"
+       id="path2" />
+    <path
+       fill="none"
+       stroke="#30ba78"
+       stroke-width="0.64"
+       d="m 6.7,79.37 h 162.26 c 0.26,0 0.6,-0.32 0.61,-0.57 v -1.6 c 0,-0.31 0.17,-0.59 0.44,-0.75 a 2.6,2.6 0 0 0 1.22,-2.13"
+       id="path4" />
+    <g
+       stroke="#0c322c"
+       stroke-width="0.64"
+       data-name="Group 14"
+       transform="translate(29.2)"
+       id="g10">
+      <path
+         fill="none"
+         stroke="#30ba78"
+         stroke-linecap="square"
+         d="m 142.04,72.7 a 2.59,2.59 0 0 0 -2.64,-2.53 h -1.76 A 2.59,2.59 0 0 0 135,72.7 v 1.64 c 0.03,0.87 0.5,1.66 1.23,2.12 a 0.9,0.9 0 0 1 0.44,0.75 v 1.05"
+         data-name="Path 70"
+         id="path6" />
+      <path
+         fill="none"
+         stroke="#30ba78"
+         stroke-linecap="round"
+         d="m 136.98,80.4 h 3.08 v 0.93 a 0.32,0.32 0 0 1 -0.32,0.32 h -2.44 a 0.32,0.32 0 0 1 -0.31,-0.32 z"
+         data-name="Path 72"
+         paint-order="stroke fill markers"
+         id="path8" />
     </g>
+    <g
+       data-name="Group 15"
+       transform="matrix(0.63607,0,0,0.63607,191.76,72.16)"
+       id="g14">
+      <path
+         fill="none"
+         stroke="#30ba78"
+         stroke-miterlimit="10"
+         d="m -38.7,11.62 c 0,0 -0.07,-7.09 -0.07,-8.29 0,-1.9 1.15,-2.66 2.02,-2.66 0.87,0 0.82,0.15 0.82,0.15 l -0.02,2.56 c -0.02,1.47 -1.19,1.7 -2.65,1.7 h -2.52 V 4 c 0,-0.63 0.28,-0.98 1.17,-0.98 l 10.2,0.02 118.07,-0.02"
+         data-name="Path 73"
+         id="path12" />
+    </g>
+  </g>
 </svg>
-

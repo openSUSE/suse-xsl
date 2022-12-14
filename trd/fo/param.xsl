@@ -15,6 +15,12 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   exclude-result-prefixes="d">
 
+  <xsl:param name="titlepage.logo.image"><xsl:value-of select="$styleroot"/>images/trd-lightbulb-title.svg</xsl:param>
 
-<xsl:param name="titlepage.logo.image"><xsl:value-of select="$styleroot"/>images/trd-lightbulb-title.svg</xsl:param>
+
+  <xsl:attribute-set name="book.titlepage.recto.style">
+    <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
+    <xsl:attribute name="text-align">left</xsl:attribute>
+    <xsl:attribute name="font-weight">normal</xsl:attribute>
+  </xsl:attribute-set>
 </xsl:stylesheet>
