@@ -76,7 +76,7 @@
         <xsl:call-template name="inline.sansseq">
           <xsl:with-param name="content">
             <xsl:call-template name="gentext.template">
-              <xsl:with-param name="context" select="'msgset'"/>
+              <xsl:with-param name="context" select="'keycap'"/>
               <xsl:with-param name="name" select="@function"/>
             </xsl:call-template>
           </xsl:with-param>
