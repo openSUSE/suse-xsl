@@ -175,7 +175,7 @@
       <l:template name="toc" text="%t"/>
    </l:context>
 
-   <l:context name="msgset">
+   <l:context name="keycap">
       <l:template name="alt" text="Alt"/>
       <l:template name="backspace" text="&lt;&#x2014;"/>
       <!--       <l:template name="command" text=""/> -->
@@ -193,6 +193,7 @@
       <l:template name="other" text="???"/>
       <l:template name="pagedown" text="Page &#x02193;"/>
       <l:template name="pageup" text="Page &#x02191;"/>
+      <l:template name="return" text="↵"/>
       <l:template name="right" text="&#x02192;"/><!-- rarr -->
       <l:template name="shift" text="Maj"/>
       <l:template name="space" text="Space"/>

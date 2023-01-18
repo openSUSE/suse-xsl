@@ -429,11 +429,7 @@
     <xsl:choose>
       <xsl:when test="@function and normalize-space(.) = ''">
         <xsl:call-template name="gentext.template">
-          <xsl:with-param name="context" select="'msgset'"/>
-            <!-- FIXME suse22: clean up? (We have v1.79.2!)-->
-            <!-- This context is called "keycap" instead in the upcoming
-                 upstream release – TODO: use "keycap" when we've switched to
-                 1.77.2. -->
+          <xsl:with-param name="context" select="'keycap'"/>
           <xsl:with-param name="name" select="@function"/>
         </xsl:call-template>
       </xsl:when>

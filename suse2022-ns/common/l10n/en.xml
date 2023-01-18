@@ -181,12 +181,8 @@
       <l:template name="part" text="Part&#160;%n&#160;%t"/>
    </l:context>
 
-  <!--
-    HACK for keycap context
-    We need to keep this for some time
-    See Ticket#84 and https://sf.net/tracker/index.php?func=detail&aid=3540451&group_id=21935&atid=373750
-   -->
-   <l:context name="msgset">
+
+   <l:context name="keycap">
       <l:template name="alt" text="Alt"/>
       <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->
       <l:template name="command" text="&#x2318;"/>
@@ -204,6 +200,7 @@
       <l:template name="other" text="???"/>
       <l:template name="pagedown" text="Page &#x02193;"/>
       <l:template name="pageup" text="Page &#x02191;"/>
+      <l:template name="return" text="↵"/>
       <l:template name="right" text="&#x02192;"/><!-- rarr -->
       <l:template name="shift" text="Shift"/>
       <l:template name="space" text="Space"/>

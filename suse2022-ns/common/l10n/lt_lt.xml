@@ -175,7 +175,7 @@
       <l:template name="part" text="%t&#160;%n&#160;dalis"/>
    </l:context>
 
-   <l:context name="msgset">
+   <l:context name="keycap">
       <l:template name="alt" text="Alt"/>
       <l:template name="backspace" text="&#9003;"/><!-- mdash -->
       <l:template name="command" text="&#x2318;"/>
@@ -192,6 +192,7 @@
       <l:template name="other" text="???"/>
       <l:template name="pagedown" text="Psl &#x02193;"/>
       <l:template name="pageup" text="Psl &#x02191;"/>
+      <l:template name="return" text="↵"/>
       <l:template name="right" text="&#x02192;"/><!-- rarr -->
       <l:template name="shift" text="Lyg2"/>
       <l:template name="space" text="Tarpas"/>
