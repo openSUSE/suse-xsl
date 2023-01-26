@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Thu Dec 26 09:04:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.88.3
+  - Fix #525: typo in URL to upstream DB stylesheet
+  - Fix #526: book titlepage for TRD stylesheets
+  - Fix #527: make more space for cover icons (TRD/SBP)
+  - Fix #529: Support "return" key for keycaps
+
+-------------------------------------------------------------------
 Mon Dec 12 22:28:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.88.2
