@@ -339,10 +339,6 @@ task before
   </xsl:param>
 
 
-  <!-- Include header/footer via Server-Side Includes (SSI)? -->
-  <xsl:param name="include.ssi.header" select="''"/>
-  <xsl:param name="include.ssi.footer" select="''"/>
-
   <!-- Generate a footer with SUSE-specific content? -->
   <xsl:param name="generate.footer" select="$suse.content"/>
 
@@ -443,4 +439,19 @@ task before
 
   <!-- Should the report bug link and edit source icons be included? 0=no, 1=yes-->
   <xsl:param name="title.icons" select="1"/>
+
+
+  <!-- Include header/footer via Server-Side Includes (SSI)? 0=no, 1=yes
+  -->
+  <xsl:param name="include.suse.header" select="0"/>
+
+  <!-- When include.suse.header is set to 1, these are the paths for the SSIs
+       to be added inside <head>, <body>, and <footer>.
+       Use "{{#language#}}" to insert the language
+  -->
+  <xsl:param name="include.ssi.header">/docserv/fragments/{{#language#}}/suse-head.fragment.html</xsl:param>
+  <xsl:param name="include.ssi.body">/docserv/fragments/{{#language#}}/suse-body.fragment.html</xsl:param>
+  <xsl:param name="include.ssi.footer">/docserv/fragments/{{#language#}}/suse-footer.fragment.html</xsl:param>
+
+  <xsl:variable name="placeholder.ssi.language">{{#language#}}</xsl:variable>
 </xsl:stylesheet>
