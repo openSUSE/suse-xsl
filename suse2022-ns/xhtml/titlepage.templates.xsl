@@ -249,7 +249,13 @@
   </xsl:template>
 
   <xsl:template match="d:abstract" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates select="."/>
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode"/>
+  </xsl:template>
+
+  <xsl:template match="d:para" mode="article.titlepage.recto.auto.mode">
+    <p>
+      <xsl:apply-templates/>
+    </p>
   </xsl:template>
 
   <xsl:template name="article.titlepage.before.recto">
