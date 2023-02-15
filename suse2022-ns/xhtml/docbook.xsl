@@ -271,12 +271,13 @@
     </xsl:choose>
   </xsl:variable>
 
+  <title><xsl:value-of select="$title"/></title>
   <meta charset="UTF-8"/>
 
+  <xsl:if test="$include.suse.header = 0">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-
-  <title><xsl:value-of select="$title"/></title>
+  </xsl:if>
 
   <xsl:if test="$html.base != ''">
     <base href="{$html.base}"/>
@@ -711,14 +712,28 @@
       <xsl:apply-imports/>
     </xsl:param>
     <xsl:variable name="doc" select="self::*"/>
-    <xsl:variable name="lang">
-      <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
+    <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:choose>
+        <xsl:when test="($lang-scope/@xml:lang)[1]">
+          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
+        </xsl:when>
+        <!-- If we haven't found a language, fall back to English: -->
+        <xsl:otherwise>en-us</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate.suse.header.body">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.body"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
     <xsl:call-template name="root.messages"/>
 
-    <html lang="{$lang}">
+    <html lang="{$lang-attr}">
       <xsl:call-template name="root.attributes"/>
       <head>
         <xsl:call-template name="system.head.content">
@@ -734,6 +749,12 @@
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
+
+        <xsl:if test="$include.suse.header">
+          <xsl:text>&#10;</xsl:text>
+          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>
         <xsl:call-template name="bypass"/>
 
         <xsl:call-template name="user.header.content"/>
@@ -770,8 +791,45 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
+    <xsl:variable name="lang-scope"
+                  select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:choose>
+        <xsl:when test="($lang-scope/@xml:lang)[1]">
+          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
+        </xsl:when>
+        <!-- If we haven't found a language, fall back to English: -->
+        <xsl:otherwise>en-us</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate.suse.header.head">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.header"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
+    </xsl:variable>
+<!--
+  <xsl:message>user.head.content
+    lang-attr=<xsl:value-of select="$lang-attr"/>
+    placeholder.ssi.language=<xsl:value-of select="$placeholder.ssi.language"/>
+    string=<xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.header"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="'en-us'"/>
+      </xsl:call-template>
+  </xsl:message>-->
 
     <xsl:text>&#10;</xsl:text>
+    <xsl:choose>
+      <xsl:when test="$include.suse.header">
+        <xsl:text>&#10;</xsl:text>
+        <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head"/>"</xsl:comment>
+        <xsl:text>&#10;</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+      </xsl:otherwise>
+    </xsl:choose>
 
     <xsl:if test="$build.for.web = 1">
       <script type="text/javascript">
@@ -880,29 +938,52 @@ if (window.location.protocol.toLowerCase() != 'file:') {
 
 
   <xsl:template name="user.header.content">
-    <xsl:choose>
-      <xsl:when test="$include.ssi.header != ''">
-        <!-- There must _not_ be a space between comment start ('<!-\-') and hash ('#') here! -->
-        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.header"/>" </xsl:comment>
-      </xsl:when>
-      <xsl:when test="$generate.header != 0">
+    <xsl:variable name="lang-scope"
+                  select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr"
+                  select="($lang-scope/@xml:lang)[1]"/>
+    <xsl:variable name="candidate.suse.header.body">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.body"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
+    </xsl:variable>
+
+      <xsl:if test="$include.suse.header = 0">
         <header id="_mainnav">
           <div class="growth-inhibitor">
             <xsl:call-template name="create.header.logo"/>
           </div>
         </header>
-      </xsl:when>
-      <xsl:otherwise/>
-    </xsl:choose>
+      </xsl:if>
   </xsl:template>
 
   <xsl:template name="user.footer.content">
+    <xsl:variable name="lang-scope"
+      select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:choose>
+        <xsl:when test="($lang-scope/@xml:lang)[1]">
+          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
+        </xsl:when>
+        <!-- If we haven't found a language, fall back to English: -->
+        <xsl:otherwise>en-us</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate.suse.header.footer">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.footer"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
+    </xsl:variable>
+
     <xsl:choose>
-      <xsl:when test="$include.ssi.footer != ''">
-        <!-- There must _not_ be a space between comment start ('<!-\-') and hash ('#') here! -->
-        <xsl:comment>#include virtual="<xsl:value-of select="$include.ssi.footer"/>"</xsl:comment>
+      <xsl:when test="$include.suse.header">
+        <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.footer"/>"</xsl:comment>
       </xsl:when>
-      <xsl:when test="$generate.footer = 1">
+      <xsl:otherwise>
         <footer id="_footer">
           <div class="growth-inhibitor">
             <div class="copy">
@@ -915,8 +996,7 @@ if (window.location.protocol.toLowerCase() != 'file:') {
             </div>
           </div>
         </footer>
-      </xsl:when>
-      <xsl:otherwise/>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 

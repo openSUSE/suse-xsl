@@ -226,13 +226,27 @@
     <xsl:param name="nav.context"/>
     <xsl:param name="content"/>
 
-    <xsl:variable name="lang">
-      <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
+    <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:choose>
+        <xsl:when test="($lang-scope/@xml:lang)[1]">
+          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
+        </xsl:when>
+        <!-- If we haven't found a language, fall back to English: -->
+        <xsl:otherwise>en-us</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate.suse.header.body">
+      <xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.body"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
 
-    <html lang="{$lang}">
+    <html lang="{$lang-attr}">
       <xsl:call-template name="root.attributes"/>
       <xsl:call-template name="html.head">
         <xsl:with-param name="prev" select="$prev"/>
@@ -242,6 +256,11 @@
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
+        <xsl:if test="$include.suse.header">
+          <xsl:text>&#10;</xsl:text>
+          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>
         <xsl:call-template name="bypass">
           <xsl:with-param name="format" select="'chunk'"/>
         </xsl:call-template>
