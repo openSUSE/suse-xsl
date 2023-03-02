@@ -86,23 +86,27 @@
       </xsl:call-template>
     </xsl:param>
 
-    <!-- The 'if' here avoids outputting the (ugly/obvious) label "Abstract"
-    before abstracts.-->
-    <xsl:if test="not($object/ancestor-or-self::d:abstract or
-                      $object/ancestor-or-self::d:highlights)">
-      <div class="title-container">
-      <div class="{concat(local-name(),'-title-wrap')}">
-        <div class="{concat(local-name(), '-title')}">
-          <!-- Do NOT create an id here; parent contains one already -->
-          <xsl:copy-of select="$title"/>
-          <xsl:call-template name="create.permalink">
-            <xsl:with-param name="object" select="$object"/>
-          </xsl:call-template>
+    <xsl:choose>
+      <!-- Avoids outputting the (ugly/obvious) label "Abstract"
+           before abstracts/highlights:
+      -->
+      <xsl:when test="local-name($object) = 'abstract'"/>
+      <xsl:when test="local-name($object) = 'highlights'"/>
+      <xsl:otherwise>
+        <div class="title-container">
+          <div class="{concat(local-name(),'-title-wrap')}">
+            <div class="{concat(local-name(), '-title')}">
+              <!-- Do NOT create an id here; parent contains one already -->
+              <xsl:copy-of select="$title" />
+              <xsl:call-template name="create.permalink">
+                <xsl:with-param name="object" select="$object" />
+              </xsl:call-template>
+            </div>
+          </div>
+          <xsl:call-template name="generate.title.icons" />
         </div>
-      </div>
-      <xsl:call-template name="generate.title.icons"/>
-      </div>
-    </xsl:if>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
 </xsl:stylesheet>
