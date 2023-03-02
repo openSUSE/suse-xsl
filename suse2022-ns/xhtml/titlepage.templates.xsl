@@ -249,14 +249,9 @@
   </xsl:template>
 
   <xsl:template match="d:abstract" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode"/>
+    <xsl:apply-imports/>
   </xsl:template>
 
-  <xsl:template match="d:para" mode="article.titlepage.recto.auto.mode">
-    <p>
-      <xsl:apply-templates/>
-    </p>
-  </xsl:template>
 
   <xsl:template name="article.titlepage.before.recto">
     <xsl:call-template name="version.info.headline"/>
@@ -296,6 +291,8 @@
             </xsl:when>
         </xsl:choose>
 
+        <xsl:call-template name="date.and.revision"/>
+
         <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:abstract"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:abstract"/>
@@ -316,7 +313,6 @@
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:editor"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:editor"/>
 
-        <xsl:call-template name="date.and.revision"/>
         <xsl:call-template name="vcs.url"/>
 
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:copyright"/>
