@@ -173,4 +173,42 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+
+  <!--  -->
+  <xsl:template name="get-lang-for-ssi">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="lang-scope" select="$node/ancestor-or-self::*[@xml:lang][1]"/>
+
+    <xsl:variable name="lang-attr">
+      <xsl:variable name="lang-tmp" select="($lang-scope/@xml:lang)[1]"/>
+      <xsl:choose>
+        <xsl:when test="$lang-tmp">
+          <xsl:choose>
+            <!-- Rewrite language from simple two-character language code into LANG-COUNTRY-->
+            <xsl:when test="$lang-tmp = 'en'">en-us</xsl:when>
+            <xsl:when test="$lang-tmp = 'cs'">cs-cz</xsl:when>
+            <xsl:when test="$lang-tmp = 'de'">de-de</xsl:when>
+            <xsl:when test="$lang-tmp = 'es'">es-es</xsl:when>
+            <xsl:when test="$lang-tmp = 'fr'">fr-fr</xsl:when>
+            <xsl:when test="$lang-tmp = 'ko'">ko-kr</xsl:when>
+            <xsl:when test="$lang-tmp = 'ja'">ja-jp</xsl:when>
+            <xsl:when test="$lang-tmp = 'pt'">pt-br</xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$lang-tmp"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <!-- If we haven't found a language, fall back to English: -->
+        <xsl:otherwise>en-us</xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <!--<xsl:message>get-lang-for-ssi
+      lang-scope=<xsl:value-of select="count($lang-scope)"/>
+      lang=<xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
+      lang-attr=<xsl:value-of select="$lang-attr"/>
+    </xsl:message>-->
+
+    <xsl:value-of select="$lang-attr"/>
+  </xsl:template>
 </xsl:stylesheet>

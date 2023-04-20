@@ -712,15 +712,8 @@
       <xsl:apply-imports/>
     </xsl:param>
     <xsl:variable name="doc" select="self::*"/>
-    <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
     <xsl:variable name="lang-attr">
-      <xsl:choose>
-        <xsl:when test="($lang-scope/@xml:lang)[1]">
-          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
-        </xsl:when>
-        <!-- If we haven't found a language, fall back to English: -->
-        <xsl:otherwise>en-us</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
     <xsl:variable name="candidate.suse.header.body">
       <xsl:call-template name="string.subst">
@@ -791,16 +784,8 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="lang-scope"
-                  select="ancestor-or-self::*[@xml:lang][1]"/>
     <xsl:variable name="lang-attr">
-      <xsl:choose>
-        <xsl:when test="($lang-scope/@xml:lang)[1]">
-          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
-        </xsl:when>
-        <!-- If we haven't found a language, fall back to English: -->
-        <xsl:otherwise>en-us</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
     <xsl:variable name="candidate.suse.header.head">
       <xsl:call-template name="string.subst">
@@ -818,7 +803,8 @@
         <xsl:with-param name="target" select="$placeholder.ssi.language"/>
         <xsl:with-param name="replacement" select="'en-us'"/>
       </xsl:call-template>
-  </xsl:message>-->
+  </xsl:message>
+-->
 
     <xsl:text>&#10;</xsl:text>
     <xsl:choose>
@@ -938,10 +924,9 @@ if (window.location.protocol.toLowerCase() != 'file:') {
 
 
   <xsl:template name="user.header.content">
-    <xsl:variable name="lang-scope"
-                  select="ancestor-or-self::*[@xml:lang][1]"/>
-    <xsl:variable name="lang-attr"
-                  select="($lang-scope/@xml:lang)[1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:call-template name="get-lang-for-ssi"/>
+    </xsl:variable>
     <xsl:variable name="candidate.suse.header.body">
       <xsl:call-template name="string.subst">
         <xsl:with-param name="string" select="$include.ssi.body"/>
@@ -960,16 +945,8 @@ if (window.location.protocol.toLowerCase() != 'file:') {
   </xsl:template>
 
   <xsl:template name="user.footer.content">
-    <xsl:variable name="lang-scope"
-      select="ancestor-or-self::*[@xml:lang][1]"/>
     <xsl:variable name="lang-attr">
-      <xsl:choose>
-        <xsl:when test="($lang-scope/@xml:lang)[1]">
-          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
-        </xsl:when>
-        <!-- If we haven't found a language, fall back to English: -->
-        <xsl:otherwise>en-us</xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
     <xsl:variable name="candidate.suse.header.footer">
       <xsl:call-template name="string.subst">
@@ -979,9 +956,23 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       </xsl:call-template>
     </xsl:variable>
 
+  <xsl:message>user.footer.content
+    node=<xsl:value-of select="local-name(.)"/>
+    lang-attr=<xsl:value-of select="$lang-attr"/>
+    include.ssi.footer=<xsl:value-of select="$include.ssi.footer"/>
+    placeholder.ssi.language=<xsl:value-of select="$placeholder.ssi.language"/>
+    string=<xsl:call-template name="string.subst">
+        <xsl:with-param name="string" select="$include.ssi.header"/>
+        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+        <xsl:with-param name="replacement" select="$lang-attr"/>
+      </xsl:call-template>
+  </xsl:message>
+
     <xsl:choose>
       <xsl:when test="$include.suse.header">
+        <xsl:comment>start:</xsl:comment>
         <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.footer"/>"</xsl:comment>
+        <xsl:comment>end</xsl:comment>
       </xsl:when>
       <xsl:otherwise>
         <footer id="_footer">
