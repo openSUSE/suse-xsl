@@ -228,20 +228,7 @@
 
     <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
     <xsl:variable name="lang-attr">
-      <xsl:choose>
-        <xsl:when test="($lang-scope/@xml:lang)[1]">
-          <xsl:value-of select="($lang-scope/@xml:lang)[1]"/>
-        </xsl:when>
-        <!-- If we haven't found a language, fall back to English: -->
-        <xsl:otherwise>en-us</xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="candidate.suse.header.body">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.body"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
-      </xsl:call-template>
+      <xsl:call-template name="get-lang-for-ssi" />
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
@@ -257,6 +244,13 @@
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
         <xsl:if test="$include.suse.header">
+          <xsl:variable name="candidate.suse.header.body">
+            <xsl:call-template name="string.subst">
+              <xsl:with-param name="string" select="$include.ssi.body"/>
+              <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+              <xsl:with-param name="replacement" select="$lang-attr"/>
+            </xsl:call-template>
+          </xsl:variable>
           <xsl:text>&#10;</xsl:text>
           <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
           <xsl:text>&#10;</xsl:text>

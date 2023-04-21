@@ -272,15 +272,33 @@
   </xsl:variable>
 
   <title><xsl:value-of select="$title"/></title>
-  <meta charset="UTF-8"/>
 
-  <xsl:if test="$include.suse.header = 0">
-  <meta name="viewport"
+  <xsl:choose>
+    <xsl:when test="$include.suse.header">
+      <xsl:variable name="candidate.suse.header.head">
+        <xsl:call-template name="string.subst">
+          <xsl:with-param name="string" select="$include.ssi.header" />
+          <xsl:with-param name="target" select="$placeholder.ssi.language" />
+          <xsl:with-param name="replacement">
+            <xsl:call-template name="get-lang-for-ssi" />
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head" />"</xsl:comment>
+      <xsl:text>&#10;</xsl:text>
+    </xsl:when>
+    <xsl:otherwise>
+      <meta charset="UTF-8"/>
+      <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-  </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
 
   <xsl:if test="$html.base != ''">
-    <base href="{$html.base}"/>
+    <xsl:call-template name="head.content.base">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
   </xsl:if>
 
   <!-- Insert links to CSS files or insert literal style elements -->
@@ -719,7 +737,9 @@
       <xsl:call-template name="string.subst">
         <xsl:with-param name="string" select="$include.ssi.body"/>
         <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
+        <xsl:with-param name="replacement">
+          <xsl:call-template name="get-lang-for-ssi"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
 
@@ -732,6 +752,22 @@
         <xsl:call-template name="system.head.content">
           <xsl:with-param name="node" select="$doc"/>
         </xsl:call-template>
+
+        <!--<xsl:if test="$include.suse.header">
+          <xsl:variable name="candidate.suse.header.head">
+            <xsl:call-template name="string.subst">
+              <xsl:with-param name="string" select="$include.ssi.header" />
+              <xsl:with-param name="target" select="$placeholder.ssi.language" />
+              <xsl:with-param name="replacement">
+                <xsl:call-template name="get-lang-for-ssi" />
+              </xsl:with-param>
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:text>&#10;</xsl:text>
+          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head" />"</xsl:comment>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>-->
+
         <xsl:call-template name="head.content">
           <xsl:with-param name="node" select="$doc"/>
         </xsl:call-template>
@@ -784,16 +820,6 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="lang-attr">
-      <xsl:call-template name="get-lang-for-ssi"/>
-    </xsl:variable>
-    <xsl:variable name="candidate.suse.header.head">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.header"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
-      </xsl:call-template>
-    </xsl:variable>
 <!--
   <xsl:message>user.head.content
     lang-attr=<xsl:value-of select="$lang-attr"/>
@@ -806,16 +832,24 @@
   </xsl:message>
 -->
 
-    <xsl:text>&#10;</xsl:text>
+    <!--<xsl:text>&#10;</xsl:text>
     <xsl:choose>
       <xsl:when test="$include.suse.header">
+        <xsl:variable name="candidate.suse.header.head">
+          <xsl:call-template name="string.subst">
+            <xsl:with-param name="string" select="$include.ssi.header"/>
+            <xsl:with-param name="target" select="$placeholder.ssi.language"/>
+            <xsl:with-param name="replacement">
+              <xsl:call-template name="get-lang-for-ssi"/>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:variable>
         <xsl:text>&#10;</xsl:text>
         <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head"/>"</xsl:comment>
         <xsl:text>&#10;</xsl:text>
       </xsl:when>
-      <xsl:otherwise>
-      </xsl:otherwise>
-    </xsl:choose>
+      <xsl:otherwise/>
+    </xsl:choose>-->
 
     <xsl:if test="$build.for.web = 1">
       <script type="text/javascript">
@@ -945,18 +979,17 @@ if (window.location.protocol.toLowerCase() != 'file:') {
   </xsl:template>
 
   <xsl:template name="user.footer.content">
-    <xsl:variable name="lang-attr">
-      <xsl:call-template name="get-lang-for-ssi"/>
-    </xsl:variable>
     <xsl:variable name="candidate.suse.header.footer">
       <xsl:call-template name="string.subst">
         <xsl:with-param name="string" select="$include.ssi.footer"/>
         <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
+        <xsl:with-param name="replacement">
+          <xsl:call-template name="get-lang-for-ssi"/>
+        </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
 
-  <xsl:message>user.footer.content
+<!--  <xsl:message>user.footer.content
     node=<xsl:value-of select="local-name(.)"/>
     lang-attr=<xsl:value-of select="$lang-attr"/>
     include.ssi.footer=<xsl:value-of select="$include.ssi.footer"/>
@@ -966,13 +999,13 @@ if (window.location.protocol.toLowerCase() != 'file:') {
         <xsl:with-param name="target" select="$placeholder.ssi.language"/>
         <xsl:with-param name="replacement" select="$lang-attr"/>
       </xsl:call-template>
-  </xsl:message>
+  </xsl:message>-->
 
     <xsl:choose>
       <xsl:when test="$include.suse.header">
-        <xsl:comment>start:</xsl:comment>
+        <xsl:text>&#10;</xsl:text>
         <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.footer"/>"</xsl:comment>
-        <xsl:comment>end</xsl:comment>
+        <xsl:text>&#10;</xsl:text>
       </xsl:when>
       <xsl:otherwise>
         <footer id="_footer">
