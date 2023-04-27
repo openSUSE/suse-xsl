@@ -746,7 +746,19 @@
     <xsl:call-template name="user.preroot"/>
     <xsl:call-template name="root.messages"/>
 
-    <html lang="{$lang-attr}">
+    <html>
+      <xsl:choose>
+        <xsl:when test="$rootid">
+          <xsl:call-template name="l10n.language">
+            <xsl:with-param name="target" select="key('id', $rootid)"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="l10n.language">
+            <xsl:with-param name="target" select="/*[1]"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
       <xsl:call-template name="root.attributes"/>
       <head>
         <xsl:call-template name="system.head.content">
