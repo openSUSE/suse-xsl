@@ -226,37 +226,64 @@
     <xsl:param name="nav.context"/>
     <xsl:param name="content"/>
 
-    <xsl:variable name="lang">
-      <xsl:apply-templates select="(ancestor-or-self::*/@xml:lang)[last()]" mode="html.lang.attribute"/>
+    <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
+    <xsl:variable name="lang-attr">
+      <xsl:call-template name="get-lang-for-ssi" />
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
 
-    <html lang="{$lang}">
-      <xsl:call-template name="root.attributes"/>
+    <html>
+      <xsl:attribute name="lang">
+        <xsl:choose>
+          <xsl:when test="$rootid">
+            <xsl:call-template name="l10n.language">
+              <xsl:with-param name="target" select="key('id', $rootid)"/>
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="l10n.language">
+              <xsl:with-param name="target" select="/*[1]"/>
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:call-template name="root.attributes" />
       <xsl:call-template name="html.head">
-        <xsl:with-param name="prev" select="$prev"/>
-        <xsl:with-param name="next" select="$next"/>
+        <xsl:with-param name="prev" select="$prev" />
+        <xsl:with-param name="next" select="$next" />
       </xsl:call-template>
 
       <body>
-        <xsl:call-template name="body.attributes"/>
-        <xsl:call-template name="outerelement.class.attribute"/>
+        <xsl:call-template name="body.attributes" />
+        <xsl:call-template name="outerelement.class.attribute" />
+        <xsl:if test="$include.suse.header">
+          <xsl:variable name="candidate.suse.header.body">
+            <xsl:call-template name="string.subst">
+              <xsl:with-param name="string" select="$include.ssi.body" />
+              <xsl:with-param name="target" select="$placeholder.ssi.language" />
+              <xsl:with-param name="replacement" select="$lang-attr" />
+            </xsl:call-template>
+          </xsl:variable>
+          <xsl:text>&#10;</xsl:text>
+          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body" />"</xsl:comment>
+          <xsl:text>&#10;</xsl:text>
+        </xsl:if>
         <xsl:call-template name="bypass">
-          <xsl:with-param name="format" select="'chunk'"/>
+          <xsl:with-param name="format" select="'chunk'" />
         </xsl:call-template>
 
-        <xsl:call-template name="user.header.content"/>
+        <xsl:call-template name="user.header.content" />
 
-        <xsl:call-template name="breadcrumbs.navigation"/>
+        <xsl:call-template name="breadcrumbs.navigation" />
 
         <main id="_content">
 
-          <xsl:call-template name="side.toc.overall"/>
+          <xsl:call-template name="side.toc.overall" />
           <button id="_open-side-toc-overall">
             <xsl:attribute name="title">
               <xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'TableofContents'"/>
+                <xsl:with-param name="key" select="'TableofContents'" />
               </xsl:call-template>
             </xsl:attribute>
             <xsl:text> </xsl:text>
@@ -266,24 +293,24 @@
 
             <button id="_unfold-side-toc-page">
               <xsl:call-template name="gentext">
-                <xsl:with-param name="key" select="'onthispage'"/>
+                <xsl:with-param name="key" select="'onthispage'" />
               </xsl:call-template>
             </button>
-            <xsl:copy-of select="$content"/>
+            <xsl:copy-of select="$content" />
 
             <xsl:call-template name="bottom.navigation">
-              <xsl:with-param name="prev" select="$prev"/>
-              <xsl:with-param name="next" select="$next"/>
-              <xsl:with-param name="nav.context" select="$nav.context"/>
+              <xsl:with-param name="prev" select="$prev" />
+              <xsl:with-param name="next" select="$next" />
+              <xsl:with-param name="nav.context" select="$nav.context" />
             </xsl:call-template>
 
           </article>
 
-          <xsl:call-template name="side.toc.page"/>
+          <xsl:call-template name="side.toc.page" />
 
         </main>
 
-        <xsl:call-template name="user.footer.content"/>
+        <xsl:call-template name="user.footer.content" />
 
       </body>
     </html>
