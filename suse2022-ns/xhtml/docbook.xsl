@@ -765,21 +765,6 @@
           <xsl:with-param name="node" select="$doc"/>
         </xsl:call-template>
 
-        <!--<xsl:if test="$include.suse.header">
-          <xsl:variable name="candidate.suse.header.head">
-            <xsl:call-template name="string.subst">
-              <xsl:with-param name="string" select="$include.ssi.header" />
-              <xsl:with-param name="target" select="$placeholder.ssi.language" />
-              <xsl:with-param name="replacement">
-                <xsl:call-template name="get-lang-for-ssi" />
-              </xsl:with-param>
-            </xsl:call-template>
-          </xsl:variable>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head" />"</xsl:comment>
-          <xsl:text>&#10;</xsl:text>
-        </xsl:if>-->
-
         <xsl:call-template name="head.content">
           <xsl:with-param name="node" select="$doc"/>
         </xsl:call-template>
@@ -832,36 +817,7 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
-<!--
-  <xsl:message>user.head.content
-    lang-attr=<xsl:value-of select="$lang-attr"/>
-    placeholder.ssi.language=<xsl:value-of select="$placeholder.ssi.language"/>
-    string=<xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.header"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="'en-us'"/>
-      </xsl:call-template>
-  </xsl:message>
--->
 
-    <!--<xsl:text>&#10;</xsl:text>
-    <xsl:choose>
-      <xsl:when test="$include.suse.header">
-        <xsl:variable name="candidate.suse.header.head">
-          <xsl:call-template name="string.subst">
-            <xsl:with-param name="string" select="$include.ssi.header"/>
-            <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-            <xsl:with-param name="replacement">
-              <xsl:call-template name="get-lang-for-ssi"/>
-            </xsl:with-param>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:text>&#10;</xsl:text>
-        <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head"/>"</xsl:comment>
-        <xsl:text>&#10;</xsl:text>
-      </xsl:when>
-      <xsl:otherwise/>
-    </xsl:choose>-->
 
     <xsl:if test="$build.for.web = 1">
       <script type="text/javascript">
@@ -1000,18 +956,6 @@ if (window.location.protocol.toLowerCase() != 'file:') {
         </xsl:with-param>
       </xsl:call-template>
     </xsl:variable>
-
-<!--  <xsl:message>user.footer.content
-    node=<xsl:value-of select="local-name(.)"/>
-    lang-attr=<xsl:value-of select="$lang-attr"/>
-    include.ssi.footer=<xsl:value-of select="$include.ssi.footer"/>
-    placeholder.ssi.language=<xsl:value-of select="$placeholder.ssi.language"/>
-    string=<xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.header"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
-      </xsl:call-template>
-  </xsl:message>-->
 
     <xsl:choose>
       <xsl:when test="$include.suse.header">
