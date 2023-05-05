@@ -26,12 +26,16 @@
     In general, we want the long/official version, though. Dito for the
     productnumber below. -->
     <xsl:param name="prefer-abbreviation" select="0"/>
+    <xsl:variable name="meta.nodes" select="d:info/d:meta|ancestor::*/d:info/d:meta"/>
 
     <!--
       First we search for all productname[@role='abbrev'], starting in the nearest node followed
       by its ancestors.
     -->
     <xsl:choose>
+      <xsl:when test="$meta.nodes[@name='bugtracker']/d:phrase[@name='productname'] and $prefer-abbreviation = 0">/
+        <xsl:apply-templates select="$meta.nodes[@name='bugtracker']/d:phrase[@name='productname'][last()]" mode="meta"/>
+      </xsl:when>
       <xsl:when test="*/d:productname[@role='abbrev'] and $prefer-abbreviation = 1">
         <xsl:apply-templates select="(*/d:productname[@role='abbrev'])[last()]"/>
       </xsl:when>
@@ -53,10 +57,14 @@
   <xsl:template name="product.number">
     <!-- See comment in product.name... -->
     <xsl:param name="prefer-abbreviation" select="0"/>
+    <xsl:variable name="meta.nodes" select="d:info/d:meta|ancestor::*/d:info/d:meta"/>
 
     <!-- FIXME: This choose mechanism is a little wonky around inheritance and
     abbreviation preference. May need a bit more think. -->
     <xsl:choose>
+      <xsl:when test="$meta.nodes[@name='bugtracker']/d:phrase[@name='productnumber'] and $prefer-abbreviation = 0">
+        <xsl:apply-templates select="$meta.nodes[@name='bugtracker']/d:phrase[@name='productnumber'][last()]" mode="meta"/>
+      </xsl:when>
       <xsl:when test="*/d:productnumber[@role='abbrev'] and $prefer-abbreviation = 1">
         <xsl:apply-templates select="(*/d:productnumber[@role='abbrev'])[last()]"/>
       </xsl:when>
