@@ -16,3 +16,6 @@
 /build export-ignore
 /build/* export-ignore
 /fonts/*.sfd export-ignore
+
+#
+*.xml linguist-detectable
