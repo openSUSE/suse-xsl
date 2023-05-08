@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Mon May 08 15:25:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.91.0
+  - DOCTEAM-633: Preparing SUSE header changes (#531)
+  - Include XML files into GitHub statistics
+  - Metadata for HTML (#542)
+
+-------------------------------------------------------------------
 Tue Apr 18 11:02:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.90.0
