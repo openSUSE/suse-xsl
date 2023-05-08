@@ -441,6 +441,9 @@ task before
   <xsl:param name="title.icons" select="1"/>
 
 
+  <!-- Include HTML Dublin Core metadata? -->
+  <xsl:param name="include.html.dublincore" select="1"/>
+
   <!-- Include header/footer via Server-Side Includes (SSI)? 0=no, 1=yes
   -->
   <xsl:param name="include.suse.header" select="0"/>

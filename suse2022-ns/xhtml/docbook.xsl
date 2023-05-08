@@ -72,6 +72,7 @@
   <xsl:include href="titlepage.templates.xsl"/>
 
   <xsl:include href="tracker.meta.xsl"/>
+  <xsl:include href="meta.xsl"/>
 
 
 <!-- Actual templates start here -->
@@ -178,6 +179,9 @@
 
   <xsl:variable name="meta.description.base">
     <xsl:choose>
+      <xsl:when test="d:info/d:meta[@name='description']">
+        <xsl:value-of select="normalize-space(d:info/d:meta[@name='description'][1])"/>
+      </xsl:when>
       <xsl:when test="d:info/d:abstract or d:info/d:highlights">
         <xsl:for-each select="(d:info[1]/d:abstract[1]|d:info[1]/d:highlights[1])[1]/*">
           <xsl:value-of select="normalize-space(.)"/>
@@ -248,7 +252,6 @@
       <xsl:with-param name="ellipsize.after" select="$socialmedia.title.length"/>
     </xsl:call-template>
   </xsl:variable>
-
   <xsl:variable name="socialmedia.preview">
     <xsl:choose>
       <!-- We ignore:
@@ -270,6 +273,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
+  <xsl:variable name="metanodes" select="$node/ancestor-or-self::*/d:info/d:meta"/>
 
   <title><xsl:value-of select="$title"/></title>
 
@@ -311,6 +315,13 @@
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
+  <xsl:if test="$include.html.dublincore">
+    <!-- For Dublin Core metadata -->
+    <link rel="schema.DC"      href="http://purl.org/dc/elements/1.1/" />
+    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
+
   <xsl:if test="$html.script != ''">
     <xsl:call-template name="output.html.scripts">
       <xsl:with-param name="scripts" select="normalize-space($html.script)"/>
@@ -347,58 +358,21 @@
   <xsl:call-template name="create.bugtracker.information"/>
 
   <xsl:apply-templates select="." mode="head.keywords.content"/>
+  <meta name="publisher" content="SUSE"/>
 
-  <xsl:if test="$canonical-url-base != ''">
-    <xsl:variable name="ischunk">
-      <xsl:call-template name="chunk"/>
-    </xsl:variable>
-    <xsl:variable name="filename">
-      <xsl:choose>
-        <xsl:when test="$ischunk = 1">
-          <xsl:apply-templates mode="chunk-filename" select="."/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="concat($root.filename,$html.ext)"/>
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="canonical.url">
-      <xsl:value-of select="concat($canonical-url-base,'/',$filename)"/>
-    </xsl:variable>
+  <xsl:apply-templates select="($metanodes[@name='category'])[last()]" mode="meta"/>
+  <xsl:apply-templates select="($metanodes[@name='updated'])[last()]" mode="meta"/>
+  <xsl:apply-templates select="($metanodes[@name='maintainer'])[last()]" mode="meta"/>
 
-    <link rel="canonical" href="{$canonical.url}"/>
-    <xsl:text>&#10;</xsl:text>
-    <!-- These Open Graph and Twitter Cards properties need a canonical URL -->
-    <meta property="og:url" content="{$canonical.url}"/>
-    <xsl:text>&#10;</xsl:text>
-    <meta property="og:image" content="{concat($canonical-url-base,'/',$socialmedia.preview)}"/>
-    <xsl:text>&#10;</xsl:text>
-    <meta name="twitter:image" content="{concat($canonical-url-base,'/',$socialmedia.preview)}"/>
-    <xsl:text>&#10;</xsl:text>
+  <xsl:call-template name="social-media-opengraph">
+    <xsl:with-param name="socialmedia.title" select="$socialmedia.title"/>
+    <xsl:with-param name="socialmedia.description" select="$socialmedia.description"/>
+  </xsl:call-template>
 
-    <xsl:call-template name="meta-generator"/>
-  </xsl:if>
-
-  <!-- The following properties "work" without a canonical URL being defined
-  (but both the Open Graph and Twitter Cards implementations are incomplete
-  without the above tags, better than nothing though). -->
-  <meta property="og:title" content="{$socialmedia.title}"/>
-  <xsl:text>&#10;</xsl:text>
-  <meta property="og:description" content="{$socialmedia.description}"/>
-  <xsl:text>&#10;</xsl:text>
-  <meta property="og:type" content="{$opengraph.type}"/>
-  <xsl:text>&#10;</xsl:text>
-
-  <meta name="twitter:card" content="{$twittercards.type}"/>
-  <xsl:text>&#10;</xsl:text>
-  <meta name="twitter:title" content="{$socialmedia.title}"/>
-  <xsl:text>&#10;</xsl:text>
-  <meta name="twitter:description" content="{$socialmedia.description}"/>
-  <xsl:text>&#10;</xsl:text>
-  <xsl:if test="string-length($twittercards.twitter.account) &gt; 0">
-    <meta name="twitter:site" content="{$twittercards.twitter.account}"/>
-    <xsl:text>&#10;</xsl:text>
-  </xsl:if>
+  <xsl:call-template name="social-media-twitter">
+    <xsl:with-param name="socialmedia.title" select="$socialmedia.title"/>
+    <xsl:with-param name="socialmedia.description" select="$socialmedia.description"/>
+  </xsl:call-template>
 </xsl:template>
 
 
@@ -582,11 +556,13 @@
 
   <xsl:template name="give.feedback">
     <xsl:if test="$generate.give.feedback = 1 or $force.generate.give.feedback = 1">
+      <xsl:variable name="meta-bugtracker" select="ancestor-or-self::*/d:info/d:meta[@name='bugtracker']/d:phrase[@role='editurl']"/>
       <xsl:variable name="editurl" select="ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
       <xsl:variable name="xmlbase" select="ancestor-or-self::*[@xml:base][1]/@xml:base"/>
+      <xsl:variable name="url-candidate" select="($meta-bugtracker | $editurl)[last()]"/>
 
       <xsl:variable name="valid-for-editurl">
-        <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">1</xsl:if>
+        <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $url-candidate != '' and $xmlbase != ''">1</xsl:if>
       </xsl:variable>
 
       <xsl:if test="$valid-for-editurl = 1 or $force.generate.give.feedback = 1">
@@ -605,7 +581,7 @@
           <!-- add here a "global" report bug -->
           <xsl:if test="$valid-for-editurl = 1">
             <li>
-              <a id="_feedback-editurl" href="{$editurl}{$xmlbase}" rel="nofollow" target="_blank">
+              <a id="_feedback-editurl" href="{$url-candidate}{$xmlbase}" rel="nofollow" target="_blank">
                 <xsl:call-template name="gentext">
                   <xsl:with-param name="key" select="'editsource'"/>
                 </xsl:call-template>
@@ -620,11 +596,13 @@
 
   <xsl:template name="generate.sourcelink">
     <xsl:param name="node" select="."/>
+    <xsl:variable name="meta-bugtracker" select="$node/ancestor-or-self::*/d:info/d:meta[@name='bugtracker']/d:phrase[@role='editurl']"/>
     <xsl:variable name="editurl" select="$node/ancestor-or-self::*/d:info/dm:docmanager/dm:editurl[1]"/>
     <xsl:variable name="xmlbase" select="$node/ancestor-or-self::*[@xml:base][1]/@xml:base"/>
+    <xsl:variable name="url-candidate" select="($meta-bugtracker | $editurl)[last()]"/>
 
-    <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $editurl != '' and $xmlbase != ''">
-      <xsl:value-of select="concat($editurl, $xmlbase)"/>
+    <xsl:if test="($draft.mode = 'yes' or $show.edit.link = 1) and $url-candidate != '' and $xmlbase != ''">
+      <xsl:value-of select="concat($url-candidate, $xmlbase)"/>
     </xsl:if>
   </xsl:template>
 
@@ -817,7 +795,6 @@
 
   <xsl:template name="user.head.content">
     <xsl:param name="node" select="."/>
-
 
     <xsl:if test="$build.for.web = 1">
       <script type="text/javascript">
