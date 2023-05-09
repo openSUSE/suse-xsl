@@ -252,27 +252,6 @@
       <xsl:with-param name="ellipsize.after" select="$socialmedia.title.length"/>
     </xsl:call-template>
   </xsl:variable>
-  <xsl:variable name="socialmedia.preview">
-    <xsl:choose>
-      <!-- We ignore:
-           * inlinemediaobjects, because they are likely very small
-           * SVGs, because they don't work (according to the Contentking) -->
-      <!-- We reimplement ends-with() https://stackoverflow.com/questions/40934644 -->
-      <xsl:when
-        test="(descendant::d:figure/descendant::d:imagedata/@fileref
-              |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[not(
-               substring(translate(., 'SVG', 'svg'), string-length(.) - 5) = '.svg')][1]">
-        <xsl:value-of
-          select="concat($canonical-url-base, '/', $img.src.path,
-                  (descendant::d:figure/descendant::d:imagedata/@fileref
-                  |descendant::d:informalfigure/descendant::d:imagedata/@fileref)[not(
-                    substring(translate(., 'SVG', 'svg'), string-length(.) - 5) = '.svg')][1])"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
   <xsl:variable name="metanodes" select="$node/ancestor-or-self::*/d:info/d:meta"/>
 
   <title><xsl:value-of select="$title"/></title>

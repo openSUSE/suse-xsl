@@ -86,8 +86,7 @@
     <xsl:param name="node" select="."/>
     <xsl:param name="socialmedia.title"/>
     <xsl:param name="socialmedia.description"/>
-    <xsl:param name="socialmedia.preview"/>
-    <xsl:param name="canonical-url-base"/>
+    <xsl:variable name="socialmedia.preview" select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
     <xsl:variable name="ischunk">
       <xsl:call-template name="chunk"/>
     </xsl:variable>
@@ -103,7 +102,94 @@
     </xsl:variable>
     <xsl:variable name="canonical.url" select="concat($canonical-url-base,'/',$filename)"/>
     <xsl:variable name="meta.nodes" select="$node/d:info/d:meta|$node/ancestor::*/d:info/d:meta"/>
+    <xsl:variable name="description">
+      <xsl:choose>
+        <xsl:when test="$meta.nodes[@name='social-descr']">
+          <xsl:choose>
+            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; 65">
+              <xsl:value-of select="$meta.nodes[@name='social-descr']"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='social-descr'] contains more than 65 characters!</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $search.title.length)" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="$socialmedia.description">
+          <xsl:choose>
+            <xsl:when test="string-length($socialmedia.description) > $search.title.length">
+              <xsl:call-template name="ellipsize.text">
+                <xsl:with-param name="input" select="$socialmedia.description"/>
+                <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$socialmedia.description"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">warn</xsl:with-param>
+            <xsl:with-param name="context-desc">metadata</xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>No meta[@name='social-descr'] found!</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="title">
+      <xsl:choose>
+      <xsl:when test="$meta.nodes[@name='title']">
+        <xsl:variable name="tmp" select="normalize-space($meta.nodes[@name='title'][last()])"/>
+        <xsl:choose>
+          <xsl:when test="$tmp = ''">
+            <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='title'] is empty! Add some text.</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+          </xsl:when>
+          <xsl:when test="string-length($tmp) &lt; 65">
+            <xsl:value-of select="$tmp"/>
+          </xsl:when>
+          <xsl:otherwise>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='title'] contains more than 65 characters!</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="ellipsize.text">
+                <xsl:with-param name="input" select="$tmp" />
+                <xsl:with-param name="ellipsize.after" select="$search.title.length" />
+              </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$socialmedia.title"/>
+      </xsl:otherwise>
+    </xsl:choose>
+    </xsl:variable>
 
+<!--    <xsl:message>social-media-opengraph:
+      canonical-url-base=<xsl:value-of select="$canonical-url-base"/>
+      socialmedia.preview=<xsl:value-of select="$socialmedia.preview"/>
+      description=<xsl:value-of select="$description"/>
+      title=<xsl:value-of select="$title"/>
+    </xsl:message>
+-->
     <xsl:if test="$canonical-url-base != ''">
       <!-- These Open Graph and Twitter Cards properties need a canonical URL -->
       <link rel="canonical" href="{$canonical.url}"/>
@@ -116,29 +202,14 @@
       <xsl:call-template name="meta-generator"/>
     </xsl:if>
 
-    <xsl:choose>
-      <xsl:when test="$meta.nodes[@name='title']">
-<!--        <xsl:message>#############: <xsl:value-of select="normalize-space($meta.nodes[@name='title'][last()])"/></xsl:message>-->
-        <meta property="og:title" content="{normalize-space($meta.nodes[@name='title'][last()])}"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <meta property="og:title" content="{$socialmedia.title}"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <meta property="og:title" content="{$title}"/>
     <xsl:text>&#10;</xsl:text>
 
-    <xsl:choose>
-      <xsl:when test="$meta.nodes[@name='social-descr']">
-        <meta property="og:description" content="{normalize-space($meta.nodes[@name='social-descr'][last()])}" />
-      </xsl:when>
-      <xsl:otherwise>
-        <meta property="og:description" content="{$socialmedia.description}"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  <xsl:text>&#10;</xsl:text>
+    <meta property="og:description" content="{$description}"/>
+    <xsl:text>&#10;</xsl:text>
 
-  <meta property="og:type" content="{$opengraph.type}"/>
-  <xsl:text>&#10;</xsl:text>
+    <meta property="og:type" content="{$opengraph.type}"/>
+    <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
 
@@ -146,36 +217,108 @@
     <xsl:param name="node" select="."/>
     <xsl:param name="socialmedia.title"/>
     <xsl:param name="socialmedia.description"/>
-    <xsl:param name="socialmedia.preview"/>
-    <xsl:param name="canonical-url-base"/>
+    <xsl:variable name="socialmedia.preview" select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
     <xsl:variable name="meta.nodes" select="$node/d:info/d:meta|$node/ancestor::*/d:info/d:meta"/>
+    <xsl:variable name="description">
+      <xsl:choose>
+        <xsl:when test="$meta.nodes[@name='social-descr']">
+          <xsl:choose>
+            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; 65">
+              <xsl:value-of select="$meta.nodes[@name='social-descr']"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='social-descr'] contains more than 65 characters!</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $search.title.length)" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:when test="$socialmedia.description">
+          <xsl:choose>
+            <xsl:when test="string-length($socialmedia.description) > $search.title.length">
+              <xsl:call-template name="ellipsize.text">
+                <xsl:with-param name="input" select="$socialmedia.description"/>
+                <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$socialmedia.description"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">warn</xsl:with-param>
+            <xsl:with-param name="context-desc">metadata</xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>No meta[@name='social-descr'] found!</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="title">
+      <xsl:choose>
+        <xsl:when test="$meta.nodes[@name='title']">
+          <xsl:variable name="tmp" select="normalize-space($meta.nodes[@name='title'][last()])"/>
+          <xsl:choose>
+            <xsl:when test="$tmp = ''">
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='title'] is empty! Add some text.</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="string-length($tmp) &lt; 65">
+              <xsl:value-of select="$tmp"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:call-template name="log.message">
+                <xsl:with-param name="level">warn</xsl:with-param>
+                <xsl:with-param name="context-desc">metadata</xsl:with-param>
+                <xsl:with-param name="message">
+                  <xsl:text>The meta[@name='title'] contains more than 65 characters!</xsl:text>
+                </xsl:with-param>
+              </xsl:call-template>
+              <xsl:call-template name="ellipsize.text">
+                <xsl:with-param name="input" select="$tmp"/>
+                <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+              </xsl:call-template>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="$socialmedia.title"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+  <!--<xsl:message>social-media-twitter:
+      canonical-url-base=<xsl:value-of select="$canonical-url-base"/>
+      socialmedia.preview=<xsl:value-of select="$socialmedia.preview"/>
+      description=<xsl:value-of select="$description"/>
+      title=<xsl:value-of select="$title"/>
+    </xsl:message>-->
 
     <meta name="twitter:card" content="{$twittercards.type}"/>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:if test="$canonical-url-base != ''">
-      <meta name="twitter:image" content="{concat($canonical-url-base,'/',$socialmedia.preview)}"/>
+      <meta name="twitter:image" content="{$socialmedia.preview}"/>
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
 
-    <xsl:choose>
-      <xsl:when test="$meta.nodes[@name='title']">
-        <meta property="twitter:title" content="{normalize-space($meta.nodes[@name='title'][last()])}" />
-      </xsl:when>
-      <xsl:otherwise>
-        <meta name="twitter:title" content="{$socialmedia.title}"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <meta property="twitter:title" content="{$title}"/>
     <xsl:text>&#10;</xsl:text>
 
-    <xsl:choose>
-      <xsl:when test="$meta.nodes[@name='social-descr']">
-        <meta name="twitter:description" content="{normalize-space($meta.nodes[@name='social-descr'][last()])}" />
-      </xsl:when>
-      <xsl:otherwise>
-        <meta name="twitter:description" content="{$socialmedia.description}"/>
-      </xsl:otherwise>
-    </xsl:choose>
+    <meta property="twitter:description" content="{$description}"/>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:if test="string-length($twittercards.twitter.account) &gt; 0">

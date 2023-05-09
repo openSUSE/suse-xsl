@@ -415,7 +415,7 @@ task before
   <xsl:param name="onpage.teaser.length" select="300"/>
   <!-- <meta> description tags used for search results pages, roughly as
   recommended by the Contentking -->
-  <xsl:param name="search.title.length" select="55"/>
+  <xsl:param name="search.title.length" select="60"/>
   <xsl:param name="search.description.length" select="150"/>
   <!-- Open Graph (og:)/Twitter Cards tags used for social-media preview -->
   <xsl:param name="socialmedia.title.length" select="55"/>
@@ -431,8 +431,10 @@ task before
        stylesheets, having all result documents created with them associated
        with SUSE is suboptimal. -->
   <xsl:param name="twittercards.twitter.account" select="''"/>
-  <!-- Default social media preview image, if no other image is available on the page -->
-  <xsl:param name="socialmedia.preview.default">static/images/social-media-preview-default.png</xsl:param>
+  <!-- Default social media preview image, if no other image is available on the page
+  static/images/social-media-preview-default.png
+  -->
+  <xsl:param name="socialmedia.preview.default">document.jpg</xsl:param>
 
   <!-- The path for the report bug link and edit source icons -->
   <xsl:param name="title.icons.path">static/images/</xsl:param>
