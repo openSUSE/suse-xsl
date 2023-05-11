@@ -106,7 +106,7 @@
       <xsl:choose>
         <xsl:when test="$meta.nodes[@name='social-descr']">
           <xsl:choose>
-            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; 65">
+            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; $socialmedia.description.length">
               <xsl:value-of select="$meta.nodes[@name='social-descr']"/>
             </xsl:when>
             <xsl:otherwise>
@@ -114,19 +114,20 @@
                 <xsl:with-param name="level">warn</xsl:with-param>
                 <xsl:with-param name="context-desc">metadata</xsl:with-param>
                 <xsl:with-param name="message">
-                  <xsl:text>The meta[@name='social-descr'] contains more than 65 characters!</xsl:text>
+                  <xsl:text>The meta[@name='social-descr'] contains more than </xsl:text>
+                  <xsl:value-of select="concat($socialmedia.description.length, ' characters!')"/>
                 </xsl:with-param>
               </xsl:call-template>
-              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $search.title.length)" />
+              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $socialmedia.description.length)" />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
         <xsl:when test="$socialmedia.description">
           <xsl:choose>
-            <xsl:when test="string-length($socialmedia.description) > $search.title.length">
+            <xsl:when test="string-length($socialmedia.description) > $socialmedia.description.length">
               <xsl:call-template name="ellipsize.text">
                 <xsl:with-param name="input" select="$socialmedia.description"/>
-                <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+                <xsl:with-param name="ellipsize.after" select="$socialmedia.description.length"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
@@ -159,7 +160,7 @@
                 </xsl:with-param>
               </xsl:call-template>
           </xsl:when>
-          <xsl:when test="string-length($tmp) &lt; 65">
+          <xsl:when test="string-length($tmp) &lt; $socialmedia.title.length">
             <xsl:value-of select="$tmp"/>
           </xsl:when>
           <xsl:otherwise>
@@ -167,7 +168,8 @@
                 <xsl:with-param name="level">warn</xsl:with-param>
                 <xsl:with-param name="context-desc">metadata</xsl:with-param>
                 <xsl:with-param name="message">
-                  <xsl:text>The meta[@name='title'] contains more than 65 characters!</xsl:text>
+                  <xsl:text>The meta[@name='title'] contains more than </xsl:text>
+                  <xsl:value-of select="concat($socialmedia.title.length, ' characters!')"/>
                 </xsl:with-param>
               </xsl:call-template>
               <xsl:call-template name="ellipsize.text">
@@ -223,7 +225,7 @@
       <xsl:choose>
         <xsl:when test="$meta.nodes[@name='social-descr']">
           <xsl:choose>
-            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; 65">
+            <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; $socialmedia.description.length">
               <xsl:value-of select="$meta.nodes[@name='social-descr']"/>
             </xsl:when>
             <xsl:otherwise>
@@ -231,19 +233,20 @@
                 <xsl:with-param name="level">warn</xsl:with-param>
                 <xsl:with-param name="context-desc">metadata</xsl:with-param>
                 <xsl:with-param name="message">
-                  <xsl:text>The meta[@name='social-descr'] contains more than 65 characters!</xsl:text>
+                  <xsl:text>The meta[@name='social-descr'] contains more than </xsl:text>
+                  <xsl:value-of select="concat($socialmedia.description.length, ' characters!')"/>
                 </xsl:with-param>
               </xsl:call-template>
-              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $search.title.length)" />
+              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $socialmedia.description.length)" />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
         <xsl:when test="$socialmedia.description">
           <xsl:choose>
-            <xsl:when test="string-length($socialmedia.description) > $search.title.length">
+            <xsl:when test="string-length($socialmedia.description) > $socialmedia.description.length">
               <xsl:call-template name="ellipsize.text">
                 <xsl:with-param name="input" select="$socialmedia.description"/>
-                <xsl:with-param name="ellipsize.after" select="$search.title.length"/>
+                <xsl:with-param name="ellipsize.after" select="$socialmedia.description.length"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
@@ -276,7 +279,7 @@
                 </xsl:with-param>
               </xsl:call-template>
             </xsl:when>
-            <xsl:when test="string-length($tmp) &lt; 65">
+            <xsl:when test="string-length($tmp) &lt; $search.title.length">
               <xsl:value-of select="$tmp"/>
             </xsl:when>
             <xsl:otherwise>
