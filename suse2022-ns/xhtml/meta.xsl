@@ -318,10 +318,10 @@
       <xsl:text>&#10;</xsl:text>
     </xsl:if>
 
-    <meta property="twitter:title" content="{$title}"/>
+    <meta name="twitter:title" content="{$title}"/>
     <xsl:text>&#10;</xsl:text>
 
-    <meta property="twitter:description" content="{$description}"/>
+    <meta name="twitter:description" content="{$description}"/>
     <xsl:text>&#10;</xsl:text>
 
     <xsl:if test="string-length($twittercards.twitter.account) &gt; 0">
