@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Fri May 12 08:56:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.2
+  - Use search.description.length and search.title.length
+  - Correct copy-and-paste error for "twitter:*":
+    Use <meta name="..."> instead of <meta property="...">
+
+-------------------------------------------------------------------
 Mon May 09 13:25:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.91.1
