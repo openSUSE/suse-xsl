@@ -8,6 +8,21 @@
 
 
 -->
+
+<!DOCTYPE xsl:stylesheet [
+  <!ENTITY ascii.uc "ABCDEFGHIJKLMNOPQRSTUVWXYZ">
+  <!ENTITY ascii.lc "abcdefghijklmnopqrstuvwxy">
+  <!ENTITY ru.uc "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ">
+  <!ENTITY ru.lc "абвгдежзийклмнопрстуфхцчшщъыьэюя">
+  <!ENTITY lat1.uc "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ">
+  <!ENTITY lat1.lc "àáâãäåæçèéêëìíîïðñòóôõöøùúûüýþ">
+  <!ENTITY lat-ext-a.uc "ĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĲĴĶĸĹĻĽĿŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŦŨŪŬŮŰŲŴŶŸŹŻŽŒ">
+  <!ENTITY lat-ext-a.lc "āăąćĉċčďđēĕėęěĝğġģĥħĩīĭįıĳĵķĸĺļľŀłńņňŋōŏőœŕŗřśŝşšţťŧũūŭůűųŵŷÿźżžœ">
+
+  <!ENTITY uppercase "'&ascii.uc;&lat1.uc;&lat-ext-a.uc;&ru.uc;'">
+  <!ENTITY lowercase "'&ascii.lc;&lat1.lc;&lat-ext-a.lc;&ru.lc;'">
+]>
+
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:d="http://docbook.org/ns/docbook"
@@ -155,6 +170,91 @@
       </xsl:if>
       <xsl:apply-templates/>
     </span>
+  </xsl:template>
+
+ <xsl:template match="d:phrase[contains(@role, 'style:')]" name="phrase-style">
+   <xsl:variable name="stylecandidate" select="substring-after(@role, 'style:')"/>
+   <xsl:variable name="style" select="$stylecandidate"/>
+
+   <xsl:choose>
+     <xsl:when test="$style = 'uppercase'">
+       <xsl:value-of select="translate(text(), &lowercase;, &uppercase;)"/>
+       <xsl:apply-templates select="*"/>
+     </xsl:when>
+     <xsl:when test="$style = 'lowercase'">
+       <xsl:value-of select="translate(text(), &uppercase;, &lowercase;)"/>
+       <xsl:apply-templates select="*"/>
+     </xsl:when>
+     <!-- Just capitalize the first character; leave anything else unmodified -->
+     <xsl:when test="$style = 'sentencecase'">
+       <xsl:variable name="firstchar" select="substring(translate(text()[1], '&#10; ', ''), 1, 1)"/>
+       <xsl:variable name="rest" select="substring-after(text(), $firstchar)"/>
+
+       <xsl:choose>
+         <!-- Only text, no other elements -->
+         <xsl:when test="$firstchar != '' and count(*)=0">
+<!--           <xsl:message>### phrase Case 1: "<xsl:value-of select="$firstchar"/>"</xsl:message>-->
+           <xsl:value-of select="concat(translate($firstchar, &lowercase;, &uppercase;), $rest)"/>
+         </xsl:when>
+
+         <!-- No text before first child element -->
+         <xsl:when test="$firstchar = '' and count(*)>0">
+<!--           <xsl:message>### phrase Case 2</xsl:message>-->
+           <xsl:apply-templates select="*[1]" mode="phrase-sentencecase"/>
+         </xsl:when>
+
+         <!-- Text with child element(s) -->
+         <xsl:when test="$firstchar != '' and count(*)>0">
+<!--           <xsl:message>### phrase Case 3: "<xsl:value-of select="concat($firstchar, $rest)"/>"</xsl:message>-->
+           <xsl:value-of select="concat(translate($firstchar, &lowercase;, &uppercase;), $rest)"/>
+           <xsl:apply-templates/>
+         </xsl:when>
+
+         <xsl:otherwise></xsl:otherwise>
+       </xsl:choose>
+     </xsl:when>
+     <!--<xsl:when test="$style = 'titlecase'">
+       <xsl:apply-templates select="*"/>
+     </xsl:when>-->
+     <xsl:otherwise>
+       <!-- We don't have any match, so just don't change anything -->
+       <xsl:apply-templates/>
+     </xsl:otherwise>
+   </xsl:choose>
+ </xsl:template>
+
+
+  <xsl:template match="d:*" mode="phrase-sentencecase">
+    <xsl:apply-templates select="."/>
+  </xsl:template>
+
+
+  <xsl:template match="d:phrase" mode="phrase-sentencecase">
+    <xsl:variable name="node">
+      <xsl:apply-templates select="."/>
+      <xsl:apply-templates select="parent::*/*[position() >1]"/>
+    </xsl:variable>
+    <xsl:variable name="rtf" select="exsl:node-set($node)"/>
+    <xsl:variable name="firstchar" select="substring(translate(text(), '&#10; ', ''), 1, 1)"/>
+    <xsl:variable name="rest" select="substring-after(text(), $firstchar)"/>
+
+<!--    <xsl:message> * * * <xsl:value-of select="concat(local-name(.), ': ', count($rtf))"/>: "<xsl:value-of select="concat(translate($firstchar, &lowercase;, &uppercase;), $rest)"/>"</xsl:message>-->
+
+    <xsl:choose>
+      <xsl:when test="$firstchar != '' and count(*)=0">
+        <xsl:value-of select="concat(translate($firstchar, &lowercase;, &uppercase;), $rest)"/>
+      </xsl:when>
+
+      <xsl:when test="$firstchar = '' and count(*)>0">
+        <xsl:apply-templates select="*[1]" mode="phrase-sentencecase"/>
+      </xsl:when>
+
+      <xsl:when test="$firstchar != '' and count(*)>0">
+        <xsl:value-of select="concat(translate($firstchar, &lowercase;, &uppercase;), $rest)"/>
+        <xsl:apply-templates/>
+      </xsl:when>
+    </xsl:choose>
+
   </xsl:template>
 
 
