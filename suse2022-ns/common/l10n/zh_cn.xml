@@ -93,8 +93,8 @@
 
   <l:dingbat key="guimenustartquote" text=""/>
   <l:dingbat key="guimenuendquote" text=""/>
-  <l:dingbat key="startquote" text="&#x300c;"/>
-  <l:dingbat key="endquote" text="&#x300d;"/>
+  <l:dingbat key="startquote" text="&#x201c;"/>
+  <l:dingbat key="endquote" text="&#x201d;"/>
 
    <l:context name="bypass-block">
     <l:template name="bypass-to-content" text="跳到内容" />
