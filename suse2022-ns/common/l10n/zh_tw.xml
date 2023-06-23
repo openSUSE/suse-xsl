@@ -98,13 +98,13 @@
 
       <l:template name="example-label" text="&#31684;&#20363; %n︰"/>
       <l:template name="example-title" text="%t"/>
-      <l:template name="figure-label" text="&#22294;&#24418; %n︰"/>
+      <l:template name="figure-label" text="&#22294; %n︰"/>
       <l:template name="figure-title" text="%t"/>
       <l:template name="glosslist-label" text=""/>
       <l:template name="glosslist-title" text="%t"/>
       <l:template name="procedure-label" text="&#31243;&#24207; %n︰"/>
       <l:template name="procedure-title" text="%t"/>
-      <l:template name="table-label" text="&#34920;&#26684; %n︰"/>
+      <l:template name="table-label" text="&#34920; %n︰"/>
       <l:template name="table-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
