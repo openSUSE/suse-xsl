@@ -462,4 +462,9 @@ task before
   <xsl:param name="generate.json-ld" select="0"/>
 
   <xsl:variable name="placeholder.ssi.language">{{#language#}}</xsl:variable>
+
+  <!-- The ID for the Qualtricks <div> -->
+  <xsl:param name="generate.qualtrics.div" select="0"/>
+  <xsl:param name="qualtrics.id">qualtrics_container</xsl:param>
+
 </xsl:stylesheet>
