@@ -73,7 +73,7 @@
 
   <xsl:include href="tracker.meta.xsl"/>
   <xsl:include href="meta.xsl"/>
-
+  <xsl:include href="json-ld.xsl"/>
 
 <!-- Actual templates start here -->
 
@@ -352,6 +352,11 @@
     <xsl:with-param name="socialmedia.title" select="$socialmedia.title"/>
     <xsl:with-param name="socialmedia.description" select="$socialmedia.description"/>
   </xsl:call-template>
+
+  <xsl:call-template name="generate-json-ld">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+
 </xsl:template>
 
 

@@ -458,5 +458,8 @@ task before
   <xsl:param name="include.ssi.body">/docserv/fragments/{{#language#}}/suse-body.fragment.html</xsl:param>
   <xsl:param name="include.ssi.footer">/docserv/fragments/{{#language#}}/suse-footer.fragment.html</xsl:param>
 
+  <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
+  <xsl:param name="generate.json-ld" select="0"/>
+
   <xsl:variable name="placeholder.ssi.language">{{#language#}}</xsl:variable>
 </xsl:stylesheet>
