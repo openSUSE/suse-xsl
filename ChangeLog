@@ -1,7 +1,17 @@
 -------------------------------------------------------------------
+Wed Jul 26 16:57:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.0
+  - Add #552: Implement first attempt of JSON-LD (DOCTEAM-1061)
+  - Fix #524: Add footnote template in mode="xref-to"
+  - Fix #554: "Request for a label of unexpected element"
+  - Fix #550: Add missing xsl:attribute to create "lang" attribute
+  - Add #548: Add support for <phrase role="style:...">
+
+-------------------------------------------------------------------
 Fri May 12 08:56:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.2
+- Update 2.91.2
   - Use search.description.length and search.title.length
   - Correct copy-and-paste error for "twitter:*":
     Use <meta name="..."> instead of <meta property="...">
