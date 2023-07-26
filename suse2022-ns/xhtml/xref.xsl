@@ -77,6 +77,21 @@
     <xsl:apply-templates select="."/>
   </xsl:template>
 
+  <xsl:template match="d:footnote" mode="xref-to">
+    <xsl:param name="referrer"/>
+    <xsl:param name="xrefstyle"/>
+    <xsl:param name="verbose" select="1"/>
+    <xsl:variable name="href">
+      <xsl:text>ftn.</xsl:text>
+      <xsl:call-template name="object.id">
+        <xsl:with-param name="object" select="."/>
+      </xsl:call-template>
+    </xsl:variable>
+
+    <a href="{$href}">
+      <sup>[<xsl:apply-templates select="." mode="footnote.number"/>]</sup>
+    </a>
+  </xsl:template>
 
 <xsl:template match="d:xref" name="xref">
   <xsl:variable name="context" select="."/>
