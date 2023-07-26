@@ -15,6 +15,12 @@
   xmlns:dm="urn:x-suse:ns:docmanager"
   exclude-result-prefixes="exsl dm">
 
+
+  <xsl:template match="d:info" mode="label.markup">
+    <!-- Delegate it to the parent element -->
+    <xsl:apply-templates select=".." mode="label.markup"/>
+  </xsl:template>
+
   <xsl:template name="create.header.title">
     <xsl:param name="node" select="."/>
     <xsl:param name="level" select="0"/>
