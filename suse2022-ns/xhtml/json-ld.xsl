@@ -19,7 +19,6 @@
         "@type": "TechArticle",
         "name": "Getting Started with ExampleApp",
         "headline": "ExampleApp Documentation",
-        "abstract": "A short abstract of ExampleApp",
         "description": "A comprehensive guide to get started with ExampleApp.",
         "author": {
           "@type": "Person",
@@ -28,6 +27,12 @@
         },
         "datePublished": "2023-07-24",
         "dateModified": "2023-07-25",
+        "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+        ],
         "publisher": {
           "@type": "Organization",
           "name": "SUSE",
@@ -50,20 +55,6 @@
   xmlns="http://www.w3.org/1999/xhtml"
   exclude-result-prefixes="date exsl d">
 
-  <xsl:template name="json-group">
-    <xsl:param name="key"/>
-    <xsl:param name="type"/>
-    <xsl:param name="indent"><xsl:text>&#10;    </xsl:text></xsl:param>
-    <xsl:param name="body"/>
-    <xsl:param name="comma" select="true()"/>
-
-    <xsl:value-of select="concat($indent, '&quot;', $key, '&quot;: {')"/>
-    <xsl:value-of select="$body"/>
-    <xsl:value-of select="concat($indent, '}')"/>
-    <xsl:if test="$comma">,</xsl:if>
-  </xsl:template>
-
-
   <xsl:template name="generate-json-ld">
     <xsl:param name="node"/>
     <xsl:if test="$generate.json-ld != 0">
@@ -75,13 +66,14 @@
 
     -->
         <xsl:call-template name="json-ld-headline"/>
-        <xsl:call-template name="json-ld-abstract"/>
-        <xsl:call-template name="json-ld-keywords"/>
-        <xsl:call-template name="json-ld-authors"/>
-        <xsl:call-template name="json-ld-authorgroup"/>
+        <xsl:call-template name="json-ld-description"/>
+<!--        <xsl:call-template name="json-ld-keywords"/>-->
+
+        <xsl:call-template name="json-ld-license"/><!-- Later -->
+        <xsl:call-template name="json-ld-authors-and-authorgroups"/>
         <xsl:call-template name="json-ld-datePublished"/>
         <xsl:call-template name="json-ld-dateModified"/>
-        <xsl:call-template name="json-ld-version"/>
+<!--        <xsl:call-template name="json-ld-version"/>-->
         <xsl:call-template name="json-ld-publisher"/>
 }
       </script>
@@ -95,33 +87,42 @@
     "headline": "<xsl:value-of select="normalize-space($headline)"/>",
   </xsl:template>
 
-  <xsl:template name="json-ld-abstract">
+  <xsl:template name="json-ld-description">
     <xsl:param name="node" select="."/>
-    <xsl:if test="$node/d:info/d:abstract">
-      <xsl:variable name="abstract">
-        <xsl:call-template name="ellipsize.text">
-          <xsl:with-param name="input">
-            <xsl:choose>
-              <xsl:when test="$node/d:info/d:meta[@name = 'description']">
-                <xsl:value-of select="normalize-space($node/d:info/d:meta[@name = 'description'][1])" />
-              </xsl:when>
-              <xsl:when test="$node/d:info/d:abstract or $node/d:info/d:highlights">
-                <xsl:for-each select="($node/d:info[1]/d:abstract[1] | $node/d:info[1]/d:highlights[1])[1]/*">
-                  <xsl:value-of select="normalize-space(.)" />
-                  <xsl:if test="position() &lt; last()">
-                    <xsl:text> </xsl:text>
-                  </xsl:if>
-                </xsl:for-each>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:variable>
+    <xsl:variable name="description">
+      <xsl:choose>
+        <xsl:when test="$node/d:info/d:meta[@name = 'description']">
+          <xsl:value-of select="normalize-space($node/d:info/d:meta[@name = 'description'][1])"
+          />
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:meta[@name = 'social-descr']">
+          <xsl:value-of select="normalize-space($node/d:info/d:meta[@name = 'social-descr'][1])"
+          />
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:meta[@name = 'title']">
+          <xsl:value-of select="normalize-space($node/d:info/d:meta[@name = 'title'][1])"
+          />
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:abstract">
+          <xsl:call-template name="ellipsize.text">
+            <xsl:with-param name="input"
+              select="($node/d:info/d:abstract/d:para[1] |
+                       $node/d:info/d:abstract/d:variablelist[1]/d:varlistentry[1]/d:listitem/d:para[1])[last()]">
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Only for fallback, if all of the above fails -->
+          <xsl:call-template name="ellipsize.text">
+            <xsl:with-param name="input" select="($node/d:info/d:title | $node/d:title)[last()]"/>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
 
-      <xsl:if test="$abstract != ''">
-    "abstract": "<xsl:value-of select="$abstract"/>",
+      <xsl:if test="$description != ''">
+    "description": "<xsl:value-of select="$description"/>",
       </xsl:if>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template name="json-ld-keywords">
@@ -138,14 +139,72 @@
     </xsl:if>
   </xsl:template>
 
-  <xsl:template name="json-ld-authors">
+  <xsl:template name="json-ld-license">
     <xsl:param name="node" select="."/>
+
+    <!-- "license": "URL",
+         "copyrightNotice": "© 2023 ExampleTech Company. All rights reserved.",
+         "copyrightYear": "2023",
+    -->
+  </xsl:template>
+
+  <xsl:template name="json-ld-authors-and-authorgroups">
+    <xsl:param name="node" select="."/>
+    <!--
+       Implementation details:
+
+       There are two possible sets:
+       * Set A consists of separate elements like <author>, <editor>, <othercredit>, and <corpauthor>.
+         They can appear in any combination or order.
+       * Set B consists of <authorgroup> elements.
+
+       Theoretically, writers can write any elements of both sets as they like. DocBook doesn't impose
+       any restrictions.
+
+       - We put everything from set A into a "$author" variable and wrap around an <authorgroup>
+       - In XSLT 1.0, if we create temporary fragment trees (so called "result tree fragments") we need to
+         convert them into "real" node trees with the extension function exsl:node-set().
+         Yes, it's annoying as fuck. :-(
+       - Everything else with <authorgroup> are stored in $authorgroup variable
+       - Both node sets contain <authorgroup> elements. We can create a union node set with "|"
+       - The <authorgroup> element only deals as a parent element, a wrapper for its content.
+       - To see how many elements we have, we need the XPath expression "count($candidate-authors/*)"
+         Keep in mind the "/*" at the end.
+       - Depending on if we have one element or many, we deal accordingly. If we don't have any element
+         at all, we fallback to the default author.
+    -->
+    <xsl:variable name="authors">
+      <xsl:if test="$node/d:info/d:author | $node/d:info/d:corpauthor | $node/d:info/d:othercredit | $node/d:info/d:editor">
+        <d:authorgroup>
+          <xsl:copy-of select="$node/d:info/d:author |
+                               $node/d:info/d:corpauthor |
+                               $node/d:info/d:othercredit |
+                               $node/d:info/d:editor"
+           />
+        </d:authorgroup>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="rtf-authors" select="exsl:node-set($authors)/*"/>
+    <xsl:variable name="authorgroup" select="$node/d:info/d:authorgroup"/>
+    <xsl:variable name="candidate-authors" select="$rtf-authors | $authorgroup"/>
+
+<!--    <xsl:message>INFO: json-ld-authors-and-authorgroups
+     authors = <xsl:value-of select="count($authors)"/>
+     name(author) = <xsl:value-of select="local-name($authors)"/>
+     rtf-authors = <xsl:value-of select="count($rtf-authors/*)"/>
+     name(rtf-author) = <xsl:value-of select="local-name($rtf-authors)"/>
+     authorgroup = <xsl:value-of select="count($authorgroup)"/>
+     name(authorgroup) = <xsl:value-of select="local-name($authorgroup)"/>
+     candidate = <xsl:value-of select="count($candidate-authors/*)"/>
+     name(candidate) = <xsl:value-of select="local-name($candidate-authors)"/>
+    </xsl:message>-->
+
     <xsl:choose>
-      <xsl:when test="not($node/d:info/d:author)"/>
-      <xsl:when test="count($node/d:info/d:author) = 1">
+      <xsl:when test="count($candidate-authors/*) = 1">
+        <xsl:message>INFO: found one author</xsl:message>
         <xsl:variable name="person">
           <xsl:call-template name="person.name">
-            <xsl:with-param name="node" select="$node/d:info/d:author"/>
+            <xsl:with-param name="node" select="$candidate-authors/*"/>
           </xsl:call-template>
         </xsl:variable>
     "author": {
@@ -154,30 +213,29 @@
       "role": "Writer"
     },
       </xsl:when>
-      <xsl:otherwise>
-        <xsl:variable name="authors">
-          <d:info>
-            <d:authorgroup>
-              <xsl:copy-of
-                select="$node/d:info/d:author | $node/d:info/d:corpauthor | $node/d:info/d:othercredit | $node/d:info/d:editor"
-               />
-            </d:authorgroup>
-          </d:info>
-        </xsl:variable>
-        <xsl:variable name="rtf-authors" select="exsl:node-set($authors)"/>
-        <xsl:call-template name="json-ld-authorgroup">
-          <xsl:with-param name="node" select="$rtf-authors"/>
+      <xsl:when test="count($candidate-authors/*) > 1">
+    "author": [<!--
+        --><xsl:call-template name="json-ld-person.name.list">
+          <xsl:with-param name="node" select="$candidate-authors"/>
         </xsl:call-template>
+    ],
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="json-ld-author-fallback"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="json-ld-authorgroup">
+  <xsl:template name="json-ld-author-fallback">
     <xsl:param name="node" select="."/>
-    <xsl:for-each select="$node/d:info/d:authorgroup">
-    "author": [<xsl:call-template name="json-ld-person.name.list"/>
-    ],
-    </xsl:for-each>
+    "author": {
+       "@type": "<xsl:value-of select="$json-ld-fallback-author-type"/>",
+       "name": "<xsl:value-of select="$json-ld-fallback-author-name"/>",
+       <xsl:if test="$json-ld-fallback-author-url != ''"
+         >"url": "<xsl:value-of select="$json-ld-fallback-author-url"/>",</xsl:if>
+       <xsl:if test="$json-ld-fallback-author-logo != ''">
+       "logo": "<xsl:value-of select="$json-ld-fallback-author-logo"/>"</xsl:if>
+    },
   </xsl:template>
 
   <xsl:template name="json-ld-version">
@@ -234,10 +292,10 @@
         <xsl:when test="$node/d:info/d:meta[@name='published']">
           <xsl:value-of select="normalize-space(string($node/d:info/d:meta[@name='published']))"/>
         </xsl:when>
-        <xsl:when test="$node/d:info/d:pubdate">
+        <xsl:when test="normalize-space($node/d:info/d:pubdate) != ''">
           <xsl:value-of select="normalize-space(string($node/d:info/d:pubdate))"/>
         </xsl:when>
-        <xsl:when test="$node/d:info/d:date">
+        <xsl:when test="normalize-space($node/d:info/d:date) != ''">
           <xsl:value-of select="normalize-space(string($node/d:info/d:pubdate))"/>
         </xsl:when>
         <xsl:when test="$node/d:info/d:revhistory/d:revision[1]/d:date">
@@ -292,9 +350,16 @@
   </xsl:template>
 
   <xsl:template name="json-ld-publisher">
+    "sameAs": [
+          "https://www.facebook.com/SUSEWorldwide/about",
+          "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
+          "https://twitter.com/SUSE",
+          "https://www.linkedin.com/company/suse"
+    ],
     "publisher": {
-      "@type": "Organization",
+      "@type": "Corporation",
       "name": "SUSE",
+      "url": "https://documentation.suse.com",
       "logo": {
         "@type": "ImageObject",
         "url": "https://www.suse.com/assets/img/suse-white-logo-green.svg"
