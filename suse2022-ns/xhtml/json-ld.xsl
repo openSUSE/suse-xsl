@@ -232,30 +232,30 @@
              TODO: check format. It must be in ISO format.
         -->
         <xsl:when test="$node/d:info/d:meta[@name='published']">
-          <xsl:value-of select="string($node/d:info/d:meta[@name='published'])"/>
+          <xsl:value-of select="normalize-space(string($node/d:info/d:meta[@name='published']))"/>
         </xsl:when>
         <xsl:when test="$node/d:info/d:pubdate">
-          <xsl:value-of select="string($node/d:info/d:pubdate)"/>
+          <xsl:value-of select="normalize-space(string($node/d:info/d:pubdate))"/>
         </xsl:when>
         <xsl:when test="$node/d:info/d:date">
-          <xsl:value-of select="string($node/d:info/d:pubdate)"/>
+          <xsl:value-of select="normalize-space(string($node/d:info/d:pubdate))"/>
         </xsl:when>
         <xsl:when test="$node/d:info/d:revhistory/d:revision[1]/d:date">
-          <xsl:value-of select="string($node/d:info/d:revhistory/d:revision[1]/d:date)"/>
+          <xsl:value-of select="normalize-space(string($node/d:info/d:revhistory/d:revision[1]/d:date))"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
 
     <xsl:choose>
       <xsl:when test="$date != ''">
-    "datePublished": "<xsl:value-of select="normalize-space($date)"/>",
+    "datePublished": "<xsl:value-of select="$date"/>",
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">warn</xsl:with-param>
           <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
           <xsl:with-param name="message">
-            <xsl:text>Could not create "datePublished" entry as no element was appropriate.</xsl:text>
+            <xsl:text>Could not create "datePublished" property as no element was appropriate.</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
       </xsl:otherwise>
