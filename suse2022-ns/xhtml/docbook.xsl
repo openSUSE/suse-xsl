@@ -358,7 +358,13 @@
   </xsl:call-template>
 
   <xsl:if test="number($generate.qualtrics.div) != 0">
-    <xsl:comment>BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET</xsl:comment>
+    <xsl:choose>
+      <xsl:when test="$qualtrics-feedback.js != ''">
+        <xsl:copy-of select="document($qualtrics-feedback.js)/*/node()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- TODO: This is just a fallback and can be removed at some point -->
+        <xsl:comment>BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET</xsl:comment>
 <script type='text/javascript'><![CDATA[(function(){var g=function(e,h,f,g){
 this.get=function(a){for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};
 this.set=function(a,c){var b="",b=new Date;b.setTime(b.getTime()+6048E5);b="; expires="+b.toGMTString();document.cookie=a+"="+c+b+"; path=/; "};
@@ -370,6 +376,8 @@ try{(new g(100,"r","QSI_S_ZN_8qZUmklKYbBqAYe","https://zn8qzumklkybbqaye-suselin
     <xsl:text>&#10;</xsl:text>
     <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
     <xsl:text>&#10;</xsl:text>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:if>
 </xsl:template>
 
