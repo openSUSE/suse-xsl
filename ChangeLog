@@ -1,4 +1,25 @@
 -------------------------------------------------------------------
+Wed Aug 02 11:15:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.2
+  - Correct metadata
+    - Rename "abstract" -> "description" and refactor code
+    - Introduce "sameAs" property
+    - Disable json-ld-version and json-ld-keywords
+    - Use "Corporation" instead of "Organization" for default author and publisher
+
+  - JSON-LD: Rewrite author + authorgroup code
+    - Simplify code and create a two set approach
+        If no (author/editor/corpauthor/contributor)s or authorgroup is
+        found, fallback to a default corporation author
+    - Add new parameters:
+      - json-ld-fallback-author-name: The author's name
+      - json-ld-fallback-author-url: the author's URL
+      - json-ld-fallback-author-type: "Corporation" by default
+        (but can also be a "Person")
+      - json-ld-fallback-author-logo: the URL pointing to the logo
+
+-------------------------------------------------------------------
 Mon Jul 31 13:36:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.92.1
