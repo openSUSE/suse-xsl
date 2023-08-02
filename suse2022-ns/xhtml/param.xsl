@@ -460,6 +460,11 @@ task before
 
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="0"/>
+  <xsl:param name="json-ld-fallback-author-name">SUSE documentation team</xsl:param>
+  <xsl:param name="json-ld-fallback-author-url">https://documentation.suse.com</xsl:param>
+  <xsl:param name="json-ld-fallback-author-type">Corporation</xsl:param>
+  <xsl:param name="json-ld-fallback-author-logo">https://www.suse.com/assets/img/suse-white-logo-green.svg</xsl:param>
+
 
   <xsl:variable name="placeholder.ssi.language">{{#language#}}</xsl:variable>
 
