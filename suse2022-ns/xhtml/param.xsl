@@ -471,6 +471,7 @@ task before
   <!-- The ID for the Qualtricks <div> -->
   <xsl:param name="generate.qualtrics.div" select="0"/>
   <xsl:param name="qualtrics.id">qualtrics_container</xsl:param>
+  <xsl:param name="qualtrics.div.id">ZN_8qZUmklKYbBqAYe</xsl:param>
   <!-- The path to the Qualtrics JS file. By default, it's relative to the stylesheet.
        The content should be (correct the syntax HTML comment):
 
@@ -484,6 +485,6 @@ task before
        The root element is cut off (it can be any tagname, <html> is just an example).
        Anything below <html> is copied, including HTML comments and the <script>.
   -->
-  <xsl:param name="qualtrics-feedback.js">qualtrics-feedback.js</xsl:param>
+  <xsl:param name="qualtrics-feedback.js">static/js/qualtrics-feedback.js</xsl:param>
 
 </xsl:stylesheet>

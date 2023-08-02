@@ -357,27 +357,14 @@
     <xsl:with-param name="node" select="$node"/>
   </xsl:call-template>
 
-  <xsl:if test="number($generate.qualtrics.div) != 0">
-    <xsl:choose>
-      <xsl:when test="$qualtrics-feedback.js != ''">
-        <xsl:copy-of select="document($qualtrics-feedback.js)/*/node()"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <!-- TODO: This is just a fallback and can be removed at some point -->
-        <xsl:comment>BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET</xsl:comment>
-<script type='text/javascript'><![CDATA[(function(){var g=function(e,h,f,g){
-this.get=function(a){for(var a=a+"=",c=document.cookie.split(";"),b=0,e=c.length;b<e;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1,d.length);if(0==d.indexOf(a))return d.substring(a.length,d.length)}return null};
-this.set=function(a,c){var b="",b=new Date;b.setTime(b.getTime()+6048E5);b="; expires="+b.toGMTString();document.cookie=a+"="+c+b+"; path=/; "};
-this.check=function(){var a=this.get(f);if(a)a=a.split(":");else if(100!=e)"v"==h&&(e=Math.random()>=e/100?0:100),a=[h,e,0],this.set(f,a.join(":"));else return!0;var c=a[1];if(100==c)return!0;switch(a[0]){case "v":return!1;case "r":return c=a[2]%Math.floor(100/c),a[2]++,this.set(f,a.join(":")),!c}return!0};
-this.go=function(){if(this.check()){var a=document.createElement("script");a.type="text/javascript";a.src=g;document.body&&document.body.appendChild(a)}};
-this.start=function(){var t=this;"complete"!==document.readyState?window.addEventListener?window.addEventListener("load",function(){t.go()},!1):window.attachEvent&&window.attachEvent("onload",function(){t.go()}):t.go()};};
-try{(new g(100,"r","QSI_S_ZN_8qZUmklKYbBqAYe","https://zn8qzumklkybbqaye-suselinux.siteintercept.qualtrics.com/SIE/?Q_ZID=ZN_8qZUmklKYbBqAYe")).start()}catch(i){}})();]]>
-</script><div id='ZN_8qZUmklKYbBqAYe'><xsl:comment>DO NOT REMOVE-CONTENTS PLACED HERE</xsl:comment></div>
+  <xsl:if test="number($generate.qualtrics.div) != 0 and $qualtrics-feedback.js != ''">
+      <xsl:comment>BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET</xsl:comment>
+      <script type='text/javascript' src="{$qualtrics-feedback.js}"/>
+      <div id="{$qualtrics.div.id}">
+        <xsl:comment>DO NOT REMOVE-CONTENTS PLACED HERE</xsl:comment>
+      </div>
+      <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
     <xsl:text>&#10;</xsl:text>
-    <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
-    <xsl:text>&#10;</xsl:text>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:if>
 </xsl:template>
 
