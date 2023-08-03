@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Thu Aug 03 09:10:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.3
+  - Introduce json-ld-use-individual-authors parameter
+    => 0=don't use individual authors, use fallback author
+       1=use authors which are in <authorgroup> or <author>s
+  - Remove "role" property for authors
+
+-------------------------------------------------------------------
 Wed Aug 02 11:15:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.92.2
