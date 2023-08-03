@@ -200,7 +200,7 @@
     </xsl:message>-->
 
     <xsl:choose>
-      <xsl:when test="count($candidate-authors/*) = 1">
+      <xsl:when test="number($json-ld-use-individual-authors) = 1 and count($candidate-authors/*) = 1">
         <xsl:message>INFO: found one author</xsl:message>
         <xsl:variable name="person">
           <xsl:call-template name="person.name">
@@ -209,11 +209,11 @@
         </xsl:variable>
     "author": {
       "@type": "Person",
-      "name": "<xsl:value-of select="$person"/>",
-      "role": "Writer"
+      "name": "<xsl:value-of select="$person"/>"<!--,
+      "role": "Writer"-->
     },
       </xsl:when>
-      <xsl:when test="count($candidate-authors/*) > 1">
+      <xsl:when test="number($json-ld-use-individual-authors) = 1 and count($candidate-authors/*) > 1">
     "author": [<!--
         --><xsl:call-template name="json-ld-person.name.list">
           <xsl:with-param name="node" select="$candidate-authors"/>
@@ -263,13 +263,7 @@
         </xsl:variable>
         {
           "@type": "Person",
-          "name": "<xsl:value-of select="string($name)"/>",
-          "role": "<xsl:choose>
-<!--          <xsl:when test="local-name($person.list[position()=$count]) = 'author'">Writer</xsl:when>-->
-          <xsl:when test="local-name($person.list[position()=$count]) = 'editor'">Editor</xsl:when>
-          <xsl:when test="local-name($person.list[position()=$count]) = 'othercredit'">Contributor</xsl:when>
-          <xsl:otherwise>Writer</xsl:otherwise>
-        </xsl:choose>"
+          "name": "<xsl:value-of select="string($name)"/>"
         }<xsl:if test="$count &lt; $person.count">,&#10;</xsl:if>
         <xsl:call-template name="json-ld-person.name.list">
           <xsl:with-param name="person.list" select="$person.list"/>
