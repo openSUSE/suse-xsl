@@ -419,7 +419,7 @@ task before
   <xsl:param name="search.description.length" select="55"/>
   <!-- Open Graph (og:)/Twitter Cards tags used for social-media preview -->
   <xsl:param name="socialmedia.title.length" select="55"/>
-  <xsl:param name="socialmedia.description.length" select="150"/>
+  <xsl:param name="socialmedia.description.length" select="125"/>
   <!-- Type of content to display in og:type tag, https://ogp.me/#types -->
   <xsl:param name="opengraph.type" select="'article'"/>
   <!-- How Twitter Cards should be displayed, as "summary" (uses smaller square
