@@ -105,6 +105,13 @@
     </fo:block-container>
   </xsl:template>
 
+
+  <xsl:template match="d:meta[@name='platform']" mode="book.titlepage.recto.auto.mode">
+    <fo:block>
+      <xsl:apply-templates/>
+    </fo:block>
+  </xsl:template>
+
   <!-- ======== -->
   <xsl:template match="d:cover[d:mediaobject]" mode="book.titlepage.recto.auto.mode">
     <xsl:variable name="n" select="count(d:mediaobject)"/>
