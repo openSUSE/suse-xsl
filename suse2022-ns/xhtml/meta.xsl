@@ -226,7 +226,9 @@
         <xsl:when test="$meta.nodes[@name='social-descr']">
           <xsl:choose>
             <xsl:when test="string-length($meta.nodes[@name='social-descr']) &lt; $socialmedia.description.length">
-              <xsl:value-of select="$meta.nodes[@name='social-descr']"/>
+              <xsl:call-template name="trim.text">
+                <xsl:with-param name="contents" select="$meta.nodes[@name = 'social-descr']" />
+              </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
               <xsl:call-template name="log.message">
@@ -237,7 +239,7 @@
                   <xsl:value-of select="concat($socialmedia.description.length, ' characters!')"/>
                 </xsl:with-param>
               </xsl:call-template>
-              <xsl:value-of select="substring(normalize-space($meta.nodes[@name = 'social-descr']), 1, $socialmedia.description.length)" />
+              <xsl:value-of select="normalize-space(substring($meta.nodes[@name = 'social-descr'], 1, $socialmedia.description.length))" />
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -245,12 +247,18 @@
           <xsl:choose>
             <xsl:when test="string-length($socialmedia.description) > $socialmedia.description.length">
               <xsl:call-template name="ellipsize.text">
-                <xsl:with-param name="input" select="$socialmedia.description"/>
+                <xsl:with-param name="input">
+                  <xsl:call-template name="trim.text">
+                    <xsl:with-param name="contents" select="$socialmedia.description"/>
+                  </xsl:call-template>
+                </xsl:with-param>
                 <xsl:with-param name="ellipsize.after" select="$socialmedia.description.length"/>
               </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="$socialmedia.description"/>
+              <xsl:call-template name="trim.text">
+                <xsl:with-param name="contents" select="$socialmedia.description" />
+              </xsl:call-template>
             </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -268,7 +276,11 @@
     <xsl:variable name="title">
       <xsl:choose>
         <xsl:when test="$meta.nodes[@name='title']">
-          <xsl:variable name="tmp" select="normalize-space($meta.nodes[@name='title'][last()])"/>
+          <xsl:variable name="tmp">
+            <xsl:call-template name="trim.text">
+            <xsl:with-param name="contents" select="$meta.nodes[@name='title'][last()]" />
+          </xsl:call-template>
+          </xsl:variable>
           <xsl:choose>
             <xsl:when test="$tmp = ''">
               <xsl:call-template name="log.message">
@@ -298,7 +310,9 @@
           </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="$socialmedia.title"/>
+          <xsl:call-template name="trim.text">
+            <xsl:with-param name="contents" select="$socialmedia.title" />
+          </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
