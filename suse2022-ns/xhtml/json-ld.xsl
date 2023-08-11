@@ -83,8 +83,8 @@
 
   <xsl:template name="json-ld-headline">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="headline" select="($node/d:info/d:meta[@name='title'] | $node/d:info/d:title | $node/d:title)[last()]"/>
-    "headline": "<xsl:value-of select="normalize-space($headline)"/>",
+    <xsl:variable name="headline" select="normalize-space(($node/d:info/d:meta[@name='title'] | $node/d:info/d:title | $node/d:title)[last()])"/>
+    "headline": "<xsl:value-of select="translate($headline, '&quot;', '')"/>",
   </xsl:template>
 
   <xsl:template name="json-ld-description">
@@ -121,7 +121,7 @@
     </xsl:variable>
 
       <xsl:if test="$description != ''">
-    "description": "<xsl:value-of select="$description"/>",
+    "description": "<xsl:value-of select="translate($description, '&quot;', '')"/>",
       </xsl:if>
   </xsl:template>
 
