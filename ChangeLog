@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.5
+  - JSON-LD: Remove quotes in headlines & descriptions (#569)
+  - DOCTEAM-1018: Feedback from reported SLE 15 SP5 translations
+    - zh-tw: Change table-label and figure-label
+    - zh-cn: change startquote and endquote
+  - Qualtrics script correction (#568)
+
+-------------------------------------------------------------------
 Thu Aug 10 15:46:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.92.4
