@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Aug 28 12:00:00 UTC 2022 - tomschr@users.noreply.github.com
+
+- Update 2.92.6
+  Fix SUSE header with xsl:choose and check for $include.suse.header
+  to better distinguish for old and new header (#571)
+
+-------------------------------------------------------------------
 Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.92.5
