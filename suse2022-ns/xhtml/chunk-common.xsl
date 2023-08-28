@@ -257,23 +257,27 @@
       <body>
         <xsl:call-template name="body.attributes" />
         <xsl:call-template name="outerelement.class.attribute" />
-        <xsl:if test="$include.suse.header">
-          <xsl:variable name="candidate.suse.header.body">
-            <xsl:call-template name="string.subst">
-              <xsl:with-param name="string" select="$include.ssi.body" />
-              <xsl:with-param name="target" select="$placeholder.ssi.language" />
-              <xsl:with-param name="replacement" select="$lang-attr" />
+        <xsl:choose>
+          <xsl:when test="number($include.suse.header) = 1">
+            <xsl:variable name="candidate.suse.header.body">
+              <xsl:call-template name="string.subst">
+                <xsl:with-param name="string" select="$include.ssi.body" />
+                <xsl:with-param name="target" select="$placeholder.ssi.language" />
+                <xsl:with-param name="replacement" select="$lang-attr" />
+              </xsl:call-template>
+            </xsl:variable>
+            <xsl:text>&#10;</xsl:text>
+            <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body" />"</xsl:comment>
+            <xsl:text>&#10;</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="bypass">
+              <xsl:with-param name="format" select="'chunk'" />
             </xsl:call-template>
-          </xsl:variable>
-          <xsl:text>&#10;</xsl:text>
-          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body" />"</xsl:comment>
-          <xsl:text>&#10;</xsl:text>
-        </xsl:if>
-        <xsl:call-template name="bypass">
-          <xsl:with-param name="format" select="'chunk'" />
-        </xsl:call-template>
 
-        <xsl:call-template name="user.header.content" />
+            <xsl:call-template name="user.header.content" />
+          </xsl:otherwise>
+        </xsl:choose>
 
         <xsl:call-template name="breadcrumbs.navigation" />
 

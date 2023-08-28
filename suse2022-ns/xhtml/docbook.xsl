@@ -755,14 +755,17 @@
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
 
-        <xsl:if test="$include.suse.header">
-          <xsl:text>&#10;</xsl:text>
-          <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
-          <xsl:text>&#10;</xsl:text>
-        </xsl:if>
-        <xsl:call-template name="bypass"/>
-
-        <xsl:call-template name="user.header.content"/>
+        <xsl:choose>
+          <xsl:when test="number($include.suse.header) = 1">
+            <xsl:text>&#10;</xsl:text>
+            <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
+            <xsl:text>&#10;</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="bypass" />
+            <xsl:call-template name="user.header.content" />
+          </xsl:otherwise>
+        </xsl:choose>
 
         <xsl:call-template name="breadcrumbs.navigation"/>
 
@@ -915,13 +918,11 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       </xsl:call-template>
     </xsl:variable>
 
-      <xsl:if test="$include.suse.header = 0">
-        <header id="_mainnav">
-          <div class="growth-inhibitor">
-            <xsl:call-template name="create.header.logo"/>
-          </div>
-        </header>
-      </xsl:if>
+    <header id="_mainnav">
+      <div class="growth-inhibitor">
+        <xsl:call-template name="create.header.logo" />
+      </div>
+    </header>
   </xsl:template>
 
   <xsl:template name="user.footer.content">
