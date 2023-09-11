@@ -3432,3 +3432,33 @@ article a:hover code {
       content: " (" attr(href) ") ↗";
       color: unset;
       background-image: none; } }
+
+
+main #_side-toc-page {
+     background-color: #efefef;
+     padding-left: 1.5rem;
+}
+
+.side-toc .side-title {
+     margin-block:0.5rem;
+     font-size: 14px;
+     font-weight: 600;
+     margin-top:1rem;
+}
+ .side-toc a {
+     /*color: #26915e;*/
+     color: #30BA78;
+     padding:0;
+     padding-block:0.4rem;
+     font-weight: 500;
+}
+ .side-toc .toc a:focus, .side-toc .toc a:hover, .side-toc .toc a:active {
+     background-color:transparent;
+}
+ main article{
+     padding-inline:3rem;
+}
+ .article h1.title{
+     font-size: 42px;
+     margin-bottom: 0.5rem;
+}
