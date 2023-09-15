@@ -1,0 +1,183 @@
+@charset "utf-8.sass"
+
+// SUSE STYLE
+
+// Paths
+$title_icons_path: '../images/'
+
+// Fonts
+
+$f_sans: Poppins, Roboto, sans-serif
+$f_mono: 'Roboto Mono', 'RobotoMono', 'DejaVu Sans Mono', 'DejaVuSansMono', 'Menlo', 'Andale Mono', monospace
+
+$i_font_normal: 1rem
+$i_font_side_toc: .9rem
+$i_font_menu: .8rem
+$i_font_menu_mini: .7rem
+
+
+// Colors
+
+$c_white:        rgb(255, 255, 255)
+$c_black:        rgb(  0,   0,   0)
+
+$c_fog:          rgb(239, 239, 239)
+$c_fog_200:      rgb(222, 223, 224)
+$c_fog_300:      rgb(192, 194, 196)
+
+$c_pine:         rgb( 12,  50,  44)
+$c_jungle:       rgb( 48, 186, 120)
+
+$c_midnight:     rgb( 25,  32, 114)
+$c_midnight_60:  rgb(117, 122, 167)
+$c_midnight_30:  rgb(187, 189, 212)
+
+$c_waterhole:    rgb( 36,  83, 255)
+$c_waterhole_60: rgb(128, 154, 247)
+$c_waterhole_30: rgb(191, 203, 251)
+
+$c_persimmon:    rgb(254, 124,  63)
+$c_persimmon_60: rgb(243, 178, 146)
+$c_persimmon_30: rgb(249, 218, 200)
+
+$c_mint:         rgb(144, 235, 205)
+$c_mint_60:      rgb(199, 241, 227)
+$c_mint_30:      rgb(227, 248, 241)
+
+
+// special color variations
+$c_funky_persimmon_prelight: lighten($c_persimmon, 10%)
+$c_funky_jungle_prelight: lighten($c_jungle, 10%)
+$c_funky_pine_prelight: lighten($c_pine, 10%)
+
+$c_funky_darker_jungle: darken($c_jungle, 10%)
+
+// URL-encoded colors for background-image SVGs
+
+// FIXME: is there some way to do this via a mixin or so? redefining all
+//   those colors in hex leads to dumb duplication
+$s_uhash:                     '%23'
+$c_white_url:                 #{$s_uhash}fff
+$c_pine_url:                  #{$s_uhash}0c322c
+$c_jungle_url:                #{$s_uhash}30ba78
+$c_fog_300_url:               #{$s_uhash}c0c2c4
+$c_funky_darker_jungle_url:   #{$s_uhash}26915e
+
+
+// header heights
+$i_big_head:     135px
+$i_medium_head:  110px
+$i_mini_head:    65px
+
+// our very own mobile ToC button
+$i_menu_button_size: 60px
+
+// mobile left ToC
+$i_side_toc_overall_mobile: 300px
+
+
+// Breakpoints & mixins (similar to Bulma, but expanded at the top/bottom end)
+$i_tiny: 480px
+$i_mobile: 768px
+$i_tablet: 1024px
+$i_desktop: 1215px
+$i_wide: 1400px
+$i_superwide: 2250px
+
+// max-width, as on suse.com
+$i_page_width_normal: $i_wide
+// max-width for three-column layout (to avoid superwide line lengths etc.)
+$i_page_width_wide: $i_superwide
+
+=m_tiny
+  @media screen and (max-width: $i_tiny)
+    @content
+=m_mobile
+  @media screen and (max-width: $i_mobile)
+    @content
+=m_mobile_up
+  @media screen and (min-width: $i_mobile)
+    @content
+=m_tablet
+  @media screen and (max-width: $i_tablet)
+    @content
+=m_tablet_up
+  @media screen and (min-width: $i_tablet)
+    @content
+=m_tablet_only
+  @media screen and (min-width: $i_mobile + 1px) and (max-width: $i_tablet)
+    @content
+=m_desktop
+  @media screen and (max-width: $i_desktop)
+    @content
+=m_desktop_up
+  @media screen and (min-width: $i_desktop)
+    @content
+=m_wide
+  @media screen and (max-width: $i_wide)
+    @content
+=m_wide_up
+  @media screen and (min-width: $i_wide)
+    @content
+=m_superwide
+  @media screen and (max-width: $i_superwide)
+    @content
+
+=m_clearfix
+  &::after
+    clear: both
+    content: ''
+    display: table
+
+
+// IMPORTS
+
+// Upstream imports (must be first!)
+
+//@import "bulma-0.9.3/bulma/bulma.sass"
+@import "bulma-0.9.3/bulma/sass/base/minireset.sass"
+@import "bulma-0.9.3/bulma/sass/elements/container.sass"
+@import "bulma-0.9.3/bulma/sass/grid/_all.sass"
+
+// Custom imports
+
+@import "custom/major-elements.sass"
+
+// @import "custom/header-menu.sass"
+
+@import "custom/breadcrumbs.sass"
+
+@import "custom/side-toc.sass"
+
+@import "custom/share-print-buttons.sass"
+
+@import "custom/footer.sass"
+
+@import "custom/pizzazz.sass"
+
+@import "custom/bottom-navigation.sass"
+
+@import "custom/content-block.sass"
+
+@import "custom/content-xref-target.sass"
+
+@import "custom/content-title.sass"
+
+@import "custom/content-table.sass"
+
+@import "custom/content-admonition.sass"
+
+@import "custom/content-inline.sass"
+
+@import "custom/content-formal-informal.sass"
+
+@import "custom/content-qanda.sass"
+
+@import "custom/content-mono-verbatim.sass"
+@import "custom/highlight-js.sass"
+
+@import "custom/review-features.sass"
+
+@import "custom/permalink.sass"
+
+@import "custom/print.sass"
