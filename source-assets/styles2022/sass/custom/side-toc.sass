@@ -42,9 +42,15 @@ $you_are_here_weight: 600
 
   .side-title
     color: $c_pine
-    font-size: $i_font_menu
-    font-weight: 800
+    margin-top: 1rem 
+    margin-bottom: 0.5rem
+    font-size: 0.875rem
+    font-weight: 600
+    
+    // font-size: $i_font_menu
+    // font-weight: 800
 
+    
     // fix the display of the em.citetitle that is somehow included in every
     // other guide name...
     em
@@ -53,6 +59,19 @@ $you_are_here_weight: 600
 
 // "On this page"
 #_side-toc-page
+  
+  a
+    color: $c_jungle
+    padding-inline:0
+    padding-block:0.4rem
+
+    &:focus,
+    &:hover,
+    &:active
+      background-color: transparent
+      text-decoration: underline
+
+  
   @include m_tablet
     background-color: $c_white
     border: .2rem solid $c_pine
