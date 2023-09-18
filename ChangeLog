@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Mon Sep 18 10:42:46 UTC 2023 - tomschr@users.noreply.github.com
+
+- Update 2.92.7
+  * Suse global header integration (#574)
+  * Update style.css - right-nav changes (#573) 
+-------------------------------------------------------------------
 Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
 
 - Update 2.92.6
