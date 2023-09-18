@@ -1,6 +1,12 @@
 -------------------------------------------------------------------
 Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
 
+- Update 2.92.6
+  - Fix SUSE header to avoid issues with new+old header code #571
+
+-------------------------------------------------------------------
+Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
+
 - Update 2.92.5
   - JSON-LD: Remove quotes in headlines & descriptions (#569)
   - DOCTEAM-1018: Feedback from reported SLE 15 SP5 translations
