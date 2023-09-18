@@ -1330,25 +1330,6 @@ body {
     text-align: center;
     width: 100%; }
 
-header {
-  display: block;
-  height: 135px;
-  background-color: #0c322c;
-  position: relative;
-  z-index: 9001; }
-  header.sticky {
-    box-sizing: border-box;
-    height: 65px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    min-height: unset; }
-    header.sticky .growth-inhibitor {
-      height: 65px; }
-  header .growth-inhibitor {
-    height: 135px; }
-
 .crumbs {
   padding: .5rem 1.25rem;
   background-color: #dedfe0;
