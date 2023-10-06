@@ -489,4 +489,22 @@ task before
   -->
   <xsl:param name="qualtrics-feedback.js">static/js/qualtrics-feedback.js</xsl:param>
 
+  <!-- Limit the revhistory list to X entries
+       If it's empty, display all
+  -->
+  <xsl:param name="revision.limit"/>
+
+  <!-- In case there is not revhistory/title, should the article/book title be included
+       after the default "Revision History" string?
+  -->
+  <xsl:param name="revision.add.div.title" select="1"/>
+
+  <!--
+    $generate.revhistory = enable or disable revhistory generation
+    valid values: 0 or 1
+  -->
+  <xsl:param name="generate.revhistory" select="1"/>
+
+  <!-- Generates a separate file -->
+  <xsl:param name="generate.revhistory.link" select="1"/>
 </xsl:stylesheet>

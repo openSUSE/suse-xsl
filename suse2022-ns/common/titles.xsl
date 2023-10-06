@@ -45,6 +45,19 @@
 </xsl:template>
 
 
+<xsl:template match="d:revhistory" mode="title.markup">
+    <xsl:choose>
+      <xsl:when test="d:title | d:info/d:title">
+        <xsl:apply-templates mode="title.markup"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key" select="'RevHistory'" />
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+</xsl:template>
+
 <!--
    Temporary fix for version 1.78.1:
    See upstream revision 9820. Remove this snippet, if there is a newer

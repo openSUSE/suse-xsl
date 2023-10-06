@@ -197,8 +197,8 @@
    <l:context name="title">
      <l:template name="part" text="%n&#160;%t&#160;r&#233;sz"/>
      <l:template name="part" style="title" text="%n.&#160;r&#233;sz %t"/>
+     <l:template name="revhistory" text="%t"/>
    </l:context>
-
 
    <l:context name="keycap">
       <l:template name="alt" text="Alt"/>

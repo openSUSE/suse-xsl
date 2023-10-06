@@ -256,6 +256,7 @@
 
   <l:context name="title">
     <l:template name="chapter" text="&#31532;&#160;%n&#160;&#31456; %t"/>
+    <l:template name="revhistory" text="%t"/>
   </l:context>
 
   <l:context name="xref-number-and-title">

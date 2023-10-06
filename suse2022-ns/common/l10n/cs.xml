@@ -222,6 +222,7 @@
 
    <l:context name="title">
       <l:template name="part" text="Díl&#160;%n „%t“" />
+      <l:template name="revhistory" text="%t"/>
    </l:context>
 
 

@@ -1983,6 +1983,14 @@ h6 {
 h1:has(.title-container) {
   padding: 80px 0 80px; }
 
+.revhistory {
+  margin-left: 2em;
+  margin-right: 2em; }
+
+.titlepage-revhistory {
+  margin-top: 1em;
+  margin-bottom: 1em; }
+
 .article .title,
 .book .title,
 .set .title {

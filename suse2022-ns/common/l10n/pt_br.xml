@@ -171,6 +171,7 @@
 
    <l:context name="title">
       <l:template name="part" text="Parte&#160;%n&#160;%t"/>
+      <l:template name="revhistory" text="%t"/>
    </l:context>
 
 

@@ -194,6 +194,10 @@
       <l:template name="toc" text="%t"/>
    </l:context>
 
+   <l:context name="title">
+      <l:template name="revhistory" text="%t"/>
+   </l:context>
+
    <l:context name="keycap"><!-- FIXME: What are the Japanese keycaps? -->
       <l:template name="alt" text="Alt"/>
       <l:template name="backspace" text="&lt;&#x2014;"/><!-- mdash -->

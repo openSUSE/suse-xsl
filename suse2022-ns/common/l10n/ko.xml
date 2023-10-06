@@ -131,6 +131,7 @@
     <l:context name="title-numbered">
      <l:template name="Part" text="%n&#48512; %t"/>
      <l:template name="part" text="%n&#48512; %t"/>
+     <l:template name="revhistory" text="%t"/>
    </l:context>
 
    <l:context name="xref-number-and-title">

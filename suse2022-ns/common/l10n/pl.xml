@@ -178,6 +178,7 @@
 
    <l:context name="title">
       <l:template name="part" text="Cz&#x119;&#x15b;&#x107;&#160;%n&#160;%t"/>
+      <l:template name="revhistory" text="%t"/>
    </l:context>
 
    <l:context name="msgset">
