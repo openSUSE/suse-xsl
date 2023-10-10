@@ -82,7 +82,7 @@
     <xsl:param name="xrefstyle"/>
     <xsl:param name="verbose" select="1"/>
     <xsl:variable name="href">
-      <xsl:text>ftn.</xsl:text>
+      <xsl:text>#ftn.</xsl:text>
       <xsl:call-template name="object.id">
         <xsl:with-param name="object" select="."/>
       </xsl:call-template>
