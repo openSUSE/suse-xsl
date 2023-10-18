@@ -86,6 +86,7 @@
 
   <l:context name="title">
     <l:template name="part" text="%n. %t"/>
+    <l:template name="revhistory" text="%t"/>
   </l:context>
 
   <l:context name="title-numbered">

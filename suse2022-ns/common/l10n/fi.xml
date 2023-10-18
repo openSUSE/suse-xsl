@@ -184,6 +184,7 @@
 
    <l:context name="title">
       <l:template name="part" text="Osa&#160;%n&#160;%t"/>
+      <l:template name="revhistory" text="%t"/>
    </l:context>
 
    <l:context name="keycap">

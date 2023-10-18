@@ -171,6 +171,9 @@
       <l:template name="toc" text="%t"/>
    </l:context>
 
+   <l:context name="title">
+      <l:template name="revhistory" text="%t"/>
+   </l:context>
 
    <l:context name="msgset">
       <l:template name="alt" text="Alt"/>

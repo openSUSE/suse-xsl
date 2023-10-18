@@ -233,6 +233,8 @@
 
   <!-- ===================================================== -->
   <!-- article titlepage templates -->
+
+
   <xsl:template match="d:authorgroup" mode="article.titlepage.recto.auto.mode">
     <xsl:call-template name="add.authorgroup"/>
   </xsl:template>
@@ -326,6 +328,10 @@
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:articleinfo/d:copyright"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:copyright"/>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
+
+        <xsl:if test="number($generate.revhistory) = 1">
+          <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+        </xsl:if>
   </xsl:template>
 
   <xsl:template name="article.titlepage.separator">
@@ -387,10 +393,12 @@
   <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:pubdate"/>
   <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:revision"/>
   <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:revision"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:revhistory"/>
-  <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
   <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:setinfo/d:abstract"/>
   <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
+
+  <xsl:if test="number($generate.revhistory) = 1">
+    <xsl:apply-templates mode="set.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+  </xsl:if>
 </xsl:template>
   <!-- ===================================================== -->
   <!-- book titlepage templates -->
@@ -431,6 +439,10 @@
         <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:abstract"/>
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
+
+        <xsl:if test="number($generate.revhistory) = 1">
+          <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+        </xsl:if>
 
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:bookinfo/d:corpauthor"/>
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="d:info/d:corpauthor"/>

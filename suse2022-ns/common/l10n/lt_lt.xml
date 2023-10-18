@@ -173,6 +173,7 @@
 
    <l:context name="title">
       <l:template name="part" text="%t&#160;%n&#160;dalis"/>
+      <l:template name="revhistory" text="%t"/>
    </l:context>
 
    <l:context name="keycap">

@@ -179,8 +179,8 @@
 
    <l:context name="title">
       <l:template name="part" text="Part&#160;%n&#160;%t"/>
+      <l:template name="revhistory" text="%t"/>
    </l:context>
-
 
    <l:context name="keycap">
       <l:template name="alt" text="Alt"/>
