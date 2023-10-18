@@ -112,6 +112,7 @@
   </xsl:template>
 
   <xsl:template match="d:step/*[1][local-name()='para' or local-name()='simpara']">
+   <xsl:variable name="perf" select="(../@performance|../../@performance)[last()]"/>
    <xsl:call-template name="paragraph">
      <xsl:with-param name="class">
        <xsl:if test="@role and $para.propagates.style != 0">
@@ -125,7 +126,7 @@
          </xsl:call-template>
        </xsl:if>
        <xsl:call-template name="anchor"/>
-       <xsl:if test="../@performance='optional'">
+       <xsl:if test="$perf='optional'">
          <span class="step-optional">
            <xsl:call-template name="gentext">
              <xsl:with-param name="key" select="'step.optional'"/>
@@ -137,6 +138,7 @@
      </xsl:with-param>
    </xsl:call-template>
   </xsl:template>
+
 
 <xsl:template match="d:listitem/d:simpara" priority="10">
   <!-- Unlike the original DocBook stylesheets, if a listitem contains only a
