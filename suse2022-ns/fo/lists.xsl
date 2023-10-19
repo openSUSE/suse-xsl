@@ -325,7 +325,7 @@
                                    local-name()='simpara' or
                                    local-name()='formalpara']"
               priority="2">
-
+  <xsl:variable name="perf" select="(../@performance|../../@performance)[last()]"/>
   <fo:block xsl:use-attribute-sets="para.properties">
     <xsl:call-template name="no-break-after-colon"/>
 
@@ -335,7 +335,7 @@
         <xsl:with-param name="arch-value" select="@arch"/>
       </xsl:call-template>
     </xsl:if>
-    <xsl:if test="(self::d:para or self::d:simpara) and ../@performance='optional'">
+    <xsl:if test="(self::d:para or self::d:simpara) and $perf='optional'">
       <fo:inline color="&mid-gray;" xsl:use-attribute-sets="italicized">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key" select="'step.optional'"/>
