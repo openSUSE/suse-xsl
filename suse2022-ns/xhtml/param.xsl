@@ -189,6 +189,7 @@ set       toc,title
 <!-- 16. Bibliography =========================================== -->
 
 <!-- 17. Glossary =============================================== -->
+<xsl:param name="glossary.sort" select="1"/>
 
 <!-- 18. Miscellaneous ========================================== -->
   <xsl:param name="menuchoice.separator" select="'&#xa0;›&#xa0;'"/>
