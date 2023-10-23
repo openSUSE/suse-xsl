@@ -36,6 +36,7 @@
 
   <xsl:include href="../VERSION.xsl"/>
 
+  <xsl:include href="../common/check-types.xsl"/>
   <xsl:include href="../common/dates-revisions.xsl"/>
   <xsl:include href="../common/labels.xsl"/>
   <xsl:include href="../common/titles.xsl"/>
