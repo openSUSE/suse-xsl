@@ -43,7 +43,7 @@ translators apparently want those. - sknorr, 2016-09-30 -->
    <l:gentext key="sharethispage" text="ﻢﺷﺍﺮﻛﺓ ﻩﺬﻫ ﺎﻠﺼﻔﺣﺓ" />
    <l:gentext key="shareviafacebook" text="Facebook" />
    <l:gentext key="sharevialinkedin" text="LinkedIn" />
-   <l:gentext key="shareviatwitter" text="Twitter" />
+   <l:gentext key="shareviatwitter" text="Twitter/X" />
    <l:gentext key="shareviaemail" text="ﺎﻠﺑﺮﻳﺩ ﺍﻺﻠﻜﺗﺭﻮﻨﻳ" />
    <l:gentext key="printthispage" text="ﻂﺑﺎﻋﺓ ﻩﺬﻫ ﺎﻠﺼﻔﺣﺓ" />
    <l:gentext key="susecareers" text="ﺎﻟﻮﻇﺎﺌﻓ" />
@@ -88,12 +88,6 @@ translators apparently want those. - sknorr, 2016-09-30 -->
    <l:gentext key="previouspage" text="السابق" />
    <l:gentext key="nextpage" text="التالي" />
 
-   <l:gentext key="sharethispage" text="مشاركة هذه الصفحة" />
-   <l:gentext key="shareviafacebook" text="Facebook" />
-   <l:gentext key="sharevialinkedin" text="LinkedIn" />
-   <l:gentext key="shareviatwitter" text="Twitter" />
-   <l:gentext key="shareviaemail" text="البريد الإلكتروني" />
-   <l:gentext key="printthispage" text="طباعة هذه الصفحة" />
    <l:gentext key="susecareers" text="الوظائف" />
    <l:gentext key="suselegal" text="الشؤون القانونية" />
    <l:gentext key="suseabout" text="حول" />

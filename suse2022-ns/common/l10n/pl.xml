@@ -41,7 +41,7 @@
    <l:gentext key="sharethispage" text="Udostępnij tę stronę"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
-   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviatwitter" text="Twitter/X"/>
    <l:gentext key="shareviaemail" text="Wiadomość e-mail" />
    <l:gentext key="printthispage" text="Drukuj tę stronę"/>
    <l:gentext key="susecareers" text="Praca" />

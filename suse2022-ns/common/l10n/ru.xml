@@ -41,7 +41,7 @@
    <l:gentext key="sharethispage" text="Поделиться страницей" />
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
-   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviatwitter" text="Twitter/X"/>
    <l:gentext key="shareviaemail" text="Электронная почта"/>
    <l:gentext key="printthispage" text="Печать страницы" />
    <l:gentext key="susecareers" text="Вакансии" />
