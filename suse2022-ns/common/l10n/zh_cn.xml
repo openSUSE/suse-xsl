@@ -42,7 +42,7 @@
   <l:gentext key="sharethispage" text="分享此页" />
   <l:gentext key="shareviafacebook" text="Facebook" />
   <l:gentext key="sharevialinkedin" text="LinkedIn" />
-  <l:gentext key="shareviatwitter" text="Twitter" />
+  <l:gentext key="shareviatwitter" text="Twitter/X" />
   <l:gentext key="shareviaemail" text="电子邮件" />
   <l:gentext key="printthispage" text="打印此页" />
   <l:gentext key="susecareers" text="招贤纳士" /><l:gentext key="admonseparator"  text="：" />

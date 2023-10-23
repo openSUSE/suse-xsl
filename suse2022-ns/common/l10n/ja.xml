@@ -42,7 +42,7 @@
    <l:gentext key="sharethispage" text="このページを共有"/>
    <l:gentext key="shareviafacebook" text="Facebook"/>
    <l:gentext key="sharevialinkedin" text="LinkedIn"/>
-   <l:gentext key="shareviatwitter" text="Twitter"/>
+   <l:gentext key="shareviatwitter" text="Twitter/X"/>
    <l:gentext key="shareviaemail" text="電子メール"/>
    <l:gentext key="printthispage" text="このページを印刷"/>
    <l:gentext key="susecareers" text="採用情報"/>
