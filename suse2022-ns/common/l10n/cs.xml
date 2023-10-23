@@ -87,22 +87,6 @@
    <l:gentext key="previouspage" text="Předchozí" />
    <l:gentext key="nextpage" text="Následující" />
 
-   <l:gentext key="sharethispage" text="Sdílet tuto stránku" />
-   <l:gentext key="shareviafacebook" text="Facebook" />
-   <l:gentext key="sharevialinkedin" text="LinkedIn" />
-   <l:gentext key="shareviatwitter" text="Twitter" />
-   <l:gentext key="shareviaemail" text="E-mail" />
-   <l:gentext key="printthispage" text="Vytisknout tuto stránku" />
-   <l:gentext key="susecareers" text="Zaměstnání" />
-   <l:gentext key="suselegal" text="Právní informace" />
-   <l:gentext key="suseabout" text="O programu" />
-   <l:gentext key="susecontact" text="Kontaktujte nás" />
-   <l:gentext key="version.info" text="Platí pro " />
-   <l:gentext key="totopofpage" text="Začátek" />
-
-   <l:gentext key="version" text="Verze" />
-   <l:gentext key="Version" text="Verze" />
-
    <l:gentext key="step.optional" text="(Volitelné)" />
    <l:gentext key="GlossSeeAlso" text="Viz také" />
 
