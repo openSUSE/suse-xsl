@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Nov 01 14:25:26 UTC 2023 - tomschr@users.noreply.github.com
+
+Update 2.92.9
+- Set glossary.sort=1 to sort glossaries and glosslists (#582)
+- Swap Twitter icon for X (partly fixes DOCTEAM#1134) (#583)
+
+-------------------------------------------------------------------
 Thu Oct 19 05:17:31 UTC 2023 - tomschr@users.noreply.github.com
 
 - Update to 2.92.8
