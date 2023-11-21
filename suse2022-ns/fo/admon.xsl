@@ -102,7 +102,6 @@
   <xsl:call-template name="admon.symbol.color"/>
  </xsl:variable>
  <fo:block xsl:use-attribute-sets="dark-green">
-  <xsl:value-of select="@role"/>
   <xsl:apply-templates select="." mode="object.title.markup">
    <xsl:with-param name="allow-anchors" select="1"/>
   </xsl:apply-templates>
