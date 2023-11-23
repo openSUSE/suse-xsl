@@ -62,6 +62,11 @@ body
       text-align: center
       width: 100%
 
+  &.single
+    main.sticky.scroll-with-footer
+      &::before
+          content: none !important
+
 
 header
   display: block
@@ -164,6 +169,7 @@ main
       // HACK: To avoid a SASS syntax error, we do the @extends before adding
       // the media query that adds the content to make the ::before/::after
       // display.
+      
       &::before,
       &::after
         @extend .column
