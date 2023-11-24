@@ -58,7 +58,7 @@
   <xsl:template name="generate-json-ld">
     <xsl:param name="node"/>
     <xsl:if test="$generate.json-ld != 0">
-      <xsl:message>INFO: Going to generate JSON-LD...</xsl:message>
+      <xsl:message>INFO: Generating JSON-LD...</xsl:message>
       <script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -297,17 +297,36 @@
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
+    <xsl:variable name="date-check">
+      <xsl:call-template name="is-valid-iso-8601-date">
+        <xsl:with-param name="text" select="$date"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <!-- If day is missing in YYYY-MM-DD, append "-01" and try again to build a new date -->
+    <xsl:variable name="new-date" select="concat($date, '-01')"/>
+    <xsl:variable name="date-check-new">
+      <xsl:call-template name="is-valid-iso-8601-date">
+        <xsl:with-param name="text" select="$new-date" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="candidate-date">
+      <xsl:choose>
+        <xsl:when test="$date-check-new"><xsl:value-of select="$new-date"/></xsl:when>
+        <xsl:when test="$date-check"><xsl:value-of select="$date"/></xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:variable>
 
     <xsl:choose>
-      <xsl:when test="$date != ''">
-    "datePublished": "<xsl:value-of select="$date"/>",
+      <xsl:when test="$candidate-date != ''">
+    "datePublished": "<xsl:value-of select="$candidate-date"/>",
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">warn</xsl:with-param>
           <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
           <xsl:with-param name="message">
-            <xsl:text>Could not create "datePublished" property as no element was appropriate.</xsl:text>
+            <xsl:text>Could not create "datePublished" property as no element/value was appropriate.</xsl:text>
           </xsl:with-param>
         </xsl:call-template>
       </xsl:otherwise>
@@ -325,6 +344,24 @@
       </xsl:call-template>
       </xsl:when>
     </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="date-check">
+      <xsl:call-template name="is-valid-iso-8601-date">
+        <xsl:with-param name="text" select="$date"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="new-date" select="concat($date, '-01')"/>
+    <xsl:variable name="date-check-new">
+      <xsl:call-template name="is-valid-iso-8601-date">
+        <xsl:with-param name="text" select="$new-date" />
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="candidate-date">
+      <xsl:choose>
+        <xsl:when test="$date-check-new"><xsl:value-of select="$new-date"/></xsl:when>
+        <xsl:when test="$date-check"><xsl:value-of select="$date"/></xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
     </xsl:variable>
 
     <xsl:choose>
