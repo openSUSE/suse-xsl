@@ -80,7 +80,7 @@
   <l:gentext key="version" text="版本" />
   <l:gentext key="Version" text="版本" />
 
-  <l:gentext key="step.optional" text="(可选)" />
+  <l:gentext key="step.optional" text="（可选）" />
   <l:gentext key="GlossSeeAlso" text="另请参见" />
   <l:gentext key="glossseealso" text="另请参见" />
 
