@@ -88,15 +88,16 @@
 </xsl:template>
 
 <xsl:template match="d:formalpara/d:title|d:formalpara/d:info/d:title">
-  <xsl:variable name="title-str">
+  <xsl:variable name="titlestr">
     <xsl:apply-templates/>
   </xsl:variable>
+  <xsl:variable name="ns-titlestr" select="normalize-space($titlestr)"/>
   <!-- Logic: If there is already a &punctuation; character at the end, we don't
        need to add another one, $last-char allows us to check. -->
   <xsl:variable name="last-char-candidate">
     <xsl:choose>
-      <xsl:when test="$title-str != ''">
-        <xsl:value-of select="substring($title-str,string-length($title-str),1)"/>
+      <xsl:when test="$titlestr != ''">
+        <xsl:value-of select="substring($ns-titlestr, string-length($ns-titlestr),1)"/>
       </xsl:when>
       <xsl:otherwise>FAIL</xsl:otherwise>
     </xsl:choose>
@@ -105,18 +106,18 @@
     <xsl:value-of select="translate($last-char-candidate, '&punctuation;', '')"/>
   </xsl:variable>
 
-  <xsl:if test="$title-str != ''">
+  <xsl:if test="$ns-titlestr != ''">
     <fo:inline keep-with-next.within-line="always"
       padding-end="0.2em"
       xsl:use-attribute-sets="variablelist.term.properties">
-      <xsl:copy-of select="$title-str"/>
+      <xsl:copy-of select="$titlestr"/>
       <xsl:if test="$last-char != ''
                     and not(contains($runinhead.title.end.punct, $last-char))">
         <xsl:call-template name="gentext">
           <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
         </xsl:call-template>
       </xsl:if>
-      <fo:leader leader-pattern="space" leader-length=".3em"/>
+      <!-- <fo:leader leader-pattern="space" leader-length=".3em"/> -->
     </fo:inline>
   </xsl:if>
 </xsl:template>

@@ -28,7 +28,7 @@
    <l:gentext key="showcontentsoverview" text="Afficher la table des matières" />
    <l:gentext key="find" text="Rechercher" />
 
-   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+   <l:gentext key="runinhead.default.title.end.punct" text=".&#x00a0;"/>
 
    <l:gentext key="navigation" text="Navigation" />
    <l:gentext key="moredocuments" text="Plus de documents" />

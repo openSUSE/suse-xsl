@@ -25,7 +25,7 @@
    <l:gentext key="showcontentsoverview" text="Show Contents"/>
    <l:gentext key="find" text="Find"/>
 
-   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+  <l:gentext key="runinhead.default.title.end.punct" text=".&#x00a0;"/>
 
    <l:gentext key="navigation" text="Navigation"/>
    <l:gentext key="moredocuments" text="More documents"/>
