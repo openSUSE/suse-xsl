@@ -96,7 +96,7 @@
        need to add another one, $last-char allows us to check. -->
   <xsl:variable name="last-char-candidate">
     <xsl:choose>
-      <xsl:when test="$titlestr != ''">
+      <xsl:when test="$ns-titlestr != ''">
         <xsl:value-of select="substring($ns-titlestr, string-length($ns-titlestr),1)"/>
       </xsl:when>
       <xsl:otherwise>FAIL</xsl:otherwise>
