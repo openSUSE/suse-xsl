@@ -24,7 +24,7 @@
    <l:gentext key="showcontentsoverview" text="Показать содержание"/>
    <l:gentext key="find" text="Поиск" />
 
-   <l:gentext key="runinhead.default.title.end.punct" text="."/>
+   <l:gentext key="runinhead.default.title.end.punct" text=".&#x00a0;"/>
 
    <l:gentext key="navigation" text="Навигация"/>
    <l:gentext key="moredocuments" text="Еще документы" />

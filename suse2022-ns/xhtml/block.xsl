@@ -130,9 +130,10 @@
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
+  <xsl:variable name="ns-titleStr" select="normalize-space($titleStr)"/>
   <xsl:variable name="lastChar">
-    <xsl:if test="$titleStr != ''">
-      <xsl:value-of select="substring($titleStr,string-length($titleStr),1)"/>
+    <xsl:if test="normalize-space($ns-titleStr) != ''">
+      <xsl:value-of select="substring($ns-titleStr, string-length($ns-titleStr), 1)"/>
     </xsl:if>
   </xsl:variable>
 
@@ -143,7 +144,7 @@
         <xsl:with-param name="key">runinhead.default.title.end.punct</xsl:with-param>
       </xsl:call-template>
     </xsl:if>
-    <xsl:text>&#160;</xsl:text>
+    <!--<xsl:text>&#160;</xsl:text>-->
   </span>
 </xsl:template>
 
