@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Tue Nov 28 10:11:35 UTC 2023 - tomschr@users.noreply.github.com
+
+- Update 2.93.0
+  * Fix #597: Correct zh-cn/zh-tw for optional steps
+  * Fix #596: Correct runinhead.default.title.end.punct
+  * Fix #491: 2 column layout fix for single HTML
+  * Remove "compact" output in admons (#593)
+  * Add U+201C quotation mark (#588)
+
+-------------------------------------------------------------------
 Wed Nov 01 14:25:26 UTC 2023 - tomschr@users.noreply.github.com
 
 Update 2.92.9
