@@ -55,7 +55,7 @@
    <l:gentext key="version" text="版本" />
    <l:gentext key="Version" text="版本" />
 
-   <l:gentext key="step.optional" text="(選填)" />
+   <l:gentext key="step.optional" text="(選擇性)" />
    <l:gentext key="GlossSeeAlso" text="另請參閱" />
    <l:gentext key="glossseealso" text="另請參閱" />
 
