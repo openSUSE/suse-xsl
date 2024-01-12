@@ -90,6 +90,7 @@
   </l:context>
 
   <l:context name="title-numbered">
+    <l:template name="chapter" text="第 %n 章 %t"/>
      <!--<l:template name="part" text="&#31532; %n. %t &#37096;&#20998;"/>--><!--removed at linguist's request-->
      <l:template name="part" text="%n. %t"/>
    </l:context>
