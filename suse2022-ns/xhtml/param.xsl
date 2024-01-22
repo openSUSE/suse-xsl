@@ -255,8 +255,8 @@ task before
 
   <xsl:param name="daps.header.logo">static/images/logo.svg</xsl:param>
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
-  <xsl:param name="daps.header.js.library">static/js/jquery-1.12.4.min.js</xsl:param>
-  <xsl:param name="daps.header.js.custom">static/js/script.js</xsl:param>
+<!--   <xsl:param name="daps.header.js.library">static/js/jquery-1.12.4.min.js</xsl:param> -->
+  <xsl:param name="daps.header.js.custom">static/js/script-purejs.js</xsl:param>
   <xsl:param name="daps.header.js.highlight">static/js/highlight.min.js</xsl:param>
   <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
 
