@@ -814,11 +814,11 @@ if ( window.location.protocol.toLowerCase() != 'file:' ) {
         <link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>
       </noscript>
     </xsl:if>
-    <xsl:if test="$daps.header.js.library != ''">
+<!--     <xsl:if test="$daps.header.js.library != ''">
       <xsl:call-template name="make.script.link">
         <xsl:with-param name="script.filename" select="$daps.header.js.library"/>
       </xsl:call-template>
-    </xsl:if>
+    </xsl:if> -->
     <xsl:if test="$daps.header.js.custom != ''">
       <xsl:call-template name="make.script.link">
         <xsl:with-param name="script.filename" select="$daps.header.js.custom"/>
