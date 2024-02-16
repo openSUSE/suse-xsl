@@ -461,13 +461,28 @@ task before
 
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="0"/>
+  <!-- Should we generate an external JSON-LD structure 0=no, 1=yes
+       Only works when $generate.json-ld=1 was set
+  -->
+  <xsl:param name="generate.json-ld.external" select="0"/>
+  <!-- Filename to the single stitch file that Docserv generates on startup -->
+  <xsl:param name="stitchfile"/>
   <!-- Should the individual authors be used? 0=no, 1=yes  -->
   <xsl:param name="json-ld-use-individual-authors" select="1"/>
-  <xsl:param name="json-ld-fallback-author-name">SUSE documentation team</xsl:param>
+  <!-- File extension -->
+  <xsl:param name="json-ld.ext">.json</xsl:param>
+  <!-- Timezone -->
+  <xsl:param name="json-ld-date-timezone">T00:00+02:00</xsl:param>
+  <xsl:param name="json-ld-fallback-author-name">SUSE Product &amp; Solution Documentation Team</xsl:param>
   <xsl:param name="json-ld-fallback-author-url">https://documentation.suse.com</xsl:param>
   <xsl:param name="json-ld-fallback-author-type">Corporation</xsl:param>
-  <xsl:param name="json-ld-fallback-author-logo">https://www.suse.com/assets/img/suse-white-logo-green.svg</xsl:param>
+  <xsl:param name="json-ld-fallback-author-logo"
+    >https://www.suse.com/assets/img/suse-white-logo-green.svg</xsl:param>
+  <!-- The logo -->
+  <xsl:param name="json-ld-image-url" select="$json-ld-fallback-author-logo" />
 
+  <!-- The DC file needs to be passed to find the structure in the Docserv config -->
+  <xsl:param name="dcfilename"/>
 
   <xsl:variable name="placeholder.ssi.language">{{#language#}}</xsl:variable>
 

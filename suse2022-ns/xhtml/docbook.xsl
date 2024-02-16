@@ -699,6 +699,39 @@
     </xsl:if>
   </xsl:template>
 
+
+  <!-- ############################################################## -->
+  <xsl:template match="d:book|d:article|d:set" priority="2" mode="process.root">
+    <xsl:apply-imports/>
+    <xsl:if test="$rootid = @xml:id and $is.chunk = 0">
+      <xsl:choose>
+        <xsl:when test="$dcfilename != ''">
+          <xsl:call-template name="generate-json-ld-external">
+            <xsl:with-param name="node" select="." />
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="log.message">
+            <xsl:with-param name="level">WARN</xsl:with-param>
+            <xsl:with-param name="context-desc">
+              <xsl:text>JSON-LD</xsl:text>
+            </xsl:with-param>
+            <xsl:with-param name="message">
+              <xsl:text>The parameter $dcfile is unset. Cannot find the DC file in Docserv config.</xsl:text>
+            </xsl:with-param>
+          </xsl:call-template>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="/" priority="2" mode="process.root">
+    <xsl:apply-imports/>
+    <xsl:call-template name="generate-json-ld-external">
+      <xsl:with-param name="node" select="/*"/>
+    </xsl:call-template>
+  </xsl:template>
+
   <xsl:template match="*" mode="process.root">
     <xsl:param name="prev"/>
     <xsl:param name="next"/>
