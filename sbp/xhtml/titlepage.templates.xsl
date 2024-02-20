@@ -78,6 +78,10 @@
   </xsl:template>
 
 
+  <xsl:template match="d:abstract/d:*" mode="article.titlepage.recto.auto.mode">
+    <xsl:apply-templates select="."/>
+  </xsl:template>
+
   <xsl:template match="d:author[d:personname]|d:editor[d:personname]|d:othercredit[d:personname]"  mode="authorgroup">
     <xsl:param name="withlabel" select="1"/>
 <!--<xsl:message>d:<xsl:value-of select="local-name(.)"/>[d:personname]</xsl:message>  -->
