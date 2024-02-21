@@ -40,7 +40,9 @@
     </xsl:variable>
 
   <div>
-    <xsl:call-template name="common.html.attributes"/>
+    <xsl:call-template name="common.html.attributes">
+      <xsl:with-param name="class">tab-structure</xsl:with-param>
+    </xsl:call-template>
     <xsl:call-template name="id.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:if test="d:title|d:info/d:title">
