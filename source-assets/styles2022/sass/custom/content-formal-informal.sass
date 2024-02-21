@@ -351,40 +351,33 @@ div.blockquote
   margin: 17px 35px
 
 // CSS for Tab structure
-.tab-structure {
-  display: flex;
-  border: 1px solid #30ba78;
-  flex-direction: column;
-  margin-top: 32px;
-  margin-bottom: 32px;
+.tab-structure
+  display: flex
+  border: 1px solid #30ba78
+  flex-direction: column
+  margin-top: 32px
+  margin-bottom: 32px
 
-  .tabs {
-    display: flex;
-    overflow-x: auto;
-    padding: 0;
-    margin: 0;
-    overflow-x: auto;
+  .tabs
+    display: flex
+    overflow-x: auto
+    padding: 0
+    margin: 0
 
-    .tab {
-      cursor: pointer;
-      list-style: none;
-      padding-top: 8px;
-      padding-bottom: 8px;
-      padding-left: 16px;
-      padding-right: 16px;
-    }
+    .tab
+      cursor: pointer
+      list-style: none
+      padding-top: 8px
+      padding-bottom: 8px
+      padding-left: 16px
+      padding-right: 16px
+      
+    .tab.active-tab
+      border-bottom: 3px solid #30ba78
+      color: #0c322c
+      font-size: bold
 
-    .active-tab {
-      /* border-bottom: 3px solid #0c322c; */
-      border-bottom: 3px solid #30ba78;
-      color: #0c322c;
-      font-size: bold;
-    }
-  }
-
-  .content-container {
-    background-color: rgb(246, 248, 250);
-    padding: 8px;
-    overflow-x: auto;
-  }
-}
+  .content-container
+    background-color: rgb(246, 248, 250)
+    padding: 8px
+    overflow-x: auto
