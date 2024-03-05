@@ -115,7 +115,7 @@
 
   <xsl:variable name="stitchxml" select="document($stitchfile)/*"/>
   <xsl:key name="docserv-dcfiles" match="dc" use="."/>
-
+  <xsl:key name="docserv-dcsubdelivfiles" match="subdeliverable" use="concat('DC-', .)"/>
 
   <xsl:template name="sanitize-date">
     <xsl:param name="date" select="."/>
@@ -203,6 +203,7 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
 
   <!-- ========================================================== -->
   <xsl:template name="generate-json-ld-external">
@@ -311,6 +312,12 @@
     </xsl:call-template>
     <!-- Belongs to type "SoftwareApplication" -->
     <xsl:call-template name="json-ld-software">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="json-ld-webpages">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+    <xsl:call-template name="json-ld-releasenotes">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
 
@@ -704,9 +711,11 @@
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
     </xsl:variable>
+    <xsl:variable name="docserv-dcfile"
+      select="(key('docserv-dcfiles', $dcfile) | key('docserv-dcsubdelivfiles', $dcfile))[1]"/>
     <xsl:variable name="candidate-productid">
       <xsl:for-each select="$stitchxml">
-        <xsl:value-of select="translate(key('docserv-dcfiles', $dcfile)/ancestor::product/@productid,
+        <xsl:value-of select="translate($docserv-dcfile/ancestor::product/@productid,
                                         '&lowercase;',
                                         '&uppercase;')"/>
       </xsl:for-each>
@@ -724,7 +733,7 @@
     </xsl:variable>
     <xsl:variable name="release">
       <xsl:for-each select="$stitchxml">
-        <xsl:value-of select="key('docserv-dcfiles', $dcfile)/ancestor::docset/@setid"/>
+        <xsl:value-of select="$docserv-dcfile/ancestor::docset/@setid"/>
       </xsl:for-each>
     </xsl:variable>
     <!--
@@ -788,5 +797,81 @@
       </xsl:for-each>
     ],
     </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="json-ld-webpages">
+    <xsl:param name="node"/>
+    <xsl:variable name="dcfile">
+      <xsl:call-template name="get-dc-filename">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="filepart" select="substring-after($dcfile, 'DC-')"/>
+    <xsl:variable name="candidate-docsetid">
+      <xsl:for-each select="$stitchxml">
+        <xsl:value-of select="(key('docserv-dcfiles', $dcfile) |
+                               key('docserv-dcsubdelivfiles', $dcfile))[1]/ancestor::docset/@setid"/>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="candidate-productid">
+      <xsl:for-each select="$stitchxml">
+        <xsl:value-of select="(key('docserv-dcfiles', $dcfile) |
+                               key('docserv-dcsubdelivfiles', $dcfile))[1]/ancestor::product/@productid"/>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="candidate-lang">
+      <xsl:for-each select="$stitchxml">
+        <xsl:variable name="tmp" select="(key('docserv-dcfiles', $dcfile) |
+                               key('docserv-dcsubdelivfiles', $dcfile))[1]/ancestor::language/@lang"/>
+        <!-- We want the part before "-", for example "en-us" => "en" -->
+        <xsl:value-of select="substring-before($tmp, '-')" />
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:variable name="candicate-format-node">
+      <formats>
+      <xsl:for-each select="$stitchxml">
+        <xsl:for-each select="(key('docserv-dcfiles', $dcfile) |
+                              key('docserv-dcsubdelivfiles', $dcfile))[1]/ancestor::deliverable/format/@*">
+          <xsl:if test=". = '1' or . = 'yes' or . = 'true'">
+            <format><xsl:value-of select="local-name(.)"/></format>
+          </xsl:if>
+        </xsl:for-each>
+      </xsl:for-each>
+      </formats>
+    </xsl:variable>
+    <xsl:variable name="format-node" select="exsl:node-set($candicate-format-node)/*/*"/>
+
+    "about": [<xsl:for-each select="$format-node">
+        <xsl:variable name="attr" select="."/>
+        <xsl:variable name="candidate-url" select="concat($json-ld-fallback-author-url, '/',
+                                                $candidate-productid, '/',
+                                                $candidate-docsetid, '/',
+                                                $attr, '/', $filepart)"/>
+        <xsl:variable name="url">
+          <xsl:choose>
+            <xsl:when test=". = 'html' or . = 'single-html'">
+              <xsl:value-of select="concat($candidate-url, '/')"/>
+            </xsl:when>
+            <xsl:when test=". = 'pdf'">
+              <xsl:value-of select="concat($candidate-url, '_', $candidate-lang, '.pdf')"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$candidate-url"/>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="encodingformat">
+          <xsl:choose>
+            <xsl:when test=". = 'html' or . = 'single-html'">text/html</xsl:when>
+            <xsl:when test=". = 'pdf'">application/pdf</xsl:when>
+          </xsl:choose>
+        </xsl:variable>
+        {
+          "@type": "WebPage",
+          "url": "<xsl:value-of select="$url"/>"<xsl:if test="$encodingformat != ''">,
+          "encodingFormat": "<xsl:value-of select="$encodingformat"/>"</xsl:if>
+        }<xsl:if test="position() != last()">, </xsl:if>
+      </xsl:for-each>
+    ],
   </xsl:template>
 </xsl:stylesheet>
