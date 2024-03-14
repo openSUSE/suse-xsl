@@ -455,9 +455,9 @@ task before
        to be added inside <head>, <body>, and <footer>.
        Use "{{#language#}}" to insert the language
   -->
-  <xsl:param name="include.ssi.header">/docserv/fragments/{{#language#}}/suse-head.fragment.html</xsl:param>
-  <xsl:param name="include.ssi.body">/docserv/fragments/{{#language#}}/suse-body.fragment.html</xsl:param>
-  <xsl:param name="include.ssi.footer">/docserv/fragments/{{#language#}}/suse-footer.fragment.html</xsl:param>
+  <xsl:param name="include.ssi.header">/docserv/fragments/suseparts/head_{{#language#}}.html</xsl:param>
+  <xsl:param name="include.ssi.body">/docserv/fragments/suseparts/header_{{#language#}}.html</xsl:param>
+  <xsl:param name="include.ssi.footer">/docserv/fragments/suseparts/footer_{{#language#}}.html</xsl:param>
 
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="0"/>
