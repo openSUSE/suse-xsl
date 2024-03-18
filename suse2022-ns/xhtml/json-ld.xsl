@@ -238,12 +238,12 @@
         select="$filename"/>" for <xsl:value-of select="local-name($node)"/>
       Found <xsl:value-of select="count($stitchxml)"/> node(s) (=<xsl:value-of select="local-name($stitchxml)"/>).
       <xsl:if test="$dcfilename">Found DC filename "<xsl:value-of select="$dcfilename"/>"</xsl:if>
-      base.dir="<xsl:value-of select="$base.dir"/>"
+      json-ld-base.dir="<xsl:value-of select="$json-ld-base.dir"/>"
       filename="<xsl:value-of select="$filename"/>"
       </xsl:message>
       -->
       <xsl:call-template name="write.chunk">
-        <xsl:with-param name="filename" select="concat($base.dir, $filename)"/>
+        <xsl:with-param name="filename" select="concat($json-ld-base.dir, $filename)"/>
         <xsl:with-param name="quiet" select="0"/>
         <xsl:with-param name="method">text</xsl:with-param>
         <xsl:with-param name="doctype-public"/>
