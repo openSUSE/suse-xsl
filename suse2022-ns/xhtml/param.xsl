@@ -467,6 +467,8 @@ task before
   <xsl:param name="generate.json-ld.external" select="0"/>
   <!-- Filename to the single stitch file that Docserv generates on startup -->
   <xsl:param name="stitchfile"/>
+  <!-- The base.dir to store all external JSON files -->
+  <xsl:param name="json-ld-base.dir" select="$base.dir"/>
   <!-- Should the individual authors be used? 0=no, 1=yes  -->
   <xsl:param name="json-ld-use-individual-authors" select="1"/>
   <!-- File extension -->
