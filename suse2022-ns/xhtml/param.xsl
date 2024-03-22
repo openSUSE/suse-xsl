@@ -460,7 +460,7 @@ task before
   <xsl:param name="include.ssi.footer">/docserv/fragments/suseparts/footer_{{#language#}}.html</xsl:param>
 
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
-  <xsl:param name="generate.json-ld" select="0"/>
+  <xsl:param name="generate.json-ld" select="1"/>
   <!-- Should we generate an external JSON-LD structure 0=no, 1=yes
        Only works when $generate.json-ld=1 was set
   -->

@@ -701,10 +701,11 @@
 
 
   <!-- ############################################################## -->
-
-  <xsl:template match="/" mode="process.root">
+  <!-- This template is called when creating single HTML -->
+  <xsl:template match="/">
     <xsl:apply-imports/>
-    <xsl:choose>
+    <xsl:if test="$is.chunk = 0">
+      <xsl:choose>
         <xsl:when test="$dcfilename != ''">
           <xsl:call-template name="generate-json-ld-external">
             <xsl:with-param name="node" select="." />
@@ -722,6 +723,7 @@
           </xsl:call-template>
         </xsl:otherwise>
       </xsl:choose>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="*" mode="process.root">
@@ -1025,6 +1027,5 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       <xsl:text> </xsl:text>
     </aside>
   </xsl:template>
-
 
 </xsl:stylesheet>
