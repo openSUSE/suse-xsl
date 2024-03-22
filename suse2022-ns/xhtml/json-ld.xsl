@@ -218,7 +218,10 @@
       </xsl:variable>
       <xsl:variable name="file" select="substring-after($dcfile, 'DC-')"/>
       <xsl:choose>
-        <xsl:when test="$base != ''">
+        <xsl:when test="$base != '' and $rootid != ''">
+          <xsl:value-of select="concat($rootid, $json-ld.ext)"/>
+        </xsl:when>
+        <xsl:when test="$base != '' and $rootid = ''">
           <xsl:value-of select="concat($base, $json-ld.ext)"/>
         </xsl:when>
         <xsl:otherwise>
@@ -233,6 +236,9 @@
     </xsl:variable>
 
     <xsl:if test="$generate.json-ld.external != 0">
+      <xsl:variable name="lang">
+        <xsl:call-template name="l10n.language"/>
+      </xsl:variable>
       <!--
         <xsl:message>Going to write external JSON-LD structure to "<xsl:value-of
         select="$filename"/>" for <xsl:value-of select="local-name($node)"/>
@@ -242,8 +248,10 @@
       filename="<xsl:value-of select="$filename"/>"
       </xsl:message>
       -->
+
+      <!-- We take into account the language as well -->
       <xsl:call-template name="write.chunk">
-        <xsl:with-param name="filename" select="concat($json-ld-base.dir, $filename)"/>
+        <xsl:with-param name="filename" select="concat($json-ld-base.dir, $lang, '-', $filename)"/>
         <xsl:with-param name="quiet" select="0"/>
         <xsl:with-param name="method">text</xsl:with-param>
         <xsl:with-param name="doctype-public"/>
