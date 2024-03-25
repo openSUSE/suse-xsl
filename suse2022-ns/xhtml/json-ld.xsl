@@ -315,14 +315,11 @@
     <xsl:call-template name="json-ld-category">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:call-template name="json-ld-task">
+    <xsl:call-template name="json-ld-about"><!-- both task & webpages integrated into "about" property -->
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <!-- Belongs to type "SoftwareApplication" -->
     <xsl:call-template name="json-ld-software">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-    <xsl:call-template name="json-ld-webpages">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:call-template name="json-ld-releasenotes">
@@ -756,16 +753,28 @@
     </xsl:if>
   </xsl:template>
 
+  <xsl:template name="json-ld-about">
+    <xsl:param name="node" select="."/>
+
+    "about": [
+      <xsl:call-template name="json-ld-task">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+      <xsl:call-template name="json-ld-webpages">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
+    ],
+  </xsl:template>
+
   <xsl:template name="json-ld-task">
     <xsl:param name="node" select="."/>
     <xsl:variable name="task" select="$node/d:info/d:meta[@name='task']/d:phrase"/>
     <xsl:if test="count($task) > 0">
-    "about": [<xsl:for-each select="$task">{
+      <xsl:for-each select="$task">{
         "@type": "Thing",
         "name": "<xsl:value-of select="normalize-space(.)"/>"
-      }<xsl:if test="position() != last()">,&#10;      </xsl:if>
+      },<!-- <== This comma is essential here. -->
       </xsl:for-each>
-    ],
     </xsl:if>
   </xsl:template>
 
@@ -849,7 +858,7 @@
     </xsl:variable>
     <xsl:variable name="format-node" select="exsl:node-set($candicate-format-node)/*/*"/>
 
-    "about": [<xsl:for-each select="$format-node">
+    <xsl:for-each select="$format-node">
         <xsl:variable name="attr" select="."/>
         <xsl:variable name="candidate-url" select="concat($json-ld-fallback-author-url, '/',
                                                 $candidate-productid, '/',
@@ -880,6 +889,5 @@
           "encodingFormat": "<xsl:value-of select="$encodingformat"/>"</xsl:if>
         }<xsl:if test="position() != last()">, </xsl:if>
       </xsl:for-each>
-    ],
   </xsl:template>
 </xsl:stylesheet>
