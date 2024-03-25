@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Mon Mar 25 13:25:48 UTC 2024 - tomschr@users.noreply.github.com
+
+Update 2.94.5
+  Fix #617 JSON-LD: and put task and webpage both into "about" property
+-------------------------------------------------------------------
 Mon Mar 25 10:40:29 UTC 2024 - tomschr@users.noreply.github.com
 
 Update 2.94.4
