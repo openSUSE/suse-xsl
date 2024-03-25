@@ -585,3 +585,26 @@ function addBugLinks() {
   });
 
 }
+
+function showTabContent(event) {
+      var tabs = event.target.parentElement;
+
+      // Get the index of the clicked tab
+      var index = Array.from(tabs.children).indexOf(event.target);
+
+      // Hide all tab contents
+      Array.from(tabs.nextElementSibling.children).forEach(content => {
+          content.style.display = 'none';
+      });
+
+      // Remove "active" class from all tabs
+      tabs.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active-tab');
+      });
+
+      // Display the selected tab content
+      tabs.nextElementSibling.children[index].style.display = 'block';
+
+      // Add "active" class to the clicked tab
+      event.target.classList.add('active-tab');
+}

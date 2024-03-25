@@ -18,7 +18,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
     exclude-result-prefixes="exsl d">
 
-  <xsl:template match="d:variablelist">
+  <xsl:template match="d:variablelist[@role='tabs' or processing-instruction('dbhtml')]">
     <xsl:variable name="pi-presentation">
       <xsl:call-template name="pi.dbhtml_list-presentation" />
     </xsl:variable>
@@ -31,35 +31,12 @@
           <xsl:value-of select="$pi-presentation" />
         </xsl:when>
         <xsl:when test="$variablelist.as.table != 0">
-          <xsl:value-of select="'table'" />
+          <xsl:text>table</xsl:text>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:value-of select="'list'" />
+          <xsl:text>list</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
-    </xsl:variable>
-
-    <xsl:variable name="default.class">
-      <xsl:value-of select="local-name()" />
-      <xsl:if test="@spacing = 'compact'">
-        <xsl:text> compact</xsl:text>
-      </xsl:if>
-      <!-- Added to support tabs -->
-      <xsl:if test="@role = 'tabs' or $presentation = 'tabs'">
-        <xsl:text> tabs</xsl:text>
-      </xsl:if>
-    </xsl:variable>
-
-    <xsl:variable name="list-width">
-      <xsl:call-template name="pi.dbhtml_list-width" />
-    </xsl:variable>
-
-    <xsl:variable name="term-width">
-      <xsl:call-template name="pi.dbhtml_term-width" />
-    </xsl:variable>
-
-    <xsl:variable name="table-summary">
-      <xsl:call-template name="pi.dbhtml_table-summary" />
     </xsl:variable>
 
   <div>
@@ -70,66 +47,45 @@
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
-      <xsl:choose>
-        <xsl:when test="$presentation = 'table'">
-          <!-- Preserve order of PIs and comments -->
-          <xsl:apply-templates
-            select="*[not(self::d:varlistentry or self::d:title or self::d:titleabbrev)]
-                    | comment()[not(preceding-sibling::d:varlistentry)]
-                    | processing-instruction()[not(preceding-sibling::d:varlistentry)]" />
-          <table border="{$table.border.off}">
-            <xsl:call-template name="generate.class.attribute">
-              <xsl:with-param name="class" select="$default.class" />
-            </xsl:call-template>
-            <xsl:if test="$list-width != ''">
-              <xsl:attribute name="width">
-                <xsl:value-of select="$list-width" />
-              </xsl:attribute>
-            </xsl:if>
-            <xsl:if test="$table-summary != ''">
-              <xsl:attribute name="summary">
-                <xsl:value-of select="$table-summary" />
-              </xsl:attribute>
-            </xsl:if>
-            <colgroup>
-              <col align="{$direction.align.start}" valign="top">
-                <xsl:if test="$term-width != ''">
-                  <xsl:attribute name="width">
-                    <xsl:value-of select="$term-width" />
-                  </xsl:attribute>
-                </xsl:if>
-              </col>
-              <col />
-            </colgroup>
-            <tbody>
-              <xsl:apply-templates mode="varlist-table"
-                select="d:varlistentry | comment()[preceding-sibling::d:varlistentry]
-                        | processing-instruction()[preceding-sibling::d:varlistentry]"
-               />
-            </tbody>
-          </table>
-        </xsl:when>
-        <xsl:otherwise>
-          <!-- Preserve order of PIs and comments -->
-          <xsl:apply-templates
-            select="*[not(self::d:varlistentry or self::d:title or self::d:titleabbrev)]
-                    | comment()[not(preceding-sibling::d:varlistentry)]
-                    | processing-instruction()[not(preceding-sibling::d:varlistentry)]" />
-          <dl>
-            <xsl:call-template name="generate.class.attribute">
-              <xsl:with-param name="class" select="$default.class" />
-            </xsl:call-template>
-            <xsl:apply-templates
-              select="d:varlistentry | comment()[preceding-sibling::d:varlistentry]
-                      | processing-instruction()[preceding-sibling::d:varlistentry]"
-             />
-          </dl>
-        </xsl:otherwise>
-      </xsl:choose>
+    <ul class="tabs">
+     <xsl:apply-templates select="d:varlistentry|comment()[preceding-sibling::d:varlistentry]
+                                  |processing-instruction()[preceding-sibling::d:varlistentry]"
+        mode="tab-titles" />
+    </ul>
+    <div class="content-container">
+      <xsl:apply-templates select="d:varlistentry|comment()[preceding-sibling::d:varlistentry]
+                                   |processing-instruction()[preceding-sibling::d:varlistentry]"
+        mode="tab-content" />
+    </div>
   </div>
   </xsl:template>
 
+ <xsl:template match="d:varlistentry" mode="tab-titles">
+    <li onclick="showTabContent(event)">
+      <xsl:attribute name="class">
+        <xsl:choose>
+          <xsl:when test="position() = 1">tab active-tab</xsl:when>
+          <xsl:otherwise>tab</xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:apply-templates select="d:term" />
+    </li>
+ </xsl:template>
 
+ <xsl:template match="d:varlistentry" mode="tab-content">
+   <div class="tab-container">
+        <xsl:choose>
+          <xsl:when test="position() != 1" >
+            <xsl:attribute name="style">display: none;</xsl:attribute>
+          </xsl:when>
+          <xsl:otherwise/>
+        </xsl:choose>
+     <xsl:apply-templates select="d:listitem" />
+   </div>
+ </xsl:template>
+
+
+  <!-- =============================================================== -->
   <xsl:template match="d:varlistentry">
     <dt>
       <xsl:call-template name="id.attribute">
