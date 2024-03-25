@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Mon Mar 25 10:40:29 UTC 2024 - tomschr@users.noreply.github.com
+
+Update 2.94.4
+  - Add additional entries which creates pointers to all enabled formats (#612)
+-------------------------------------------------------------------
 Mon Mar 25 06:48:35 UTC 2024 - tomschr@users.noreply.github.com
 
 - Update 2.94.3
