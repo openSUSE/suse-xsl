@@ -22,7 +22,7 @@
     <xsl:variable name="content" select="normalize-space(@content)"/>
 
     <xsl:choose>
-      <xsl:when test="$content">
+      <xsl:when test="$content != ''">
         <xsl:if test="$include.html.dublincore">
           <meta name="DC.creator" content="{$content}" />
         </xsl:if>
@@ -45,7 +45,7 @@
     <xsl:variable name="content" select="normalize-space(@content)"/>
 
     <xsl:choose>
-      <xsl:when test="$content">
+      <xsl:when test="$content != ''">
         <xsl:if test="$include.html.dublincore">
           <meta name="DCTERMS.modified" content="{$content}" />
         </xsl:if>
@@ -63,11 +63,13 @@
   </xsl:template>
 
   <xsl:template match="d:meta[@name='category']" mode="meta">
-    <xsl:variable name="content" select="normalize-space(@content)"/>
+    <xsl:variable name="content" select="*"/>
 
     <xsl:choose>
-      <xsl:when test="$content">
-        <meta name="category" content="{$content}"/>
+      <xsl:when test="$content != ''">
+        <xsl:for-each select="d:phrase">
+          <meta name="category" content="."/>
+        </xsl:for-each>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">

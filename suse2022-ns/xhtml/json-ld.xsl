@@ -584,6 +584,13 @@
         <xsl:when test="normalize-space($node/d:info/d:date) != ''">
           <xsl:value-of select="normalize-space(string($node/d:info/d:date))"/>
         </xsl:when>
+        <!-- Try to find a date from the ancestor nodes -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:meta[@name='published']">
+          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:meta[@name='published']))"/>
+        </xsl:when>
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
+          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date))"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="date">
@@ -857,6 +864,27 @@
       </formats>
     </xsl:variable>
     <xsl:variable name="format-node" select="exsl:node-set($candicate-format-node)/*/*"/>
+
+<!--
+    <xsl:message>JSON-LD json-ld-webpages
+      dcfile=<xsl:value-of select="$dcfile"/>
+      filepart=<xsl:value-of select="$filepart"/>
+      docsetid=<xsl:value-of select="$candidate-docsetid"/>
+      productid=<xsl:value-of select="$candidate-productid"/>
+      format-node=<xsl:value-of select="count($format-node)"/>
+    </xsl:message>
+ -->
+
+    <xsl:if test="count($format-node) = 0">
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">error</xsl:with-param>
+        <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>Could not create WebPage type for DC file </xsl:text>
+          <xsl:value-of select="$dcfile"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
 
     <xsl:for-each select="$format-node">
         <xsl:variable name="attr" select="."/>
