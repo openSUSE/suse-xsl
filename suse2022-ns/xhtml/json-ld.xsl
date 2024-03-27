@@ -208,6 +208,7 @@
   <!-- ========================================================== -->
   <xsl:template name="generate-json-ld-external">
     <xsl:param name="node" select="."/>
+    <xsl:param name="first" select="0" />
     <xsl:variable name="base">
       <xsl:call-template name="get-basename">
         <xsl:with-param name="node" select="$node"/>
@@ -236,7 +237,7 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="$generate.json-ld.external != 0">
+    <xsl:if test="$generate.json-ld.external != 0 and $first = 1">
       <xsl:variable name="lang">
         <xsl:call-template name="l10n.language"/>
       </xsl:variable>
@@ -361,8 +362,27 @@
 
   <xsl:template name="json-ld-headline">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="headline"
-      select="normalize-space(($node/d:info/d:meta[@name='title'] | $node/d:info/d:title | $node/d:title)[last()])"/>
+    <xsl:variable name="candidate-headline">
+      <xsl:choose>
+        <xsl:when test="$node/d:info/d:meta[@name='title']">
+          <xsl:value-of select="$node/d:info/d:meta[@name='title']"/>
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:title">
+          <xsl:value-of select="$node/d:info/d:title"/>
+        </xsl:when>
+        <xsl:when test="$node/d:title">
+          <xsl:value-of select="$node/d:title"/>
+        </xsl:when>
+        <!--<xsl:when test="$node/ancestor-or-self::*/d:info/d:meta[@name='title']">
+          <xsl:value-of select="($node/ancestor-or-self::*/d:info/d:meta[@name='title'])[last()]"/>
+        </xsl:when>-->
+        <!--<xsl:when test="$node/ancestor-or-self::*/d:info/d:title">
+          <xsl:value-of select="($node/ancestor-or-self::*/d:info/d:title)[last()]"/>
+        </xsl:when>-->
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="headline" select="normalize-space($candidate-headline)"/>
+
     "headline": "<xsl:value-of select="translate($headline, '&quot;', '')"/>",
   </xsl:template>
 
@@ -584,6 +604,13 @@
         <xsl:when test="normalize-space($node/d:info/d:date) != ''">
           <xsl:value-of select="normalize-space(string($node/d:info/d:date))"/>
         </xsl:when>
+        <!-- Try to find a date from the ancestor nodes -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:meta[@name='published']">
+          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:meta[@name='published']))"/>
+        </xsl:when>
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
+          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date))"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="date">
@@ -755,25 +782,38 @@
 
   <xsl:template name="json-ld-about">
     <xsl:param name="node" select="."/>
-
-    "about": [
+    <xsl:variable name="tasks">
       <xsl:call-template name="json-ld-task">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
+    </xsl:variable>
+    <xsl:variable name="webpages">
       <xsl:call-template name="json-ld-webpages">
         <xsl:with-param name="node" select="$node"/>
       </xsl:call-template>
+    </xsl:variable>
+
+    "about": [
+      <xsl:value-of select="$tasks"/>
+      <xsl:if test="normalize-space($webpages) != ''">
+          <xsl:if test="normalize-space($tasks) != ''">
+            <xsl:text>,&#10;</xsl:text>
+          </xsl:if>
+        <xsl:value-of select="$webpages"/>
+      </xsl:if>
     ],
   </xsl:template>
 
   <xsl:template name="json-ld-task">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="task" select="$node/d:info/d:meta[@name='task']/d:phrase"/>
-    <xsl:if test="count($task) > 0">
-      <xsl:for-each select="$task">{
+    <xsl:variable name="tasks" select="$node/d:info/d:meta[@name='task']/d:phrase"/>
+    <xsl:if test="count($tasks) > 0">
+      <xsl:for-each select="$tasks">{
         "@type": "Thing",
         "name": "<xsl:value-of select="normalize-space(.)"/>"
-      },<!-- <== This comma is essential here. -->
+      }<xsl:if test="position() &lt; last()">
+        <xsl:text>,&#10;      </xsl:text>
+      </xsl:if>
       </xsl:for-each>
     </xsl:if>
   </xsl:template>
@@ -857,6 +897,27 @@
       </formats>
     </xsl:variable>
     <xsl:variable name="format-node" select="exsl:node-set($candicate-format-node)/*/*"/>
+
+<!--
+    <xsl:message>JSON-LD json-ld-webpages
+      dcfile=<xsl:value-of select="$dcfile"/>
+      filepart=<xsl:value-of select="$filepart"/>
+      docsetid=<xsl:value-of select="$candidate-docsetid"/>
+      productid=<xsl:value-of select="$candidate-productid"/>
+      format-node=<xsl:value-of select="count($format-node)"/>
+    </xsl:message>
+ -->
+
+    <xsl:if test="count($format-node) = 0">
+      <xsl:call-template name="log.message">
+        <xsl:with-param name="level">error</xsl:with-param>
+        <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>Could not create WebPage type for DC file </xsl:text>
+          <xsl:value-of select="$dcfile"/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:if>
 
     <xsl:for-each select="$format-node">
         <xsl:variable name="attr" select="."/>

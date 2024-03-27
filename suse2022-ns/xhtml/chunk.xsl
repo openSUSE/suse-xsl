@@ -42,23 +42,6 @@
 
   <xsl:template match="/">
     <xsl:apply-imports/>
-    <xsl:choose>
-      <xsl:when test="$dcfilename != ''">
-        <xsl:call-template name="generate-json-ld-external">
-          <xsl:with-param name="node" select="*[1]" />
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="log.message">
-          <xsl:with-param name="level">WARN</xsl:with-param>
-          <xsl:with-param name="context-desc">
-            <xsl:text>JSON-LD</xsl:text>
-          </xsl:with-param>
-          <xsl:with-param name="message">
-            <xsl:text>The parameter $dcfilename is unset. Cannot create the external JSON file.</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:call-template name="handle-json-ld"/>
   </xsl:template>
 </xsl:stylesheet>
