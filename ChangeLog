@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Wed Mar 27 16:19:56 UTC 2024 - tomschr@users.noreply.github.com
+
+Update 2.95.6
+- Fix JSON-LD generation for single & chunked HTML (#622)
+- Metadata: Make checking for content more stable (#622)
+  - Check for $content != '' instead of just $content
+  - datePublished checks now ancestor nodes too to avoid distracting
+    warning message
+  - categories for DC Dublin Core
+-------------------------------------------------------------------
 Mon Mar 25 13:25:48 UTC 2024 - tomschr@users.noreply.github.com
 
 Update 2.94.5
