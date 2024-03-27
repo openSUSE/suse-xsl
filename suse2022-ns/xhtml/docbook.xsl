@@ -700,29 +700,40 @@
   </xsl:template>
 
 
+  <xsl:template name="handle-json-ld">
+    <xsl:choose>
+      <xsl:when test="$rootid != '' and $dcfilename != ''">
+          <xsl:call-template name="generate-json-ld-external">
+            <xsl:with-param name="node" select="key('id', $rootid)" />
+            <xsl:with-param name="first" select="1"/>
+          </xsl:call-template>
+        </xsl:when>
+      <xsl:when test="$dcfilename != ''">
+        <xsl:call-template name="generate-json-ld-external">
+          <xsl:with-param name="node" select="*[1]" />
+          <xsl:with-param name="first" select="1"/>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">WARN</xsl:with-param>
+          <xsl:with-param name="context-desc">
+            <xsl:text>JSON-LD</xsl:text>
+          </xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>The parameter $dcfilename is unset. Cannot create the external JSON file.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <!-- ############################################################## -->
   <!-- This template is called when creating single HTML -->
   <xsl:template match="/">
     <xsl:apply-imports/>
     <xsl:if test="$is.chunk = 0">
-      <xsl:choose>
-        <xsl:when test="$dcfilename != ''">
-          <xsl:call-template name="generate-json-ld-external">
-            <xsl:with-param name="node" select="." />
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="log.message">
-            <xsl:with-param name="level">WARN</xsl:with-param>
-            <xsl:with-param name="context-desc">
-              <xsl:text>JSON-LD</xsl:text>
-            </xsl:with-param>
-            <xsl:with-param name="message">
-              <xsl:text>The parameter $dcfilename is unset. Cannot create the external JSON file.</xsl:text>
-            </xsl:with-param>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="handle-json-ld"/>
     </xsl:if>
   </xsl:template>
 
