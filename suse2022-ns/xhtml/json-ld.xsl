@@ -117,59 +117,190 @@
   <xsl:key name="docserv-dcfiles" match="dc" use="."/>
   <xsl:key name="docserv-dcsubdelivfiles" match="subdeliverable" use="concat('DC-', .)"/>
 
-  <xsl:template name="sanitize-date">
-    <xsl:param name="date" select="."/>
-    <xsl:variable name="length"  select="string-length($date)"/>
-    <xsl:variable name="dashes" select="($length - string-length(translate($date, '-', ''))) = 2"/>
-    <xsl:variable name="withcolon" select="contains($date, ':')" />
-    <!-- Check if the (ISO?) date is in YYYY-MM or YYYY-M format and append
-         "0" where necessary
-    -->
+  <!--
+    Validates a date
+
+    Synopsis: validate-date(date: string) -> boolean
+    $date should be in the format of YYYY-MM-DDTHH:MMZ, but only the YYYY-MM-DD is checked.
+  -->
+  <xsl:template name="validate-date">
+    <xsl:param name="date"/>
+    <!-- Extract year, month, and day parts -->
+    <xsl:variable name="year" select="number(substring($date, 1, 4))"/>
+    <xsl:variable name="month" select="number(substring($date, 6, 2))"/>
+    <xsl:variable name="day" select="number(substring($date, 9, 2))"/>
+
     <xsl:choose>
-      <!-- This is the case of a complete date: YYYYMMDDT00:00+02:00
-           We return it unchanged
-      -->
-      <xsl:when test="$length = 22">
-        <xsl:value-of select="$date"/>
+      <!-- Check for NaN -->
+      <xsl:when test="not($year = $year) or not($month = $month) or not($day = $day)">
+        <xsl:value-of select="false()"/>
       </xsl:when>
-      <!-- We have a potential complete ISO date, return it unchanged -->
-      <xsl:when test="$length = 10 and $dashes">
-        <xsl:value-of select="concat($date, $json-ld-date-timezone)"/>
-      </xsl:when>
-      <!-- We have an incomplete date, probably YYYY-M-D -->
-      <xsl:when test="$length = 8 and $dashes">
-        <xsl:variable name="year" select="substring($date, 1, 4)"/>
-        <xsl:variable name="month" select="concat('0', substring($date, 6, 2))"/>
-        <xsl:variable name="day" select="concat('0', substring($date, 8, 2))"/>
-        <xsl:value-of select="concat($year, '-', $month, '-', $day, $json-ld-date-timezone)"/>
-      </xsl:when>
-      <!-- We have an incomplete date, probably YYYY-MM so append the day -->
-      <xsl:when test="$length = 7">
-        <xsl:value-of select="concat(substring($date, 1, 7), '-01', $json-ld-date-timezone)"/>
-      </xsl:when>
-      <!-- We have an incomplete date, probably YYYY-M.  -->
-      <xsl:when test="$length = 6">
-        <xsl:variable name="year" select="substring($date, 1, 4)"/>
-        <xsl:variable name="month" select="concat('0', substring($date, 6, 2))"/>
-        <xsl:value-of select="concat($year, '-', $month, '-', '01', $json-ld-date-timezone)"/>
-      </xsl:when>
-      <!-- A potential ISO date with a timezone? Return it unchanged -->
-      <xsl:when test="$length = 16 and $withcolon">
-        <xsl:value-of select="$date"/>
-      </xsl:when>
-      <xsl:when test="$length = 14 and $withcolon">
-        <xsl:variable name="year" select="substring($date, 1, 4)"/>
-        <xsl:variable name="month" select="concat('0', substring($date, 6, 2))"/>
-        <xsl:variable name="day" select="concat('0', substring($date, 8, 2))"/>
-        <xsl:variable name="timezone" select="substring($date, 9)"/>
-        <xsl:value-of select="concat($year, '-', $month, '-', $day, $timezone)"/>
-      </xsl:when>
-      <!-- Seems, we don't have a date. We can't guess anything useful, so output a warning -->
       <xsl:otherwise>
-        <xsl:message>WARN: Cannot convert string '<xsl:value-of select="$date"/>'. Not a valid date!</xsl:message>
+        <xsl:choose>
+          <xsl:when test="substring($date, 5, 1) = '-' and substring($date, 8, 1) = '-'">
+            <xsl:choose>
+              <xsl:when test="$month >= 1 and $month &lt;= 12">
+                <!-- Additional checks for month-specific days -->
+                <xsl:choose>
+                  <xsl:when test="$month = 2 and $day &lt;= 29">
+                    <xsl:choose>
+                      <xsl:when test="$year mod 4 = 0 and ($year mod 100 != 0 or $year mod 400 = 0)">
+                        <xsl:value-of select="true()" />
+                      </xsl:when>
+                      <xsl:when test="$year mod 4 != 0">
+                        <xsl:value-of select="true()" />
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="false()" />
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:when>
+                  <xsl:when test="$day >= 1 and $day &lt;= 31">
+                    <xsl:value-of select="true()" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="false()" />
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="false()" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="false()"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+
+
+  <!--
+    Sanitize a date and convert it into YYYY-MM-DDTHH:MMZ
+
+    Synopsis: sanitize-date(date: string) -> string
+
+    $date can be any date in the format YYYY-M, YYYY-MM, YYYY-M-D, YYYY-MM-D, YYYY-M-DD, or YYYY-MM-DD
+    If the date doesn't conform to any of these formats, an empty string is returned
+  -->
+  <xsl:template name="sanitize-date">
+    <xsl:param name="date"/>
+
+    <!-- We format the date with format-number. If there is a string which can't be converted,
+         we get "NaN". This is a hint to reject the converted string and just return an empty
+         string.
+    -->
+    <xsl:variable name="candidate-date">
+      <xsl:choose>
+        <!-- Check if the date is in the format YYYY-MM-DD -->
+        <xsl:when test="string-length($date) = 10 and
+                        substring($date, 5, 1) = '-' and substring($date, 8, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 2)"/>
+          <xsl:variable name="day" select="substring($date, 9, 2)"/>
+          <xsl:value-of select="concat(format-number($year, '#-'),
+                                       format-number($month, '00-'),
+                                       format-number($day, '00'),
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <!-- Check if the date is in the format YYYY-MM -->
+        <xsl:when test="string-length($date) = 7 and substring($date, 5, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 2)"/>
+          <xsl:value-of select="concat(format-number($year, '0000-'),
+                                       format-number($month, '00-'), '01',
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <!-- Check if the date is in the format YYYY-M -->
+        <xsl:when test="string-length($date) = 6 and substring($date, 5, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 1)"/>
+          <xsl:value-of select="concat(format-number($year, '0000-'),
+                                       format-number($month, '00-'), '01',
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <!-- Check if the date is in the format YYYY-M-D -->
+        <xsl:when test="string-length($date) = 8 and
+                        substring($date, 5, 1) = '-' and substring($date, 7, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 1)"/>
+          <xsl:variable name="day" select="substring($date, 8, 1)"/>
+          <xsl:value-of select="concat(format-number($year, '####-'),
+                                       format-number($month, '00-'),
+                                       format-number($day, '00'),
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <!-- Check if the date is in the format YYYY-MM-D -->
+        <xsl:when test="string-length($date) = 9 and
+                        substring($date, 5, 1) = '-' and substring($date, 8, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 2)"/>
+          <xsl:variable name="day" select="substring($date, 9, 1)"/>
+          <xsl:value-of select="concat(format-number($year, '####-'),
+                                       format-number($month, '00-'),
+                                       format-number($day, '00'),
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <!-- Check if the date is in the format YYYY-M-DD -->
+        <xsl:when test="string-length($date) = 9 and
+                        substring($date, 5, 1) = '-' and substring($date, 7, 1) = '-'">
+          <xsl:variable name="year" select="substring($date, 1, 4)"/>
+          <xsl:variable name="month" select="substring($date, 6, 1)"/>
+          <xsl:variable name="day" select="substring($date, 8, 2)"/>
+          <xsl:value-of select="concat(format-number($year, '####-'),
+                                       format-number($month, '00-'),
+                                       format-number($day, '00'),
+                                       $json-ld-date-timezone)"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <!-- Return an empty string if the date does not match any of the specified formats -->
+          <xsl:text/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:choose>
+      <!-- Return an empty string if date is invalid (contains a "NaN") or empty -->
+      <xsl:when test=" contains($candidate-date, 'NaN') or $candidate-date = ''">
+        <xsl:text/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$candidate-date"/>
+      </xsl:otherwise>
+    </xsl:choose>
+
+  </xsl:template>
+
+
+  <!--
+    Compare two dates lexicographically
+
+    Synopsis: compare-dates(date1: string, date2: string) -> integer
+
+    Result:
+     -1, if date1 < date2
+      0, if date1 == date2
+      1, if date1 > date2
+
+  -->
+  <xsl:template name="compare-dates">
+    <xsl:param name="date1"/>
+    <xsl:param name="date2"/>
+
+    <!-- Extract the date part and remove "-" -->
+    <xsl:variable name="numericDate1" select="translate(substring-before($date1, 'T'), '-', '')"/>
+    <xsl:variable name="numericDate2" select="translate(substring-before($date2, 'T'), '-', '')"/>
+
+    <!-- Compare dates lexicographically -->
+    <xsl:choose>
+      <xsl:when test="$numericDate1 &lt; $numericDate2">-1</xsl:when>
+      <xsl:when test="$numericDate1 = $numericDate2">0</xsl:when>
+      <xsl:otherwise>1</xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 
   <xsl:template name="get-basename">
     <xsl:param name="node" select="."/>
@@ -241,7 +372,7 @@
       <xsl:variable name="lang">
         <xsl:call-template name="l10n.language"/>
       </xsl:variable>
-      <!--
+      
         <xsl:message>Going to write external JSON-LD structure to "<xsl:value-of
         select="$filename"/>" for <xsl:value-of select="local-name($node)"/>
       Found <xsl:value-of select="count($stitchxml)"/> node(s) (=<xsl:value-of select="local-name($stitchxml)"/>).
@@ -249,7 +380,6 @@
       json-ld-base.dir="<xsl:value-of select="$json-ld-base.dir"/>"
       filename="<xsl:value-of select="$filename"/>"
       </xsl:message>
-      -->
 
       <!-- We take into account the language as well -->
       <xsl:call-template name="write.chunk">
@@ -307,10 +437,7 @@
     <xsl:call-template name="json-ld-techpartner">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
-    <xsl:call-template name="json-ld-datePublished">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
-    <xsl:call-template name="json-ld-dateModified">
+    <xsl:call-template name="json-ld-dateModified-and-Published">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
     <xsl:call-template name="json-ld-category">
@@ -582,48 +709,140 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="json-ld-datePublished">
+  <xsl:template name="json-ld-dateModified-and-Published">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="candidate-date">
+    <xsl:variable name="candidate-modified">
       <xsl:choose>
-        <!-- We look at different tags to extract some date information.
-             Depending on which tag(s) are available.
-             Sorted xsl:when from highest to lowest
-
-             TODO: check format. It must be in ISO format.
-        -->
-        <xsl:when test="$node/d:info/d:meta[@name='published']">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:meta[@name='published']))"/>
-        </xsl:when>
         <xsl:when test="$node/d:info/d:revhistory/d:revision[1]/d:date">
           <xsl:value-of select="normalize-space(string($node/d:info/d:revhistory/d:revision[1]/d:date))"/>
-        </xsl:when>
-        <xsl:when test="normalize-space($node/d:info/d:pubdate) != ''">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:pubdate))"/>
-        </xsl:when>
-        <xsl:when test="normalize-space($node/d:info/d:date) != ''">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:date))"/>
-        </xsl:when>
-        <!-- Try to find a date from the ancestor nodes -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:meta[@name='published']">
-          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:meta[@name='published']))"/>
         </xsl:when>
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
           <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date))"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="date">
-      <xsl:if test="$candidate-date != ''">
+    <xsl:variable name="candidate-published">
+      <xsl:choose>
+        <xsl:when test="$node/d:info/d:revhistory/d:revision[last()]/d:date">
+          <xsl:value-of select="normalize-space(string($node/d:info/d:revhistory/d:revision[last()]/d:date))"/>
+        </xsl:when>
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
+          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date))"/>
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:meta[@name='published']">
+          <xsl:value-of select="normalize-space(string($node/d:info/d:meta[@name='published']))"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="date-modified">
+      <xsl:if test="$candidate-modified != ''">
         <xsl:call-template name="sanitize-date">
-          <xsl:with-param name="date" select="$candidate-date"/>
+          <xsl:with-param name="date" select="$candidate-modified"/>
         </xsl:call-template>
       </xsl:if>
     </xsl:variable>
+    <xsl:variable name="date-published">
+      <xsl:if test="$candidate-published != ''">
+        <xsl:call-template name="sanitize-date">
+          <xsl:with-param name="date" select="$candidate-published"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="is-modified-valid">
+      <xsl:choose>
+        <xsl:when test="$date-modified != ''">
+          <xsl:call-template name="validate-date">
+            <xsl:with-param name="date" select="$date-modified"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="false()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="is-published-valid">
+      <xsl:choose>
+        <xsl:when test="$date-published != ''">
+          <xsl:call-template name="validate-date">
+            <xsl:with-param name="date" select="$date-published"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="false()"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="compare">
+      <xsl:choose>
+        <xsl:when test="$is-published-valid = true() and $is-modified-valid = true()">
+          <xsl:call-template name="compare-dates">
+            <xsl:with-param name="date1" select="$date-published" />
+            <xsl:with-param name="date2" select="$date-modified" />
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>100</xsl:otherwise><!-- In case some problem with one of the dates -->
+      </xsl:choose>
+    </xsl:variable>
 
+    <xsl:message>DEBUG: compare=<xsl:value-of select="$compare"/>
+    candidate-modified="<xsl:value-of select="$candidate-modified"/>"
+    candidate-published="<xsl:value-of select="$candidate-published"/>"
+    modified=<xsl:value-of select="$date-modified"/> => <xsl:value-of select="$is-modified-valid"/>
+    published=<xsl:value-of select="$date-published"/> => <xsl:value-of select="$is-published-valid"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:value-of select="$date-published"/> => <xsl:call-template name="validate-date">
+        <xsl:with-param name="date" select="$date-modified"></xsl:with-param>
+      </xsl:call-template>
+    </xsl:message>
+
+    <!-- TODO: compare the two dates 
+      Condition: datePublished < dateModified
+    -->
     <xsl:choose>
-      <xsl:when test="$date != ''">
-    "datePublished": "<xsl:value-of select="$date"/>",
+      <xsl:when test="$compare = -1"/><!-- This is the expected outcome. Do nothing. -->
+      <xsl:when test="$compare = 1">
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">warn</xsl:with-param>
+          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>In your revhistory, the first date </xsl:text>
+            <xsl:value-of select="concat('(', $date-modified, ') ')"/>
+            <xsl:text>is smaller than the last date </xsl:text>
+            <xsl:value-of select="concat('(', $date-published, '). ')"/>
+            <xsl:text>The revhistory's dates must be sorted from newest to oldest.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
+      <xsl:otherwise>
+        <!-- Number greater than 1 only occurs if there is an error in the metadata for dates -->
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">error</xsl:with-param>
+          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>Either the first and last entry in the revistory/revision/date contains an invalid date </xsl:text>
+            <xsl:text>or no dates was found at all.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+    
+    <xsl:choose>
+      <xsl:when test="$date-modified != ''">
+    "dateModified": "<xsl:value-of select="$date-modified"/>",
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">warn</xsl:with-param>
+          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>Could not create "dateModified" property as no element was appropriate.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:choose>
+      <xsl:when test="$date-published != ''">
+    "datePublished": "<xsl:value-of select="$date-published"/>",
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
@@ -637,41 +856,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="json-ld-dateModified">
-    <xsl:param name="node" select="."/>
-    <xsl:variable name="candidate-date">
-      <xsl:choose>
-        <xsl:when test="function-available('date:date-time') or
-                        function-available('date:dateTime')">
-          <xsl:call-template name="datetime.format">
-            <xsl:with-param name="date" select="date:date-time()" />
-            <xsl:with-param name="format">Y-m-d</xsl:with-param>
-          </xsl:call-template>
-          <xsl:value-of select="$json-ld-date-timezone"/>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:variable name="date">
-      <xsl:call-template name="sanitize-date">
-        <xsl:with-param name="date" select="$candidate-date"/>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:choose>
-      <xsl:when test="$date != ''">
-    "dateModified": "<xsl:value-of select="normalize-space($date)"/>",
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="log.message">
-          <xsl:with-param name="level">warn</xsl:with-param>
-          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
-          <xsl:with-param name="message">
-            <xsl:text>Could not create "dateModified" entry as no extension was found.</xsl:text>
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
 
   <xsl:template name="json-ld-publisher">
     "sameAs": [
