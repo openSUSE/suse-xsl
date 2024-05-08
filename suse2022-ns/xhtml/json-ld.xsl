@@ -859,7 +859,6 @@
     </xsl:choose>
   </xsl:template>
 
-
   <xsl:template name="json-ld-publisher">
     "sameAs": [
           "https://www.facebook.com/SUSEWorldwide/about",
@@ -913,12 +912,23 @@
   <!-- The following templates access the Docserv config -->
   <xsl:template name="json-ld-series">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="meta-series" select="$node/d:info/d:meta[@name='series']"/>
+    <xsl:variable name="meta-series" select="$node/d:info/d:meta[@name='series'][1]"/>
+    <xsl:variable name="candidate-series">
+      <xsl:choose>
+        <xsl:when test="$json-ld-seriesname != ''">
+          <xsl:value-of select="$json-ld-seriesname"/>
+        </xsl:when>
+        <xsl:when test="$meta-series">
+          <xsl:value-of select="$meta-series"/>
+        </xsl:when>
+        <xsl:otherwise/>
+      </xsl:choose>
+    </xsl:variable>
 
-    <xsl:if test="$meta-series != ''">
-    "isPartOf": {
+    <xsl:if test="$candidate-series != ''">
+     "isPartOf": {
       "@type": "CreativeWorkSeries",
-      "name": "<xsl:value-of select="normalize-space($meta-series)"/>"
+      "name": "<xsl:value-of select="normalize-space($candidate-series)"/>"
     },
     </xsl:if>
   </xsl:template>

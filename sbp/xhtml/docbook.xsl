@@ -34,5 +34,6 @@
 
   <xsl:include href="../VERSION.xsl"/>
   <xsl:include href="titlepage.templates.xsl"/>
+  <xsl:include href="param.xsl"/>
 
 </xsl:stylesheet>
