@@ -65,13 +65,11 @@
   </xsl:template>
 
   <xsl:template match="d:info/d:abstract" mode="article.titlepage.recto.auto.mode">
-    <xsl:message>d:info/d:abstract</xsl:message>
     <div class="abstract">
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"/>
     </div>
   </xsl:template>
   <xsl:template match="d:info/d:abstract/d:title" mode="article.titlepage.recto.auto.mode">
-    <xsl:message>d:info/d:abstract/d:title</xsl:message>
     <div class="title">
       <xsl:apply-templates/>
     </div>

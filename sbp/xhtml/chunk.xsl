@@ -34,4 +34,8 @@
 
   <xsl:param name="is.chunk" select="1"/>
 
+  <xsl:template match="/">
+    <xsl:apply-imports/>
+    <xsl:call-template name="handle-json-ld"/>
+  </xsl:template>
 </xsl:stylesheet>
