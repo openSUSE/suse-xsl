@@ -784,7 +784,7 @@
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:message>DEBUG: compare=<xsl:value-of select="$compare"/>
+    <!--<xsl:message>DEBUG: compare=<xsl:value-of select="$compare"/>
     candidate-modified="<xsl:value-of select="$candidate-modified"/>"
     candidate-published="<xsl:value-of select="$candidate-published"/>"
     modified=<xsl:value-of select="$date-modified"/> => <xsl:value-of select="$is-modified-valid"/>
@@ -793,13 +793,13 @@
     <xsl:value-of select="$date-published"/> => <xsl:call-template name="validate-date">
         <xsl:with-param name="date" select="$date-modified"></xsl:with-param>
       </xsl:call-template>
-    </xsl:message>
+    </xsl:message>-->
 
     <!-- TODO: compare the two dates 
-      Condition: datePublished < dateModified
+      Condition: datePublished <= dateModified
     -->
     <xsl:choose>
-      <xsl:when test="$compare = -1"/><!-- This is the expected outcome. Do nothing. -->
+      <xsl:when test="$compare &lt;= 0"/><!-- This is the expected outcome. Do nothing. -->
       <xsl:when test="$compare = 1">
         <xsl:call-template name="log.message">
           <xsl:with-param name="level">warn</xsl:with-param>
