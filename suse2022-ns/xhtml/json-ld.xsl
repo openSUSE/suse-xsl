@@ -372,15 +372,15 @@
       <xsl:variable name="lang">
         <xsl:call-template name="l10n.language"/>
       </xsl:variable>
-      
-        <xsl:message>Going to write external JSON-LD structure to "<xsl:value-of
+
+<!--        <xsl:message>Going to write external JSON-LD structure to "<xsl:value-of
         select="$filename"/>" for <xsl:value-of select="local-name($node)"/>
       Found <xsl:value-of select="count($stitchxml)"/> node(s) (=<xsl:value-of select="local-name($stitchxml)"/>).
       <xsl:if test="$dcfilename">Found DC filename "<xsl:value-of select="$dcfilename"/>"</xsl:if>
       json-ld-base.dir="<xsl:value-of select="$json-ld-base.dir"/>"
       filename="<xsl:value-of select="$filename"/>"
       </xsl:message>
-
+-->
       <!-- We take into account the language as well -->
       <xsl:call-template name="write.chunk">
         <xsl:with-param name="filename" select="concat($json-ld-base.dir, $lang, '-', $filename)"/>
@@ -467,7 +467,7 @@
   <xsl:template name="generate-json-ld">
     <xsl:param name="node" select="."/>
     <xsl:if test="$generate.json-ld != 0">
-      <xsl:message>INFO: Going to generate JSON-LD... ("<xsl:value-of select="$stitchfile"/>") for context element <xsl:value-of select="local-name($node)"/></xsl:message>
+      <xsl:message>INFO: Going to generate JSON-LD... (stitchfile="<xsl:value-of select="$stitchfile"/>") for context element <xsl:value-of select="local-name($node)"/></xsl:message>
       <script type="application/ld+json">
         <xsl:call-template name="generate-json-content">
           <xsl:with-param name="node" select="$node"/>
@@ -713,24 +713,15 @@
     <xsl:param name="node" select="."/>
     <xsl:variable name="candidate-modified">
       <xsl:choose>
-        <xsl:when test="$node/d:info/d:revhistory/d:revision[1]/d:date">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:revhistory/d:revision[1]/d:date))"/>
-        </xsl:when>
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
-          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date))"/>
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="candidate-published">
       <xsl:choose>
-        <xsl:when test="$node/d:info/d:revhistory/d:revision[last()]/d:date">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:revhistory/d:revision[last()]/d:date))"/>
-        </xsl:when>
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
-          <xsl:value-of select="normalize-space(string($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date))"/>
-        </xsl:when>
-        <xsl:when test="$node/d:info/d:meta[@name='published']">
-          <xsl:value-of select="normalize-space(string($node/d:info/d:meta[@name='published']))"/>
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
@@ -784,8 +775,11 @@
       </xsl:choose>
     </xsl:variable>
 
-    <!--<xsl:message>DEBUG: compare=<xsl:value-of select="$compare"/>
-    candidate-modified="<xsl:value-of select="$candidate-modified"/>"
+<!--    <xsl:message>DEBUG:
+      current element=<xsl:value-of select="local-name($node)"/>
+      count = <xsl:value-of select="count($node/d:info/d:revhistory)"/>
+      compare=<xsl:value-of select="$compare"/>
+      candidate-modified="<xsl:value-of select="$candidate-modified"/>" / <xsl:value-of select="normalize-space($node/d:info/d:revhistory/d:revision[1]/d:date)"/>
     candidate-published="<xsl:value-of select="$candidate-published"/>"
     modified=<xsl:value-of select="$date-modified"/> => <xsl:value-of select="$is-modified-valid"/>
     published=<xsl:value-of select="$date-published"/> => <xsl:value-of select="$is-published-valid"/>
@@ -793,12 +787,21 @@
     <xsl:value-of select="$date-published"/> => <xsl:call-template name="validate-date">
         <xsl:with-param name="date" select="$date-modified"></xsl:with-param>
       </xsl:call-template>
-    </xsl:message>-->
-
-    <!-- TODO: compare the two dates 
+    </xsl:message>
+-->
+    <!-- TODO: compare the two dates
       Condition: datePublished <= dateModified
     -->
     <xsl:choose>
+      <xsl:when test="count($node/ancestor-or-self::*/d:info/d:revhistory) = 0">
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">warn</xsl:with-param>
+          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>No revhistory found in your document</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:when>
       <xsl:when test="$compare &lt;= 0"/><!-- This is the expected outcome. Do nothing. -->
       <xsl:when test="$compare = 1">
         <xsl:call-template name="log.message">
