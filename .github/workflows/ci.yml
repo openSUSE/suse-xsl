@@ -50,7 +50,7 @@ jobs:
           sudo apt-get install --fix-missing -y jing libbatik-java libavalon-framework-java \
                xml-core libxml2-utils docbook docbook-xsl parallel
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: XML catalog
         env:
