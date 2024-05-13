@@ -38,7 +38,14 @@
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
           <fo:block font-size="&xxx-large;pt">
-            <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="book.titlepage.recto.auto.mode"/>
+            <xsl:choose>
+              <xsl:when test="$json-ld-seriesname != ''">
+                <xsl:value-of select="$json-ld-seriesname"/>
+              </xsl:when>
+              <xsl:when test="d:info/d:meta[@name='series']">
+                <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="book.titlepage.recto.auto.mode"/>
+              </xsl:when>
+            </xsl:choose>
           </fo:block>
           <fo:block font-size="&large;pt">
             <xsl:apply-templates select="d:info/d:meta[@name='category'][1]" mode="book.titlepage.recto.auto.mode"/>

@@ -57,6 +57,7 @@
     </xsl:variable>
     <xsl:variable name="authorgroup" select="exsl:node-set($rtf.authorgroup)"/>
 
+<!--
     <xsl:message>author[1] mode="book.titlepage.recto.auto.mode"
       content of authorgroup = <xsl:value-of select="count($authorgroup/*/*)"/>
       following-sibling::d:author=<xsl:value-of select="count(following-sibling::d:author)"/>
@@ -66,7 +67,7 @@
       following-sibling::d:othercredit=<xsl:value-of select="count(following-sibling::d:othercredit)"/>
       preceding-sibling::d:othercredit=<xsl:value-of select="count(preceding-sibling::d:othercredit)"/>
     </xsl:message>
-
+-->
     <!-- Delegate all collected nodes to the authorgroup template -->
     <xsl:apply-templates select="$authorgroup" mode="book.titlepage.recto.auto.mode"/>
   </xsl:template>

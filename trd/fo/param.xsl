@@ -16,7 +16,7 @@
   exclude-result-prefixes="d">
 
   <xsl:param name="titlepage.logo.image"><xsl:value-of select="$styleroot"/>images/trd-lightbulb-title.svg</xsl:param>
-
+  <xsl:param name="json-ld-seriesname">Technical Reference Documentation</xsl:param>
 
   <xsl:attribute-set name="book.titlepage.recto.style">
     <xsl:attribute name="font-family"><xsl:value-of select="$title.font.family"/></xsl:attribute>
