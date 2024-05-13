@@ -483,8 +483,7 @@ task before
   <!-- The logo -->
   <xsl:param name="json-ld-image-url" select="$json-ld-fallback-author-logo" />
   <!-- By default, these are empty and are set by the SBP stylesheets -->
-  <xsl:param name="json-ld-seriesname"/>
-  <xsl:param name="json-ld-seriesnameshort"/>
+  <xsl:param name="json-ld-seriesname">Product &amp; Solutions</xsl:param>
   
 
   <!-- The DC file needs to be passed to find the structure in the Docserv config -->
