@@ -195,12 +195,16 @@
 
 
   <xsl:template match="d:meta[@name='series']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates select="."/>
+    <div class="series"><xsl:value-of select="$json-ld-seriesname"/></div>
   </xsl:template>
 
 
   <xsl:template match="d:meta[@name='category' or @name='type']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates select="."/>
+    <div class="category">
+      <xsl:for-each select="*">
+        <p class="{local-name()}"><xsl:apply-templates/></p>
+      </xsl:for-each>
+    </div>
   </xsl:template>
 
 
@@ -213,6 +217,17 @@
     </div>
   </xsl:template>
 
+
+  <xsl:template name="add.series.name">
+    <xsl:choose>
+      <xsl:when test="$json-ld-seriesname != ''">
+        <div class="series"><xsl:value-of select="$json-ld-seriesname"/></div>
+      </xsl:when>
+      <xsl:when test="d:info/d:meta[@name='series']">
+        <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='series']"/>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
 
   <!-- XHTML titlepage -->
   <xsl:template name="article.titlepage.recto">
@@ -253,7 +268,7 @@
 
     <div class="series-category">
       <xsl:comment/>
-      <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='series']"/>
+      <xsl:call-template name="add.series.name"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category' or @name='type']"/>
     </div>
 

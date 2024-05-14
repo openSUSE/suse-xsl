@@ -2435,6 +2435,12 @@ h2 {
   font-size: 1.25rem;
   margin-top: 3rem;
   margin-bottom: 3rem; }
+  .titlepage .series-category .category {
+    margin-top: 1.75rem; }
+    .titlepage .series-category .category .phrase {
+      display: block;
+      text-align: right;
+      line-height: 1rem; }
 
 .cover {
   margin-top: 2rem;

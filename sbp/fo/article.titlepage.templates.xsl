@@ -26,7 +26,8 @@
     <fo:table>
       <fo:table-body>
         <fo:table-cell text-align="start">
-          <fo:block>
+          <!-- The logo needs this placement, otherwise it's shited down and right -->
+          <fo:block padding-top="0pt" margin-top="-14pt" margin-left="-10pt">
             <fo:instream-foreign-object
               content-width="{$titlepage.logo.width.article}"
               width="{$titlepage.logo.width}">
@@ -36,9 +37,9 @@
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
           <fo:block font-size="&xxx-large;pt">
-            <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="article.titlepage.recto.auto.mode"/>
+            <xsl:value-of select="$json-ld-seriesname"/>
           </fo:block>
-          <fo:block font-size="&large;pt">
+          <fo:block font-size="&large;pt" space-before="1em">
             <xsl:apply-templates select="d:info/d:meta[@name='category'][1]" mode="article.titlepage.recto.auto.mode"/>
           </fo:block>
         </fo:table-cell>
@@ -106,11 +107,13 @@
   </xsl:template>
 
   <xsl:template match="d:meta[@name='series']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates/>
+    <!-- We don't process it anymore, using $json-ld-seriesname parameter -->
   </xsl:template>
 
   <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
-    <xsl:apply-templates/>
+    <xsl:for-each select="*">
+      <fo:block><xsl:apply-templates/></fo:block>
+    </xsl:for-each>
   </xsl:template>
 
   <xsl:template match="d:meta[@name='platform']" mode="article.titlepage.recto.auto.mode">

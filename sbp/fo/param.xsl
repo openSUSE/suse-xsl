@@ -15,6 +15,9 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   exclude-result-prefixes="d">
 
+  <xsl:param name="titlepage.logo.image"><xsl:value-of select="$styleroot"/>images/sbp-tools-title.svg</xsl:param>
 
-<xsl:param name="titlepage.logo.image"><xsl:value-of select="$styleroot"/>images/sbp-tools-title.svg</xsl:param>
+  <!-- Used as series name -->
+  <xsl:param name="json-ld-seriesname">SUSE Best Practices</xsl:param>
+  <xsl:param name="json-ld-seriesnameshort"/>
 </xsl:stylesheet>
