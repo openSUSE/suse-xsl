@@ -28,8 +28,8 @@
       <fo:table-column column-number="2" /><!-- column-width="75%" -->
 
       <fo:table-body>
-        <fo:table-cell  text-align="start">
-          <fo:block>
+        <fo:table-cell text-align="start">
+          <fo:block padding-top="0pt" margin-top="-10pt" margin-left="-10pt">
             <fo:instream-foreign-object
               content-width="{$titlepage.logo.width.article}"
               width="{$titlepage.logo.width}">
@@ -39,7 +39,14 @@
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
           <fo:block font-size="&x-large;pt" hyphenate="false">
-            <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="article.titlepage.recto.auto.mode"/>
+            <xsl:choose>
+              <xsl:when test="$json-ld-seriesname != ''">
+                <xsl:value-of select="$json-ld-seriesname"/>
+              </xsl:when>
+              <xsl:when test="d:info/d:meta[@name='series']">
+                <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="article.titlepage.recto.auto.mode"/>
+              </xsl:when>
+            </xsl:choose>
           </fo:block>
           <fo:block font-size="&large;pt">
             <xsl:apply-templates select="d:info/d:meta[@name='type'][1]" mode="article.titlepage.recto.auto.mode"/>
