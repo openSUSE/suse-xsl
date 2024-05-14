@@ -267,7 +267,7 @@
     </xsl:choose>
 
     <div class="series-category">
-      <xsl:comment/>
+      <xsl:comment/><!-- Add empty comment in case we don't create series nor categories -->
       <xsl:call-template name="add.series.name"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category' or @name='type']"/>
     </div>
