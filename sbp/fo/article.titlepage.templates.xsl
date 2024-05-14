@@ -37,7 +37,14 @@
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
           <fo:block font-size="&xxx-large;pt">
-            <xsl:value-of select="$json-ld-seriesname"/>
+            <xsl:choose>
+              <xsl:when test="$json-ld-seriesname != ''">
+                <xsl:value-of select="$json-ld-seriesname"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:apply-templates select="d:info/d:meta[@name='series'][1]" mode="article.titlepage.recto.auto.mode"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </fo:block>
           <fo:block font-size="&large;pt" space-before="1em">
             <xsl:apply-templates select="d:info/d:meta[@name='category'][1]" mode="article.titlepage.recto.auto.mode"/>
@@ -107,7 +114,8 @@
   </xsl:template>
 
   <xsl:template match="d:meta[@name='series']" mode="article.titlepage.recto.auto.mode">
-    <!-- We don't process it anymore, using $json-ld-seriesname parameter -->
+    <!-- Only process it when $json-ld-seriesname != '' -->
+    <xsl:apply-templates/>
   </xsl:template>
 
   <xsl:template match="d:meta[@name='category']" mode="article.titlepage.recto.auto.mode">
