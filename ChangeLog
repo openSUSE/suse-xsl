@@ -1,7 +1,19 @@
 -------------------------------------------------------------------
+Wed May 16 13:19:00 UTC 2024 - tomschr@users.noreply.github.com
+
+Update 2.94.7
+- Corrected handling of dateModified & datePublished (#624, DOCTEAM-1367)
+  Also allow datePublished <= dateModified
+- Fix some JSON-LD problems (#626)
+  - No JSON-LD was generated for SBP & TRD
+  - Simplify XPath for extracting revhistory
+- Improve handling of SBP series (#624, #628)
+- Improve handling of TRD series/partners (#627)
+
+-------------------------------------------------------------------
 Wed Mar 27 16:19:56 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.95.6
+Update 2.94.6
 - Fix JSON-LD generation for single & chunked HTML (#622)
 - Metadata: Make checking for content more stable (#622)
   - Check for $content != '' instead of just $content
