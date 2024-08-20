@@ -70,12 +70,12 @@
           <xsl:otherwise>tab</xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
-      <xsl:apply-templates select="d:term" />
+      <xsl:apply-templates select="d:term" mode="tab-term" />
     </li>
  </xsl:template>
 
  <xsl:template match="d:varlistentry" mode="tab-content">
-   <div class="tab-container">
+   <div class="tab-content" id="tabContent{position()}">
         <xsl:choose>
           <xsl:when test="position() != 1" >
             <xsl:attribute name="style">display: none;</xsl:attribute>
@@ -86,6 +86,10 @@
    </div>
  </xsl:template>
 
+  <!-- We don't want the extra <span> element -->
+  <xsl:template match="d:term" mode="tab-term">
+    <xsl:apply-templates/>
+  </xsl:template>
 
   <!-- =============================================================== -->
   <xsl:template match="d:varlistentry">
