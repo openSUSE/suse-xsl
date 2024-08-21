@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Aug 21 11:43:27 UTC 2024 - tomschr@users.noreply.github.com
+
+Update 2.94.8
+- Convert variablelist into a HTML tab structure (#611)
+- Use correct stylesheet version in Makefile
+- Fix typo in json-ld-seriesname (Products, plural)
+-------------------------------------------------------------------
 Wed May 16 13:19:00 UTC 2024 - tomschr@users.noreply.github.com
 
 Update 2.94.7
