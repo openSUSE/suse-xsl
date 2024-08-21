@@ -49,7 +49,7 @@
       <xsl:call-template name="formal.object.heading"/>
     </xsl:if>
 
-    <ul class="tabs">
+    <ul class="tabs" onclick="showTabContent(event)">
      <xsl:apply-templates select="d:varlistentry|comment()[preceding-sibling::d:varlistentry]
                                   |processing-instruction()[preceding-sibling::d:varlistentry]"
         mode="tab-titles" />
@@ -63,7 +63,7 @@
   </xsl:template>
 
  <xsl:template match="d:varlistentry" mode="tab-titles">
-    <li onclick="showTabContent(event)">
+    <li>
       <xsl:attribute name="class">
         <xsl:choose>
           <xsl:when test="position() = 1">tab active-tab</xsl:when>
