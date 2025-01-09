@@ -23,7 +23,7 @@
 
   <xsl:output indent="yes" method="xml"/>
 
-  <xsl:param name="wordspermin" select="200"/>
+  <xsl:param name="words-per-min" select="200"/>
 
   <!-- ### Function templates -->
   <xsl:template name="ceil">
@@ -39,7 +39,7 @@
     </xsl:variable>
     <xsl:variable name="reading-time-minutes">
       <xsl:call-template name="ceil">
-        <xsl:with-param name="number" select="$word-count div $wordspermin" />
+        <xsl:with-param name="number" select="$word-count div $words-per-min" />
       </xsl:call-template>
     </xsl:variable>
 
