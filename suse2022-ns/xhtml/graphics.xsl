@@ -534,7 +534,7 @@
                 <xsl:when test="$alt != ''">
                   <xsl:copy-of select="$alt" />
                 </xsl:when>
-                <xsl:when test="ancestor::figure">
+                <xsl:when test="ancestor::d:figure">
                   <xsl:variable name="fig.title">
                     <xsl:apply-templates select="ancestor::figure/title/node()"
                      />
@@ -931,16 +931,27 @@
       <xsl:when test="../../d:textobject/d:phrase">
           <xsl:apply-templates select="../../d:textobject/d:phrase/node()"/>
       </xsl:when>
-      <xsl:when test="../../../d:caption">
-        <xsl:apply-templates select="../../../d:caption/node()"/>
+      <xsl:when test="../../../d:caption[d:para]">
+        <xsl:apply-templates select="../../../d:caption/d:para[1]"/>
       </xsl:when>
-      <xsl:when test="../../../d:title">
-        <xsl:apply-templates select="../../../d:title/node()"/>
+      <xsl:when test="ancestor::d:figure/d:title">
+        <xsl:value-of select="ancestor::d:figure/d:title"/>
       </xsl:when>
       <xsl:when test="$alt != ''">
         <xsl:value-of select="$alt"/>
       </xsl:when>
-      <xsl:otherwise>Image</xsl:otherwise>
+      <xsl:when test="ancestor::d:informalfigure">
+        <xsl:variable name="candidate-title"
+          select="(ancestor::*[d:title][1]/d:title | ancestor::*[d:info/d:title][1]/d:info/d:title)[last()]"/>
+        <xsl:variable name="image-number"
+          select="count(ancestor::d:informalfigure/preceding-sibling::d:informalfigure) + 1"/>
+        <xsl:value-of select="concat('#',  $image-number, ': ', $candidate-title)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="candidate-title"
+          select="(ancestor::*[d:title][1]/d:title | ancestor::*[d:info/d:title][1]/d:info/d:title)[last()]"/>
+        <xsl:value-of select="$candidate-title"/>
+      </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
