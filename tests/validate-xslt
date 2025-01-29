@@ -75,7 +75,7 @@ function seq_validate() {
     time {
         for xslt in $XSLTFILES; do
             echo -n "> Validating $xslt..."
-            jing -c $RNG $xslt
+            BASE_FLAGS="-Xss2m" jing -c $RNG $xslt
             r=$?
             [[ $r -eq 0 ]] && echo "ok"
             [[ $r -eq 0 ]] || result=1
