@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Wed Jan 29 14:00:00 UTC 2025 - tomschr@users.noreply.github.com
+
+Update 2.94.0
+- 2024 extended palette and infographics palette (#635)
+- Fix #649: Provide unique alt attribute for <img> (#651)
+- Fix DOCTEAM-1670: (A11Y) Empty headings (#652)
+- Several changes to color contrast (commits 8ee59b8, a44616c,
+  62e535f, d189380, 30d4158)
+
+-------------------------------------------------------------------
 Wed Aug 21 11:43:27 UTC 2024 - tomschr@users.noreply.github.com
 
 Update 2.94.8
