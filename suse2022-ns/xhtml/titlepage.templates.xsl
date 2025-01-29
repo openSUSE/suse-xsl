@@ -529,4 +529,43 @@
   </div>
 </xsl:template>
 
+
+  <!-- A11Y: Prevent a <h3> when the <subtitle> is empty -->
+  <xsl:template match="d:subtitle" mode="article.titlepage.recto.auto.mode">
+    <xsl:variable name="content">
+      <xsl:apply-templates select="." mode="article.titlepage.recto.mode"/>
+    </xsl:variable>
+
+    <xsl:if test="normalize-space(string($content)) != ''">
+      <div xsl:use-attribute-sets="article.titlepage.recto.style">
+        <xsl:copy-of select="$content"/>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:subtitle" mode="book.titlepage.recto.auto.mode">
+    <xsl:variable name="content">
+      <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
+    </xsl:variable>
+
+    <xsl:if test="normalize-space(string($content)) != ''">
+      <div xsl:use-attribute-sets="book.titlepage.recto.style">
+        <xsl:copy-of select="$content"/>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="d:subtitle" mode="set.titlepage.recto.auto.mode">
+    <xsl:variable name="content">
+      <xsl:apply-templates select="." mode="set.titlepage.recto.mode"/>
+    </xsl:variable>
+
+    <xsl:if test="normalize-space(string($content)) != ''">
+      <div xsl:use-attribute-sets="set.titlepage.recto.style">
+        <xsl:copy-of select="$content"/>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+
 </xsl:stylesheet>
