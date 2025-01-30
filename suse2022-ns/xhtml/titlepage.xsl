@@ -154,11 +154,12 @@
             </xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="str.title" select="string($title)"/>
 
         <!-- Create the link to the revhistory page -->
         <div class="titlepage-revhistory">
-          <a aria-label="{$revhistory.text}" hreflang="{$candidate.lang}"
-             href="{$file}" target="_blank"><xsl:copy-of select="string($title)" /></a>
+          <a aria-label="{$str.title}" hreflang="{$candidate.lang}"
+             href="{$file}" target="_blank"><xsl:copy-of select="$str.title" /></a>
         </div>
 
         <xsl:call-template name="write.chunk">
