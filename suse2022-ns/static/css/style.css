@@ -1710,7 +1710,7 @@ body.disable-language-switcher #_utilitynav #_utilitynav-language {
     text-decoration: underline; }
 
 .crumbs span {
-  color: #30ba78; }
+  color: #025937; }
 
 .side-toc > *:last-child::after {
   content: '';
@@ -1750,10 +1750,10 @@ body.disable-language-switcher #_utilitynav #_utilitynav-language {
     font-style: normal; }
 
 #_side-toc-page a {
-  color: #30ba78;
-  padding: 0.4rem 0; }
+  color: #008657;
+  padding: 0.4rem 0;
+  font-weight: 500; }
   #_side-toc-page a:focus, #_side-toc-page a:hover, #_side-toc-page a:active {
-    background-color: transparent;
     text-decoration: underline; }
 
 @media screen and (max-width: 1024px) {
@@ -2703,13 +2703,21 @@ p {
   color: #333; }
 
 article a {
-  color: #26915e;
+  color: #008657;
   text-decoration: none; }
   article a:active, article a:focus, article a:hover, article a:visited:active, article a:visited:focus, article a:visited:hover {
-    color: #26915e;
+    color: #008657;
     text-decoration: underline; }
   article a:visited {
-    color: #26915e; }
+    color: #008657; }
+
+article p a {
+  color: #008657;
+  text-decoration: underline; }
+
+article .procedure-contents p a {
+  color: #025937;
+  text-decoration: underline; }
 
 .free-id {
   height: 0.01px;
