@@ -197,13 +197,23 @@
           <!-- For single-html books/articles, it is important that we skip
           the legalnotice. "© SUSE 20XX" is not a good page description
           usually. -->
-          <xsl:when test="self::d:book">
-            <xsl:apply-templates select="(*[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:para |
-                                          *[self::d:preface or self::d:chapter or self::d:sect1 or self::d:section]/d:simpara)[1]"/>
+          <xsl:when test="self::d:book[(self::d:preface | self::d:chapter | self::d:topic)/d:para]">
+            <xsl:apply-templates select="(*[self::d:preface or self::d:chapter or self::d:topic]/d:para |
+                                          *[self::d:preface or self::d:chapter or self::d:topic]/d:simpara)[1]"/>
+          </xsl:when>
+          <xsl:when test="self::d:book | self::d:appendix | self::d:chapter | self::d:part | self::d:glossary | self::d:preface">
+            <xsl:value-of select="normalize-space(string((d:title|d:info/d:title)[last()]))"/>
           </xsl:when>
           <xsl:when test="self::d:article">
             <xsl:apply-templates select="(*[self::d:sect1 or self::d:section]/d:para |
                                           *[self::d:sect1 or self::d:section]/d:simpara)[1]"/>
+          </xsl:when>
+          <xsl:when test="self::d:revhistory">
+            <xsl:call-template name="gentext">
+              <xsl:with-param name="key" select="'RevHistory'" />
+            </xsl:call-template>
+            <xsl:text>: </xsl:text>
+            <xsl:value-of select="(d:title[normalize-space(.) != ''] | d:revision[1]/d:revdescription/d:para[1])[last()]"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select="(descendant::d:para | descendant::d:simpara)[1]"/>
@@ -315,6 +325,7 @@
 
   <meta name="title" content="{$search.title}"/>
   <xsl:text>&#10;</xsl:text>
+
   <meta name="description" content="{$search.description}"/>
   <xsl:text>&#10;</xsl:text>
 
