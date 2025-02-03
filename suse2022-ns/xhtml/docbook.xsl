@@ -372,13 +372,15 @@
   <xsl:template name="ellipsize.text">
     <xsl:param name="input" select="''"/>
     <xsl:param name="ellipsize.after" select="150"/>
+    <xsl:variable name="input-ns" select="normalize-space($input)"/>
+
     <xsl:choose>
-      <xsl:when test="string-length(normalize-space($input)) &gt; $ellipsize.after">
-        <xsl:value-of select="substring(normalize-space($input),1,$ellipsize.after - 1)"/>
+      <xsl:when test="string-length($input-ns) &gt; $ellipsize.after">
+        <xsl:value-of select="substring($input-ns, 1, $ellipsize.after - 1)"/>
         <xsl:text>…</xsl:text>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="normalize-space($input)"/>
+        <xsl:value-of select="$input-ns"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
