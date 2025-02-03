@@ -17,7 +17,7 @@
 
   <xsl:template name="side.toc.overall.doc-overview.inner">
     <xsl:param name="node"/>
-    <ol>
+    <ol role="list">
       <xsl:apply-templates select="$node/d:set|$node/d:book|$node/d:article" mode="doc-overview">
       </xsl:apply-templates>
     </ol>
@@ -33,7 +33,7 @@
         </xsl:apply-templates>
       </xsl:when>
       <xsl:otherwise>
-        <li>
+        <li role="listitem">
           <a>
             <xsl:attribute name="href">
               <xsl:call-template name="href.target">
@@ -55,7 +55,7 @@
   <xsl:template name="side.toc.overall.inner">
     <xsl:param name="node"/>
     <xsl:param name="page-context"/>
-    <ol>
+    <ol role="list">
       <xsl:apply-templates select="$node" mode="bubble-toc">
         <xsl:with-param name="page-context-id" select="generate-id($page-context)"/>
       </xsl:apply-templates>
@@ -157,7 +157,7 @@
           </xsl:variable>
           <xsl:copy-of select="$label"/>
         </xsl:if>
-        <li>
+        <li role="listitem">
           <xsl:if test="$needs.subtoc = 1 and
                         (generate-id(.) = $page-context-id or
                         string-length($has-descendant-page-context) &gt; 0)">
