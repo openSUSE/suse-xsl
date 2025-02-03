@@ -328,7 +328,7 @@
                       //*[@xml:id = $rootid][self::d:set or self::d:book[d:article]]">1</xsl:if>
       </xsl:variable>
 
-      <nav id="_side-toc-overall">
+      <nav id="_side-toc-overall" tabindex="0">
         <xsl:attribute name="class">
           <xsl:text>side-toc</xsl:text>
           <xsl:if test="self::d:set">
