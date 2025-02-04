@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Tue Feb 04 07:35:36 UTC 2025 - tomschr@users.noreply.github.com
+
+Update to 2.95.1
+- DOCTEAM-1663: element is not keyboard accessible (#658)
+- DOCTEAM-1663: Fix "Container element is empty" (#657)
+- meta.description.base: `<meta name="description">` (#656)
+- DOCTEAM#1664: Fix aria-label for revhistory link (#655)
+- Update color contrast in CSS
+-------------------------------------------------------------------
 Wed Jan 29 14:00:00 UTC 2025 - tomschr@users.noreply.github.com
 
 Update 2.94.0
