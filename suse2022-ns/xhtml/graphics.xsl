@@ -934,8 +934,23 @@
       <xsl:when test="../../../d:caption[d:para]">
         <xsl:apply-templates select="../../../d:caption/d:para[1]"/>
       </xsl:when>
-      <xsl:when test="ancestor::d:figure/d:title">
+      <xsl:when test="ancestor::d:figure/d:title and normalize-space(string(ancestor::d:figure/d:title)) != ''">
         <xsl:value-of select="ancestor::d:figure/d:title"/>
+      </xsl:when>
+      <xsl:when test="ancestor::d:figure/d:title and normalize-space(string(ancestor::d:figure/d:title)) = ''">
+        <!-- Edge cases where we have a <title>, but it's emmpty :-( -->
+        <xsl:variable name="div"
+          select="(ancestor::d:sect5 | ancestor::d:sect4 | ancestor::d:sect3 | ancestor::d:sect2 | ancestor::d:sect1 |
+                   ancestor::d:section |
+                   ancestor::d:chapter | ancestor::d:appendix | ancestor::d:glossary | ancestor::d:preface |
+                   ancestor::d:part | ancestor::d:book)[last()]"/>
+        <xsl:variable name="candidate-title" select="($div/d:title | $div/d:info/d:title)[last()]"/>
+        <xsl:variable name="image-number">
+          <xsl:number count="d:figure"
+            from="d:appendix | d:article | d:glossary | d:preface | d:chapter | d:sect1 | d:sect2 | d:sect3 | d:section"
+            level="any" format="1" />
+        </xsl:variable>
+        <xsl:value-of select="concat('#',  $image-number, ': ', $candidate-title)"/>
       </xsl:when>
       <xsl:when test="$alt != ''">
         <xsl:value-of select="$alt"/>
@@ -948,8 +963,12 @@
         <xsl:value-of select="concat('#',  $image-number, ': ', $candidate-title)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:variable name="candidate-title"
-          select="(ancestor::*[d:title][1]/d:title | ancestor::*[d:info/d:title][1]/d:info/d:title)[last()]"/>
+        <xsl:variable name="div"
+          select="(ancestor::d:sect5 | ancestor::d:sect4 | ancestor::d:sect3 | ancestor::d:sect2 | ancestor::d:sect1 |
+                   ancestor::d:section |
+                   ancestor::d:chapter | ancestor::d:appendix | ancestor::d:glossary | ancestor::d:preface |
+                   ancestor::d:part | ancestor::d:book)[last()]"/>
+        <xsl:variable name="candidate-title" select="($div/d:title | $div/d:info/d:title)[last()]"/>
         <xsl:value-of select="$candidate-title"/>
       </xsl:otherwise>
     </xsl:choose>
