@@ -192,7 +192,7 @@
           </a>
 
           <xsl:if test="$needs.subtoc = 1">
-            <ol>
+            <ol role="list">
               <xsl:apply-templates mode="bubble-toc" select="$nodes">
                 <xsl:with-param name="toc-context" select="$toc-context"/>
                 <xsl:with-param name="page-context-id" select="$page-context-id"/>
