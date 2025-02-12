@@ -88,9 +88,6 @@
     </xsl:otherwise>
    </xsl:choose>
 
-   <xsl:if test="$lighter-formatting != 1">
-    <fo:leader leader-pattern="space" leader-length="0.2em"/>
-   </xsl:if>
    <xsl:call-template name="anchor"/>
    <xsl:if test="@dir">
     <xsl:attribute name="direction">
@@ -106,9 +103,6 @@
    <xsl:copy-of select="$content"/>
    <xsl:if test="$after != ''">
     <xsl:value-of select="$after"/>
-   </xsl:if>
-   <xsl:if test="$lighter-formatting != 1">
-    <fo:leader leader-pattern="space" leader-length="0.2em"/>
    </xsl:if>
   </fo:inline>
 </xsl:template>
