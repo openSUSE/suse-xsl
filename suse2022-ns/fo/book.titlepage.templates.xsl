@@ -113,7 +113,7 @@
                     <fo:block> </fo:block>
                   </fo:table-cell>
                   <fo:table-cell>
-                    <fo:block padding-after="&gutterfragment;mm">
+                    <fo:block padding-after="&gutterfragment;mm" hyphenate="false">
                       <xsl:choose>
                         <xsl:when test="d:bookinfo/d:title">
                           <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
@@ -156,7 +156,7 @@
 <xsl:template match="d:subtitle" mode="book.titlepage.recto.auto.mode">
   <fo:block
     xsl:use-attribute-sets="title.font" font-size="{&super-large; * $sans-fontsize-adjust}pt"
-    space-before="&gutterfragment;mm">
+    space-before="&gutterfragment;mm"  hyphenate="false">
     <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
   </fo:block>
 </xsl:template>
