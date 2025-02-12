@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Feb 12 07:09:16 UTC 2025 - tomschr@users.noreply.github.com
+
+Update to 2.95.2
+- Fix DOCTEAM-1667: Link missing a text alternative
+- Fix DOCTEAM-1663: Container element is empty
+- Update CSS files (Updated the colour of links in the right nav)
+-------------------------------------------------------------------
 Tue Feb 04 07:35:36 UTC 2025 - tomschr@users.noreply.github.com
 
 Update to 2.95.1
