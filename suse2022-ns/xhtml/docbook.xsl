@@ -856,12 +856,14 @@
 <xsl:text disable-output-escaping="yes">
 <![CDATA[
 if ( window.location.protocol.toLowerCase() != 'file:' ) {
-  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css"></link>');
+  document.write('<link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>');
 };
 ]]>
 </xsl:text>
       </script>
-      <link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css" />
+      <noscript>
+        <link rel="stylesheet" type="text/css" href="https://documentation.suse.com/docserv/res/fonts/poppins/poppins.css"></link>
+      </noscript>
     </xsl:if>
 <!--     <xsl:if test="$daps.header.js.library != ''">
       <xsl:call-template name="make.script.link">
