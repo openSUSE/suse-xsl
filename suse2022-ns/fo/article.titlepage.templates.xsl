@@ -56,7 +56,8 @@
       </fo:instream-foreign-object>
     </fo:block>
 
-    <fo:block start-indent="{&columnfragment; + &gutter;}mm" text-align="start"
+    <fo:block start-indent="{&columnfragment; + &gutter;}mm"
+      hyphenate="false" text-align="start"
       role="article.titlepage.recto">
       <fo:block space-after="{&gutterfragment;}mm">
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
@@ -84,9 +85,8 @@
         </xsl:choose>
       </fo:block>
 
-    <fo:block padding-before="{2 * &gutterfragment;}mm"
+    <fo:block padding-before="{2 * &gutterfragment;}mm" hyphenate="false"
       padding-start="{&column; + &columnfragment; + &gutter;}mm">
-
       <xsl:choose>
         <xsl:when test="d:articleinfo/d:subtitle">
           <xsl:apply-templates
