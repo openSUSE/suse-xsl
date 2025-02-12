@@ -26,6 +26,7 @@
   xmlns:exsl="http://exslt.org/common"
   exclude-result-prefixes="xlink exsl d">
 
+  <xsl:strip-space elements="d:title"/>
 
 <xsl:template match="d:ulink|d:link" name="ulink">
   <xsl:param name="url" select="(@url|@xlink:href)[last()]"/>
