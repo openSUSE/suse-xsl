@@ -44,7 +44,7 @@
              <xsl:with-param name="context-desc" select="'l10n property'"/>
              <xsl:with-param name="message">
                <xsl:text>The requested property </xsl:text>
-               <xsl:value-of select="$string"/>
+<!--               <xsl:value-of select="$string"/>-->
                <xsl:value-of select="$property"/>
                <xsl:text> has no registered property type.</xsl:text>
              </xsl:with-param>

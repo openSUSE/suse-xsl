@@ -126,6 +126,10 @@
          right to left (value: "rl"), many other languages are written
          left to right (value: "lr") -->
     <prop-type name="writing-mode">string</prop-type>
+
+    <!-- book-productname-factor: A factor that is applied to the fonts-size
+         of the productname on the cover page -->
+    <prop-type name="book-productname-factor">float</prop-type>
   </prop-types>
 
   <lang code="default">
@@ -146,6 +150,7 @@
     <prop name="sans-cutoff-factor">1</prop>
     <prop name="enable-text-justification">true</prop>
     <prop name="writing-mode">lr</prop>
+    <prop name="book-productname-factor">1.0</prop>
   </lang>
   <lang code="ar">
     <!-- Kufic fonts are regarded as rather unreadable, so only use a Naskh (roughly: serif) font. -->
@@ -169,6 +174,7 @@
     <prop name="sans-cutoff-factor">0.8</prop>
     <prop name="enable-text-justification" ref-lang="default"/>
     <prop name="writing-mode">rl</prop>
+    <prop name="book-productname-factor">0.825</prop>
   </lang>
   <lang code="ja">
     <!-- Yes, the Western characters from IPA P look horrible to the
@@ -204,6 +210,7 @@
     <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
+    <prop name="book-productname-factor">0.825</prop>
   </lang>
   <lang code="ko">
     <prop name="serif" ref-name="sans"/>
@@ -225,6 +232,8 @@
     <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
+    <prop name="book-productname-factor">0.9</prop>
+    <prop name="book-productname-factor">0.825</prop>
   </lang>
   <lang code="zh_cn">
     <!-- Simplified Chinese is most often printed as sans-serif, so use
@@ -251,6 +260,7 @@
     <prop name="sans-cutoff-factor">0.85</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
+    <prop name="book-productname-factor">0.825</prop>
   </lang>
   <lang code="zh_tw">
     <!-- Traditional Chinese apparently is almost always printed as
@@ -289,5 +299,6 @@
     <prop name="sans-cutoff-factor">0.75</prop>
     <prop name="enable-text-justification">false</prop>
     <prop name="writing-mode" ref-lang="default"/>
+    <prop name="book-productname-factor">0.6</prop>
   </lang>
 </properties>

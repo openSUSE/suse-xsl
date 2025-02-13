@@ -93,15 +93,14 @@
             <fo:table width="{(&column; * 7) + (&gutter; * 5)}mm"
               table-layout="fixed" block-progression-dimension="auto">
               <fo:table-column column-number="1" column-width="{&column;}mm"/>
-              <fo:table-column column-number="2"
-                column-width="{(&column; * 6) + (&gutter; * 5)}mm"/>
+              <fo:table-column column-number="2" column-width="{(&column; * 6) + (&gutter; * 5)}mm"/>
               <fo:table-body>
                 <fo:table-row>
                   <fo:table-cell>
                     <fo:block> </fo:block>
                   </fo:table-cell>
                   <fo:table-cell>
-                    <fo:block padding-before="&columnfragment;mm">
+                    <fo:block role="suse-productname">
                       <!-- We use the full productname here: -->
                       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
                         select="d:bookinfo/d:productname[not(@role='abbrev')]|d:info/d:productname[not(@role='abbrev')]"/>
@@ -163,9 +162,15 @@
 
 <xsl:template match="d:productname[not(@role='abbrev')]"
   mode="book.titlepage.recto.auto.mode">
+  <xsl:variable name="size-factor">
+    <xsl:call-template name="get.l10n.property">
+    <xsl:with-param name="property" select="'book-productname-factor'"/>
+  </xsl:call-template>
+  </xsl:variable>
   <fo:block text-align="start" hyphenate="false"
-    line-height="{$base-lineheight * 0.85}em"
-    font-size="{&xxx-large; * $sans-fontsize-adjust}pt"
+    line-height="{$base-lineheight * 0.95}em"
+    font-size="{&xxx-large; * $sans-fontsize-adjust * $size-factor}pt"
+    font-weight="normal"
     space-after="&gutterfragment;mm"
     xsl:use-attribute-sets="title.font dark-green sans.bold.noreplacement">
     <!-- FIXME: fix grayscale mode for c_mint_60 -->
