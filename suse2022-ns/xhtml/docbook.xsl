@@ -879,20 +879,7 @@ if ( window.location.protocol.toLowerCase() != 'file:' ) {
       <xsl:call-template name="make.script.link">
         <xsl:with-param name="script.filename" select="$daps.header.js.highlight"/>
       </xsl:call-template>
-      <script>
-<xsl:text disable-output-escaping="yes">
-<![CDATA[
-$(document).ready(function() {
-  $('.verbatim-wrap.highlight').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-});
-hljs.configure({
-  useBR: false
-});
-]]>
-</xsl:text>
-      </script>
+      <script>hljs.highlightAll();</script>
     </xsl:if>
     <xsl:if test="$enable.source.highlighting != 1">
       <!-- Provide a fake highlight.js, because our script is waiting for

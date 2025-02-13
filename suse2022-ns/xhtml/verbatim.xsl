@@ -18,6 +18,7 @@
 <xsl:template match="d:programlisting|d:screen|d:synopsis|d:computeroutput|d:userinput|d:literallayout">
   <xsl:variable name="supported" select="concat('|', $highlight.supported.languages, '|')"/>
   <xsl:variable name="language" select="translate(normalize-space(@language), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ|', 'abcdefghijklmnopqrstuvwxyz')"/>
+  
 
   <xsl:call-template name="check.screenlength"/>
 
@@ -47,6 +48,20 @@
     </xsl:attribute>
     <xsl:apply-imports/>
   </div>
+</xsl:template>
+
+
+<xsl:template name="apply-highlighting">
+  <xsl:variable name="language">
+    <xsl:text>language-</xsl:text>
+    <xsl:choose>
+      <xsl:when test="@language">
+        <xsl:value-of select="@language"/>
+      </xsl:when>
+      <xsl:otherwise>plaintext</xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+  <code class="{$language}"><xsl:apply-templates/></code>
 </xsl:template>
 
 </xsl:stylesheet>

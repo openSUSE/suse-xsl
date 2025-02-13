@@ -204,6 +204,10 @@ task before
 
   <xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
 
+  <!-- Should the content of programlisting|screen be syntactically highlighted? -->
+  <xsl:param name="highlight.source" select="1" />
+
+
   <!-- From the DocBook XHTML stylesheet's "formal.xsl" -->
   <xsl:param name="formal.object.break.after">0</xsl:param>
 
@@ -257,7 +261,7 @@ task before
   <xsl:param name="daps.header.logo.alt">Logo</xsl:param>
 <!--   <xsl:param name="daps.header.js.library">static/js/jquery-1.12.4.min.js</xsl:param> -->
   <xsl:param name="daps.header.js.custom">static/js/script-purejs.js</xsl:param>
-  <xsl:param name="daps.header.js.highlight">static/js/highlight.min.js</xsl:param>
+  <xsl:param name="daps.header.js.highlight">static/js/highlight.js</xsl:param>
   <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
 
   <!-- This list is intentionally quite strict (no aliases) to keep our documents
