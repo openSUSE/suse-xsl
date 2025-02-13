@@ -136,7 +136,7 @@
 
    <l:context name="xref-number-and-title">
       <l:template name="appendix" style="nonumber" text="&#20184;&#37682; “%t”"/>
-      <l:template name="bridgehead" style="nonumber" text="&#38917; “%t”"/>
+      <l:template name="bridgehead" style="nonumber" text="&#51208; “%t”"/>
       <l:template name="chapter" style="nonumber" text="&#51208;&#50640;&#49436; “%t” &#51109;"/>
       <l:template name="chapter" text="%n&#51109; %t"/>
       <l:template name="equation" style="nonumber" text="&#24335; “%t”"/>
@@ -169,12 +169,12 @@
    </l:context>
 
    <l:context name="xref-number">
-      <l:template name="sect1" text="%n&#38917;"/>
-      <l:template name="sect2" text="%n&#38917;"/>
-      <l:template name="sect3" text="%n&#38917;"/>
-      <l:template name="sect4" text="%n&#38917;"/>
-      <l:template name="sect5" text="%n&#38917;"/>
-      <l:template name="section" text="%n&#38917;"/>
+      <l:template name="sect1" text="%n절"/>
+      <l:template name="sect2" text="%n절"/>
+      <l:template name="sect3" text="%n절"/>
+      <l:template name="sect4" text="%n절"/>
+      <l:template name="sect5" text="%n절"/>
+      <l:template name="section" text="%n절"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">
