@@ -208,8 +208,8 @@
                    Arabic, so xsl:if this out for the moment. -->
               <xsl:if test="$writing.mode = 'lr'">
                 <fo:inline>
-                  <fo:leader leader-length="&columnfragment;mm"
-                    leader-pattern="space"/>
+                  <xsl:text> | </xsl:text>
+                  <!--<fo:leader leader-length="1em" leader-pattern="space"/>-->
                   <xsl:call-template name="product"/>
                 </fo:inline>
               </xsl:if>
@@ -402,10 +402,10 @@
     block-progression-dimension="auto">
     <!-- Page number -->
     <fo:table-column column-number="1"
-        column-width="{&column; + &gutter;}mm"/>
+        column-width="5%"/>
     <!-- Some titles -->
     <fo:table-column column-number="2"
-        column-width="{(&column; * 5) + (&gutter; *4)}mm"/>
+        column-width="95%"/>
 
       <fo:table-body>
         <fo:table-row>
