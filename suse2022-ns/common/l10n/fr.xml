@@ -78,6 +78,9 @@
 
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
+      <l:template name="emphasis-open" text=""/>
+      <l:template name="emphasis-close" text=""/>
+      <l:template name="emphasis-style" text=""/>
 
       <l:template name="example-label" text="Exemple %n&#160;:"/>
       <l:template name="example-title" text="%t"/>
