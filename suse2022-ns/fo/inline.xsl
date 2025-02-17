@@ -647,4 +647,54 @@
   </xsl:template>
 
 
+  <xsl:template name="inline.superscriptseq">
+    <xsl:param name="content">
+      <xsl:apply-templates/>
+    </xsl:param>
+
+    <xsl:param name="contentwithlink">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:param>
+
+    <fo:inline xsl:use-attribute-sets="superscript.properties">
+      <xsl:call-template name="anchor"/>
+      <xsl:if test="@dir">
+        <xsl:attribute name="direction">
+          <xsl:choose>
+            <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+            <xsl:otherwise>rtl</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:copy-of select="$contentwithlink"/>
+    </fo:inline>
+  </xsl:template>
+
+
+  <xsl:template name="inline.subscriptseq">
+    <xsl:param name="content">
+      <xsl:apply-templates/>
+    </xsl:param>
+
+    <xsl:param name="contentwithlink">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content" select="$content"/>
+      </xsl:call-template>
+    </xsl:param>
+
+    <fo:inline xsl:use-attribute-sets="subscript.properties">
+      <xsl:call-template name="anchor"/>
+      <xsl:if test="@dir">
+        <xsl:attribute name="direction">
+          <xsl:choose>
+            <xsl:when test="@dir = 'ltr' or @dir = 'lro'">ltr</xsl:when>
+            <xsl:otherwise>rtl</xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:copy-of select="$contentwithlink"/>
+    </fo:inline>
+  </xsl:template>
 </xsl:stylesheet>
