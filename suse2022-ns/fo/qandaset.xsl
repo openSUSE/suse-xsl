@@ -44,6 +44,7 @@
     </xsl:if>
   </xsl:variable>
 
+<!--  <xsl:message>#######: "<xsl:value-of select="string($label.content)"/>"</xsl:message>-->
   <!-- changes v/ upstream: added font-family, font-size and
   keep-with-next.within-column attributes. -->
   <fo:list-item role="{local-name()}" id="{$entry.id}"
@@ -175,5 +176,6 @@
     </xsl:choose>
   </fo:block>
 </xsl:template>
+
 
 </xsl:stylesheet>
