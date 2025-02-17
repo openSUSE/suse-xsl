@@ -492,6 +492,18 @@
    <xsl:attribute name="text-align">start</xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:attribute-set name="subscript.properties">
+  <xsl:attribute name="font-size">72%</xsl:attribute>
+  <xsl:attribute name="baseline-shift">-5pt</xsl:attribute>
+  <xsl:attribute name="vertical-align">sub</xsl:attribute>
+</xsl:attribute-set>
+<xsl:attribute-set name="superscript.properties">
+  <xsl:attribute name="font-size">72%</xsl:attribute>
+  <xsl:attribute name="baseline-shift">5pt</xsl:attribute>
+  <xsl:attribute name="vertical-align">super</xsl:attribute>
+</xsl:attribute-set>
+
+
 <!-- 22. Profiling ============================================== -->
 
 
