@@ -122,6 +122,7 @@
       <xsl:apply-templates select="." mode="qanda.label"/>
     </xsl:variable>
     <strong><xsl:value-of select="$label.content"/></strong>
+    <xsl:text> </xsl:text>
     <xsl:apply-templates select="*[local-name(.) != 'label']"/>
   </dt>
 </xsl:template>
