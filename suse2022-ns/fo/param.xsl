@@ -103,8 +103,8 @@ set       toc,title
 
 
 <!-- 14. QAndASet =============================================== -->
-<xsl:param name="qanda.inherit.numeration" select="0"/>
-<xsl:param name="qanda.defaultlabel">number</xsl:param>
+<xsl:param name="qanda.inherit.numeration" select="1"/>
+<xsl:param name="qanda.defaultlabel">global</xsl:param>
 
 <!-- 15. Bibliography =========================================== -->
 
