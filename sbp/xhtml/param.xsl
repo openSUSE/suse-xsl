@@ -6,5 +6,5 @@
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:param name="json-ld-seriesname">SUSE Best Practices</xsl:param>
-
+  <xsl:param name="generate.revhistory" select="0" />
 </xsl:stylesheet>
