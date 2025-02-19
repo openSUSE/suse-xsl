@@ -1362,9 +1362,9 @@ main {
     margin-left: 0;
     padding-right: 0; }
   main #_side-toc-page {
-    background-color: white;
+    background-color: #efefef;
     margin-right: 0;
-    padding-left: 0; }
+    padding-left: 1.5rem; }
   main.sticky article {
     position: relative;
     top: 135px;
