@@ -1,4 +1,15 @@
 -------------------------------------------------------------------
+Wed Feb 19 09:30:38 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.94.4
+  - #677: Enable SUSE font
+  - #675: Readd publishing date for SBP
+  - #637: Footer runs into the second line
+  - #632: Changes proposed by Korean translators
+  - #592: Make subscript/superscript work for Asian
+  - #589: Overlapping product text in cover page
+  - #200: Introduce global numbering of FAQs
+-------------------------------------------------------------------
 Wed Feb 12 15:53:01 UTC 2025 - tomschr@users.noreply.github.com
 
 Update 2.95.3
