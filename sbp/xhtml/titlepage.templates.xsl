@@ -142,7 +142,7 @@
   </xsl:template>
 
 
-  <xsl:template match="d:info/d:date" mode="article.titlepage.recto.auto.mode">
+  <xsl:template match="d:date" mode="article.titlepage.recto.auto.mode">
     <div class="date">
       <span class="imprint-label">
         <xsl:call-template name="gentext">
@@ -266,32 +266,41 @@
       </xsl:when>
     </xsl:choose>
 
+    <!-- SERIES -->
     <div class="series-category">
       <xsl:comment/><!-- Add empty comment in case we don't create series nor categories -->
       <xsl:call-template name="add.series.name"/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='category' or @name='type']"/>
     </div>
 
+    <!-- AUTHORS -->
     <!-- Moved authors and authorgroups here: -->
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:authorgroup"/>
     <!-- We match only the first author and group every author, editor, and othercredit -->
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:author[1]"/>
-
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:cover"/>
 
+    <!-- PLATFORM -->
     <div class="platforms">
       <xsl:comment/>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:meta[@name='platform']"/>
     </div>
 
-    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:date"/>
+    <!-- DATE -->
+    <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="(d:info/d:date | d:info/d:revhistory/d:revision[1]/d:date)[last()]"/>
 
+    <!-- ABSTRACT -->
     <!-- Legal notice removed from here, now positioned at the bottom of the page, see: division.xsl -->
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:abstract"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:abstract"/>
 
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:artheader/d:copyright"/>
     <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:copyright"/>
+
+    <!-- REVHISTORY LINK -->
+    <xsl:if test="number($generate.revhistory) = 1 and d:info/d:revhistory">
+       <xsl:apply-templates mode="article.titlepage.recto.auto.mode" select="d:info/d:revhistory"/>
+    </xsl:if>
   </xsl:template>
 
 </xsl:stylesheet>
