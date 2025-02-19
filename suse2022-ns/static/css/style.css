@@ -1284,13 +1284,13 @@ th {
       width: 100%; } }
 html,
 body {
-  font-size: 16px;
+  font-size: 18px;
   height: 100%;
   scroll-behavior: smooth; }
 
 body {
   background-color: white;
-  font-family: Poppins, Roboto, sans-serif;
+  font-family: SUSE, Suse, Roboto, sans-serif;
   line-height: 140%; }
   body main,
   body .growth-inhibitor {
@@ -1647,7 +1647,7 @@ header #_searchbox {
   header #_searchbox .search-text {
     background-color: transparent;
     color: #FFF;
-    font-family: Poppins, Roboto, sans-serif;
+    font-family: SUSE, Suse, Roboto, sans-serif;
     font-size: 0.7rem;
     outline: none;
     width: 150px;
@@ -1658,7 +1658,7 @@ header #_searchbox {
   header #_searchbox .search-submit {
     outline: none;
     min-width: 3rem;
-    font-family: Poppins, Roboto, sans-serif;
+    font-family: SUSE, Suse, Roboto, sans-serif;
     font-size: 0.7rem;
     border: 1px solid #fe7c3f;
     padding: .25rem;
@@ -1750,7 +1750,7 @@ body.disable-language-switcher #_utilitynav #_utilitynav-language {
     font-style: normal; }
 
 #_side-toc-page a {
-  color: #008657;
+  color: #025937;
   padding: 0.4rem 0;
   font-weight: 500; }
   #_side-toc-page a:focus, #_side-toc-page a:hover, #_side-toc-page a:active {
@@ -2127,7 +2127,7 @@ body.scroll-up main.sticky #_open-side-toc-overall {
   display: table-cell;
   height: 60px;
   vertical-align: middle;
-  font-family: Poppins, Roboto, sans-serif;
+  font-family: SUSE, Suse, Roboto, sans-serif;
   padding: 0 2rem;
   color: #0c322c;
   background-color: #30ba78;
@@ -2750,7 +2750,7 @@ article .procedure-contents p a {
   border-radius: 50%;
   color: white;
   display: inline-block;
-  font-family: Poppins, Roboto, sans-serif;
+  font-family: SUSE, Suse, Roboto, sans-serif;
   font-size: .7rem;
   font-weight: 600;
   line-height: 1rem;
@@ -3282,7 +3282,7 @@ article a:hover code {
   box-sizing: border-box;
   color: #0c322c;
   display: inline-block;
-  font-family: Poppins, Roboto, sans-serif;
+  font-family: SUSE, Suse, Roboto, sans-serif;
   font-size: 12px;
   height: 26px;
   line-height: 26px;
