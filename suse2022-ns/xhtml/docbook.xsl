@@ -852,8 +852,8 @@
     <xsl:param name="node" select="."/>
 
     <xsl:if test="$build.for.web = 1">
-      <!-- https://www.suse.com/assets/css/google-fonts-suse.css?avs=1733925891" -->
-      <link rel="stylesheet" type="text/css" rel="preload"
+      <!-- CORS issue: "https://www.suse.com/assets/css/google-fonts-suse.css?avs=1733925891" -->
+      <link type="text/css" rel="preload" as="style"
         href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css" />
     </xsl:if>
 <!--     <xsl:if test="$daps.header.js.library != ''">
