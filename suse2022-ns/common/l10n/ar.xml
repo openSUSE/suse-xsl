@@ -118,6 +118,9 @@ translators apparently want those. - sknorr, 2016-09-30 -->
    </l:context>
    <l:context name="styles">
       <l:template name="person-name" text="first-last"/>
+      <l:template name="emphasis-open" text=""/>
+      <l:template name="emphasis-close" text=""/>
+      <l:template name="emphasis-style" text="" />
 
       <l:template name="example-label" text="المثال&#160;%n:"/>
       <l:template name="example-title" text="%t"/>

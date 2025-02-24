@@ -353,6 +353,63 @@
 </xsl:template>
 
 
+<xsl:template match="d:emphasis">
+  <xsl:variable name="open">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'styles'"/>
+      <xsl:with-param name="name" select="concat( local-name(),'-open')"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="close">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'styles'"/>
+      <xsl:with-param name="name" select="concat( local-name(),'-close')"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="style">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'styles'"/>
+      <xsl:with-param name="name" select="concat( local-name(),'-style')"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:copy-of select="$open"/>
+  <xsl:choose>
+    <xsl:when test="$style='bold' or @role='bold' or @role='strong'">
+      <xsl:call-template name="inline.boldseq"/>
+    </xsl:when>
+    <xsl:when test="@role='underline'">
+      <fo:inline text-decoration="underline">
+        <xsl:call-template name="inline.charseq"/>
+      </fo:inline>
+    </xsl:when>
+    <xsl:when test="@role='strikethrough'">
+      <fo:inline text-decoration="line-through">
+        <xsl:call-template name="inline.charseq"/>
+      </fo:inline>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- How many regular emphasis ancestors does this element have -->
+      <xsl:variable name="depth" select="count(ancestor::d:emphasis
+        [not(contains(' bold strong underline strikethrough ', concat(' ', @role, ' ')))]
+        )"/>
+
+      <xsl:choose>
+        <xsl:when test="$depth mod 2 = 1">
+          <fo:inline font-style="normal">
+            <xsl:apply-templates/>
+          </fo:inline>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:call-template name="inline.italicseq"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:otherwise>
+  </xsl:choose>
+  <xsl:copy-of select="$close"/>
+</xsl:template>
+
+
 <!-- Mode: mono-ancestor -->
 <xsl:template match="d:command|d:userinput" mode="mono-ancestor">
  <xsl:param name="purpose" select="'none'"/>
@@ -404,6 +461,20 @@
 </xsl:template>
 
 <xsl:template match="d:emphasis" mode="mono-ancestor">
+  <xsl:variable name="open">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'styles'"/>
+      <xsl:with-param name="name" select="concat( local-name(),'-open')"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:variable name="close">
+    <xsl:call-template name="gentext.template">
+      <xsl:with-param name="context" select="'styles'"/>
+      <xsl:with-param name="name" select="concat( local-name(),'-close')"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+ <xsl:copy-of select="$open"/>
  <xsl:choose>
   <xsl:when test="@role='bold' or @role='strong'">
    <xsl:call-template name="inline.boldmonoseq">
@@ -416,6 +487,7 @@
   </xsl:call-template>
   </xsl:otherwise>
  </xsl:choose>
+ <xsl:copy-of select="$close"/>
 </xsl:template>
 
 <xsl:template match="d:keycap">
