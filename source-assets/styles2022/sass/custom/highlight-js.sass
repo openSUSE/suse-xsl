@@ -2,6 +2,11 @@
 
 // note: theming for basic mono elements and screens comes from the
 // custom/content-mono-verbatim.sass file.
+//
+// Code block styling from John Krug
+// Taken from https://github.com/SUSEdoc/dsc-style-bundle/blob/main/supplemental-files/rancher/css/site-extra.css#L936-L1052
+//
+// Adapted from the GitHub style by Vasily Polovnyov vast@whiteants.net
 
 @media screen
 
@@ -9,74 +14,79 @@
     display: block
     overflow-x: auto
     padding: 0.5em
-    color: $c_mint_60
+    font-weight: 400
+    // color: $c_mint_60
 
-  .hljs-comment,
-  .hljs-quote
-    color: $c_waterhole_30
+  .hljs-comment, .hljs-quote
+    color: #eafaf4
     font-style: italic
 
-  .hljs-keyword,
-  .hljs-selector-tag,
-  .hljs-subst
-    color: $c_mint_60
-    font-weight: bold
+  .hljs-keyword, .hljs-selector-tag, .hljs-subst
+    color: #90ebcd
 
-  .hljs-number,
   .hljs-literal,
-  .hljs-variable,
+  .hljs-number,
+  .hljs-tag,
   .hljs-template-variable,
-  .hljs-tag .hljs-attr
-    color: $c_funky_jungle_prelight
+  .hljs-variable
+    color: #eafaf4
+  
+  .hljs-tag .hljs-attr,
+  .hljs-tag .hljs-name
+    color: #90ebcd
+  
+  .hljs-attr
+    color: #90ebcd
 
-  .hljs-string,
-  .hljs-doctag
-    color: $c_persimmon_60
+  .hljs-doctag,
+  .hljs-string
+    color: #eafaf4
 
-  .hljs-title,
   .hljs-section,
-  .hljs-selector-id
-    color: $c_persimmon
-    font-weight: bold
+  .hljs-selector-id,
+  .hljs-title
+    color: #ffd3bd
 
   .hljs-subst
-    font-weight: normal
+    font-weight: 400
 
-  .hljs-type,
-  .hljs-class .hljs-title
-    color: $c_midnight_30
-    font-weight: bold
+  .hljs-class .hljs-title,
+  .hljs-type
+    color: #eafaf4
 
-  .hljs-tag,
+  .hljs-attribute,
   .hljs-name,
-  .hljs-attribute
-    color: $c_fog_200
-    font-weight: normal
+  .hljs-tag
+    color: #eafaf4
+  
+  .hljs-tag
+    color: #90ebcd
 
-  .hljs-regexp,
-  .hljs-link
-    color: $c_jungle
+  .hljs-link,
+  .hljs-regexp
+    color: #eafaf4
 
-  .hljs-symbol,
-  .hljs-bullet
-    color: $c_persimmon
+  .hljs-bullet,
+  .hljs-symbol
+    color: #ffd3bd
 
   .hljs-built_in,
   .hljs-builtin-name
-    color: $c_waterhole_30
+    color: #eafaf4
 
   .hljs-meta
-    color: $c_mint_30
-    font-weight: bold
+    color: #ccc
 
   .hljs-deletion
-    background: $c_persimmon_30
+    background: #fdd
+    color: #0c322c
 
   .hljs-addition
-    background: $c_mint_30
+    background: #dfd
+    color: #0c322c
 
   .hljs-emphasis
     font-style: italic
 
   .hljs-strong
-    font-weight: bold
+    font-weight: 600
