@@ -134,6 +134,7 @@
 
       <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Článek „%t”"/>
+      <l:template name="intra-appendix" text="Příloha „%t”"/>
       <l:template name="intra-book" text="Kniha „%t”"/>
       <l:template name="intra-chapter" text="Kapitola&#160;%n „%t”"/>
       <l:template name="intra-sect1" text="Oddíl&#160;%n „%t”"/>

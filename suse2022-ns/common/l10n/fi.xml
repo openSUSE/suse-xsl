@@ -91,6 +91,7 @@
 
       <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikkeli ”%t”"/>
+      <l:template name="intra-appendix" text="Liite ”%t”"/>
       <l:template name="intra-book" text="Kirja ”%t”"/>
       <l:template name="intra-chapter" text="Luku&#160;%n ”%t”"/>
       <l:template name="intra-sect1" text="Osa&#160;%n ”%t”"/>

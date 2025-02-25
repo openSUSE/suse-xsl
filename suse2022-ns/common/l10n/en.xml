@@ -106,6 +106,7 @@
       <l:template name="page.citation" text=" (page&#160;%p)"/>
 
       <l:template name="intra-separator" text=", "/>
+      <l:template name="intra-appendix" text="Appendix “%t”"/>
       <l:template name="intra-article" text="Article “%t”"/>
       <l:template name="intra-book" text="Book “%t”"/>
       <l:template name="intra-chapter" text="Chapter&#160;%n “%t”"/>

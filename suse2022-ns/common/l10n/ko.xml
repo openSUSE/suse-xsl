@@ -105,6 +105,7 @@
 
       <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="문서 “%t”"/>
+      <l:template name="intra-appendix" text="부록 “%t”"/>
       <l:template name="intra-book" text="책 “%t”"/>
       <l:template name="intra-chapter" text="%n장 “%t”"/>
       <l:template name="intra-sect1" text="%n절 “%t”"/>
