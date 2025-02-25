@@ -106,6 +106,7 @@
 
       <l:template name="intra-separator" text=", "/>
       <l:template name="intra-article" text="Artikel “%t”"/>
+      <l:template name="intra-appendix" text="Bijlage “%t”"/>
       <l:template name="intra-book" text="Boek “%t” "/>
       <l:template name="intra-chapter" text="Hoofdstuk&#160;%n “%t”"/>
       <l:template name="intra-sect1" text="Paragraaf&#160;%n “%t”"/>

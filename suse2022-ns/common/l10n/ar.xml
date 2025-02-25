@@ -154,6 +154,7 @@ translators apparently want those. - sknorr, 2016-09-30 -->
            stylesheets. Expect issues to crop up. -->
       <l:template name="intra-separator" text="، "/>
       <l:template name="intra-article" text='مقال "%t"'/>
+      <l:template name="intra-appendix" text='"%t" ﻢﻠﺤﻗ'/>
       <l:template name="intra-book" text='كتاب "%t"'/>
       <l:template name="intra-chapter" text='فصل&#160;%n "%t"'/>
       <l:template name="intra-sect1" text='القسم&#160;%n "%t"'/>

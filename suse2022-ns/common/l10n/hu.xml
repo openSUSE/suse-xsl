@@ -117,6 +117,8 @@
       <l:template name="intra-separator" text=", "/>
       <!--<l:template name="intra-book" text="könyv „%t”"/>-->
       <l:template name="intra-book" text="„%t”"/>
+      <l:template name="intra-article" text="Cikk „%t”"/>
+      <l:template name="intra-appendix" text="Függelék „%t”"/>
       <l:template name="intra-chapter" text="%n.&#160;fejezet (%t)"/>
       <l:template name="intra-sect1" text="%n.&#160;szakasz (%t)"/>
       <l:template name="intra-sect2" text="%n.&#160;szakasz (%t)"/>

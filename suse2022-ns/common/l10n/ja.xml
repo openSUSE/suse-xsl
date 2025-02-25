@@ -102,6 +102,7 @@
 
     <l:template name="intra-separator" text="、"/>
     <l:template name="intra-article" text="項目 「%t」"/>
+    <l:template name="intra-appendix" text="付録 「%t」"/>
     <l:template name="intra-book"    text="『%t』"/>
     <l:template name="intra-chapter" text="第%n章「%t」"/>
     <l:template name="intra-sect1"   text="%n項「%t」"/>

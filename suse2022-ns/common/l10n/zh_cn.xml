@@ -225,6 +225,7 @@
     -->
     <l:template name="intra-separator" text=", "/>
     <l:template name="intra-article" text="《%t》文章"/>
+    <l:template name="intra-appendix" text="附录&#160;%n 章 “%t”"/>
     <l:template name="intra-book" text="《%t》"/>
     <l:template name="intra-chapter" text="第&#160;%n 章 “%t”"/>
     <l:template name="intra-sect1" text="第&#160;%n 节 “%t”"/>
