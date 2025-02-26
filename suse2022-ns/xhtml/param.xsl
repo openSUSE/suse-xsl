@@ -203,6 +203,10 @@ task before
   </xsl:param>
 
   <xsl:param name="runinhead.default.title.end.punct">:</xsl:param>
+  <!-- Also include:
+    * Chinese colon U+FF1A (Fullwidth Colon)
+  -->
+  <xsl:param name="runinhead.title.end.punct">.!?:&#xff1a;</xsl:param>
 
   <!-- Should the content of programlisting|screen be syntactically highlighted? -->
   <xsl:param name="highlight.source" select="1" />
