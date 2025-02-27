@@ -179,13 +179,13 @@ article
     -webkit-appearance: none
     -moz-appearance: none
     appearance: none
-    background-color: $c_fog_200
-    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="#{$c_pine_url}" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="#{$c_pine_url}" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>')
+    background-color: $c_fog
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="black" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="black" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>')
     background-position: 5px 5px
     background-repeat: no-repeat
     border: none
     box-sizing: border-box
-    color: $c_pine
+    color: black
     display: inline-block
     font-family: $f_sans
     font-size: 12px
@@ -209,7 +209,9 @@ article
 
   > .clip-button:hover,
   > .clip-button:focus
-    background-color: $c_fog
+    background-color: $c_dark_jungle
+    color: $c_fog
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="#{$c_fog_300_url}" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="#{$c_fog_300_url}" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>')
 
   &.copy-success
     > div,
