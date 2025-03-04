@@ -15,17 +15,16 @@
     xmlns="http://www.w3.org/1999/xhtml"
     exclude-result-prefixes="exsl d">
 
-<xsl:template match="d:programlisting|d:screen|d:synopsis|d:computeroutput|d:userinput|d:literallayout">
+<xsl:template match="d:programlisting|d:screen">
   <xsl:variable name="supported" select="concat('|', $highlight.supported.languages, '|')"/>
   <xsl:variable name="language" select="translate(normalize-space(@language), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ|', 'abcdefghijklmnopqrstuvwxyz')"/>
-  
 
   <xsl:call-template name="check.screenlength"/>
 
   <div>
     <xsl:attribute name="class">
       <xsl:text>verbatim-wrap</xsl:text>
-      <xsl:if test="$language">
+      <xsl:if test="$language and $highlight.source != 0">
         <xsl:choose>
           <xsl:when test="contains($supported, concat('|', $language, '|'))">
             <xsl:text> highlight </xsl:text><xsl:value-of select="@language"/>
@@ -61,7 +60,14 @@
       <xsl:otherwise>plaintext</xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
-  <code class="{$language}"><xsl:apply-templates/></code>
+  <xsl:choose>
+    <xsl:when test="@language and $highlight.source != 0">
+      <code class="{$language}"><xsl:apply-templates/></code>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
