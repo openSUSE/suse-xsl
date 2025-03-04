@@ -2988,7 +2988,7 @@ article a:hover code {
 .verbatim-wrap > pre {
   background-color: unset;
   box-sizing: border-box;
-  color: #c7f1e3;
+  color: white;
   display: block;
   font: normal 13px "Roboto Mono", "RobotoMono", "DejaVu Sans Mono", "DejaVuSansMono", "Menlo", "Andale Mono", monospace;
   line-height: 125%;
