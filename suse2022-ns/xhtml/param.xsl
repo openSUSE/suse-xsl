@@ -209,7 +209,7 @@ task before
   <xsl:param name="runinhead.title.end.punct">.!?:&#xff1a;</xsl:param>
 
   <!-- Should the content of programlisting|screen be syntactically highlighted? -->
-  <xsl:param name="highlight.source" select="1" />
+  <xsl:param name="highlight.source" select="0" />
 
 
   <!-- From the DocBook XHTML stylesheet's "formal.xsl" -->
