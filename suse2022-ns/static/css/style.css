@@ -2624,9 +2624,9 @@ strong {
 
 .arch-arrow-start,
 .arch-arrow-end {
-  background-color: #30ba78;
+  background-color: #90ebcd;
   border-radius: 3px;
-  color: white;
+  color: #0c322c;
   display: inline-block;
   font-size: 14px;
   height: 20px;
