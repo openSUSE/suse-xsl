@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Wed Mar 05 12:53:26 UTC 2025 - tomschr@users.noreply.github.com
+
+Update to 2.95.6
+* #690: Raise contrast for platform markers
+* #689: Use onload="this.rel='stylesheet'"
+* #688: Check for empty textobject/phrase
+* #686: Disable syntax highlighting
+* #685/#687: Raise contrast for copy button (screen)
+
+-------------------------------------------------------------------
 Wed Feb 26 13:10:44 UTC 2025 - tomschr@users.noreply.github.com
 
 Update to 2.95.5
