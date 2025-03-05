@@ -928,7 +928,7 @@
   <xsl:variable name="alt.candidate">
     <xsl:choose>
       <!-- Try other first -->
-      <xsl:when test="../../d:textobject/d:phrase">
+      <xsl:when test="../../d:textobject/d:phrase[normalize-space() != '']">
           <xsl:apply-templates select="../../d:textobject/d:phrase/node()"/>
       </xsl:when>
       <xsl:when test="../../../d:caption[d:para]">
