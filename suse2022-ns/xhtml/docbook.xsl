@@ -853,7 +853,7 @@
 
     <xsl:if test="$build.for.web = 1">
       <!-- CORS issue: "https://www.suse.com/assets/css/google-fonts-suse.css?avs=1733925891" -->
-      <link type="text/css" rel="preload" as="style"
+      <link type="text/css" rel="preload" as="style" onload="this.rel='stylesheet'"
         href="https://documentation.suse.com/docserv/res/fonts/suse/suse.css" />
     </xsl:if>
 <!--     <xsl:if test="$daps.header.js.library != ''">
