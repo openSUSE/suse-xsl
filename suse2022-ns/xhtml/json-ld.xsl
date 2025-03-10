@@ -412,6 +412,9 @@
     <xsl:call-template name="json-ld-headline">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
+    <xsl:call-template name="json-ld-alternativeheadline">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="json-ld-description">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -511,6 +514,27 @@
     <xsl:variable name="headline" select="normalize-space($candidate-headline)"/>
 
     "headline": "<xsl:value-of select="translate($headline, '&quot;', '')"/>",
+  </xsl:template>
+
+
+  <xsl:template name="json-ld-alternativeheadline">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="candidate-headline">
+      <xsl:choose>
+        <xsl:when test="$node/d:info/d:subtitle">
+          <xsl:value-of select="$node/d:info/d:subtitle"/>
+        </xsl:when>
+        <xsl:when test="$node/d:subtitle">
+          <xsl:value-of select="$node/d:subtitle"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="subtitle" select="normalize-space($candidate-headline)"/>
+
+    <xsl:if test="$subtitle != ''">
+      <xsl:text>  "alternativeHeadline": </xsl:text>
+      <xsl:value-of select="concat('&quot;', $subtitle, '&quot;,')"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="json-ld-language">
