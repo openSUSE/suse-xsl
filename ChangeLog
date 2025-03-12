@@ -9,22 +9,22 @@ Wed Mar 12 12:38:12 UTC 2025 - tomschr@users.noreply.github.com
 -------------------------------------------------------------------
 Wed Mar 05 12:53:26 UTC 2025 - tomschr@users.noreply.github.com
 
-Update to 2.95.6
-* #690: Raise contrast for platform markers
-* #689: Use onload="this.rel='stylesheet'"
-* #688: Check for empty textobject/phrase
-* #686: Disable syntax highlighting
-* #685/#687: Raise contrast for copy button (screen)
+* Update to 2.95.6
+  - #690: Raise contrast for platform markers
+  - #689: Use onload="this.rel='stylesheet'"
+  - #688: Check for empty textobject/phrase
+  - #686: Disable syntax highlighting
+  - #685/#687: Raise contrast for copy button (screen)
 
 -------------------------------------------------------------------
 Wed Feb 26 13:10:44 UTC 2025 - tomschr@users.noreply.github.com
 
-Update to 2.95.5
-* #683: Add runinhead.title.end.punct to fix colon in formalpara/title
-* #682: Add missing intra-appendix translations
-* #670: Adjust syntax highlighting
-* #673: Change emphasis for Asian languages
-* #681/#680: double rel, use rel="preload"
+* Update to 2.95.5
+  - #683: Add runinhead.title.end.punct to fix colon in formalpara/title
+  - #682: Add missing intra-appendix translations
+  - #670: Adjust syntax highlighting
+  - #673: Change emphasis for Asian languages
+  - #681/#680: double rel, use rel="preload"
 
 -------------------------------------------------------------------
 Wed Feb 19 09:30:38 UTC 2025 - tomschr@users.noreply.github.com
@@ -40,192 +40,200 @@ Wed Feb 19 09:30:38 UTC 2025 - tomschr@users.noreply.github.com
 -------------------------------------------------------------------
 Wed Feb 12 15:53:01 UTC 2025 - tomschr@users.noreply.github.com
 
-Update 2.95.3
-* Fix #639: Disable hyphenation in article/book title
-* Fix #645: Remove whitespace in title
-* Fix #646: Remove space in compound terms 
+* Update 2.95.3
+  - #639: Disable hyphenation in article/book title
+  - #645: Remove whitespace in title
+  - #646: Remove space in compound terms 
 
 -------------------------------------------------------------------
 Wed Feb 12 07:09:16 UTC 2025 - tomschr@users.noreply.github.com
 
-Update to 2.95.2
-- Fix DOCTEAM-1667: Link missing a text alternative
-- Fix DOCTEAM-1663: Container element is empty
-- Update CSS files (Updated the colour of links in the right nav)
+* Update to 2.95.2
+  - Fix DOCTEAM-1667: Link missing a text alternative
+  - Fix DOCTEAM-1663: Container element is empty
+  - Update CSS files (Updated the colour of links in the right nav)
+
 -------------------------------------------------------------------
 Tue Feb 04 07:35:36 UTC 2025 - tomschr@users.noreply.github.com
 
-Update to 2.95.1
-- DOCTEAM-1663: element is not keyboard accessible (#658)
-- DOCTEAM-1663: Fix "Container element is empty" (#657)
-- meta.description.base: `<meta name="description">` (#656)
-- DOCTEAM#1664: Fix aria-label for revhistory link (#655)
-- Update color contrast in CSS
+* Update to 2.95.1
+  - #658: DOCTEAM-1663: element is not keyboard accessible
+  - #657: DOCTEAM-1663: Fix "Container element is empty"
+  - #656: meta.description.base: `<meta name="description">`
+  - #655: DOCTEAM#1664: Fix aria-label for revhistory link
+  - Update color contrast in CSS
+
 -------------------------------------------------------------------
 Wed Jan 29 14:00:00 UTC 2025 - tomschr@users.noreply.github.com
 
-Update 2.94.0
-- 2024 extended palette and infographics palette (#635)
-- Fix #649: Provide unique alt attribute for <img> (#651)
-- Fix DOCTEAM-1670: (A11Y) Empty headings (#652)
-- Several changes to color contrast (commits 8ee59b8, a44616c,
-  62e535f, d189380, 30d4158)
+* Update 2.94.0
+  - #635: 2024 extended palette and infographics palette
+  - #649/#651: Provide unique alt attribute for <img>
+  - #652: Fix DOCTEAM-1670: (A11Y) Empty headings
+  - Several changes to color contrast (commits 8ee59b8, a44616c,
+    62e535f, d189380, 30d4158)
 
 -------------------------------------------------------------------
 Wed Aug 21 11:43:27 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.94.8
-- Convert variablelist into a HTML tab structure (#611)
-- Use correct stylesheet version in Makefile
-- Fix typo in json-ld-seriesname (Products, plural)
+* Update 2.94.8
+  - #611: Convert variablelist into a HTML tab structure
+  - Use correct stylesheet version in Makefile
+  - Fix typo in json-ld-seriesname (Products, plural)
+
 -------------------------------------------------------------------
 Wed May 16 13:19:00 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.94.7
-- Corrected handling of dateModified & datePublished (#624, DOCTEAM-1367)
-  Also allow datePublished <= dateModified
-- Fix some JSON-LD problems (#626)
-  - No JSON-LD was generated for SBP & TRD
-  - Simplify XPath for extracting revhistory
-- Improve handling of SBP series (#624, #628)
-- Improve handling of TRD series/partners (#627)
+* Update 2.94.7
+  - #624: DOCTEAM-1367 Corrected handling of dateModified & datePublished
+    Also allow datePublished <= dateModified
+  - #626: Fix some JSON-LD problems:
+    - No JSON-LD was generated for SBP & TRD
+    - Simplify XPath for extracting revhistory
+  - #624/#628: Improve handling of SBP series
+  - #627: Improve handling of TRD series/partners
 
 -------------------------------------------------------------------
 Wed Mar 27 16:19:56 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.94.6
-- Fix JSON-LD generation for single & chunked HTML (#622)
-- Metadata: Make checking for content more stable (#622)
+* Update 2.94.6
+  - #622: Fix JSON-LD generation for single & chunked HTML
+  - #622: Metadata: Make checking for content more stable
   - Check for $content != '' instead of just $content
   - datePublished checks now ancestor nodes too to avoid distracting
     warning message
   - categories for DC Dublin Core
+
 -------------------------------------------------------------------
 Mon Mar 25 13:25:48 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.94.5
-  Fix #617 JSON-LD: and put task and webpage both into "about" property
+* Update 2.94.5
+  - #617: JSON-LD: and put task and webpage both into "about" property
+
 -------------------------------------------------------------------
 Mon Mar 25 10:40:29 UTC 2024 - tomschr@users.noreply.github.com
 
-Update 2.94.4
-  - Add additional entries which creates pointers to all enabled formats (#612)
+* Update 2.94.4
+  - #612: Add additional entries which creates pointers to all enabled formats
+
 -------------------------------------------------------------------
 Mon Mar 25 06:48:35 UTC 2024 - tomschr@users.noreply.github.com
 
-- Update 2.94.3
-  * Fix handling of external JSON-LD generation (#617)
+* Update 2.94.3
+  - #617: Fix handling of external JSON-LD generation
     Additionally, this commit changes:
+    - Add language into external JSON-LD filename
+    - Take into account rootid parameter for filename
+    - Enable JSON-LD structure for HTML by default
+  - #615: Correct social media length
 
-    * Add language into external JSON-LD filename
-    * Take into account rootid parameter for filename
-    * Enable JSON-LD structure for HTML by default
-  * Correct social media length (#615)
 -------------------------------------------------------------------
 Tue Mar 19 12:47:24 UTC 2024 - tomschr@users.noreply.github.com
 
-- Update 2.94.2
-  * Add abstract/para in article.titlepage.recto.auto.mode (SBPs) (#610)
-  * Correct include.ssi.{header,body,footer} params (#613)
-  * Introduce json-ld-base.dir parameter (#614)
-  * Correct social media length (#615)
+* Update 2.94.2
+  - #610: Add abstract/para in article.titlepage.recto.auto.mode (SBPs)
+  - #613: Correct include.ssi.{header,body,footer} params
+  - #614: Introduce json-ld-base.dir parameter
+  - #615: Correct social media length
+
 -------------------------------------------------------------------
 Fri Feb 16 16:26:56 UTC 2024 - tomschr@users.noreply.github.com
 
-- Update 2.94.1
-  Fix 3-column layout
+* Update 2.94.1
+  - Fix 3-column layout
+
 -------------------------------------------------------------------
 Fri Feb 16 13:38:12 UTC 2024 - tomschr@users.noreply.github.com
 
-- Update 2.94.0
-  Create external JSON-LD file
-  The structure is based on schema.org
+* Update 2.94.0
+  - Create external JSON-LD file
+    The structure is based on schema.org
+    Introduce new parameters:
 
-  Introduce new parameters:
-
-  * generate.json-ld.external (0=no, 1=yes)
-    Should a JSON-LD structure stored?
-  * json-ld-use-individual-authors (0=no, 1=yes)
-    Should the individual authors be used?
-  * json-ld.ext (default ".json)
-    The default extension of the JSON file
-  * json-ld-date-timezone (default "T00:00+02:00)
-    The default timezone for dates when no timezone is specified
-  * json-ld-fallback-author-name (default "SUSE Product & Solution
-    Documentation Team")
-    Default name of author when no <author> is specified
-  * json-ld-fallback-author-url (default: "https://documentation.suse.com")
-    Default URL for an author, when no <author> is specified
-  * json-ld-fallback-author-type (default "Corporation")
-    Default type of an author, when no <author> is specified
-  * json-ld-fallback-author-logo (default
-    "https://www.suse.com/assets/img/suse-white-logo-green.svg")
-    Default logo URL, when no <author> is specified
-  * json-ld-image-url (default $json-ld-fallback-author-logo)
-    Default image URL for a TechArticle
-  * stitchfile (str, default ='')
-    Absolute filename to the single stitch file that Docserv generates on startup
+   - generate.json-ld.external (0=no, 1=yes)
+     Should a JSON-LD structure stored?
+   - json-ld-use-individual-authors (0=no, 1=yes)
+     Should the individual authors be used?
+   - json-ld.ext (default ".json)
+     The default extension of the JSON file
+   - json-ld-date-timezone (default "T00:00+02:00)
+     The default timezone for dates when no timezone is specified
+   - json-ld-fallback-author-name (default "SUSE Product & Solution
+     Documentation Team")
+     Default name of author when no <author> is specified
+   - json-ld-fallback-author-url (default: "https://documentation.suse.com")
+     Default URL for an author, when no <author> is specified
+   - json-ld-fallback-author-type (default "Corporation")
+     Default type of an author, when no <author> is specified
+   - json-ld-fallback-author-logo (default
+     "https://www.suse.com/assets/img/suse-white-logo-green.svg")
+     Default logo URL, when no <author> is specified
+   - json-ld-image-url (default $json-ld-fallback-author-logo)
+     Default image URL for a TechArticle
+   - stitchfile (str, default ='')
+     Absolute filename to the single stitch file that Docserv generates on startup
 
 -------------------------------------------------------------------
 Tue Nov 28 10:11:35 UTC 2023 - tomschr@users.noreply.github.com
 
-- Update 2.93.0
-  * Fix #597: Correct zh-cn/zh-tw for optional steps
-  * Fix #596: Correct runinhead.default.title.end.punct
-  * Fix #491: 2 column layout fix for single HTML
-  * Remove "compact" output in admons (#593)
-  * Add U+201C quotation mark (#588)
+* Update 2.93.0
+  - #597: Correct zh-cn/zh-tw for optional steps
+  - #596: Correct runinhead.default.title.end.punct
+  - #491: 2 column layout fix for single HTML
+  - #593: Remove "compact" output in admons
+  - #588: Add U+201C quotation mark
 
 -------------------------------------------------------------------
 Wed Nov 01 14:25:26 UTC 2023 - tomschr@users.noreply.github.com
 
-Update 2.92.9
-- Set glossary.sort=1 to sort glossaries and glosslists (#582)
-- Swap Twitter icon for X (partly fixes DOCTEAM#1134) (#583)
+* Update 2.92.9
+  - #585: Set glossary.sort=1 to sort glossaries and glosslists
+  - #583: Swap Twitter icon for X (partly fixes DOCTEAM#1134)
 
 -------------------------------------------------------------------
 Thu Oct 19 05:17:31 UTC 2023 - tomschr@users.noreply.github.com
 
-- Update to 2.92.8
-  * Process <revhistory> in book & article title pages (PR #578)
-  * Add missing "#" for footnote reference (#579)
-  * Process substeps/@performance='optional' (#517)
+* Update to 2.92.8
+  - #578: Process <revhistory> in book & article title pages
+  - #579: Add missing "#" for footnote reference
+  - #517: Process substeps/@performance='optional'
 
 -------------------------------------------------------------------
 Mon Sep 18 10:42:46 UTC 2023 - tomschr@users.noreply.github.com
 
-- Update 2.92.7
-  * Suse global header integration (#574)
-  * Update style.css - right-nav changes (#573) 
--------------------------------------------------------------------
-Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
-
-- Update 2.92.6
-  - Fix SUSE header to avoid issues with new+old header code #571
+* Update 2.92.7
+  - #574: Suse global header integration
+  - #573: Update style.css - right-nav changes
 
 -------------------------------------------------------------------
 Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.5
-  - JSON-LD: Remove quotes in headlines & descriptions (#569)
+* Update 2.92.6
+  - #571: Fix SUSE header to avoid issues with new+old header code
+
+-------------------------------------------------------------------
+Thu Aug 15 16:04:00 UTC 2022 - tomschr@users.noreply.github.com
+
+* Update 2.92.5
+  - #599: JSON-LD: Remove quotes in headlines & descriptions
   - DOCTEAM-1018: Feedback from reported SLE 15 SP5 translations
     - zh-tw: Change table-label and figure-label
     - zh-cn: change startquote and endquote
-  - Qualtrics script correction (#568)
+  - #568: Qualtrics script correction
 
 -------------------------------------------------------------------
 Thu Aug 10 15:46:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.4
-  - Update Qualtrics JS script (#560)
-  - TRD/FO: Process `d:meta[@name="platform"]` in book (#566)
-  - XHTML: Trim text for twitter:* metadata (#565)
+* Update 2.92.4
+  - #560: Update Qualtrics JS script
+  - #566: TRD/FO: Process `d:meta[@name="platform"]` in book
+  - #565: XHTML: Trim text for twitter:* metadata
   - Change param socialmedia.description.length=125 (83b4557)
 
 -------------------------------------------------------------------
 Thu Aug 03 09:10:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.3
+* Update 2.92.3
   - Introduce json-ld-use-individual-authors parameter
     => 0=don't use individual authors, use fallback author
        1=use authors which are in <authorgroup> or <author>s
@@ -234,7 +242,7 @@ Thu Aug 03 09:10:00 UTC 2022 - tomschr@users.noreply.github.com
 -------------------------------------------------------------------
 Wed Aug 02 11:15:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.2
+* Update 2.92.2
   - Correct metadata
     - Rename "abstract" -> "description" and refactor code
     - Introduce "sameAs" property
@@ -255,8 +263,8 @@ Wed Aug 02 11:15:00 UTC 2022 - tomschr@users.noreply.github.com
 -------------------------------------------------------------------
 Mon Jul 31 13:36:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.1
-  - Implement Qualtrics ratings #551:
+* Update 2.92.1
+  - #551: Implement Qualtrics ratings:
     * generate.qualtrics.div (default 0)
       When this parameter is set to 1, the empty div
       container is created.
@@ -270,7 +278,7 @@ Mon Jul 31 13:36:00 UTC 2022 - tomschr@users.noreply.github.com
    AND $qualtrics.id != '' are set that the empty <div> is
    generated. This avoids a <div id=""> container.
 
-  - Improve Qualtrics implementation #556:
+  - #556: Improve Qualtrics implementation:
     * Add qualtrics-feedback.js parameter
     * Add the file "qualtrics-feedback.js".
     * ATM, if generate.qualtrics.div != 0 and qualtrics-feedback.js == '', we fallback to a hardcoded
@@ -288,12 +296,12 @@ Mon Jul 31 13:36:00 UTC 2022 - tomschr@users.noreply.github.com
 -------------------------------------------------------------------
 Wed Jul 26 16:57:00 UTC 2022 - tomschr@users.noreply.github.com
 
-- Update 2.92.0
-  - Add #552: Implement first attempt of JSON-LD (DOCTEAM-1061)
-  - Fix #524: Add footnote template in mode="xref-to"
-  - Fix #554: "Request for a label of unexpected element"
-  - Fix #550: Add missing xsl:attribute to create "lang" attribute
-  - Add #548: Add support for <phrase role="style:...">
+* Update 2.92.0
+  - #552: Implement first attempt of JSON-LD (DOCTEAM-1061)
+  - #524: Add footnote template in mode="xref-to"
+  - #554: "Request for a label of unexpected element"
+  - #550: Add missing xsl:attribute to create "lang" attribute
+  - #548: Add support for <phrase role="style:...">
 
 -------------------------------------------------------------------
 Fri May 12 08:56:00 UTC 2022 - tomschr@users.noreply.github.com
