@@ -24,7 +24,7 @@
       <xsl:call-template name="readable.arch.string">
         <xsl:with-param name="input" select="@arch"/>
       </xsl:call-template>
-   </xsl:variable>
+    </xsl:variable>
     <xsl:call-template name="paragraph">
     <xsl:with-param name="class">
       <xsl:if test="@role and $para.propagates.style != 0">
@@ -41,7 +41,7 @@
       <xsl:apply-templates/>
     </xsl:with-param>
     <xsl:with-param name="arch">
-      <xsl:if test="$para.use.arch">
+      <xsl:if test="$para.use.arch != 0">
         <xsl:value-of select="$arch"/>
       </xsl:if>
     </xsl:with-param>
