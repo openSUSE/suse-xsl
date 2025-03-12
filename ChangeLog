@@ -1,4 +1,12 @@
 -------------------------------------------------------------------
+Wed Mar 12 12:38:12 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.7
+  - #694: Explicity check para.use.arch != 0 in if clause
+  - #693: Improve contrast on side toc
+  - #692: Make white stroke for SVG image (copy button)
+
+-------------------------------------------------------------------
 Wed Mar 05 12:53:26 UTC 2025 - tomschr@users.noreply.github.com
 
 Update to 2.95.6
