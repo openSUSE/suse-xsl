@@ -2704,20 +2704,16 @@ p {
 
 article a {
   color: #008657;
-  text-decoration: none; }
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px; }
   article a:active, article a:focus, article a:hover, article a:visited:active, article a:visited:focus, article a:visited:hover {
     color: #008657;
-    text-decoration: underline; }
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #0c322c; }
   article a:visited {
     color: #008657; }
-
-article p a {
-  color: #008657;
-  text-decoration: underline; }
-
-article .procedure-contents p a {
-  color: #025937;
-  text-decoration: underline; }
 
 .free-id {
   height: 0.01px;
@@ -2727,7 +2723,7 @@ article .procedure-contents p a {
 
 .complex-example .example-contents,
 .procedure-contents {
-  background-color: #f4f4f4;
+  background-color: #fcfcfc;
   border-left: 0.2rem solid #dedfe0; }
 
 .complex-example .example-contents {

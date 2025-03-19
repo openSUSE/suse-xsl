@@ -127,7 +127,9 @@ p
 article
   a
     color: $c_dark_jungle
-    text-decoration: none
+    text-decoration: underline
+    text-decoration-thickness: 2px
+    text-underline-offset: 3px
 
     &:active,
     &:focus,
@@ -137,17 +139,17 @@ article
     &:visited:hover
       color: $c_dark_jungle
       text-decoration: underline
+      text-decoration-thickness: 3px
+      text-decoration-color: $c_pine
 
     &:visited
       color: $c_dark_jungle
 
-  p a 
-    color: $c_dark_jungle
-    text-decoration: underline
+  // p a
+  //   color: $c_dark_jungle
+  //   text-decoration: underline
+  //   text-decoration-thickness: 2px
 
-  .procedure-contents p a 
-    color: $c_lighter_pine
-    text-decoration: underline
 
 .free-id
   height: 0.01px
