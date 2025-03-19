@@ -61,7 +61,12 @@
     </xsl:choose>
   </xsl:variable>
   <xsl:choose>
-    <xsl:when test="@language and $highlight.source != 0">
+    <!-- Only apply syntax highlighting, when we
+      * have a language attribute, and
+      * don't have child elements, and
+      * and $highlight.source = 1
+       -->
+    <xsl:when test="@language and not(*) and $highlight.source != 0">
       <code class="{$language}"><xsl:apply-templates/></code>
     </xsl:when>
     <xsl:otherwise>
