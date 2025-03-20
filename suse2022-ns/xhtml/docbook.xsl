@@ -500,6 +500,7 @@
         </xsl:call-template>
       </div>
       <ul class="share">
+        <xsl:if test="$generate.socialmedia != 0">
         <li>
           <a id="_share-fb" href="#">
             <xsl:attribute name="title">
@@ -530,6 +531,7 @@
             <xsl:text> </xsl:text>
           </a>
         </li>
+        </xsl:if>
         <li>
           <a id="_share-mail" href="#">
             <xsl:attribute name="title">

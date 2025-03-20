@@ -373,6 +373,9 @@ task before
     </xsl:choose>
   </xsl:param>
 
+  <!-- Should social media (Facebook, LinkedIn, Twitter) be generated? -->
+  <xsl:param name="generate.socialmedia" select="0" />
+
   <!-- Allow generating "Give Feedback" section in sidebar. -->
   <xsl:param name="generate.give.feedback">0</xsl:param>
   <!-- Force generation of "Give Feedback" section, even if it may be empty in
