@@ -1540,7 +1540,7 @@ footer {
   margin-bottom: .3rem; }
 
 #_side-toc-overall ol > li:not(.active) > ol > * {
-  display: none; }
+  visibility: hidden; }
 
 #_side-toc-overall li > a.has-children {
   padding-right: 1.75rem;
