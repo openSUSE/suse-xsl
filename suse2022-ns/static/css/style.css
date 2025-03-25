@@ -3075,15 +3075,18 @@ div.blockquote {
 
 .js-on .question {
   cursor: pointer;
-  color: #26915e;
+  color: #0c322c;
   position: relative; }
   .js-on .question .keycap,
   .js-on .question .literal,
   .js-on .question .package,
   .js-on .question code {
-    color: #26915e; }
+    color: #0c322c; }
   .js-on .question:hover, .js-on .question:focus {
-    color: #165b50; }
+    color: #0c322c;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #0c322c; }
   .js-on .question::before {
     content: '';
     display: inline-block;
@@ -3092,7 +3095,7 @@ div.blockquote {
     width: 17px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="%2326915e" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
+    background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="%230c322c" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
     transform: rotate(-90deg);
     transition: transform 0.2s linear; }
 
@@ -3100,13 +3103,19 @@ div.blockquote {
   display: none; }
 
 .js-on .qandaentry.active .question {
-  color: #0c322c; }
+  color: #0c322c;
+  text-decoration: none; }
   .js-on .qandaentry.active .question .keycap,
   .js-on .qandaentry.active .question .literal,
   .js-on .qandaentry.active .question .package,
   .js-on .qandaentry.active .question .replaceable,
   .js-on .qandaentry.active .question code {
     color: #333; }
+  .js-on .qandaentry.active .question:hover, .js-on .qandaentry.active .question:focus {
+    color: #0c322c;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #0c322c; }
   .js-on .qandaentry.active .question::before {
     transform: rotate(0.01deg);
     background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome, https://fontawesome.com - CC BY 4.0 --><path fill="%230c322c" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>'); }
