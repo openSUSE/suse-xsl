@@ -107,7 +107,10 @@ To create a new release, do the following steps:
 
    a. Set your version number.
    a. Add a change log entry. You should always create one for
-      each new version.
+      each new version. Get an overview of all changes by using the
+      following URL (replace the `PREV_VERSION` placeholder accordingly):
+      https://github.com/openSUSE/suse-xsl/compare/PREV_VERSION...HEAD
    a. Accept to let the script create a commit and a tag.
 
-1. Switch to https://github.com/openSUSE/suse-xsl/releases[suse-xsl release] and make a release.
+1. Switch to https://github.com/openSUSE/suse-xsl/releases[suse-xsl release] and make a release
+   at https://build.opensuse.org/package/show/Documentation:Tools/suse-xsl-stylesheets[OBS repo for stylesheets].
