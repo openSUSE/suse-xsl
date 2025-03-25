@@ -10,10 +10,10 @@ $c_fog_background: lighten($c_fog, 5%)  // #fcfcfc
 $c_fog_200:       rgb(222, 223, 224)
 $c_fog_300:       rgb(192, 194, 196)
 
-$c_pine:          rgb( 12,  50,  44)  // 0c322c
+$c_pine:          rgb(12, 50, 44)     // 0c322c
 $c_lighter_pine:  rgb( 2, 89, 55)     // 025937
 
-$c_jungle:        rgb( 48, 186, 120)  // 30ba78
+$c_jungle:        rgb(48, 186, 120)   // 30ba78
 $c_dark_jungle:   rgb( 0, 134, 87)    // 008657
 $c_darker_jungle: rgb(2, 89, 55)      // 025937
 
@@ -38,6 +38,17 @@ $c_mint_60:       rgb(199, 241, 227)
 $c_mint_30:       rgb(227, 248, 241)
 
 
+@function str-replace($string, $search, $replace)
+  $index: str-index($string, $search)
+  @if $index
+    @return str-slice($string, 1, $index - 1) + $replace + str-slice($string, $index + str-length($search))
+  @return $string
+
+
+@function escape-color($color)
+  @return str-replace("#{$color}", "#", "%23")
+
+
 // special color variations
 $c_funky_persimmon_prelight: lighten($c_persimmon, 10%)
 $c_funky_jungle_prelight: lighten($c_jungle, 10%)
@@ -45,13 +56,14 @@ $c_funky_pine_prelight: lighten($c_pine, 10%)
 
 $c_funky_darker_jungle: darken($c_jungle, 10%)
 
-// URL-encoded colors for background-image SVGs
 
-// FIXME: is there some way to do this via a mixin or so? redefining all
-//   those colors in hex leads to dumb duplication
-$s_uhash:                     '%23'
-$c_white_url:                 #{$s_uhash}fff
-$c_pine_url:                  #{$s_uhash}0c322c
-$c_jungle_url:                #{$s_uhash}30ba78
-$c_fog_300_url:               #{$s_uhash}c0c2c4
-$c_funky_darker_jungle_url:   #{$s_uhash}26915e
+// URL-encoded colors for background-image SVGs
+// Inside CSS, the # character is treated as a fragment identifier
+// (anchor in a URL) rather than a valid color code. This breaks the
+// parsing of the inline SVG.
+// We need to replace the "#" sign with "%23" to make it work in SVG:
+$c_white_url:                 escape-color($c_white)        // #fff
+$c_pine_url:                  escape-color($c_pine)         // #0c322c
+$c_jungle_url:                escape-color($c_jungle)       // #30ba78
+$c_fog_300_url:               escape-color($c_fog_300)      // #c0c2c4
+$c_funky_darker_jungle_url:   escape-color($c_funky_darker_jungle)  // #26915e
