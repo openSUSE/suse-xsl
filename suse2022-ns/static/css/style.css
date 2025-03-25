@@ -3280,12 +3280,12 @@ article a:hover code {
   display: inline-block;
   font-family: SUSE, Suse, Roboto, sans-serif;
   font-size: 12px;
-  height: 26px;
-  line-height: 26px;
+  height: 27px;
+  line-height: 27px;
   margin: 5px;
   outline: none;
   overflow: hidden;
-  padding: 0 5px 0 25px;
+  padding: 0 6px 0 26px;
   text-align: left;
   text-transform: uppercase;
   position: absolute;
@@ -3298,9 +3298,10 @@ article a:hover code {
 
 .verbatim-wrap > .clip-button:hover,
 .verbatim-wrap > .clip-button:focus {
-  background-color: #008657;
-  color: #efefef;
-  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="white" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="white" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>'); }
+  font-weight: bold;
+  background-color: #e3f8f1;
+  color: #0c322c;
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 16 16" y="0px" x="0px" width="16" height="16"><path fill="%230c322c" d="m 14,1 v 12 h -2 v -1 h 1 V 2 H 5 V 2 H 4 V 1 Z" /><path fill="%230c322c" d="M 2,3 V 15 H 12 V 3 Z m 1,1 h 8 V 14 H 3 Z M 4,6 V 7 H 8 V 6 Z m 0,2 v 1 h 6 V 8 Z m 0,2 v 1 h 3 v -1 z" /></svg>'); }
 
 .verbatim-wrap.copy-success > div,
 .verbatim-wrap.copy-success > pre {
