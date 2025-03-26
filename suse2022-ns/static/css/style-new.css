@@ -2632,7 +2632,8 @@ div.figure {
   font-weight: normal;
   line-height: 120%;
   text-align: left;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  color: #025937; }
 
 .example-title,
 .itemizedlist-title,
