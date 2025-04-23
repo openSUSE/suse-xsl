@@ -539,4 +539,11 @@ task before
 
   <!-- Generates a separate file -->
   <xsl:param name="generate.revhistory.link" select="1"/>
+
+  <!--
+    Points to the root node when using $rootid. If $rootid is empty or points to
+    an invalid node, "/" (the root node) is used.
+  -->
+  <xsl:variable name="rootid.node" select="(key('id', $rootid) | /*)[last()]"/>
+
 </xsl:stylesheet>
