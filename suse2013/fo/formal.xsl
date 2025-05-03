@@ -129,7 +129,7 @@
   </xsl:template>
 
   <xsl:template
-    match="procedure|example|table|figure|glosslist|variablelist|itemizedlist|orderedlist"
+    match="procedure|example|table|task|figure|glosslist|variablelist|itemizedlist|orderedlist"
     mode="object.label.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>
@@ -137,7 +137,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="procedure|example|table|figure|glosslist|variablelist|itemizedlist|orderedlist"
+  <xsl:template match="procedure|example|table|task|figure|glosslist|variablelist|itemizedlist|orderedlist"
     mode="object.title.template">
     <xsl:call-template name="gentext.template">
       <xsl:with-param name="context" select="'styles'"/>
