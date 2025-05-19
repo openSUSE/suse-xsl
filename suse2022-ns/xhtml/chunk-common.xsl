@@ -371,4 +371,175 @@
   </xsl:template>
 
 
+  <xsl:template name="html.head">
+    <xsl:param name="prev" select="/d:foo"/>
+    <xsl:param name="next" select="/d:foo"/>
+    <xsl:variable name="this" select="."/>
+    <xsl:variable name="home" select="/*[1]"/>
+    <xsl:variable name="up" select="parent::*"/>
+
+    <xsl:variable name="next.book"    select="$next/ancestor-or-self::d:book" />
+    <xsl:variable name="next.article" select="$next/ancestor-or-self::d:article" />
+    <!--  -->
+    <xsl:variable name="prev.book"    select="$prev/ancestor-or-self::d:book"/>
+    <xsl:variable name="prev.article" select="$prev/ancestor-or-self::d:article" />
+
+    <!--  -->
+    <xsl:variable name="this.book"    select="$this/ancestor-or-self::d:book"/>
+    <xsl:variable name="this.article" select="$this/ancestor-or-self::d:article"/>
+
+    <!--  -->
+    <xsl:variable name="rootid.node" select="(key('id', $rootid) | /*)[last()]"/>
+    <xsl:variable name="candidate-prev">
+     <xsl:choose>
+      <xsl:when test="generate-id($rootid.node) = generate-id($prev.article)"
+        >1</xsl:when>
+      <xsl:when test="generate-id($rootid.node) = generate-id($prev.book)"
+        >1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate-next">
+     <xsl:choose>
+      <xsl:when test="generate-id($rootid.node) = generate-id($next.article)"
+        >1</xsl:when>
+      <xsl:when test="generate-id($rootid.node) = generate-id($next.book)"
+        >1</xsl:when>
+      <xsl:otherwise>0</xsl:otherwise>
+     </xsl:choose>
+    </xsl:variable>
+
+    <head>
+      <xsl:call-template name="system.head.content"/>
+      <xsl:call-template name="head.content"/>
+
+      <!-- home link not valid in HTML5 -->
+      <xsl:if test="$home and $div.element != 'section'">
+        <link rel="home">
+          <xsl:attribute name="href">
+            <xsl:call-template name="href.target">
+              <xsl:with-param name="object" select="$home"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$home" mode="object.title.markup.textonly"/>
+          </xsl:attribute>
+        </link>
+      </xsl:if>
+
+      <!-- up link not valid in HTML5 -->
+      <xsl:if test="$up and $div.element != 'section'">
+        <link rel="up">
+          <xsl:attribute name="href">
+            <xsl:call-template name="href.target">
+              <xsl:with-param name="object" select="$up"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$up" mode="object.title.markup.textonly"/>
+          </xsl:attribute>
+        </link>
+      </xsl:if>
+
+      <xsl:if test="$prev and $candidate-prev != 0">
+        <link rel="prev">
+          <xsl:attribute name="href">
+            <xsl:call-template name="href.target">
+              <xsl:with-param name="object" select="$prev"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$prev" mode="object.title.markup.textonly"/>
+          </xsl:attribute>
+        </link>
+      </xsl:if>
+
+      <xsl:if test="$next and $candidate-next != 0">
+        <link rel="next">
+          <xsl:attribute name="href">
+            <xsl:call-template name="href.target">
+              <xsl:with-param name="object" select="$next"/>
+            </xsl:call-template>
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:apply-templates select="$next" mode="object.title.markup.textonly"/>
+          </xsl:attribute>
+        </link>
+      </xsl:if>
+
+      <xsl:if test="$html.extra.head.links != 0">
+        <xsl:for-each select="//d:part
+                              |//d:reference
+                              |//d:preface
+                              |//d:chapter
+                              |//d:article
+                              |//d:refentry
+                              |//d:appendix[not(parent::d:article)]|d:appendix
+                              |//d:glossary[not(parent::d:article)]|d:glossary
+                              |//d:index[not(parent::d:article)]|d:index">
+          <link rel="{local-name(.)}">
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="context" select="$this"/>
+                <xsl:with-param name="object" select="."/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
+            </xsl:attribute>
+          </link>
+        </xsl:for-each>
+
+        <xsl:for-each select="d:section|d:sect1|d:refsection|d:refsect1">
+          <link>
+            <xsl:attribute name="rel">
+              <xsl:choose>
+                <xsl:when test="local-name($this) = 'section'                               or local-name($this) = 'refsection'">
+                  <xsl:value-of select="'subsection'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="'section'"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:attribute>
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="context" select="$this"/>
+                <xsl:with-param name="object" select="."/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
+            </xsl:attribute>
+          </link>
+        </xsl:for-each>
+
+        <xsl:for-each select="d:sect2|d:sect3|d:sect4|d:sect5|d:refsect2|d:refsect3">
+          <link rel="subsection">
+            <xsl:attribute name="href">
+              <xsl:call-template name="href.target">
+                <xsl:with-param name="context" select="$this"/>
+                <xsl:with-param name="object" select="."/>
+              </xsl:call-template>
+            </xsl:attribute>
+            <xsl:attribute name="title">
+              <xsl:apply-templates select="." mode="object.title.markup.textonly"/>
+            </xsl:attribute>
+          </link>
+        </xsl:for-each>
+      </xsl:if>
+
+      <!-- * if we have a legalnotice and user wants it output as a -->
+      <!-- * separate page and $html.head.legalnotice.link.types is -->
+      <!-- * non-empty, we generate a link or links for each value in -->
+      <!-- * $html.head.legalnotice.link.types -->
+      <xsl:if test="//d:legalnotice
+                    and not($generate.legalnotice.link = 0)
+                    and not($html.head.legalnotice.link.types = '')">
+        <xsl:call-template name="make.legalnotice.head.links"/>
+      </xsl:if>
+
+      <xsl:call-template name="user.head.content"/>
+    </head>
+  </xsl:template>
 </xsl:stylesheet>
