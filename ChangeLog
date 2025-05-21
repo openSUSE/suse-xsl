@@ -1,6 +1,8 @@
 -------------------------------------------------------------------
-Wed Apr 23 13:33:53 UTC 2025 - tomschr@users.noreply.github.com
+Wed May 21 12:38:28 UTC 2025 - tomschr@users.noreply.github.com
 
+* Update to 2.95.11
+  - Fix Adjust <link rel="next|prev"> (#708)
 
 -------------------------------------------------------------------
 Wed Apr 23 15:32:00 UTC 2025 - tomschr@users.noreply.github.com
