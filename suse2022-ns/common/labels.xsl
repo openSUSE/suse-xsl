@@ -18,6 +18,7 @@
 
   <xsl:template match="d:refsect1/d:title|d:refnamediv" mode="label.markup"/>
 
+
   <xsl:template match="d:question" mode="label.markup">
     <xsl:variable name="lparent" select="(ancestor::d:set
       |ancestor::d:book
@@ -119,6 +120,13 @@
         <xsl:number level="multiple" count="d:qandaentry" format="1"/>
       </xsl:when>
     </xsl:choose>
+  </xsl:template>
+
+
+  <!-- Issue #587: Remove double full stop for procedures in appendices -->
+  <xsl:template match="d:appendix" mode="intralabel.punctuation">
+    <xsl:param name="object" select="."/>
+    <xsl:text />
   </xsl:template>
 
 </xsl:stylesheet>
