@@ -452,6 +452,7 @@
           <xsl:call-template name="generate.breadcrumbs.back"/>
           <xsl:apply-templates select="." mode="breadcrumbs"/>
         </div>
+        <xsl:call-template name="doc-survey"/>
       </div>
     </xsl:if>
   </xsl:template>
@@ -605,6 +606,14 @@
   <xsl:template name="qualtrics.rating">
     <xsl:if test="number($generate.qualtrics.div) != 0 and  $qualtrics.id != ''">
       <div id="{$qualtrics.id}"></div>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="doc-survey">
+    <xsl:if test="$doc.survey != 0">
+      <div class="docsurvey-wrapper">
+        <a class="survey-link" href="{$doc.survey.url}">Documentation survey</a>
+      </div>
     </xsl:if>
   </xsl:template>
 
@@ -1027,9 +1036,9 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       <xsl:call-template name="give.feedback"/>
       <xsl:call-template name="share.and.print"/>
       <xsl:call-template name="qualtrics.rating"/>
-
       <xsl:text> </xsl:text>
     </aside>
+    <xsl:call-template name="doc-survey"/>
   </xsl:template>
 
 </xsl:stylesheet>
