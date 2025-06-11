@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Jun 11 10:08:59 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update 2.95.12
+  - Correct emphasis for Japanese (#713)
+  - Remove double full stop (#712)
+
+-------------------------------------------------------------------
 Wed May 21 12:38:28 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.11
