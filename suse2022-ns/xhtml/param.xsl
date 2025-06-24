@@ -539,4 +539,10 @@ task before
 
   <!-- Generates a separate file -->
   <xsl:param name="generate.revhistory.link" select="1"/>
+
+  <!-- Should a button be generated on the right navigation? 0=no, 1=yes -->
+  <xsl:param name="doc.survey" select="0"></xsl:param>
+
+  <!-- The survey URL to be used. Change it accordingly -->
+  <xsl:param name="doc.survey.url">https://suselinux.fra1.qualtrics.com/jfe/form/SV_bEiGZbUNzLD8Tcy</xsl:param>
 </xsl:stylesheet>
