@@ -1,7 +1,14 @@
 -------------------------------------------------------------------
+Wed Jun 25 05:53:25 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.13
+  - JSON-LD: Add alternativeHeadline from subtitle (#631)
+  - Add doc survey link on the right (#716)
+
+-------------------------------------------------------------------
 Wed Jun 11 10:08:59 UTC 2025 - tomschr@users.noreply.github.com
 
-* Update 2.95.12
+* Update to 2.95.12
   - Correct emphasis for Japanese (#713)
   - Remove double full stop (#712)
 
