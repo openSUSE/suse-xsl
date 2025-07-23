@@ -737,6 +737,7 @@
     <xsl:param name="node" select="."/>
     <xsl:variable name="candidate-modified">
       <xsl:choose>
+        <!-- Select the nearest first revision date from the ancestor axis -->
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
           <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
         </xsl:when>
@@ -744,6 +745,7 @@
     </xsl:variable>
     <xsl:variable name="candidate-published">
       <xsl:choose>
+        <!-- Select the nearest last revision date from the ancestor axis -->
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
           <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
         </xsl:when>
@@ -800,10 +802,9 @@
     </xsl:variable>
 
 <!--    <xsl:message>DEBUG:
-      current element=<xsl:value-of select="local-name($node)"/>
-      count = <xsl:value-of select="count($node/d:info/d:revhistory)"/>
-      compare=<xsl:value-of select="$compare"/>
-      candidate-modified="<xsl:value-of select="$candidate-modified"/>" / <xsl:value-of select="normalize-space($node/d:info/d:revhistory/d:revision[1]/d:date)"/>
+    current element=<xsl:value-of select="local-name($node)"/>
+    count = <xsl:value-of select="count($node//ancestor-or-self::*/d:info/d:revhistory)"/>
+    candidate-modified="<xsl:value-of select="$candidate-modified"/>"
     candidate-published="<xsl:value-of select="$candidate-published"/>"
     modified=<xsl:value-of select="$date-modified"/> => <xsl:value-of select="$is-modified-valid"/>
     published=<xsl:value-of select="$date-published"/> => <xsl:value-of select="$is-published-valid"/>
@@ -812,7 +813,8 @@
         <xsl:with-param name="date" select="$date-modified"></xsl:with-param>
       </xsl:call-template>
     </xsl:message>
--->
+ -->
+
     <!-- TODO: compare the two dates
       Condition: datePublished <= dateModified
     -->
@@ -852,7 +854,7 @@
         </xsl:call-template>
       </xsl:otherwise>
     </xsl:choose>
-    
+
     <xsl:choose>
       <xsl:when test="$date-modified != ''">
     "dateModified": "<xsl:value-of select="$date-modified"/>",
