@@ -265,28 +265,8 @@
   <xsl:variable name="metanodes" select="$node/ancestor-or-self::*/d:info/d:meta"/>
 
   <title><xsl:value-of select="$title"/></title>
-
-  <xsl:choose>
-    <xsl:when test="$include.suse.header">
-      <xsl:variable name="candidate.suse.header.head">
-        <xsl:call-template name="string.subst">
-          <xsl:with-param name="string" select="$include.ssi.header" />
-          <xsl:with-param name="target" select="$placeholder.ssi.language" />
-          <xsl:with-param name="replacement">
-            <xsl:call-template name="get-lang-for-ssi" />
-          </xsl:with-param>
-        </xsl:call-template>
-      </xsl:variable>
-      <xsl:text>&#10;</xsl:text>
-      <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.head" />"</xsl:comment>
-      <xsl:text>&#10;</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <meta charset="UTF-8"/>
-      <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
 
   <xsl:if test="$html.base != ''">
     <xsl:call-template name="head.content.base">
@@ -752,6 +732,33 @@
     </xsl:choose>
   </xsl:template>
 
+  <!-- SUSE Header -->
+  <xsl:template name="suse-header-header">
+    <xsl:comment>SUSE Header head</xsl:comment>
+    <script type="module">
+     import { defineCustomElements, setAssetPath } from 'https://static.scc.suse.com/shared-header/0.1.0/shared-header.bundle.js';
+     defineCustomElements();
+     setAssetPath("https://static.scc.suse.com/shared-header/0.1.0/assets");
+   </script>
+  </xsl:template>
+
+  <xsl:template name="suse-header-body">
+    <xsl:variable name="languages">{
+      "en": { "label": "English", "url": "https://documentation.suse.com/en-us/" },
+      "de": { "label": "Deutsch", "url": "https://documentation.suse.com/de-de/" },
+      "fr": { "label": "Français", "url": "https://documentation.suse.com/fr-fr/" },
+      "es": { "label": "Español", "url": "https://documentation.suse.com/es-es/" },
+      "zh_CN": { "label": "中文", "url": "https://documentation.suse.com/zh-cn/" },
+      "pt_BR": { "label": "Português Brasileiro", "url": "https://documentation.suse.com/pt-br/" }
+     }</xsl:variable>
+    <shared-header page-title="Pattern Library" logo-src="https://www.suse.com/assets/img/suse-white-logo-green.svg"
+         user="the name" log-in-url="#" log-out-url="#" log-out-method="DELETE" create-account-url="#"
+         forgot-password-url="#" account-settings-url="#" change-password-url="#" user-management-url="#"
+         language="en" languages='{translate($languages, "&#10;", "")}'>
+      <xsl:text>&#x20;</xsl:text>
+    </shared-header>
+  </xsl:template>
+
   <!-- ############################################################## -->
   <!-- This template is called when creating single HTML -->
   <xsl:template match="/">
@@ -771,15 +778,6 @@
     <xsl:variable name="doc" select="self::*"/>
     <xsl:variable name="lang-attr">
       <xsl:call-template name="get-lang-for-ssi"/>
-    </xsl:variable>
-    <xsl:variable name="candidate.suse.header.body">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.body"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement">
-          <xsl:call-template name="get-lang-for-ssi"/>
-        </xsl:with-param>
-      </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="candidate.lang">
       <xsl:choose>
@@ -812,16 +810,18 @@
         <xsl:call-template name="user.head.content">
           <xsl:with-param name="node" select="$doc"/>
         </xsl:call-template>
+
+        <xsl:if test="boolean($include.suse.header)">
+          <xsl:call-template name="suse-header-header" />
+        </xsl:if>
       </head>
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
 
         <xsl:choose>
-          <xsl:when test="number($include.suse.header) = 1">
-            <xsl:text>&#10;</xsl:text>
-            <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body"/>"</xsl:comment>
-            <xsl:text>&#10;</xsl:text>
+          <xsl:when test="boolean($include.suse.header)">
+            <xsl:call-template name="suse-header-body" />
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="bypass" />
@@ -832,7 +832,6 @@
         <xsl:call-template name="breadcrumbs.navigation"/>
 
         <main id="_content">
-
           <!-- fake a sidebar, for single HTML, we only ever use the sidebar on
           the right -->
           <nav class="side-toc placebo" id="_side-toc-overall"><xsl:text> </xsl:text></nav>
@@ -950,13 +949,6 @@ if (window.location.protocol.toLowerCase() != 'file:') {
     <xsl:variable name="lang-attr">
       <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
-    <xsl:variable name="candidate.suse.header.body">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.body"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement" select="$lang-attr"/>
-      </xsl:call-template>
-    </xsl:variable>
 
     <header id="_mainnav">
       <div class="growth-inhibitor">
@@ -966,37 +958,18 @@ if (window.location.protocol.toLowerCase() != 'file:') {
   </xsl:template>
 
   <xsl:template name="user.footer.content">
-    <xsl:variable name="candidate.suse.header.footer">
-      <xsl:call-template name="string.subst">
-        <xsl:with-param name="string" select="$include.ssi.footer"/>
-        <xsl:with-param name="target" select="$placeholder.ssi.language"/>
-        <xsl:with-param name="replacement">
-          <xsl:call-template name="get-lang-for-ssi"/>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:variable>
-
-    <xsl:choose>
-      <xsl:when test="$include.suse.header">
-        <xsl:text>&#10;</xsl:text>
-        <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.footer"/>"</xsl:comment>
-        <xsl:text>&#10;</xsl:text>
-      </xsl:when>
-      <xsl:otherwise>
-        <footer id="_footer">
-          <div class="growth-inhibitor">
-            <div class="copy">
-              <span class="copy__rights">© SUSE
-                <xsl:if test="function-available('date:year')">
-                  <xsl:text> </xsl:text>
-                  <xsl:value-of select="date:year()"/>
-                </xsl:if>
-              </span>
-            </div>
-          </div>
-        </footer>
-      </xsl:otherwise>
-    </xsl:choose>
+    <footer id="_footer">
+      <div class="growth-inhibitor">
+        <div class="copy">
+          <span class="copy__rights">© SUSE <xsl:if
+              test="function-available('date:year')">
+              <xsl:text> </xsl:text>
+              <xsl:value-of select="date:year()" />
+            </xsl:if>
+          </span>
+        </div>
+      </div>
+    </footer>
   </xsl:template>
 
 

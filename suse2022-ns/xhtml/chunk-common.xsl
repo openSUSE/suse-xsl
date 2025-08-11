@@ -257,18 +257,11 @@
       <body>
         <xsl:call-template name="body.attributes" />
         <xsl:call-template name="outerelement.class.attribute" />
+
         <xsl:choose>
-          <xsl:when test="number($include.suse.header) = 1">
-            <xsl:variable name="candidate.suse.header.body">
-              <xsl:call-template name="string.subst">
-                <xsl:with-param name="string" select="$include.ssi.body" />
-                <xsl:with-param name="target" select="$placeholder.ssi.language" />
-                <xsl:with-param name="replacement" select="$lang-attr" />
-              </xsl:call-template>
-            </xsl:variable>
-            <xsl:text>&#10;</xsl:text>
-            <xsl:comment>#include virtual="<xsl:value-of select="$candidate.suse.header.body" />"</xsl:comment>
-            <xsl:text>&#10;</xsl:text>
+          <xsl:when test="boolean($include.suse.header)">
+            <xsl:comment> SUSE Header </xsl:comment>
+            <xsl:call-template name="suse-header-body" />
           </xsl:when>
           <xsl:otherwise>
             <xsl:call-template name="bypass">
@@ -412,6 +405,9 @@
     <head>
       <xsl:call-template name="system.head.content"/>
       <xsl:call-template name="head.content"/>
+      <xsl:if test="boolean($include.suse.header)">
+        <xsl:call-template name="suse-header-header" />
+      </xsl:if>
 
       <!-- home link not valid in HTML5 -->
       <xsl:if test="$home and $div.element != 'section'">
