@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Aug 12 09:30:47 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.15
+  - Parametrize URLs of SUSE header (#724)
+
+-------------------------------------------------------------------
 Tue Aug 12 06:33:21 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.14
