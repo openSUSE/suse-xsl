@@ -736,9 +736,9 @@
   <xsl:template name="suse-header-header">
     <xsl:comment>SUSE Header head</xsl:comment>
     <script type="module">
-     import { defineCustomElements, setAssetPath } from 'https://static.scc.suse.com/shared-header/0.1.0/shared-header.bundle.js';
+     import { defineCustomElements, setAssetPath } from <xsl:value-of select='concat("&apos;", $suse.header.import.url, "&apos;")'/>;
      defineCustomElements();
-     setAssetPath("https://static.scc.suse.com/shared-header/0.1.0/assets");
+     setAssetPath(<xsl:value-of select="concat('&quot;', $suse.header.assets.url, '&quot;')"/>);
    </script>
   </xsl:template>
 

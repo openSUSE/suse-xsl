@@ -462,6 +462,12 @@ task before
   -->
   <xsl:param name="include.suse.header" select="0"/>
 
+  <!-- The import URL of the SUSE header -->
+  <xsl:param name="suse.header.import.url">https://d12w0ryu9hjsx8.cloudfront.net/shared-header/1.2/shared-header.esm.js</xsl:param>
+
+  <!-- The assets URL of the SUSE header -->
+  <xsl:param name="suse.header.assets.url">https://d12w0ryu9hjsx8.cloudfront.net/shared-header/1.2/assets</xsl:param>
+
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="1"/>
   <!-- Should we generate an external JSON-LD structure 0=no, 1=yes
