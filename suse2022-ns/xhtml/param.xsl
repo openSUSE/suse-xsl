@@ -462,14 +462,6 @@ task before
   -->
   <xsl:param name="include.suse.header" select="0"/>
 
-  <!-- When include.suse.header is set to 1, these are the paths for the SSIs
-       to be added inside <head>, <body>, and <footer>.
-       Use "{{#language#}}" to insert the language
-  -->
-  <xsl:param name="include.ssi.header">/docserv/fragments/suseparts/head_{{#language#}}.html</xsl:param>
-  <xsl:param name="include.ssi.body">/docserv/fragments/suseparts/header_{{#language#}}.html</xsl:param>
-  <xsl:param name="include.ssi.footer">/docserv/fragments/suseparts/footer_{{#language#}}.html</xsl:param>
-
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="1"/>
   <!-- Should we generate an external JSON-LD structure 0=no, 1=yes
