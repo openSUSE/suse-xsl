@@ -759,6 +759,24 @@
      defineCustomElements();
      setAssetPath(<xsl:value-of select="concat('&quot;', $suse.header.assets.url, '&quot;')"/>);
    </script>
+   <xsl:text>&#10;</xsl:text>
+   <xsl:if test="not(boolean($show.language-switcher))">
+    <script>var interval = setInterval(function () {
+   var sharedHeader = document.querySelector("shared-header");
+   var header = document.querySelector("header");
+
+   if (header) {
+     clearInterval(interval);
+   } else if (sharedHeader) {
+   var dropdown = document.querySelector('shared-header').shadowRoot.querySelector('suse-pl-dropdown');
+   if (dropdown) {
+     dropdown.style.display = "none";
+   }
+
+   clearInterval(interval);
+   }
+}, 100);</script>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template name="suse-header-body">
@@ -770,10 +788,7 @@
       "zh_CN": { "label": "中文", "url": "https://documentation.suse.com/zh-cn/" },
       "pt_BR": { "label": "Português Brasileiro", "url": "https://documentation.suse.com/pt-br/" }
      }</xsl:variable>
-    <shared-header page-title="Pattern Library" logo-src="https://www.suse.com/assets/img/suse-white-logo-green.svg"
-         user="the name" log-in-url="#" log-out-url="#" log-out-method="DELETE" create-account-url="#"
-         forgot-password-url="#" account-settings-url="#" change-password-url="#" user-management-url="#"
-         language="en" languages='{translate($languages, "&#10;", "")}'>
+    <shared-header language="en" languages='{translate($languages, "&#10;", "")}'>
       <xsl:text>&#x20;</xsl:text>
     </shared-header>
   </xsl:template>
