@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Thu Aug 14 12:47:49 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.16
+  - Hide language switcher, disable stickies() in JS file #728
+  - Add Dublin Core metadata for dates #726
+
+-------------------------------------------------------------------
 Tue Aug 12 09:30:47 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.15
