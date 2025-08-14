@@ -285,10 +285,29 @@
   </xsl:if>
 
   <xsl:if test="$include.html.dublincore">
+    <xsl:variable name="candidate-modified">
+      <xsl:choose>
+        <!-- Select the nearest first revision date from the ancestor axis -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate-published">
+      <xsl:choose>
+        <!-- Select the nearest last revision date from the ancestor axis -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+
     <!-- For Dublin Core metadata -->
-    <link rel="schema.DC"      href="http://purl.org/dc/elements/1.1/" />
-    <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
+    <link rel="schema.dc"      href="http://purl.org/dc/elements/1.1/" />
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/" />
     <xsl:text>&#10;</xsl:text>
+    <meta name="dcterms.modified" content="{$candidate-modified}" />
+    <meta name="dcterms.created" content="{$candidate-published}" />
   </xsl:if>
 
   <xsl:if test="$html.script != ''">

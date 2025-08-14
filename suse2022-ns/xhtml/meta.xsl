@@ -24,7 +24,7 @@
     <xsl:choose>
       <xsl:when test="$content != ''">
         <xsl:if test="$include.html.dublincore">
-          <meta name="DC.creator" content="{$content}" />
+          <meta name="dc.creator" content="{$content}" />
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
@@ -47,7 +47,7 @@
     <xsl:choose>
       <xsl:when test="$content != ''">
         <xsl:if test="$include.html.dublincore">
-          <meta name="DCTERMS.modified" content="{$content}" />
+          <meta name="dcterms.modified" content="{$content}" />
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
