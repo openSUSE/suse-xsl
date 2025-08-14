@@ -461,6 +461,10 @@ task before
   <!-- Include header/footer via Server-Side Includes (SSI)? 0=no, 1=yes
   -->
   <xsl:param name="include.suse.header" select="0"/>
+  
+  <!-- Show language switcher in SUSE Header. Is only effective when include.suse.header=1
+    0=no, 1=yes -->
+  <xsl:param name="show.language-switcher" select="0" />
 
   <!-- The import URL of the SUSE header -->
   <xsl:param name="suse.header.import.url">https://d12w0ryu9hjsx8.cloudfront.net/shared-header/1.2/shared-header.esm.js</xsl:param>
