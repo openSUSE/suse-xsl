@@ -230,24 +230,16 @@
     <xsl:variable name="lang-attr">
       <xsl:call-template name="get-lang-for-ssi" />
     </xsl:variable>
+    <xsl:variable name="node" select="(key('id', $rootid) | /*[1])[last()]"/>
+    <xsl:variable name="candidate.lang">
+      <xsl:call-template name="l10n.language">
+        <xsl:with-param name="target" select="$node"/>
+      </xsl:call-template>
+    </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
 
-    <html>
-      <xsl:attribute name="lang">
-        <xsl:choose>
-          <xsl:when test="$rootid">
-            <xsl:call-template name="l10n.language">
-              <xsl:with-param name="target" select="key('id', $rootid)"/>
-            </xsl:call-template>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:call-template name="l10n.language">
-              <xsl:with-param name="target" select="/*[1]"/>
-            </xsl:call-template>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:attribute>
+    <html lang="{$candidate.lang}" xml:lang="{$candidate.lang}">
       <xsl:call-template name="root.attributes" />
       <xsl:call-template name="html.head">
         <xsl:with-param name="prev" select="$prev" />
@@ -309,6 +301,9 @@
 
         <xsl:call-template name="user.footer.content" />
 
+        <xsl:if test="boolean($show.language-switcher)">
+          <xsl:call-template name="language-switcher" />
+        </xsl:if>
       </body>
     </html>
   </xsl:template>

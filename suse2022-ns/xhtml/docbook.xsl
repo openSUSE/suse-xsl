@@ -753,6 +753,13 @@
 
   <!-- SUSE Header -->
   <xsl:template name="suse-header-header">
+    <xsl:call-template name="log.message">
+      <xsl:with-param name="level">hint</xsl:with-param>
+      <xsl:with-param name="context-desc">SUSE-Header</xsl:with-param>
+      <xsl:with-param name="message">
+        <xsl:text>Enabled SUSE Header head</xsl:text>
+      </xsl:with-param>
+    </xsl:call-template>
     <xsl:comment>SUSE Header head</xsl:comment>
     <script type="module">
      import { defineCustomElements, setAssetPath } from <xsl:value-of select='concat("&apos;", $suse.header.import.url, "&apos;")'/>;
@@ -760,23 +767,6 @@
      setAssetPath(<xsl:value-of select="concat('&quot;', $suse.header.assets.url, '&quot;')"/>);
    </script>
    <xsl:text>&#10;</xsl:text>
-   <xsl:if test="not(boolean($show.language-switcher))">
-    <script>var interval = setInterval(function () {
-   var sharedHeader = document.querySelector("shared-header");
-   var header = document.querySelector("header");
-
-   if (header) {
-     clearInterval(interval);
-   } else if (sharedHeader) {
-   var dropdown = document.querySelector('shared-header').shadowRoot.querySelector('suse-pl-dropdown');
-   if (dropdown) {
-     dropdown.style.display = "none";
-   }
-
-   clearInterval(interval);
-   }
-}, 100);</script>
-    </xsl:if>
   </xsl:template>
 
   <xsl:template name="suse-header-body">
@@ -788,9 +778,29 @@
       "zh_CN": { "label": "中文", "url": "https://documentation.suse.com/zh-cn/" },
       "pt_BR": { "label": "Português Brasileiro", "url": "https://documentation.suse.com/pt-br/" }
      }</xsl:variable>
+    <xsl:call-template name="log.message">
+      <xsl:with-param name="level">hint</xsl:with-param>
+      <xsl:with-param name="context-desc">SUSE-Header</xsl:with-param>
+      <xsl:with-param name="message">
+        <xsl:text>Enabled SUSE Header body (shared-header)</xsl:text>
+      </xsl:with-param>
+    </xsl:call-template>
     <shared-header language="en" languages='{translate($languages, "&#10;", "")}'>
       <xsl:text>&#x20;</xsl:text>
     </shared-header>
+  </xsl:template>
+
+
+  <xsl:template name="language-switcher">
+    <xsl:call-template name="log.message">
+        <xsl:with-param name="level">hint</xsl:with-param>
+        <xsl:with-param name="context-desc">LangSwitcher</xsl:with-param>
+        <xsl:with-param name="message">
+          <xsl:text>Enabled language switcher JS code</xsl:text>
+        </xsl:with-param>
+    </xsl:call-template>
+    <xsl:text>&#10;</xsl:text>
+    <script type="text/javascript" src="{$daps.header.js.languageswitcher}" />
   </xsl:template>
 
   <!-- ############################################################## -->
@@ -801,6 +811,7 @@
       <xsl:call-template name="handle-json-ld"/>
     </xsl:if>
   </xsl:template>
+
 
   <xsl:template match="*" mode="process.root">
     <xsl:param name="prev"/>
@@ -813,23 +824,13 @@
     <xsl:variable name="lang-attr">
       <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
+    <xsl:variable name="node" select="(key('id', $rootid) | /*[1])[last()]"/>
     <xsl:variable name="candidate.lang">
-      <xsl:choose>
-        <xsl:when test="$rootid">
-          <xsl:call-template name="l10n.language">
-            <xsl:with-param name="target" select="key('id', $rootid)"/>
-          </xsl:call-template>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:call-template name="l10n.language">
-            <xsl:with-param name="target" select="/*[1]"/>
-          </xsl:call-template>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="l10n.language">
+        <xsl:with-param name="target" select="$node"/>
+      </xsl:call-template>
     </xsl:variable>
-
     <xsl:call-template name="user.preroot"/>
-    <xsl:call-template name="root.messages"/>
 
     <html lang="{$candidate.lang}" xml:lang="{$candidate.lang}">
       <xsl:call-template name="root.attributes"/>
@@ -887,6 +888,9 @@
 
         <xsl:call-template name="user.footer.content"/>
 
+        <xsl:if test="boolean($show.language-switcher)">
+          <xsl:call-template name="language-switcher" />
+        </xsl:if>
       </body>
     </html>
   </xsl:template>

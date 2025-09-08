@@ -76,4 +76,23 @@ self-closing <script/> tags! -->
   </xsl:if>
 </xsl:template>
 
+
+  <xsl:template name="create-lang-attribute">
+    <xsl:param name="lang" />
+
+    <!-- match the attribute name to the output type -->
+    <xsl:choose>
+      <xsl:when test="$lang and $stylesheet.result.type = 'html'">
+        <xsl:attribute name="lang">
+          <xsl:value-of select="$lang"/>
+        </xsl:attribute>
+      </xsl:when>
+      <xsl:when test="$lang and $stylesheet.result.type = 'xhtml'">
+        <xsl:attribute name="xml:lang">
+          <xsl:value-of select="$lang"/>
+        </xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>
