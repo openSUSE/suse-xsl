@@ -652,7 +652,7 @@
                     and $draft.watermark.image != ''"
         >draft </xsl:if><xsl:if test="$node = 'body'"><xsl:if test="$is.chunk = 0"
         >single </xsl:if><xsl:if test="$generate.footer = 0">nofooter </xsl:if
-        ><xsl:if test="$disable.language.switcher = 1">disable-language-switcher </xsl:if
+        ><xsl:if test="not($show.language-switcher)">disable-language-switcher </xsl:if
         ><xsl:choose><xsl:when test="$is.chunk = 1">wide </xsl:when
         ><xsl:otherwise>normal </xsl:otherwise></xsl:choose
         >offline js-off</xsl:if></xsl:attribute>
@@ -850,6 +850,11 @@
           <xsl:call-template name="suse-header-header" />
         </xsl:if>
       </head>
+
+      <xsl:if test="$show.language-switcher">
+        <script type="text/javascript" src="{$daps.hide.js.languageswitcher}" />
+      </xsl:if>
+
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
