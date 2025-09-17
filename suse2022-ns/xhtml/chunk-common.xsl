@@ -533,6 +533,7 @@
       <xsl:call-template name="user.head.content"/>
       <xsl:if test="$show.language-switcher = 0">
         <script type="text/javascript" src="{$daps.hide.js.languageswitcher}">
+          <xsl:text> </xsl:text>
         </script>
       </xsl:if>
     </head>
