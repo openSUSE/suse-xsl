@@ -849,11 +849,11 @@
         <xsl:if test="boolean($include.suse.header)">
           <xsl:call-template name="suse-header-header" />
         </xsl:if>
+        <xsl:if test="$show.language-switcher">
+          <script type="text/javascript" src="{$daps.hide.js.languageswitcher}">
+          </script>
+        </xsl:if>
       </head>
-
-      <xsl:if test="$show.language-switcher">
-        <script type="text/javascript" src="{$daps.hide.js.languageswitcher}" />
-      </xsl:if>
 
       <body>
         <xsl:call-template name="body.attributes"/>
