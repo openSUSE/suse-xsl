@@ -301,7 +301,7 @@
 
         <xsl:call-template name="user.footer.content" />
 
-        <xsl:if test="boolean($show.language-switcher)">
+        <xsl:if test="$show.language-switcher = 1">
           <xsl:call-template name="language-switcher" />
         </xsl:if>
       </body>
@@ -531,7 +531,7 @@
       </xsl:if>
 
       <xsl:call-template name="user.head.content"/>
-      <xsl:if test="$show.language-switcher">
+      <xsl:if test="$show.language-switcher = 0">
         <script type="text/javascript" src="{$daps.hide.js.languageswitcher}">
         </script>
       </xsl:if>

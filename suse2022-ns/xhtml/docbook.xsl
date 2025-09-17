@@ -800,7 +800,10 @@
         </xsl:with-param>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <script type="text/javascript" src="{$daps.header.js.languageswitcher}" />
+    <!-- <script> needs to be with start- and end-tag -->
+    <script type="text/javascript" src="{$daps.header.js.languageswitcher}">
+      <xsl:text> </xsl:text>
+    </script>
   </xsl:template>
 
   <!-- ############################################################## -->
@@ -849,8 +852,10 @@
         <xsl:if test="boolean($include.suse.header)">
           <xsl:call-template name="suse-header-header" />
         </xsl:if>
-        <xsl:if test="$show.language-switcher">
+
+        <xsl:if test="$show.language-switcher = 0">
           <script type="text/javascript" src="{$daps.hide.js.languageswitcher}">
+            <xsl:text> </xsl:text>
           </script>
         </xsl:if>
       </head>
@@ -893,7 +898,7 @@
 
         <xsl:call-template name="user.footer.content"/>
 
-        <xsl:if test="boolean($show.language-switcher)">
+        <xsl:if test="$show.language-switcher = 1">
           <xsl:call-template name="language-switcher" />
         </xsl:if>
       </body>
