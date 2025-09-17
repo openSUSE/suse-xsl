@@ -269,7 +269,7 @@ task before
   <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
   <!-- The language switcher code in the header -->
   <xsl:param name="daps.header.js.languageswitcher">static/js/language-switcher.js</xsl:param>
-  <xsl:param name="daps.hide.js.languageswitcher">js/hide-lang-switcher.js</xsl:param>
+  <xsl:param name="daps.hide.js.languageswitcher">static/js/hide-lang-switcher.js</xsl:param>
 
   <!-- This list is intentionally quite strict (no aliases) to keep our documents
   consistent. -->
