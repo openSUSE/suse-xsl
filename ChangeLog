@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Wed Sep 17 13:31:17 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update 2.95.19
+  Hide language switcher (#734)
+  - Add `static/js/hide-lang-switcher.js`
+  - Add a `<script></script>` tag before `</head>`
+  - Ensure that there is a space between `<script>` and `</script>`
+  - Remove XSLT parameter `$disable.language.switcher` and replace it
+    with `$show.language-switcher`
+  - Comment `stickies()` call JS function
+
+-------------------------------------------------------------------
 Wed Sep 10 06:14:58 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.18
