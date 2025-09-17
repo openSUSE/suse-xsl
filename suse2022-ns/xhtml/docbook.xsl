@@ -652,7 +652,7 @@
                     and $draft.watermark.image != ''"
         >draft </xsl:if><xsl:if test="$node = 'body'"><xsl:if test="$is.chunk = 0"
         >single </xsl:if><xsl:if test="$generate.footer = 0">nofooter </xsl:if
-        ><xsl:if test="$disable.language.switcher = 1">disable-language-switcher </xsl:if
+        ><xsl:if test="not($show.language-switcher)">disable-language-switcher </xsl:if
         ><xsl:choose><xsl:when test="$is.chunk = 1">wide </xsl:when
         ><xsl:otherwise>normal </xsl:otherwise></xsl:choose
         >offline js-off</xsl:if></xsl:attribute>
@@ -800,7 +800,10 @@
         </xsl:with-param>
     </xsl:call-template>
     <xsl:text>&#10;</xsl:text>
-    <script type="text/javascript" src="{$daps.header.js.languageswitcher}" />
+    <!-- <script> needs to be with start- and end-tag -->
+    <script type="text/javascript" src="{$daps.header.js.languageswitcher}">
+      <xsl:text> </xsl:text>
+    </script>
   </xsl:template>
 
   <!-- ############################################################## -->
@@ -849,7 +852,14 @@
         <xsl:if test="boolean($include.suse.header)">
           <xsl:call-template name="suse-header-header" />
         </xsl:if>
+
+        <xsl:if test="$show.language-switcher = 0">
+          <script type="text/javascript" src="{$daps.hide.js.languageswitcher}">
+            <xsl:text> </xsl:text>
+          </script>
+        </xsl:if>
       </head>
+
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
@@ -888,7 +898,7 @@
 
         <xsl:call-template name="user.footer.content"/>
 
-        <xsl:if test="boolean($show.language-switcher)">
+        <xsl:if test="$show.language-switcher = 1">
           <xsl:call-template name="language-switcher" />
         </xsl:if>
       </body>
