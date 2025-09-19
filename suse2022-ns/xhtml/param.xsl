@@ -465,7 +465,7 @@ task before
   
   <!-- Show language switcher in SUSE Header. Is only effective when include.suse.header=1
     0=no, 1=yes -->
-  <xsl:param name="show.language-switcher" select="0" />
+  <xsl:param name="show.language-switcher" select="1" />
 
   <!-- The import URL of the SUSE header -->
   <xsl:param name="suse.header.import.url">https://d12w0ryu9hjsx8.cloudfront.net/shared-header/1.5/shared-header.esm.js</xsl:param>
