@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Sep 19 14:15:11 UTC 2025 - tomschr@users.noreply.github.com
+
+Update to 2.95.20
+ - Raise Cloudfront URLs (shared-header) to 1.5 (#738)
+ - Change head title structure (#736)
+-------------------------------------------------------------------
 Wed Sep 17 13:31:17 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update 2.95.19
