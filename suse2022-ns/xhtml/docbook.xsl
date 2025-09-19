@@ -164,17 +164,16 @@
   </xsl:param>
 
   <xsl:param name="title">
-    <xsl:if test="$product-short != ''">
-      <xsl:value-of select="concat($product-short,
-                                   $head.content.title.separator)"/>
+    <xsl:if test="$substructure.title.short != ''">
+      <xsl:value-of select="concat($substructure.title.short, $head.content.title.separator)"/>
     </xsl:if>
 
     <xsl:value-of select="$structure.title"/>
 
-    <xsl:if test="$substructure.title.short != ''">
-      <xsl:value-of select="concat($head.content.title.separator,
-                                   $substructure.title.short)"/>
+    <xsl:if test="$product-short != ''">
+      <xsl:value-of select="concat($head.content.title.separator, $product-short)"/>
     </xsl:if>
+
   </xsl:param>
 
   <xsl:variable name="meta.description.base">
@@ -652,7 +651,7 @@
                     and $draft.watermark.image != ''"
         >draft </xsl:if><xsl:if test="$node = 'body'"><xsl:if test="$is.chunk = 0"
         >single </xsl:if><xsl:if test="$generate.footer = 0">nofooter </xsl:if
-        ><xsl:if test="not($show.language-switcher)">disable-language-switcher </xsl:if
+        ><xsl:if test="$show.language-switcher = 0">disable-language-switcher </xsl:if
         ><xsl:choose><xsl:when test="$is.chunk = 1">wide </xsl:when
         ><xsl:otherwise>normal </xsl:otherwise></xsl:choose
         >offline js-off</xsl:if></xsl:attribute>
