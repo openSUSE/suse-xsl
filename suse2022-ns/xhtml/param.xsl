@@ -429,7 +429,7 @@ task before
   <!-- <meta> description tags used for search results pages, roughly as
   recommended by the Contentking -->
   <xsl:param name="search.title.length" select="55"/>
-  <xsl:param name="search.description.length" select="150"/>
+  <xsl:param name="search.description.length" select="155"/>
   <!-- Open Graph (og:)/Twitter Cards tags used for social-media preview -->
   <xsl:param name="socialmedia.title.length" select="55"/>
   <xsl:param name="socialmedia.description.length" select="60"/>
