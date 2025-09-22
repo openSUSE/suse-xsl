@@ -826,10 +826,11 @@
     <xsl:variable name="lang-attr">
       <xsl:call-template name="get-lang-for-ssi"/>
     </xsl:variable>
+    <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
     <xsl:variable name="node" select="(key('id', $rootid) | /*[1])[last()]"/>
     <xsl:variable name="candidate.lang">
       <xsl:call-template name="l10n.language">
-        <xsl:with-param name="target" select="$node"/>
+        <xsl:with-param name="target" select="$lang-scope"/>
       </xsl:call-template>
     </xsl:variable>
     <xsl:call-template name="user.preroot"/>

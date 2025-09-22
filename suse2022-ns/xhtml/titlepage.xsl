@@ -140,19 +140,11 @@
             <xsl:with-param name="base.name" select="$file" />
           </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="lang-scope" select="ancestor-or-self::*[@xml:lang][1]"/>
         <xsl:variable name="candidate.lang">
-          <xsl:choose>
-            <xsl:when test="$rootid">
-              <xsl:call-template name="l10n.language">
-                <xsl:with-param name="target" select="key('id', $rootid)"/>
-              </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:call-template name="l10n.language">
-                <xsl:with-param name="target" select="/*[1]"/>
-              </xsl:call-template>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:call-template name="l10n.language">
+            <xsl:with-param name="target" select="$lang-scope"/>
+          </xsl:call-template>
         </xsl:variable>
         <xsl:variable name="str.title" select="string($title)"/>
 

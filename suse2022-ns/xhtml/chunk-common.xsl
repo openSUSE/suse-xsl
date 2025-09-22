@@ -233,11 +233,17 @@
     <xsl:variable name="node" select="(key('id', $rootid) | /*[1])[last()]"/>
     <xsl:variable name="candidate.lang">
       <xsl:call-template name="l10n.language">
-        <xsl:with-param name="target" select="$node"/>
+        <xsl:with-param name="target" select="$lang-scope"/>
       </xsl:call-template>
     </xsl:variable>
 
     <xsl:call-template name="user.preroot"/>
+
+    <xsl:message>chunk-element-content-html
+    element=<xsl:value-of select="local-name(.)"/>
+    xml:lang=<xsl:value-of select="$lang-scope/@xml:lang"/>
+    global=<xsl:value-of select="$node/@xml:lang"/>
+    </xsl:message>
 
     <html lang="{$candidate.lang}" xml:lang="{$candidate.lang}">
       <xsl:call-template name="root.attributes" />
