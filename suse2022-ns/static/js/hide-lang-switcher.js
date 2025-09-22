@@ -4,13 +4,12 @@ var interval = setInterval(function () {
    var header = document.querySelector("header");
 
    if (header) {
-     clearInterval(interval);
+      clearInterval(interval);
    } else if (sharedHeader) {
-   var dropdown = document.querySelector('shared-header').shadowRoot.querySelector('suse-pl-dropdown');
-   if (dropdown) {
-     dropdown.style.display = "none";
-   }
-
-   clearInterval(interval);
+      var dropdown = document.querySelector('shared-header').shadowRoot.querySelector('suse-pl-dropdown');
+      if (dropdown) {
+        dropdown.style.display = "none";
+        clearInterval(interval);
+      }
    }
 }, 100);
