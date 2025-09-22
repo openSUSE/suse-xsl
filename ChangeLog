@@ -1,4 +1,16 @@
 -------------------------------------------------------------------
+Mon Sep 22 10:00:58 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.21
+  - Fix language for DC-*all deliverables (#744)
+  - Enable language switcher (#741)
+  - Fix #737: Adjust meta description length (#740)
+  - Update hide-lang-switcher.js
+-------------------------------------------------------------------
+Mon Sep 22 10:00:07 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update tp 2.95.21
+-------------------------------------------------------------------
 Fri Sep 19 14:15:11 UTC 2025 - tomschr@users.noreply.github.com
 
 Update to 2.95.20
