@@ -239,11 +239,11 @@
 
     <xsl:call-template name="user.preroot"/>
 
-    <xsl:message>chunk-element-content-html
+    <!--<xsl:message>chunk-element-content-html
     element=<xsl:value-of select="local-name(.)"/>
     xml:lang=<xsl:value-of select="$lang-scope/@xml:lang"/>
     global=<xsl:value-of select="$node/@xml:lang"/>
-    </xsl:message>
+    </xsl:message>-->
 
     <html lang="{$candidate.lang}" xml:lang="{$candidate.lang}">
       <xsl:call-template name="root.attributes" />
