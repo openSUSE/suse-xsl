@@ -42,6 +42,9 @@
       <xsl:when test="ancestor-or-self::*/*/d:productname[@role='abbrev'] and $prefer-abbreviation = 1">
         <xsl:apply-templates select="(ancestor-or-self::*/*/d:productname[@role='abbrev'])[last()]"/>
       </xsl:when>
+      <xsl:when test="$meta.nodes[@name='productname']/d:productname">
+        <xsl:apply-templates select="$meta.nodes[@name='productname']/d:productname[1]" />
+      </xsl:when>
       <xsl:when test="*/d:productname[not(@role='abbrev')]">
         <xsl:apply-templates select="(*/d:productname[not(@role='abbrev')])[last()]"/>
       </xsl:when>
@@ -62,6 +65,10 @@
     <!-- FIXME: This choose mechanism is a little wonky around inheritance and
     abbreviation preference. May need a bit more think. -->
     <xsl:choose>
+      <xsl:when test="$meta.nodes[@name='productname']/d:productname/@version">
+        <!-- We should probably split the version attrib value? -->
+        <xsl:apply-templates select="$meta.nodes[@name='productname']/d:productname[1]/@version" />
+      </xsl:when>
       <xsl:when test="$meta.nodes[@name='bugtracker']/d:phrase[@name='productnumber'] and $prefer-abbreviation = 0">
         <xsl:apply-templates select="$meta.nodes[@name='bugtracker']/d:phrase[@name='productnumber'][last()]" mode="meta"/>
       </xsl:when>
