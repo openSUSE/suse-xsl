@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Oct 23 12:56:23 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.22
+  - Fix #751: Change datetime: titlepage.format zh-cn (#752)
+  - Correct product.name & product.number (#753)
+-------------------------------------------------------------------
 Mon Sep 22 10:00:58 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.21
