@@ -95,6 +95,13 @@ $you_are_here_weight: 600
     @include m_tablet
       display: none !important
 
+  // side-toc indentation
+  &.side-toc
+    .toc
+      ul
+        li
+          ul
+            margin-left: 2em
 
 // Book ToC
 #_side-toc-overall
