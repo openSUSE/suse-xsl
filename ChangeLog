@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Oct 29 13:13:04 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.23
+  Fix indentation on nested side toc entries (#757)
+-------------------------------------------------------------------
 Thu Oct 23 12:56:23 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.22
