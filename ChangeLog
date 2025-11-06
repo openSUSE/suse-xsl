@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Nov 06 13:42:55 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.24
+ - Header 1.7 update and shared-header height CSS (#759)
+ - Add fallback date for JSON-LD and Dublin Core (#760) 
+-------------------------------------------------------------------
 Wed Oct 29 13:13:04 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.23
