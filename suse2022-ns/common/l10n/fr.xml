@@ -11,6 +11,10 @@
    <l:gentext key="Contributor"     text="Contributeur"/>
    <l:gentext key="Contributors"    text="Contributeurs"/>
 
+   <l:gentext key="NOTE" text="REMARQUE"/>
+   <l:gentext key="Note" text="Remarque"/>
+   <l:gentext key="note" text="remarque"/>
+
    <l:gentext key="admonseparator"  text="&#160;: "/>
    <l:gentext key="Date" text="Date"/>
    <l:gentext key="date" text="Date"/>
