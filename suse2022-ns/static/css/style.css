@@ -1708,6 +1708,11 @@ body.scroll-up header.sticky #_menu {
 body.disable-language-switcher #_utilitynav #_utilitynav-language {
   display: none; }
 
+shared-header {
+  height: 122px; }
+  @media (max-width: 768px) {
+    shared-header {
+      height: 76px; } }
 .crumbs a,
 .crumbs span {
   font-size: 0.8rem; }
