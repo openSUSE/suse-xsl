@@ -290,6 +290,13 @@
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
           <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
         </xsl:when>
+        <!-- Fallback -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:pubdate)[last()])"/>
+        </xsl:when>
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:date)[last()])"/>
+        </xsl:when>
       </xsl:choose>
     </xsl:variable>
     <xsl:variable name="candidate-published">
@@ -297,6 +304,13 @@
         <!-- Select the nearest last revision date from the ancestor axis -->
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
           <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
+        </xsl:when>
+        <!-- Fallback: We don't distinguish between modified and published if we can't find a revhistory  -->
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:date)[last()])"/>
+        </xsl:when>
+        <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:pubdate)[last()])"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
