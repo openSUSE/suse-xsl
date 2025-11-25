@@ -386,7 +386,7 @@ task before
   <xsl:param name="force.generate.give.feedback" select="0"/>
 
   <!-- Separator between breadcrumbs links: -->
-  <xsl:param name="daps.breadcrumbs.sep">&#xa0;/&#xa0;</xsl:param>
+  <xsl:param name="daps.breadcrumbs.sep">|</xsl:param>
 
   <!--  Create permalinks?-->
   <xsl:param name="generate.permalinks">

@@ -483,9 +483,9 @@
 
     <xsl:if test="$overview-page != ''">
       <a class="crumb overview-link" href="{$overview-page}" title="{$title}">
-        <xsl:value-of select="$title"/>
+<!--        <xsl:value-of select="string($title)"/>-->
       </a>
-      <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>
+<!--      <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>-->
     </xsl:if>
   </xsl:template>
 
