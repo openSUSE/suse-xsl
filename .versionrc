@@ -1,4 +1,4 @@
-version: 2.95.24
+version: 2.95.25
 files: Makefile README.adoc
 changesfile: ChangeLog
 format: (0|[1-9][0-9]*)\.(0|[1-9][0-9]{0,1})\.(0|[1-9][0-9]{0,1})

@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Nov 26 15:25:47 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update to 2.95.25
+  - Add home icon in breadcrumb bar (#765)
+  - Fix #763: Add French translation for note (#764)
+
+-------------------------------------------------------------------
 Thu Nov 06 13:42:55 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.24
