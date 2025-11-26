@@ -13,5 +13,36 @@
       color: $c_pine
       text-decoration: underline
 
+    // Home icon
+    &.overview-link
+            // Apply Flexbox for perfect vertical alignment
+            display: inline-flex
+            align-items: center
+
+            // Base style for the icon (the ::before pseudo-element)
+            &::before
+                content: ""
+                display: block
+
+                width: 1.25rem
+                height: 1.25rem
+
+                // Default icon: home.svg
+                background: url('../images/home-o.svg') 50%
+
+                margin-right: .225rem
+
+                position: relative
+                top: 6px 
+
+            // Hover state: Changes the background image of the ::before element
+            &:hover::before
+                // Hover icon: home.svg (blacked icon)
+                background-image: url('../images/home.svg')
+
   span
     color: $c_lighter_pine
+
+    &.sep
+      margin-left: 0.75rem
+      margin-right: 0.75rem

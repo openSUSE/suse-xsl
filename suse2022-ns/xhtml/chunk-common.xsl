@@ -81,7 +81,7 @@
                 </xsl:apply-templates>
               </xsl:when>
               <xsl:otherwise>
-                <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>
+                <span class="sep"><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>
                 <xsl:apply-templates select="." mode="breadcrumbs"/>
               </xsl:otherwise>
             </xsl:choose>
