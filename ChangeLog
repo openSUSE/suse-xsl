@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Dec 11 06:42:34 UTC 2025 - tomschr@users.noreply.github.com
+
+- Update 2.95.26
+  Update to SUSE header v1.9 + enable-search=false (#767)
+-------------------------------------------------------------------
 Wed Nov 26 15:25:47 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update to 2.95.25
