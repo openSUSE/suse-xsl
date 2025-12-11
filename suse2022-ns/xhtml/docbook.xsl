@@ -798,7 +798,7 @@
         <xsl:text>Enabled SUSE Header body (shared-header)</xsl:text>
       </xsl:with-param>
     </xsl:call-template>
-    <shared-header language="en" languages='{translate($languages, "&#10;", "")}'>
+    <shared-header language="en" languages='{translate($languages, "&#10;", "")}' enable-search="false">
       <xsl:text>&#x20;</xsl:text>
     </shared-header>
   </xsl:template>
