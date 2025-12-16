@@ -400,6 +400,9 @@
     "@context": "http://schema.org",
     "@type": ["TechArticle"],
     "image": "<xsl:value-of select="$json-ld-image-url"/>",
+    <xsl:call-template name="json-ld-name">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
     <xsl:call-template name="json-ld-type">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -516,6 +519,50 @@
     "headline": "<xsl:value-of select="translate($headline, '&quot;', '')"/>",
   </xsl:template>
 
+  <xsl:template name="json-ld-name">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="candidate-headline">
+      <xsl:choose>
+        <xsl:when test="$node/d:info/d:meta[@name='title']">
+          <xsl:value-of select="$node/d:info/d:meta[@name='title']"/>
+        </xsl:when>
+        <xsl:when test="$node/d:info/d:title">
+          <xsl:value-of select="$node/d:info/d:title"/>
+        </xsl:when>
+        <xsl:when test="$node/d:title">
+          <xsl:value-of select="$node/d:title"/>
+        </xsl:when>
+        <!--<xsl:when test="$node/ancestor-or-self::*/d:info/d:meta[@name='title']">
+          <xsl:value-of select="($node/ancestor-or-self::*/d:info/d:meta[@name='title'])[last()]"/>
+        </xsl:when>-->
+        <!--<xsl:when test="$node/ancestor-or-self::*/d:info/d:title">
+          <xsl:value-of select="($node/ancestor-or-self::*/d:info/d:title)[last()]"/>
+        </xsl:when>-->
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="info-productnumber" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productnumber)[last()])"/>
+    <xsl:variable name="info-productname" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productname)[last()])"/>
+    <xsl:variable name="meta-productname" select="($node/ancestor-or-self::*/d:info/d:meta[@name='productname'])[last()]/d:productname"/>
+    <xsl:variable name="node-productname-with-version">
+      <xsl:if test="$info-productname">
+        <productname xmlns="http://docbook.org/ns/docbook"
+          version="{$info-productnumber}"><xsl:value-of select="$info-productname"/></productname>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:variable name="productname-with-version" select="exsl:node-set($node-productname-with-version)/*"/>
+    <xsl:variable name="productname" select="($productname-with-version | $meta-productname)"/>
+
+    <xsl:variable name="_name">
+      <xsl:value-of select="$candidate-headline"/>
+      <xsl:if test="$productname">
+        <xsl:value-of select="concat($json-ld-name-sep,
+          normalize-space($productname), ' ', $productname/@version)"/>
+      </xsl:if>
+    </xsl:variable>
+    <xsl:text>"name": "</xsl:text>
+    <xsl:value-of select="$_name"/>
+    <xsl:text>",</xsl:text>
+  </xsl:template>
 
   <xsl:template name="json-ld-alternativeheadline">
     <xsl:param name="node" select="."/>
