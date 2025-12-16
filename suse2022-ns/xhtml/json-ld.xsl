@@ -19,7 +19,7 @@
      From doc-modular, DC-sudo-configure-superuser-privileges:
      <script type="application/ld+json">
       {
-        "@context": "http://schema.org",
+        "@context": "https://schema.org",
         "@type": [
           "TechArticle"
         ],
@@ -397,7 +397,7 @@
   <xsl:template name="generate-json-content">
     <xsl:param name="node"/>
     <xsl:text>{</xsl:text>
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": ["TechArticle"],
     "image": "<xsl:value-of select="$json-ld-image-url"/>",
     <xsl:call-template name="json-ld-name">
