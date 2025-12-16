@@ -499,7 +499,7 @@ task before
   <!-- By default, these are empty and are set by the SBP stylesheets -->
   <xsl:param name="json-ld-seriesname">Products &amp; Solutions</xsl:param>
   <!-- The separator in "name" between title and productname -->
-  <xsl:param name="json-ld-name-sep"><xsl:text> :: </xsl:text></xsl:param>
+  <xsl:param name="json-ld-name-sep"><xsl:text> | </xsl:text></xsl:param>
 
   <!-- The DC file needs to be passed to find the structure in the Docserv config -->
   <xsl:param name="dcfilename"/>
