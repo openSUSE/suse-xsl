@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Dec 16 15:47:06 UTC 2025 - tomschr@users.noreply.github.com
+
+* Update 2.95.26
+  - Fix DOCTEAM-2059: Add name to JSON-LD structure (#769) 
+  - Use HTTPS instead of HTTP for schema.org (#771) 
+-------------------------------------------------------------------
 Thu Dec 11 06:42:34 UTC 2025 - tomschr@users.noreply.github.com
 
 - Update 2.95.26
