@@ -144,4 +144,53 @@
   <xsl:apply-templates select="d:indexterm|d:revhistory|d:glosssee|d:glossdef"/>
 </xsl:template>
 
+
+<xsl:template match="d:glossseealso">
+  <xsl:variable name="otherterm" select="(@otherterm|@linkend)[1]"/><!-- SUSE -->
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="xlink" select="@xlink:href"/>
+
+   <xsl:choose>
+    <xsl:when test="$target">
+      <a>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:apply-templates select="$target" mode="xref-to"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$xlink">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content">
+          <xsl:apply-templates/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glossseealso @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:choose>
+    <xsl:when test="position() = last()"/>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'glossary'"/>
+          <xsl:with-param name="name" select="'seealso-separator'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 </xsl:stylesheet>

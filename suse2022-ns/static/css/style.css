@@ -2813,7 +2813,8 @@ div.variablelist {
   margin: 24px 0; }
 
 .glossary dt,
-.variablelist dt {
+.variablelist dt,
+.glosslist dt {
   color: #0c322c;
   font-weight: 600;
   margin: 0;
@@ -2845,13 +2846,15 @@ div.variablelist {
 .list-of-examples dl,
 .list-of-figures dl,
 .list-of-procedures dl,
-.list-of-tables dl {
+.list-of-tables dl,
+.glosslist dl {
   margin: 5px 0 17px 0;
   padding: 0 0 0 30px; }
 
 .glossary dd > p,
 .toc dd > p,
-.variablelist dd > p {
+.variablelist dd > p,
+.glosslist dd > p {
   margin: 0; }
 
 div.figure {
@@ -2916,6 +2919,7 @@ div.figure {
 
 .example-title,
 .figure-title,
+.glosslist-title,
 .itemizedlist-title,
 .orderedlist-title,
 .procedure-title,
@@ -2932,6 +2936,7 @@ div.figure {
 .example-title,
 .itemizedlist-title,
 .procedure-title,
+.glosslist-title,
 .table-title,
 .variablelist-title {
   padding-top: 0;
@@ -2970,6 +2975,11 @@ div.figure {
 .figure-title .package,
 .figure-title .replaceable,
 .figure-title code,
+.glosslist-title .keycap,
+.glosslist-title .literal,
+.glosslist-title .package,
+.glosslist-title .replaceable,
+.glosslist-title code,
 .itemizedlist-title .keycap,
 .itemizedlist-title .literal,
 .itemizedlist-title .package,
