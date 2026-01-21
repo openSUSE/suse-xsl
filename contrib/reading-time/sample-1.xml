@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+<article xmlns="http://docbook.org/ns/docbook" version="5.0">
+    <title>Sample Article</title>
+    <para>This is a sample paragraph with some text to demonstrate reading time calculation.</para>
+    <para>Here is another paragraph with more words.</para>
+</article>
