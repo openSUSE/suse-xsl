@@ -489,6 +489,35 @@
    <xsl:attribute name="text-align">start</xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:attribute-set name="task.properties">
+ <!--<xsl:attribute name="space-before">1em</xsl:attribute>
+ <xsl:attribute name="space-after">1em</xsl:attribute>-->
+</xsl:attribute-set>
+
+<xsl:attribute-set name="task.title.spacing">
+<!-- <xsl:attribute name="space-before.optimum"><xsl:value-of select="&gutterfragment; div 4"/>mm</xsl:attribute>
+ <xsl:attribute name="space-before.minimum"><xsl:value-of select="&gutterfragment; div 5"/>mm</xsl:attribute>
+ <xsl:attribute name="space-before.maximum"><xsl:value-of select="&gutterfragment; div 2"/>mm</xsl:attribute>-->
+</xsl:attribute-set>
+
+<xsl:attribute-set name="tasksummary.properties"/>
+
+
+<xsl:attribute-set name="task.children.title.properties"
+                   use-attribute-sets="dark-green sans.bold.noreplacement task.children.title.spacing">
+ <xsl:attribute name="font-family"><xsl:value-of select="$sans.font.family"/></xsl:attribute>
+ <xsl:attribute name="font-size"><xsl:value-of select="&small; * $sans-fontsize-adjust"/>pt</xsl:attribute>
+ <xsl:attribute name="text-transform">uppercase</xsl:attribute>
+ <xsl:attribute name="hyphenate">false</xsl:attribute>
+ <xsl:attribute name="text-align">start</xsl:attribute>
+</xsl:attribute-set>
+
+<xsl:attribute-set name="task.children.title.spacing">
+ <xsl:attribute name="space-before.minimum">1.2em</xsl:attribute>
+ <xsl:attribute name="space-before.optimum">1.5em</xsl:attribute>
+ <xsl:attribute name="space-before.maximum">2em</xsl:attribute>
+</xsl:attribute-set>
+
 <!-- 22. Profiling ============================================== -->
 
 

@@ -196,7 +196,7 @@
     </xsl:if>
 
     <fo:block>
-      <xsl:if test="not(ancestor::procedure)">
+      <xsl:if test="not(ancestor::procedure or ancestor::task)">
         <xsl:attribute name="border-{$start-border}">
           <xsl:text>&mediumline;mm solid </xsl:text>
           <xsl:choose>

@@ -49,27 +49,195 @@
  </info>
 
  <chapter xml:id="cha.procedure">
-  <title>Procedures</title>
-  <para>
-   Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
-   salvia shabby chic ramps tofu microdosing.
-  </para>
-  <procedure>
-  <step>
+  <title>Procedures and Tasks</title>
+  <sect1 xml:id="sec.procedurenotitle">
+   <title>Procedure Without Title</title>
    <para>
-    Aesthetic put a bird on it waistcoat brunch tumeric.
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
    </para>
-  </step>
-  <step>
+   <procedure>
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+  </sect1>
+  <sect1 xml:id="sec.proceduretitle">
+   <title>Procedure With Title</title>
    <para>
-    Snackwave chambray succulents sartorial.
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
    </para>
-  </step>
-  <step>
+   <procedure>
+    <title>Put a Bird on It</title>
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+  </sect1>
+  <sect1 xml:id="sec.proceduretitlepreamble">
+   <title>Procedure With Title and Preamble</title>
    <para>
-     Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
    </para>
-  </step>
- </procedure>
+   <procedure>
+    <title>Put a Bird on It</title>
+    <para>
+     Intelligentsia drinking vinegar enim tumblr poutine VHS. 8-bit try-hard
+     etsy copper mug. Umami yr culpa austin, 8-bit synth swag poke cray pabst
+     blue bottle irure ad affogato meggings.
+    </para>
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+  </sect1>
+  <sect1 xml:id="sec.task">
+   <title>Task</title>
+   <para>
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
+   </para>
+   <task>
+    <title>Task</title>
+    <tasksummary>
+     <para>
+      Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+      salvia shabby chic ramps tofu microdosing.
+     </para>
+    </tasksummary>
+    <taskprerequisites>
+     <para>
+      Skateboard tbh lo-fi, letterpress single-origin coffee pickled
+      chicharrones man braid food truck poke. Intelligentsia veniam in you
+      probably haven't heard of them chia eiusmod.
+     </para>
+     <!--<itemizedlist>
+      <listitem>
+       <para>
+        Sriracha
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        Gochujang
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+        Sambal Oelek
+       </para>
+      </listitem>
+     </itemizedlist> -->
+    </taskprerequisites>
+    <procedure xml:id="pro.task.">
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+   <taskrelated>
+    <para>
+     Chicharrones green juice narwhal cred, tote bag sustainable tattooed.
+     Food truck art party meggings beard squid
+    </para>
+   </taskrelated>
+  </task>
+ </sect1>
+ <sect1 xml:id="sec.task-with-procedure-title">
+   <title>Task with Procedure Title</title>
+   <para>
+    Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+    salvia shabby chic ramps tofu microdosing.
+   </para>
+   <task>
+    <title>Task</title>
+    <tasksummary>
+     <para>
+      Truffaut prism pinterest, biodiesel ethical schlitz etsy blog. Venmo
+      salvia shabby chic ramps tofu microdosing.
+     </para>
+    </tasksummary>
+    <taskprerequisites>
+     <para>
+      Skateboard tbh lo-fi, letterpress single-origin coffee pickled
+      chicharrones man braid food truck poke. Intelligentsia veniam in you
+      probably haven't heard of them chia eiusmod.
+     </para>
+    </taskprerequisites>
+    <procedure>
+     <title>My Funny Procedure</title>
+    <step>
+     <para>
+      Aesthetic put a bird on it waistcoat brunch tumeric.
+     </para>
+    </step>
+    <step>
+     <para>
+      Snackwave chambray succulents sartorial.
+     </para>
+    </step>
+    <step>
+     <para>
+       Stumptown banjo disrupt intelligentsia 8-bit slow-carb.
+     </para>
+    </step>
+   </procedure>
+   <taskrelated>
+    <para>
+     Chicharrones green juice narwhal cred, tote bag sustainable tattooed.
+     Food truck art party meggings beard squid
+    </para>
+   </taskrelated>
+  </task>
+ </sect1>
  </chapter>
 </book>
