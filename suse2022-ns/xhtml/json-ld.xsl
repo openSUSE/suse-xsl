@@ -734,7 +734,7 @@
       {
         "@type": "<xsl:value-of select="$json-ld-fallback-author-type"/>",
         "name": "<xsl:value-of select="$json-ld-fallback-author-name"/>",
-        "url": "<xsl:value-of select="$json-ld-fallback-author-logo"/>"
+        "url": "<xsl:value-of select="$json-ld-fallback-author-url"/>"
       }
     ],
       </xsl:when>
