@@ -1,10 +1,13 @@
 $c_side_toc_background: $c_fog
+$i_crumbs_height: 2.5rem // vertical space used by the crumbs bar
 
 html,
 body
   font-size: 18px
   height: 100%
   scroll-behavior: smooth
+  // Ensure in-page anchors (TOC, breadcrumbs) stop below header + crumbs
+  scroll-padding-top: calc(#{$i_big_head} + #{$i_crumbs_height} + 1rem)
 
 
 body
@@ -44,8 +47,8 @@ body
         height: $i_medium_head
     main.sticky:not(.scroll-with-footer)
       .side-toc
-        top: $i_medium_head
-        height: calc(100vh - #{$i_medium_head})
+        top: calc(#{$i_medium_head} + #{$i_crumbs_height})
+        height: calc(100vh - (#{$i_medium_head} + #{$i_crumbs_height}))
 
   &.draft
     article::before
@@ -72,7 +75,10 @@ header
   display: block
   height: $i_big_head
   background-color: $c_pine
-  position: relative
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
   z-index: 9001
 
   &.sticky
@@ -95,20 +101,27 @@ header
   padding: .5rem 1.25rem
   background-color: $c_fog_200
   border-bottom: 1px solid $c_fog_300
-
+  position: fixed
+  top: $i_big_head
+  left: 0
+  right: 0
+  z-index: 9000
 
 main
   display: flex
+  // Push content below fixed header + crumbs
+  margin-top: calc(#{$i_big_head} + #{$i_crumbs_height})
 
   article,
   .side-toc
-    min-height: calc(100vh - #{$i_big_head})
+    min-height: calc(100vh - (#{$i_big_head} + #{$i_crumbs_height}))
 
   article
     @extend .column
     @extend .is-8
     @extend .container
     position: relative
+    padding-top: 1rem
     padding-bottom: 7rem
 
     @include m_tablet
@@ -120,6 +133,19 @@ main
       padding-left: 4rem !important
       padding-right: 4rem !important
 
+    // ensure any element that can be a scroll target ends up below header + crumbs
+    [id]
+      scroll-margin-top: calc(#{$i_big_head} + #{$i_crumbs_height} + 1rem)
+
+  // Structural spacer so the first content in the main article
+  // does not end up hidden under the fixed header + breadcrumbs.
+  article.documentation
+    &::before
+      content: ''
+      display: block
+      // Slightly smaller than header+crumbs so the title
+      // visually aligns better with the "On this page" text - 0.75rem
+      height: calc(#{$i_big_head} + #{$i_crumbs_height})
 
   .survey-link
     background-color: $c_mint
@@ -137,10 +163,13 @@ main
     @extend .is-2
     @extend .container
     overflow-y: auto
-    position: relative
     scrollbar-width: thin
     scrollbar-color: $c_pine $c_fog_200
 
+    @include m_desktop_up
+      position: sticky
+      top: calc(#{$i_big_head} + #{$i_crumbs_height})
+      height: calc(100vh - (#{$i_big_head} + #{$i_crumbs_height}))
 
   #_side-toc-overall:not(.placebo)
     background-color: $c_side_toc_background
@@ -159,13 +188,14 @@ main
   &.sticky
     article
       position: relative
-      top: $i_big_head
-      margin-bottom: $i_big_head
+      // In sticky mode the header shrinks to $i_mini_head, so use that
+      top: calc(#{$i_mini_head} + #{$i_crumbs_height})
+      margin-bottom: calc(#{$i_mini_head} + #{$i_crumbs_height})
 
     .side-toc
-      height: calc(100vh - #{$i_mini_head})
+      height: calc(100vh - (#{$i_mini_head} + #{$i_crumbs_height}))
       position: sticky
-      top: $i_mini_head
+      top: calc(#{$i_mini_head} + #{$i_crumbs_height})
       min-height: unset
 
     #_side-toc-overall
@@ -193,7 +223,7 @@ main
 
       .side-toc
         @include m_desktop_up
-          min-height: calc(100vh - #{$i_mini_head})
+          min-height: calc(100vh - (#{$i_mini_head} + #{$i_crumbs_height}))
           max-height: unset
           position: absolute
           height: auto
