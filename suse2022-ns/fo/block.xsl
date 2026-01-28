@@ -317,7 +317,6 @@
     <xsl:call-template name="trim-verbatim-whitespace-start">
         <xsl:with-param name="input" select="."/>
     </xsl:call-template>
-    <xsl:message>INFO: Select the text after PI</xsl:message>
 </xsl:template>
 
 </xsl:stylesheet>
