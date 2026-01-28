@@ -27,6 +27,9 @@
   xmlns:fo="http://www.w3.org/1999/XSL/Format"
   xmlns:svg="http://www.w3.org/2000/svg">
 
+  <xsl:output indent="no"/>
+  <xsl:preserve-space elements="d:para d:screen" />
+
 <!-- Some people would like to hard code page breaks into their PDFs,
      this gives them a tool to do that. -->
 <xsl:template match="processing-instruction('pdfpagebreak')">
@@ -263,6 +266,7 @@
   </fo:block>
 </xsl:template>
 
+
 <xsl:template match="d:formalpara/d:para">
   <xsl:variable name="keep.together">
     <xsl:call-template name="pi.dbfo_keep-together"/>
@@ -303,5 +307,17 @@
 </xsl:template>
 
 <xsl:template match="d:para[normalize-space(.)='' and not(*)]"/>
+
+<!--
+  Remove any whitespace directly following a dbtimestamp PI in a paragraph,
+  without changing other content. This avoids line breaks like
+  "2006–2026\n, Company ..." while preserving all other spacing.
+-->
+<xsl:template match="d:para/text()[preceding-sibling::node()[1][self::processing-instruction('dbtimestamp')]]">
+    <xsl:call-template name="trim-verbatim-whitespace-start">
+        <xsl:with-param name="input" select="."/>
+    </xsl:call-template>
+    <xsl:message>INFO: Select the text after PI</xsl:message>
+</xsl:template>
 
 </xsl:stylesheet>
