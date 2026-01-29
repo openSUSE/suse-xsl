@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Tue Jan 29 07:30:00 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.28
+  - Use documentation.suse.com for author.url (#773)
+  - Fix #750: Remove extra space after dbtimestamp (#775)
+  - Fix #748 Keep title in TOC together (#776)
+  - Remove obsolete xsl:message
+
+-------------------------------------------------------------------
 Tue Dec 16 15:47:06 UTC 2025 - tomschr@users.noreply.github.com
 
 * Update 2.95.26
