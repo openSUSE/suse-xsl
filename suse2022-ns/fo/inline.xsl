@@ -70,9 +70,14 @@
     <xsl:if test="$mono-verbatim-ancestor = 1 or
                   ancestor::d:title[not(parent::d:formalpara)]">1</xsl:if>
   </xsl:variable>
+  <xsl:variable name="lang" select="ancestor-or-self::*[@xml:lang][1]/@xml:lang"/>
+  <xsl:variable name="is-zh" select="starts-with($lang,'zh')"/>
 
   <fo:inline>
    <xsl:if test="$lighter-formatting != 1">
+    <xsl:if test="$is-zh">
+      <xsl:attribute name="baseline-shift">0.061em</xsl:attribute>
+    </xsl:if>
     <!-- FIXME: fix grayscale -->
     <xsl:attribute name="border-bottom">&thinline;mm solid &c_fog_300;</xsl:attribute>
     <xsl:attribute name="padding-bottom">0.1em</xsl:attribute>
