@@ -58,4 +58,16 @@
       <xsl:apply-templates select="." mode="chapter.titlepage.recto.mode"/>
     </fo:block>
   </xsl:template>
+
+  <!-- We don't want a revhistory in a appendix, chapter, glossary, and part -->
+  <xsl:template match="d:info/d:revhistory" mode="chapter.titlepage.recto.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="chapter.titlepage.verso.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="appendix.titlepage.recto.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="appendix.titlepage.verso.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="glossary.titlepage.recto.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="glossary.titlepage.verso.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="part.titlepage.recto.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="part.titlepage.verso.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="preface.titlepage.recto.auto.mode" />
+  <xsl:template match="d:info/d:revhistory" mode="preface.titlepage.verso.auto.mode" />
 </xsl:stylesheet>
