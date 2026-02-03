@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Feb 03 15:09:29 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.29
+  - Fix baseline shift for zh-cn language <systemitem> (#779)
+  - Fix #756: Suppress revhistory in book divisions (#780)
+-------------------------------------------------------------------
 Tue Jan 29 07:30:00 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.28
