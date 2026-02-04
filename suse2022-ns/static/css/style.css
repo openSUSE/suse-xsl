@@ -1286,7 +1286,8 @@ html,
 body {
   font-size: 18px;
   height: 100%;
-  scroll-behavior: smooth; }
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(135px + 2.5rem + 1rem); }
 
 body {
   background-color: white;
@@ -1314,8 +1315,8 @@ body {
     body.scroll-up header.sticky .growth-inhibitor {
       height: 110px; }
   body.scroll-up main.sticky:not(.scroll-with-footer) .side-toc {
-    top: 110px;
-    height: calc(100vh - 110px); }
+    top: calc(110px + 2.5rem);
+    height: calc(100vh - (110px + 2.5rem)); }
   body.draft article::before {
     content: 'DRAFT';
     position: fixed;
@@ -1336,7 +1337,10 @@ header {
   display: block;
   height: 135px;
   background-color: #0c322c;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 9001; }
   header.sticky {
     box-sizing: border-box;
@@ -1354,15 +1358,22 @@ header {
 .crumbs {
   padding: .5rem 1.25rem;
   background-color: #dedfe0;
-  border-bottom: 1px solid #c0c2c4; }
+  border-bottom: 1px solid #c0c2c4;
+  position: fixed;
+  top: 135px;
+  left: 0;
+  right: 0;
+  z-index: 9000; }
 
 main {
-  display: flex; }
+  display: flex;
+  margin-top: calc(135px + 2.5rem); }
   main article,
   main .side-toc {
-    min-height: calc(100vh - 135px); }
+    min-height: calc(100vh - (135px + 2.5rem)); }
   main article {
     position: relative;
+    padding-top: 1rem;
     padding-bottom: 7rem; }
     @media screen and (max-width: 1024px) {
       main article {
@@ -1371,6 +1382,12 @@ main {
       main article {
         padding-left: 4rem !important;
         padding-right: 4rem !important; } }
+    main article [id] {
+      scroll-margin-top: calc(135px + 2.5rem + 1rem); }
+  main article.documentation::before {
+    content: '';
+    display: block;
+    height: calc(135px + 2.5rem); }
   main .survey-link {
     background-color: #90ebcd;
     padding: 16px;
@@ -1383,9 +1400,13 @@ main {
     text-decoration: none; }
   main .side-toc {
     overflow-y: auto;
-    position: relative;
     scrollbar-width: thin;
     scrollbar-color: #0c322c #dedfe0; }
+    @media screen and (min-width: 1215px) {
+      main .side-toc {
+        position: sticky;
+        top: calc(135px + 2.5rem);
+        height: calc(100vh - (135px + 2.5rem)); } }
   main #_side-toc-overall:not(.placebo) {
     background-color: #efefef;
     margin-left: 0;
@@ -1396,12 +1417,12 @@ main {
     padding-left: 1.5rem; }
   main.sticky article {
     position: relative;
-    top: 135px;
-    margin-bottom: 135px; }
+    top: calc(65px + 2.5rem);
+    margin-bottom: calc(65px + 2.5rem); }
   main.sticky .side-toc {
-    height: calc(100vh - 65px);
+    height: calc(100vh - (65px + 2.5rem));
     position: sticky;
-    top: 65px;
+    top: calc(65px + 2.5rem);
     min-height: unset; }
   main.sticky #_side-toc-overall {
     left: 0; }
@@ -1413,7 +1434,7 @@ main {
       z-index: -1; } }
   @media screen and (min-width: 1215px) {
     main.sticky.scroll-with-footer .side-toc {
-      min-height: calc(100vh - 65px);
+      min-height: calc(100vh - (65px + 2.5rem));
       max-height: unset;
       position: absolute;
       height: auto;
