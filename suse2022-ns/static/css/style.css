@@ -1360,7 +1360,6 @@ header {
   background-color: #dedfe0;
   border-bottom: 1px solid #c0c2c4;
   position: fixed;
-  top: 135px;
   left: 0;
   right: 0;
   z-index: 9000; }
@@ -1370,7 +1369,7 @@ main {
   margin-top: calc(135px + 2.5rem); }
   main article,
   main .side-toc {
-    min-height: calc(100vh - (135px + 2.5rem)); }
+    min-height: calc(100vh + 2.5rem); }
   main article {
     position: relative;
     padding-top: 1rem;
@@ -1406,7 +1405,7 @@ main {
       main .side-toc {
         position: sticky;
         top: calc(135px + 2.5rem);
-        height: calc(100vh - (135px + 2.5rem)); } }
+        height: calc(100vh + 2.5rem); } }
   main #_side-toc-overall:not(.placebo) {
     background-color: #efefef;
     margin-left: 0;

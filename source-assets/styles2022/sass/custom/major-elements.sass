@@ -102,7 +102,7 @@ header
   background-color: $c_fog_200
   border-bottom: 1px solid $c_fog_300
   position: fixed
-  top: $i_big_head
+  // top: $i_big_head
   left: 0
   right: 0
   z-index: 9000
@@ -114,7 +114,7 @@ main
 
   article,
   .side-toc
-    min-height: calc(100vh - (#{$i_big_head} + #{$i_crumbs_height}))
+    min-height: calc(100vh + #{$i_crumbs_height})
 
   article
     @extend .column
@@ -169,7 +169,7 @@ main
     @include m_desktop_up
       position: sticky
       top: calc(#{$i_big_head} + #{$i_crumbs_height})
-      height: calc(100vh - (#{$i_big_head} + #{$i_crumbs_height}))
+      height: calc(100vh + #{$i_crumbs_height})
 
   #_side-toc-overall:not(.placebo)
     background-color: $c_side_toc_background
