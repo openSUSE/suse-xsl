@@ -266,7 +266,7 @@ task before
 <!--   <xsl:param name="daps.header.js.library">static/js/jquery-1.12.4.min.js</xsl:param> -->
   <xsl:param name="daps.header.js.custom">static/js/script-purejs.js</xsl:param>
   <xsl:param name="daps.header.js.highlight">static/js/highlight.js</xsl:param>
-  <xsl:param name="daps.header.css.standard">static/css/style.css</xsl:param>
+  <xsl:param name="daps.header.css.standard">static/css/style-new.css</xsl:param>
   <!-- The language switcher code in the header -->
   <xsl:param name="daps.header.js.languageswitcher">static/js/language-switcher.js</xsl:param>
   <xsl:param name="daps.hide.js.languageswitcher">static/js/hide-lang-switcher.js</xsl:param>
