@@ -1335,8 +1335,14 @@ body {
 .crumbs {
   padding: .5rem 1.25rem;
   background-color: #dedfe0;
-  border-bottom: 1px solid #c0c2c4; }
-
+  border-bottom: 1px solid #c0c2c4;
+  position: fixed;
+  top: 76px;
+  z-index: 5;
+  width: 100%; }
+  @media (min-width: 992px) {
+    .crumbs {
+      top: 122px; } }
 main {
   display: flex; }
   main article,
@@ -1356,7 +1362,10 @@ main {
     overflow-y: auto;
     position: relative;
     scrollbar-width: thin;
-    scrollbar-color: #0c322c #dedfe0; }
+    scrollbar-color: #0c322c #dedfe0;
+    position: sticky;
+    top: calc(122px + 2.5rem);
+    align-self: start; }
   main #_side-toc-overall:not(.placebo) {
     background-color: #efefef;
     margin-left: 0;
