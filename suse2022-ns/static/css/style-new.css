@@ -1344,7 +1344,8 @@ body {
     .crumbs {
       top: 122px; } }
 main {
-  display: flex; }
+  display: flex;
+  margin-top: calc(122px + 2.5rem); }
   main article,
   main .side-toc {
     min-height: calc(100vh - 135px); }
@@ -1373,7 +1374,8 @@ main {
   main #_side-toc-page {
     background-color: #efefef;
     margin-right: 0;
-    padding-left: 1.5rem; }
+    padding-left: 1.5rem;
+    right: 16px; }
   main.sticky article {
     position: relative;
     top: 135px;
