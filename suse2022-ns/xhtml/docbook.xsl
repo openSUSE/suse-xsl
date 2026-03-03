@@ -389,6 +389,13 @@
       <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+  <xsl:if test="boolean($generate.suva)">
+    <xsl:comment>SUVA start</xsl:comment>
+    <script type="text/javascript" src="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/Allow/an.js?{$suva.id}"></script>
+    <script type="text/javascript" src="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/js/index.js?q=gAAAAABpeI-f1N-SVvE5516Wyp2B-ebMJyxqQ6QcMIHCsaYh6a8kKHL35Ji6_MgMMxbAFMatEN2WhgL0qxZDv7PGVJQlkBByqYvw6a0TA8I5FvZQlr__zdfXOh6ThwcZhGvrtJtB8HCq45Pk9fJsU8O8mpN8wUVqHw=="></script>
+    <link rel="stylesheet" href="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/css/index.css" />
+    <xsl:comment>SUVA end</xsl:comment>
+  </xsl:if>
 </xsl:template>
 
 
@@ -877,6 +884,9 @@
       <body>
         <xsl:call-template name="body.attributes"/>
         <xsl:call-template name="outerelement.class.attribute"/>
+        <xsl:if test="boolean($generate.suva)">
+          <div id="searchUnifyChatbot"> </div>
+        </xsl:if>
 
         <xsl:choose>
           <xsl:when test="boolean($include.suse.header)">

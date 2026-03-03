@@ -549,4 +549,8 @@ task before
 
   <!-- The survey URL to be used. Change it accordingly -->
   <xsl:param name="doc.survey.url">https://suselinux.fra1.qualtrics.com/jfe/form/SV_bEiGZbUNzLD8Tcy</xsl:param>
+
+  <!-- SUVA engine -->
+  <xsl:param name="generate.suva" select="true()" />
+  <xsl:param name="suva.id">0efee675-2d86-4be1-a9cb-99d3c5221276</xsl:param>
 </xsl:stylesheet>
