@@ -549,4 +549,12 @@ task before
 
   <!-- The survey URL to be used. Change it accordingly -->
   <xsl:param name="doc.survey.url">https://suselinux.fra1.qualtrics.com/jfe/form/SV_bEiGZbUNzLD8Tcy</xsl:param>
+
+  <!-- SUVA engine -->
+  <xsl:param name="generate.suva" select="0" />
+  <xsl:param name="suva.id">c485cb3c-93d4-4942-99e8-91f3b8ca5636</xsl:param>
+  <xsl:param name="suva.url">https://suse.searchunify.com/suva-resources/suva_clients_custom/<xsl:value-of select="$suva.id"/></xsl:param>
+  <xsl:param name="suva.css.url" select="concat($suva.url, '/css/index.css')" />
+  <xsl:param name="suva.copyright">searchUnifyChatbot ("Ask Geeko") copyright 2024 Grazitti Interactive - All Rights Reserved. NOTICE: All information contained herein is, and remains the property of Grazitti Interactive and its suppliers, if any. The intellectual and technical concepts contained herein are proprietary to Grazitti Interactive and its suppliers and may be covered by India, U.S. and Foreign Patents, patents in process, and are protected by trade secret or copyright law. Dissemination of this information or reproduction of this material is strictly forbidden unless prior written permission is obtained from Grazitti Interactive.</xsl:param>
+
 </xsl:stylesheet>

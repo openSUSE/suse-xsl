@@ -407,6 +407,20 @@
       <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+  <xsl:if test="number($generate.suva) != 0">
+    <xsl:comment>SUVA/AskGeeko start</xsl:comment>
+    <xsl:comment><xsl:value-of select="$suva.copyright"/></xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <script type="text/javascript" src="{$suva.url}/Allow/an.js?{$suva.id}"><xsl:comment /></script>
+    <xsl:text>&#10;</xsl:text>
+    <script type="text/javascript" src="{$suva.url}/js/index.js?q=gAAAAABp3JBN9VuEJTi5tFafLIMwgMkCPdJS3Qm56lSYx93ir3Twt9hgSvd3OHEt6-nYfSbY3yHq0Zv8PRPsSy4nbqZiaJ4cZvRc6ItVZdvwz9Urf35cH6OUyPOwdA0phlS-zVIznQ2rWW438p-91NlTHuxJuOFpnA=="><xsl:comment /></script>
+    <xsl:text>&#10;</xsl:text>
+    <link rel="stylesheet" href="{$suva.css.url}"><xsl:comment /></link>
+    <xsl:text>&#10;</xsl:text>
+    <div id="searchUnifyChatbot"><xsl:comment /></div>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>SUVA/AskGeeko end</xsl:comment>
+  </xsl:if>
 </xsl:template>
 
 
