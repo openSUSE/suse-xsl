@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Mar 11 06:33:17 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.31
+  - Added height prop for .side-toc (#790)
+-------------------------------------------------------------------
 Mon Mar 02 10:38:33 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.30
