@@ -394,7 +394,7 @@
     <script type="text/javascript" src="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/Allow/an.js?{$suva.id}">&#xa0;</script>
     <script type="text/javascript" src="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/js/index.js?q=gAAAAABpeI-f1N-SVvE5516Wyp2B-ebMJyxqQ6QcMIHCsaYh6a8kKHL35Ji6_MgMMxbAFMatEN2WhgL0qxZDv7PGVJQlkBByqYvw6a0TA8I5FvZQlr__zdfXOh6ThwcZhGvrtJtB8HCq45Pk9fJsU8O8mpN8wUVqHw==">&#xa0;</script>
     <link rel="stylesheet" href="https://se082411s.searchunify.com/suva-resources/suva_clients_custom/{$suva.id}/css/index.css">&#xa0;</link>
-    <div id="searchUnifyChatbot"></div>
+    <div id="searchUnifyChatbot">&#xa0;</div>
     <xsl:comment>SUVA end</xsl:comment>
   </xsl:if>
 </xsl:template>
