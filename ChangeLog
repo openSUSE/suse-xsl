@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Mar 25 06:44:44 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.32
+  - Prevent empty <script/> (#792)
+-------------------------------------------------------------------
 Wed Mar 11 06:33:17 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.31
