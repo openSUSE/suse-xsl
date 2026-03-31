@@ -382,7 +382,7 @@
 
   <xsl:if test="number($generate.qualtrics.div) != 0 and $qualtrics-feedback.js != ''">
       <xsl:comment>BEGIN QUALTRICS WEBSITE FEEDBACK SNIPPET</xsl:comment>
-      <script type='text/javascript' src="{$qualtrics-feedback.js}">&#xa0;</script>
+      <script type='text/javascript' src="{$qualtrics-feedback.js}" defer="defer">&#xa0;</script>
       <div id="{$qualtrics.div.id}">
         <xsl:comment>DO NOT REMOVE-CONTENTS PLACED HERE</xsl:comment>
       </div>
