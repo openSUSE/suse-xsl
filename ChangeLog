@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Wed Apr 01 06:18:02 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.33
+  - 5-star rating: Add defer attribute for Qualtrics (#794)
+-------------------------------------------------------------------
 Wed Mar 25 06:44:44 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.32
