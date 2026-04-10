@@ -1104,9 +1104,9 @@
 
   <xsl:template name="json-ld-software">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="info-productnumber" select="normalize-space($node/d:info/d:productnumber)"/>
-    <xsl:variable name="info-productname" select="normalize-space($node/d:info/d:productname)"/>
-    <xsl:variable name="meta-productname" select="$node/d:info/d:meta[@name='productname']/d:productname"/>
+    <xsl:variable name="info-productnumber" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productnumber)[last()])"/>
+    <xsl:variable name="info-productname" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productname)[last()])"/>
+    <xsl:variable name="meta-productname" select="($node/ancestor-or-self::*/d:info/d:meta[@name='productname']/d:productname)[last()]"/>
     <xsl:variable name="tmp-productname-with-version">
       <xsl:if test="$info-productname">
         <productname xmlns="http://docbook.org/ns/docbook" version="{$info-productnumber}"
@@ -1115,13 +1115,20 @@
     </xsl:variable>
     <xsl:variable name="productname-with-version" select="exsl:node-set($tmp-productname-with-version)/*"/>
     <xsl:variable name="productname" select="($productname-with-version | $meta-productname)"/>
-    <xsl:variable name="archs" select="$node/d:info/d:meta[@name='architecture']/d:phrase"/>
+    <xsl:variable name="archs" select="$node/ancestor-or-self::*/d:info/d:meta[@name='architecture']/d:phrase"/>
     <xsl:variable name="candidate-arch">
       <xsl:for-each select="$archs">
         <xsl:value-of select="."/>
         <xsl:if test="position() != last()">, </xsl:if>
       </xsl:for-each>
     </xsl:variable>
+
+<!--    <xsl:message>mentions processed...
+      current node:        <xsl:value-of select="local-name($node)"/>
+      info-productname:    <xsl:value-of select="$info-productname"/>
+      info-productnumber:  <xsl:value-of select="$info-productnumber"/>
+      meta-productname:    <xsl:value-of select="$meta-productname"/>
+    </xsl:message>-->
 
     <xsl:if test="$productname">
     "mentions": [
