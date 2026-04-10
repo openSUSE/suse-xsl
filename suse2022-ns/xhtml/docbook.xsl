@@ -284,11 +284,38 @@
   </xsl:if>
 
   <xsl:if test="$include.html.dublincore">
+    <xsl:variable name="candidate-created">
+      <xsl:choose>
+        <!-- Select the nearest revision date and retrieve the last (=oldest) date -->
+        <xsl:when test="($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[last()]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[last()]/d:date)"/>
+        </xsl:when>
+        <xsl:otherwise />
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:variable name="candidate-submitted">
+      <xsl:variable name="date">
+        <xsl:choose>
+          <xsl:when test="function-available('date:date-time')">
+            <xsl:value-of select="date:date-time()" />
+          </xsl:when>
+          <xsl:when test="function-available('date:dateTime')">
+            <!-- Xalan quirk -->
+            <xsl:value-of select="date:dateTime()" />
+          </xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:call-template name="datetime.format">
+        <xsl:with-param name="date" select="$date"/>
+        <xsl:with-param name="format">Y-m-d</xsl:with-param>
+        <xsl:with-param name="padding"  select="1"/>
+      </xsl:call-template>
+    </xsl:variable>
     <xsl:variable name="candidate-modified">
       <xsl:choose>
-        <!-- Select the nearest first revision date from the ancestor axis -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
+        <!-- Select the nearest revision and retrieve the first (=most current) date -->
+        <xsl:when test="($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[1]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[1]/d:date)"/>
         </xsl:when>
         <!-- Fallback -->
         <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
@@ -299,28 +326,19 @@
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="candidate-published">
-      <xsl:choose>
-        <!-- Select the nearest last revision date from the ancestor axis -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
-        </xsl:when>
-        <!-- Fallback: We don't distinguish between modified and published if we can't find a revhistory  -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:date)[last()])"/>
-        </xsl:when>
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:pubdate)[last()])"/>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
 
     <!-- For Dublin Core metadata -->
     <link rel="schema.dc"      href="http://purl.org/dc/elements/1.1/" />
     <link rel="schema.dcterms" href="http://purl.org/dc/terms/" />
     <xsl:text>&#10;</xsl:text>
+    <xsl:if test="$candidate-created != ''">
+      <meta name="dcterms.created" content="{$candidate-created}" />
+      <xsl:text>&#10;</xsl:text>
+    </xsl:if>
     <meta name="dcterms.modified" content="{$candidate-modified}" />
-    <meta name="dcterms.created" content="{$candidate-published}" />
+    <xsl:text>&#10;</xsl:text>
+    <meta name="dcterms.dateSubmitted" content="{$candidate-submitted}" />
+    <xsl:text>&#10;</xsl:text>
   </xsl:if>
 
   <xsl:if test="$html.script != ''">
