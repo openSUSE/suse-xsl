@@ -459,7 +459,7 @@ task before
   <!-- Include HTML Dublin Core metadata? -->
   <xsl:param name="include.html.dublincore" select="1"/>
 
-  <!-- Include header/footer via Server-Side Includes (SSI)? 0=no, 1=yes
+  <!-- Include SUSE header/footer? 0=no, 1=yes
   -->
   <xsl:param name="include.suse.header" select="0"/>
   
@@ -524,6 +524,12 @@ task before
        Anything below <html> is copied, including HTML comments and the <script>.
   -->
   <xsl:param name="qualtrics-feedback.js">static/js/qualtrics-feedback.js</xsl:param>
+
+  <!-- The parameters for SUVA integration -->
+  <xsl:param name="generate.suva" select="1" />
+  <xsl:param name="suva.url">https://se082411s.searchunify.com/suva-resources/suva_clients_custom/0efee675-2d86-4be1-a9cb-99d3c5221276</xsl:param>
+  <xsl:param name="suva.resource.url">https://se082411s.searchunify.com/suva-resources/suva_clients_custom/0efee675-2d86-4be1-a9cb-99d3c5221276/css/index.css</xsl:param>
+  <xsl:param name="suva.div.id">searchUnifyChatbot</xsl:param>
 
   <!-- Limit the revhistory list to X entries
        If it's empty, display all

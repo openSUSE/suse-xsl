@@ -389,6 +389,21 @@
       <xsl:comment>END WEBSITE FEEDBACK SNIPPET</xsl:comment>
     <xsl:text>&#10;</xsl:text>
   </xsl:if>
+
+  <xsl:if test="number($generate.suva) != 0">
+    <xsl:comment>BEGIN SUVA SNIPPET</xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+    <script type="text/javascript" src="{$suva.url}/Allow/an.js?0efee675-2d86-4be1-a9cb-99d3c5221276"></script>
+    <xsl:text>&#10;</xsl:text>
+    <script type="text/javascript" src="{$suva.url}/js/index.js?q=gAAAAABpeI-f1N-SVvE5516Wyp2B-ebMJyxqQ6QcMIHCsaYh6a8kKHL35Ji6_MgMMxbAFMatEN2WhgL0qxZDv7PGVJQlkBByqYvw6a0TA8I5FvZQlr__zdfXOh6ThwcZhGvrtJtB8HCq45Pk9fJsU8O8mpN8wUVqHw=="></script>
+    <xsl:text>&#10;</xsl:text>
+    <link rel="stylesheet" href="$suva.resource.url"><xsl:comment /></link>
+    <xsl:text>&#10;</xsl:text>
+    <div id="{$suva.div.id}"><xsl:comment /></div>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:comment>END SUV<div id="searchUnifyChatbot"></div>A SNIPPET</xsl:comment>
+    <xsl:text>&#10;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 
