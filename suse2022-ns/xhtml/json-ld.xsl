@@ -117,6 +117,37 @@
   <xsl:key name="docserv-dcfiles" match="dc" use="."/>
   <xsl:key name="docserv-dcsubdelivfiles" match="subdeliverable" use="concat('DC-', .)"/>
 
+   <!-- Build time (used in JSON-LD metadata -->
+  <xsl:variable name="buildtime">
+    <!-- Create the build date by first creating the date, then the time.
+         This was needed as the "datetime.format" seems not to format date and time
+         together. :(
+    -->
+    <xsl:variable name="date">
+      <xsl:choose>
+        <xsl:when test="function-available('date:date-time')">
+          <xsl:value-of select="date:date-time()" />
+        </xsl:when>
+        <xsl:when test="function-available('date:dateTime')">
+          <!-- Xalan quirk -->
+          <xsl:value-of select="date:dateTime()" />
+        </xsl:when>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:call-template name="datetime.format">
+      <xsl:with-param name="date" select="$date"/>
+      <xsl:with-param name="format">Y-m-d</xsl:with-param>
+      <xsl:with-param name="padding"  select="1"/>
+    </xsl:call-template>
+    <xsl:text>T</xsl:text>
+    <xsl:call-template name="datetime.format">
+      <xsl:with-param name="date" select="$date"/>
+      <xsl:with-param name="format">H:M</xsl:with-param>
+      <xsl:with-param name="padding"  select="1"/>
+    </xsl:call-template>
+    <xsl:text>+02:00</xsl:text><!-- Our timezone -->
+  </xsl:variable>
+
   <!--
     Validates a date
 
@@ -187,6 +218,7 @@
   -->
   <xsl:template name="sanitize-date">
     <xsl:param name="date"/>
+    <xsl:param name="timezone" select="$json-ld-date-timezone" />
 
     <!-- We format the date with format-number. If there is a string which can't be converted,
          we get "NaN". This is a hint to reject the converted string and just return an empty
@@ -203,7 +235,7 @@
           <xsl:value-of select="concat(format-number($year, '#-'),
                                        format-number($month, '00-'),
                                        format-number($day, '00'),
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <!-- Check if the date is in the format YYYY-MM -->
         <xsl:when test="string-length($date) = 7 and substring($date, 5, 1) = '-'">
@@ -211,7 +243,7 @@
           <xsl:variable name="month" select="substring($date, 6, 2)"/>
           <xsl:value-of select="concat(format-number($year, '0000-'),
                                        format-number($month, '00-'), '01',
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <!-- Check if the date is in the format YYYY-M -->
         <xsl:when test="string-length($date) = 6 and substring($date, 5, 1) = '-'">
@@ -219,7 +251,7 @@
           <xsl:variable name="month" select="substring($date, 6, 1)"/>
           <xsl:value-of select="concat(format-number($year, '0000-'),
                                        format-number($month, '00-'), '01',
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <!-- Check if the date is in the format YYYY-M-D -->
         <xsl:when test="string-length($date) = 8 and
@@ -230,7 +262,7 @@
           <xsl:value-of select="concat(format-number($year, '####-'),
                                        format-number($month, '00-'),
                                        format-number($day, '00'),
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <!-- Check if the date is in the format YYYY-MM-D -->
         <xsl:when test="string-length($date) = 9 and
@@ -241,7 +273,7 @@
           <xsl:value-of select="concat(format-number($year, '####-'),
                                        format-number($month, '00-'),
                                        format-number($day, '00'),
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <!-- Check if the date is in the format YYYY-M-DD -->
         <xsl:when test="string-length($date) = 9 and
@@ -252,7 +284,7 @@
           <xsl:value-of select="concat(format-number($year, '####-'),
                                        format-number($month, '00-'),
                                        format-number($day, '00'),
-                                       $json-ld-date-timezone)"/>
+                                       $timezone)"/>
         </xsl:when>
         <xsl:otherwise>
           <!-- Return an empty string if the date does not match any of the specified formats -->
@@ -782,35 +814,43 @@
 
   <xsl:template name="json-ld-dateModified-and-Published">
     <xsl:param name="node" select="."/>
-    <xsl:variable name="candidate-modified">
+    <xsl:variable name="candidate-created">
       <xsl:choose>
-        <!-- Select the nearest first revision date from the ancestor axis -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[1]/d:date)[last()])"/>
+        <!-- Select the nearest revision date and retrieve the last (=oldest) date -->
+        <xsl:when test="($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[last()]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[last()]/d:date)"/>
         </xsl:when>
         <!-- Fallback -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:pubdate)[last()])"/>
+        <xsl:when test="($node/ancestor-or-self::*)[last()]/d:info/d:pubdate">
+          <xsl:value-of select="normalize-space((($node/ancestor-or-self::*)[last()]/d:info/d:pubdate)[last()])"/>
         </xsl:when>
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:date)[last()])"/>
+        <xsl:when test="($node/ancestor-or-self::*)[last()]/d:info/d:date">
+          <xsl:value-of select="normalize-space((($node/ancestor-or-self::*)[last()]/d:info/d:date)[last()])"/>
         </xsl:when>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="candidate-published">
+    <xsl:variable name="candidate-modified">
       <xsl:choose>
-        <!-- Select the nearest last revision date from the ancestor axis -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory/d:revision[last()]/d:date)[last()])"/>
+        <!-- Select the nearest revision and retrieve the first (=most current) date -->
+        <xsl:when test="($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[1]/d:date">
+          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:revhistory)[last()]/d:revision[1]/d:date)"/>
         </xsl:when>
         <!-- Fallback -->
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:date">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:date)[last()])"/>
+        <xsl:when test="($node/ancestor-or-self::*)[last()]/d:info/d:pubdate">
+          <xsl:value-of select="normalize-space((($node/ancestor-or-self::*)[last()]/d:info/d:pubdate)[last()])"/>
         </xsl:when>
-        <xsl:when test="$node/ancestor-or-self::*/d:info/d:pubdate">
-          <xsl:value-of select="normalize-space(($node/ancestor-or-self::*/d:info/d:pubdate)[last()])"/>
+        <xsl:when test="($node/ancestor-or-self::*)[last()]/d:info/d:date">
+          <xsl:value-of select="normalize-space((($node/ancestor-or-self::*)[last()]/d:info/d:date)[last()])"/>
         </xsl:when>
       </xsl:choose>
+    </xsl:variable>
+<!--    <xsl:variable name="candidate-published" select="$buildtime" />-->
+    <xsl:variable name="date-created">
+      <xsl:if test="$candidate-created != ''">
+        <xsl:call-template name="sanitize-date">
+          <xsl:with-param name="date" select="$candidate-created"/>
+        </xsl:call-template>
+      </xsl:if>
     </xsl:variable>
     <xsl:variable name="date-modified">
       <xsl:if test="$candidate-modified != ''">
@@ -819,12 +859,19 @@
         </xsl:call-template>
       </xsl:if>
     </xsl:variable>
-    <xsl:variable name="date-published">
-      <xsl:if test="$candidate-published != ''">
-        <xsl:call-template name="sanitize-date">
-          <xsl:with-param name="date" select="$candidate-published"/>
-        </xsl:call-template>
-      </xsl:if>
+    <xsl:variable name="date-published" select="$buildtime" />
+
+    <xsl:variable name="is-created-valid">
+      <xsl:choose>
+        <xsl:when test="$date-created != ''">
+          <xsl:call-template name="validate-date">
+            <xsl:with-param name="date" select="$date-created"/>
+          </xsl:call-template>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="false()"/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:variable>
     <xsl:variable name="is-modified-valid">
       <xsl:choose>
@@ -854,27 +901,29 @@
       <xsl:choose>
         <xsl:when test="$is-published-valid = true() and $is-modified-valid = true()">
           <xsl:call-template name="compare-dates">
-            <xsl:with-param name="date1" select="$date-published" />
-            <xsl:with-param name="date2" select="$date-modified" />
+            <xsl:with-param name="date1" select="$date-modified" />
+            <xsl:with-param name="date2" select="$date-published" />
           </xsl:call-template>
         </xsl:when>
         <xsl:otherwise>100</xsl:otherwise><!-- In case some problem with one of the dates -->
       </xsl:choose>
     </xsl:variable>
 
-<!--    <xsl:message>DEBUG:
-    current element=<xsl:value-of select="local-name($node)"/>
+    <xsl:message>DEBUG:
+    current element=<xsl:value-of select="local-name($node)"/><!--
     count = <xsl:value-of select="count($node//ancestor-or-self::*/d:info/d:revhistory)"/>
     candidate-modified="<xsl:value-of select="$candidate-modified"/>"
     candidate-published="<xsl:value-of select="$candidate-published"/>"
+    -->
+    created=<xsl:value-of select="$date-created"/> => <xsl:value-of select="$is-created-valid"/>
     modified=<xsl:value-of select="$date-modified"/> => <xsl:value-of select="$is-modified-valid"/>
     published=<xsl:value-of select="$date-published"/> => <xsl:value-of select="$is-published-valid"/>
-    <xsl:text>&#10;</xsl:text>
+      <!--<xsl:text>&#10;</xsl:text>
     <xsl:value-of select="$date-published"/> => <xsl:call-template name="validate-date">
         <xsl:with-param name="date" select="$date-modified"></xsl:with-param>
-      </xsl:call-template>
+      </xsl:call-template>-->
     </xsl:message>
- -->
+ 
 
     <!-- TODO: compare the two dates
       Condition: datePublished <= dateModified
@@ -917,8 +966,24 @@
     </xsl:choose>
 
     <xsl:choose>
+      <xsl:when test="$date-created != ''">
+        <xsl:text>&#10;    "dateCreated": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-created, '&quot;,')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:call-template name="log.message">
+          <xsl:with-param name="level">warn</xsl:with-param>
+          <xsl:with-param name="context-desc">JSON-LD</xsl:with-param>
+          <xsl:with-param name="message">
+            <xsl:text>Could not create "dateCreated" property as no element was appropriate.</xsl:text>
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:choose>
       <xsl:when test="$date-modified != ''">
-    "dateModified": "<xsl:value-of select="$date-modified"/>",
+        <xsl:text>&#10;    "dateModified": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-modified, '&quot;,')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
@@ -932,7 +997,8 @@
     </xsl:choose>
     <xsl:choose>
       <xsl:when test="$date-published != ''">
-    "datePublished": "<xsl:value-of select="$date-published"/>",
+        <xsl:text>&#10;    "datePublished": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-published, '&quot;,')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
