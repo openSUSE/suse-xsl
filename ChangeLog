@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Tue Apr 14 10:54:15 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update to 2.95.34
+  - Revise JSON-LD/Dublin Core dates for metadata (#797)
+  - JSON-LD/mentions: Look for nearest info element (#796)
+-------------------------------------------------------------------
 Wed Apr 01 06:18:02 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.33
