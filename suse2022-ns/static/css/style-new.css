@@ -1421,7 +1421,8 @@ footer {
     overflow: visible;
     transition: left 0.2s ease-in; }
     main .side-toc#_side-toc-overall.mobile-visible {
-      left: 0; }
+      left: 0;
+      top: 76px; }
       main .side-toc#_side-toc-overall.mobile-visible::before {
         content: '';
         top: 0;
@@ -1884,7 +1885,7 @@ body.scroll-up main.sticky article .version-info {
       display: none; } }
 #_side-toc-overall.mobile-visible + #_open-side-toc-overall {
   position: fixed;
-  top: .75rem;
+  top: 80px;
   left: calc(300px + .75rem);
   z-index: 9003;
   background-position: 50% 50%;

@@ -2142,7 +2142,7 @@ body.scroll-up main.sticky article .version-info {
       display: none; } }
 #_side-toc-overall.mobile-visible + #_open-side-toc-overall {
   position: fixed;
-  top: .75rem;
+  top: 80px;
   left: calc(300px + .75rem);
   z-index: 9003;
   background-position: 50% 50%;
