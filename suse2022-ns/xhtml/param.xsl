@@ -271,6 +271,9 @@ task before
   <xsl:param name="daps.header.js.languageswitcher">static/js/language-switcher.js</xsl:param>
   <xsl:param name="daps.hide.js.languageswitcher">static/js/hide-lang-switcher.js</xsl:param>
 
+  <!-- UI modifier JavaScript -->
+  <xsl:param name="daps.ui-modifier.js">static/js/ui-modifier.js</xsl:param>
+
   <!-- This list is intentionally quite strict (no aliases) to keep our documents
   consistent. -->
   <xsl:param name="highlight.supported.languages" select="'apache|bash|c++|css|diff|html|xml|http|ini|json|java|javascript|makefile|nginx|php|perl|python|ruby|sql|crmsh|dockerfile|lisp|yaml'"/>

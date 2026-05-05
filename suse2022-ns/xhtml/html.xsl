@@ -61,6 +61,7 @@ self-closing <script/> tags! -->
   </xsl:variable>
 
   <xsl:if test="string-length($script.filename) != 0">
+    <!-- <xsl:message>Creating script for <xsl:value-of select="$src"/> </xsl:message> -->
     <script>
       <xsl:attribute name="src">
         <xsl:value-of select="$src"/>
@@ -71,7 +72,7 @@ self-closing <script/> tags! -->
       <xsl:call-template name="other.script.attributes">
         <xsl:with-param name="script.filename" select="$script.filename"/>
       </xsl:call-template>
-      <xsl:text> </xsl:text>
+      <xsl:comment></xsl:comment>
     </script>
   </xsl:if>
 </xsl:template>

@@ -515,9 +515,12 @@
 
     <xsl:if test="$overview-page != ''">
       <a class="crumb overview-link" href="{$overview-page}" title="{$title}">
-<!--        <xsl:value-of select="string($title)"/>-->
+      <!-- <xsl:value-of select="string($title)"/>-->
       </a>
-<!--      <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>-->
+      <!-- <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>-->
+      <span class="sep">|</span>
+      <a class="crumb index-page-crumb" href="">Index Page</a>
+      <span class="sep">|</span>
     </xsl:if>
   </xsl:template>
 
@@ -975,6 +978,11 @@
         <xsl:with-param name="script.filename" select="$daps.header.js.highlight"/>
       </xsl:call-template>
       <script>hljs.highlightAll();</script>
+    </xsl:if>
+    <xsl:if test="$daps.ui-modifier.js != ''">
+      <xsl:call-template name="make.script.link">
+        <xsl:with-param name="script.filename" select="$daps.ui-modifier.js"/>
+      </xsl:call-template>
     </xsl:if>
     <xsl:if test="$enable.source.highlighting != 1">
       <!-- Provide a fake highlight.js, because our script is waiting for
