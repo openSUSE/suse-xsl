@@ -272,7 +272,7 @@ task before
   <xsl:param name="daps.hide.js.languageswitcher">static/js/hide-lang-switcher.js</xsl:param>
 
   <!-- UI modifier JavaScript -->
-  <xsl:param name="daps.ui-modifier.js">static/js/ui-modifier.js</xsl:param>
+  <xsl:param name="daps.ui-modifier.js">static/js/ui-modifiers.js</xsl:param>
 
   <!-- This list is intentionally quite strict (no aliases) to keep our documents
   consistent. -->
