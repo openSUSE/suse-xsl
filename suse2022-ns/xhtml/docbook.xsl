@@ -519,7 +519,7 @@
       </a>
       <!-- <span><xsl:copy-of select="$daps.breadcrumbs.sep"/></span>-->
       <span class="sep">|</span>
-      <a class="crumb index-page-crumb" href="">Index Page</a>
+      <a class="crumb index-page-crumb" href="">Index</a>
       <span class="sep">|</span>
     </xsl:if>
   </xsl:template>
