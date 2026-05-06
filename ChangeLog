@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed May 06 13:47:12 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update to 2.95.36
+  - Mobile fixes and breadcrumbs (#802)
+  - JSON-LD: Use all productnames in metadata (#801)
+-------------------------------------------------------------------
 Wed Apr 15 07:51:31 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update to 2.95.35
