@@ -548,7 +548,8 @@
     </xsl:variable>
     <xsl:variable name="headline" select="normalize-space($candidate-headline)"/>
 
-    "headline": "<xsl:value-of select="translate($headline, '&quot;', '')"/>",
+    <xsl:text>    "headline": </xsl:text>
+    <xsl:value-of select="concat('&quot;', translate($headline, '&quot;', ''), '&quot;,&#10;')"/>
   </xsl:template>
 
   <xsl:template name="json-ld-name">
@@ -593,7 +594,7 @@
     </xsl:variable>
     <xsl:text>"name": "</xsl:text>
     <xsl:value-of select="$_name"/>
-    <xsl:text>",</xsl:text>
+    <xsl:text>",&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template name="json-ld-alternativeheadline">
@@ -611,8 +612,8 @@
     <xsl:variable name="subtitle" select="normalize-space($candidate-headline)"/>
 
     <xsl:if test="$subtitle != ''">
-      <xsl:text>  "alternativeHeadline": </xsl:text>
-      <xsl:value-of select="concat('&quot;', $subtitle, '&quot;,')"/>
+      <xsl:text>    "alternativeHeadline": </xsl:text>
+      <xsl:value-of select="concat('&quot;', $subtitle, '&quot;,&#10;')"/>
     </xsl:if>
   </xsl:template>
 
@@ -633,7 +634,8 @@
       </xsl:choose>
     </xsl:variable>
     <xsl:if test="$lang != ''">
-    "inLanguage": "<xsl:value-of select="$lang"/>",
+      <xsl:text>    "inLanguage": </xsl:text>
+      <xsl:value-of select="concat('&quot;', $lang, '&quot;,&#10;')"/>
     </xsl:if>
   </xsl:template>
 
@@ -671,7 +673,8 @@
     </xsl:variable>
 
       <xsl:if test="$description != ''">
-    "description": "<xsl:value-of select="translate($description, '&quot;', '')"/>",
+        <xsl:text>    "description": </xsl:text>
+        <xsl:value-of select="concat('&quot;', translate($description, '&quot;', ''), '&quot;,&#10;')"/>
       </xsl:if>
   </xsl:template>
 
@@ -762,23 +765,24 @@
     <xsl:choose>
       <!-- If we don't find any authors, create a default one -->
       <xsl:when test="$type = 'author' and count($rtf-authors/*) = 0">
-    "author": [
-      {
-        "@type": "<xsl:value-of select="$json-ld-fallback-author-type"/>",
-        "name": "<xsl:value-of select="$json-ld-fallback-author-name"/>",
-        "url": "<xsl:value-of select="$json-ld-fallback-author-url"/>"
-      }
-    ],
+        <xsl:text>    "author": [&#10;</xsl:text>
+        <xsl:text>      {&#10;</xsl:text>
+        <xsl:text>        "@type": </xsl:text><xsl:value-of select="concat('&quot;', $json-ld-fallback-author-type, '&quot;,&#10;')"/>
+        <xsl:text>        "name": </xsl:text><xsl:value-of select="concat('&quot;', $json-ld-fallback-author-name, '&quot;,&#10;')"/>
+        <xsl:text>        "url": </xsl:text><xsl:value-of select="concat('&quot;', $json-ld-fallback-author-url, '&quot;&#10;')"/>
+        <xsl:text>      }&#10;</xsl:text>
+        <xsl:text>    ],&#10;</xsl:text>
       </xsl:when>
       <xsl:when test="count($rtf-authors/*) > 0">
-    "<xsl:value-of select="$type"/>": [
+        <xsl:text>    </xsl:text>
+        <xsl:value-of select="concat('&quot;', $type, '&quot;: [&#10;')"/>
       <xsl:for-each select="$rtf-authors/*">
         <xsl:variable name="person">
           <xsl:choose>
             <xsl:when test="d:personname">
               <xsl:call-template name="person.name">
-            <xsl:with-param name="node" select="."/>
-          </xsl:call-template>
+                <xsl:with-param name="node" select="."/>
+              </xsl:call-template>
             </xsl:when>
             <xsl:when test="d:orgname">
               <xsl:value-of select="d:orgname"/>
@@ -792,21 +796,31 @@
           </xsl:choose>
         </xsl:variable>
         <xsl:variable name="uri" select="normalize-space(d:uri)"/>
-        {
-        "@type": "<xsl:value-of select="$json-type"/>",
-        "name": "<xsl:value-of select="$person"/>"<xsl:if test="$uri">,
-        "url": "<xsl:value-of select="normalize-space(d:uri)"/>"
+        <xsl:text>      {&#10;</xsl:text>
+        <xsl:text>        "@type": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $json-type, '&quot;,&#10;')"/>
+        <xsl:text>        "name": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $person, '&quot;')"/>
+        <xsl:if test="$uri">
+          <xsl:text>,&#10;</xsl:text>
+          <xsl:text>        "url": </xsl:text>
+          <xsl:value-of select="concat('&quot;', normalize-space(d:uri), '&quot;')"/>
         </xsl:if>
-        <xsl:if test="not(d:orgname) and ./d:affiliation/d:orgname">,
-          "affiliation": {
-          "@type": "Corporation",
-          "name": "<xsl:value-of select="./d:affiliation/d:orgname"/>"
-          }
+        <xsl:if test="not(d:orgname) and ./d:affiliation/d:orgname">
+          <xsl:text>,&#10;</xsl:text>
+          <xsl:text>        "affiliation": {&#10;</xsl:text>
+          <xsl:text>          "@type": "Corporation",&#10;</xsl:text>
+          <xsl:text>          "name": </xsl:text>
+          <xsl:value-of select="concat('&quot;', ./d:affiliation/d:orgname, '&quot;&#10;')"/>
+          <xsl:text>        }&#10;</xsl:text>
         </xsl:if>
         <!--, "role": "Writer"-->
-        }<xsl:if test="position() != last()">,&#10;      </xsl:if>
+        <xsl:text>      }</xsl:text>
+        <xsl:if test="position() != last()">
+          <xsl:text>,&#10;</xsl:text>
+        </xsl:if>
       </xsl:for-each>
-    ],
+      <xsl:text>&#10;    ],&#10;</xsl:text>
       </xsl:when>
       <!-- Do we need an xsl:otherwise? -->
     </xsl:choose>
@@ -967,8 +981,8 @@
 
     <xsl:choose>
       <xsl:when test="$date-created != ''">
-        <xsl:text>&#10;    "dateCreated": </xsl:text>
-        <xsl:value-of select="concat('&quot;', $date-created, '&quot;,')"/>
+        <xsl:text>    "dateCreated": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-created, '&quot;,&#10;')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
@@ -982,8 +996,8 @@
     </xsl:choose>
     <xsl:choose>
       <xsl:when test="$date-modified != ''">
-        <xsl:text>&#10;    "dateModified": </xsl:text>
-        <xsl:value-of select="concat('&quot;', $date-modified, '&quot;,')"/>
+        <xsl:text>    "dateModified": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-modified, '&quot;,&#10;')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
@@ -997,8 +1011,8 @@
     </xsl:choose>
     <xsl:choose>
       <xsl:when test="$date-published != ''">
-        <xsl:text>&#10;    "datePublished": </xsl:text>
-        <xsl:value-of select="concat('&quot;', $date-published, '&quot;,')"/>
+        <xsl:text>    "datePublished": </xsl:text>
+        <xsl:value-of select="concat('&quot;', $date-published, '&quot;,&#10;')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:call-template name="log.message">
@@ -1012,8 +1026,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template name="json-ld-publisher">
-    "sameAs": [
+  <xsl:template name="json-ld-publisher">    "sameAs": [
           "https://www.facebook.com/SUSEWorldwide/about",
           "https://www.youtube.com/channel/UCHTfqIzPKz4f_dri36lAQGA",
           "https://twitter.com/SUSE",
@@ -1068,21 +1081,21 @@
     <xsl:variable name="meta-series" select="$node/d:info/d:meta[@name='series'][1]"/>
     <xsl:variable name="candidate-series">
       <xsl:choose>
-        <xsl:when test="$json-ld-seriesname != ''">
-          <xsl:value-of select="$json-ld-seriesname"/>
-        </xsl:when>
         <xsl:when test="$meta-series">
           <xsl:value-of select="$meta-series"/>
+        </xsl:when>
+        <xsl:when test="$json-ld-seriesname != ''">
+          <xsl:value-of select="$json-ld-seriesname"/>
         </xsl:when>
         <xsl:otherwise/>
       </xsl:choose>
     </xsl:variable>
 
-    <xsl:if test="$candidate-series != ''">
-     "isPartOf": {
-      "@type": "CreativeWorkSeries",
-      "name": "<xsl:value-of select="normalize-space($candidate-series)"/>"
-    },
+    <xsl:if test="count($candidate-series) > 0">
+      <xsl:text>    "isPartOf": {&#10;</xsl:text>
+      <xsl:text>      "@type": "CreativeWorkSeries",&#10;</xsl:text>
+      <xsl:text>      "name": </xsl:text><xsl:value-of select="concat('&quot;', normalize-space($candidate-series), '&quot;&#10;')"/>
+      <xsl:text>    },&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
 
@@ -1124,9 +1137,9 @@
       https://www.suse.com/releasenotes/x86_64/<PRODUCT>/<RELEASE>/
     -->
     <xsl:if test="$productid = 'sles' or $productid = 'sled'">
-    "releaseNotes": "<xsl:value-of
-      select="concat('https://www.suse.com/releasenotes/x86_64/',
-                     $productid, '/', $release, '/')"/>",
+      <xsl:text>    "releaseNotes": </xsl:text>
+      <xsl:value-of  select="concat('&quot;https://www.suse.com/releasenotes/x86_64/',
+                     $productid, '/', $release, '/&quot;,&#10;')"/>
     </xsl:if>
   </xsl:template>
 
@@ -1143,26 +1156,28 @@
       </xsl:call-template>
     </xsl:variable>
 
-    "about": [
-      <xsl:value-of select="$tasks"/>
-      <xsl:if test="normalize-space($webpages) != ''">
-          <xsl:if test="normalize-space($tasks) != ''">
-            <xsl:text>,&#10;</xsl:text>
-          </xsl:if>
-        <xsl:value-of select="$webpages"/>
+    <xsl:text>    "about": [&#10;</xsl:text>
+    <xsl:value-of select="$tasks"/>
+    <xsl:if test="normalize-space($webpages) != ''">
+      <xsl:if test="normalize-space($tasks) != ''">
+        <xsl:text>,&#10;</xsl:text>
       </xsl:if>
-    ],
+      <xsl:value-of select="$webpages"/>
+    </xsl:if>
+    <xsl:text>&#10;    ],&#10;</xsl:text>
   </xsl:template>
 
   <xsl:template name="json-ld-task">
     <xsl:param name="node" select="."/>
     <xsl:variable name="tasks" select="$node/d:info/d:meta[@name='task']/d:phrase"/>
     <xsl:if test="count($tasks) > 0">
-      <xsl:for-each select="$tasks">{
-        "@type": "Thing",
-        "name": "<xsl:value-of select="normalize-space(.)"/>"
-      }<xsl:if test="position() &lt; last()">
-        <xsl:text>,&#10;      </xsl:text>
+      <xsl:for-each select="$tasks">
+        <xsl:text>      {&#10;</xsl:text>
+        <xsl:text>        "@type": "Thing",&#10;</xsl:text>
+        <xsl:text>        "name": </xsl:text><xsl:value-of select="concat('&quot;', normalize-space(.), '&quot;&#10;')"/>
+        <xsl:text>      }</xsl:text>
+        <xsl:if test="position() &lt; last()">
+        <xsl:text>,&#10;</xsl:text>
       </xsl:if>
       </xsl:for-each>
     </xsl:if>
@@ -1197,7 +1212,7 @@
     </xsl:message>-->
 
     <xsl:if test="$productname">
-      <xsl:text>  "mentions": [&#10;</xsl:text>
+      <xsl:text>    "mentions": [&#10;</xsl:text>
       <xsl:for-each select="$productname">
         <xsl:text>      { "@type": "SoftwareApplication",&#10;        "name": "</xsl:text>
         <xsl:value-of select="normalize-space(current()/.)"/>
@@ -1209,15 +1224,15 @@
         </xsl:if>
         <xsl:text>&#10;        "applicationCategory": "Operating System",&#10;        "operatingSystem": "Linux"</xsl:text>
         <xsl:if test="normalize-space($candidate-arch) != ''">
-          <xsl:text>,&#10;        "processorRequirements": "</xsl:text>
-          <xsl:value-of select="$candidate-arch"/><xsl:text>"</xsl:text>
+          <xsl:text>,&#10;        "processorRequirements": </xsl:text>
+          <xsl:value-of select="concat('&quot;', $candidate-arch, '&quot;')"/>
         </xsl:if>
         <xsl:text>&#10;      }</xsl:text>
         <xsl:if test="position() != last()">
           <xsl:text>,&#10;</xsl:text>
         </xsl:if>
       </xsl:for-each>
-    ],
+      <xsl:text>&#10;    ],&#10;</xsl:text>
     </xsl:if>
   </xsl:template>
 
@@ -1309,11 +1324,16 @@
             <xsl:when test=". = 'pdf'">application/pdf</xsl:when>
           </xsl:choose>
         </xsl:variable>
-        {
-          "@type": "WebPage",
-          "url": "<xsl:value-of select="$url"/>"<xsl:if test="$encodingformat != ''">,
-          "encodingFormat": "<xsl:value-of select="$encodingformat"/>"</xsl:if>
-        }<xsl:if test="position() != last()">, </xsl:if>
+        <xsl:text>        {&#10;</xsl:text>
+        <xsl:text>          "@type": "WebPage",</xsl:text>
+        <xsl:text>          "url": </xsl:text><xsl:value-of select="concat('&quot;', $url, '&quot;')"/>
+        <xsl:if test="$encodingformat != ''">
+          <xsl:text>,</xsl:text>
+          <xsl:text>          "encodingFormat": </xsl:text>
+          <xsl:value-of select="concat('&quot;', $encodingformat, '&quot;')"/>
+        </xsl:if>
+        <xsl:text>&#10;        }</xsl:text>
+        <xsl:if test="position() != last()">, </xsl:if>
       </xsl:for-each>
   </xsl:template>
 </xsl:stylesheet>
