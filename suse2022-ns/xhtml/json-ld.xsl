@@ -1172,7 +1172,7 @@
     <xsl:param name="node" select="."/>
     <xsl:variable name="info-productnumber" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productnumber)[last()])"/>
     <xsl:variable name="info-productname" select="normalize-space(($node/ancestor-or-self::*/d:info/d:productname)[last()])"/>
-    <xsl:variable name="meta-productname" select="($node/ancestor-or-self::*/d:info/d:meta[@name='productname']/d:productname)[last()]"/>
+    <xsl:variable name="meta-productname" select="($node/ancestor-or-self::*/d:info/d:meta[@name='productname'])[last()]/d:productname"/>
     <xsl:variable name="tmp-productname-with-version">
       <xsl:if test="$info-productname">
         <productname xmlns="http://docbook.org/ns/docbook" version="{$info-productnumber}"
@@ -1189,7 +1189,7 @@
       </xsl:for-each>
     </xsl:variable>
 
-<!--    <xsl:message>mentions processed...
+    <!--<xsl:message>mentions processed...
       current node:        <xsl:value-of select="local-name($node)"/>
       info-productname:    <xsl:value-of select="$info-productname"/>
       info-productnumber:  <xsl:value-of select="$info-productnumber"/>
@@ -1197,17 +1197,25 @@
     </xsl:message>-->
 
     <xsl:if test="$productname">
-    "mentions": [
+      <xsl:text>  "mentions": [&#10;</xsl:text>
       <xsl:for-each select="$productname">
-      { "@type": "SoftwareApplication",
-        "name": "<xsl:value-of select="normalize-space(.)"/>",
-        <xsl:if test="normalize-space(@version) != ''">"softwareVersion": "<xsl:value-of select="@version"/>",</xsl:if>
-        "applicationCategory": "Operating System",
-        "operatingSystem": "Linux"<xsl:if test="normalize-space($candidate-arch) != ''">,
-        "processorRequirements": "<xsl:value-of select="$candidate-arch"/>"
+        <xsl:text>      { "@type": "SoftwareApplication",&#10;        "name": "</xsl:text>
+        <xsl:value-of select="normalize-space(current()/.)"/>
+        <xsl:text>",</xsl:text>
+        <xsl:if test="normalize-space(current()/@version) != ''">
+          <xsl:text>&#10;        "softwareVersion": "</xsl:text>
+          <xsl:value-of select="normalize-space(current()/@version)"/>
+          <xsl:text>",</xsl:text>
         </xsl:if>
-      }
-      <xsl:if test="position() != last()">,&#10;      </xsl:if>
+        <xsl:text>&#10;        "applicationCategory": "Operating System",&#10;        "operatingSystem": "Linux"</xsl:text>
+        <xsl:if test="normalize-space($candidate-arch) != ''">
+          <xsl:text>,&#10;        "processorRequirements": "</xsl:text>
+          <xsl:value-of select="$candidate-arch"/><xsl:text>"</xsl:text>
+        </xsl:if>
+        <xsl:text>&#10;      }</xsl:text>
+        <xsl:if test="position() != last()">
+          <xsl:text>,&#10;</xsl:text>
+        </xsl:if>
       </xsl:for-each>
     ],
     </xsl:if>
