@@ -1335,6 +1335,15 @@ body {
   body.single main.sticky.scroll-with-footer::before {
     content: none !important; }
 
+header {
+  height: 122px;
+  position: fixed;
+  top: 0;
+  background-color: #0c322c;
+  width: 100%;
+  z-index: 100;
+  padding-block: 16px; }
+
 .crumbs {
   padding: .5rem 1.25rem;
   background-color: #dedfe0;
