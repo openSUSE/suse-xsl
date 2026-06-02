@@ -84,6 +84,8 @@ DOCDIR        := $(DESTDIR)$(PREFIX)/doc/packages/suse-xsl-stylesheets
 TTF_FONT_DIR  := $(DESTDIR)$(PREFIX)/fonts/truetype
 CATALOG_DIR   := $(DESTDIR)/etc/xml/catalog.d
 
+SASSC_OPTIONS := --precision 5
+
 INST_STYLEDIRS := $(STYLEDIR2005) $(STYLEDIR2005-NS) \
    $(DAPSSTYLEDIR2013) $(DAPSSTYLEDIR2013-NS) \
    $(OPENSUSESTYLEDIR2013) $(OPENSUSESTYLEDIR2013-NS) \
@@ -187,10 +189,10 @@ PHONY: sass-css
 sass-css: suse2021-ns/static/css/style.css suse2022-ns/static/css/style.css
 
 suse2021-ns/static/css/style.css: $(styles2021_sass)
-	sassc $< $@
+	sassc $(SASSC_OPTIONS) $< $@
 
 suse2022-ns/static/css/style.css: $(styles2022_sass_main) $(styles2022_sass_custom) $(styles2022_sass_bulma)
-	sassc $< $@
+	sassc $(SASSC_OPTIONS) $< $@
 
 PHONY: sass-clean
 sass-clean:
