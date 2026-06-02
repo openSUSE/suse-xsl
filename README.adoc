@@ -52,17 +52,15 @@ For a successful build, you will need:
 * `xsltproc`
 * `xmlcatalog`
 * `aspell`
-
-For the `sass-css` target:
-
 * `sassc` (openSUSE's RPM-packaged version is good enough). For details, see https://github.com/openSUSE/suse-xsl/tree/main/source-assets/styles2022/sass[sass README]
 
 
 === Creating a build
 
-* After changes to the SASS code: regenerate the suse2021 and suse2022 CSS: `make sass-css`
-
-* Create namespaced suse and suse2013 stylesheets: `make`
+1. Change the SASS code, if necessary.
+1. Regenerate the suse2021 and suse2022 CSS: `make sass-css`
+1. Create namespaced suse and suse2013 stylesheets: `make`
+1. Create a new release (see below).
 
 
 == Requirements for testing
