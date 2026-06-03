@@ -1421,6 +1421,21 @@ footer {
   background-color: #0c322c;
   position: relative; }
 
+.docsurvey-wrapper {
+  background-color: #008657;
+  font-size: 16px;
+  margin-top: 16px;
+  padding-block: 8px;
+  padding-inline: 8px;
+  width: fit-content; }
+
+.docsurvey-wrapper a.survey-link {
+  color: #fff !important;
+  text-decoration: none; }
+
+.docsurvey-wrapper a.survey-link:hover {
+  background-color: inherit !important; }
+
 @media screen and (max-width: 1024px) {
   main .side-toc#_side-toc-overall {
     display: block;

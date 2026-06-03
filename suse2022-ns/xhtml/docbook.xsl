@@ -1077,6 +1077,7 @@ if (window.location.protocol.toLowerCase() != 'file:') {
 
   <xsl:template name="side.toc.page">
     <aside id="_side-toc-page" class="side-toc">
+      <xsl:call-template name="doc-survey"/>
       <!-- FIXME suse22: Does not work correctly for single-page sets & books
       (but does work for articles). So just disable it in that case for now and
       focus on chunked HTML ... -->
@@ -1113,7 +1114,6 @@ if (window.location.protocol.toLowerCase() != 'file:') {
       <xsl:call-template name="qualtrics.rating"/>
       <xsl:text> </xsl:text>
     </aside>
-    <xsl:call-template name="doc-survey"/>
   </xsl:template>
 
 </xsl:stylesheet>
