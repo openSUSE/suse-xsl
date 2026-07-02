@@ -496,7 +496,6 @@
           <xsl:call-template name="generate.breadcrumbs.back"/>
           <xsl:apply-templates select="." mode="breadcrumbs"/>
         </div>
-        <xsl:call-template name="doc-survey"/>
       </div>
     </xsl:if>
   </xsl:template>
