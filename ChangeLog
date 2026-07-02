@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Thu Jul 02 13:59:47 UTC 2026 - tomschr@users.noreply.github.com
+
+* Update 2.95.38
+  - Fix double occurances of doc survey in single HTML (#810)
+-------------------------------------------------------------------
 Wed Jun 03 07:27:06 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update to 2.95.37
