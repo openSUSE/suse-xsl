@@ -551,7 +551,7 @@ task before
   <xsl:param name="doc.survey" select="0"></xsl:param>
 
   <!-- The survey URL to be used. Change it accordingly -->
-  <xsl:param name="doc.survey.url">https://suselinux.fra1.qualtrics.com/jfe/form/SV_bEiGZbUNzLD8Tcy</xsl:param>
+  <xsl:param name="doc.survey.url">https://suselinux.fra1.qualtrics.com/jfe/form/SV_diCzHC9xxyJyuN0</xsl:param>
 
   <!-- SUVA engine -->
   <xsl:param name="generate.suva" select="0" />
