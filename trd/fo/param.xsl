@@ -23,4 +23,7 @@
     <xsl:attribute name="text-align">left</xsl:attribute>
     <xsl:attribute name="font-weight">normal</xsl:attribute>
   </xsl:attribute-set>
+  
+  <!-- Create version information before title? -->
+  <xsl:param name="generate.version.info" select="1"/>
 </xsl:stylesheet>

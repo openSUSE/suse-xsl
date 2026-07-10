@@ -59,9 +59,14 @@
     <!-- product -->
     <fo:block space-before="3cm">
       <xsl:if test="d:info/d:productname">
-        <fo:block role="productname">
-          <xsl:apply-templates select="d:info/d:productname[1]" mode="article.titlepage.recto.auto.mode"/>
+        <fo:block role="productname" text-align="start"
+          font-size="{&xx-large; * $sans-fontsize-adjust}pt" space-after="0.5em">
+          <fo:inline background-color="&c_jungle;" color="white"
+            padding="0.3em 0.3em 0.1em 0.3em">
+            <xsl:call-template name="version.info.headline" />
+          </fo:inline>
         </fo:block>
+        <!--          <xsl:apply-templates select="d:info/d:productname[1]" mode="article.titlepage.recto.auto.mode"/>-->
       </xsl:if>
 
     <!-- Title -->
