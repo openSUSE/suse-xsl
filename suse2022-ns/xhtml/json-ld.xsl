@@ -592,7 +592,7 @@
       </xsl:if>
     </xsl:variable>
     <xsl:text>"name": "</xsl:text>
-    <xsl:value-of select="$_name"/>
+    <xsl:value-of select="normalize-space($_name)"/>
     <xsl:text>",</xsl:text>
   </xsl:template>
 
