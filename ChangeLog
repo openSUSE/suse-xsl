@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Fri Jul 17 06:24:26 UTC 2026 - tomschr@users.noreply.github.com
+
+Upate to 2.95.39
+* Update doc.survey.url parameter (#812)
+* JSON-LD: Add missing normalize-space for name key (#815)
+* Fix #813: Make TRD PDF similar to HTML (#814)
+-------------------------------------------------------------------
 Thu Jul 02 13:59:47 UTC 2026 - tomschr@users.noreply.github.com
 
 * Update 2.95.38
