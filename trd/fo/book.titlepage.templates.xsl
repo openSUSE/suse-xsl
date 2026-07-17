@@ -90,11 +90,6 @@
         content-width="100%" src="{$titlepage.logo.image}" />
     </fo:block>
 
-    <!-- Platform specific -->
-    <fo:block space-before="2em" text-align="right" font-size="&normal;pt">
-      <xsl:apply-templates select="d:info/d:meta[@name='platform']" mode="book.titlepage.recto.auto.mode"/>
-    </fo:block>
-
     <!-- Authors -->
     <fo:block space-before="4em" font-size="&normal;pt">
       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
@@ -103,13 +98,18 @@
         select="d:info/d:author[1]" />
     </fo:block>
 
+    <!-- Platform specific -->
+    <fo:block space-before="2em" text-align="left" font-size="&normal;pt">
+      <xsl:apply-templates select="d:info/d:meta[@name='platform']" mode="book.titlepage.recto.auto.mode"/>
+    </fo:block>
+
     <!-- Cover Icons -->
-    <fo:block-container absolute-position="absolute" top="{$page.height.portrait} * 0.78">
+    <!--<fo:block-container absolute-position="absolute" top="{$page.height.portrait} * 0.78">
       <fo:block>
         <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
           select="d:info/d:cover[d:mediaobject]" />
       </fo:block>
-    </fo:block-container>
+    </fo:block-container>-->
   </xsl:template>
 
 
@@ -169,7 +169,7 @@
   </xsl:template>
 
   <xsl:template match="d:authorgroup" mode="book.titlepage.recto.auto.mode">
-    <fo:block text-align="outside" font-family="{$sans-stack}">
+    <fo:block text-align="left" font-family="{$sans-stack}">
       <xsl:for-each select="d:author">
         <fo:block>
           <xsl:apply-templates select="." mode="authorgroup">

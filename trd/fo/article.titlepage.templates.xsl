@@ -39,6 +39,7 @@
         </fo:table-cell>
         <fo:table-cell text-align="right" color="&c_jungle;">
           <fo:block font-size="&x-large;pt" hyphenate="false">
+            <xsl:message>##########</xsl:message>
             <xsl:choose>
               <xsl:when test="$json-ld-seriesname != ''">
                 <xsl:value-of select="$json-ld-seriesname"/>
@@ -58,9 +59,14 @@
     <!-- product -->
     <fo:block space-before="3cm">
       <xsl:if test="d:info/d:productname">
-        <fo:block role="productname">
-          <xsl:apply-templates select="d:info/d:productname[1]" mode="article.titlepage.recto.auto.mode"/>
+        <fo:block role="productname" text-align="start"
+          font-size="{&xx-large; * $sans-fontsize-adjust}pt" space-after="0.5em">
+          <fo:inline background-color="&c_jungle;" color="white"
+            padding="0.3em 0.3em 0.1em 0.3em">
+            <xsl:call-template name="version.info.headline" />
+          </fo:inline>
         </fo:block>
+        <!--          <xsl:apply-templates select="d:info/d:productname[1]" mode="article.titlepage.recto.auto.mode"/>-->
       </xsl:if>
 
     <!-- Title -->
@@ -104,25 +110,30 @@
       <fo:external-graphic content-width="100%" src="{$titlepage.logo.image}" />
     </fo:block>
 
-    <!-- Platform specific -->
-    <fo:block space-before="2em" text-align="right" font-size="&normal;pt">
-      <xsl:apply-templates select="d:info/d:meta[@name='platform']" mode="article.titlepage.recto.auto.mode"/>
-    </fo:block>
-
     <!-- Authors -->
     <fo:block space-before="4em" font-size="&normal;pt">
+      <fo:block font-weight="bold" text-align="left">
+        <xsl:call-template name="gentext">
+          <xsl:with-param name="key">Authors</xsl:with-param>
+      </xsl:call-template>
+      </fo:block>
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
         select="d:info/d:authorgroup" />
       <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
         select="d:info/d:author[1]" />
     </fo:block>
 
-    <fo:block-container absolute-position="absolute" top="{$page.height.portrait} * 0.78">
+    <!-- Platform specific -->
+    <fo:block space-before="4em" text-align="left" font-size="&normal;pt">
+      <xsl:apply-templates select="d:info/d:meta[@name='platform']" mode="article.titlepage.recto.auto.mode"/>
+    </fo:block>
+
+    <!--<fo:block-container absolute-position="absolute" top="{$page.height.portrait} * 0.78">
       <fo:block>
         <xsl:apply-templates mode="article.titlepage.recto.auto.mode"
           select="d:info/d:cover[d:mediaobject]" />
       </fo:block>
-    </fo:block-container>
+    </fo:block-container>-->
   </xsl:template>
 
   <xsl:template name="article.titlepage.separator">
@@ -214,7 +225,7 @@
 
 
   <xsl:template match="d:authorgroup" mode="article.titlepage.recto.auto.mode">
-    <fo:block text-align="outside">
+    <fo:block text-align="left">
       <xsl:for-each select="d:author">
         <fo:block>
           <xsl:apply-templates select="." mode="authorgroup">
