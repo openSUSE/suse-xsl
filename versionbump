@@ -50,6 +50,18 @@ else
     exit
   fi
 
+  # 1. Check if the new version is identical to the current version
+  if [[ "$bumpedversion" == "$currentversion" ]]; then
+    echo "(meh) New version ($bumpedversion) is identical to the current version."
+    exit 1
+  fi
+
+  # 2. Check if the new version is greater than the current version using GNU sort
+  if ! printf '%s\n%s\n' "$currentversion" "$bumpedversion" | sort -C -V 2>/dev/null; then
+    echo "(meh) New version ($bumpedversion) is older than the current version ($currentversion)."
+    exit 1
+  fi
+
   echo "Current version number is $currentversion"
   echo -n "Really set new version number $bumpedversion? y/[n] "
   read DECISION
