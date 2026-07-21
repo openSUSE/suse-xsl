@@ -68,6 +68,7 @@
 <!-- ============================================================== -->
 <!-- revhistory handling -->
 <xsl:template match="d:revhistory" mode="titlepage.mode">
+  <xsl:if test="number($generate.revhistory) != 0">
     <xsl:variable name="revhistory.text">
       <xsl:call-template name="gentext">
         <xsl:with-param name="key" select="'RevHistory'" />
@@ -186,6 +187,7 @@
         <xsl:copy-of select="$contents" />
       </xsl:otherwise>
     </xsl:choose>
+  </xsl:if>
 </xsl:template>
 
 
