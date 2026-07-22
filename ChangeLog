@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Jul 22 08:23:03 UTC 2026 - tomschr@users.noreply.github.com
+
+Update to 2.39.40
+* HTML: Check generate.revhistory for d:revhistory (#817)
+* Improve formatting of JSON-LD (#803)
+
+-------------------------------------------------------------------
 Fri Jul 17 06:24:26 UTC 2026 - tomschr@users.noreply.github.com
 
 Upate to 2.95.39
