@@ -11,7 +11,7 @@ endif
 
 SHELL         := /bin/bash
 PACKAGE       := suse-xsl-stylesheets
-VERSION       := 2.95.40
+VERSION       := 2.95.41
 CDIR          := $(shell pwd)
 SUSE_XML_PATH := $(PREFIX)/xml/suse
 DB_XML_PATH   := $(PREFIX)/xml/docbook
