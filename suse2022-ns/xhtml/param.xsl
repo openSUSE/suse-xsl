@@ -471,10 +471,13 @@ task before
   <xsl:param name="show.language-switcher" select="1" />
 
   <!-- The import URL of the SUSE header -->
-  <xsl:param name="suse.header.import.url">https://static.scc.suse.com/shared-header/1.19/shared-header.esm.js</xsl:param>
+  <xsl:param name="suse.header.baseurl">https://static.scc.suse.com/shared-header/</xsl:param>
+  <xsl:param name="suse.header.version">1.19</xsl:param>
+  <xsl:param name="suse.header.import.url"
+    select="concat($suse.header.baseurl, $suse.header.version, '/shared-header.esm.js')" />
+  <xsl:param name="suse.header.assets.url"
+    select="concat($suse.header.baseurl, $suse.header.version, '/assets')" />
 
-  <!-- The assets URL of the SUSE header -->
-  <xsl:param name="suse.header.assets.url">https://static.scc.suse.com/shared-header/1.19/assets</xsl:param>
 
   <!-- Should we generate a JSON-LD structure? 0=no, 1=yes -->
   <xsl:param name="generate.json-ld" select="1"/>
