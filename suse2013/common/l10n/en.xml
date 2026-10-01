@@ -46,6 +46,9 @@
    <l:gentext key="GlossSeeAlso" text="See also"/>
    <l:gentext key="glossseealso" text="See also"/>
 
+   <l:gentext key="tasksummary" text="Summary"/>
+   <l:gentext key="taskprerequisites" text="Requirements"/>
+   <l:gentext key="taskrelated" text="Related"/>
 
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
@@ -73,6 +76,8 @@
       <l:template name="procedure-title" text="%t"/>
       <l:template name="table-label" text="Table&#160;%n:"/>
       <l:template name="table-title" text="%t"/>
+      <l:template name="task-label" text="Task&#160;%n:"/>
+      <l:template name="task-title" text="%t"/>
       <l:template name="variablelist-label" text=""/>
       <l:template name="variablelist-title" text="%t"/>
       <l:template name="itemizedlist-label" text=""/>
@@ -102,6 +107,7 @@
       <l:template name="intra-preface" text="Preface “%t”"/>
       <l:template name="intra-figure" text="Figure&#160;%n “%t”"/>
       <l:template name="intra-table" text="Table&#160;%n “%t”"/>
+      <l:template name="intra-task" text="Task&#160;%n “%t”"/>
       <l:template name="intra-example" text="Example&#160;%n “%t”"/>
       <l:template name="intra-procedure" text="Procedure&#160;%n “%t”"/>
 
@@ -134,6 +140,7 @@
       <l:template name="section" style="nonumber"  text="Section “%t”"/>
       <l:template name="simplesect" style="nonumber"  text="the section called “%t”"/>
       <l:template name="table" style="nonumber"  text="Table “%t”"/>
+      <l:template name="task" style="nonumber"  text="Task “%t”"/>
    </l:context>
 
    <l:context name="xep-bookmark-title">

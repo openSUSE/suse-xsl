@@ -63,6 +63,7 @@
   <xsl:include href="admon.xsl"/>
   <xsl:include href="component.xsl"/>
   <xsl:include href="block.xsl"/>
+  <xsl:include href="task.xsl"/>
   <xsl:include href="qandaset.xsl"/>
   <xsl:include href="hyphenate-url.xsl"/>
   <xsl:include href="titlepage.xsl"/>
