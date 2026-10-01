@@ -25,6 +25,12 @@ JOBS=""
 # Format string used for Bash's time keyword
 TIMEFORMAT=$'Elapsed time: %3lR'
 
+# Raise the Java stack size for jing. Long attribute values (like SVG paths)
+# overflow the default stack in the regex check of avt.datatype.
+# JDK_JAVA_OPTIONS is read by the java launcher itself, so it works with
+# any jing wrapper script.
+export JDK_JAVA_OPTIONS="${JDK_JAVA_OPTIONS:+$JDK_JAVA_OPTIONS }-Xss4m"
+
 
 function usage {
     cat <<EOF_helptext
@@ -75,7 +81,7 @@ function seq_validate() {
     time {
         for xslt in $XSLTFILES; do
             echo -n "> Validating $xslt..."
-            BASE_FLAGS="-Xss2m" jing -c $RNG $xslt
+            jing -c $RNG $xslt
             r=$?
             [[ $r -eq 0 ]] && echo "ok"
             [[ $r -eq 0 ]] || result=1
