@@ -5,6 +5,15 @@ on:
   push:
     branches-ignore:
       - gh-pages
+    paths:
+      - '.github/workflows/ci.yml'
+      - 'catalog.d/**'
+      - 'suse2022-ns/**'
+      - 'source-assets/**'
+      - 'sbp/**'
+      - 'tests/**'
+      - 'trd/**'
+
   pull_request:
     branches-ignore:
       - gh-pages
@@ -60,4 +69,6 @@ jobs:
           xmlcatalog /etc/xml/catalog "$DBXSL/xhtml/docbook.xsl"
 
       - name: Validate
-        run: ./tests/validate-xslt -j
+        env:
+          JING_JAVA_OPTS: -Xms256m -Xmx1536m -Xss4m
+        run: ./tests/validate-xslt -j2

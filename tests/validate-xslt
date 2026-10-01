@@ -18,6 +18,10 @@ IGNOREFILE_CONFIG=$MYPATH/ignore-xslt.txt
 # Assign RELAX NG
 RNG="$MYPATH/xslt10.rnc"
 
+# Java options for jing; can be overridden from the environment, e.g.
+#   JING_JAVA_OPTS="-Xms256m -Xmx1536m -Xss4m" ./tests/validate-xslt -j2
+JING_JAVA_OPTS="${JING_JAVA_OPTS:--Xms256m -Xmx1024m -Xss4m}"
+
 # Should parallels be used? Only set JOBS if
 # -j/--jobs are passed
 JOBS=""
@@ -39,6 +43,10 @@ Options
                   (omit the integer), it will use *all* CPU cores on your machine
    -r, --rng      File for compact XSLT RNG schema
                   (default: '$RNG')
+
+Environment
+   JING_JAVA_OPTS Java options passed to jing via JAVA_TOOL_OPTIONS
+                  (default: '$JING_JAVA_OPTS')
 
 Written by $AUTHORS
 EOF_helptext
@@ -75,7 +83,7 @@ function seq_validate() {
     time {
         for xslt in $XSLTFILES; do
             echo -n "> Validating $xslt..."
-            BASE_FLAGS="-Xss2m" jing -c $RNG $xslt
+            JAVA_TOOL_OPTIONS="$JING_JAVA_OPTS" jing -c $RNG $xslt
             r=$?
             [[ $r -eq 0 ]] && echo "ok"
             [[ $r -eq 0 ]] || result=1
@@ -97,7 +105,7 @@ function parallel_validate() {
             --progress \
             --eta \
             --halt now,fail=1 \
-            "jing -c $RNG {}" ::: $XSLTFILES
+            "env JAVA_TOOL_OPTIONS='$JING_JAVA_OPTS' jing -c $RNG {}" ::: $XSLTFILES
         result=$?
         echo
     }
