@@ -38,6 +38,7 @@
    <l:gentext key="susecontact" text="Contact Us"/>
    <l:gentext key="version.info" text="Applies to "/>
    <l:gentext key="totopofpage" text="Top"/>
+   <l:gentext key="last.modified" text="Last modified"/>
 
    <l:gentext key="version" text="Version"/>
    <l:gentext key="Version" text="Version"/>

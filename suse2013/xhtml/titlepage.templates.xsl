@@ -447,6 +447,18 @@
     <div class="date">
       <xsl:call-template name="date.and.revision.inner"/>
     </div>
+
+    <xsl:if test="$last.modified != ''">
+      <div class="date lastmodified">
+        <span class="imprint-label">
+          <xsl:call-template name="gentext">
+            <xsl:with-param name="key">last.modified</xsl:with-param>
+          </xsl:call-template>
+          <xsl:text>: </xsl:text>
+        </span>
+        <xsl:value-of select="normalize-space($last.modified)"/>
+      </div>
+    </xsl:if>
 </xsl:template>
 
 <xsl:template name="imprint.label">
