@@ -43,6 +43,14 @@
             -stringparam="canonical-url-base=https://www.example.com"
     -->
 
+  <!-- Comma, space, or semicolon-separated language codes for
+       <link rel="alternate" hreflang=...> tags. Only effective when
+       canonical-url-base is set. No tags included if unset. -->
+  <xsl:param name="canonical-langs" select="''"/>
+    <!-- Override with:
+            -stringparam="canonical-langs=en-us,de-de,es-es"
+    -->
+
   <!-- Toggle the SUSE footer and SUSE e-mail button. Set to 0 if the
        documentation won't be available at a suse.com address.-->
   <xsl:param name="suse.content" select="1"/>

@@ -89,18 +89,10 @@
     <xsl:param name="socialmedia.title"/>
     <xsl:param name="socialmedia.description"/>
     <xsl:variable name="socialmedia.preview" select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
-    <xsl:variable name="ischunk">
-      <xsl:call-template name="chunk"/>
-    </xsl:variable>
     <xsl:variable name="filename">
-      <xsl:choose>
-        <xsl:when test="$ischunk = 1">
-          <xsl:apply-templates mode="chunk-filename" select="."/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="concat($root.filename,$html.ext)"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="canonical-filename">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="canonical.url" select="concat($canonical-url-base,'/',$filename)"/>
     <xsl:variable name="meta.nodes" select="$node/d:info/d:meta|$node/ancestor::*/d:info/d:meta"/>
@@ -216,6 +208,88 @@
     <xsl:text>&#10;</xsl:text>
   </xsl:template>
 
+
+  <xsl:template name="canonical-filename">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="ischunk">
+      <xsl:call-template name="chunk"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$ischunk = 1">
+        <xsl:apply-templates mode="chunk-filename" select="$node"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($root.filename,$html.ext)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="canonical-alternate-links">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="langs" select="normalize-space(translate($canonical-langs, ',;', '  '))"/>
+    <xsl:if test="$canonical-url-base != '' and $langs != ''">
+      <xsl:variable name="filename">
+        <xsl:call-template name="canonical-filename">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
+      </xsl:variable>
+      <xsl:variable name="base.proto" select="substring-before($canonical-url-base, '://')"/>
+      <xsl:variable name="base.noproto" select="substring-after($canonical-url-base, '://')"/>
+      <xsl:variable name="base.host">
+        <xsl:choose>
+          <xsl:when test="contains($base.noproto, '/')">
+            <xsl:value-of select="substring-before($base.noproto, '/')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$base.noproto"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <xsl:variable name="base.path" select="substring-after($base.noproto, '/')"/>
+
+      <xsl:if test="$base.proto != ''">
+        <link rel="alternate" hreflang="x-default" href="{concat($canonical-url-base,'/',$filename)}"/>
+        <xsl:text>&#10;</xsl:text>
+        <xsl:call-template name="canonical-alternate-langs">
+          <xsl:with-param name="list" select="$langs"/>
+          <xsl:with-param name="filename" select="$filename"/>
+          <xsl:with-param name="proto" select="concat($base.proto, '://')"/>
+          <xsl:with-param name="host" select="$base.host"/>
+          <xsl:with-param name="path" select="$base.path"/>
+        </xsl:call-template>
+      </xsl:if>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="canonical-alternate-langs">
+    <xsl:param name="list"/>
+    <xsl:param name="filename"/>
+    <xsl:param name="proto"/>
+    <xsl:param name="host"/>
+    <xsl:param name="path"/>
+    <xsl:if test="$list != ''">
+      <xsl:variable name="lang" select="substring-before(concat($list, ' '), ' ')"/>
+      <xsl:variable name="url">
+        <xsl:value-of select="concat($proto, $host, '/')"/>
+        <xsl:if test="$lang != 'en-us'">
+          <xsl:value-of select="concat($lang, '/')"/>
+        </xsl:if>
+        <xsl:if test="$path != ''">
+          <xsl:value-of select="concat($path, '/')"/>
+        </xsl:if>
+        <xsl:value-of select="$filename"/>
+      </xsl:variable>
+      <link rel="alternate" hreflang="{$lang}" href="{$url}"/>
+      <xsl:text>&#10;</xsl:text>
+      <xsl:call-template name="canonical-alternate-langs">
+        <xsl:with-param name="list" select="substring-after($list, ' ')"/>
+        <xsl:with-param name="filename" select="$filename"/>
+        <xsl:with-param name="proto" select="$proto"/>
+        <xsl:with-param name="host" select="$host"/>
+        <xsl:with-param name="path" select="$path"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
 
   <xsl:template name="social-media-twitter">
     <xsl:param name="node" select="."/>

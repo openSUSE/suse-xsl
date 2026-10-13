@@ -389,6 +389,10 @@
     <xsl:with-param name="socialmedia.description" select="$socialmedia.description"/>
   </xsl:call-template>
 
+  <xsl:call-template name="canonical-alternate-links">
+    <xsl:with-param name="node" select="$node"/>
+  </xsl:call-template>
+
   <xsl:call-template name="social-media-twitter">
     <xsl:with-param name="socialmedia.title" select="$socialmedia.title"/>
     <xsl:with-param name="socialmedia.description" select="$socialmedia.description"/>
