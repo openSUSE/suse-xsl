@@ -89,18 +89,10 @@
     <xsl:param name="socialmedia.title"/>
     <xsl:param name="socialmedia.description"/>
     <xsl:variable name="socialmedia.preview" select="concat($canonical-url-base, '/', $socialmedia.preview.default)"/>
-    <xsl:variable name="ischunk">
-      <xsl:call-template name="chunk"/>
-    </xsl:variable>
     <xsl:variable name="filename">
-      <xsl:choose>
-        <xsl:when test="$ischunk = 1">
-          <xsl:apply-templates mode="chunk-filename" select="."/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="concat($root.filename,$html.ext)"/>
-        </xsl:otherwise>
-      </xsl:choose>
+      <xsl:call-template name="canonical-filename">
+        <xsl:with-param name="node" select="$node"/>
+      </xsl:call-template>
     </xsl:variable>
     <xsl:variable name="canonical.url" select="concat($canonical-url-base,'/',$filename)"/>
     <xsl:variable name="meta.nodes" select="$node/d:info/d:meta|$node/ancestor::*/d:info/d:meta"/>
@@ -217,22 +209,29 @@
   </xsl:template>
 
 
+  <xsl:template name="canonical-filename">
+    <xsl:param name="node" select="."/>
+    <xsl:variable name="ischunk">
+      <xsl:call-template name="chunk"/>
+    </xsl:variable>
+    <xsl:choose>
+      <xsl:when test="$ischunk = 1">
+        <xsl:apply-templates mode="chunk-filename" select="$node"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat($root.filename,$html.ext)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
   <xsl:template name="canonical-alternate-links">
     <xsl:param name="node" select="."/>
     <xsl:variable name="langs" select="normalize-space(translate($canonical-langs, ',;', '  '))"/>
     <xsl:if test="$canonical-url-base != '' and $langs != ''">
-      <xsl:variable name="ischunk">
-        <xsl:call-template name="chunk"/>
-      </xsl:variable>
       <xsl:variable name="filename">
-        <xsl:choose>
-          <xsl:when test="$ischunk = 1">
-            <xsl:apply-templates mode="chunk-filename" select="$node"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="concat($root.filename,$html.ext)"/>
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:call-template name="canonical-filename">
+          <xsl:with-param name="node" select="$node"/>
+        </xsl:call-template>
       </xsl:variable>
       <xsl:variable name="base.proto" select="substring-before($canonical-url-base, '://')"/>
       <xsl:variable name="base.noproto" select="substring-after($canonical-url-base, '://')"/>
