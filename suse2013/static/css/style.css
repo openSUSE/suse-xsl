@@ -1742,13 +1742,13 @@ p, .simplelist td {
 }
 
 .title .xref, .subtitle .xref, .table-title .xref, .example-title .xref,
-.figure-title .xref, .procedure-title .xref, .orderedlist-title .xref,
+.figure-title .xref, .procedure-title .xref, .task-title .xref, .orderedlist-title .xref,
 .itemizedlist-title .xref, .variablelist-title .xref, .qandadiv-title .xref,
 .title .link, .subtitle .link, .table-title .link, .example-title .link,
-.figure-title .link, .procedure-title .link, .orderedlist-title .link,
+.figure-title .link, .procedure-title .link, .task-title .link, .orderedlist-title .link,
 .itemizedlist-title .link, .variablelist-title .link, .qandadiv-title .link,
 .title .ulink, .subtitle .ulink, .table-title .ulink, .example-title .ulink,
-.figure-title .ulink, .procedure-title .ulink, .orderedlist-title .ulink,
+.figure-title .ulink, .procedure-title .ulink, .task-title .ulink, .orderedlist-title .ulink,
 .itemizedlist-title .ulink, .variablelist-title .ulink, .qandadiv-title .ulink {
     text-decoration: underline;
 }
@@ -1783,6 +1783,7 @@ p, .simplelist td {
 .figure-title .xref:hover, .figure-title .xref:focus, .figure-title .xref:active,
 .example-title .xref:hover, .example-title .xref:focus, .example-title .xref:active,
 .procedure-title .xref:hover, .procedure-title .xref:focus, .procedure-title .xref:active,
+.task-title .xref:hover, .task-title .xref:focus, .task-title .xref:active,
 .orderedlist-title .xref:hover, .orderedlist-title .xref:focus, .orderedlist-title .xref:active,
 .itemizedlist-title .xref:hover, .itemizedlist-title .xref:focus, .itemizedlist-title .xref:active,
 .variablelist-title .xref:hover, .variablelist-title .xref:focus, .variablelist-title .xref:active,
@@ -2059,6 +2060,7 @@ div.variablelist, .toc {
 
 .list-of-figures dl, .list-of-tables dl,
 .list-of-examples dl, .list-of-procedures dl,
+.list-of-tasks dl,
 .list-of-equations dl {
     margin: 5px 0 17px 0;
     padding: 0 0 0 30px;
@@ -2166,7 +2168,7 @@ a:hover .package, a:focus .package, a:active .package {
     color: #666;
 }
 
-.procedure-title, .table-title, .example-title,
+.procedure-title, .table-title, .example-title, .task-title,
 .figure-title, .orderedlist-title, .variablelist-title,
 .itemizedlist-title, .qandadiv-title {
     font-size: 14px;
@@ -2233,7 +2235,7 @@ a:hover .package, a:focus .package, a:active .package {
     text-transform: none;
 }
 
-.procedure-contents {
+.procedure-contents, .task-contents {
     border-left: 3px solid #9CC897;
     font-weight: normal;
     margin: 17px 0 17px;
@@ -2244,11 +2246,29 @@ a:hover .package, a:focus .package, a:active .package {
     display: block;
 }
 
-.procedure-title-wrap + .procedure-contents {
+.task-title-wrap {
+  margin-top: 1.5em;
+}
+
+.taskprerequisites  {
+  margin-top: 1.2em;
+}
+
+.tasksummary {
+  margin-top: -0.5em;
+}
+
+.task-contents .procedure-contents {
+  border-left: none;
+}
+
+.procedure-title-wrap + .procedure-contents,
+.task-title-wrap + .task-contents {
     margin: 10px 0 24px;
 }
 
 .procedure-contents > p:first-child,
+.task-contents > p:first-child,
 .procedure-contents > ol:first-child > li:first-child > p:first-child {
     margin-top: 0;
 }
@@ -2257,8 +2277,10 @@ a:hover .package, a:focus .package, a:active .package {
     margin-top: 4px;
 }
 
-.procedure-contents > p, .procedure-contents > .informalfigure,
-.procedure-contents > .admonition {
+.procedure-contents > p,
+.procedure-contents > .informalfigure,
+.procedure-contents > .admonition,
+.task-contents > * {
     margin-left: 12px;
     margin-right: 17px;
 }
@@ -3160,6 +3182,7 @@ p.ds-message {
     .sect4 > .verbatim-wrap, .sect5 > .verbatim-wrap, .sect6 > .verbatim-wrap,
     .sect > .verbatim-wrap, .chapter > .verbatim-wrap, .article > .verbatim-wrap,
     .procedure-contents, .procedure-title-wrap + .procedure-contents,
+    .task-contents, .task-title-wrap + .task-contents,
     div.figure, .complex-example .example-contents {
         margin-left: -10px;
         margin-right: -10px;
