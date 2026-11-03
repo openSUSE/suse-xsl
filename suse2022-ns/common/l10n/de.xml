@@ -59,6 +59,9 @@
    <l:gentext key="GlossSeeAlso" text="Siehe auch" />
    <l:gentext key="glossseealso" text="Siehe auch" />
 
+   <l:gentext key="ListofProcedures" text="Liste aller Vorgehen"/>
+   <l:gentext key="listofprocedures" text="Liste aller Vorgehen"/>
+
    <!-- In most cases, this has to be empty -->
    <l:dingbat key="guimenustartquote" text=""/>
    <l:dingbat key="guimenuendquote" text=""/>
@@ -125,6 +128,10 @@
       <l:template name="intra-itemizedlist" text="„%t“"/>
    </l:context>
 
+   <l:context name="xref-number">
+      <l:template name="procedure" text="Vorgehen %n"/>
+   </l:context>
+
    <l:context name="xref-number-and-title">
       <l:template name="appendix" style="nonumber" text="Anhang&#160;%t"/>
       <l:template name="bridgehead" style="nonumber" text="Abschnitt&#160;&#8222;%t&#8220;"/>
@@ -180,6 +187,8 @@
 
    <l:context name="title">
       <l:template name="revhistory" text="%t"/>
+      <l:template name="procedure" text="%t"/>
+      <l:template name="procedure.formal" text="Vorgehen %n. %t"/>
    </l:context>
 
    <l:context name="keycap">
