@@ -11,7 +11,8 @@
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:t="http://nwalsh.com/docbook/xsl/template/1.0"
     xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-    exclude-result-prefixes="exsl l t">
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    exclude-result-prefixes="exsl l t xlink">
   
   <xsl:template match="glossary">
     <xsl:variable name="language">
@@ -141,6 +142,56 @@
   </xsl:choose>
 
   <xsl:apply-templates select="indexterm|revhistory|glosssee|glossdef"/>
+</xsl:template>
+
+
+<xsl:template match="glossseealso">
+  <xsl:variable name="otherterm" select="(@otherterm|@linkend)[1]"/><!-- SUSE -->
+  <xsl:variable name="targets" select="key('id', $otherterm)"/>
+  <xsl:variable name="target" select="$targets[1]"/>
+  <xsl:variable name="xlink" select="@xlink:href"/>
+
+   <xsl:choose>
+    <xsl:when test="$target">
+      <a>
+        <xsl:apply-templates select="." mode="common.html.attributes"/>
+        <xsl:call-template name="id.attribute"/>
+        <xsl:attribute name="href">
+          <xsl:call-template name="href.target">
+            <xsl:with-param name="object" select="$target"/>
+          </xsl:call-template>
+        </xsl:attribute>
+        <xsl:apply-templates select="$target" mode="xref-to"/>
+      </a>
+    </xsl:when>
+    <xsl:when test="$xlink">
+      <xsl:call-template name="simple.xlink">
+        <xsl:with-param name="content">
+          <xsl:apply-templates/>
+        </xsl:with-param>
+      </xsl:call-template>
+    </xsl:when>
+    <xsl:when test="$otherterm != '' and not($target)">
+      <xsl:message>
+        <xsl:text>Warning: glossseealso @otherterm reference not found: </xsl:text>
+        <xsl:value-of select="$otherterm"/>
+      </xsl:message>
+      <xsl:apply-templates/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
+
+  <xsl:choose>
+    <xsl:when test="position() = last()"/>
+      <xsl:otherwise>
+        <xsl:call-template name="gentext.template">
+          <xsl:with-param name="context" select="'glossary'"/>
+          <xsl:with-param name="name" select="'seealso-separator'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 </xsl:stylesheet>
