@@ -415,4 +415,11 @@ USA</xsl:param>
 <!-- Trim away empty lines from the beginning and end of screens -->
 <xsl:param name="trim.verbatim" select="1"/>
 
+
+  <!-- The date at when the document was modified
+    Leave empty if you do not want to add a line with:
+    "modified at $doc.modified"
+  -->
+  <xsl:param name="last.modified"/>
+
 </xsl:stylesheet>

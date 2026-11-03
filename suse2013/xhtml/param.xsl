@@ -413,4 +413,10 @@ task before
        og:description/meta description tags.-->
   <xsl:param name="teaser.length" select="300"/>
 
+  <!-- The date at when the document was modified
+    Leave empty if you do not want to add a line with:
+    "modified at $doc.modified"
+  -->
+  <xsl:param name="last.modified"/>
+
 </xsl:stylesheet>
