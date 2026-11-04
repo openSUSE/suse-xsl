@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Wed Nov 04 11:54:58 UTC 2026 - tomschr@users.noreply.github.com
+
+Update to 2.96.1
+ * Removing prompt-characters from copied text (#830)￼
+ * Disable content in <screen> with role="hide" (#819)￼
+
+-------------------------------------------------------------------
 Tue Oct 13 07:27:54 UTC 2026 - tomschr@users.noreply.github.com
 
 Update to 2.96.0
